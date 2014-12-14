@@ -1,0 +1,9 @@
+{
+   "name": "aesop/aesop-editor",
+   "type": "wordpress-plugin",
+   "description": "Aesop Editor",
+   "keywords": ["plugin","wordpress","aesop","editor","hosted"],
+   "require": {
+     "composer/installers": "~1.0.6"
+   }
+}
