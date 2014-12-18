@@ -19,6 +19,7 @@ jQuery(document).ready(function($){
 		var data      = {
 			action:    'process_save_content',
 			author:  	aesop_editor.author,
+			content:    $(editor).data('contentbuilder'),
 			post_id:   	$this.data('post-id'),
 			nonce:     	aesop_editor.nonce
 		};
