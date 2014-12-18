@@ -21,8 +21,6 @@ class aesopEditorProcessSaving {
 			$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 			$content = isset( $_POST['content'] ) ? $_POST['content'] : null;
 
-			var_dump($_POST['content']);
-
 			$args = array(
 				'ID'           => $postid,
       			'post_content' => $content
