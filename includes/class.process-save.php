@@ -29,7 +29,6 @@ class aesopEditorProcessSaving {
 			);
 			wp_update_post( $args );
 
-
 			echo 'success';
 
 		}

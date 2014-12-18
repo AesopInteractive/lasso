@@ -3,8 +3,8 @@
 get_header();
 
 	?>
-	<form id="aesop-editor--form" method="post">
-		<textarea id="aesop-editor--content" name="aesop-editor--content">
+
+		<div id="aesop-editor--content" name="aesop-editor--content">
 			<?php
 
 			while( have_posts() ) : the_post();
@@ -13,12 +13,12 @@ get_header();
 			endwhile;
 
 			?>
-		</textarea>
+		</div>
 		<p>
-			<input type="submit" data-post-id="<?php echo get_the_ID();?>" style="z-index:999;position:fixed;bottom:20px;
-		right:20px;" id="aesop-editor--save" value="Save" class="btn btn-primary">
+			<a href="" data-post-id="<?php echo get_the_ID();?>" style="z-index:999;position:fixed;bottom:20px;
+		right:20px;" id="aesop-editor--save" value="Save" class="btn btn-primary">save</a>
 		</p>
-	</form>
+
 	<?php
 
 get_footer();
