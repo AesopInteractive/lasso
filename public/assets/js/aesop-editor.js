@@ -1,11 +1,8 @@
 jQuery(document).ready(function($){
 
-    $('.hentry').contentbuilder({
-        zoom: 0.85
+  	$(aesop_editor.editor).redactor({
+        focus: true
     });
-
-    alert(aesop_editor.editor);
-
 
 	$('#aesop-editor--save').on('click',function(e) {
 		//e.preventDefault();

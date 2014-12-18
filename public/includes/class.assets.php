@@ -11,14 +11,12 @@ class aesopEditorAssets {
 
 	function scripts(){
 
-		wp_enqueue_script('jquery-ui-core');
-		wp_enqueue_script('aesop-editor-script', AESOP_EDITOR_URL.'/includes/libs/builder/contentbuilder.js', array('jquery'), AESOP_EDITOR_VERSION, true);
-		wp_enqueue_style('aesop-editor-style', AESOP_EDITOR_URL.'/includes/libs/builder/contentbuilder.css', AESOP_EDITOR_VERSION, true);
+		wp_enqueue_script('aesop-editor-script', AESOP_EDITOR_URL.'/includes/libs/redactor/redactor.min.js', array('jquery'), AESOP_EDITOR_VERSION, true);
+		wp_enqueue_style('aesop-editor-style', AESOP_EDITOR_URL.'/includes/libs/redactor/redactor.css', AESOP_EDITOR_VERSION, true);
 
 		wp_enqueue_script('aesop-editor', AESOP_EDITOR_URL.'/public/assets/js/aesop-editor.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 		wp_localize_script('aesop-editor', 'aesop_editor',array(
-			'editor' 		=> '.hentry',
-			'plugins_uri'	=> AESOP_EDITOR_URL
+			'editor' 		=> '.hentry'
 		));
 
 	}
