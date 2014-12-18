@@ -2,10 +2,11 @@ jQuery(document).ready(function($){
 
 	var ajaxurl =  aesop_editor.ajaxurl,
 		form    = $('#aesop-editor--form'),
-		editor 	=  aesop_editor.editor;
+		editor 	=  aesop_editor.editor,
+		upload 	=  aesop_editor.upload;
 
   	$(editor).redactor({
-        focus: true
+        imageUpload: upload
     });
 
 	$('#aesop-editor--save').on('click',function(e) {

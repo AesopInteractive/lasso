@@ -17,6 +17,7 @@ class aesopEditorAssets {
 			'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
 			'editor' 		=> '#aesop-editor--content',
 			'author'		=> is_user_logged_in() ? get_current_user_ID() : false,
+			'upload'		=> AESOP_EDITOR_URL.'/includes/aesop-editor-upload.php',
 			'nonce'			=> wp_create_nonce('aesop_editor'),
 		));
 
