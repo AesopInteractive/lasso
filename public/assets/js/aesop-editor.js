@@ -9,25 +9,24 @@ jQuery(document).ready(function($){
         zoom: 0.85
     });
 
+    alert('yo');
+
 	$('#aesop-editor--save').on('click',function(e) {
 		//e.preventDefault();
-
-		alert("click");
 
 		var $this = $(this);
 
 		var data      = {
 			action:    'process_save_content',
 			author:  	aesop_editor.author,
-			content: 	$(editor).redactor('code.get'),
 			post_id:   	$this.data('post-id'),
 			nonce:     	aesop_editor.nonce
 		};
 
 		$.post( ajaxurl, data, function(response) {
 
-			if ( response )
-				location.reload();
+			alert( response )
+				//location.reload();
 
 		});
 
