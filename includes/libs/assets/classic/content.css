@@ -1,0 +1,327 @@
+﻿@import url('../icons/css/fontello.css');          
+        
+/**********************************
+    General
+***********************************/
+body {
+    margin:0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:100%; 
+    line-height:1.7;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Marcellus SC", serif;
+    font-weight: 300;
+    line-height: 1.3;
+    margin: 0.5em 0;
+}        
+h1 {font-size: 2.8em;}
+h2 {font-size: 2.37em;}
+h3 {font-size: 1.83em;}
+h4 {font-size: 1.39em;}
+h5 {font-size: 1.1em;}
+h6 {font-size: 0.98em;}
+.display h1 {
+    font-weight: 800;
+    font-size: 3em;
+    line-height:1.1;
+    text-transform: uppercase;
+}
+.display p {
+    font-size: 1.6em;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+}
+a {color: #08c9b9;}
+hr {border:none;border-top: rgba(0, 0, 0, 0.18) 1px solid;margin-top: 2em;margin-bottom: 2em;}    
+img {max-width:100%;}
+figure {margin:0}
+
+
+/* FIX: Preventing Chrome from wrapping text with span-style (when editing) */
+.display h1 span {font-size: 3em;line-height:1.1;}
+.display p span {font-size: 1.6em;line-height:1.7;}
+h1 span {font-size: 2.8em;line-height:1.7;}
+h2 span {font-size: 2.37em;line-height:1.7;}
+h3 span {font-size: 1.83em;line-height:1.7;}
+h4 span {font-size: 1.39em;line-height:1.7;}
+h5 span {font-size: 1.1em;line-height:1.7;}
+h6 span {font-size: 0.98em;line-height:1.7;}
+p span {font-size: 16px; line-height: 1.7;}
+li span {font-size: 16px; line-height: 1.7;}
+
+        
+/**********************************
+    Grid
+***********************************/
+.container {
+    margin: 0 auto;
+    max-width: 970px;
+    width: 90%;
+}
+@media (min-width: 40rem) {
+    .column {
+        float: left;
+        padding-left: 1.3rem; /* 1rem */
+        padding-right: 1.3rem;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .column.full { width: 100%; }
+    .column.two-thirds { width: 66.7%; }
+    .column.two-fourth { width: 75%; }
+    .column.two-fifth { width: 80%; }
+    .column.two-sixth { width: 83.3%; }
+    .column.half { width: 50%; }
+    .column.third { width: 33.3%; }
+    .column.fourth { width: 25%; }
+    .column.fifth { width: 20%; }
+    .column.sixth { width: 16.6%; }
+    .column.flow-opposite { float: right; }   
+}
+.clearfix:before, .clearfix:after {content: " ";display: table;}
+.clearfix:after {clear: both;}
+.clearfix {*zoom: 1;}
+
+    
+/**********************************
+    Elements
+***********************************/
+
+.center {text-align:center}
+.right {text-align:right}
+.left {text-align:left}
+
+img.circle {border-radius:500px;margin-top:0;}
+img.bordered {border: #ccc 1px solid;}
+
+.embed-responsive {position: relative;display:block;height:0;padding:0;overflow:hidden;} 
+.embed-responsive.embed-responsive-16by9 {padding-bottom: 56.25%;}
+.embed-responsive.embed-responsive-4by3 {padding-bottom: 75%;}
+.embed-responsive iframe {position: absolute;top:0;bottom:0;left:0;width:100%;height:100%;border:0;}
+
+.column > img, 
+.column > figure, 
+.column > .embed-responsive {
+    margin-top: 1em;margin-bottom: 1em;
+}
+
+.list {position:relative;margin:1.5em 0;}
+.list > i {position:absolute;left:-3px;top:-3px;font-size:2em;}
+.list > h2, .list > h3 {margin: 0 0 0 50px}
+.list > p {margin: 0 0 0 50px}
+
+.quote {position:relative;margin:1.5em 0;}
+.quote > i {position: absolute;top: -10px; left: -7px;font-size: 2em;color:rgba(51,51,51,0.44);}
+.quote > small {margin-left:50px;opacity: 0.7;font-size: 1em;}
+.quote > p {margin-left:50px;font-size: 1.5em;}
+
+.btn {
+    padding: 10px 30px;
+    font-size: 1.3em;
+    line-height: 2em;
+    border-radius: 6px;
+
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;    
+}
+
+.btn.btn-primary {color: #ffffff;background-color: #08c9b9;}
+.btn.btn-primary:hover {color: #ffffff;background-color: #07b0a2;border-color: #07b0a2;}
+.btn.btn-default {color: #333333;background-color: #d3d3d3;}
+.btn.btn-default:hover {color: #111;background-color: #ccc;border-color: #ccc;}
+
+.social a > i {text-decoration:none;color:#333;font-size:1.5em;margin:0 5px 0 0;-webkit-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
+.social a:hover > i {color:#08c9b9;}
+
+
+/**********************************
+    Header Image with Caption
+***********************************/
+figure.hdr {
+	position: relative;
+	width: 100%;
+	overflow:hidden;
+    background-color: #000;   
+}
+figure.hdr img {
+	position: relative;
+	display: block;
+	width: 100%;
+	opacity: 0.8;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;	
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+figure.hdr:hover img {
+	opacity: 0.5;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+figure.hdr figcaption {
+   	position: absolute;
+	top: auto;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 60%; 
+	padding: 0 2.5em;
+	color: #fff;
+	font-size: 1.55em;
+	text-align: center;
+	box-sizing: border-box;
+	z-index:1;
+}
+/* Text */
+figure.hdr h2 {
+	font-weight: 300;
+	text-transform: uppercase;
+}
+figure.hdr h2 span {
+	font-weight: 800;
+}
+figure.hdr p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
+	text-transform: uppercase;
+}
+figure.hdr h2, figure.hdr p {
+	margin: 0;
+	z-index:10000;
+}
+/* Cosmetic */
+figure.hdr div {
+	height: 100%; 
+	z-index:0;
+}
+figure.hdr div::before,
+figure.hdr div::after {
+	position: absolute;
+	content: '';
+}
+/* One */
+figure.one div::before {
+	top: 50px;
+	right: 30px;
+	bottom: 50px;
+	left: 30px;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+}
+figure.one div::after {
+	top: 30px;
+	right: 50px;
+	bottom: 30px;
+	left: 50px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+}
+/* Two */
+figure.two div::before {
+	top: 30px;
+	right: 30px;
+	bottom: 30px;
+	left: 30px;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+}
+figure.two div::after {
+	top: 30px;
+	right: 30px;
+	bottom: 30px;
+	left: 30px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+}
+/* Three */
+figure.three figcaption {
+	height: 70%; 
+}
+figure.three p {
+	margin: 1em 0 0;
+	padding: 2em;
+	border: 1px solid #fff;	
+} 
+/* Four */
+figure.four figcaption {
+	height: 60%; 
+	text-align: left;
+}
+figure.four p {
+	position: absolute;
+	right: 50px;
+	bottom: 50px;
+	left: 50px;
+	padding: 2em;
+	border: 7px solid #fff;
+}
+/* Five */
+figure.five figcaption {
+	height: 100%; 
+	text-align: right;
+}
+figure.five h2 {
+    position: absolute;
+    left: 50px;
+	right: 50px;
+	top: 10%;
+	border-bottom: 5px solid #fff;
+}
+figure.five p {
+	position: absolute;
+	right: 50px;
+	bottom: 10%;
+}
+/* Six */
+figure.six figcaption {
+	height: 70%;
+}
+figure.six h2 {
+    padding-bottom: 3%;
+	border-bottom: 1px solid #fff;
+}
+figure.six p {
+	padding-top: 6%;
+}
+/* Seven */
+figure.seven figcaption {
+	height: 90%;
+	text-align:left;
+}
+figure.seven h2 {
+	border-bottom: 3px solid #fff;
+}
+figure.seven p {
+    padding-top: 1em;
+}
+/* Eight */
+figure.eight figcaption {
+	height: 100%; 
+	text-align: right;
+}
+figure.eight h2 {
+	position: absolute;
+	left: 50%;
+	right: 50px;
+	bottom: 10%;
+}
+figure.eight p {
+    position: absolute;
+    left: 50px;
+	right: 50%;
+	top: 10%;
+	padding-right:0.5em;
+	border-right: 1px solid #fff;
+}

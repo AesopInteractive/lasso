@@ -1,0 +1,17 @@
+﻿
+body {
+    margin:0;
+    font-family: "Open Sans", sans-serif;
+    font-size:90%; 
+    line-height:1.7;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 970px;
+    width: 90%;
+}
+
+a {color: #08c9b9;}
+
+img {max-width:100%;}
