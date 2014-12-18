@@ -17,8 +17,10 @@ class aesopEditorAssets {
 
 		wp_enqueue_script('aesop-editor', AESOP_EDITOR_URL.'/public/assets/js/aesop-editor.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 		wp_localize_script('aesop-editor', 'aesop_editor',array(
-			'editor' 		=> '.hentry',
-			'plugins_uri'	=> AESOP_EDITOR_URL
+			'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
+			'editor' 		=> '#aesop-editor--content',
+			'author'		=> is_user_logged_in() ? get_current_user_ID() : false,
+			'nonce'			=> wp_create_nonce('aesop_editor'),
 		));
 
 	}

@@ -1,33 +1,36 @@
 jQuery(document).ready(function($){
 
-    $('.hentry').contentbuilder({
+	var ajaxurl =  aesop_editor.ajaxurl,
+	form    = $('#aesop-editor--form'),
+	editor 	=  aesop_editor.editor,
+	upload 	=  aesop_editor.upload;
+
+    $(editor).contentbuilder({
         zoom: 0.85
     });
-
-    alert(aesop_editor.editor);
-
 
 	$('#aesop-editor--save').on('click',function(e) {
 		//e.preventDefault();
 
 		alert("click");
 
-		/*
 		var $this = $(this);
 
 		var data      = {
 			action:    'process_save_content',
-			user_id:   $this.data('user-id'),
-			post_id:   $this.data('post-id'),
-			nonce:     aesop_editor.nonce
+			author:  	aesop_editor.author,
+			content: 	$(editor).redactor('code.get'),
+			post_id:   	$this.data('post-id'),
+			nonce:     	aesop_editor.nonce
 		};
 
 		$.post( ajaxurl, data, function(response) {
 
-			alert(response);
+			if ( response )
+				location.reload();
 
 		});
-*/
+
 
 	});
 });
