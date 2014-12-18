@@ -6,10 +6,9 @@ jQuery(document).ready(function($){
 	upload 	=  aesop_editor.upload;
 
     $(editor).contentbuilder({
-        zoom: 0.85
+        zoom: 0.85,
+        snippetFile: '/wp-content/plugins/ah-editor/includes/libs/assets/simple/snippets.html'
     });
-
-    alert('yo');
 
 	$('#aesop-editor--save').on('click',function(e) {
 		//e.preventDefault();
@@ -19,7 +18,7 @@ jQuery(document).ready(function($){
 		var data      = {
 			action:    'process_save_content',
 			author:  	aesop_editor.author,
-			content:    $(editor).data('contentbuilder'),
+			content:    $(editor).data('contentbuilder').html(),
 			post_id:   	$this.data('post-id'),
 			nonce:     	aesop_editor.nonce
 		};
