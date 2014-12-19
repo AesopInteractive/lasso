@@ -8,7 +8,8 @@ module.exports = function(grunt) {
         // watch our project for changes
         watch: {
         	uglify: {
-        		tasks:['publicscripts']
+        		files: ['public/assets/js/source/*'],
+        		tasks:['uglify:publicscripts']
         	},
             less: {
 				files: ['public/assets/less/**/*','admin/assets/less/**/*'],
@@ -34,12 +35,12 @@ module.exports = function(grunt) {
             publicscripts: {
                	files: {
                     'public/assets/js/aesop-editor.js': [
-                    	'public/assets/js/undo.js',
-                    	'public/assets/js/rangy-core.js',
-                    	'public/assets/js/rangy-classapplier.js',
-                    	'public/assets/js/content-editable.js',
-                     	'public/assets/js/enter-editor.js',
-                     	'public/assets/js/process-save.js'
+                    	'public/assets/js/source/undo.js',
+                    	'public/assets/js/source/rangy-core.js',
+                    	'public/assets/js/source/rangy-classapplier.js',
+                    	'public/assets/js/source/content-editable.js',
+                     	'public/assets/js/source/enter-editor.js',
+                     	'public/assets/js/source/process-save.js'
                     ]
                 }
             }
