@@ -1,10 +1,20 @@
 jQuery(document).ready(function($){
 
-	var editor 	=  aesop_editor.editor
+	var editor 	=  aesop_editor.editor,
+		toolbar = '<div class="aesop-editor--toolbar_wrap">\
+		   <span class="aesop-editor--toolbar__inner">\
+		    <span id="rich4-bold">B</span>\
+		    <span id="rich4-underline" >U</span>\
+		    <span id="rich4-italic">I</span>\
+		    <span id="rich4-strike">S</span>\
+		   </span>\
+		</div>';
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
+		$('body').toggleClass('aesop-editing');
 	    $(editor).attr('contenteditable',true);
+	    $('body').prepend(toolbar);
 
 		var article = document.getElementById('aesop-editor--content'),
 		    articleMedium = new Medium({
