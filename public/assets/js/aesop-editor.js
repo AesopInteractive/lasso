@@ -10,8 +10,8 @@ jQuery(document).ready(function($){
         snippetFile: '/wp-content/plugins/ah-editor/includes/libs/assets/simple/snippets.html'
     });
 
-	$('#aesop-editor--save').on('click',function(e) {
-		//e.preventDefault();
+	$('#aesop-editor--save').live('click',function(e) {
+		e.preventDefault();
 
 		var $this = $(this);
 
