@@ -10,7 +10,7 @@ class aesopEditorAssets {
 	function scripts(){
 
 
-		wp_enqueue_style('aesop-editor-style', AESOP_EDITOR_URL.'/public/assets/css/content-editable.css', AESOP_EDITOR_VERSION, true);
+		wp_enqueue_style('aesop-editor-style', AESOP_EDITOR_URL.'/public/assets/css/aesop-editor.css', AESOP_EDITOR_VERSION, true);
 
 		wp_enqueue_script('aesop-editor', AESOP_EDITOR_URL.'/public/assets/js/aesop-editor.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 		wp_localize_script('aesop-editor', 'aesop_editor',array(
