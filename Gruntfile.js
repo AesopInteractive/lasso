@@ -16,14 +16,17 @@ module.exports = function(grunt) {
                 files: ['public/assets/**/*', '**/*.html', '**/*.php', 'public/assets/img/**/*.{png,jpg,jpeg,gif,webp,svg}']
             }
         },
-        compass: {
-     		dist: {
-                options: {
-                    config: 'config.rb',
-                    force: true
+   		uglify: {
+            publicscripts: {
+               	files: {
+                    'public/assets/js/aesop-editor.js': [
+                    	'public/assets/js/content-editable.js',
+                     	'public/assets/js/enter-editor.js',
+                     	'public/assets/js/process-save.js'
+                    ]
                 }
             }
-        }
+        },
     });
 
     // register task
