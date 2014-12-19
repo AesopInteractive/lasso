@@ -10,6 +10,7 @@ class aesopEditorTextEditor {
 	function __construct() {
 
 		add_action( 'wp_footer', array($this,'editor_nav'));
+		add_action('wp_head',array($this,'editor_confirm'));
 
 	}
 
@@ -20,6 +21,12 @@ class aesopEditorTextEditor {
 			<a href="#" data-post-id="<?php echo get_the_ID();?>" id="aesop-editor--save" class="aesop-editor--button aesop-editor--button__success">save</a>
 		</nav><?php
 
+	}
+
+	function editor_confirm(){
+		?>
+		<div style="position:fixed;top:20px;right:20px;" id="aesop-editor--confirm"></div>
+		<?php
 	}
 }
 new aesopEditorTextEditor;

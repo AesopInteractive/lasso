@@ -1,14 +1,20 @@
 jQuery(document).ready(function($){
 
 	var ajaxurl =  aesop_editor.ajaxurl,
-		editor 	=  aesop_editor.editor;
+		editor 	=  aesop_editor.editor,
+		confirm = aesop_editor.confirm;
 
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
-	    var $div=$('div'), isEditable=$div.is('.editable');
-	    $div.prop('contenteditable',!isEditable).toggleClass('editable')
-	});
+	    $(editor).attr('contenteditable',true);
+
+	    	new Medium({
+        element: document.getElementById('aesop-editor--content')
+     });
+
+	});	     
+
 
 
 	$('#aesop-editor--save').live('click',function(e) {
@@ -16,10 +22,12 @@ jQuery(document).ready(function($){
 
 		var $this = $(this);
 
+		var html = $(editor).html();
+
 		var data      = {
 			action:    'process_save_content',
 			author:  	aesop_editor.author,
-			content: 	$(editor).html(),
+			content: 	html,
 			post_id:   	$this.data('post-id'),
 			nonce:     	aesop_editor.nonce
 		};
@@ -27,9 +35,9 @@ jQuery(document).ready(function($){
 		$.post( ajaxurl, data, function(response) {
 
 			if ( 'success' == response )
-				alert('success');
+				$(confirm).text('success');
 			else
-				alert('error');
+				$(confirm).text('error');
 
 		});
 
