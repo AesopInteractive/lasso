@@ -11,7 +11,9 @@ class aesopEditorAssets {
 
 	function scripts(){
 
-		wp_enqueue_script('jquery-ui-core');
+		//wp_enqueue_script('jquery-ui-core'); this POS content builder doesnt work with current jqueryu ui
+		wp_enqueue_script('aesop-editor-jquery', AESOP_EDITOR_URL.'/includes/libs/builder/jquery-ui.min.js', array('jquery'), AESOP_EDITOR_VERSION, true);
+		wp_enqueue_script('aesop-editor-jquery', AESOP_EDITOR_URL.'/includes/libs/builder/contentbuilder.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 		wp_enqueue_script('aesop-editor-script', AESOP_EDITOR_URL.'/includes/libs/builder/contentbuilder.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 		wp_enqueue_style('aesop-editor-style', AESOP_EDITOR_URL.'/includes/libs/builder/contentbuilder.css', AESOP_EDITOR_VERSION, true);
 
