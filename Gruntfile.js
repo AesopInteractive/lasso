@@ -24,8 +24,7 @@ module.exports = function(grunt) {
                     	'public/assets/js/rangy-core.js',
                     	'public/assets/js/rangy-classapplier.js',
                     	'public/assets/js/content-editable.js',
-                    	'public/assets/js/content-editable-toolbar.js',
-                     	//'public/assets/js/enter-editor.js',
+                     	'public/assets/js/enter-editor.js',
                      	'public/assets/js/process-save.js'
                     ]
                 }
