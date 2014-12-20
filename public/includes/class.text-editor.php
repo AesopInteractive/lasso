@@ -2,7 +2,7 @@
 
 /*
 *
-*	Class responsible for building the template redirect
+*	Class responsible for building the editor tools
 *
 */
 class aesopEditorTextEditor {
