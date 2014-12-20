@@ -9,7 +9,8 @@ jQuery(document).ready(function($){
 		    <li id="aesop-toolbar--strike"></li>\
 		    <li id="aesop-toolbar--modal"></li>\
 		   </ul>\
-		</div>';
+		</div>',
+		modal = aesop_editor.component_modal;
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
