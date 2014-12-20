@@ -1,14 +1,37 @@
+// edit wrapper
 #aesop-editor--controls {
-    z-index:9999;
+    z-index:@z-index--toolbar;
     position:fixed;
-    bottom:20px;
-    left:30px;
+    bottom:@toolbar--pos__bottom;
+    left:@toolbar--pos__bottom;
+    font-size: @control--font__size;
+
+    a {
+        font-family:@editor--font;
+        font-style:normal;
+        .transition(opacity .2s ease);
+    }
+}
+
+// edit button
+#aesop-editor--edit {
+    background:@control--bg;
+    color:@control--color;
+    padding:@control--padding;
 }
 
 // save button
 #aesop-editor--save {
-    display: none;
+    .opacity(0);
 }
-.aesop-editing #aesop-editor--save {
-    display: inline-block;
+
+// body class aesop is editing
+.aesop-editing {
+
+    #aesop-editor--edit {
+        .opacity(0);
+    }
+    #aesop-editor--save {
+        .opacity(1);
+    }
 }
