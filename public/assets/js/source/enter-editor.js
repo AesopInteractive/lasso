@@ -3,10 +3,10 @@ jQuery(document).ready(function($){
 	var editor 	=  aesop_editor.editor,
 		toolbar = '<div class="aesop-editor--toolbar_wrap">\
 		   <span class="aesop-editor--toolbar__inner">\
-		    <span id="aesop-toolbar--bold">B</span>\
-		    <span id="aesop-toolbar--underline" >U</span>\
-		    <span id="aesop-toolbar--italic">I</span>\
-		    <span id="aesop-toolbar--strike">S</span>\
+		    <span id="aesop-toolbar--bold"></span>\
+		    <span id="aesop-toolbar--underline" ></span>\
+		    <span id="aesop-toolbar--italic"></span>\
+		    <span id="aesop-toolbar--strike"></span>\
 		   </span>\
 		</div>';
 
