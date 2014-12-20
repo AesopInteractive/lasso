@@ -10,7 +10,7 @@ class aesopEditorTextEditor {
 	function __construct() {
 
 		add_action( 'wp_footer', array($this,'editor_nav'));
-		add_action('wp_head',array($this,'editor_confirm'));
+		add_action('wp_footer',array($this,'editor_confirm'));
 
 	}
 

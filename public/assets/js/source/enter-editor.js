@@ -7,6 +7,7 @@ jQuery(document).ready(function($){
 		    <span id="aesop-toolbar--underline" ></span>\
 		    <span id="aesop-toolbar--italic"></span>\
 		    <span id="aesop-toolbar--strike"></span>\
+		    <span id="aesop-toolbar--modal"></span>\
 		   </span>\
 		</div>';
 
@@ -14,7 +15,7 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 		$('body').toggleClass('aesop-editing');
 	    $(editor).attr('contenteditable',true);
-	    $('body').prepend(toolbar);
+	    $('body').append(toolbar);
 
 		var article = document.getElementById('aesop-editor--content'),
 		    articleMedium = new Medium({

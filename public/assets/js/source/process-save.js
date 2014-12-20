@@ -23,6 +23,7 @@ jQuery(document).ready(function($){
 
 			if ( 'success' == response ) {
 				$(confirm).text('success');
+				$(confirm).fadeIn();
 				$(confirm).delay(2000).fadeOut();
 			} else {
 				$(confirm).text('error');
