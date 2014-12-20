@@ -1,8 +1,7 @@
 jQuery(document).ready(function($){
 
 	var ajaxurl =  aesop_editor.ajaxurl,
-		editor 	=  aesop_editor.editor,
-		confirm = aesop_editor.confirm;
+		editor 	=  aesop_editor.editor;
 
 	$('#aesop-editor--save').live('click',function(e) {
 		e.preventDefault();
@@ -22,12 +21,10 @@ jQuery(document).ready(function($){
 		$.post( ajaxurl, data, function(response) {
 
 			if ( 'success' == response ) {
-				//$(confirm).text('success');
-				$(confirm).fadeIn();
-				$(confirm).delay(2000).fadeOut();
+				console.log(response);
 				$('#aesop-editor--save').addClass('saved');
 			} else {
-				$(confirm).text('error');
+				console.log(response);
 
 			}
 
