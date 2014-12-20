@@ -21,10 +21,13 @@ jQuery(document).ready(function($){
 
 		$.post( ajaxurl, data, function(response) {
 
-			if ( 'success' == response )
+			if ( 'success' == response ) {
 				$(confirm).text('success');
-			else
+				$(confirm).delay(2000).fadeOut();
+			} else {
 				$(confirm).text('error');
+
+			}
 
 		});
 
