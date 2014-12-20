@@ -3,10 +3,10 @@ jQuery(document).ready(function($){
 	var editor 	=  aesop_editor.editor,
 		toolbar = '<div class="aesop-editor--toolbar_wrap">\
 		   <span class="aesop-editor--toolbar__inner">\
-		    <span id="rich4-bold">B</span>\
-		    <span id="rich4-underline" >U</span>\
-		    <span id="rich4-italic">I</span>\
-		    <span id="rich4-strike">S</span>\
+		    <span id="aesop-toolbar--bold">B</span>\
+		    <span id="aesop-toolbar--underline" >U</span>\
+		    <span id="aesop-toolbar--italic">I</span>\
+		    <span id="aesop-toolbar--strike">S</span>\
 		   </span>\
 		</div>';
 
@@ -32,25 +32,25 @@ jQuery(document).ready(function($){
 			}
 		};
 
-		document.getElementById('rich4-bold').onmousedown = function() {
+		document.getElementById('aesop-toolbar--bold').onmousedown = function() {
 			article.highlight();
 		    articleMedium.invokeElement('b');
 			return false;
 		};
 
-		document.getElementById('rich4-underline').onmousedown = function() {
+		document.getElementById('aesop-toolbar--underline').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('u');
 			return false;
 		};
 
-		document.getElementById('rich4-italic').onmousedown = function() {
+		document.getElementById('aesop-toolbar--italic').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('i');
 			return false;
 		};
 
-		document.getElementById('rich4-strike').onmousedown = function() {
+		document.getElementById('aesop-toolbar--strike').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('strike');
 			return false;
