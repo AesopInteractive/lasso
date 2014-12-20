@@ -5,7 +5,7 @@
 
     background:@toolbar--bg;
     color:@toolbar--color;
-    width:@toolbar--width;
+    width:auto;
     height:@toolbar--height;
     font-size:20px;
     border-radius:@editor--radius;
@@ -15,20 +15,35 @@
     bottom:@toolbar--pos__bottom;
     z-index: @z-index--toolbar;
 
-    span {
-        height:@toolbar--icon__height;
-        width:@toolbar--icon__width;
+}
+
+// toolbar inner
+.aesop-editor--toolbar__inner {
+    margin:0;
+    padding:0;
+    list-style: none;
+    height:@toolbar--height;
+    .clearfix();
+
+    li {
         position:relative;
+        float:left;
+        padding:@toolbar--item__padding;
+        border-right:1px solid lighten(@toolbar--bg,10);
+        text-align: center;
 
         &:before {
             .editor-icon-font();
             .transition(all .2s ease);
         }
 
-        &:hover:before {
+        &:last-child {
+            border-right:0;
+        }
+
+        &:hover {
             cursor: pointer;
-            color:white;
-            .scale(1.1);
+            background: @toolbar--hover;
         }
     }
 }

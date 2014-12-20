@@ -7,11 +7,13 @@
     font-size: @control--font__size;
 
     a {
+        display:inline-block;
         font-family:@editor--font;
         font-style:normal;
         padding:@control--padding;
         border-radius: @editor--radius - 1;
         .transition(opacity .2s ease);
+        height:@toolbar--height;
 
         &:hover,
         &:active,
@@ -34,12 +36,11 @@
     &:before {
         content:'\f464';
         position:relative;
-        top:1px;
         .editor-icon-font();
     }
 
     &:hover {
-        background:@editor--color__success;
+        background:@toolbar--hover;
     }
 }
 

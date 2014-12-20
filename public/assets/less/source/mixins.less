@@ -4,6 +4,17 @@
     vertical-align: top;
     -webkit-font-smoothing: antialiased;
 }
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
 // Drop shadows
 .box-shadow(@shadow) {
   -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
