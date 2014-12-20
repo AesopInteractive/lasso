@@ -5,17 +5,19 @@
 //@brand-info:            #5bc0de;
 
 @editor--font:              'Open Sans';
-@editor--color__success:    #5cb85c;
+@editor--color__success:    #5CB85C;
 @editor--radius:            4px;
 
 @editor--confirm__pos:      20px;
 
 // TOOLBAR
-@toolbar--bg:               #121212;
-@toolbar--hover:            lighten(@toolbar--bg,10);
-@toolbar--color:            #eaeaea;
+@toolbar--bg:               #222;
+@toolbar--bg__accent:       lighten(@toolbar--bg,8);
+@toolbar--border:           darken(@toolbar--bg,5);
+@toolbar--hover:            @toolbar--bg__accent;
+@toolbar--color:            #E2E2E2;
 @toolbar--width:            160px;
-@toolbar--height:           37px;
+@toolbar--height:           39px;
 @toolbar--item__padding:    0 8px;
 @toolbar--font__size:       20px;
 @toolbar--icon__height:     20px;

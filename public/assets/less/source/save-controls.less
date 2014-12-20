@@ -25,6 +25,12 @@
         &:active {
             background:darken(@editor--color__success,7);
         }
+
+        &:before {
+            position:relative;
+            .editor-icon-font();
+        }
+
     }
 }
 
@@ -35,8 +41,6 @@
 
     &:before {
         content:'\f464';
-        position:relative;
-        .editor-icon-font();
     }
 
     &:hover {
@@ -49,6 +53,10 @@
     .opacity(0);
     background:@editor--color__success;
     color:white;
+
+    &:before {
+        content:'\f147';
+    }
 
     &:hover {
         background:darken(@editor--color__success,5);
