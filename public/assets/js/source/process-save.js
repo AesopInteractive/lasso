@@ -25,6 +25,7 @@ jQuery(document).ready(function($){
 				$(confirm).text('success');
 				$(confirm).fadeIn();
 				$(confirm).delay(2000).fadeOut();
+				$('#aesop-editor--save').addClass('saved');
 			} else {
 				$(confirm).text('error');
 

@@ -51,7 +51,7 @@
 // save button
 #aesop-editor--save {
     .opacity(0);
-    background:@editor--color__success;
+    background:@editor--color__error;
     color:white;
 
     &:before {
@@ -59,7 +59,11 @@
     }
 
     &:hover {
-        background:darken(@editor--color__success,5);
+        background:darken(@editor--color__error,5);
+    }
+
+    &.saved {
+        background:@editor--color__success;
     }
 }
 
@@ -69,9 +73,10 @@
     #aesop-editor--edit {
         .opacity(0);
     }
-    #aesop-editor--save {
-        .opacity(1);
-    }
+
+    //#aesop-editor--save {
+       // .opacity(1);
+   // }
 }
 
 // confirmation

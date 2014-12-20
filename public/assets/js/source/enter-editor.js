@@ -14,9 +14,19 @@ jQuery(document).ready(function($){
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
+
+		// add body class editing
 		$('body').toggleClass('aesop-editing');
-	    $(editor).attr('contenteditable',true);
+
+		// append toolbar
 	    $('body').append(toolbar);
+
+	    // show save button
+	    $('#aesop-editor--save').css('opacity',1);
+
+	    // set edtior to editable
+	    $(editor).attr('contenteditable',true);
+
 
 		var article = document.getElementById('aesop-editor--content'),
 		    articleMedium = new Medium({
