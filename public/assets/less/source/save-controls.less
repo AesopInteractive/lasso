@@ -4,12 +4,12 @@
     position:fixed;
     bottom:@toolbar--pos__bottom;
     left:@toolbar--pos__bottom;
-    font-size: @control--font__size;
 
     a {
         display:inline-block;
         font-family:@editor--font;
         font-style:normal;
+        font-size: @control--font__size;
         padding:@control--padding;
         border-radius: @editor--radius - 1;
         .transition(opacity .2s ease);
@@ -22,12 +22,10 @@
         &:active:before{
             text-decoration: none;
         }
-        &:active {
-            background:darken(@editor--color__success,7);
-        }
 
         &:before {
             position:relative;
+            height:@toolbar--height;
             .editor-icon-font();
         }
 
@@ -50,11 +48,16 @@
 
 // save button
 #aesop-editor--save {
+    position: fixed;
+    right: @toolbar--pos__bottom;
+    bottom: @toolbar--pos__bottom;
     .opacity(0);
     background:@editor--color__error;
     color:white;
+    font-size: @control--font__size + 2;
 
     &:before {
+        top:2px;
         content:'\f147';
     }
 

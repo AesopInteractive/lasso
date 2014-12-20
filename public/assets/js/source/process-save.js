@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
 		$.post( ajaxurl, data, function(response) {
 
 			if ( 'success' == response ) {
-				$(confirm).text('success');
+				//$(confirm).text('success');
 				$(confirm).fadeIn();
 				$(confirm).delay(2000).fadeOut();
 				$('#aesop-editor--save').addClass('saved');
