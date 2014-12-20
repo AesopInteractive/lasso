@@ -8,7 +8,7 @@
     width:@toolbar--width;
     height:@toolbar--height;
     font-size:20px;
-    border-radius:4px;
+    border-radius:@editor--radius;
     position:fixed;
     text-align: center;
     left: ~'calc(50% - @{toolbar--width} / 2)';
@@ -21,10 +21,7 @@
         position:relative;
 
         &:before {
-            font-family: Dashicons;
-            display: inline-block;
-            vertical-align: top;
-            -webkit-font-smoothing: antialiased;
+            .editor-icon-font();
             .transition(all .2s ease);
         }
 
@@ -54,13 +51,4 @@
     &:before {
         content:'\f132';
     }
-}
-
-// confirmation
-#aesop-editor--confirm {
-    position: fixed;
-    z-index: @z-index--toolbar;
-    bottom:@editor--confirm__pos;
-    right:@editor--confirm__pos;
-    font-family:@editor--font;
 }

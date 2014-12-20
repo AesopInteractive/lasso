@@ -9,7 +9,20 @@
     a {
         font-family:@editor--font;
         font-style:normal;
+        padding:@control--padding;
+        border-radius: @editor--radius - 1;
         .transition(opacity .2s ease);
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:focus:before,
+        &:active:before{
+            text-decoration: none;
+        }
+        &:active {
+            background:darken(@editor--color__success,7);
+        }
     }
 }
 
@@ -17,12 +30,28 @@
 #aesop-editor--edit {
     background:@control--bg;
     color:@control--color;
-    padding:@control--padding;
+
+    &:before {
+        content:'\f464';
+        position:relative;
+        top:1px;
+        .editor-icon-font();
+    }
+
+    &:hover {
+        background:@editor--color__success;
+    }
 }
 
 // save button
 #aesop-editor--save {
     .opacity(0);
+    background:@editor--color__success;
+    color:white;
+
+    &:hover {
+        background:darken(@editor--color__success,5);
+    }
 }
 
 // body class aesop is editing
@@ -34,4 +63,13 @@
     #aesop-editor--save {
         .opacity(1);
     }
+}
+
+// confirmation
+#aesop-editor--confirm {
+    position: fixed;
+    z-index: @z-index--toolbar;
+    bottom:@editor--confirm__pos;
+    right:@editor--confirm__pos;
+    font-family:@editor--font;
 }
