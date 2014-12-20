@@ -16,7 +16,7 @@ class aesopEditorTextEditor {
 
 	function editor_nav( ) {
 
-		?><nav style="z-index:999;position:fixed;bottom:20px;right:2=80px;" >
+		?><nav id="aesop-editor--toolbar">
 			<a href="#" id="aesop-editor--edit" class="aesop-editor--button__primary">edit</a>
 			<a href="#" data-post-id="<?php echo get_the_ID();?>" id="aesop-editor--save" class="aesop-editor--button aesop-editor--button__success">save</a>
 		</nav><?php
@@ -25,7 +25,7 @@ class aesopEditorTextEditor {
 
 	function editor_confirm(){
 		?>
-		<div style="position:fixed;top:20px;right:20px;" id="aesop-editor--confirm"></div>
+		<div id="aesop-editor--confirm"></div>
 		<?php
 	}
 }
