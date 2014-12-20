@@ -16,6 +16,7 @@ class aesopEditorAssets {
 		wp_localize_script('aesop-editor', 'aesop_editor',array(
 			'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
 			'editor' 			=> '#aesop-editor--content',
+			'post_status'		=> get_post_status( get_the_ID() ),
 			'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 			'upload'			=> AESOP_EDITOR_URL.'/includes/aesop-editor-upload.php',
 			'nonce'				=> wp_create_nonce('aesop_editor'),

@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
 
 			if ( 'success' == response ) {
 				console.log(response);
-				$('#aesop-editor--save').addClass('saved');
+				$('#aesop-editor--save').addClass('aesop-editor--saved');
 			} else {
 				console.log(response);
 

@@ -30,7 +30,50 @@
         }
 
     }
+
+    // post not pubkished - draft
+    &.aesop-post-status--draft {
+
+        // save button
+        #aesop-editor--save {
+            background:@editor--color__error;
+
+            &:before {
+                top:2px;
+                content:'\f147';
+            }
+
+        }
+    }
+
+    // post alreadiy published - update post
+    &.aesop-post-status--publish {
+
+        // save button
+        #aesop-editor--save {
+            background:@editor--color__update;
+
+            &:before {
+                top:2px;
+                content:'\f463';
+            }
+
+        }
+    }
+
+    // post saved
+    #aesop-editor--save.aesop-editor--saved {
+
+        background:@editor--color__success;
+
+        &:before {
+            top:2px;
+            content:'\f147';
+        }
+
+    }
 }
+
 
 // edit button
 #aesop-editor--edit {
@@ -52,14 +95,8 @@
     right: @toolbar--pos__bottom;
     bottom: @toolbar--pos__bottom;
     .opacity(0);
-    background:@editor--color__error;
     color:white;
     font-size: @control--font__size + 2;
-
-    &:before {
-        top:2px;
-        content:'\f147';
-    }
 
     &:hover {
         background:darken(@editor--color__error,5);
