@@ -3,6 +3,8 @@
 /*
 *
 *	Class responsible for building the template redirect
+*	@todo this is really only in place while we build up the editor
+*			and will need to be entirely deleted once we start moving editor to singular
 *
 */
 class aesopEditorTemplateLoader {

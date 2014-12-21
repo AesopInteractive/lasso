@@ -7,10 +7,13 @@ jQuery(document).ready(function($){
 	$(save).live('click',function(e) {
 		e.preventDefault();
 
+		// sore reference to this
 		var $this = $(this);
 
-		var html = $(editor).html();
+		// get the html from our div
+		var html = $('#'+editor).html();
 
+		// let user know someting is happening on click
 		$(this).addClass('being-saved');
 
 		var data      = {
@@ -21,6 +24,7 @@ jQuery(document).ready(function($){
 			nonce:     	aesop_editor.nonce
 		};
 
+		// post ajax response with data
 		$.post( ajaxurl, data, function(response) {
 
 			if ( 'success' == response ) {

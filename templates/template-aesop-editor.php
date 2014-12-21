@@ -3,7 +3,7 @@
 get_header();
 
 	?>
-		<div id="aesop-editor--content" name="aesop-editor--content">
+		<div id="aesop-editor--content">
 			<?php
 
 			while( have_posts() ) : the_post();

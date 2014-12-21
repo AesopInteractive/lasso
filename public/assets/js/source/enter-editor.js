@@ -25,10 +25,10 @@ jQuery(document).ready(function($){
 	    $('#aesop-editor--save').css('opacity',1);
 
 	    // set edtior to editable
-	    $(editor).attr('contenteditable',true);
+	    $('#'+editor).attr('contenteditable',true);
 
 
-		var article = document.getElementById('aesop-editor--content'),
+		var article = document.getElementById(editor),
 		    articleMedium = new Medium({
 		        element: article,
 		        mode: Medium.richMode,
