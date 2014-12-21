@@ -1,15 +1,7 @@
 jQuery(document).ready(function($){
 
 	var editor 	=  aesop_editor.editor,
-		toolbar = '<div class="aesop-editor--toolbar_wrap">\
-		   <ul class="aesop-editor--toolbar__inner">\
-		    <li id="aesop-toolbar--bold"></li>\
-		    <li id="aesop-toolbar--underline" ></li>\
-		    <li id="aesop-toolbar--italic"></li>\
-		    <li id="aesop-toolbar--strike"></li>\
-		    <li id="aesop-toolbar--modal"></li>\
-		   </ul>\
-		</div>',
+		toolbar = aesop_editor.toolbar,
 		modal = aesop_editor.component_modal;
 
 	$('#aesop-editor--edit').click(function(e){

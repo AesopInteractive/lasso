@@ -79,11 +79,86 @@
 #aesop-toolbar--strike:before {
     content:'\f224';
 }
-#aesop-toolbar--modal{
+#aesop-toolbar--components{
 
     &:before {
         position: relative;
         top:2px;
         content:'\f132';
+    }
+
+    ul {
+        position: absolute;
+        left:0;
+        .opacity(0);
+    }
+    // drop up menu
+    &.toolbar--drop-up {
+
+        * { .box-sizing(border-box); }
+        box-shadow:none;
+        background:@toolbar--hover;
+        border-top-right-radius:0;
+
+        ul {
+            margin:0;
+            padding:0;
+            .opacity(1);
+            width:37px;
+            height:390px;
+            top:-390px;
+            background:@toolbar--bg__accent;
+
+            li {
+                display:block;
+                float:none;
+                line-height:1.5;
+                text-align: center;
+                height:30px;
+                font-size:@modal--font__size - 1;
+                position:relative;
+                text-shadow:0 1px 1px rgba(0,0,0,0.4);
+                border-right:none;
+                padding:4px 0;
+                border-bottom:1px solid lighten(@toolbar--border,5);
+
+                &:last-child {
+                    border-bottom:0;
+                    border-bottom-right-radius: 0;
+                }
+
+                &:before {
+                    .editor-icon-font();
+                }
+
+                // image
+                &.image:before { content: "\f128"; }
+                // character
+                &.character:before { content: "\f338"; }
+                // qupte
+                &.quote:before { content: "\f122"; }
+                // content
+                &.content:before { content: "\f207"; }
+                // chapter head
+                &.chapter:before { content: "\f330"; }
+                // parallax
+                &.parallax:before { content: "\f168"; }
+                // audio
+                &.audio:before { content: "\f127"; }
+                // video
+                &.video:before { content: "\f126"; }
+                // map
+                &.map:before { content: "\f319"; }
+                // video
+                &.timeline:before { content: "\f469"; }
+                // document
+                &.document:before { content: "\f123"; }
+                // collection
+                &.collection:before { content: "\f175"; }
+                // collection
+                &.gallery:before { content: "\f161"; }
+            }
+        }
+
     }
 }

@@ -22,6 +22,7 @@ class aesopEditorAssets {
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'upload'			=> AESOP_EDITOR_URL.'/includes/aesop-editor-upload.php',
 				'nonce'				=> wp_create_nonce('aesop_editor'),
+				'toolbar'			=> aesop_editor_toolbar(),
 				'component_modal'	=> aesop_editor_component_modal()
 			));
 		}

@@ -45,3 +45,36 @@ function aesop_editor_component_modal(){
 
 	return ob_get_clean();
 }
+
+function aesop_editor_toolbar(){
+
+	ob_start();
+
+	?>
+	<div class="aesop-editor--toolbar_wrap">
+		<ul class="aesop-editor--toolbar__inner">
+		    <li id="aesop-toolbar--bold"></li>
+		    <li id="aesop-toolbar--underline" ></li>
+		    <li id="aesop-toolbar--italic"></li>
+		    <li id="aesop-toolbar--strike"></li>
+		    <li id="aesop-toolbar--components">
+			    <ul>
+					<li class="image"></li>
+					<li class="character"></li>
+					<li class="quote"></li>
+					<li class="content"></li>
+					<li class="chapter"></li>
+					<li class="parallax"></li>
+					<li class="audio"></li>
+					<li class="video"></li>
+					<li class="map"></li>
+					<li class="timeline"></li>
+					<li class="document"></li>
+					<li class="collection"></li>
+					<li class="gallery"></li>
+			    </ul>
+			</li>
+		</ul>
+	</div>
+	<?php return ob_get_clean();
+}
