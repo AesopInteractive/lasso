@@ -89,7 +89,7 @@
 
     ul {
         position: absolute;
-        left:0;
+        left:-10000px;
         .opacity(0);
     }
     // drop up menu
@@ -103,30 +103,44 @@
             margin:0;
             padding:0;
             .opacity(1);
-            width:37px;
+            list-style-type: none;
+            width:@toolbar--drop__width;
             height:@toolbar--drop__height;
-            top:-@toolbar--drop__height + 1;
+            top:-@toolbar--drop__height - 6;
+            border-radius:@editor--radius;
+            left:-@toolbar--drop__width / 2;
             background:@toolbar--bg__accent;
-            border-top-left-radius: @editor--radius;
-            border-top-right-radius: @editor--radius;
-            border-bottom:1px solid @toolbar--hover;
+            //border-bottom:1px solid @toolbar--hover;
+
+            &:after {
+                content:'';
+                position:absolute;
+                width: 0;
+                height: 0;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid @toolbar--hover;
+                left:0;
+                right:0;
+                bottom:-6px;
+                text-align: center;
+                margin:0 auto;
+            }
 
             li {
-                display:block;
-                float:none;
                 line-height:1.5;
                 text-align: center;
-                height:30px;
-                font-size:@modal--font__size - 1;
                 position:relative;
+                font-size:16px;
                 text-shadow:0 1px 1px rgba(0,0,0,0.4);
                 border-right:none;
-                padding:4px 0;
-                border-bottom:1px solid lighten(@toolbar--border,5);
+                padding:0;
+                height:30px;
+                width:30px;
+                //border-bottom:1px solid lighten(@toolbar--border,5);
 
                 &:first-child:hover {
-                    border-top-left-radius: @editor--radius;
-                    border-top-right-radius: @editor--radius;
+
                 }
                 &:last-child {
                     border-bottom:0;
@@ -135,6 +149,7 @@
                 &:before {
                     .editor-icon-font();
                     vertical-align: middle;
+                    top:1px;
                 }
 
                 &:hover {
