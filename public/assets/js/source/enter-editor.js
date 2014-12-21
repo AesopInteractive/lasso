@@ -18,6 +18,10 @@ jQuery(document).ready(function($){
 		// add body class editing
 		$('body').toggleClass('aesop-editing');
 
+		//get the ID of the current article, store it, replace it with
+		//ID defined in class.assets.php
+		$('article').attr('id', editor);
+
 		// append toolbar
 	    $(toolbar).hide().appendTo('body').fadeIn(200);
 
@@ -27,7 +31,7 @@ jQuery(document).ready(function($){
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
 
-
+	    // invoke our contenteditable script
 		var article = document.getElementById(editor),
 		    articleMedium = new Medium({
 		        element: article,
