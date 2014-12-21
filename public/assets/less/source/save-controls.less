@@ -14,6 +14,7 @@
         border-radius: @editor--radius - 1;
         .transition(opacity .2s ease);
         height:@toolbar--height;
+        width:@toolbar--height + 4;
 
         &:hover,
         &:active,
@@ -87,8 +88,9 @@
 
 // edit button
 #aesop-editor--edit {
-    background:@control--bg;
+    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
     color:@control--color;
+    text-shadow:0 1px 1px rgba(0,0,0,0.4);
 
     &:before {
         content:'\f464';
