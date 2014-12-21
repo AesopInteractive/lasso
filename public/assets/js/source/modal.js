@@ -3,6 +3,11 @@
 
 	$(document).ready(function(){
 
+		var destroyModal = function(){
+			$('body').removeClass('aesop-modal-open');
+			$('#aesop-editor--modal, #aesop-editor--modal__overlay').remove();
+		}
+
 		// modal click
 		$('#aesop-toolbar--modal').live('click',function(){
 
@@ -12,6 +17,10 @@
 			// append teh modal markup ( aesop_editor_component_modal() )
 			$('body').append(aesop_editor.component_modal);
 
+		});
+
+		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay').live('click',function(){
+			destroyModal();
 		});
 
 	});

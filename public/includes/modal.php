@@ -10,6 +10,7 @@ function aesop_editor_component_modal(){
 
 	$out = '<div id="aesop-editor--modal">';
 		$out .= '<div class="aesop-editor--modal__inner">';
+			$out .='<span id="aesop-editor--modal__close" >x</span>';
 			$out .= '<p>Component Settings</p>';
 		$out .= '</div>';
 	$out .= '</div>';

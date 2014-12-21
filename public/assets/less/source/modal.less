@@ -2,6 +2,7 @@
     overflow: hidden;
 }
 
+// modal overlay
 #aesop-editor--modal__overlay {
     z-index: 1000;
     position: fixed;
@@ -12,14 +13,23 @@
     background:@modal--overlay__bg;
 }
 
+// modal outer
 #aesop-editor--modal {
     z-index: 1001;
-    width:800px;
-    min-height:400px;
+    width:@modal--width;
+    min-height:@modal--minHeight;
     position:fixed;
-    top:20px;
+    top:@modal--pos_top;
     left:0;
     right:0;
     margin:0 auto;
     background:@modal--bg;
+    border-radius:@editor--radius;
+    border:@toolbar--border;
+}
+
+// modal inner
+.aesop-editor--modal__inner {
+    padding:@modal--padding;
+    color:@modal--color;
 }
