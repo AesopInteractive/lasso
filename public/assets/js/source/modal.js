@@ -3,6 +3,7 @@
 
 	$(document).ready(function(){
 
+		// method to destroy the modal
 		var destroyModal = function(){
 			$('body').removeClass('aesop-modal-open');
 			$('#aesop-editor--modal, #aesop-editor--modal__overlay').remove();
@@ -19,6 +20,7 @@
 
 		});
 
+		// destroy modal if clicking close or overlay
 		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay').live('click',function(){
 			destroyModal();
 		});
