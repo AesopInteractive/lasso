@@ -16,13 +16,11 @@
 // modal outer
 #aesop-editor--modal {
     z-index: 1001;
-    width:@modal--width;
-    min-height:@modal--minHeight;
     position:fixed;
     top:@modal--pos_top;
-    left:0;
-    right:0;
-    margin:0 auto;
+    left:@modal--pos_top;
+    right:@modal--pos_top;
+    bottom:@modal--pos_top * 4;
     background:@modal--bg;
     border-radius:@editor--radius;
     border:@toolbar--border;
