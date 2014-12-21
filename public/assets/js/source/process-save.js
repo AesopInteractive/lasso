@@ -1,14 +1,17 @@
 jQuery(document).ready(function($){
 
 	var ajaxurl =  aesop_editor.ajaxurl,
+		save    =  $('#aesop-editor--save'),
 		editor 	=  aesop_editor.editor;
 
-	$('#aesop-editor--save').live('click',function(e) {
+	$(save).live('click',function(e) {
 		e.preventDefault();
 
 		var $this = $(this);
 
 		var html = $(editor).html();
+
+		$(this).addClass('being-saved');
 
 		var data      = {
 			action:    'process_save_content',
@@ -22,7 +25,7 @@ jQuery(document).ready(function($){
 
 			if ( 'success' == response ) {
 				console.log(response);
-				$('#aesop-editor--save').addClass('aesop-editor--saved');
+				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
 			} else {
 				console.log(response);
 
