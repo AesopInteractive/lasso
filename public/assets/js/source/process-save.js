@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
 				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
 			} else {
 				console.log(response);
-
+				$(save).removeClass('being-saved').addClass('aesop-editor--error');
 			}
 
 		});
