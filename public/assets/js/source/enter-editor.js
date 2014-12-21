@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
 		$('body').toggleClass('aesop-editing');
 
 		// append toolbar
-	    $('body').append(toolbar);
+	    $(toolbar).hide().appendTo('body').fadeIn(200);
 
 	    // show save button
 	    $('#aesop-editor--save').css('opacity',1);
