@@ -71,11 +71,12 @@ jQuery(document).ready(function($){
 		/// DRAG DROP
 		///////////////////
 
-		
 		$('#aesop-toolbar--components__list li').draggable({
+			axis:'y',
 		   	helper: 'clone',
 		    cursor: 'move',
 		    tolerance: 'fit',
+		    //connectToSortable: '#'+editor,
 		});
 
 		$('#'+editor).droppable({
@@ -83,26 +84,22 @@ jQuery(document).ready(function($){
 			activeClass: "drop-area",
 		    drop: function (e, ui) {
 
-		    	// clone it
-	            x = ui.helper.clone();
+		    	x = ui.helper.clone();
 
 	            // remove the helpder
 	            ui.helper.remove();
 
-	            // append to editor
 	            x.appendTo('#'+editor);
 
+	            x.css('position','static')
+
 	            // replace with
-	            x.replaceWith('<div class="aesop-component" style="height:auto;background:red;">yo</div>');
+	            x.replaceWith('<div style="height:auto;background:red;">yo</div>');
 		    }
 		})
 
-		$('#'+editor).sortable({
-			items:'.aesop-component:not(p)',
-         	containment: 'parent',
-            //handle: '.item-container',
-            //tolerance: 'pointer'
-		});
+
+
 	});
 
 });
