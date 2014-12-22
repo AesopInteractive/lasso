@@ -81,14 +81,17 @@ jQuery(document).ready(function($){
 			activeClass: "drop-area",
 		    drop: function (e, ui) {
 
+		    	// clone it
 	            x = ui.helper.clone();
+
+	            // remove the helpder
 	            ui.helper.remove();
 
-	            x.addClass('remove');
-	            var el = $('<div style=background:red;height:10px;width;10px;>SUCCESS</div>');
-	            $(x).append(el);
+	            // append to editor
 	            x.appendTo('#'+editor);
-	            x.css('position','static')
+
+	            // replace with
+	            x.replaceWith('<div style="height:auto;background:red;">yo</div>');
 		    }
 		});
 
