@@ -7,7 +7,7 @@ jQuery(document).ready(function($){
 
     $(editor).contentbuilder({
         zoom: 0.85,
-        snippetFile: '/wp-content/plugins/ah-editor/includes/libs/assets/simple/snippets.html'
+        snippetFile: '/wp-content/plugins/ah-editor/includes/libs/assets/simple/snippets.php'
     });
 
 	$('#aesop-editor--save').live('click',function(e) {

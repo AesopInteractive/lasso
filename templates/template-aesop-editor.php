@@ -4,7 +4,7 @@ get_header();
 
 	?>
 
-		<div style="font-size:22px;" id="aesop-editor--content" name="aesop-editor--content">
+		<div style="font-size:22px;width:800px;margin:0 auto;" id="aesop-editor--content" name="aesop-editor--content">
 			<?php
 
 			while( have_posts() ) : the_post();
