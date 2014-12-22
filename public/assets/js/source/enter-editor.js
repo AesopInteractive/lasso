@@ -75,10 +75,13 @@ jQuery(document).ready(function($){
 
 		$('#'+editor).sortable({
 			axis:'y',
-			helper: 'clone',
 			handle: '.aesop-drag',
          	containment: 'parent',
-            tolerance: 'pointer'
+            tolerance: 'pointer',
+            receive: function (e, ui) {
+
+	            $(this).find('li').replaceWith('<div style="height:auto;background:red;">'+aesopDragHandle+'</div>')
+		    }
 		});
 
 		$('#aesop-toolbar--components__list li').draggable({
@@ -86,19 +89,17 @@ jQuery(document).ready(function($){
 		   	helper: 'clone',
 		    cursor: 'move',
 		    tolerance: 'fit',
-		    //connectToSortable: '#'+editor // @todo when we connect this to droppable it breaks
+		    connectToSortable: '#'+editor // @todo when we connect this to droppable it breaks
 		});
 
-		// @todo when we connect this to draggable it breaks
-		
+		// DONT NEED THIS
+		/*
 		$('#'+editor).droppable({
 		    accept: "#aesop-toolbar--components__list li",
 			activeClass: "drop-area",
 		    drop: function (e, ui) {
 
 		    	x = ui.helper.clone();
-
-		    	alert(ui.helper);
 
 	            // remove the helpder
 	            ui.helper.remove();
@@ -111,7 +112,7 @@ jQuery(document).ready(function($){
 	            x.replaceWith('<div style="height:auto;background:red;">'+aesopDragHandle+'</div>');
 		    }
 		});
-		
+		*/
 
 	});
 
