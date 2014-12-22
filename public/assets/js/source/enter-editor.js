@@ -2,7 +2,8 @@ jQuery(document).ready(function($){
 
 	var editor 	=  aesop_editor.editor,
 		toolbar = aesop_editor.toolbar,
-		modal = aesop_editor.component_modal;
+		modal = aesop_editor.component_modal,
+		components = aesop_editor.components;
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
@@ -83,10 +84,15 @@ jQuery(document).ready(function($){
             cursor:'move',
             receive: function (e, ui) {
 
-            	var el = ui.item['context'],
-            		cl = $(el).attr('class');
+            	var el = ui.item['context'];
+            	var type = $(el).attr('data-type');
 
-	            $(this).find('li').replaceWith('<div class="'+cl+'" style="height:auto;background:red;">'+aesopDragHandle+' <span>'+cl+'</span></div>')
+            	console.log(type);
+
+	            //$(this).find('li').replaceWith('<div class="'+cl+'" style="height:auto;background:red;">'+aesopDragHandle+' <span>'+cl+'</span></div>')
+	            $(this).find('li').replaceWith(components[type]['content']);
+
+	            console.log(components[type]['content']);
 		    }
 		});
 

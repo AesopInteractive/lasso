@@ -27,7 +27,8 @@ class aesopEditorAssets {
 				'upload'			=> AESOP_EDITOR_URL.'/includes/aesop-editor-upload.php',
 				'nonce'				=> wp_create_nonce('aesop_editor'),
 				'toolbar'			=> aesop_editor_toolbar(),
-				'component_modal'	=> aesop_editor_component_modal()
+				'component_modal'	=> aesop_editor_component_modal(),
+				'components'		=> aesop_editor_components()
 			));
 		}
 

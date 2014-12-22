@@ -59,19 +59,19 @@ function aesop_editor_toolbar(){
 		    <li id="aesop-toolbar--strike"></li>
 		    <li id="aesop-toolbar--components">
 			    <ul id="aesop-toolbar--components__list">
-					<li class="image"></li>
-					<li class="character"></li>
-					<li class="quote"></li>
-					<li class="content"></li>
-					<li class="chapter"></li>
-					<li class="parallax"></li>
-					<li class="audio"></li>
-					<li class="video"></li>
-					<li class="map"></li>
-					<li class="timeline"></li>
-					<li class="document"></li>
-					<li class="collection"></li>
-					<li class="gallery"></li>
+					<li data-type="image" class="image"></li>
+					<li data-type="character" class="character"></li>
+					<li data-type="quote" class="quote"></li>
+					<li data-type="content" class="content"></li>
+					<li data-type="chapter" class="chapter"></li>
+					<li data-type="parallax" class="parallax"></li>
+					<li data-type="audio" class="audio"></li>
+					<li data-type="video" class="video"></li>
+					<li data-type="map" class="map"></li>
+					<li data-type="timeline" class="timeline"></li>
+					<li data-type="document" class="document"></li>
+					<li data-type="collection" class="collection"></li>
+					<li data-type="gallery" class="gallery"></li>
 			    </ul>
 			</li>
 		</ul>
