@@ -98,7 +98,14 @@ jQuery(document).ready(function($){
 		    }
 		})
 
-
+		/* @todo - need to utilize the handle option to scontent editable still works
+		$('#'+editor).sortable({
+			items:'.aesop-component:not(p)',
+         	containment: 'parent',
+            //handle: '.item-container',
+            //tolerance: 'pointer'
+		});
+		*/
 
 	});
 
