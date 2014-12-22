@@ -75,6 +75,7 @@ jQuery(document).ready(function($){
 
 		$('#'+editor).sortable({
 			axis:'y',
+			helper:'clone',
 			handle: '.aesop-drag',
          	containment: 'parent',
             tolerance: 'pointer',
@@ -90,6 +91,7 @@ jQuery(document).ready(function($){
 
 		$('#aesop-toolbar--components__list li').draggable({
 			axis:'y',
+			helper:'clone',
 		    cursor: 'move',
 		    tolerance: 'fit',
 		    connectToSortable: '#'+editor,
