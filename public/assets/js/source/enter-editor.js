@@ -64,6 +64,33 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		$('#aesop-toolbar--components__list li').draggable({
+		   	helper: 'clone',
+		    cursor: 'move',
+		    tolerance: 'fit'
+		});
+
+		$('#'+editor).droppable({
+		    accept: "#aesop-toolbar--components__list li",
+			activeClass: "drop-area",
+			    drop: function (e, ui) {
+
+		            x = ui.helper.clone();
+		            ui.helper.remove();
+
+		            x.addClass('remove');
+		            var el = $('<div style=background:red;height:10px;width;10px;>SUCCESS</div>');
+		            $(x).append(el);
+		            x.appendTo('#'+editor);
+		            x.css('position','static')
+			    }
+			});
+
 	});
 
 });
+
+
+
+
+

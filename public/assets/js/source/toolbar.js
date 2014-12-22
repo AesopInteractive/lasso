@@ -9,7 +9,6 @@
 			$(this).toggleClass('toolbar--drop-up');
 
 		});
-
 	});
 
 })( jQuery );

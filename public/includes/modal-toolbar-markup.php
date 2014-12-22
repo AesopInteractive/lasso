@@ -58,7 +58,7 @@ function aesop_editor_toolbar(){
 		    <li id="aesop-toolbar--italic"></li>
 		    <li id="aesop-toolbar--strike"></li>
 		    <li id="aesop-toolbar--components">
-			    <ul>
+			    <ul id="aesop-toolbar--components__list">
 					<li class="image"></li>
 					<li class="character"></li>
 					<li class="quote"></li>
