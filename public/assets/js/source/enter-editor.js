@@ -76,6 +76,7 @@ jQuery(document).ready(function($){
 		$('#'+editor).sortable({
 			axis:'y',
 			helper:'clone',
+			placeholder:'aesop-drop-zone',
 			handle: '.aesop-drag',
          	containment: 'parent',
             tolerance: 'pointer',
@@ -94,10 +95,7 @@ jQuery(document).ready(function($){
 			helper:'clone',
 		    cursor: 'move',
 		    tolerance: 'fit',
-		    connectToSortable: '#'+editor,
-		    create: function( event, ui ) {
-		    	$(this).addClass('test');
-		    }
+		    connectToSortable: '#'+editor
 		});
 
 	});
