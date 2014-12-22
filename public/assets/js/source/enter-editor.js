@@ -71,6 +71,8 @@ jQuery(document).ready(function($){
 		/// DRAG DROP
 		///////////////////
 
+		var aesopDragHandle = '<i class="dashicons dashicons-menu aesop-drag"></i>';
+
 		$('#aesop-toolbar--components__list li').draggable({
 			axis:'y',
 		   	helper: 'clone',
@@ -91,21 +93,17 @@ jQuery(document).ready(function($){
 
 	            x.appendTo('#'+editor);
 
-	            x.css('position','static')
+	            x.css('position','static');
 
 	            // replace with
-	            x.replaceWith('<div style="height:auto;background:red;">yo</div>');
+	            x.replaceWith('<div style="height:auto;background:red;">'+aesopDragHandle+'</div>');
 		    }
-		})
-
-		/* @todo - need to utilize the handle option to scontent editable still works
-		$('#'+editor).sortable({
-			items:'.aesop-component:not(p)',
+		}).sortable({
+			axis:'y',
+			handle: '.aesop-drag',
          	containment: 'parent',
-            //handle: '.item-container',
-            //tolerance: 'pointer'
+            tolerance: 'pointer'
 		});
-		*/
 
 	});
 
