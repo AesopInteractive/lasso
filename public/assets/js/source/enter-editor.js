@@ -15,7 +15,7 @@ jQuery(document).ready(function($){
 		$('article').attr('id', editor);
 
 		// append toolbar
-	    $(toolbar).hide().appendTo('body').fadeIn(200);
+   		$(toolbar).hide().appendTo('body').fadeIn(200);
 
 	    // show save button
 	    $('#aesop-editor--save').css('opacity',1);
@@ -23,7 +23,10 @@ jQuery(document).ready(function($){
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
 
-	    // invoke our contenteditable script
+
+		/////////////////
+		/// CONTENT EDITABLE / TOOLBAR
+		///////////////////
 		var article = document.getElementById(editor),
 		    articleMedium = new Medium({
 		        element: article,
@@ -64,6 +67,9 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		/////////////////
+		/// DRAG DROP
+		///////////////////
 		$('#aesop-toolbar--components__list li').draggable({
 		   	helper: 'clone',
 		    cursor: 'move',
@@ -73,18 +79,18 @@ jQuery(document).ready(function($){
 		$('#'+editor).droppable({
 		    accept: "#aesop-toolbar--components__list li",
 			activeClass: "drop-area",
-			    drop: function (e, ui) {
+		    drop: function (e, ui) {
 
-		            x = ui.helper.clone();
-		            ui.helper.remove();
+	            x = ui.helper.clone();
+	            ui.helper.remove();
 
-		            x.addClass('remove');
-		            var el = $('<div style=background:red;height:10px;width;10px;>SUCCESS</div>');
-		            $(x).append(el);
-		            x.appendTo('#'+editor);
-		            x.css('position','static')
-			    }
-			});
+	            x.addClass('remove');
+	            var el = $('<div style=background:red;height:10px;width;10px;>SUCCESS</div>');
+	            $(x).append(el);
+	            x.appendTo('#'+editor);
+	            x.css('position','static')
+		    }
+		});
 
 	});
 
