@@ -15,9 +15,7 @@ jQuery(document).ready(function($){
 
 		// remove controls
 
-	    $('.aesop-component--controls').each(function(){
-	    	$(this).remove();
-	    });
+	    $('.aesop-component--controls').remove();
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
