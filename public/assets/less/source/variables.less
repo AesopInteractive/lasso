@@ -7,6 +7,11 @@
 
 @editor--confirm__pos:      20px;
 
+@editor--dropzone__height:  75px;
+@editor--dropzone__color:   @editor--color__update;
+@editor--dropzone__bg:      fadeout(@editor--dropzone__color,90);
+@editor--dropzone__border:  fadeout(@editor--dropzone__color,70);
+
 // TOOLBAR
 @toolbar--bg:               #222;
 @toolbar--bg__accent:       lighten(@toolbar--bg,8);
@@ -36,9 +41,10 @@
 
 // COMPONENT CONTROLS
 @component-controls--bg:                 @toolbar--bg__accent;
-@component-controls--height:             25px;
+@component-controls--height:             26px;
 @component-controls--width:              60px;
 @component-controls--color:              white;
+@component-controls--font__size:        15px;
 
 
 // MODAL
