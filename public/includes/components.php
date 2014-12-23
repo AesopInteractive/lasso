@@ -22,7 +22,7 @@ function aesop_quote_component(){
 	ob_start();
 
 	?>
-	<div class="aesop-component">
+	<div class="aesop-component" contenteditable="false">
 		<i class="dashicons dashicons-menu aesop-drag"></i>
 		I'm a quote
 	</div>
@@ -38,7 +38,7 @@ function aesop_image_component(){
 
 	?>
 
-	<div class="aesop-component">
+	<div class="aesop-component" contenteditable="false">
 		<i class="dashicons dashicons-menu aesop-drag"></i>
 		I'm a image
 	</div>
