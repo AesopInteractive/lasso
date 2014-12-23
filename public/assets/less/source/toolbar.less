@@ -3,8 +3,7 @@
 
     * { .box-sizing(border-box); }
 
-    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
-    color:@toolbar--color;
+    .editor--tool__bg();
     width:auto;
     height:@toolbar--height;
     font-size:16px;
@@ -15,7 +14,6 @@
     left: ~'calc(50% - @{toolbar--width} / 2)';
     bottom:@toolbar--pos__bottom;
     z-index: @z-index--toolbar;
-    .box-shadow(inset 0 1px 0 rgba(255,255,255,0.1));
 
 }
 

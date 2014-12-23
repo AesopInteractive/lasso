@@ -10,7 +10,7 @@
 		}
 
 		// modal click
-		$('#aesop-toolbar--modal').live('click',function(){
+		$('#aesop-component--settings__trigger').live('click',function(){
 
 			// add a body class
 			$('body').toggleClass('aesop-modal-open');

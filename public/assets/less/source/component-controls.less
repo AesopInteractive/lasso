@@ -1,18 +1,18 @@
 // draggable handle
 .aesop-component--controls {
+    * { .box-sizing(border-box); }
+    .editor--tool__bg();
     position: absolute;
     margin:0;
     padding:0;
     line-height:1;
-    width:@drag--width;
-    height:@drag--height;
+    width:@component-controls--width;
+    height:@component-controls--height;
     top:4px;
     //left:-10000px;
     text-align: center;
     margin: 0 auto;
-    background:@drag--bg;
     border-radius:@editor--radius - 2;
-    color:fadeout(white,40);
     .clearfix();
     .opacity(0);
     .transition(opacity .35s ease-in);
@@ -20,8 +20,8 @@
     li {
         float:left;
         list-style-type: none;
-        width:@drag--width / 2;
-        height:@drag--height;
+        width:@component-controls--width / 2;
+        height:@component-controls--height;
         border-right:1px solid @toolbar--hover;
 
         &:before {
