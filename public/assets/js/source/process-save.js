@@ -13,6 +13,12 @@ jQuery(document).ready(function($){
 		// get the html from our div
 		var html = $('#'+editor).html();
 
+		// remove controls
+
+	    $('.aesop-component--controls').each(function(){
+	    	$(this).remove();
+	    });
+
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
 
