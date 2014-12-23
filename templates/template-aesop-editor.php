@@ -3,10 +3,7 @@
 get_header();
 
 	?>
-
-
 		<div id="aesop-editor--content">
-
 			<?php
 
 			while( have_posts() ) : the_post();
@@ -16,7 +13,6 @@ get_header();
 
 			?>
 		</div>
-
 
 	<?php
 
