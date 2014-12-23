@@ -85,13 +85,15 @@ function aesop_editor_toolbar(){
 */
 function aesop_editor_handle(){
 
+	ob_start();
+
 	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
 		return;
 
-	$out = '<ul class="aesop-component--controls">
+	?><ul class="aesop-component--controls">
 				<li class="aesop-drag"></li>
 				<li id="aesop-component--settings__trigger" class="aesop-settings"></li>
-			</ul>';
+			</ul>
 
-	return $out;
+	<?php return ob_get_clean();
 }

@@ -93,6 +93,12 @@ jQuery(document).ready(function($){
 	            $(this).find('li').replaceWith(components[type]['content']);
 
 	            console.log(components[type]['content']);
+
+	            
+			    $('.aesop-component').each(function(){
+			    	$(this).prepend(aesopDragHandle);
+			    });
+
 		    }
 		});
 

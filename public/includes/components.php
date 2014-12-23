@@ -2,15 +2,6 @@
 
 // @todo clean up this file!!
 
-// add some handles to the components
-add_action('aesop_quote_inside_top', 'aesop_add_drag_handle');
-add_action('aesop_image_inside_top', 'aesop_add_drag_handle');
-function aesop_add_drag_handle(){
-
-	echo  aesop_editor_handle();
-
-}
-
 function aesop_editor_components(){
 
 	$array = array(
