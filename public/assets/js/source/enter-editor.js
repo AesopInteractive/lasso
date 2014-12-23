@@ -3,7 +3,8 @@ jQuery(document).ready(function($){
 	var editor 	=  aesop_editor.editor,
 		toolbar = aesop_editor.toolbar,
 		modal = aesop_editor.component_modal,
-		components = aesop_editor.components;
+		components = aesop_editor.components,
+		aesopDragHandle = '<i class="dashicons dashicons-menu aesop-drag"></i>';
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
@@ -72,7 +73,6 @@ jQuery(document).ready(function($){
 		/// DRAG DROP
 		///////////////////
 
-		var aesopDragHandle = '<i class="dashicons dashicons-menu aesop-drag"></i>';
 
 		$('#'+editor).sortable({
 			axis:'y',
