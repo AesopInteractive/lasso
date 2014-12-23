@@ -1,10 +1,5 @@
 <?php
 
-/*
-*
-*	Class responsible for building the template redirect
-*
-*/
 class aesopEditorTemplateLoader {
 
 	function __construct() {

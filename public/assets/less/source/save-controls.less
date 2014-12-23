@@ -1,0 +1,158 @@
+// edit wrapper
+#aesop-editor--controls {
+    z-index:@z-index--toolbar;
+    position:fixed;
+    bottom:@toolbar--pos__bottom;
+    left:@toolbar--pos__bottom;
+
+    a {
+        display:inline-block;
+        font-family:@editor--font;
+        font-style:normal;
+        font-size: @control--font__size;
+        padding:@control--padding;
+        border-radius: @editor--radius - 1;
+        .transition(opacity .2s ease);
+        height:@toolbar--height;
+        width:@toolbar--height + 4;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:focus:before,
+        &:active:before{
+            text-decoration: none;
+        }
+
+        &:before {
+            position:relative;
+            height:@toolbar--height;
+            .editor-icon-font();
+        }
+
+    }
+
+    // post not pubkished - draft
+    &.aesop-post-status--draft {
+
+        // save button
+        #aesop-editor--save {
+            background:@editor--color__error;
+
+            &:before {
+                top:2px;
+                content:'\f147';
+            }
+
+        }
+    }
+
+    // post alreadiy published - update post
+    &.aesop-post-status--publish {
+
+        // save button
+        #aesop-editor--save {
+            background:@editor--color__update;
+
+            &:before {
+                top:2px;
+                content:'\ea2e';
+            }
+
+        }
+    }
+
+    // post saved
+    #aesop-editor--save.aesop-editor--saved {
+
+        background:@editor--color__success;
+
+        &:before {
+            top:2px;
+            content:'\ea10';
+        }
+
+    }
+
+    // post saving error
+    #aesop-editor--save.aesop-editor--error {
+
+        background: @editor--color__error;
+
+        &:before {
+            content:'\f153';
+        }
+    }
+}
+
+
+// edit button
+#aesop-editor--edit {
+    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
+    color:@control--color;
+    text-shadow:0 1px 1px rgba(0,0,0,0.4);
+
+    &:before {
+        content:'\e908';
+        top:3px;
+    }
+
+    &:hover {
+        background:@toolbar--hover;
+    }
+}
+
+// save button
+#aesop-editor--save {
+    position: fixed;
+    right: @toolbar--pos__bottom;
+    bottom: @toolbar--pos__bottom;
+    .opacity(0);
+    color:white;
+    font-size: @control--font__size + 2;
+
+    &:hover {
+        background:darken(@editor--color__error,5);
+    }
+
+    // succesufl ajax call
+    &.saved {
+        background:@editor--color__success;
+    }
+
+    // being saved occurs during ajax call
+    &.being-saved:before {
+        -webkit-animation: spin 2s infinite linear;
+        animation: spin 2s infinite linear;
+    }
+}
+
+// body class aesop is editing
+.aesop-editing {
+
+    #aesop-editor--edit {
+        .opacity(0);
+    }
+
+}
+
+@-webkit-keyframes spin {
+    0% {
+         -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}

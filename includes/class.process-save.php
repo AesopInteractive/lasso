@@ -11,7 +11,8 @@ class aesopEditorProcessSaving {
 
 	function process_save_content(){
 
-		check_ajax_referer('aesop_editor','nonce');
+
+		check_ajax_referer('aesop_editor','nonce'); 
 
 		if ( isset( $_POST['post_id'] ) ) {
 

@@ -1,0 +1,141 @@
+.aesop-modal-open {
+    overflow: hidden;
+}
+
+// modal overlay
+#aesop-editor--modal__overlay {
+    z-index: 999;
+    position: fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    background:@modal--overlay__bg;
+}
+
+// modal outer
+#aesop-editor--modal {
+    z-index: 1001;
+    position:fixed;
+    top:@modal--pos_top;
+    left:@modal--pos_top;
+    right:@modal--pos_top;
+    bottom:@modal--pos_top * 4;
+    background:@modal--bg;
+    border-radius:@editor--radius;
+    border:@toolbar--border;
+    .box-shadow(3px 3px -1px rgba(0,0,0,.5));
+    font-family:@editor--font;
+
+    * {
+        .box-sizing(border-box);
+    }
+
+}
+
+// modal inner
+.aesop-editor--modal__inner {
+    color:@modal--color;
+    height:100%;
+    .clearfix();
+}
+
+// modal close
+#aesop-editor--modal__close {
+    position:absolute;
+    right:20px;
+    top:10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// modal left and modal right
+#aesop-editor--modal__left,
+#aesop-editor--modal__right {
+    height:100%;
+    float:left;
+
+}
+
+// modal left
+#aesop-editor--modal__left {
+    width:@modal--left__width;
+    position:relative;
+
+    // modal component list
+    ul {
+        margin:0;
+        padding:0;
+        list-style:none;
+        height:100%;
+        background:@modal--bg__accent;
+        border-top-left-radius: @editor--radius;
+        border-bottom-left-radius: @editor--radius;
+
+        li {
+            display:block;
+            line-height:1;
+            font-size:@modal--font__size;
+            position:relative;
+            border-bottom:1px solid lighten(@modal--bg,3);
+            padding:8px 6px;
+            text-shadow:0 1px 1px rgba(0,0,0,0.4);
+            .box-shadow(inset 0 1px 0 rgba(255,255,255,0.05));
+            .transition(background .2s ease);
+
+            &:before {
+                .editor-icon-font();
+                margin-right:6px;
+            }
+
+            &:first-child:hover {  border-top-left-radius: @editor--radius; }
+
+            // image
+            &.image:before { content: "\f128"; }
+            // character
+            &.character:before { content: "\f338"; }
+            // qupte
+            &.quote:before { content: "\f122"; }
+            // content
+            &.content:before { content: "\f207"; }
+            // chapter head
+            &.chapter:before { content: "\f330"; }
+            // parallax
+            &.parallax:before { content: "\f168"; }
+            // audio
+            &.audio:before { content: "\f127"; }
+            // video
+            &.video:before { content: "\f126"; }
+            // map
+            &.map:before { content: "\f319"; }
+            // video
+            &.timeline_stop:before { content: "\f469"; }
+            // document
+            &.document:before { content: "\f123"; }
+            // collection
+            &.collection:before { content: "\f175"; }
+            // collection
+            &.gallery:before { content: "\f161"; }
+
+        }
+
+        li:hover {
+            cursor: pointer;
+            background:darken(@modal--bg__accent,4);
+            box-shadow:none;
+        }
+
+        &.active,
+        li:active {
+            box-shadow:none;
+            background:@modal--bg;
+        }
+    }
+}
+// modal right
+#aesop-editor--modal__right {
+    width: @modal--right__width;
+    padding:@modal--padding;
+}

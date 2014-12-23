@@ -1,0 +1,197 @@
+// main toolbar layout
+.aesop-editor--toolbar_wrap {
+
+    * { .box-sizing(border-box); }
+
+    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
+    color:@toolbar--color;
+    width:auto;
+    height:@toolbar--height;
+    font-size:16px;
+    border-radius:@editor--radius;
+    border:1px solid @toolbar--border;
+    position:fixed;
+    text-align: center;
+    left: ~'calc(50% - @{toolbar--width} / 2)';
+    bottom:@toolbar--pos__bottom;
+    z-index: @z-index--toolbar;
+    .box-shadow(inset 0 1px 0 rgba(255,255,255,0.1));
+
+}
+
+// toolbar inner
+.aesop-editor--toolbar__inner {
+    margin:0;
+    padding:0;
+    list-style: none;
+    height:@toolbar--height;
+    .clearfix();
+
+    li {
+        height:@toolbar--height - 2;
+        position:relative;
+        float:left;
+        padding:@toolbar--item__padding;
+        border-right:1px solid lighten(@toolbar--border,5);
+        text-align: center;
+        text-shadow:0 1px 1px rgba(0,0,0,0.4);
+
+        &:before {
+            .editor-icon-font();
+            .transition(all .2s ease);
+            position: relative;
+            top:6px;
+        }
+
+        &:first-child:hover {
+            border-top-left-radius: @editor--radius;
+            border-bottom-left-radius: @editor--radius;
+        }
+
+        &:last-child {
+            border-right:0;
+
+            &:hover {
+                border-top-right-radius: @editor--radius;
+                border-bottom-right-radius: @editor--radius;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            background: @toolbar--hover;
+        }
+
+        &:active {
+            .box-shadow(inset 0 1px 1px rgba(0,0,0,0.4));
+        }
+    }
+}
+
+// toolbar buttons
+#aesop-toolbar--bold:before {
+    content:'\ea62';
+}
+#aesop-toolbar--italic:before {
+    content:'\ea64';
+}
+#aesop-toolbar--underline:before {
+   content:'\ea63';
+}
+#aesop-toolbar--strike:before {
+    content:'\ea65';
+}
+#aesop-toolbar--components{
+
+    &:before {
+        content:'\ea0a';
+    }
+
+    ul {
+        position: absolute;
+        left:-10000px;
+        .opacity(0);
+    }
+    // drop up menu
+    &.toolbar--drop-up {
+
+        * { .box-sizing(border-box); }
+        box-shadow:none;
+        background:@toolbar--hover;
+
+        ul {
+            margin:0;
+            padding:0;
+            .opacity(1);
+            list-style-type: none;
+            width:@toolbar--drop__width;
+            height:@toolbar--drop__height;
+            top:-@toolbar--drop__height - 6;
+            border-radius:@editor--radius;
+            left:-@toolbar--drop__width / 2 + 18;
+            background:@toolbar--bg__accent;
+            //border-bottom:1px solid @toolbar--hover;
+
+            &:after {
+                content:'';
+                position:absolute;
+                width: 0;
+                height: 0;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid @toolbar--hover;
+                left:0;
+                right:0;
+                bottom:-6px;
+                text-align: center;
+                margin:0 auto;
+            }
+
+            li {
+                line-height:1.5;
+                text-align: center;
+                position:relative;
+                font-size:15px;
+                text-shadow:0 1px 1px rgba(0,0,0,0.4);
+                border-right:none;
+                padding:4px 0;
+                height:30px;
+                width:30px;
+                //border-bottom:1px solid lighten(@toolbar--border,5);
+
+                &:before {
+                    top:2px;
+                }
+
+                &:first-child:hover {
+
+                }
+                &:last-child {
+                    border-bottom:0;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    background:@toolbar--bg;
+                    box-shadow:none;
+                }
+
+                &.active,
+                &:active {
+                    box-shadow:none;
+                    background:darken(@toolbar--bg,4);
+                }
+
+                // image
+                &.image:before { content: "\e90f"; }
+                // character
+                &.character:before { content: "\e971"; }
+                // qupte
+                &.quote:before { content: "\e977"; }
+                // content
+                &.content:before { content: "\ea78"; }
+                // chapter head
+                &.chapter:before { content: "\e91f"; }
+                // parallax
+                &.parallax:before { content: "\ea6e"; }
+                // audio
+                &.audio:before { content: "\e910"; }
+                // video
+                &.video:before { content: "\e913"; }
+                // map
+                &.map:before { content: "\e947"; }
+                // video
+                &.timeline:before { content: "\e94e"; }
+                // document
+                &.document:before { content: "\e926"; }
+                // collection
+                &.collection:before { content: "\e920"; }
+                // collection
+                &.gallery:before { content: "\e90e"; }
+
+            }
+        }
+
+    }
+}
+

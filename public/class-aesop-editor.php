@@ -42,9 +42,12 @@ class Aesop_Editor {
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-		require_once(AESOP_EDITOR_DIR.'/public/includes/class.assets.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-save.php');
 		require_once(AESOP_EDITOR_DIR.'/public/includes/class.template-loader.php');
+		require_once(AESOP_EDITOR_DIR.'/public/includes/class.assets.php');
+		require_once(AESOP_EDITOR_DIR.'/public/includes/class.text-editor.php');
+		require_once(AESOP_EDITOR_DIR.'/public/includes/modal-toolbar-markup.php');
+		require_once(AESOP_EDITOR_DIR.'/public/includes/components.php');
+		require_once(AESOP_EDITOR_DIR.'/includes/class.process-save.php');
 
 	}
 
