@@ -22,9 +22,9 @@ function aesop_quote_component(){
 	ob_start();
 
 	?>
-	<div class="aesop-component" contenteditable="false">
+	<div contenteditable="false">
 		<i class="dashicons dashicons-menu aesop-drag"></i>
-		I'm a quote
+		<?php echo do_shortcode('[aesop_quote width="100%" align="center" quote="Too legit to quit"]');?>
 	</div>
 
 	<?php
@@ -38,9 +38,9 @@ function aesop_image_component(){
 
 	?>
 
-	<div class="aesop-component" contenteditable="false">
+	<div contenteditable="false">
 		<i class="dashicons dashicons-menu aesop-drag"></i>
-		I'm a image
+		<?php echo do_shortcode('[aesop_image img="http://placekitten.com/1200/800" align="center" width="content"]');?>
 	</div>
 	<?php
 
