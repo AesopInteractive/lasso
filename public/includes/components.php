@@ -7,11 +7,8 @@ add_action('aesop_quote_inside_top', 'aesop_add_drag_handle');
 add_action('aesop_image_inside_top', 'aesop_add_drag_handle');
 function aesop_add_drag_handle(){
 
-	$out = '<i class="dashicons dashicons-menu aesop-drag"></i>';
+	echo  aesop_editor_handle();
 
-	if ( is_user_logged_in() && current_user_can('edit_posts') ) {
-		echo $out;
-	}
 }
 
 function aesop_editor_components(){

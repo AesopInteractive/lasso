@@ -78,3 +78,17 @@ function aesop_editor_toolbar(){
 	</div>
 	<?php return ob_get_clean();
 }
+
+/*
+*
+*	Drag handle
+*/
+function aesop_editor_handle(){
+
+	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+		return;
+
+	$out = '<div class="aesop-drag"></div>';
+
+	return $out;
+}

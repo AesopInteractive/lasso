@@ -7,7 +7,7 @@
     color:@toolbar--color;
     width:auto;
     height:@toolbar--height;
-    font-size:20px;
+    font-size:18px;
     border-radius:@editor--radius;
     border:1px solid @toolbar--border;
     position:fixed;
@@ -39,6 +39,8 @@
         &:before {
             .editor-icon-font();
             .transition(all .2s ease);
+            position: relative;
+            top:4px;
         }
 
         &:first-child:hover {
@@ -68,23 +70,21 @@
 
 // toolbar buttons
 #aesop-toolbar--bold:before {
-    content:'\f200';
+    content:'\ea62';
 }
 #aesop-toolbar--italic:before {
-    content:'\f201';
+    content:'\ea64';
 }
 #aesop-toolbar--underline:before {
-   content:'\f213';
+   content:'\ea63';
 }
 #aesop-toolbar--strike:before {
-    content:'\f224';
+    content:'\ea65';
 }
 #aesop-toolbar--components{
 
     &:before {
-        position: relative;
-        top:2px;
-        content:'\f132';
+        content:'\ea0a';
     }
 
     ul {
@@ -139,17 +139,15 @@
                 width:30px;
                 //border-bottom:1px solid lighten(@toolbar--border,5);
 
+                &:before {
+                    top:2px;
+                }
+
                 &:first-child:hover {
 
                 }
                 &:last-child {
                     border-bottom:0;
-                }
-
-                &:before {
-                    .editor-icon-font();
-                    vertical-align: middle;
-                    top:1px;
                 }
 
                 &:hover {
@@ -165,31 +163,31 @@
                 }
 
                 // image
-                &.image:before { content: "\f128"; }
+                &.image:before { content: "\e90f"; }
                 // character
-                &.character:before { content: "\f338"; }
+                &.character:before { content: "\e971"; }
                 // qupte
-                &.quote:before { content: "\f122"; }
+                &.quote:before { content: "\e977"; }
                 // content
-                &.content:before { content: "\f207"; }
+                &.content:before { content: "\ea78"; }
                 // chapter head
-                &.chapter:before { content: "\f330"; }
+                &.chapter:before { content: "\e91f"; }
                 // parallax
-                &.parallax:before { content: "\f168"; }
+                &.parallax:before { content: "\ea6e"; }
                 // audio
-                &.audio:before { content: "\f127"; }
+                &.audio:before { content: "\e910"; }
                 // video
-                &.video:before { content: "\f126"; }
+                &.video:before { content: "\e913"; }
                 // map
-                &.map:before { content: "\f319"; }
+                &.map:before { content: "\e947"; }
                 // video
-                &.timeline:before { content: "\f469"; }
+                &.timeline:before { content: "\e94e"; }
                 // document
-                &.document:before { content: "\f123"; }
+                &.document:before { content: "\e926"; }
                 // collection
-                &.collection:before { content: "\f175"; }
+                &.collection:before { content: "\e920"; }
                 // collection
-                &.gallery:before { content: "\f161"; }
+                &.gallery:before { content: "\e90e"; }
 
             }
         }

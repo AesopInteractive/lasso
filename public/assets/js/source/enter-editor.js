@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 		toolbar = aesop_editor.toolbar,
 		modal = aesop_editor.component_modal,
 		components = aesop_editor.components,
-		aesopDragHandle = '<i class="dashicons dashicons-menu aesop-drag"></i>';
+		aesopDragHandle = aesop_editor.handle;
 
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();

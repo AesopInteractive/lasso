@@ -10,10 +10,21 @@
 // draggable handle
 .aesop-drag {
     position: absolute;
-    width:25px;
-    height:25px;
+    width:@drag--width;
+    height:@drag--height;
     top:0;
     left:0;
+    color:fadeout(white,40);
+
+    &:before {
+        .editor-icon-font();
+        content:'\e600';
+    }
+
+    &:hover {
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+    }
 }
 
 .Medium{
