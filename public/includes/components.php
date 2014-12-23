@@ -9,7 +9,7 @@ function aesop_add_drag_handle(){
 
 	$out = '<i class="dashicons dashicons-menu aesop-drag"></i>';
 
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && current_user_can('edit_posts') ) {
 		echo $out;
 	}
 }

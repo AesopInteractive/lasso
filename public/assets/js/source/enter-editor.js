@@ -25,7 +25,6 @@ jQuery(document).ready(function($){
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
 
-
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
 		///////////////////
@@ -73,7 +72,6 @@ jQuery(document).ready(function($){
 		/// DRAG DROP
 		///////////////////
 
-
 		$('#'+editor).sortable({
 			axis:'y',
 			helper:'clone',
@@ -83,6 +81,8 @@ jQuery(document).ready(function($){
             tolerance: 'pointer',
             cursor:'move',
             receive: function (e, ui) {
+
+            	$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
 
             	var el = ui.item['context'];
             	var type = $(el).attr('data-type');
