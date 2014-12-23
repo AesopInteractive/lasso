@@ -88,7 +88,10 @@ function aesop_editor_handle(){
 	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
 		return;
 
-	$out = '<div class="aesop-drag"></div>';
+	$out = '<ul class="aesop-component--controls">
+				<li class="aesop-drag"></li>
+				<li id="aesop-component--settings__trigger" class="aesop-settings"></li>
+			</ul>';
 
 	return $out;
 }

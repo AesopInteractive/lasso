@@ -1,0 +1,54 @@
+// draggable handle
+.aesop-component--controls {
+    position: absolute;
+    margin:0;
+    padding:0;
+    line-height:1;
+    width:@drag--width;
+    height:@drag--height;
+    top:4px;
+    left:4px;
+    //left:-10000px;
+    text-align: center;
+    margin: 0 auto;
+    background:@drag--bg;
+    border-radius:@editor--radius - 2;
+    color:fadeout(white,40);
+    .clearfix();
+   // .opacity(0);
+
+    li {
+        float:left;
+        list-style-type: none;
+        width:@drag--width / 2;
+        height:@drag--height;
+        border-right:1px solid @toolbar--hover;
+
+        &:before {
+            .editor-icon-font();
+            position: relative;
+            top:3px;
+        }
+
+        &:hover {
+            background:@toolbar--hover;
+        }
+
+        &:last-child {
+            border-right:none;
+        }
+
+        &.aesop-drag:before {
+            content:'\e600';
+        }
+
+        &.aesop-settings:before {
+            content:'\e994';
+        }
+    }
+
+}
+.aesop-editing .aesop-component:hover .aesop-component--controls{
+    left:4px;
+   // .opacity(1);
+}
