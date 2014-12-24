@@ -76,7 +76,7 @@ jQuery(document).ready(function($){
 			opacity:0.65,
 			placeholder:'aesop-drop-zone',
 			handle: '.aesop-drag',
-            tolerance: 'fit',
+            tolerance: 'pointer',
             containment:'#'+editor,
             cursor:'move',
             cursorAt:{ left:5, top:5 },
@@ -95,6 +95,9 @@ jQuery(document).ready(function($){
 	            $(this).find('li').replaceWith(components[type]['content']);
 
 			    $('.aesop-component').each(function(){
+
+			    	$(this).css('position','relative'); // tis needs to go in aesop
+
 			    	$(this).prepend(aesopDragHandle);
 			    });
 
