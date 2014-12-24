@@ -25,6 +25,9 @@ jQuery(document).ready(function($){
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
 
+	    // add settings moda/sidebar
+		$('body').append(aesop_editor.component_sidebar);
+
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
 		///////////////////

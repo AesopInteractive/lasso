@@ -30,6 +30,7 @@ class aesopEditorAssets {
 				'handle'			=> aesop_editor_handle(),
 				'toolbar'			=> aesop_editor_toolbar(),
 				'component_modal'	=> aesop_editor_component_modal(),
+				'component_sidebar'	=> aesop_editor_component_sidebar(),
 				'components'		=> aesop_editor_components()
 			));
 		}

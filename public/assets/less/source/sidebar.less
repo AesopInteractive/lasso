@@ -1,0 +1,42 @@
+.aesop-sidebar-open {
+    #aesop-editor--sidebar {
+        right:0;
+    }
+}
+
+// modal outer
+#aesop-editor--sidebar {
+    z-index: 1001;
+    position:fixed;
+    right:-@sidebar--width;
+    top:0;
+    bottom:0;
+    width:@sidebar--width;
+    .transition(right .25s ease);
+
+    * {
+        .box-sizing(border-box);
+    }
+
+}
+
+// sidebar inner
+
+.aesop-editor--sidebar__inner {
+    height:100%;
+    font-family:@editor--font;
+    background: @sidebar--bg;
+    padding:@sidebar--padding;
+    color:@sidebar--color;
+}
+
+// modal close
+#aesop-editor--sidebar__close {
+    position:absolute;
+    right:20px;
+    top:10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

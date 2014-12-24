@@ -1,4 +1,28 @@
 <?php
+/**
+*
+*	Draw teh component modal
+*
+*
+*/
+function aesop_editor_component_sidebar(){
+
+	ob_start();
+
+	?>
+	<div id="aesop-editor--sidebar">
+		<div class="aesop-editor--sidebar__inner">
+
+			<span id="aesop-editor--sidebar__close" >x</span>
+
+			<p>Component Settings</p>
+
+		</div>
+	</div>
+	<?php
+
+	return ob_get_clean();
+}
 
 /**
 *
@@ -70,7 +94,7 @@ function aesop_editor_handle(){
 	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
 		return;
 
-	?><ul class="aesop-component--controls">
+	?><ul class="aesop-component--controls" contenteditable="false">
 				<li class="aesop-drag"></li>
 				<li id="aesop-component--settings__trigger" class="aesop-settings"></li>
 			</ul>
