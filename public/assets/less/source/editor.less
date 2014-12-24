@@ -3,9 +3,20 @@
 .aesop-drop-zone {
     .box-sizing(border-box);
     height:@editor--dropzone__height;
-    background:@editor--dropzone__bg;
+    background: @editor--dropzone__bg;
     border:1px dashed @editor--dropzone__border;
     list-style-type: none;
+    width:700px;
+    margin-left:auto;
+    margin-right:auto;
+    .transition(all .5s ease);
+}
+
+// drag placeholder
+.aesop-drag-holder {
+    height:@editor--dropzone__height !important;
+    background:#d7d7d7;
+    //.transition(all .15s cubic-bezier);
 }
 
 .Medium{
