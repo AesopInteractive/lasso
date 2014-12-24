@@ -24,6 +24,18 @@
         .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
     }
 
+    input[type="text"],
+    input[type="media_upload"],
+    textarea,
+    select {
+
+        &:focus {
+            box-shadow: none;
+            outline:none;
+            border:1px solid darken(@input--border,15);
+        }
+    }
+
     // option button/media upload
     .aesop-option-button {
         float: right;
@@ -78,9 +90,32 @@
 }
 
 // update setting button
+.aesop-buttoninsert-wrap {
+    margin:15px auto;
+}
 #aesop-generator-insert {
     text-align: center;
     display:block;
     margin:0 20px;
-    border-radius:@editor--radius;
+    padding:6px 10px;
+    border-radius:@editor--radius - 2;
+    background:@sidebar--buttonInsert__bg;
+    border:1px solid @sidebar--buttonInsert__border;
+    color:@sidebar--buttonInsert__color;
+
+    &:hover {
+        text-decoration: none;
+        background:darken(@sidebar--buttonInsert__bg,10);
+    }
+
+    &:active,
+    &:focus {
+        text-decoration: none;
+        outline:none;
+    }
+
+    &:active {
+        background:darken(@sidebar--buttonInsert__bg,15);
+        .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
+    }
 }

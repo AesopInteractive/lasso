@@ -1,80 +1,82 @@
 // EDITOR GLOBALS
-@editor--font:              'Open Sans';
-@editor--color__success:    #5CB85C;
-@editor--color__error:      #d9534f;
-@editor--color__update:     #5bc0de;
-@editor--radius:            4px;
+@editor--font:                  'Open Sans';
+@editor--color__success:        #5CB85C;
+@editor--color__error:          #d9534f;
+@editor--color__update:         #5bc0de;
+@editor--radius:                4px;
 
-@editor--confirm__pos:      20px;
+@editor--confirm__pos:          20px;
 
-@editor--dropzone__height:  75px;
-@editor--dropzone__color:   @editor--color__update;
-@editor--dropzone__bg:      fadeout(black,97);
-@editor--dropzone__border:  fadeout(black,80);
+@editor--dropzone__height:      75px;
+@editor--dropzone__color:       @editor--color__update;
+@editor--dropzone__bg:          fadeout(black,97);
+@editor--dropzone__border:      fadeout(black,80);
 
 
 // TOOLBAR
-@toolbar--bg:               #222;
-@toolbar--bg__accent:       lighten(@toolbar--bg,8);
-@toolbar--border:           darken(@toolbar--bg,5);
-@toolbar--hover:            lighten(@toolbar--bg__accent,2);
-@toolbar--color:            #E2E2E2;
-@toolbar--width:            160px;
-@toolbar--height:           39px;
-@toolbar--item__padding:    0 8px;
-@toolbar--font__size:       20px;
-@toolbar--icon__height:     20px;
-@toolbar--icon__width:      @toolbar--icon__height;
-@toolbar--pos__bottom:      20px;
+@toolbar--bg:                   #222;
+@toolbar--bg__accent:           lighten(@toolbar--bg,8);
+@toolbar--border:               darken(@toolbar--bg,5);
+@toolbar--hover:                lighten(@toolbar--bg__accent,2);
+@toolbar--color:                #E2E2E2;
+@toolbar--width:                160px;
+@toolbar--height:               39px;
+@toolbar--item__padding:        0 8px;
+@toolbar--font__size:           20px;
+@toolbar--icon__height:         20px;
+@toolbar--icon__width:          @toolbar--icon__height;
+@toolbar--pos__bottom:          20px;
+@toolbar--drop__height:         60px;
+@toolbar--drop__width:          300px;
 
-@toolbar--drop__height:     60px;
-@toolbar--drop__width:      300px;
 
 // EDITOR CONTROLS
-@control--bg:               @toolbar--bg;
-@control--color:            @toolbar--color;
+@control--bg:                   @toolbar--bg;
+@control--color:                @toolbar--color;
+@control--padding:              @toolbar--item__padding;
+@control--font__size:           @toolbar--font__size;
 
-@control--padding:          @toolbar--item__padding;
-@control--font__size:       @toolbar--font__size;
-
-
-@z-index--toolbar:          999;
+// Z INDEX
+@z-index--toolbar:              999;
 
 // COMPONENT CONTROLS
-@component-controls--bg:                 @toolbar--bg__accent;
-@component-controls--height:             26px;
-@component-controls--width:              62px;
-@component-controls--color:              white;
-@component-controls--font__size:        15px;
-@component-controls--radius:             @editor--radius - 2;
+@component-controls--bg:         @toolbar--bg__accent;
+@component-controls--height:     26px;
+@component-controls--width:      62px;
+@component-controls--color:       white;
+@component-controls--font__size: 15px;
+@component-controls--radius:     @editor--radius - 2;
 
 
 // MODAL
-@modal--overlay__bg:       fadeout(white,25);
-@modal--width:             480px;
-@modal--bg:                @toolbar--bg;
-@modal--bg__accent:        @toolbar--bg__accent;
-@modal--color:             @toolbar--color;
-@modal--padding:           18px;
-
-@modal--font__size:        14px;
+@modal--overlay__bg:            fadeout(white,25);
+@modal--width:                  480px;
+@modal--bg:                     @toolbar--bg;
+@modal--bg__accent:             @toolbar--bg__accent;
+@modal--color:                  @toolbar--color;
+@modal--padding:                18px;
+@modal--font__size:             14px;
 
 // SIDEBAR
-@sidebar--width:             285px;
-@sidebar--bg:                @toolbar--bg;
-@sidebar--bg__accent:        @toolbar--bg__accent;
-@sidebar--color:             #E2E2E2;
-@sidebar--padding:           15px;
+@sidebar--width:                285px;
+@sidebar--bg:                   @toolbar--bg;
+@sidebar--bg__accent:           @toolbar--bg__accent;
+@sidebar--color:                #E2E2E2;
+@sidebar--padding:              15px;
+@sidebar--font__size:           14px;
+@sidebar--button__bg:           lighten(@toolbar--bg,18);
+@sidebar--button__border:       darken(@sidebar--button__bg,14);
 
-@sidebar--font__size:        14px;
-
-@sidebar--button__bg:        lighten(@toolbar--bg,18);
-@sidebar--button__border:    darken(@sidebar--button__bg,14);
+@sidebar--buttonInsert__color:  #FFF;
+@sidebar--buttonInsert__bg:     @editor--color__update;
+@sidebar--buttonInsert__border: darken(@sidebar--buttonInsert__bg,5);
 
 // COMPONENT SETTINGS
-@input--bg:                  #F0F0F0;
-@input--color:               #444;
-@input--border:              darken(@sidebar--bg,5);
-@input--font__family:        'Courier New';
-@input--font__size:          15px;
+@input--bg:                     #F0F0F0;
+@input--color:                  #444;
+@input--border:                 darken(@sidebar--bg,5);
+@input--font__family:           'Courier New';
+@input--font__size:             15px;
+
+
 
