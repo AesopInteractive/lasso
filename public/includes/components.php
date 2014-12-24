@@ -1,6 +1,6 @@
 <?php
 
-// @todo clean up this file!!
+// @todo clean up this file
 
 function aesop_editor_components(){
 

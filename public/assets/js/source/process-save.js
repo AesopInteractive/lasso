@@ -14,7 +14,7 @@ jQuery(document).ready(function($){
 		var html = $('#'+editor).html();
 
 		// remove controls
-
+		// @todo - worry about saving later this is shit hack
 	    $('.aesop-component--controls').remove();
 
 		// let user know someting is happening on click
