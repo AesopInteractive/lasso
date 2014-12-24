@@ -98,7 +98,7 @@
 
         ul {
             margin:0;
-            padding:0;
+            padding:4px;
             .opacity(1);
             list-style-type: none;
             width:@toolbar--drop__width;
@@ -128,29 +128,25 @@
                 line-height:1.5;
                 text-align: center;
                 position:relative;
-                font-size:15px;
+                font-size:20px;
                 text-shadow:0 1px 1px rgba(0,0,0,0.4);
                 border-right:none;
-                padding:4px 0;
-                height:30px;
-                width:30px;
-                //border-bottom:1px solid lighten(@toolbar--border,5);
+                margin:1px;
+                padding:2px;
+                height:36px;
+                width:40px;
+                background:lighten(@toolbar--bg,3);
 
                 &:before {
                     top:2px;
                 }
 
-                &:first-child:hover {
-
-                }
-                &:last-child {
-                    border-bottom:0;
-                }
 
                 &:hover {
                     cursor: pointer;
                     background:@toolbar--bg;
                     box-shadow:none;
+                    border-radius: 0;
                 }
 
                 &.active,
