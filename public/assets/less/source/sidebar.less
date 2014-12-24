@@ -6,12 +6,13 @@
 
 // modal outer
 #aesop-editor--sidebar {
-    z-index: 1001;
+    z-index: 9999;
     position:fixed;
     right:-@sidebar--width;
     top:0;
     bottom:0;
     width:@sidebar--width;
+    border-left:4px solid white;
     .transition(right .25s ease);
 
     * {
@@ -26,17 +27,28 @@
     height:100%;
     font-family:@editor--font;
     background: @sidebar--bg;
+    border-left:4px solid @sidebar--bg__accent;
     padding:@sidebar--padding;
     color:@sidebar--color;
+    .box-shadow(inset 9px 0 9px -9px rgba(0,0,0,1));
 }
 
 // modal close
 #aesop-editor--sidebar__close {
     position:absolute;
-    right:20px;
-    top:10px;
+    right:15px;
+    top:5px;
 
     &:hover {
         cursor: pointer;
     }
+}
+
+#aesop-editor--sidebar__drag {
+    height:100px;
+    width:50px;
+    background:red;
+    top:50%;
+    bottom:0;
+    position:absolute;
 }
