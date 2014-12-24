@@ -86,14 +86,12 @@ jQuery(document).ready(function($){
                 return $('<div class="aesop-drag-holder"></div>');
 
             },
-            receive: function (e, ui) {
+        	beforeStop: function (event, ui) { draggedItem = ui.item },
+            receive: function () {
 
             	$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
 
-            	var el = ui.item['context'],
-            		type = $(el).attr('data-type');
-
-	            $(this).find('li').replaceWith(components[type]['content']);
+            	/*
 
 			    $('.aesop-component').each(function(){
 
@@ -101,6 +99,14 @@ jQuery(document).ready(function($){
 
 			    	$(this).prepend(aesopDragHandle);
 			    });
+
+				*/
+				var item = draggedItem['context'],
+					type = $(item).attr('data-type');
+
+				//console.log(item);
+
+				$(item).replaceWith(components[type]['content']);
 
 		    }
 		});
@@ -110,6 +116,9 @@ jQuery(document).ready(function($){
 			helper:'clone',
 		    cursor: 'move',
 		    connectToSortable: '#'+editor,
+		    start: function() {
+		    	origin = 'draggable'
+		    }
 		});
 
 	});
