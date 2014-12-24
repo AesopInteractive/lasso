@@ -77,9 +77,8 @@ jQuery(document).ready(function($){
 			zIndex:9999,
 			placeholder:'aesop-drop-zone',
 			handle: '.aesop-drag',
-            //containment:'#'+editor,
             cursor:'move',
-            dropOnEmpty:true,
+            //containment:'document', // containment breaks full widh dragging
             refreshPositions: true,
             //cursorAt:{ left:5, top:5 },
             helper: function( e, ui ) {
@@ -109,7 +108,6 @@ jQuery(document).ready(function($){
 		$('#aesop-toolbar--components__list li').draggable({
 			axis:'y',
 			helper:'clone',
-			tolerance:'fit',
 		    cursor: 'move',
 		    connectToSortable: '#'+editor,
 		});
