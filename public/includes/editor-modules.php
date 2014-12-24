@@ -1,9 +1,17 @@
 <?php
+
 /**
 *
-*	Draw teh component modal
+*	These functions draw out the various bits of markup used in the editor
+*	They are then localized and draw out with JS in enter-editor.js
+*	@since 1.0
+*/
+
+/**
 *
+*	Draw the side panel that houses the component settings
 *
+*	@todo - decide between this OR the modal implementation below
 */
 function aesop_editor_component_sidebar(){
 
@@ -26,9 +34,9 @@ function aesop_editor_component_sidebar(){
 
 /**
 *
-*	Draw teh component modal
+*	Draw the modal that houses the component settings
 *
-*
+*	@todo - decide between this OR the sidebar implementation above
 */
 function aesop_editor_component_modal(){
 
@@ -50,7 +58,12 @@ function aesop_editor_component_modal(){
 	return ob_get_clean();
 }
 
-function aesop_editor_toolbar(){
+/**
+*
+*	Draw the toolbar used to edit text and triggers settings modal/sidebar
+*	@since 1.0
+*/
+function aesop_editor_text_toolbar(){
 
 	ob_start();
 
@@ -83,11 +96,12 @@ function aesop_editor_toolbar(){
 	<?php return ob_get_clean();
 }
 
-/*
+/**
 *
-*	Drag handle
+*	Draw the controls used for teh component settings 
+*	@since 1.0
 */
-function aesop_editor_handle(){
+function aesop_editor_settings_toolbar(){
 
 	ob_start();
 
