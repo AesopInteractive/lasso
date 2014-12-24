@@ -6,7 +6,6 @@
     margin:0;
     padding:0;
     line-height:1;
-    width:@component-controls--width;
     height:@component-controls--height;
     top:4px;
     //left:-10000px;
@@ -20,7 +19,7 @@
     li {
         float:left;
         list-style-type: none;
-        width:@component-controls--width / 2 - 1;
+        width:@component-controls--width / 2;
         height:@component-controls--height - 2;
         border-right:1px solid lighten(@toolbar--border,5);
         text-align: center;
@@ -33,12 +32,23 @@
             font-size:@component-controls--font__size;
         }
 
+        &:first-child:hover {
+            border-bottom-left-radius: @component-controls--radius;
+            border-top-left-radius: @component-controls--radius;
+        }
+
         &:hover {
+            cursor: pointer;
             background:@toolbar--hover;
         }
 
         &:last-child {
             border-right:none;
+
+            &:hover {
+                border-top-right-radius: @component-controls--radius;
+                border-bottom-right-radius: @component-controls--radius;
+            }
         }
 
         &.aesop-drag{
