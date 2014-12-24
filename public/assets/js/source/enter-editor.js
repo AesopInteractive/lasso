@@ -74,12 +74,14 @@ jQuery(document).ready(function($){
 
 		$('#'+editor).sortable({
 			opacity:0.65,
+			zIndex:9999,
 			placeholder:'aesop-drop-zone',
 			handle: '.aesop-drag',
-            tolerance: 'pointer',
-            containment:'#'+editor,
+            //containment:'#'+editor,
             cursor:'move',
-            cursorAt:{ left:5, top:5 },
+            dropOnEmpty:true,
+            refreshPositions: true,
+            //cursorAt:{ left:5, top:5 },
             helper: function( e, ui ) {
 
                 return $('<div class="aesop-drag-holder"></div>');
@@ -107,8 +109,8 @@ jQuery(document).ready(function($){
 		$('#aesop-toolbar--components__list li').draggable({
 			axis:'y',
 			helper:'clone',
+			tolerance:'fit',
 		    cursor: 'move',
-		    tolerance: 'fit',
 		    connectToSortable: '#'+editor,
 		});
 
