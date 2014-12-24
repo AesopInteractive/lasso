@@ -117,9 +117,14 @@ function aesop_editor_settings_toolbar(){
 	<?php return ob_get_clean();
 }
 
-
+/**
+*
+*	Draw out the settings field based on the shortcodes array with options foudn in Aesop Story Engine
+* 	This was mostly backported from aesop story engine
+*	@since 1.0
+*/
 function aesop_editor_options_blob() {
-	
+
 	$codes = function_exists('aesop_shortcodes') ? aesop_shortcodes() : null;
 
 	$blob = array();
@@ -134,7 +139,7 @@ function aesop_editor_options_blob() {
 
 				$prefix = isset($attr_info['prefix']) ? sprintf('<span class="aesop-option-prefix">%s</span>',$attr_info['prefix']) : null;
 
-				$return .= '<p class="aesop-'.$slug.'-'.$attr_name.'">';
+				$return .= '<p class="aesop-option aesop-'.$slug.'-'.$attr_name.'">';
 				$return .= '<label for="aesop-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
 				$return .= '<small class="aesop-option-desc">'.$attr_info['tip'].'</small>';
 				// Select
@@ -163,7 +168,7 @@ function aesop_editor_options_blob() {
 					if('media_upload' == $attr_info['type']) {
 
 						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />';
-						$return .= '<input id="aesop-upload-img" type="button" class="button button-primary button-large" value="Select Media"/>';
+						$return .= '<input id="aesop-upload-img" type="button" class="aesop-option-button" value="Select Media"/>';
 
 					} elseif ('color' == $attr_info['type']) {
 
@@ -191,11 +196,12 @@ function aesop_editor_options_blob() {
 			$return .= '<p><label>' . __( 'Content', 'aesop-core' ) . '</label><textarea type="text" name="aesop-generator-content" id="aesop-generator-content" value="' . $shortcode['content'] . '" /></p>';
 		}
 
-		$return .= '<p class="aesop-buttoninsert-wrap"><a href="#" id="aesop-generator-insert"><span class="aesop-generator-button-insert">' . __( 'Insert Component', 'aesop-core' ) . '</span><span class="aesop-generator-button-update">' . __( 'Update Component', 'aesop-core' ) . '</span></a></p> ';
+		$return .= '<p class="aesop-buttoninsert-wrap"><a href="#" id="aesop-generator-insert"><span class="aesop-generator-button-update">' . __( 'Update Component', 'aesop-core' ) . '</span></a></p> ';
 
 		$return .= '<input type="hidden" name="aesop-generator-result" id="aesop-generator-result" value="" />';
 
-		$blob[$slug] = $return;	
+		$blob[$slug] = $return;
 	}
+
 	return $blob;
 }

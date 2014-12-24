@@ -1,4 +1,5 @@
 .aesop-sidebar-open {
+    overflow: hidden;
     #aesop-editor--sidebar {
         right:0;
     }
@@ -12,7 +13,6 @@
     top:0;
     bottom:0;
     width:@sidebar--width;
-    border-left:4px solid white;
     .transition(right .25s ease);
 
     * {
@@ -26,10 +26,14 @@
 .aesop-editor--sidebar__inner {
     height:100%;
     font-family:@editor--font;
+    font-size: @sidebar--font__size;
     background: @sidebar--bg;
     border-left:4px solid @sidebar--bg__accent;
-    padding:@sidebar--padding;
     color:@sidebar--color;
+    text-shadow:0 1px 1px rgba(0,0,0,0.4);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: scroll;
     .box-shadow(inset 9px 0 9px -9px rgba(0,0,0,1));
 }
 

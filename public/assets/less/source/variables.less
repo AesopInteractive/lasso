@@ -12,6 +12,7 @@
 @editor--dropzone__bg:      fadeout(black,97);
 @editor--dropzone__border:  fadeout(black,80);
 
+
 // TOOLBAR
 @toolbar--bg:               #222;
 @toolbar--bg__accent:       lighten(@toolbar--bg,8);
@@ -59,10 +60,21 @@
 @modal--font__size:        14px;
 
 // SIDEBAR
-@sidebar--width:             260px;
+@sidebar--width:             285px;
 @sidebar--bg:                @toolbar--bg;
 @sidebar--bg__accent:        @toolbar--bg__accent;
-@sidebar--color:             @toolbar--color;
-@sidebar--padding:           18px;
+@sidebar--color:             #E2E2E2;
+@sidebar--padding:           15px;
 
 @sidebar--font__size:        14px;
+
+@sidebar--button__bg:        lighten(@toolbar--bg,18);
+@sidebar--button__border:    darken(@sidebar--button__bg,14);
+
+// COMPONENT SETTINGS
+@input--bg:                  #F0F0F0;
+@input--color:               #444;
+@input--border:              darken(@sidebar--bg,5);
+@input--font__family:        'Courier New';
+@input--font__size:          15px;
+
