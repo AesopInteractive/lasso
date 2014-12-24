@@ -15,7 +15,9 @@
 			// get the component type
 			var type = $(this).closest('.aesop-component').attr('data-component-type');
 
-			console.log(type);
+			console.log(aesop_editor.component_options[type]);
+
+			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
 
 		});
 
