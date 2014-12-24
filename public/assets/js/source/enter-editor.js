@@ -74,13 +74,11 @@ jQuery(document).ready(function($){
 
 		$('#'+editor).sortable({
 			opacity:0.65,
-			zIndex:9999,
 			placeholder:'aesop-drop-zone',
 			handle: '.aesop-drag',
             cursor:'move',
             //containment:'document', // containment breaks full widh dragging
             refreshPositions: true,
-            //cursorAt:{ left:5, top:5 },
             helper: function( e, ui ) {
 
                 return $('<div class="aesop-drag-holder"></div>');
@@ -91,22 +89,13 @@ jQuery(document).ready(function($){
 
             	$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
 
-            	/*
-
-			    $('.aesop-component').each(function(){
-
-			    	$(this).css('position','relative'); // tis needs to go in aesop
-
-			    	$(this).prepend(aesopDragHandle);
-			    });
-
-				*/
 				var item = draggedItem['context'],
 					type = $(item).attr('data-type');
 
-				//console.log(item);
+				if ( origin == 'draggable' ) {
 
-				$(item).replaceWith(components[type]['content']);
+					$(item).replaceWith( $(components[type]['content']).prepend(aesopDragHandle) );
+				}
 
 		    }
 		});
@@ -116,9 +105,7 @@ jQuery(document).ready(function($){
 			helper:'clone',
 		    cursor: 'move',
 		    connectToSortable: '#'+editor,
-		    start: function() {
-		    	origin = 'draggable'
-		    }
+		    start: function() { origin = 'draggable' }
 		});
 
 	});
