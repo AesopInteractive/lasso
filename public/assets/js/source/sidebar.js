@@ -12,6 +12,11 @@
 			// add a body class
 			$('body').toggleClass('aesop-sidebar-open');
 
+			// get the component type
+			var type = $(this).closest('.aesop-component').attr('data-component-type');
+
+			console.log(type);
+
 		});
 
 		// destroy modal if clicking close or overlay
