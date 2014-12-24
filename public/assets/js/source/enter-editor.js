@@ -1,9 +1,9 @@
 jQuery(document).ready(function($){
 
-	var editor 	=  aesop_editor.editor,
-		toolbar = aesop_editor.toolbar,
-		modal = aesop_editor.component_modal,
-		components = aesop_editor.components,
+	var editor 			=  aesop_editor.editor,
+		toolbar 		= aesop_editor.toolbar,
+		modal 			= aesop_editor.component_modal,
+		components 		= aesop_editor.components,
 		aesopDragHandle = aesop_editor.handle;
 
 	$('#aesop-editor--edit').click(function(e){
@@ -73,28 +73,26 @@ jQuery(document).ready(function($){
 		///////////////////
 
 		$('#'+editor).sortable({
-			opacity:0.65,
+			opacity: 0.65,
 			placeholder:'aesop-drop-zone',
 			handle: '.aesop-drag',
             cursor:'move',
-            //containment:'document', // containment breaks full widh dragging
             refreshPositions: true,
-            helper: function( e, ui ) {
-
-                return $('<div class="aesop-drag-holder"></div>');
-
-            },
+            helper: function( e, ui ) { return $('<div class="aesop-drag-holder"></div>'); },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
 
+            	// close modal drag
             	$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
 
+            	// get the item and type
 				var item = draggedItem['context'],
 					type = $(item).attr('data-type');
 
+				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
-					$(item).replaceWith( $(components[type]['content']).prepend(aesopDragHandle) );
+					$(item).replaceWith( $(components[type]['content']).prepend( aesopDragHandle ) );
 				}
 
 		    }
