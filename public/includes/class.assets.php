@@ -31,7 +31,7 @@ class aesopEditorAssets {
 				'component_modal'	=> aesop_editor_component_modal(),
 				'component_sidebar'	=> aesop_editor_component_sidebar(),
 				'components'		=> aesop_editor_components(),
-				'component_options' => aesop_editor_options_blob()
+				'component_options' => function_exists('aesop_shortcodes_blob') ? aesop_shortcodes_blob() : null // right nwo this is part of aesop but we could do our own?
 			));
 		}
 
