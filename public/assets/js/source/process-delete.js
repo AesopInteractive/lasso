@@ -14,6 +14,13 @@ jQuery(document).ready(function($){
 			nonce: $this.data('nonce')
 		}
 
+		var deleteComponent = function() {
+		    if ( confirm('Delete this component?') ) {
+		        $this.closest('.aesop-component').remove();
+		    }
+		    return false;
+		}
+
 		$.post( ajaxurl, data, function(response) {
 
 			console.log(response);
@@ -22,7 +29,7 @@ jQuery(document).ready(function($){
 
 				console.log('success');
 
-				$(this).parent().parent().remove();
+				deleteComponent();
 
 			} else if( 'error' == response ) {
 
