@@ -7,7 +7,6 @@
 
 		var $this = $(this);
 
-
 		/* getting all attributes on save
 		$('#aesop-generator-settings .aesop-generator-attr').each(function() {
 			if ( $(this).val() !== '' ) {
@@ -20,6 +19,7 @@
 
 		$.post( aesop_editor.ajaxurl, data, function(response) {
 
+			console.log(response);
 
 			if( response == 'success' ) {
 

@@ -16,6 +16,7 @@
 			var type = $(this).closest('.aesop-component').attr('data-component-type');
 
 			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
+			$('#aesop--component-settings-form .component_type').val( type );
 
 		});
 

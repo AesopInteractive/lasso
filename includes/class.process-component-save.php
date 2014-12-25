@@ -25,8 +25,10 @@ class aesopEditorComponentSaving {
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-generator-settings' ) ) {
 
 				echo 'success';
+				var_dump($_POST);die();
 
 			} else {
+
 				echo 'error';
 			}
 		}
