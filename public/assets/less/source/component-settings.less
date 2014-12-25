@@ -47,11 +47,8 @@
         height:30px;
     }
 
-    // option button/media upload
-    .aesop-option-button {
-        position:absolute;
-        right:21px;
-        bottom:20px;
+    .aesop-option-button,
+    .aesop-generator-cancel {
         height:30px;
         font-weight: 400;
         text-align: center;
@@ -64,10 +61,14 @@
         border-top-right-radius: @editor--radius - 1;
         border-bottom-right-radius: @editor--radius - 1;
         color: #fff;
-        background-color: @sidebar--button__bg;
-        border-color: @sidebar--button__border;
         font-size: @sidebar--font__size;
         font-family: @editor--font;
+    }
+
+    // option button/media upload
+    .aesop-option-button {
+        background-color: @sidebar--button__bg;
+        border-color: @sidebar--button__border;
         .transition(background .15s ease);
         .box-shadow(0 1px 1px rgba(0,0,0,0.25));
 
@@ -98,6 +99,12 @@
         }
 
     }
+
+    .aesop-generator-cancel {
+        background:none;
+        color:@editor--color__error;
+
+    }
 }
 
 
@@ -117,6 +124,7 @@
     margin:0 auto;
     .clearfix();
     position: fixed;
+    text-align: right;
     padding:10px;
     .box-sizing(border-box);
     bottom:0;

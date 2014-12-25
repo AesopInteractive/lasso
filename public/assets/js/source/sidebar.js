@@ -46,7 +46,8 @@
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#aesop-editor--sidebar__close').live('click',function(){
+		$('#aesop-editor--sidebar__close').live('click',function(e){
+			e.preventDefault();
 			destroySidebar();
 			$('#aesop-editor--component__settings').perfectScrollbar('destroy');
 		});
