@@ -24,8 +24,11 @@ class aesopEditorComponentSaving {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-generator-settings' ) ) {
 
-				echo 'success';
+				$type = isset( $_POST['component_type'] ) ? $_POST['component_type'] : false;
+
+				
 				var_dump($_POST);die();
+				echo 'success';
 
 			} else {
 

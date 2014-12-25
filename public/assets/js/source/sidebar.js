@@ -15,7 +15,10 @@
 			// get the component type
 			var type = $(this).closest('.aesop-component').attr('data-component-type');
 
+			// add the options to the settings div
 			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
+
+			// add the type as a value in ahidden field in settings
 			$('#aesop--component-settings-form .component_type').val( type );
 
 		});

@@ -5,17 +5,18 @@
 
 		e.preventDefault();
 
-		var $this = $(this);
+		var $this = $(this),
+			values = $(this).find('.aesop-generator-attr').serialize();
 
-		/* getting all attributes on save
-		$('#aesop-generator-settings .aesop-generator-attr').each(function() {
-			if ( $(this).val() !== '' ) {
-				$('#aesop-generator-result').val( $('#aesop-generator-result').val() + ' ' + $(this).attr('name') + '="' + $(this).val() + '"' );
-			}
-		});
-		*/
+		// set values as serialized array
+		$('#aesop-generator-result').val( values );
 
-		var data = $(this).serialize();
+		var data = {
+			postid: $('#aesop-generator-postid').val(),
+			fields: $('#aesop-generator-result').val(),
+			action: 'process_update_component',
+			nonce: $('#aesop-generator-nonce').val()
+		}
 
 		$.post( aesop_editor.ajaxurl, data, function(response) {
 
