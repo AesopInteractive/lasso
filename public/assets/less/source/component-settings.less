@@ -1,5 +1,11 @@
 #aesop-editor--component__settings {
 
+    form {
+        margin:0;
+        position: relative;
+        padding-bottom:55px; // height of insert
+    }
+
     label,
      .aesop-option-desc {
         display: block;
@@ -107,8 +113,16 @@
 
 // update setting button
 .aesop-buttoninsert-wrap {
-    margin:15px auto;
+    margin:0 auto;
     .clearfix();
+    position: absolute;
+    padding:10px;
+    .box-sizing(border-box);
+    bottom:0;
+    width:@sidebar--width - 4;
+    background:@sidebar--bg;
+    right:-@sidebar--width - 4;
+    .transition(right .25s ease);
 }
 #aesop-generator-insert {
     text-align: center;
