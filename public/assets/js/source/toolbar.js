@@ -26,7 +26,10 @@
 
 			var data = {
 				action: 'process_delete_component',
-				nonce: $this.data('nonce')
+				nonce: 	$this.data('nonce'),
+				postid: $this.data('postid'),
+				unique: $this.closest('.aesop-component').data('unique'),
+				type:   $this.closest('.aesop-component').data('component-type')
 			}
 
 			var deleteComponent = function() {

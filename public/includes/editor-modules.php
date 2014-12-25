@@ -123,7 +123,7 @@ function aesop_editor_settings_toolbar(){
 		<li class="aesop-drag" title="Move"></li>
 		<li id="aesop-component--settings__trigger" class="aesop-settings" title="Settings"></li>
 		<li class="aesop-clone" title="Clone"></li>
-		<li class="aesop-delete" data-nonce="<?php echo $delete_nonce;?>" title="Delete"></li>
+		<li class="aesop-delete" data-postid="<?php echo get_the_ID();?>" data-nonce="<?php echo $delete_nonce;?>" title="Delete"></li>
 	</ul>
 
 	<?php return ob_get_clean();

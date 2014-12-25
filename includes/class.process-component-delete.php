@@ -20,6 +20,14 @@ class aesopEditorComponentDelete {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-delete-nonce' ) ) {
 
+				// @todo - delete this instances optios in meta
+
+				$type 		= isset( $_POST['type'] ) ? sanitize_text_field( trim( $_POST['type'] ) ) : false;
+				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$unique 	= isset( $_POST['unique'] ) ? sanitize_text_field( trim( $_POST['unique'] ) ) : false;
+
+				delete_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ' );
+
 				echo 'success';
 
 			} else {
