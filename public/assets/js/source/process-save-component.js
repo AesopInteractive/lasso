@@ -9,11 +9,11 @@
 	    $('.aesop-generator-attr').each(function() {
 
 	        var name 	= $(this).attr('name'),
-	        	value 	= $(this).val(),
-	        	item 	= {};
+	        	value 	= $(this).val();
 
-	        item ['name'] = name;
-	        item ['value'] = value;
+	        var item 	= {};
+	        item['name'] = name;
+	        item['value'] = value;
 
 	        optionArray.push(item);
 
