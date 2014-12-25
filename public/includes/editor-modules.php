@@ -18,6 +18,9 @@ function aesop_editor_component_sidebar(){
 
 	ob_start();
 
+	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+		return;
+
 	?>
 	<div id="aesop-editor--sidebar">
 		<div class="aesop-editor--sidebar__inner">
@@ -29,7 +32,6 @@ function aesop_editor_component_sidebar(){
 		</div>
 	</div>
 	<?php
-
 	return ob_get_clean();
 }
 
@@ -42,6 +44,9 @@ function aesop_editor_component_sidebar(){
 function aesop_editor_component_modal(){
 
 	ob_start();
+
+	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+		return;
 
 	?>
 	<div id="aesop-editor--modal">
@@ -67,6 +72,9 @@ function aesop_editor_component_modal(){
 function aesop_editor_text_toolbar(){
 
 	ob_start();
+
+	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+		return;
 
 	?>
 	<div class="aesop-editor--toolbar_wrap">
@@ -110,9 +118,9 @@ function aesop_editor_settings_toolbar(){
 		return;
 
 	?><ul class="aesop-component--controls" contenteditable="false">
-				<li class="aesop-drag"></li>
-				<li id="aesop-component--settings__trigger" class="aesop-settings"></li>
-			</ul>
+		<li class="aesop-drag"></li>
+		<li id="aesop-component--settings__trigger" class="aesop-settings"></li>
+	</ul>
 
 	<?php return ob_get_clean();
 }
