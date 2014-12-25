@@ -45,7 +45,7 @@
 		// destroy modal if clicking close or overlay
 		$('#aesop-editor--sidebar__close').live('click',function(){
 			destroySidebar();
-			$(settingsDiv).perfectScrollbar('destroy');
+			$('#aesop-editor--component__settings').perfectScrollbar('destroy');
 		});
 	});
 
