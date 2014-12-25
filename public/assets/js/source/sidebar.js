@@ -7,6 +7,10 @@
 			$('body').removeClass('aesop-sidebar-open');
 		}
 
+		var settingsHeight = function(){
+			$('#aesop-editor--component__settings').height( $(window).height() );
+		}
+
 		$('#aesop-component--settings__trigger').live('click',function(){
 
 			// add a body class
@@ -20,7 +24,10 @@
 			// add the options to the settings div
 			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
 
-			$('#aesop-editor--component__settings').height( $(window).height() );
+			settingsHeight();
+			$(window).resize(function(){
+				settingsHeight();
+			});
 
 			// add the type as a value in ahidden field in settings
 			$('#aesop--component-settings-form .component_type').val( type );
