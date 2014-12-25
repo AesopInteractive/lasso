@@ -22,7 +22,7 @@ function aesop_editor_component_sidebar(){
 	<div id="aesop-editor--sidebar">
 		<div class="aesop-editor--sidebar__inner">
 
-			<span id="aesop-editor--sidebar__close" >x</span>
+			<span id="aesop-editor--sidebar__close" class="aesop-icon-cross"></span>
 
 			<div id="aesop-editor--component__settings"></div>
 
