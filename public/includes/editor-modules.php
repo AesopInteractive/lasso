@@ -118,8 +118,10 @@ function aesop_editor_settings_toolbar(){
 		return;
 
 	?><ul class="aesop-component--controls" contenteditable="false">
-		<li class="aesop-drag"></li>
-		<li id="aesop-component--settings__trigger" class="aesop-settings"></li>
+		<li class="aesop-drag" title="Move"></li>
+		<li id="aesop-component--settings__trigger" class="aesop-settings" title="Settings"></li>
+		<li class="aesop-clone" title="Clone"></li>
+		<li class="aesop-delete" title="Delete"></li>
 	</ul>
 
 	<?php return ob_get_clean();
