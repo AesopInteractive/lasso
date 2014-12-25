@@ -112,6 +112,8 @@ function aesop_editor_text_toolbar(){
 */
 function aesop_editor_settings_toolbar(){
 
+	$delete_nonce = wp_create_nonce('aesop-delete-nonce');
+
 	ob_start();
 
 	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
@@ -121,7 +123,7 @@ function aesop_editor_settings_toolbar(){
 		<li class="aesop-drag" title="Move"></li>
 		<li id="aesop-component--settings__trigger" class="aesop-settings" title="Settings"></li>
 		<li class="aesop-clone" title="Clone"></li>
-		<li class="aesop-delete" title="Delete"></li>
+		<li class="aesop-delete" data-nonce="<?php echo $delete_nonce;?>" title="Delete"></li>
 	</ul>
 
 	<?php return ob_get_clean();
