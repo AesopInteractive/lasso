@@ -9,7 +9,6 @@ class aesopEditorComponentSaving {
 
 	}
 
-	// @todo - account for multiple instances
 	function process_update_component(){
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_component' ) {
@@ -21,11 +20,13 @@ class aesopEditorComponentSaving {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-generator-settings' ) ) {
 
-				$type = isset( $_POST['type'] ) ? $_POST['type'] : false;
-				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$options = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+				$type 		= isset( $_POST['type'] ) ? sanitize_text_field( trim( $_POST['type'] ) ) : false;
+				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$unique 	= isset( $_POST['unique'] ) ? sanitize_text_field( trim( $_POST['unique'] ) ) : false;
+				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
-				update_post_meta( $postid, '_aesop_sc_options_'.sanitize_text_field( trim( $type ) ).' ', $options );
+				update_post_meta( $postid, '_aesop_sc_options_'.$type.'-'.$unique.' ', $options );
+
 				echo 'success';
 
 			} else {

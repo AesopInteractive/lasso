@@ -21,7 +21,8 @@
 
 		var data = {
 			action: 'process_update_component',
-			postid: $('#aesop-generator-postid').val(),
+			postid: $('input[name="postid"]').val(),
+			unique: $('input[name="unique"]').val(),
 			fields: JSON.stringify( optionArray ),
 			type: 	$('input[name="component_type"]').val(),
 			nonce: 	$('#aesop-generator-nonce').val()

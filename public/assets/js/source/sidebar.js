@@ -13,13 +13,16 @@
 			$('body').toggleClass('aesop-sidebar-open');
 
 			// get the component type
-			var type = $(this).closest('.aesop-component').attr('data-component-type');
+			var type = $(this).closest('.aesop-component').attr('data-component-type'),
+				unique = $(this).closest('.aesop-component').attr('data-unique');
 
 			// add the options to the settings div
 			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
 
 			// add the type as a value in ahidden field in settings
 			$('#aesop--component-settings-form .component_type').val( type );
+
+			$('#aesop--component-settings-form input[name="unique"]').val( unique );
 
 		});
 
