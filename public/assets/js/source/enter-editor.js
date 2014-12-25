@@ -81,7 +81,14 @@ jQuery(document).ready(function($){
 			handle: '.aesop-drag',
             cursor:'move',
             refreshPositions: true,
-            helper: function( e, ui ) { return $('<div class="aesop-drag-holder"></div>'); },
+            helper: function( e, ui ) {
+
+		    	// get the curent target and add the type class to the drag event
+				var item = ui['context'],
+					type = $(item).attr('data-component-type');
+
+            	return $('<div class="aesop-drag-holder '+type+'"></div>'); 
+            },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
 

@@ -41,13 +41,16 @@
         height:50px;
         padding:10px;
         width:60px;
-        background:#d7d7d7;
+        background:fadeout(@toolbar--bg,50);
         text-align: center;
         font-size:22px;
+        border-radius: @editor--radius;
         .editor-icon-font();
         .editor--icon__list();
+        .box-sizing(border-box);
 
         &:before {
+            color:white;
             position: relative;
             top:4px;
         }
