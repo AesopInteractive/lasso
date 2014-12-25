@@ -115,7 +115,7 @@ jQuery(document).ready(function($){
 				var item = ui.currentTarget,
 					type = $(item).attr('data-type');
 
-              	$(this).addClass('dragging-'+type);
+              	$(this).addClass(type);
 		    }
 		});
 
