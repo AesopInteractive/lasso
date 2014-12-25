@@ -5,18 +5,24 @@
 
 		e.preventDefault();
 
-		var values = $('.aesop-generator-attr').map(function(){
-			var $this = $(this);
-			return {name: $this.attr('name'), value: $this.val()};
-		}).get();
+		var optionArray = [];
+	    $('.aesop-generator-attr').each(function() {
 
-		// set values as serialized array
-		$('#aesop-generator-result').val( $.param(values)  );
+	        var name 	= $(this).attr('name'),
+	        	value 	= $(this).val(),
+	        	item 	= {};
+
+	        item ['name'] = name;
+	        item ['value'] = value;
+
+	        optionArray.push(item);
+
+	    });
 
 		var data = {
 			action: 'process_update_component',
 			postid: $('#aesop-generator-postid').val(),
-			fields: $('#aesop-generator-result').val(),
+			fields: JSON.stringify( optionArray ),
 			type: 	$('input[name="component_type"]').val(),
 			nonce: 	$('#aesop-generator-nonce').val()
 		}

@@ -212,7 +212,6 @@ function aesop_editor_options_blob() {
 		$return .= '<input class="component_type" type="hidden" name="component_type" value="">';
 		$return .= '<input type="hidden" name="postid" id="aesop-generator-postid" value="'.get_the_ID().'">';
 		$return .= '<input type="hidden" name="nonce" id="aesop-generator-nonce" value="'.$nonce.'" />';
-		$return .= '<input type="hidden" name="aesop-generator-result" id="aesop-generator-result" value="" />';
 		$return .= '</form>';
 
 		$blob[$slug] = $return;
