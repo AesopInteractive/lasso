@@ -25,7 +25,7 @@ class aesopEditorComponentSaving {
 				$unique 	= isset( $_POST['unique'] ) ? sanitize_text_field( trim( $_POST['unique'] ) ) : false;
 				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
-				update_post_meta( $postid, '_aesop_sc_options_'.$type.'-'.$unique.' ', $options );
+				update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ', $options );
 
 				echo 'success';
 
