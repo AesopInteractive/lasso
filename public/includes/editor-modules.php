@@ -168,7 +168,7 @@ function aesop_editor_options_blob() {
 					if('media_upload' == $attr_info['type']) {
 
 						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />';
-						$return .= '<input id="aesop-upload-img" type="button" class="aesop-option-button" value="Select Media"/>';
+						$return .= '<a href="#" id="aesop-upload-img" class="aesop-option-button" /></a>';
 
 					} elseif ('color' == $attr_info['type']) {
 

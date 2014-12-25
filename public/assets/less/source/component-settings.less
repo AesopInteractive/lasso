@@ -36,26 +36,27 @@
         }
     }
 
+    // media upload treatment
+    input[type="media_upload"] {
+        height:30px;
+    }
+
     // option button/media upload
     .aesop-option-button {
-        float: right;
-        display: inline-block;
-        margin: 5px auto 0;
+        position:absolute;
+        right:16px;
+        bottom:15px;
+        height:30px;
         font-weight: 400;
         text-align: center;
-        vertical-align: middle;
         cursor: pointer;
         background-image: none;
         border: 1px solid transparent;
         white-space: nowrap;
         padding: 2px 8px;
         line-height: 1.8;
-        border-radius: @editor--radius;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -o-user-select: none;
-        user-select: none;
+        border-top-right-radius: @editor--radius - 1;
+        border-bottom-right-radius: @editor--radius - 1;
         color: #fff;
         background-color: @sidebar--button__bg;
         border-color: @sidebar--button__border;
@@ -65,23 +66,38 @@
         .box-shadow(0 1px 1px rgba(0,0,0,0.25));
 
         &:hover {
+            text-decoration: none;
             background:darken(@sidebar--button__bg,6);
         }
 
         &:active,
         &:focus {
             outline:none;
+            text-decoration: none;
             border-color:darken(@sidebar--button__border,5);
             background:darken(@sidebar--button__bg,10);
             transition:none;
             .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
         }
     }
+
+    #aesop-upload-img {
+
+        .editor-icon-font();
+
+        &:before {
+            content:'\e9c6';
+            position: relative;
+            top:5px;
+        }
+
+    }
 }
 
 
 // single option
 .aesop-option {
+    position: relative;
     border-bottom:1px solid @input--border;
     margin:0;
     padding:@sidebar--padding;
