@@ -206,9 +206,7 @@ function aesop_editor_options_blob() {
 			$return .= '<p><label>' . __( 'Content', 'aesop-core' ) . '</label><textarea type="text" name="aesop-generator-content" id="aesop-generator-content" value="' . $shortcode['content'] . '" /></p>';
 		}
 
-		$return .= '<p><input type="submit" id="aesop-generator-insert" value="Update Settings"></p>';
-
-
+		$return .= '<p class="aesop-buttoninsert-wrap"><input type="submit" id="aesop-generator-insert" value="Update Settings"></p>';
 		$return .= '<input class="component_type" type="hidden" name="component_type" value="">';
 		$return .= '<input type="hidden" name="postid" value="'.get_the_ID().'">';
 		$return .= '<input type="hidden" name="unique" value="">';
