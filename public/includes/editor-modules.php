@@ -126,6 +126,7 @@ function aesop_editor_settings_toolbar(){
 function aesop_editor_options_blob() {
 
 	$codes = function_exists('aesop_shortcodes') ? aesop_shortcodes() : null;
+	$nonce = wp_create_nonce('aesop-generator-settings');
 
 	$blob = array();
 
@@ -139,6 +140,7 @@ function aesop_editor_options_blob() {
 
 				$prefix = isset($attr_info['prefix']) ? sprintf('<span class="aesop-option-prefix">%s</span>',$attr_info['prefix']) : null;
 
+				$return .= '<form id="aesop--component-settings-form" method="post">';
 				$return .= '<p class="aesop-option aesop-'.$slug.'-'.$attr_name.'">';
 				$return .= '<label for="aesop-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
 				$return .= '<small class="aesop-option-desc">'.$attr_info['tip'].'</small>';
@@ -196,9 +198,12 @@ function aesop_editor_options_blob() {
 			$return .= '<p><label>' . __( 'Content', 'aesop-core' ) . '</label><textarea type="text" name="aesop-generator-content" id="aesop-generator-content" value="' . $shortcode['content'] . '" /></p>';
 		}
 
-		$return .= '<p class="aesop-buttoninsert-wrap"><a href="#" id="aesop-generator-insert"><span class="aesop-generator-button-update">' . __( 'Update Component', 'aesop-core' ) . '</span></a></p> ';
+		$return .= '<input type="submit" id="aesop-generator-insert" value="Update Settings">';
 
+		$return .= '<input type="hidden" name="action" value="process_update_component">';
+		$return .= '<input type="hidden" name="nonce" id="aesop-generator-nonce" value="'.$nonce.'" />';
 		$return .= '<input type="hidden" name="aesop-generator-result" id="aesop-generator-result" value="" />';
+		$return .= '</form>';
 
 		$blob[$slug] = $return;
 	}
