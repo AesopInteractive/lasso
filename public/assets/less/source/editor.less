@@ -31,12 +31,19 @@
         box-shadow: none;
     }
 
-    // draggaging
+    // component item being dragged from toolbar to editor
     .ui-draggable-dragging {
         list-style-type: none;
         background:green;
         height:20px;
         width:20px;
+
+        &.dragging-quote {
+
+            &:before {
+                content:'quote';
+            }
+        }
     }
 
 }

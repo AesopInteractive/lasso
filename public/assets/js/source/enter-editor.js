@@ -106,7 +106,17 @@ jQuery(document).ready(function($){
 			helper:'clone',
 		    cursor: 'move',
 		    connectToSortable: '#'+editor,
-		    start: function() { origin = 'draggable' }
+		    start: function(ui) {
+
+		    	// add an origin so sortable can detect where comign from
+		    	origin = 'draggable';
+
+		    	// get the curent target and add the type class to the drag event
+				var item = ui.currentTarget,
+					type = $(item).attr('data-type');
+
+              	$(this).addClass('dragging-'+type);
+		    }
 		});
 
 	});
