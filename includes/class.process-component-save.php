@@ -26,8 +26,6 @@ class aesopEditorComponentSaving {
 
 				$type = isset( $_POST['component_type'] ) ? $_POST['component_type'] : false;
 
-				
-				var_dump($_POST);die();
 				echo 'success';
 
 			} else {

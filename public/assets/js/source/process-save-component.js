@@ -5,13 +5,17 @@
 
 		e.preventDefault();
 
-		var values = $('.aesop-generator-attr').map(function(){
-			var $this = $(this);
-			return {name: $this.attr('name'), value: $this.val()};
-		}).get();
+
+		function getValues() {
+		    var values = {};
+		    $('.aesop-generator-attr').each(function() {
+		        values[this.name] = this.value;
+		    });
+		    return(values);
+		}
 
 		// set values as serialized array
-		$('#aesop-generator-result').val( $.param(values) );
+		$('#aesop-generator-result').val( getValues() );
 
 		var data = {
 			postid: $('#aesop-generator-postid').val(),
