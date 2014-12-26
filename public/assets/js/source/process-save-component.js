@@ -5,6 +5,8 @@
 
 		e.preventDefault();
 
+		var $this = $(this);
+
 		var optionArray = [];
 	    $('.aesop-generator-attr').each(function() {
 
@@ -18,6 +20,8 @@
 	        optionArray.push(item);
 
 	    });
+
+	    $('#aesop-generator-insert').val('Saving...');
 
 		var data = {
 			action: 'process_update_component',
@@ -34,7 +38,8 @@
 
 			if( response == 'success' ) {
 
-				alert('success');
+				$('#aesop-generator-insert').addClass('saved');
+				$('#aesop-generator-insert').val('Saved!');
 
 			} else if( 'error' == response ) {
 

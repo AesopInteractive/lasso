@@ -135,12 +135,13 @@
     bottom:0;
     width:@sidebar--width - 4;
     height:@insert--height;
-    background:@sidebar--bg;
+    background:@sidebar--bg__accent;
     right:-@sidebar--width - 4;
     z-index: 1; //clears scroll
     .transition(right .25s ease);
+     .box-shadow(0 -10px 10px -10px rgba(0,0,0,1));
 }
-#aesop-generator-insert {
+#aesop-generator-insert { // save
     text-align: center;
     float: right;
     display:block;
@@ -165,5 +166,9 @@
     &:active {
         background:darken(@sidebar--buttonInsert__bg,15);
         .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
+    }
+
+    &.saved {
+        background: @editor--color__success;
     }
 }
