@@ -1,6 +1,7 @@
 jQuery(document).ready(function($){
 
 	var editor 			=  aesop_editor.editor,
+		post_container  = aesop_editor.article_object,
 		toolbar 		= aesop_editor.toolbar,
 		modal 			= aesop_editor.component_modal,
 		components 		= aesop_editor.components,
@@ -14,7 +15,7 @@ jQuery(document).ready(function($){
 
 		//get the ID of the current article, store it, replace it with
 		//ID defined in class.assets.php
-		$('article').attr('id', editor);
+		$(post_container).attr('id', editor);
 
 		// append toolbar
    		$(toolbar).hide().appendTo('body').fadeIn(200);
