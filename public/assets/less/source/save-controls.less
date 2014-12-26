@@ -1,4 +1,4 @@
-// edit wrapper
+// global styles for edit and save
 #aesop-editor--controls {
     z-index:@z-index--toolbar;
     position:fixed;
@@ -31,58 +31,7 @@
         }
 
     }
-
-    // post not pubkished - draft
-    &.aesop-post-status--draft {
-
-        // save button
-        #aesop-editor--save {
-            background:@editor--color__error;
-
-            &:before {
-                content:'\f147';
-            }
-
-        }
-    }
-
-    // post alreadiy published - update post
-    &.aesop-post-status--publish {
-
-        // save button
-        #aesop-editor--save {
-            background:@editor--color__update;
-
-            &:before {
-                content:'\e601';
-            }
-
-        }
-    }
-
-    // post saved
-    #aesop-editor--save.aesop-editor--saved {
-
-        background:@editor--color__success;
-
-        &:before {
-            top:2px;
-            content:'\ea10';
-        }
-
-    }
-
-    // post saving error
-    #aesop-editor--save.aesop-editor--error {
-
-        background: @editor--color__error;
-
-        &:before {
-            content:'\f153';
-        }
-    }
 }
-
 
 // edit button
 #aesop-editor--edit {
@@ -101,7 +50,36 @@
     }
 }
 
-// save button
+
+// POST IS IN DRAFT
+.aesop-post-status--draft {
+
+    // save button
+    #aesop-editor--save {
+        background:@editor--color__error;
+
+        &:before {
+            content:'\f147';
+        }
+
+    }
+}
+
+// POST ALREADY PUBLISHED
+.aesop-post-status--publish {
+
+    // save button
+    #aesop-editor--save {
+        background:@editor--color__update;
+
+        &:before {
+            content:'\e601';
+        }
+
+    }
+}
+
+// SAVE BUTTON
 #aesop-editor--save {
     position: fixed;
     right: @toolbar--pos__bottom;
@@ -118,22 +96,41 @@
     }
 
     &:hover {
-        background:darken(@editor--color__error,5);
+        background:darken(@editor--color__update,10);
     }
 
-    // succesufl ajax call
-    &.saved {
+    &:active {
+        .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.4));
+    }
+
+    // post is being saved
+    &.being-saved:before {
+        content:'\e97f';
+        -webkit-animation: spin 2s infinite linear;
+        animation: spin 2s infinite linear;
+    }
+
+    // post has been saved
+    &.aesop-editor--saved {
+
         background:@editor--color__success;
+
+        &:before {
+            top:2px;
+            content:'\ea10';
+        }
+
+    }
+    // post has an error saving
+    &.aesop-editor--error {
+
+        background: @editor--color__error;
+
+        &:before {
+            content:'\f153';
+        }
     }
 
-
-}
-
-// specificity
-#aesop-editor--controls #aesop-editor--save.being-saved:before {
-    content:'\e97f';
-    -webkit-animation: spin 2s infinite linear;
-    animation: spin 2s infinite linear;
 }
 
 // body class aesop is editing
