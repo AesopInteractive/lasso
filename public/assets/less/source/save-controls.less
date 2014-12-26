@@ -27,8 +27,6 @@
         }
 
         &:before {
-            position:relative;
-            height:@toolbar--height;
             .editor-icon-font();
         }
 
@@ -42,7 +40,6 @@
             background:@editor--color__error;
 
             &:before {
-                top:2px;
                 content:'\f147';
             }
 
@@ -57,8 +54,7 @@
             background:@editor--color__update;
 
             &:before {
-                top:2px;
-                content:'\e97f';
+                content:'\e601';
             }
 
         }
@@ -95,6 +91,7 @@
     text-shadow:0 1px 1px rgba(0,0,0,0.4);
 
     &:before {
+        position:relative;
         content:'\e908';
         top:3px;
     }
@@ -113,6 +110,13 @@
     color:white;
     font-size: @control--font__size + 2;
 
+    &:before {
+        position: relative;
+        top:4px;
+        left:0;
+        height:auto;
+    }
+
     &:hover {
         background:darken(@editor--color__error,5);
     }
@@ -122,11 +126,14 @@
         background:@editor--color__success;
     }
 
-    // being saved occurs during ajax call
-    &.being-saved:before {
-        -webkit-animation: spin 2s infinite linear;
-        animation: spin 2s infinite linear;
-    }
+
+}
+
+// specificity
+#aesop-editor--controls #aesop-editor--save.being-saved:before {
+    content:'\e97f';
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
 }
 
 // body class aesop is editing

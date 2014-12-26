@@ -31,11 +31,19 @@ jQuery(document).ready(function($){
 		// post ajax response with data
 		$.post( ajaxurl, data, function(response) {
 
+			// testing
+			console.log(response);
+
 			if ( 'success' == response ) {
-				console.log(response);
+
 				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
+
+				setTimeout(function(){
+					$(save).removeClass('aesop-editor--saved');
+				},1500);
+
 			} else {
-				console.log(response);
+
 				$(save).removeClass('being-saved').addClass('aesop-editor--error');
 			}
 
