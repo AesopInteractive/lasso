@@ -34,7 +34,7 @@
 			$('#aesop-editor--component__settings').height( $(window).height() );
 
 			// fade in save controls
-			$('.aesop-buttoninsert-wrap').fadeIn(800);
+			$('.aesop-buttoninsert-wrap').fadeIn(600);
 
 			// add the type as a value in ahidden field in settings
 			$('#aesop--component-settings-form .component_type').val( type );

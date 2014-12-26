@@ -3,7 +3,7 @@
     form {
         margin:0;
         position: relative;
-        padding-bottom:55px; // height of insert
+        padding-bottom:@insert--height; // height of insert
     }
 
     label,
@@ -47,7 +47,7 @@
         height:30px;
     }
 
-    .aesop-option-button,
+    input[type="submit"],
     .aesop-generator-cancel {
         height:30px;
         font-weight: 400;
@@ -58,15 +58,17 @@
         white-space: nowrap;
         padding: 2px 8px;
         line-height: 1.8;
-        border-top-right-radius: @editor--radius - 1;
-        border-bottom-right-radius: @editor--radius - 1;
         color: #fff;
         font-size: @sidebar--font__size;
         font-family: @editor--font;
+        border-right: @editor--radius - 2;
     }
 
     // option button/media upload
     .aesop-option-button {
+        position: absolute;
+        bottom:21px;
+        right:21px;
         background-color: @sidebar--button__bg;
         border-color: @sidebar--button__border;
         .transition(background .15s ease);
@@ -89,13 +91,15 @@
     }
 
     #aesop-upload-img {
-
+        height:28px;
+        padding:8px;
+        border-top-right-radius: @editor--radius - 1;
+        border-bottom-right-radius: @editor--radius - 1;
         .editor-icon-font();
 
         &:before {
             content:'\e9c6';
             position: relative;
-            top:5px;
         }
 
     }
@@ -103,7 +107,8 @@
     .aesop-generator-cancel {
         background:none;
         color:@editor--color__error;
-
+        position: relative;
+        top: 2px;
     }
 }
 
@@ -125,12 +130,14 @@
     .clearfix();
     position: fixed;
     text-align: right;
-    padding:10px;
+    padding:20px 5px;
     .box-sizing(border-box);
     bottom:0;
     width:@sidebar--width - 4;
+    height:@insert--height;
     background:@sidebar--bg;
     right:-@sidebar--width - 4;
+    z-index: 1; //clears scroll
     .transition(right .25s ease);
 }
 #aesop-generator-insert {
