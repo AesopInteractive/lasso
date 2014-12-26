@@ -5,11 +5,15 @@ jQuery(document).ready(function($){
 		editor 	=  aesop_editor.editor;
 
 	$(save).live('click',function(e) {
+
 		e.preventDefault();
 
 		// sore reference to this
 		var $this = $(this);
 
+		////////////
+		/// DO THE SAVE
+		////////////
 		// get the html from our div
 		var html = $('#'+editor).html();
 
@@ -41,6 +45,9 @@ jQuery(document).ready(function($){
 				setTimeout(function(){
 					$(save).removeClass('aesop-editor--saved');
 				},1500);
+
+				// purge this post from local storage
+				localStorage.removeItem( 'aesop_backup_post-'+$this.data('post-id') );
 
 			} else {
 
