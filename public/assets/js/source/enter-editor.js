@@ -38,7 +38,13 @@ jQuery(document).ready(function($){
 		        mode: Medium.richMode,
 		        attributes: null,
 		        tags: null,
-			    pasteAsText: false
+			    pasteAsText: false,
+			    	cssClasses: {
+						editor: 'aesop-editor',
+						pasteHook: 'aesop-editor-paste-hook',
+						placeholder: 'aesop-editor-placeholder',
+						clear: 'aesop-editor-clear'
+					},
 		    });
 
 		article.highlight = function() {
