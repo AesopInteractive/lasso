@@ -10,6 +10,17 @@
 
 			$(this).toggleClass('toolbar--drop-up');
 
+			// get the height of the list of components
+			var dropUp 			= $(this).find('ul'),
+				dropUpHeight 	= $(dropUp).height(),
+				caretSpacing  	= 15; // this is the height of the caret
+
+			// and adjust the drop up position as necessary
+			$(dropUp).css({
+				dropUp: dropUpHeight,
+				top:    -(dropUpHeight + caretSpacing)
+			});
+
 		});
 
 		/////////////
