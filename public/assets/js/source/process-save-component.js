@@ -41,6 +41,10 @@
 				$('#aesop-generator-insert').addClass('saved');
 				$('#aesop-generator-insert').val('Saved!');
 
+				setTimeout(function(){
+					$('body').removeClass('aesop-sidebar-open');
+				},1000);
+
 			} else if( 'error' == response ) {
 
 				alert('error');
