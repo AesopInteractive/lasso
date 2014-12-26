@@ -18,6 +18,9 @@ class aesopEditorAssets {
 			wp_enqueue_script('jquery-ui-draggable');
 			wp_enqueue_script('jquery-ui-sortable');
 
+			// media uploader
+			wp_enqueue_media();
+
 			wp_enqueue_script('aesop-editor', AESOP_EDITOR_URL.'/public/assets/js/aesop-editor.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 			wp_localize_script('aesop-editor', 'aesop_editor',array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
