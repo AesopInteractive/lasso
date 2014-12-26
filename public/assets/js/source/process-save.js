@@ -1,38 +1,40 @@
 jQuery(document).ready(function($){
 
-	var ajaxurl =  aesop_editor.ajaxurl,
-		save    =  $('#aesop-editor--save'),
-		editor 	=  aesop_editor.editor;
+	var ajaxurl 	=  aesop_editor.ajaxurl,
+		save    	=  $('#aesop-editor--save'),
+		editor 		=  aesop_editor.editor,
+		unique 		=  $('article').attr('id'),
+		oldHtml 	=  $('#'+editor).html(),
+		warnNoSave 	=  'You have unsaved changes! For your convienience we have saved this into your browsers storage if you\'d like to save later.';
 
-	// if unsaved changes warn
-	var oldHtml = $('#'+editor).html();
-	var warnNoSave = 'You have unsaved changes!';
-
+	// if unsaved changes store in local storage
 	$('#'+editor).live('change',function(){
 
 		var $this = $(this);
 
-		var newHtml = $this.html(),
-			unique  = $this.closest('article').attr('id');
+		var newHtml = $this.html();
 
 		if ( oldHtml !== newHtml ) {
 
 			localStorage.setItem( 'aesop_backup_'+unique , newHtml );
-
-			window.onbeforeunload = function () {
-	            if (warnNoSave != null) 
-	            	return warnNoSave;
-	        }
 		}
 
 	});
 
+	// if the user tries to navigate away and this post was backed up and not saved warn them
+	window.onbeforeunload = function () {
+
+		if ( localStorage.getItem( 'aesop_backup_'+unique ) ) {
+        	return warnNoSave;
+        }
+    }
+
 	// do the actual saving
 	$(save).live('click',function(e) {
 
-		e.preventDefault();
-
 		var warnNoSave = null;
+
+		e.preventDefault();
 
 		// sore reference to this
 		var $this = $(this);
