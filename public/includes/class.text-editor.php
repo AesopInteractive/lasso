@@ -25,7 +25,7 @@ class aesopEditorTextEditor {
 			$status = get_post_status( get_the_ID() );
 
 			?><nav id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?>">
-				<a href="#" id="aesop-editor--edit" class="aesop-editor--button__primary"></a>
+				<a href="#" id="aesop-editor--edit" title="Edit Post" class="aesop-editor--button__primary"></a>
 				<a href="#" data-post-id="<?php echo get_the_ID();?>" title="Save Post" id="aesop-editor--save" class="aesop-editor--button"></a>
 			</nav>
 
