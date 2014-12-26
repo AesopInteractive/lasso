@@ -12,14 +12,12 @@
 		var settingsHeight = function(){
 
 			$('#aesop-editor--component__settings').height( $(window).height() );
-		}
 
-		// call settings height on load and resie
-		settingsHeight();
-		$(window).resize(function(){
-			settingsHeight();
-			$('#aesop-editor--component__settings').perfectScrollbar('update');
-		});
+			$(window).resize(function(){
+				settingsHeight();
+				$('#aesop-editor--component__settings').perfectScrollbar('update');
+			});
+		}
 
 		// edit component button clicked let's do some settings
 		$('#aesop-component--settings__trigger').live('click',function(){
@@ -31,11 +29,11 @@
 			var type = $(this).closest('.aesop-component').attr('data-component-type'),
 				unique = $(this).closest('.aesop-component').attr('data-unique');
 
+			// set the height on settings div
+			settingsHeight();
 
 			// add the options to the settings div
 			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
-
-			$('#aesop-editor--component__settings').height( $(window).height() );
 
 			// fade in save controls
 			$('.aesop-buttoninsert-wrap').fadeIn(600);
@@ -43,12 +41,33 @@
 			// add the type as a value in ahidden field in settings
 			$('#aesop--component-settings-form .component_type').val( type );
 
+			// and also add the type and unique as data atts to the form field
+			$('#aesop--component-settings-form').attr({
+				'data-type': type,
+				'data-unique': unique
+			}).addClass(type);
+
 			// add the unique as a value
 			$('#aesop--component-settings-form input[name="unique"]').val( unique );
 
 			// initialize scrolbar
 			$('#aesop-editor--component__settings').perfectScrollbar('destroy');
 			$('#aesop-editor--component__settings').perfectScrollbar();
+
+			/////////////
+			// START LIVE EDITING OF COMPONENTS
+			////////////
+
+			// let's start with a simple test editing of quote component
+			// @todo - this needs to be completely dynamic!
+			$('#aesop--component-settings-form.quote #aesop-generator-attr-background').live('change',function(){
+
+			  	$('#aesop-quote-component-'+unique+' ').css({
+			  		'background-color': $(this).val()
+			  	});
+
+			});
+
 
 		});
 
