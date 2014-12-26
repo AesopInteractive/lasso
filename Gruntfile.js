@@ -45,7 +45,8 @@ module.exports = function(grunt) {
                      	'public/assets/js/source/sidebar.js',
                      	'public/assets/js/source/toolbar.js',
                      	'public/assets/js/source/process-save.js',
-                     	'public/assets/js/source/process-save-component.js'
+                     	'public/assets/js/source/process-save-component.js',
+                     	'public/assets/js/source/live-components.js'
                     ]
                 }
             }
