@@ -81,6 +81,7 @@ function aesop_editor_text_toolbar(){
 		    <li id="aesop-toolbar--underline" ></li>
 		    <li id="aesop-toolbar--italic"></li>
 		    <li id="aesop-toolbar--strike"></li>
+		    <li id="aesop-toolbar--html"></li>
 		    <li id="aesop-toolbar--components">
 			    <ul id="aesop-toolbar--components__list">
 					<li data-type="image" title="Image" class="image"></li>
