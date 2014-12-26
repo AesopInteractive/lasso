@@ -4,9 +4,35 @@ jQuery(document).ready(function($){
 		save    =  $('#aesop-editor--save'),
 		editor 	=  aesop_editor.editor;
 
+	// if unsaved changes warn
+	var oldHtml = $('#'+editor).html();
+	var warnNoSave = 'You have unsaved changes!';
+
+	$('#'+editor).live('change',function(){
+
+		var $this = $(this);
+
+		var newHtml = $this.html(),
+			unique  = $this.closest('article').attr('id');
+
+		if ( oldHtml !== newHtml ) {
+
+			localStorage.setItem( 'aesop_backup_'+unique , newHtml );
+
+			window.onbeforeunload = function () {
+	            if (warnNoSave != null) 
+	            	return warnNoSave;
+	        }
+		}
+
+	});
+
+	// do the actual saving
 	$(save).live('click',function(e) {
 
 		e.preventDefault();
+
+		var warnNoSave = null;
 
 		// sore reference to this
 		var $this = $(this);
