@@ -24,21 +24,21 @@
         font-size: @sidebar--font__size - 2.75;
     }
 
+
     // general textarea and input styles
     input[type="text"],
-    input[type="media_upload"],
-    textarea{
-        background:@input--bg;
-        width:100%;
-        border:1px solid @input--border;
-        border-radius:@editor--radius;
-        .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
-    }
-
-    input[type="text"],
+    input[type="text_small"],
     input[type="media_upload"],
     textarea,
     select {
+        background:@input--bg;
+        width:100%;
+        height:@input--height;
+        border:1px solid @input--border;
+        border-radius:@editor--radius;
+        line-height:1.8;
+        padding:0 6px;
+        .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
         font-size: @sidebar--font__size;
         &:focus {
             box-shadow: none;
@@ -47,23 +47,49 @@
         }
     }
 
+    // color picker
+    input[type="color"] {
+        border-radius: @editor--radius - 1;
+        border:1px solid @input--border;
+        padding:0 2px;
+        height:@input--height;
+        display: block;
+        &:active,
+        &:focus {
+            box-shadow: none;
+            outline:none;
+            border:1px solid darken(@input--border,15);
+        }
+    }
+
+    select {
+        height:@input--height;
+        box-shadow: none;
+    }
+
+    textarea {
+        overflow: auto;
+        maring:0;
+        height:auto;
+    }
+
     // media upload treatment
     input[type="media_upload"] {
-        height:30px;
+        height:@input--height;
     }
 
     input[type="submit"],
     .aesop-generator-cancel {
-        height:30px;
+        height:@input--height;
         font-weight: 400;
         text-align: center;
         cursor: pointer;
         background-image: none;
         border: 1px solid transparent;
         white-space: nowrap;
-        padding: 2px 8px;
-        line-height: 1.8;
-        color: #fff;
+        padding: @input--button__padding;
+        line-height: @input--lineheight;
+        color: @input--button__color;
         font-size: @sidebar--font__size;
         font-family: @editor--font;
         border-right: @editor--radius - 2;
@@ -132,19 +158,19 @@
 .aesop-buttoninsert-wrap {
     display: none;
     margin:0 auto;
-    .clearfix();
     position: fixed;
     text-align: right;
     padding:20px 5px;
-    .box-sizing(border-box);
     bottom:0;
     width:@sidebar--width - 4;
     height:@insert--height;
     background:@sidebar--bg__accent;
     right:-@sidebar--width - 4;
     z-index: 1; //clears scroll
+    .clearfix();
+    .box-sizing(border-box);
     .transition(right .25s ease);
-     .box-shadow(0 -10px 10px -10px rgba(0,0,0,1));
+    .box-shadow(0 -10px 10px -10px rgba(0,0,0,1));
 }
 #aesop-generator-insert { // save
     text-align: center;

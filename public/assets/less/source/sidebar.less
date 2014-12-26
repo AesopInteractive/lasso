@@ -23,6 +23,19 @@
     }
 
 }
+// account for admin bar
+.admin-bar {
+
+    #aesop-editor--sidebar {
+        top:@admin-bar--height;
+    }
+    #aesop-editor--component__settings {
+
+        form {
+            padding-bottom:@insert--height + @admin-bar--height; // height of insert
+        }
+    }
+}
 
 // sidebar inner
 
