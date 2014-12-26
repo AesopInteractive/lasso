@@ -9,6 +9,7 @@
 		$('#aesop-toolbar--components').live('click',function(){
 
 			$(this).toggleClass('toolbar--drop-up');
+			$('#aesop-toolbar--html').removeClass('html--drop-up');
 
 			// get the height of the list of components
 			var dropUp 			= $(this).find('ul'),
@@ -20,6 +21,16 @@
 				dropUp: dropUpHeight,
 				top:    -(dropUpHeight + caretSpacing)
 			});
+
+		});
+
+		/////////////
+		/// HTML DROP UP
+		/////////////
+		$('#aesop-toolbar--html').live('click',function(){
+
+			$(this).toggleClass('html--drop-up');
+			$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
 
 		});
 

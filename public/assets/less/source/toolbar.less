@@ -82,11 +82,53 @@
 #aesop-toolbar--html:before {
     content:'\ea7f';
 }
-#aesop-toolbar--components{
+#aesop-toolbar--components:before {
+    content:'\ea0a';
+}
+#aesop-toolbar--html {
 
-    &:before {
-        content:'\ea0a';
+    div {
+        position: absolute;
+        left:-10000px;
+        .opacity(0);
     }
+
+    &.html--drop-up {
+
+        * { .box-sizing(border-box); }
+        box-shadow:none;
+        background:@toolbar--hover;
+
+        div {
+            margin:0;
+            padding:4px;
+            .opacity(1);
+            list-style-type: none;
+            width:400px;
+            height:200px;
+            bottom:45px;
+            border-radius:@editor--radius;
+            left:-184px;
+            background:@toolbar--bg__accent;
+
+            &:after {
+                content:'';
+                position:absolute;
+                width: 0;
+                height: 0;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid @toolbar--hover;
+                left:0;
+                right:0;
+                bottom:-6px;
+                text-align: center;
+                margin:0 auto;
+            }
+        }
+    }
+}
+#aesop-toolbar--components{
 
     ul {
         position: absolute;
