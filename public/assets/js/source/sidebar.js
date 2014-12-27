@@ -61,13 +61,18 @@
 			////////////
 
 			// let's start with a simple test editing of quote component
+			// this is going to add a data-option attribute with the value so that we can use this to map to teh shortcode values on save
 			// @todo - this needs to be completely dynamic!
+			// @todo - need to loop through all available settings and add them as data attributes
+
 			$('#aesop--component-settings-form.quote #aesop-generator-attr-background').live('change',function(){
+
+				var optionName = $(this).closest('.aesop-option').data('option');
 
 			  	$('#aesop-quote-component-'+unique+' ').css({
 			  		'background-color': $(this).val()
 			  	});
-
+			  	$('#aesop-quote-component-'+unique+' ').attr('data-'+optionName+'', $(this).val() );
 			});
 
 

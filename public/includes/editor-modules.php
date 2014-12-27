@@ -160,7 +160,7 @@ function aesop_editor_options_blob() {
 				$prefix = isset($attr_info['prefix']) ? sprintf('<span class="aesop-option-prefix">%s</span>',$attr_info['prefix']) : null;
 
 				$return .= '<form id="aesop--component-settings-form" method="post">';
-				$return .= '<p class="aesop-option aesop-'.$slug.'-'.$attr_name.'">';
+				$return .= '<p data-option="'.$attr_name.'" class="aesop-option aesop-'.$slug.'-'.$attr_name.'">';
 				$return .= '<label for="aesop-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
 				$return .= '<small class="aesop-option-desc">'.$attr_info['tip'].'</small>';
 				// Select
