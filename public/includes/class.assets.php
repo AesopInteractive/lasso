@@ -9,7 +9,6 @@ class aesopEditorAssets {
 
 	function scripts(){
 
-
 		// only run on posts and pages if user is logged in
 		if ( is_singular() && is_user_logged_in() ) {
 
@@ -25,7 +24,7 @@ class aesopEditorAssets {
 			wp_localize_script('aesop-editor', 'aesop_editor',array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
 				'editor' 			=> 'aesop-editor--content', // ID of editable content (without #) DONT CHANGE
-				'article_object'	=> '.aesop-entry-content', // DEFAULT "article" - change this to match post conatiner
+				'article_object'	=> AESOP_EDITOR_TARGET, // DEFAULT "article" - change this to match post conatiner
 				'post_status'		=> get_post_status( get_the_ID() ),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'upload'			=> AESOP_EDITOR_URL.'/includes/aesop-editor-upload.php',

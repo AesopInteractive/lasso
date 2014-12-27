@@ -23,6 +23,12 @@ if ( ! defined( 'WPINC' ) ) {
 define('AESOP_EDITOR_VERSION', '0.1');
 define('AESOP_EDITOR_DIR', plugin_dir_path( __FILE__ ));
 define('AESOP_EDITOR_URL', plugins_url( '', __FILE__ ));
+
+// define the parent container class for the post
+if ( !defined('AESOP_EDITOR_TARGET') ) {
+	define('AESOP_EDITOR_TARGET', '.aesop-entry-content');
+}
+
 /*----------------------------------------------------------------------------*
  * Public-Facing Functionality
  *----------------------------------------------------------------------------*/
