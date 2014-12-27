@@ -77,7 +77,7 @@
 			// @todo - due to the way shortcodes options are handled this is all manual for now and not dynamic
 			////////////
 
-			// quote
+			// - quote component
 			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] .aesop-generator-attr').live('change',function(){
 
 				var $this = 	$(this),
@@ -149,6 +149,12 @@
 			  	$('#aesop-parallax-component-'+unique+' .aesop-parallax-sc-img').css({
 			  		'background-image': 'url('+ attachment.url +')'
 			  	});
+	      	} else if ( 'quote' == type ) {
+
+			  	$('#aesop-quote-component-'+unique+' ').css({
+			  		'background-image': 'url('+ attachment.url +')'
+			  	});
+
 	      	}
 			/////////////
 			// END LIVE EDITING OF COMPONENTS
