@@ -79,6 +79,13 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
+		    article.focus();
+		    articleMedium.insertHtml('<span style="background:red">test</span>');
+
+		    return false;
+		};
+
 		/////////////////
 		/// DRAG DROP
 		///////////////////

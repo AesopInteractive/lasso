@@ -83,9 +83,9 @@ function aesop_editor_text_toolbar(){
 		    <li id="aesop-toolbar--strike"></li>
 		    <li id="aesop-toolbar--html">
 		    	<div id="aesop-toolbar--html__wrap">
-		    		<div id="aesop-toolbar--html__inner" contenteditable="true">
-		    			inner
-		    		</div>
+		    		<div id="aesop-toolbar--html__inner" contenteditable="true" placeholder="Enter HTML to insert"></div>
+		    		<a class="aesop-toolbar--html__cancel" href="#">Cancel</a>
+		    		<span id="aesop-toolbar--html__insert" >Insert HTML</span>
 		    	</div>
 		    </li>
 		    <li id="aesop-toolbar--components">
