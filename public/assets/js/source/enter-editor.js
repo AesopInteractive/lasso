@@ -79,6 +79,15 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		/*
+		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
+		    article.focus();
+		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').html() );
+
+		    return false;
+		};
+		*/
+
 		/////////////////
 		/// DRAG DROP
 		///////////////////
