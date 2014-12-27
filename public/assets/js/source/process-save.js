@@ -10,22 +10,28 @@ jQuery(document).ready(function($){
 	// if unsaved changes store in local storage
 	$('#'+editor).live('change',function(){
 
-		var $this = $(this);
-
-		var newHtml = $this.html();
+		var $this = $(this),
+			newHtml = $this.html();
 
 		if ( oldHtml !== newHtml ) {
 
 			localStorage.setItem( 'aesop_backup_'+unique , newHtml );
+
+			$('#aesop-editor--save').css('opacity',1);
 		}
 
 	});
+
+	if ( localStorage.getItem( 'aesop_backup_'+unique ) ) {
+    	$('#aesop-editor--save').css('opacity',1);
+    }
 
 	// if the user tries to navigate away and this post was backed up and not saved warn them
 	window.onbeforeunload = function () {
 
 		if ( localStorage.getItem( 'aesop_backup_'+unique ) ) {
         	return warnNoSave;
+        	$('#aesop-editor--save').css('opacity',1);
         }
     }
 
