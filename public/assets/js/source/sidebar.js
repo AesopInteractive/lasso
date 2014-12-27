@@ -78,10 +78,14 @@
 			////////////
 
 			// quote
-			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-background').live('change',function(){
+			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] .aesop-generator-attr').live('change',function(){
+
+				var $this = 	$(this),
+					optionName = $(this).closest('.aesop-option').data('option');
 
 			  	$('#aesop-quote-component-'+unique+'').css({
-			  		'background-color': $(this).val()
+			  		'background-color': optionName == 'background' ? $this.val() : false,
+			  		'color': optionName == 'text' ? $this.val() : false
 			  	});
 
 			});
