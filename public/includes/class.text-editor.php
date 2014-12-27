@@ -24,9 +24,17 @@ class aesopEditorTextEditor {
 
 			$status = get_post_status( get_the_ID() );
 
-			?><nav id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?>">
+			?><nav id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
 				<a href="#" id="aesop-editor--edit" title="Edit Post" class="aesop-editor--button__primary"></a>
-				<a href="#" data-post-id="<?php echo get_the_ID();?>" title="Save Post" id="aesop-editor--save" class="aesop-editor--button"></a>
+
+				<div class="aesop-editor--controls__right">
+					<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-editor--button"></a>
+
+					<?php if ( 'draft' == $status ) { ?>
+						<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-editor--button"></a>
+					<?php } ?>
+				</div>
+
 			</nav>
 
 		<?php }

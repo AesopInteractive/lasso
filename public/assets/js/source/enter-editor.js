@@ -21,14 +21,14 @@ jQuery(document).ready(function($){
    		$(toolbar).hide().appendTo('body').fadeIn(200);
 
 	    // show save button
-	    $('#aesop-editor--save').css('opacity',1);
+	    $('.aesop-editor--controls__right').css('opacity',1);
 
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
 
 	    // add settings moda/sidebar
 		$('body').append(aesop_editor.component_sidebar);
-		
+
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
 		///////////////////
@@ -38,7 +38,7 @@ jQuery(document).ready(function($){
 		        mode: Medium.richMode,
 		        attributes: null,
 		        tags: null,
-		        placeholder:'Start writing...',
+		        placeholder:'Just write...',
 			    pasteAsText: false,
 		    	cssClasses: {
 					editor: 'aesop-editor',

@@ -43,7 +43,8 @@ jQuery(document).ready(function($){
 		/// DO THE SAVE
 		////////////
 		// get the html from our div
-		var html = $('#'+editor).html();
+		var html = $('#'+editor).html(),
+			postid = $this.closest('#aesop-editor--controls').data('post-id');
 
 		// remove controls
 		// @todo - worry about saving later this is shit hack
@@ -56,15 +57,13 @@ jQuery(document).ready(function($){
 			action:    'process_save_content',
 			author:  	aesop_editor.author,
 			content: 	html,
-			post_id:   	$this.data('post-id'),
+			post_id:   	postid,
 			nonce:     	aesop_editor.nonce
 		};
 
 		// post ajax response with data
 		$.post( ajaxurl, data, function(response) {
 
-			// testing
-			console.log(response);
 
 			if ( 'success' == response ) {
 
@@ -75,10 +74,16 @@ jQuery(document).ready(function($){
 				},1500);
 
 				// purge this post from local storage
-				localStorage.removeItem( 'aesop_backup_post-'+$this.data('post-id') );
+				localStorage.removeItem( 'aesop_backup_post-'+postid );
+
+
+			// testing
+			console.log(response);
 
 			} else {
 
+				// testing
+				console.log(response);
 				$(save).removeClass('being-saved').addClass('aesop-editor--error');
 			}
 

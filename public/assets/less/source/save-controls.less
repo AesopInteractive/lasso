@@ -7,6 +7,7 @@
 
     a {
         display:inline-block;
+        color:@control--color;
         font-family:@editor--font;
         font-style:normal;
         font-size: @control--font__size;
@@ -23,6 +24,7 @@
         &:focus,
         &:focus:before,
         &:active:before{
+            color:@control--color;
             text-decoration: none;
         }
 
@@ -33,7 +35,14 @@
     }
 }
 
-// edit button
+.aesop-editor--controls__right {
+    position: fixed;
+    right: @toolbar--pos__bottom;
+    bottom: @toolbar--pos__bottom;
+    .opacity(0);
+}
+
+// EDIT BUTTON
 #aesop-editor--edit {
     #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
     color:@control--color;
@@ -50,42 +59,9 @@
     }
 }
 
-
-// POST IS IN DRAFT
-.aesop-post-status--draft {
-
-    // save button
-    #aesop-editor--save {
-        background:@editor--color__error;
-
-        &:before {
-            content:'\f147';
-        }
-
-    }
-}
-
-// POST ALREADY PUBLISHED
-.aesop-post-status--publish {
-
-    // save button
-    #aesop-editor--save {
-        background:@editor--color__update;
-
-        &:before {
-            content:'\e601';
-        }
-
-    }
-}
-
 // SAVE BUTTON
 #aesop-editor--save {
-    position: fixed;
-    right: @toolbar--pos__bottom;
-    bottom: @toolbar--pos__bottom;
-    .opacity(0);
-    color:white;
+    background:@editor--color__update;
     font-size: @control--font__size + 2;
 
     &:before {
@@ -93,6 +69,7 @@
         top:4px;
         left:0;
         height:auto;
+         content:'\e601';
     }
 
     &:hover {
@@ -127,10 +104,22 @@
         background: @editor--color__error;
 
         &:before {
-            content:'\f153';
+            content:'\ea05';
         }
     }
 
+}
+
+
+// PUBLISH BUTTON (if post is in draft)
+#aesop-editor--publish {
+    background: @editor--color__error;
+
+    &:before {
+        content:'\e909';
+        position:relative;
+        top:2px;
+    }
 }
 
 // body class aesop is editing
