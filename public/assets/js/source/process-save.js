@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
 	var ajaxurl 	=  aesop_editor.ajaxurl,
-		save    	=  $('#aesop-editor--save'),
+		save    	=  $('.aesop-editor--controls__right a'),
 		editor 		=  aesop_editor.editor,
 		unique 		=  $('article').attr('id'),
 		oldHtml 	=  $('#'+editor).html(),
@@ -54,7 +54,7 @@ jQuery(document).ready(function($){
 		$(this).addClass('being-saved');
 
 		var data      = {
-			action:    'process_save_content',
+			action:    	$this.hasClass('aesop-publish-post') ? 'process_publish_content' : 'process_save_content',
 			author:  	aesop_editor.author,
 			content: 	html,
 			post_id:   	postid,
@@ -63,7 +63,6 @@ jQuery(document).ready(function($){
 
 		// post ajax response with data
 		$.post( ajaxurl, data, function(response) {
-
 
 			if ( 'success' == response ) {
 
@@ -76,11 +75,7 @@ jQuery(document).ready(function($){
 				// purge this post from local storage
 				localStorage.removeItem( 'aesop_backup_post-'+postid );
 
-
-			// testing
-			console.log(response);
-
-			} else {
+			} else{
 
 				// testing
 				console.log(response);

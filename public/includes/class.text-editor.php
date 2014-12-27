@@ -28,10 +28,10 @@ class aesopEditorTextEditor {
 				<a href="#" id="aesop-editor--edit" title="Edit Post" class="aesop-editor--button__primary"></a>
 
 				<div class="aesop-editor--controls__right">
-					<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-editor--button"></a>
+					<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>
 
 					<?php if ( 'draft' == $status ) { ?>
-						<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-editor--button"></a>
+						<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-publish-post aesop-editor--button"></a>
 					<?php } ?>
 				</div>
 
