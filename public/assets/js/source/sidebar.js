@@ -74,21 +74,20 @@
 
 			/////////////
 			// LIVE EDITING OF COMPONENTS
+			// @todo - due to the way shortcodes options are handled this is all manual for now and not dynamic
 			////////////
 
-			// let's start with a simple test editing of quote component
-			/*
-			$('#aesop--component-settings-form.quote #aesop-generator-attr-background').live('change',function(){
+			// quote
+			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-background').live('change',function(){
 
-				var $this =  $(this),
-				optionName = $(this).closest('.aesop-option').data('option');
-
-			  	$('#aesop-quote-component-'+unique+' ').css({
+			  	$('#aesop-quote-component-'+unique+'').css({
 			  		'background-color': $(this).val()
 			  	});
-			  	$('#aesop-quote-component-'+unique+' ').attr('data-'+optionName+'', $(this).val() );
+
 			});
-			*/
+			/////////////
+			// END LIVE EDITING OF COMPONENTS
+			////////////
 
 		});
 
@@ -112,6 +111,9 @@
 
 	    className = e.currentTarget.parentElement.className;
 
+	    var unique = $(this).closest('form').data('unique'),	
+	    	type   = $(this).closest('form').data('type');
+
 	    // If the media frame already exists, reopen it.
 	    if ( file_frame ) {
 	      	file_frame.open();
@@ -130,9 +132,24 @@
 	    // When an image is selected, run a callback.
 	    file_frame.on( 'select', function() {
 
-	      var attachment = file_frame.state().get('selection').first().toJSON();
+	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-	      $('.aesop-generator-attr-media_upload').val(attachment.url);
+	      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
+
+			/////////////
+			// LIVE EDITING OF COMPONENTS
+			// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
+			////////////
+	      	if ( 'parallax' == type ) {
+
+			  	$('#aesop-parallax-component-'+unique+' .aesop-parallax-sc-img').css({
+			  		'background-image': 'url('+ attachment.url +')'
+			  	});
+	      	}
+			/////////////
+			// END LIVE EDITING OF COMPONENTS
+			////////////
+
 	    });
 
 	    // Finally, open the modal
