@@ -58,7 +58,7 @@
 
 			/////////////
 			//	ADD COMPONENT SETTINGS AS DATA ATTS
-			//  @TODO - Move this to teh recieve method when the item gets dragged onto the page
+			//  @todo - Move this to teh recieve method when the item gets dragged onto the page
 			/////////////
 			$('#aesop--component-settings-form.'+type+' .aesop-generator-attr').each(function(){
 
