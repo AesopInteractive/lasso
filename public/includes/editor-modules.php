@@ -82,8 +82,10 @@ function aesop_editor_text_toolbar(){
 		    <li id="aesop-toolbar--italic"></li>
 		    <li id="aesop-toolbar--strike"></li>
 		    <li id="aesop-toolbar--html">
-		    	<div>
-		    		html
+		    	<div id="aesop-toolbar--html__wrap">
+		    		<div id="aesop-toolbar--html__inner" contenteditable="true">
+		    			inner
+		    		</div>
 		    	</div>
 		    </li>
 		    <li id="aesop-toolbar--components">

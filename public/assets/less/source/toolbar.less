@@ -87,7 +87,7 @@
 }
 #aesop-toolbar--html {
 
-    div {
+    #aesop-toolbar--html__wrap{
         position: absolute;
         left:-10000px;
         .opacity(0);
@@ -99,7 +99,7 @@
         box-shadow:none;
         background:@toolbar--hover;
 
-        div {
+       #aesop-toolbar--html__wrap{
             margin:0;
             padding:4px;
             .opacity(1);
@@ -125,6 +125,12 @@
                 text-align: center;
                 margin:0 auto;
             }
+        }
+
+        #aesop-toolbar--html__inner {
+            background: white;
+            color:#333;
+            height:80%;
         }
     }
 }

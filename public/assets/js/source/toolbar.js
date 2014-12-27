@@ -32,6 +32,11 @@
 			$(this).toggleClass('html--drop-up');
 			$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
 
+			// prevent dropup from closing
+			$('#aesop-toolbar--html__wrap').live('click',function(){
+				return false;
+			});
+
 		});
 
 		/////////////
