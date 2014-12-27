@@ -19,7 +19,9 @@
 			});
 		}
 
-		// edit component button clicked let's do some settings
+		/////////////
+		// OPEN COMPONENT SETTINGS
+		////////////
 		$('#aesop-component--settings__trigger').live('click',function(){
 
 			// add a body class
@@ -79,7 +81,9 @@
 		});
 	});
 
-	// media uploader
+	/////////////
+	// FILE UPLOAD
+	////////////
 	var file_frame;
 	var className;
 
