@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 
 			localStorage.setItem( 'aesop_backup_'+unique , newHtml );
 
-			$('#aesop-editor--save').css('opacity',1);
+			//$('#aesop-editor--save').css('opacity',1);
 		}
 
 	});
