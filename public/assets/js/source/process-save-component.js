@@ -43,7 +43,7 @@
 
 				setTimeout(function(){
 					$('body').removeClass('aesop-sidebar-open');
-				},1000);
+				},800);
 
 			} else if( 'error' == response ) {
 

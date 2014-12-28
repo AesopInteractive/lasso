@@ -76,7 +76,7 @@ jQuery(document).ready(function($){
 
 				setTimeout(function(){
 					$(save).removeClass('aesop-editor--saved');
-				},1500);
+				},1200);
 
 				// purge this post from local storage
 				localStorage.removeItem( 'aesop_backup_post-'+postid );

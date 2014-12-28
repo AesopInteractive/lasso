@@ -60,7 +60,7 @@
 			//	ADD COMPONENT SETTINGS AS DATA ATTS
 			//  @todo - Move this to teh recieve method when the item gets dragged onto the page
 			/////////////
-			$('#aesop--component-settings-form.'+type+' .aesop-generator-attr').each(function(){
+			$('#aesop--component-settings-form.'+type+'[data-unique="'+unique+'"] .aesop-generator-attr').each(function(){
 
 				var $this = 	$(this),
 					optionName = $(this).closest('.aesop-option').data('option');
