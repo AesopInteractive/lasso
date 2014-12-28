@@ -26,6 +26,7 @@ class aesopEditorAssets {
 				'editor' 			=> 'aesop-editor--content', // ID of editable content (without #) DONT CHANGE
 				'article_object'	=> AESOP_EDITOR_TARGET, // DEFAULT "article" - change this to match post conatiner
 				'post_status'		=> get_post_status( get_the_ID() ),
+				'postid'			=> get_the_ID(),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'upload'			=> AESOP_EDITOR_URL.'/includes/aesop-editor-upload.php',
 				'nonce'				=> wp_create_nonce('aesop_editor'),
@@ -34,6 +35,9 @@ class aesopEditorAssets {
 				'component_modal'	=> aesop_editor_component_modal(),
 				'component_sidebar'	=> aesop_editor_component_sidebar(),
 				'components'		=> aesop_editor_components(),
+				'featImgClass'		=> '.ast-entry-mast-img',
+				'featImgControls'   => aesop_editor_image_controls(),
+				'featImgNonce'		=> wp_create_nonce('aesop_editor_image'),
 				'component_options' => aesop_editor_options_blob()
 			));
 		}

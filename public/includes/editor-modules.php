@@ -136,6 +136,21 @@ function aesop_editor_settings_toolbar(){
 	<?php return ob_get_clean();
 }
 
+function aesop_editor_image_controls(){
+
+	ob_start();
+
+	?>
+	<div style="position:relative;z-index:99;">
+		<a href="#" id="aesop-editor--featImgUpload" >
+			<i class="dashicons dashicons-upload"></i>
+			upload image
+		</a>
+		<a id="aesop-editor--featImgSave" href="#">save</a>
+	</div>
+	<?php return ob_get_clean();
+}
+
 /**
 *
 *	Draw out the settings field based on the shortcodes array with options foudn in Aesop Story Engine

@@ -50,6 +50,7 @@ class Aesop_Editor {
 		require_once(AESOP_EDITOR_DIR.'/includes/class.process-save.php');
 		require_once(AESOP_EDITOR_DIR.'/includes/class.process-component-save.php');
 		require_once(AESOP_EDITOR_DIR.'/includes/class.process-component-delete.php');
+		require_once(AESOP_EDITOR_DIR.'/includes/class.process-image-upload.php');
 
 	}
 

@@ -3,8 +3,12 @@ jQuery(document).ready(function($){
 	var editor 			=  aesop_editor.editor,
 		post_container  = aesop_editor.article_object,
 		toolbar 		= aesop_editor.toolbar,
+		postid          = aesop_editor.postid,
 		modal 			= aesop_editor.component_modal,
 		components 		= aesop_editor.components,
+		featImgClass   	= aesop_editor.featImgClass,
+		featImgNonce    = aesop_editor.featImgNonce,
+		uploadControls  = aesop_editor.featImgControls,
 		aesopDragHandle = aesop_editor.handle;
 
 	$('#aesop-editor--edit').click(function(e){
@@ -28,6 +32,11 @@ jQuery(document).ready(function($){
 
 	    // add settings moda/sidebar
 		$('body').append(aesop_editor.component_sidebar);
+
+		// append upload bar to featured image if present
+		if ( $( featImgClass ).length > 0 ) {
+			$('.ast-entry-mast-img').append( uploadControls );
+		}
 
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
