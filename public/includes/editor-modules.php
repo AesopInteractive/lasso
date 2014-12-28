@@ -136,16 +136,22 @@ function aesop_editor_settings_toolbar(){
 	<?php return ob_get_clean();
 }
 
+/**
+*
+*	Draws the controls used for changing the featured image
+*
+*	@since 1.0
+*/
 function aesop_editor_image_controls(){
 
 	ob_start();
 
+	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+		return;
+
 	?>
-	<div style="position:relative;z-index:99;">
-		<a href="#" id="aesop-editor--featImgUpload" >
-			<i class="dashicons dashicons-upload"></i>
-			upload image
-		</a>
+	<div id="aesop-editor--featImgControls">
+		<a href="#" id="aesop-editor--featImgUpload" ><span class="aesop-icon-upload2"></span><span>Replace Image</span></a>
 		<a id="aesop-editor--featImgSave" style="opacity:0;" href="#">save</a>
 	</div>
 	<?php return ob_get_clean();

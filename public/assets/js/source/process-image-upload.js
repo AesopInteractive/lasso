@@ -13,16 +13,11 @@
 			image_id: $this.data('featimg-id'),
 			nonce: 	aesop_editor.featImgNonce
 		}
-
-		console.log($this.data('featimg-background'));
-
 		$.post( aesop_editor.ajaxurl, data, function(response) {
 
 			if ( 'success' == response ) {
-				console.log(response);
+				$('#aesop-editor--featImgSave').css('opacity',0);
 			}
-
-			console.log(response);
 
 		});
 
@@ -59,8 +54,6 @@
 	    file_frame.on( 'select', function() {
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
-
-	      	console.log(attachment);
 
 	      	$('#aesop-editor--featImgSave').css('opacity',1).attr('data-featimg-id',attachment.id);
 
