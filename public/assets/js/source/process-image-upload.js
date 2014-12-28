@@ -10,7 +10,7 @@
 		var data = {
 			action: 'process_featimg_upload',
 			postid: aesop_editor.postid,
-			image:  $this.data('featimg-background'),
+			image_id: $this.data('featimg-id'),
 			nonce: 	aesop_editor.featImgNonce
 		}
 
@@ -48,9 +48,9 @@
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: $( this ).data( 'uploader_title' ),
+	      	title: 'Choose an image',
 	      	button: {
-	        	text: $( this ).data( 'uploader_button_text' ),
+	        	text: 'Insert Image',
 	      	},
 	      	multiple: false  // Set to true to allow multiple files to be selected
 	    });
@@ -60,7 +60,9 @@
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-	      	$('#aesop-editor--featImgSave').css('opacity',1).attr('data-featimg-background',attachment.url);
+	      	console.log(attachment);
+
+	      	$('#aesop-editor--featImgSave').css('opacity',1).attr('data-featimg-id',attachment.id);
 
 	      	$(aesop_editor.featImgClass).css({
 	      		'background-image': 'url('+attachment.url+')'
