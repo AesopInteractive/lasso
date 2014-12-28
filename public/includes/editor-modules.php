@@ -81,16 +81,16 @@ function aesop_editor_text_toolbar(){
 		    <li id="aesop-toolbar--underline" ></li>
 		    <li id="aesop-toolbar--italic"></li>
 		    <li id="aesop-toolbar--strike"></li>
-		    <li id="aesop-toolbar--html">
+		    <li id="aesop-toolbar--html" title="Insert HTML">
 		    	<div id="aesop-toolbar--html__wrap">
 		    		<div id="aesop-toolbar--html__inner" contenteditable="true" placeholder="Enter HTML to insert"></div>
 		    		<div id="aesop-toolbar--html__footer">
 		    			<a class="aesop-toolbar--html__control aesop-toolbar--html__cancel" href="#">Cancel</a>
-		    			<a href="#" class="aesop-toolbar--html__control" id="aesop-toolbar--html__insert" >Insert</a>
+		    			<a href="#" title="Insert HTML" class="aesop-toolbar--html__control" id="aesop-toolbar--html__insert" >Insert</a>
 		    		</div>
 		    	</div>
 		    </li>
-		    <li id="aesop-toolbar--components">
+		    <li id="aesop-toolbar--components" title="Insert Component">
 			    <ul id="aesop-toolbar--components__list">
 					<li data-type="image" title="Image" class="image"></li>
 					<li data-type="character" title="Character" class="character"></li>

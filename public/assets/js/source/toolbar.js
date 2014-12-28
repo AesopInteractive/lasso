@@ -37,6 +37,8 @@
 				return false;
 			});
 
+			$(this).find('#aesop-toolbar--html__inner').focus();
+
 		});
 		$('.aesop-toolbar--html__cancel').live('click',function(){
 
