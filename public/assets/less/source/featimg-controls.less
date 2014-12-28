@@ -5,8 +5,52 @@
     right:0;
     text-align: center;
     top:5px;
-    width:@component-controls--width;
+    width:@featimg-controls--width;
+    height:@featimg-controls--height;
     margin:0 auto;
     font-size: @component-controls--font__size;
-    .editor--tool__bg();
+    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
+    .box-shadow(inset 0 1px 0 rgba(255,255,255,0.1));
+
+    li {
+        float:left;
+        list-style-type: none;
+        width:@featimg-controls--width;
+        height:@featimg-controls--height;
+        text-align: center;
+        text-shadow:0 1px 1px rgba(0,0,0,0.4);
+
+        i {
+            font-style: normal;
+        }
+
+        &:before {
+            position: relative;
+            top:3px;
+            font-size:@component-controls--font__size;
+        }
+        &:hover{
+            cursor: pointer;
+            background: @toolbar--hover;
+        }
+        &:active {
+            .box-shadow(inset 0 1px 1px rgba(0,0,0,0.4));
+        }
+    }
+
+    #aesop-editor--featImgSave {
+        position: absolute;
+        left:-1000px;
+        height:0;
+        .opacity(0);
+    }
+
+    a {
+        color:@component-controls--color;
+        display:block;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
 }

@@ -150,10 +150,10 @@ function aesop_editor_image_controls(){
 		return;
 
 	?>
-	<div id="aesop-editor--featImgControls">
-		<a href="#" id="aesop-editor--featImgUpload" ><span class="aesop-icon-upload2"></span><span>Replace Image</span></a>
-		<a id="aesop-editor--featImgSave" style="opacity:0;" href="#">save</a>
-	</div>
+	<ul id="aesop-editor--featImgControls">
+		<li id="aesop-editor--featImgUpload"><a href="#"><i class="aesop-icon-image"></i></a></li>
+		<li id="aesop-editor--featImgSave"><a href="#">save</a></li>
+	</ul>
 	<?php return ob_get_clean();
 }
 

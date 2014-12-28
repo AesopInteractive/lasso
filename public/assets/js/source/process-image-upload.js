@@ -1,7 +1,7 @@
 (function( $ ) {
 	'use strict';
 
-	$( '#aesop-editor--featImgSave' ).live('click', function(e) {
+	$( '#aesop-editor--featImgSave a' ).live('click', function(e) {
 
 		e.preventDefault();
 
@@ -29,7 +29,7 @@
 	var file_frame;
 	var className;
 
-	$(document).on('click', '#aesop-editor--featImgUpload', function( e ){
+	$(document).on('click', '#aesop-editor--featImgUpload > a', function( e ){
 
 	    e.preventDefault();
 
@@ -45,7 +45,7 @@
 	    file_frame = wp.media.frames.file_frame = wp.media({
 	      	title: 'Choose an image',
 	      	button: {
-	        	text: 'Insert Image',
+	        	text: 'Update Image',
 	      	},
 	      	multiple: false  // Set to true to allow multiple files to be selected
 	    });
@@ -55,11 +55,13 @@
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-	      	$('#aesop-editor--featImgSave').css('opacity',1).attr('data-featimg-id',attachment.id);
+	      	$('#aesop-editor--featImgSave a').attr('data-featimg-id',attachment.id);
 
 	      	$(aesop_editor.featImgClass).css({
 	      		'background-image': 'url('+attachment.url+')'
 	      	});
+
+	      	$('#aesop-editor--featImgSave a').trigger('click');
 
 	    });
 
