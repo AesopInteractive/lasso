@@ -183,6 +183,14 @@
             // inset html
             #aesop-toolbar--html__insert {
                 background:@editor--color__update;
+
+                &:hover {
+                    background: darken(@editor--color__update,7);
+                }
+                &:active {
+                    background: darken(@editor--color__update,14);
+                    .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.4));
+                }
             }
 
             // cancel
