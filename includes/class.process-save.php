@@ -17,9 +17,8 @@ class aesopEditorProcessSaving {
 		if ( isset( $_POST['post_id'] ) ) {
 
 			// only run for logged in users and check caps
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !aesop_editor_user_can_edit() )
 				return;
-
 
 			$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 			$content = isset( $_POST['content'] ) ? $_POST['content'] : null;
