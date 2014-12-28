@@ -151,7 +151,7 @@ function aesop_editor_image_controls(){
 
 	?>
 	<ul id="aesop-editor--featImgControls">
-		<li id="aesop-editor--featImgUpload"><a href="#"><i class="aesop-icon-image"></i></a></li>
+		<li id="aesop-editor--featImgUpload"><a title="Replace Image" href="#"><i class="aesop-icon-image"></i></a></li>
 		<li id="aesop-editor--featImgSave"><a href="#">save</a></li>
 	</ul>
 	<?php return ob_get_clean();
