@@ -85,6 +85,8 @@
 #aesop-toolbar--components:before {
     content:'\ea0a';
 }
+
+// html insert
 #aesop-toolbar--html {
 
     #aesop-toolbar--html__wrap{
@@ -95,7 +97,11 @@
 
     &.html--drop-up {
 
-        * { .box-sizing(border-box); }
+        * {
+            .box-sizing(border-box);
+            -webkit-font-smoothing: antialiased;
+             -moz-osx-font-smoothing: grayscale;
+        }
         box-shadow:none;
         background:@toolbar--hover;
 
@@ -104,11 +110,11 @@
             padding:4px;
             .opacity(1);
             list-style-type: none;
-            width:400px;
-            height:200px;
+            width:@toolbar--htmldrop__width;
+            height:@toolbar--htmldrop__height;
             bottom:45px;
             border-radius:@editor--radius;
-            left:-184px;
+            left:-@toolbar--htmldrop__width / 2 + 16;
             background:@toolbar--bg__accent;
 
             &:after {
@@ -125,12 +131,56 @@
                 text-align: center;
                 margin:0 auto;
             }
+
+            &:hover {
+                cursor: default;
+            }
         }
 
         #aesop-toolbar--html__inner {
-            background: white;
-            color:#333;
-            height:80%;
+            background: @toolbar--htmldrop__bg;
+            color:@toolbar--htmldrop__color;
+            height:@toolbar--htmldrop__theight;
+            text-align: left;
+            padding:@toolbar--htmldrop__padding;
+            border-radius: @editor--radius - 2;
+            .box-shadow(inset 0 0 4px 1px rgba(0,0,0,0.25));
+
+            &:hover {
+                cursor: text;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+
+        #aesop-toolbar--html__footer {
+            text-align: right;
+            font-family: @editor--font;
+            padding:3px 2px 2px;
+            height:@toolbar--htmldrop__fheight;
+
+            a {
+                font-size:@toolbar--htmldrop__font-size;
+                font-weight:bold;
+                padding:5px 7px 4px;
+                line-height: 1;
+                border-radius:@editor--radius - 2;
+                display: inline-block;
+                text-decoration: none;
+                color:white;
+                text-shadow:0 1px 1px rgba(0,0,0,0.25);
+            }
+
+            // inset html
+            #aesop-toolbar--html__insert {
+                background:@editor--color__update;
+            }
+
+            // cancel
+            .aesop-toolbar--html__cancel {
+                color:@editor--color__error;
+            }
         }
     }
 }
