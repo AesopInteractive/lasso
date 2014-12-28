@@ -60,7 +60,7 @@
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-	      	$('#aesop-editor--featImgSave').attr('data-featimg-background',attachment.url);
+	      	$('#aesop-editor--featImgSave').css('opacity',1).attr('data-featimg-background',attachment.url);
 
 	      	$(aesop_editor.featImgClass).css({
 	      		'background-image': 'url('+attachment.url+')'

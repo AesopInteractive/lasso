@@ -146,7 +146,7 @@ function aesop_editor_image_controls(){
 			<i class="dashicons dashicons-upload"></i>
 			upload image
 		</a>
-		<a id="aesop-editor--featImgSave" href="#">save</a>
+		<a id="aesop-editor--featImgSave" style="opacity:0;" href="#">save</a>
 	</div>
 	<?php return ob_get_clean();
 }
