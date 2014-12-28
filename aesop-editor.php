@@ -29,6 +29,12 @@ if ( !defined('AESOP_EDITOR_TARGET') ) {
 	define('AESOP_EDITOR_TARGET', '.aesop-entry-content');
 }
 
+// define the class holding the featured image
+// note - currently only works with images set as background images
+if ( !defined('AESOP_EDITOR_FEATIMG_CLASS') ) {
+	define('AESOP_EDITOR_FEATIMG_CLASS', '.ast-entry-mast-img');
+}
+
 /*----------------------------------------------------------------------------*
  * Public-Facing Functionality
  *----------------------------------------------------------------------------*/

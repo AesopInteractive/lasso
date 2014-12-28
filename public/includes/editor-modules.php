@@ -2,31 +2,54 @@
 
 /**
 *
-*	These functions draw out the various bits of markup used in the editor
-*	They are then localized and draw out with JS in enter-editor.js
+*	These functions are then localized and then appended with JS in enter-editor.js
 *	@since 1.0
 */
 
+/**
+*
+*	Add the open editor and save controls
+*
+*	@since 1.0
+*/
+add_action( 'wp_footer', 'aesop_editor_controls');
+function aesop_editor_controls() {
+
+	if ( is_singular() && aesop_editor_user_can_edit() ) {
+
+		$status = get_post_status( get_the_ID() );
+
+		?><nav id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
+			<a href="#" id="aesop-editor--edit" title="Edit Post" class="aesop-editor--button__primary"></a>
+			<div class="aesop-editor--controls__right">
+				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>
+				<?php if ( 'draft' == $status ) { ?>
+					<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-publish-post aesop-editor--button"></a>
+				<?php } ?>
+			</div>
+		</nav>
+
+	<?php }
+}
 
 /**
 *
 *	Draw the side panel that houses the component settings
+*	This is opened when the settings icon is clicked on a single component
+*	JS detects the type and will fill in the necessary options for the shortcode based on  aesop_editor_options_blob() below
 *
-*	@todo - decide between this OR the modal implementation below
+*	@since 1.0
 */
 function aesop_editor_component_sidebar(){
 
 	ob_start();
 
-	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+	if ( !aesop_editor_user_can_edit() )
 		return;
-
 	?>
 	<div id="aesop-editor--sidebar">
 		<div class="aesop-editor--sidebar__inner">
-
 			<div id="aesop-editor--component__settings"></div>
-
 		</div>
 	</div>
 	<?php
@@ -35,43 +58,14 @@ function aesop_editor_component_sidebar(){
 
 /**
 *
-*	Draw the modal that houses the component settings
-*
-*	@todo - decide between this OR the sidebar implementation above
-*/
-function aesop_editor_component_modal(){
-
-	ob_start();
-
-	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
-		return;
-
-	?>
-	<div id="aesop-editor--modal">
-		<div class="aesop-editor--modal__inner">
-
-			<span id="aesop-editor--modal__close" >x</span>
-
-			<p>Component Settings</p>
-
-		</div>
-	</div>
-	<div id="aesop-editor--modal__overlay"></div>
-	<?php
-
-	return ob_get_clean();
-}
-
-/**
-*
-*	Draw the toolbar used to edit text and triggers settings modal/sidebar
+*	Draw the toolbar used to edit text and triggers settings panel and html insert
 *	@since 1.0
 */
 function aesop_editor_text_toolbar(){
 
 	ob_start();
 
-	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+	if ( !aesop_editor_user_can_edit() )
 		return;
 
 	?>
@@ -114,7 +108,7 @@ function aesop_editor_text_toolbar(){
 
 /**
 *
-*	Draw the controls used for teh component settings 
+*	Draw the controls used for teh component settings within each component
 *	@since 1.0
 */
 function aesop_editor_settings_toolbar(){
@@ -123,7 +117,7 @@ function aesop_editor_settings_toolbar(){
 
 	ob_start();
 
-	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+	if ( !aesop_editor_user_can_edit() )
 		return;
 
 	?><ul class="aesop-component--controls" contenteditable="false">
@@ -139,6 +133,7 @@ function aesop_editor_settings_toolbar(){
 /**
 *
 *	Draws the controls used for changing the featured image
+*   These controls are appended based on the class set in the define
 *
 *	@since 1.0
 */
@@ -146,7 +141,7 @@ function aesop_editor_image_controls(){
 
 	ob_start();
 
-	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+	if ( !aesop_editor_user_can_edit() )
 		return;
 
 	?>
@@ -161,6 +156,7 @@ function aesop_editor_image_controls(){
 *
 *	Draw out the settings field based on the shortcodes array with options foudn in Aesop Story Engine
 * 	This was mostly backported from aesop story engine
+*
 *	@since 1.0
 */
 function aesop_editor_options_blob() {
@@ -249,4 +245,52 @@ function aesop_editor_options_blob() {
 	}
 
 	return $blob;
+}
+
+/////////////////////////////////////////////
+// UTILITIES
+/////////////////////////////////////////////
+
+/**
+*
+*	Check if the user is logged in and has teh correct capabilities 
+*/
+function aesop_editor_user_can_edit(){
+
+	if ( is_user_logged_in() && current_user_can('edit_posts') ) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+/////////////////////////////////////////////
+// NOT IN USE BUT WANT TO KEEP FOR NOW
+/////////////////////////////////////////////
+
+/**
+*
+*	This modal currently isn't being used but we're keeping it hust in case we need it for something
+*/
+function aesop_editor_component_modal(){
+
+	ob_start();
+
+	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
+		return;
+
+	?>
+	<div id="aesop-editor--modal">
+		<div class="aesop-editor--modal__inner">
+
+			<span id="aesop-editor--modal__close" >x</span>
+
+			<p>Component Settings</p>
+
+		</div>
+	</div>
+	<div id="aesop-editor--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
 }
