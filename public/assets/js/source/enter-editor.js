@@ -18,8 +18,7 @@ jQuery(document).ready(function($){
 		// add body class editing
 		$('body').toggleClass('aesop-editing');
 
-		//get the ID of the current article, store it, replace it with
-		//ID defined in class.assets.php
+		//append editor id to post container
 		$(post_container).attr('id', editor);
 
 		// append toolbar
@@ -99,9 +98,31 @@ jQuery(document).ready(function($){
 		*/
 
 		/////////////////
+		/// EXIT EDITOR
+		///////////////////
+		$(document).keyup(function(e) {
+
+			if ( 27 == e.keyCode ) {
+
+				$('body').removeClass('aesop-sidebar-open aesop-editing');
+
+				$('.aesop-editor--toolbar_wrap,
+					#aesop-editor--sidebar,
+					#aesop-editor--featImgControls,
+					.aesop-editor--controls__right')
+					.fadeOut().remove();
+
+				$('#aesop-editor--edit').css('opacity',1);
+				$(post_container).attr('id','');
+
+				articleMedium.destroy();
+			}
+
+		});
+
+		/////////////////
 		/// DRAG DROP
 		///////////////////
-
 		$('#'+editor).sortable({
 			opacity: 0.65,
 			placeholder:'aesop-drop-zone',
@@ -154,26 +175,6 @@ jQuery(document).ready(function($){
 		});
 
 	});
-
-
-		/////////////////
-		/// EXIT EDITOR
-		///////////////////
-
-
-		$(document).keyup(function(e) {
-
-			if ( 27 == e.keyCode ) {
-				$('body').removeClass('aesop-sidebar-open aesop-editing');
-				$('.aesop-editor--toolbar_wrap').fadeOut().remove();
-				$('#aesop-editor--sidebar').fadeOut().remove();
-				$('#aesop-editor--featImgControls').fadeOut().remove();
-				$('.aesop-editor--controls__right').fadeOut().remove();
-
-				$('#aesop-editor--edit').css('opacity',1);
-			}
-
-		});
 
 });
 
