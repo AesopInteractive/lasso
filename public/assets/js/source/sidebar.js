@@ -57,22 +57,6 @@
 			$('#aesop-editor--component__settings').perfectScrollbar();
 
 			/////////////
-			//	ADD COMPONENT SETTINGS AS DATA ATTS
-			//  @todo - Move this to teh recieve method when the item gets dragged onto the page
-			/////////////
-			$('#aesop--component-settings-form.'+type+'[data-unique="'+unique+'"] .aesop-generator-attr').each(function(){
-
-				var $this = 	$(this),
-					optionName = $(this).closest('.aesop-option').data('option');
-
-				// 1. add shortcode attributes as data atts to teh component
-				if ( '' !== $this.val() ) {
-					$('#aesop-'+type+'-component-'+unique+' ').attr('data-'+optionName+'', $this.val() );
-				}
-
-			});
-
-			/////////////
 			// LIVE EDITING OF COMPONENTS
 			// @todo - due to the way shortcodes options are handled this is all manual for now and not dynamic
 			////////////

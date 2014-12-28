@@ -7,6 +7,31 @@
 
 		var $this = $(this);
 
+		var unique = $(this).find('input[name="unique"]').val(),
+			type   = $(this).find('input[name="component_type"]').val();
+
+		/////////////
+		//	ADD COMPONENT SETTINGS AS DATA ATTS
+		// 	- this is run when the user saves teh component which then let's us use these to map back to the original shortcode on post save
+		/////////////
+
+		$('#aesop--component-settings-form.'+type+'[data-unique="'+unique+'"] .aesop-generator-attr').each(function(){
+
+			var $this = 	$(this),
+				optionName = $(this).closest('.aesop-option').data('option');
+
+			// 1. add shortcode attributes as data atts to teh component
+			if ( '' !== $this.val() ) {
+				$('#aesop-'+type+'-component-'+unique+' ').attr('data-'+optionName+'', $this.val() );
+			}
+
+		});
+
+		/////////////
+		//	PUSH SETTINGS INTO AN ARRAY AND STORY INTO POST META FOR SAFE KEEPING
+		//	- at the moment this isn't being used anywhere but I've had the need to access settings like this before
+		// 	- it stores as post meta then when the component is deleted teh post meta is purged
+		/////////////
 		var optionArray = [];
 	    $('.aesop-generator-attr').each(function() {
 
@@ -26,12 +51,15 @@
 		var data = {
 			action: 'process_update_component',
 			postid: $('input[name="postid"]').val(),
-			unique: $('input[name="unique"]').val(),
+			unique: unique,
 			fields: JSON.stringify( optionArray ),
-			type: 	$('input[name="component_type"]').val(),
+			type: 	type,
 			nonce: 	$('#aesop-generator-nonce').val()
 		}
 
+		/////////////
+		//	DO TEH SAVE
+		/////////////
 		$.post( aesop_editor.ajaxurl, data, function(response) {
 
 			console.log(response);
