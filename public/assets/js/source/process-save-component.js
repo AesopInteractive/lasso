@@ -20,7 +20,6 @@
 			var $this = 	$(this),
 				optionName = $(this).closest('.aesop-option').data('option');
 
-			// 1. add shortcode attributes as data atts to teh component
 			if ( '' !== $this.val() ) {
 				$('#aesop-'+type+'-component-'+unique+' ').attr('data-'+optionName+'', $this.val() );
 			}

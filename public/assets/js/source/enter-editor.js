@@ -1,8 +1,9 @@
 jQuery(document).ready(function($){
 
-	var editor 			=  aesop_editor.editor,
+	var editor 			= aesop_editor.editor,
 		post_container  = aesop_editor.article_object,
 		toolbar 		= aesop_editor.toolbar,
+		panel           = aesop_editor.component_sidebar,
 		postid          = aesop_editor.postid,
 		modal 			= aesop_editor.component_modal,
 		components 		= aesop_editor.components,
@@ -30,8 +31,8 @@ jQuery(document).ready(function($){
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
 
-	    // add settings moda/sidebar
-		$('body').append(aesop_editor.component_sidebar);
+	    // add settings panel
+		$('body').append(panel);
 
 		// append upload bar to featured image if present
 		if ( $( featImgClass ).length > 0 ) {
@@ -153,6 +154,26 @@ jQuery(document).ready(function($){
 		});
 
 	});
+
+
+		/////////////////
+		/// EXIT EDITOR
+		///////////////////
+
+
+		$(document).keyup(function(e) {
+
+			if ( 27 == e.keyCode ) {
+				$('body').removeClass('aesop-sidebar-open aesop-editing');
+				$('.aesop-editor--toolbar_wrap').fadeOut().remove();
+				$('#aesop-editor--sidebar').fadeOut().remove();
+				$('#aesop-editor--featImgControls').fadeOut().remove();
+				$('.aesop-editor--controls__right').fadeOut().remove();
+
+				$('#aesop-editor--edit').css('opacity',1);
+			}
+
+		});
 
 });
 
