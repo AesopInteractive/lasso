@@ -22,9 +22,9 @@ jQuery(document).ready(function($){
 		$(post_container).attr('id', editor);
 
 		// append toolbar
-   		$(toolbar).hide().appendTo('body').fadeIn(200);
+		$(toolbar).hide().appendTo('body').fadeIn(200);
 
-	    // show save button
+   		// show save button
 	    $('.aesop-editor--controls__right').css('opacity',1);
 
 	    // set edtior to editable
@@ -88,14 +88,18 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
-		/*
 		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
+		    
 		    article.focus();
-		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').html() );
+		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').text() );
+
+		    // close modal drag
+            $('#aesop-toolbar--html').removeClass('html--drop-up');
+
 
 		    return false;
 		};
-		*/
+
 
 		/////////////////
 		/// EXIT EDITOR

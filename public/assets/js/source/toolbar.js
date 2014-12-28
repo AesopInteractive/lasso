@@ -38,7 +38,11 @@
 			});
 
 		});
+		$('.aesop-toolbar--html__cancel').live('click',function(){
 
+			$(this).closest('li').removeClass('html--drop-up');
+
+		});
 		/////////////
 		/// DELETING
 		/////////////
