@@ -66,7 +66,7 @@ function aesop_quote_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_quote width="100%" align="center" quote="Too legit to quit"]');
+	echo do_shortcode('[aesop_quote quote="Stories are made of atoms." cite="This Author"]');
 
 	return ob_get_clean();
 }
