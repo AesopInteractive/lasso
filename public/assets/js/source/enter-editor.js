@@ -40,6 +40,7 @@ jQuery(document).ready(function($){
 
 		// append the toolbar to any components that dont have them
 		$('.aesop-component').each(function(){
+
 			if ( !$('.aesop-component--toolbar').length > 0 ) {
 				$(this).append( aesopDragHandle );
 			}
@@ -164,8 +165,7 @@ jQuery(document).ready(function($){
 					$(item).replaceWith( $(components[type]['content'])
 						.prepend( aesopDragHandle )
 						.attr({
-							'data-component-type': type,
-							'contenteditable': false
+							'data-component-type': type
 						})
 					)
 				}
