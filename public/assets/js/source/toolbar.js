@@ -70,6 +70,7 @@
 				swal({
 					title: "Delete this component?",
 					type: "warning",
+					text: false,
 					showCancelButton: true,
 					confirmButtonColor: "#d9534f",
 					confirmButtonText: "Yes, delete it!",
