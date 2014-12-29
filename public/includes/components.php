@@ -75,7 +75,7 @@ function aesop_image_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_image img="http://placekitten.com/1200/800" align="center" width="content"]');
+	echo do_shortcode('[aesop_image img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="content"]');
 
 	return ob_get_clean();
 }
@@ -84,7 +84,7 @@ function aesop_parallax_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_parallax img="http://placekitten.com/1200/800"]');
+	echo do_shortcode('[aesop_parallax img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png"]');
 
 	return ob_get_clean();
 }

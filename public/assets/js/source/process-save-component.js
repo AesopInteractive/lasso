@@ -11,7 +11,7 @@
 			type   = $(this).find('input[name="component_type"]').val();
 
 		/////////////
-		//	ADD COMPONENT SETTINGS AS DATA ATTS
+		//	UPDATE COMPONENT SETTINGS DATA ATTS
 		// 	- this is run when the user saves teh component which then let's us use these to map back to the original shortcode on post save
 		/////////////
 

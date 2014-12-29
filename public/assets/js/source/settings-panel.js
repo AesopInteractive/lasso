@@ -81,7 +81,7 @@
 
 		});
 
-		// destroy modal if clicking close or overlay
+		// destroy panel if clicking close or overlay
 		$('#aesop-editor--sidebar__close').live('click',function(e){
 			e.preventDefault();
 			destroySidebar();
@@ -112,9 +112,9 @@
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: $( this ).data( 'uploader_title' ),
+	      	title: 'Select Image',
 	      	button: {
-	        	text: $( this ).data( 'uploader_button_text' ),
+	        	text: 'Insert Image',
 	      	},
 	      	multiple: false  // Set to true to allow multiple files to be selected
 	    });
