@@ -17,7 +17,7 @@
         width:@toolbar--height + 4;
         line-height: @input--lineheight;
         text-align: center;
-        .transition(opacity .2s ease);
+        .transition(opacity .15s ease);
 
         &:hover,
         &:active,
@@ -40,6 +40,7 @@
     right: @toolbar--pos__bottom;
     bottom: @toolbar--pos__bottom;
     .opacity(0);
+    .transition(opacity .2s ease);
 }
 
 // EDIT BUTTON
@@ -47,6 +48,8 @@
     #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
     color:@control--color;
     text-shadow:0 1px 1px rgba(0,0,0,0.4);
+    position: static;
+    left:0;
 
     &:before {
         position:relative;
@@ -63,7 +66,6 @@
 #aesop-editor--save {
     background:@editor--color__update;
     font-size: @control--font__size + 2;
-    //.opacity(0);
 
     &:before {
         position: relative;
@@ -128,6 +130,12 @@
 
     #aesop-editor--edit {
         .opacity(0);
+        position: absolute;
+        left:-10000px
+    }
+
+    .aesop-editor--controls__right {
+        .opacity(1);
     }
 
 }

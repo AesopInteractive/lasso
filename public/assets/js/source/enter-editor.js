@@ -24,8 +24,8 @@ jQuery(document).ready(function($){
 		// append toolbar
 		$(toolbar).hide().appendTo('body').fadeIn(200);
 
-   		// show save button
-	    $('.aesop-editor--controls__right').css('opacity',1);
+		// fade in controls if previous exacped
+		$('.aesop-editor--controls__right').css('opacity',1);
 
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
@@ -120,11 +120,11 @@ jQuery(document).ready(function($){
 
 				$('.aesop-editor--toolbar_wrap,
 					#aesop-editor--sidebar,
-					#aesop-editor--featImgControls,
-					.aesop-editor--controls__right')
+					#aesop-editor--featImgControls')
 					.fadeOut().remove();
 
 				$('#aesop-editor--edit').css('opacity',1);
+				$('.aesop-editor--controls__right').css('opacity',0);
 				$(post_container).attr('id','');
 
 				articleMedium.destroy();
