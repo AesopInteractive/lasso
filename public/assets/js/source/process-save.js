@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 		editor 		=  aesop_editor.editor,
 		unique 		=  $('article').attr('id'),
 		oldHtml 	=  $('#'+editor).html(),
-		warnNoSave 	=  'You have unsaved changes! For your convienience we have saved this into your browsers storage if you\'d like to save later.';
+		warnNoSave 	=  'You have unsaved changes!';
 
 	// if unsaved changes store in local storage
 	$('#'+editor).live('change',function(){

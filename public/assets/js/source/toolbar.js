@@ -66,10 +66,18 @@
 			}
 
 			var deleteComponent = function() {
-			    if ( confirm('Delete this component?') ) {
-			        $this.closest('.aesop-component').remove();
-			    }
-			    return false;
+
+				swal({
+					title: "Delete this component?",
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#d9534f",
+					confirmButtonText: "Yes, delete it!",
+					closeOnConfirm: true
+				},
+				function(){
+					$this.closest('.aesop-component').remove();
+				});
 			}
 
 			$.post( ajaxurl, data, function(response) {
