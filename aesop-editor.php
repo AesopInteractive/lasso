@@ -10,7 +10,7 @@
  * Plugin Name:       Aesop Editor
  * Plugin URI:        http://aesopinteractive.com
  * Description:       Aesop Story Engine - Front End Editor
- * Version:           alpha0.1
+ * Version:           alpha0.11
  * GitLab Plugin URI: https://gitlab.com/aesop/aesop-editor
  */
 
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('AESOP_EDITOR_VERSION', '0.1');
+define('AESOP_EDITOR_VERSION', '0.11');
 define('AESOP_EDITOR_DIR', plugin_dir_path( __FILE__ ));
 define('AESOP_EDITOR_URL', plugins_url( '', __FILE__ ));
 
