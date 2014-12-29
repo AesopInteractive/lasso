@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
 	var ajaxurl 	=  aesop_editor.ajaxurl,
 		save    	=  $('.aesop-editor--controls__right a'),
 		editor 		=  aesop_editor.editor,
-		unique 		=  $('article').attr('id'),
+		postid 		=  aesop_editor.postid,
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
 
@@ -15,21 +15,23 @@ jQuery(document).ready(function($){
 
 		if ( oldHtml !== newHtml ) {
 
-			localStorage.setItem( 'aesop_backup_'+unique , newHtml );
+			localStorage.setItem( 'aesop_backup_'+postid , newHtml );
 
 			//$('#aesop-editor--save').css('opacity',1);
 		}
 
 	});
 
-	if ( localStorage.getItem( 'aesop_backup_'+unique ) ) {
+	if ( localStorage.getItem( 'aesop_backup_'+postid ) ) {
+
     	$('#aesop-editor--save').css('opacity',1);
+
     }
 
 	// if the user tries to navigate away and this post was backed up and not saved warn them
 	window.onbeforeunload = function () {
 
-		if ( localStorage.getItem( 'aesop_backup_'+unique ) ) {
+		if ( localStorage.getItem( 'aesop_backup_'+postid ) ) {
         	return warnNoSave;
         	$('#aesop-editor--save').css('opacity',1);
         }
@@ -79,9 +81,9 @@ jQuery(document).ready(function($){
 				},1200);
 
 				// purge this post from local storage
-				localStorage.removeItem( 'aesop_backup_post-'+postid );
+				localStorage.removeItem( 'aesop_backup_'+postid );
 
-			} else{
+			} else {
 
 				// testing
 				console.log(response);

@@ -49,7 +49,7 @@
 
 		var data = {
 			action: 'process_update_component',
-			postid: $('input[name="postid"]').val(),
+			postid: aesop_editor.postid,
 			unique: unique,
 			fields: JSON.stringify( optionArray ),
 			type: 	type,
