@@ -10,7 +10,7 @@
  * Plugin Name:       Aesop Editor
  * Plugin URI:        http://aesopinteractive.com
  * Description:       Aesop Story Engine - Front End Editor
- * Version:           0.1
+ * Version:           alpha0.1
  * GitLab Plugin URI: https://gitlab.com/aesop/aesop-editor
  */
 

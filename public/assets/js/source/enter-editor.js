@@ -154,10 +154,13 @@ jQuery(document).ready(function($){
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
-					$(item).replaceWith( $(components[type]['content']).prepend( aesopDragHandle ).attr({
-						'data-component-type': type,
-						'contenteditable': false
-					}));
+					$(item).replaceWith( $(components[type]['content'])
+						.prepend( aesopDragHandle )
+						.attr({
+							'data-component-type': type,
+							'contenteditable': false
+						})
+					)
 				}
 
 		    }
