@@ -59,19 +59,21 @@
 			/////////////
 			// LIVE EDITING OF COMPONENTS
 			// @todo - due to the way shortcodes options are handled this is all manual for now and not dynamic
+			// @todo - this is hella dirty and needs to be cleaned up
 			////////////
 
-			// - quote component
-			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] .aesop-generator-attr').live('change',function(){
-
-				var $this = 	$(this),
-					optionName = $(this).closest('.aesop-option').data('option');
-
-			  	$('#aesop-quote-component-'+unique+'').css({
-			  		'background-color': optionName == 'background' ? $this.val() : false,
-			  		'color': optionName == 'text' ? $this.val() : false
-			  	});
-
+			// - quote component -
+			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-background').live('change',function(){
+			  	$('#aesop-quote-component-'+unique+'').css({'background-color': $(this).val()});
+			});
+			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-text').live('change',function(){
+			  	$('#aesop-quote-component-'+unique+'').css({'color': $(this).val()});
+			});
+			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-quote').on('keyup',function(){
+			  	$('#aesop-quote-component-'+unique+' blockquote span').text( $(this).val() );
+			});
+			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-cite').on('keyup',function(){
+			  	$('#aesop-quote-component-'+unique+' blockquote cite').text( $(this).val() );
 			});
 			/////////////
 			// END LIVE EDITING OF COMPONENTS
