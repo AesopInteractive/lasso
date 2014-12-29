@@ -174,6 +174,7 @@ function aesop_editor_options_blob() {
 
 			foreach ( $shortcode['atts'] as $attr_name => $attr_info ) {
 
+
 				$prefix = isset($attr_info['prefix']) ? sprintf('<span class="aesop-option-prefix">%s</span>',$attr_info['prefix']) : null;
 
 				$return .= '<form id="aesop--component-settings-form" method="post">';
@@ -205,7 +206,7 @@ function aesop_editor_options_blob() {
 					// image upload
 					if('media_upload' == $attr_info['type']) {
 
-						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />';
+						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />';
 						$return .= '<a href="#" id="aesop-upload-img" class="aesop-option-button" /></a>';
 
 					} elseif ('color' == $attr_info['type']) {
@@ -214,10 +215,10 @@ function aesop_editor_options_blob() {
 
 					} elseif ('text_area' == $attr_info['type']) {
 
-						$return .= '<textarea type="' . $attr_field_type . '" name="' . $attr_name . '" value="" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />'.$prefix.'';
+						$return .= '<textarea name="' . $attr_name . '" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" placeholder="'.$attr_info['default'].'" /></textarea>'.$prefix.'';
 
 					} else {
-						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />'.$prefix.'';
+						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="aesop-generator-attr-' . $attr_name . '" class="aesop-generator-attr aesop-generator-attr-'.$attr_field_type.'" />'.$prefix.'';
 					}
 				}
 				$return .= '</p>';
@@ -231,7 +232,7 @@ function aesop_editor_options_blob() {
 
 		} else {
 
-			$return .= '<p><label>' . __( 'Content', 'aesop-core' ) . '</label><textarea type="text" name="aesop-generator-content" id="aesop-generator-content" value="' . $shortcode['content'] . '" /></p>';
+			$return .= '<p><label>' . __( 'Content', 'aesop-core' ) . '</label><textarea type="text" name="aesop-generator-content" id="aesop-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
 		}
 
 		$return .= '<p class="aesop-buttoninsert-wrap"><a href="#" class="aesop-generator-cancel" id="aesop-editor--sidebar__close">Cancel</a><input type="submit" id="aesop-generator-insert" value="Save Settings"></p>';
