@@ -4,7 +4,7 @@
     * { .box-sizing(border-box); }
 
     .editor--tool__bg();
-    width:auto;
+    width:@toolbar--width;
     height:@toolbar--height;
     font-size:16px;
     border-radius:@editor--radius;
@@ -223,7 +223,7 @@
             height:@toolbar--drop__height;
             top:-@toolbar--drop__height - 6;
             border-radius:@editor--radius;
-            left:-@toolbar--drop__width / 2 + 18;
+            left:-@toolbar--drop__width / 2 + 16;
             background:@toolbar--bg__accent;
 
             &:after {
