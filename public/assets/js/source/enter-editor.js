@@ -38,6 +38,13 @@ jQuery(document).ready(function($){
 			$('.ast-entry-mast-img').append( uploadControls );
 		}
 
+		// append the toolbar to any components that dont have them
+		$('.aesop-component').each(function(){
+			if ( !$('.aesop-component--toolbar').length > 0 ) {
+				$(this).append( aesopDragHandle );
+			}
+		});
+
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
 		///////////////////
