@@ -57,6 +57,23 @@
 			$('#aesop-editor--component__settings').perfectScrollbar();
 
 			/////////////
+			//	UPDATE COMPONENT SETTINGS DATA ATTS
+			// 	- this is run when the user saves teh component which then let's us use these to map back to the original shortcode on post save
+			/////////////
+
+			$('#aesop--component-settings-form.'+type+'[data-unique="'+unique+'"] .aesop-generator-attr').each(function(){
+
+				var $this = 	$(this),
+					optionName = $(this).closest('.aesop-option').data('option');
+
+				if ( '' !== $this.val() ) {
+					$('#aesop-'+type+'-component-'+unique+' ').attr('data-'+optionName+'', $this.val() );
+				}
+
+			});
+
+
+			/////////////
 			// LIVE EDITING OF COMPONENTS
 			// @todo - due to the way shortcodes options are handled this is all manual for now and not dynamic
 			// @todo - this is hella dirty and needs to be cleaned up
