@@ -15,7 +15,7 @@
 
 			$(window).resize(function(){
 				settingsHeight();
-				$('#aesop-editor--component__settings').perfectScrollbar('update');
+				//$('#aesop-editor--component__settings').perfectScrollbar('update');
 			});
 		}
 

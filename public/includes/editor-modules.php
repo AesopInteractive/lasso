@@ -233,7 +233,7 @@ function aesop_editor_options_blob() {
 
 			if ( 'gallery' == $shortcode['front_type'] ) {
 
-				$return .= 'GALLERY GO TIME';
+				$return .= aesop_gallery_editor_module();
 
 			} elseif ( 'map' == $shortcode['front_type'] ) {
 

@@ -27,6 +27,14 @@ class aesopEditorComponentSaving {
 
 				update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ', $options );
 
+				// if gallery images present process gallery save
+				if ( isset( $_POST['aesop-gallery-ids'] ) ) {
+
+
+
+				}
+
+
 				echo 'success';
 
 			} else {
