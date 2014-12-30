@@ -1,0 +1,65 @@
+
+
+// gallery images metabox
+#ase-gallery-images {
+    .clearfix();
+    margin:20px 10px 5px;
+    .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+}
+
+// single gallery image
+.ase-gallery-image {
+    position:relative;
+    float:left;
+    margin:4px;
+    .transition(transform .1s ease);
+    i {
+        top:3px;
+        position: absolute;
+        z-index:1;
+        color:white;
+        font-size:16px;
+        text-shadow:0 1px 1px rgba(0,0,0,0.5);
+        .opacity(0.6);
+        .transition(opacity .25s ease);
+
+        &:hover {
+            cursor: pointer;
+            .opacity(1.0);
+        }
+
+        &.dashicons-edit {
+            left:6px;
+        }
+    }
+
+    i.dashicons-no-alt {
+        right:4px;
+    }
+
+    i.dashicons-edit {
+        right:20px;
+    }
+
+    img{
+        max-width:57px;
+    }
+
+    // being dragged
+    &.ui-sortable-helper {
+        -ms-transform: rotate(7deg); /* IE 9 */
+        -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+        transform: rotate(7deg);
+    }
+}
+
+// dropzone
+.ase-gallery-drop-zone {
+    border: 1px solid #fcefa1;
+    background: #fbf9ee;
+    color: #363636;
+    width:120px;
+    height:120px;
+    float:left;
+    margin-right:10px;
+}

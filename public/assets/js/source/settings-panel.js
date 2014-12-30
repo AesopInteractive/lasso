@@ -101,27 +101,43 @@
 			/////////////
 			// GET GALLERY IMAGES
 			/////////////
+			var $this 		= $(this)
+			,	ajaxurl 	= aesop_editor.ajaxurl
+			,	form 		= $('#aesop--component-settings-form.gallery')
+			,	nonce 		= aesop_editor.getGallImgNonce
+			,	gall_id 	= $('#aesop--component-settings-form.gallery').data('unique')
 
-				var $this 		= $(this)
-				,	ajaxurl 	= aesop_editor.ajaxurl
-				,	form 		= $('#aesop--component-settings-form.gallery')
-				,	nonce 		= aesop_editor.getGallImgNonce
-				,	gall_id 	= $('#aesop--component-settings-form.gallery').data('unique')
+			var data      = {
+				action:    	'process_get_images',
+				post_id:   	gall_id,
+				nonce: 		nonce
+			};
 
-				var data      = {
-					action:    	'process_get_images',
-					post_id:   	gall_id,
-					nonce: 		nonce
-				};
+			// post ajax response with data
+			$.post( ajaxurl, data, function(response) {
 
-				// post ajax response with data
-				$.post( ajaxurl, data, function(response) {
+				$('#aesop-editor--gallery__images').html( response )
 
-					console.log(response);
+				/////////////
+				// CALL SORTABLE ON RECIEVED IMAGES
+				/////////////
+				var	gallery = $('#ase-gallery-images');
 
+				gallery.ready(function(){
+
+					gallery.sortable({
+						containment: 'parent',
+						cursor: 'move',
+						opacity: 0.8,
+						placeholder: 'ase-gallery-drop-zone',
+						forcePlaceholderSize:true,
+						update: function(){
+							var imageArray = $(this).sortable('toArray');
+					  		$('#ase_gallery_ids').val( imageArray );
+						}
+					});
 				});
-
-
+			});
 
 		});
 

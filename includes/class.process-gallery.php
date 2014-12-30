@@ -13,6 +13,12 @@ class aesopEditorProcessGallery {
 
 	}
 
+	/**
+	*
+	*	When the user clicks the settings icon in the gallery component it 
+	*	opens the panel, gets the gallery unique, then makes a call to get the gallery images
+	*	@since 0.12
+	*/
 	function process_get_images(){
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_get_images' ) {
@@ -20,8 +26,6 @@ class aesopEditorProcessGallery {
 			// only run for logged in users and check caps
 			if( !is_user_logged_in() || !current_user_can('edit_posts') )
 				return;
-
-			var_dump($_POST);
 
 			// bail if no id specified like on new galleries
 			if ( empty( $_POST['post_id'] ) )
@@ -35,7 +39,7 @@ class aesopEditorProcessGallery {
 				$image_ids 	= get_post_meta($postid,'_ase_gallery_images', true);
 				$image_ids	= array_map('intval', explode(',', $image_ids));
 
-				var_dump($image_ids);
+				self::get_images( $image_ids );
 
 			} else {
 
@@ -44,6 +48,34 @@ class aesopEditorProcessGallery {
 		}
 
 		die();
+	}
+
+	function get_images( $image_ids = array() ) {
+
+		if ( !is_array( $image_ids ) )
+			return;
+
+		echo '<ul id="ase-gallery-images">';
+
+			if ( !empty( $image_ids ) ):
+				foreach ($image_ids as $image_id):
+
+		            $image    =  wp_get_attachment_image_src($image_id, 'thumbnail', false);
+
+		        	?>
+		        	<li id="<?php echo $image_id;?>" class="ase-gallery-image">
+		        		<i class="dashicons dashicons-no-alt" title="Delete From Gallery"></i>
+		        		<i class='dashicons dashicons-edit' title="Edit Image Caption"></i>
+		           	<img src="<?php echo $image[0];?>">
+		          </li>
+		          <?php
+
+				endforeach;
+
+			endif;
+
+		echo '</ul>';
+
 	}
 
 
