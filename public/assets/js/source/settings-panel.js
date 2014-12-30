@@ -96,6 +96,33 @@
 			// END LIVE EDITING OF COMPONENTS
 			////////////
 
+
+
+			/////////////
+			// GET GALLERY IMAGES
+			/////////////
+
+				var $this 		= $(this)
+				,	ajaxurl 	= aesop_editor.ajaxurl
+				,	form 		= $('#aesop--component-settings-form.gallery')
+				,	nonce 		= aesop_editor.getGallImgNonce
+				,	gall_id 	= $('#aesop--component-settings-form.gallery').data('unique')
+
+				var data      = {
+					action:    	'process_get_images',
+					post_id:   	gall_id,
+					nonce: 		nonce
+				};
+
+				// post ajax response with data
+				$.post( ajaxurl, data, function(response) {
+
+					console.log(response);
+
+				});
+
+
+
 		});
 
 		// destroy panel if clicking close or overlay

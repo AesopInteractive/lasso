@@ -1,40 +1,6 @@
 (function( $ ) {
 	'use strict';
 
-	var $this 		= $(this)
-	,	ajaxurl 	= aesop_editor.ajaxurl
-	,	form 		= $('#aesop--component-settings-form.gallery')
-	,	gall_id   	= $(form).attr('unique')
-	,	nonce 		= aesop_editor.getGallImgNonce
-
-	/////////////
-	// GET GALLERY IMAGES
-	/////////////
-	$(document).on('click', '.aesop-gallery-component #aesop-component--settings__trigger',function(){
-
-		var data      = {
-			action:    	'process_get_images',
-			post_id:   	gall_id,
-			nonce: 		nonce
-		};
-
-		// post ajax response with data
-		$.post( ajaxurl, data, function(response) {
-
-			if ( 'success' == response ) {
-
-				console.log(response);
-
-			} else {
-
-				// testing
-				console.log(response);
-
-			}
-
-		});
-
-	});
 
 
 	/////////////
