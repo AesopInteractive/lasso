@@ -114,7 +114,7 @@
 
 			e.preventDefault();
 
-			$this.closest('.aesop-component').clone().insertAfter('.aesop-component');
+			$this.closest('.aesop-component').clone().insertAfter( '.aesop-component' ).hide().fadeIn()
 
 		});
 

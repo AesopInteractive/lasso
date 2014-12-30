@@ -138,7 +138,7 @@ function aesop_gallery_component(){
 
 	ob_start();
 
-	echo '<p>Coming Soon</p>';
+	echo do_shortcode('[aesop_gallery]');
 
 	return ob_get_clean();
 }
@@ -156,7 +156,7 @@ function aesop_map_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_map]');
+	echo do_shortcode('[aesop_map sticky="off"]');
 
 	return ob_get_clean();
 }
