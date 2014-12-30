@@ -1,5 +1,16 @@
+#aesop-editor--gallery__images {
+    min-height: 100px;
+    position: relative;
 
-
+    .aesop-icon-spinner6 {
+        position: relative;
+        left: 135px;
+        top: 38px;
+        -webkit-animation: spin 2s infinite linear;
+        animation: spin 2s infinite linear;
+        font-size: 16px;
+    }
+}
 // gallery images metabox
 #ase-gallery-images {
     .clearfix();
@@ -55,11 +66,11 @@
 
 // dropzone
 .ase-gallery-drop-zone {
-    border: 1px solid #fcefa1;
-    background: #fbf9ee;
+    border: 1px solid @toolbar--bg;
+    background: @toolbar--bg__accent;
     color: #363636;
-    width:120px;
-    height:120px;
+    width:57px;
+    height:57px;
     float:left;
-    margin-right:10px;
+    margin:4px;
 }

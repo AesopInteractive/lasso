@@ -57,23 +57,6 @@
 		ase_encode_gallery_items();
 	});
 
-	/*
-	gallery.ready(function(){
-
-		gallery.sortable({
-			containment: 'parent',
-			cursor: 'move',
-			opacity: 0.8,
-			placeholder: 'ase-gallery-drop-zone',
-			forcePlaceholderSize:true,
-			update: function(){
-				var imageArray = $(this).sortable('toArray');
-		  		$('#ase_gallery_ids').val( imageArray );
-			}
-		});
-	});
-*/
-
 	function ase_string_encode(gData){
 		return encodeURIComponent(JSON.stringify(gData));
 	}

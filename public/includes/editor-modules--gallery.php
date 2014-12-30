@@ -27,7 +27,7 @@ function aesop_gallery_editor_module(){
 	<!-- Get the current galelry thumbs from the selected gallery (on settings click) -->
 	<a href="#" id="ase-gallery-add-image" class="ase-gallery-image-placeholder button-primary">Add Images</a>
 
-	<div id="aesop-editor--gallery__images"></div>
+	<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></div></div>
 
 	<!-- Push gallery id's here -->
 	<input type="hidden" id="ase_gallery_ids" name="ase_gallery_ids" value="">
