@@ -11,21 +11,27 @@ function aesop_gallery_editor_module(){
 
 	?><a href="#">Create New Gallery</a>
 
-	<div id="aesop-editor--gallery-create">
+	<!-- Show this when Create New Gallery clicked above -->
+	<div style="display:none;" id="aesop-editor--gallery__create">
 
-		<a id="aesop-editor--gallery-upload" href="#">Select Images</a>
+		<a id="aesop-editor--gallery__upload" href="#">Select Images</a>
 
-		<div id="aesop-editor--gallery-images">
+		<div id="aesop-editor--gallery__images-new">
+
+			newly uploaded gallery iamges
 
 		</div>
 
 	</div>
 
-	<!-- GALLERY THUMBS GET WITH JS -->
-	<div>
+	<!-- Get the current galelry thumbs from the selected gallery (on settings click) -->
+	<div id="aesop-editor--gallery__images">
+
+		existing gallery images
+
 	</div>
 
-
+	<!-- Push gallery id's here -->
 	<input type="hidden" name="aesop-gallery-ids">
 
 	<?php

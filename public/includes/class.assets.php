@@ -37,6 +37,7 @@ class aesopEditorAssets {
 				'featImgClass'		=> AESOP_EDITOR_FEATIMG_CLASS,
 				'featImgControls'   => aesop_editor_image_controls(),
 				'featImgNonce'		=> wp_create_nonce('aesop_editor_image'),
+				'getGallImgNonce'	=> wp_create_nonce('aesop_get_gallery_images'),
 				'component_options' => aesop_editor_options_blob()
 			));
 		}
