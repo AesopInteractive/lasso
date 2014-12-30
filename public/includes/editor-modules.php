@@ -222,8 +222,27 @@ function aesop_editor_options_blob() {
 					}
 				}
 				$return .= '</p>';
+
 			}
 		}
+
+		///////////////////////////
+		// START GALLERY AND MAP FRONT END STUFFS
+		///////////////////////////
+		if ( true == $shortcode['front'] ) {
+
+			if ( 'gallery' == $shortcode['front_type'] ) {
+
+				$return .= 'GALLERY GO TIME';
+
+			} elseif ( 'map' == $shortcode['front_type'] ) {
+
+				$return .= 'MAP GO TIME';
+			}
+		}
+		///////////////////////////
+		// END GALLERY AND MAP FRONT END STUFFS
+		///////////////////////////
 
 		// Single shortcode (not closed)
 		if ('single' == $shortcode['type']) {
