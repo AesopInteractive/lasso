@@ -2,7 +2,12 @@
 	'use strict';
 
 	/////////////
-	// GALLERY UPLOAD
+	// NEW GALLERY CREATE
+	////////////
+	
+
+	/////////////
+	// NEW GALLERY UPLOAD
 	////////////
 	/*
 	var file_frame;
@@ -38,16 +43,12 @@
 	    // Finally, open the modal
 	    file_frame.open();
 	});
-*/
+	*/
 
 	///////////
-	// SAVE GALLERY
+	// EDIT GALLERY
+	// the sortsble instat is in settingspanel.js
 	///////////
-
-})( jQuery );
-
-(function( $ ) {
-	'use strict';
 
 	var	gallery = $('#ase-gallery-images');
 
