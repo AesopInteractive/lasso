@@ -10,7 +10,26 @@ class aesopEditorProcessGallery {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_get_images', 				array($this, 'process_get_images' ));
+		//add_action( 'wp_ajax_process_create_gallery', 				array($this, 'process_create_gallery' ));
+	}
 
+	function process_create_gallery(){
+
+		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_create_gallery' ) {
+
+			// only run for logged in users and check caps
+			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+				return;
+
+			// ok security passes so let's process some data
+			if ( wp_verify_nonce( $_POST['nonce'], 'aesop_create_gallery' ) ) {
+
+				echo 'success';
+
+			}
+		}
+
+		die();
 	}
 
 	/**
@@ -37,15 +56,7 @@ class aesopEditorProcessGallery {
 				$postid 	= isset( $_POST['post_id'] ) ? $_POST['post_id'] : false;
 
 				// fetch image ids from cache
-				$image_ids = wp_cache_get('aesop_editor_gallery_images_'.$postid );
-
-				// if not found then call post meta to get ids then cache
-				if ( false == $image_ids ) {
-
-					$image_ids 	= get_post_meta($postid,'_ase_gallery_images', true);
-
-					wp_cache_set('aesop_editor_gallery_images_'.$postid );
-				}
+				$image_ids 	= get_post_meta($postid,'_ase_gallery_images', true);
 
 				// send ids to return images
 				self::get_images( $image_ids );

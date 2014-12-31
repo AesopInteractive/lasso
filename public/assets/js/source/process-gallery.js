@@ -75,7 +75,37 @@
 	///////////
 	$(document).on('click','#aesop-editor--gallery__save',function(){
 
-		// run ajax to save gallery then populate the componetn with the new imaegs
+		// run ajax to save gallery
+
+		/*
+		var data = {
+			action: 		'process_create_gallery',
+			unique: 		$('input[name="unique"]').val(),
+			gallery_ids: 	$('#ase_gallery_ids').val(),
+			nonce: 			aesop_editor.createGallNonce
+		}
+
+		/////////////
+		//	DO TEH SAVE
+		/////////////
+		$.post( aesop_editor.ajaxurl, data, function(response) {
+
+			console.log(response);
+
+			if( response == 'success' ) {
+
+				console.log(response);
+
+			} else if( 'error' == response ) {
+
+				alert('error');
+
+			}
+
+
+		});
+*/
+
 	});
 
 	///////////
