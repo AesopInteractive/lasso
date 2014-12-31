@@ -30,14 +30,15 @@
 			$('body').toggleClass('aesop-sidebar-open');
 
 			// get the component type
-			var type = $(this).closest('.aesop-component').attr('data-component-type'),
-				unique = $(this).closest('.aesop-component').attr('data-unique');
+			var type 		= $(this).closest('.aesop-component').attr('data-component-type')
+			,	unique 		= $(this).closest('.aesop-component').attr('data-unique')
+			,  	settings 	= $('#aesop-editor--component__settings')
 
 			// set the height on settings div
 			settingsHeight();
 
 			// add the options to the settings div
-			$('#aesop-editor--component__settings').html( aesop_editor.component_options[type] );
+			settings.html( aesop_editor.component_options[type] );
 
 			// fade in save controls
 			$('.aesop-buttoninsert-wrap').fadeIn(600);
@@ -55,8 +56,8 @@
 			$('#aesop--component-settings-form input[name="unique"]').val( unique );
 
 			// initialize scrolbar
-			$('#aesop-editor--component__settings').perfectScrollbar('destroy');
-			$('#aesop-editor--component__settings').perfectScrollbar();
+			settings.perfectScrollbar('destroy');
+			settings.perfectScrollbar();
 
 			/////////////
 			//	UPDATE COMPONENT SETTINGS DATA ATTS
@@ -73,7 +74,6 @@
 				}
 
 			});
-
 
 			/////////////
 			// LIVE EDITING OF COMPONENTS
