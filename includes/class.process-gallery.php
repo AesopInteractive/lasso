@@ -36,9 +36,18 @@ class aesopEditorProcessGallery {
 
 				$postid 	= isset( $_POST['post_id'] ) ? $_POST['post_id'] : false;
 
-				$image_ids 	= get_post_meta($postid,'_ase_gallery_images', true);
-				$image_ids	= array_map('intval', explode(',', $image_ids));
+				// fetch image ids from cache
+				$image_ids = wp_cache_get('aesop_editor_gallery_images_'.$postid );
 
+				// if not found then call post meta to get ids then cache
+				if ( false == $image_ids ) {
+
+					$image_ids 	= get_post_meta($postid,'_ase_gallery_images', true);
+
+					wp_cache_set('aesop_editor_gallery_images_'.$postid );
+				}
+
+				// send ids to return images
 				self::get_images( $image_ids );
 
 			} else {
@@ -50,10 +59,12 @@ class aesopEditorProcessGallery {
 		die();
 	}
 
-	function get_images( $image_ids = array() ) {
+	function get_images( $image_ids = '' ) {
 
-		if ( !is_array( $image_ids ) )
+		if ( empty( $image_ids ) )
 			return;
+
+		$image_ids 	= array_map('intval', explode(',', $image_ids));
 
 		echo '<ul id="ase-gallery-images">';
 
