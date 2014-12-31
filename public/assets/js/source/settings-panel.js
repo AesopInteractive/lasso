@@ -11,10 +11,12 @@
 		// helper to set the height of the settings panel
 		var settingsHeight = function(){
 
-			$('#aesop-editor--component__settings').height( $(window).height() );
+			var settings = $('#aesop-editor--component__settings');
+
+			settings.height( $(window).height() );
 
 			$(window).resize(function(){
-				settingsHeight();
+				settings.height( $(window).height() );
 				//$('#aesop-editor--component__settings').perfectScrollbar('update');
 			});
 		}
