@@ -11,18 +11,19 @@ function aesop_gallery_editor_module(){
 
 	?>
 
-	<div class="aesop-editor--gallery-create">
-		<a href="#">New Gallery</a>
-	</div>
+	<a id="aesop-editor--gallery__create" href="#">New Gallery</a>
 
 	<!-- Show this when Create New Gallery clicked above -->
-	<div style="display:none;" id="aesop-editor--gallery__create">
+	<div style="display:none;" id="aesop-editor--gallery__upload">
 
-		<a id="aesop-editor--gallery__upload" href="#">Select Images</a>
+		<a href="#">Select Images</a>
+
+		<a style="display:none;" id="aesop-editor--gallery__save" href="#">Save Gallery</a>
+	
 
 	</div>
 
-	<div class="aesop-editor--gallery-edit">
+	<div id="aesop-editor--gallery__edit">
 		<!-- Get the current galelry thumbs from the selected gallery (on settings click) -->
 		<a href="#" id="ase-gallery-add-image" class="ase-gallery-image-placeholder button-primary">Add Images</a>
 		<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></div></div>

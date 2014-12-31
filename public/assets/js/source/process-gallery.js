@@ -4,12 +4,20 @@
 	/////////////
 	// NEW GALLERY CREATE
 	////////////
-	
+	$('#aesop-editor--gallery__create').live('click',function(e){
+
+		e.preventDefault();
+
+		$('#aesop-editor--gallery__upload').fadeIn();
+
+		$('#aesop-editor--gallery__edit #ase-gallery-add-image').fadeOut();
+		$('#ase-gallery-images').remove();
+	});
 
 	/////////////
 	// NEW GALLERY UPLOAD
 	////////////
-	/*
+
 	var file_frame;
 
 	$(document).on('click', '#aesop-editor--gallery__upload', function( e ){
@@ -36,14 +44,24 @@
 
 	      	var attachments = file_frame.state().get('selection').toJSON();
 
-	      	console.log(attachments);
+	      	//console.log(attachments);
+	      	$.each( attachments, function( key, value ) {
+
+			  	console.log( value.id )
+
+			});
+
+
+			//$('#aesop-editor--gallery__images').html();
+
+
+	      	$('#aesop-editor--gallery__save').fadeIn();
 
 	    });
 
 	    // Finally, open the modal
 	    file_frame.open();
 	});
-	*/
 
 	///////////
 	// EDIT GALLERY
