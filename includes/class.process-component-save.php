@@ -25,12 +25,17 @@ class aesopEditorComponentSaving {
 				$unique 	= isset( $_POST['unique'] ) ? sanitize_text_field( trim( $_POST['unique'] ) ) : false;
 				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
-				update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ', $options );
+				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
-				// if gallery images present process gallery save
-				if ( isset( $_POST['aesop-gallery-ids'] ) ) {
+				if ( $gallery_ids ) {
 
+					// if gallery images present update them
+					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
 
+				} else {
+
+					// else update the meta for this component
+					update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ', $options );
 
 				}
 

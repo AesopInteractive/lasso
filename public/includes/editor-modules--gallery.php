@@ -11,6 +11,16 @@ function aesop_gallery_editor_module(){
 
 	?>
 
+	<div id="aesop-editor--gallery__edit">
+
+		<label>Manage Images</label>
+		<small class="aesop-option-desc">Rearrange or edit the images in this gallery.</small>
+		<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></span></div>
+		<a href="#" id="ase-gallery-add-image" class="ase-gallery-image-placeholder button-primary">Add Images</a>
+
+	</div>
+
+
 	<a id="aesop-editor--gallery__create" href="#">New Gallery</a>
 
 	<!-- Show this when Create New Gallery clicked above -->
@@ -19,14 +29,7 @@ function aesop_gallery_editor_module(){
 		<a href="#">Select Images</a>
 
 		<a style="display:none;" id="aesop-editor--gallery__save" href="#">Save Gallery</a>
-	
 
-	</div>
-
-	<div id="aesop-editor--gallery__edit">
-		<!-- Get the current galelry thumbs from the selected gallery (on settings click) -->
-		<a href="#" id="ase-gallery-add-image" class="ase-gallery-image-placeholder button-primary">Add Images</a>
-		<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></div></div>
 	</div>
 
 	<!-- Push gallery id's here -->

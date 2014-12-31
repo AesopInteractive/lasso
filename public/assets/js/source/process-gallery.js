@@ -10,8 +10,10 @@
 
 		$('#aesop-editor--gallery__upload').fadeIn();
 
-		$('#aesop-editor--gallery__edit #ase-gallery-add-image').fadeOut();
-		$('#ase-gallery-images li').remove();
+		$('#ase-gallery-add-image, #aesop-editor--gallery__create, #ase-gallery-images li').remove();
+
+		$('#aesop-editor--gallery__edit label').text('Add New Gallery');
+		$('#aesop-editor--gallery__edit .aesop-option-desc').text('Select new images to create a gallery with.');
 	});
 
 	/////////////

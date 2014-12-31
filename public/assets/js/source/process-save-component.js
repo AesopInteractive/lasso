@@ -48,12 +48,13 @@
 	    $('#aesop-generator-insert').val('Saving...');
 
 		var data = {
-			action: 'process_update_component',
-			postid: aesop_editor.postid,
-			unique: unique,
-			fields: JSON.stringify( optionArray ),
-			type: 	type,
-			nonce: 	$('#aesop-generator-nonce').val()
+			action: 		'process_update_component',
+			postid: 		aesop_editor.postid,
+			unique: 		unique,
+			fields: 		JSON.stringify( optionArray ),
+			gallery_ids: 	$('#ase_gallery_ids').val(),
+			type: 			type,
+			nonce: 			$('#aesop-generator-nonce').val()
 		}
 
 		/////////////
