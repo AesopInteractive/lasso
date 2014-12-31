@@ -11,7 +11,7 @@
 		$('#aesop-editor--gallery__upload').fadeIn();
 
 		$('#aesop-editor--gallery__edit #ase-gallery-add-image').fadeOut();
-		$('#ase-gallery-images').remove();
+		$('#ase-gallery-images li').remove();
 	});
 
 	/////////////
@@ -19,6 +19,8 @@
 	////////////
 
 	var file_frame;
+
+	var	gallery = $('#ase-gallery-images');
 
 	$(document).on('click', '#aesop-editor--gallery__upload', function( e ){
 
@@ -48,16 +50,11 @@
 		        return;
 		    }
 
-		    $('#aesop-editor--gallery__images').append('<ul id="ase-gallery-images"></ul>');
-
 		    attachments.each( function( attachment ) {
 		    	var id = attachment.id;
 		    	var url = attachment.attributes.sizes.thumbnail.url;
 		    	ase_insert_gallery_item(id, url);
 		    });
-
-			//console.log( items )
-
 
 	      	$('#aesop-editor--gallery__save').fadeIn();
 
@@ -71,8 +68,6 @@
 	// EDIT GALLERY
 	// the sortsble instat is in settingspanel.js
 	///////////
-
-	var	gallery = $('#ase-gallery-images');
 
 	$(document).on('click', '.ase-gallery-image > i.dashicons-no-alt', function(){
 		$(this).parent().remove();
