@@ -64,6 +64,14 @@
 	    file_frame.open();
 	});
 
+	//////////
+	// MNEW GALLERY SAVE
+	///////////
+	$(document).on('click','#aesop-editor--gallery__save',function(){
+
+		// run ajax to save gallery then populate the componetn with the new imaegs
+	});
+
 	///////////
 	// EDIT GALLERY
 	// the sortsble instat is in settingspanel.js
