@@ -25,7 +25,7 @@ function aesop_gallery_editor_module(){
 	<!-- Show this when Create New Gallery clicked above -->
 	<div style="display:none;" id="aesop-editor--gallery__upload">
 
-		<a href="#">Select Images</a>
+		<a href="#" id="aesop-editor--gallery__selectImages">Select Images</a>
 
 		<a style="display:none;" id="aesop-editor--gallery__save" href="#">Save Gallery</a>
 
