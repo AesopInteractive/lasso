@@ -1,6 +1,8 @@
-#aesop-editor--gallery__create,
 #aesop-editor--gallery__edit {
     padding:15px 20px 20px;
+    label {
+        position: relative;
+    }
 }
 
 #aesop-editor--gallery__images {
@@ -71,14 +73,18 @@
 }
 
 // add image
+.aesop-editor-tiny-btn {
+    .tiny-circle-btn( @toolbar--bg__dark, fadeout(@toolbar--color,20) );
+}
+#aesop-editor--gallery__create {
+    position: absolute;
+    right:0;
+}
 #ase-gallery-add-image {
-    text-align: right;
-    right: 0;
-    display: block;
-    font-size: 14px;
-    line-height: 14px;
-    font-size: @sidebar--font__size;
-    color:fadeout(@sidebar--color,33);
+    position: absolute;
+    right:22px;
+    font-size: 9px;
+    padding: 4px;
 }
 
 // dropzone

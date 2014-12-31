@@ -13,7 +13,7 @@
 
 .editor--tool__bg() {
     color:@toolbar--color;
-        border:1px solid @toolbar--border;
+     border:1px solid @toolbar--border;
     #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
     .box-shadow(inset 0 1px 0 rgba(255,255,255,0.1));
 }
@@ -46,6 +46,42 @@
     // collection
     &.gallery:before { content: "\e90e"; }
 }
+
+.tiny-circle-btn( @bg: @editor--color__update, @color: white ) {
+    font-size: 10px;
+    background: @bg;
+    color: @color;
+    border-radius: 100%;
+    font-weight: normal;
+    padding: 3px;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
+
+    &:focus,
+    &:active,
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:hover {
+        color:@color;
+        background: darken(@bg,7);
+    }
+    &:active {
+        color:@color;
+        background:darken(@bg,14);
+        .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
+    }
+}
+
+
+
+
+
+
+/////////
 .clearfix() {
   &:before,
   &:after {

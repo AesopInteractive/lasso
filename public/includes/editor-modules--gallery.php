@@ -13,15 +13,14 @@ function aesop_gallery_editor_module(){
 
 	<div id="aesop-editor--gallery__edit">
 
-		<label>Manage Images</label>
+		<label>Manage Images 
+			<a href="#" id="ase-gallery-add-image" class="aesop-editor-tiny-btn" title="Add Images"><span class="aesop-icon-pencil"></span></a>
+			<a href="#" id="aesop-editor--gallery__create" class="aesop-editor-tiny-btn" title="Create Gallery"><span class="aesop-icon-plus"></span></a>
+		</label>
 		<small class="aesop-option-desc">Rearrange or edit the images in this gallery.</small>
 		<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></span></div>
-		<a href="#" id="ase-gallery-add-image" class="ase-gallery-image-placeholder button-primary">Add Images</a>
 
 	</div>
-
-
-	<a id="aesop-editor--gallery__create" href="#">New Gallery</a>
 
 	<!-- Show this when Create New Gallery clicked above -->
 	<div style="display:none;" id="aesop-editor--gallery__upload">
