@@ -13,7 +13,7 @@ function aesop_gallery_editor_module(){
 
 	<div id="aesop-editor--gallery__edit">
 
-		<label>Manage Images 
+		<label>Manage Images
 			<a href="#" id="ase-gallery-add-image" class="aesop-editor-tiny-btn" title="Add Images"><span class="aesop-icon-pencil"></span></a>
 			<a href="#" id="aesop-editor--gallery__create" class="aesop-editor-tiny-btn" title="Create Gallery"><span class="aesop-icon-plus"></span></a>
 		</label>
