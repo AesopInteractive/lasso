@@ -42,17 +42,21 @@
 	    // When an image is selected, run a callback.
 	    file_frame.on( 'select', function() {
 
-	      	var attachments = file_frame.state().get('selection').toJSON();
+	      	var attachments = file_frame.state().get('selection');
 
-	      	//console.log(attachments);
-	      	$.each( attachments, function( key, value ) {
+		    if (!attachments) {
+		        return;
+		    }
 
-			  	console.log( value.id )
+		    $('#aesop-editor--gallery__images').append('<ul id="ase-gallery-images"></ul>');
 
-			});
+		    attachments.each( function( attachment ) {
+		    	var id = attachment.id;
+		    	var url = attachment.attributes.sizes.thumbnail.url;
+		    	ase_insert_gallery_item(id, url);
+		    });
 
-
-			//$('#aesop-editor--gallery__images').html();
+			//console.log( items )
 
 
 	      	$('#aesop-editor--gallery__save').fadeIn();
