@@ -77,9 +77,11 @@ jQuery(document).ready(function($){
 		 */
 		function shortcodify(content,selector){
 
+			// Convert the html into a series of jQuery objects
 			var j = $(content);
 			var processed = '';
 
+			// Iterate through the array of dom objects
 			for (var i = 0; i < j.length; i++) {
 
     		var component = $(j[i]);
@@ -88,7 +90,15 @@ jQuery(document).ready(function($){
 
     		// If it's not a component, move along
     		if ( !component.hasClass('aesop-component') ) {
-    			processed += j[i].outerHTML;
+
+    			// Let's test what kind of object it is
+    			if ( component.context.nodeType == 3 ) {
+    				// Text only object without dom
+    				processed += j[i].data;
+    			} else {
+    				// DOM object
+    				processed += j[i].outerHTML;
+    			}
     			continue;
     		}
 
