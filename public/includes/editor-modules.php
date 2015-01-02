@@ -229,7 +229,7 @@ function aesop_editor_options_blob() {
 		///////////////////////////
 		// START GALLERY AND MAP FRONT END STUFFS
 		///////////////////////////
-		if ( true == $shortcode['front'] ) {
+		if ( isset( $shortcode['front'] ) && true == $shortcode['front'] ) {
 
 			if ( 'gallery' == $shortcode['front_type'] ) {
 
