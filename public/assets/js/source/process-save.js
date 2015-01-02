@@ -107,7 +107,7 @@ jQuery(document).ready(function($){
 
 					}
 
-					var sc = '[aesop-' + data.componentType + params + ']';
+					var sc = '[aesop_' + data.componentType + params + ']';
 
 					processed += sc;
 
