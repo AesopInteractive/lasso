@@ -85,8 +85,6 @@ jQuery(document).ready(function($){
 			for (var i = 0; i < j.length; i++) {
 
     		var component = $(j[i]);
-    		var data = component.data();
-    		var params = '';
 
     		// If it's not a component, move along
     		if ( !component.hasClass('aesop-component') ) {
@@ -101,6 +99,9 @@ jQuery(document).ready(function($){
     			}
     			continue;
     		}
+
+    		var data = component.data();
+    		var params = '';
 
     		// It's a component, let's check to make sure it's defined properly
 				if ( data.hasOwnProperty('componentType') ) {
