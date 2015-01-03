@@ -12,6 +12,18 @@ jQuery(function( $ ) {
     return null;
 	}
 
+	function restoreSelection(range) {
+    if (range) {
+        if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (document.selection && range.select) {
+            range.select();
+        }
+    }
+	}
+
 	/////////////
 	/// DROP UP
 	/////////////
@@ -47,6 +59,17 @@ jQuery(function( $ ) {
 			}
 		}
 	});
+
+	$('#aesop-toolbar--html__inner').live('focusout',function(){
+		restoreSelection(window.selRange);
+	});
+
+	$('#aesop-toolbar--html__inner').live('focus',function(){
+		if ( $(saveSelection().commonAncestorContainer).parents('#aesop-editor--content').length != 0 ) {
+			window.selRange = saveSelection();
+		}
+	});
+
 
 	$('#aesop-toolbar--html').live('click',function(e){
 
