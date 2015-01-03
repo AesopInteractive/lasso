@@ -45,7 +45,6 @@ jQuery(function( $ ) {
 				article.highlight();
 				window.selRange = saveSelection();
 			}
-			console.log(window.selRange);
 		}
 	});
 

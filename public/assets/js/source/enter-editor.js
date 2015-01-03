@@ -109,10 +109,8 @@ jQuery(document).ready(function($){
 		};
 
 		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
-		    //article.focus();
-		    //article.highlight();
-		    restoreSelection(window.selRange);
 
+		    restoreSelection(window.selRange);
 		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').text() );
 
 		    window.selRange = null;
