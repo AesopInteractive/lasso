@@ -123,7 +123,7 @@ jQuery(document).ready(function($){
 					// Let's check to see if it's a "full" shortcode
 					var inner = component.find('.aesop-component-content-data');
 
-					if ( inner ) {
+					if ( inner.length != 0 ) {
 						sc += inner[0].innerHTML + "[/aesop_" + data.componentType + "]";
 					}
 
