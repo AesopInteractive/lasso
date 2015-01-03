@@ -36,24 +36,16 @@ jQuery(function( $ ) {
 	/////////////
 	/// HTML DROP UP
 	/////////////
-	/*$('#aesop-toolbar--html').live('hover',function(e){
-		e.preventDefault();
-
-		var article = document.getElementById(aesop_editor.editor);
-		article.focus();
-
-		selRange = saveSelection();
-		if ( null == selRange ) {
-			selRange = saveSelection();
-		}
-		console.log(selRange);
-	});*/
 
 	$('#aesop-toolbar--html').live('mousedown',function(){
-		var article = document.getElementById(aesop_editor.editor);
-		article.focus();
-		if( typeof selRange === 'undefined' || null == selRange ) {
-			selRange = saveSelection();
+		if( ! $(this).hasClass('html--drop-up') ) {
+			var article = document.getElementById(aesop_editor.editor);
+			window.selRange = saveSelection();
+			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
+				article.highlight();
+				window.selRange = saveSelection();
+			}
+			console.log(window.selRange);
 		}
 	});
 

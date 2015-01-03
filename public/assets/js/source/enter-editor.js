@@ -109,17 +109,16 @@ jQuery(document).ready(function($){
 		};
 
 		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
-		    
 		    //article.focus();
-		    article.highlight();
-		    restoreSelection(selRange);
+		    //article.highlight();
+		    restoreSelection(window.selRange);
 
 		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').text() );
 
-		    selRange = null;
+		    window.selRange = null;
 
 		    // close modal drag
-            $('#aesop-toolbar--html').removeClass('html--drop-up');
+        $('#aesop-toolbar--html').removeClass('html--drop-up');
 
 
 		    return false;
