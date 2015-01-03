@@ -30,14 +30,14 @@ class aesopEditorProcessGallery {
 				$post_args = array(
 				  	'post_title'    => rand(),
 				  	'post_status'   => 'publish',
-				  	'post_type'	  	=> 'ase_gallery',
+				  	'post_type'	  	=> 'ai_galleries',
 				  	'post_author'   => (int) get_current_user_ID()
 				);
 
 				$post_id = wp_insert_post( $post_args );
 
 				// push gallery ids
-				//update_post_meta( $post_id,'_ase_gallery_images', $gallery_ids );
+				update_post_meta( $post_id,'_ase_gallery_images', $gallery_ids );
 
 				echo 'success';
 

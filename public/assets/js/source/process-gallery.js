@@ -27,7 +27,7 @@
 
 	var	gallery = $('#ase-gallery-images');
 
-	$(document).on('click', '#aesop-editor--gallery__upload', function( e ){
+	$(document).on('click', '#aesop-editor--gallery__selectImages', function( e ){
 
 	    e.preventDefault();
 
@@ -54,12 +54,25 @@
 		    if (!attachments) {
 		        return;
 		    }
+		    ////////
+		    /// @TODO - these loops should be combined perhaps?
+		    ////////
 
+		    // loop through and insert the new items
 		    attachments.each( function( attachment ) {
 		    	var id = attachment.id;
 		    	var url = attachment.attributes.sizes.thumbnail.url;
 		    	ase_insert_gallery_item(id, url);
 		    });
+
+		    // insert the new ids from new gallery
+		    var ids = attachments.map( function( attachment ) {
+
+		    	var attachment = attachment.toJSON();
+		    	return attachment.id;
+
+		    }).join(',');
+		    $('#ase_gallery_ids').val( ids );
 
 	      	$('#aesop-editor--gallery__save').fadeIn();
 	      	$('#aesop-editor--gallery__selectImages').remove();
@@ -73,11 +86,11 @@
 	//////////
 	// MNEW GALLERY SAVE
 	///////////
-	$(document).on('click','#aesop-editor--gallery__save',function(){
+	$(document).on('click','#aesop-editor--gallery__save',function(e){
 
 		// run ajax to save gallery
+		e.preventDefault();
 
-		/*
 		var data = {
 			action: 		'process_create_gallery',
 			unique: 		$('input[name="unique"]').val(),
@@ -104,7 +117,6 @@
 
 
 		});
-*/
 
 	});
 
