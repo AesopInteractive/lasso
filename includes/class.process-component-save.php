@@ -30,7 +30,7 @@ class aesopEditorComponentSaving {
 				if ( $gallery_ids ) {
 
 					// if gallery images present update them
-					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
+					update_post_meta( $unique, '_ase_gallery_images', $gallery_ids );
 
 				} else {
 
