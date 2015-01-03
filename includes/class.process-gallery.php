@@ -10,7 +10,7 @@ class aesopEditorProcessGallery {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_get_images', 				array($this, 'process_get_images' ));
-		//add_action( 'wp_ajax_process_create_gallery', 				array($this, 'process_create_gallery' ));
+		add_action( 'wp_ajax_process_create_gallery', 				array($this, 'process_create_gallery' ));
 	}
 
 	function process_create_gallery(){
@@ -23,6 +23,21 @@ class aesopEditorProcessGallery {
 
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop_create_gallery' ) ) {
+
+				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
+
+				// insert a new gallery
+				$post_args = array(
+				  	'post_title'    => rand(),
+				  	'post_status'   => 'publish',
+				  	'post_type'	  	=> 'ase_gallery',
+				  	'post_author'   => (int) get_current_user_ID()
+				);
+
+				$post_id = wp_insert_post( $post_args );
+
+				// push gallery ids
+				//update_post_meta( $post_id,'_ase_gallery_images', $gallery_ids );
 
 				echo 'success';
 
