@@ -12,6 +12,18 @@ jQuery(document).ready(function($){
 		uploadControls  = aesop_editor.featImgControls,
 		aesopDragHandle = aesop_editor.handle;
 
+	function restoreSelection(range) {
+    if (range) {
+        if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (document.selection && range.select) {
+            range.select();
+        }
+    }
+	}
+
 	$('#aesop-editor--edit').click(function(e){
 		e.preventDefault();
 
@@ -49,7 +61,7 @@ jQuery(document).ready(function($){
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
 		///////////////////
-		var article = document.getElementById(editor),
+				article = document.getElementById(editor),
 		    articleMedium = new Medium({
 		        element: article,
 		        mode: Medium.richMode,
@@ -98,8 +110,13 @@ jQuery(document).ready(function($){
 
 		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
 		    
-		    article.focus();
+		    //article.focus();
+		    article.highlight();
+		    restoreSelection(selRange);
+
 		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').text() );
+
+		    selRange = null;
 
 		    // close modal drag
             $('#aesop-toolbar--html').removeClass('html--drop-up');
@@ -107,7 +124,6 @@ jQuery(document).ready(function($){
 
 		    return false;
 		};
-
 
 		/////////////////
 		/// EXIT EDITOR
