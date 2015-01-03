@@ -106,10 +106,10 @@ jQuery(document).ready(function($){
     		// It's a component, let's check to make sure it's defined properly
 				if ( data.hasOwnProperty('componentType') ) {
 
-					for (var index in data) {
+					for ( var index in data ) {
 
 						// Don't accept componentType as a param
-						if (!data.hasOwnProperty(index) || index == 'componentType') {
+						if ( !data.hasOwnProperty(index) || index == 'componentType' ) {
 							continue;
 						}
 
@@ -119,6 +119,13 @@ jQuery(document).ready(function($){
 					}
 
 					var sc = '[aesop_' + data.componentType + params + ']';
+
+					// Let's check to see if it's a "full" shortcode
+					var inner = component.find('.aesop-component-content-data');
+
+					if ( inner ) {
+						sc += inner[0].innerHTML + "[/aesop_" + data.componentType + "]";
+					}
 
 					processed += sc;
 
