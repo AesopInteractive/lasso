@@ -27,7 +27,7 @@ function aesop_gallery_editor_module(){
 
 		<a href="#" id="aesop-editor--gallery__selectImages">Select Images</a>
 
-		<a style="display:none;" id="aesop-editor--gallery__save" href="#">Save Gallery</a>
+		<a style="display:none;" data-post-title="<?php echo esc_attr( strtolower( get_the_title() ) );?>" id="aesop-editor--gallery__save" href="#">Save Gallery</a>
 
 	</div>
 

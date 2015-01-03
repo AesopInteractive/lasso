@@ -95,6 +95,7 @@
 			action: 		'process_create_gallery',
 			unique: 		$('input[name="unique"]').val(),
 			gallery_ids: 	$('#ase_gallery_ids').val(),
+			curr_title:     $(this).data('post-title'),
 			nonce: 			aesop_editor.createGallNonce
 		}
 

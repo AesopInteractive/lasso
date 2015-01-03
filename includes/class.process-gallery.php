@@ -26,9 +26,14 @@ class aesopEditorProcessGallery {
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
+				if ( empty( $gallery_ids ) )
+					return;
+
+				$curr_post_title = isset( $_POST['curr_title'] ) ? $_POST['curr_title'] : rand();
+
 				// insert a new gallery
 				$post_args = array(
-				  	'post_title'    => rand(),
+				  	'post_title'    => $curr_post_title.'-'.rand(),
 				  	'post_status'   => 'publish',
 				  	'post_type'	  	=> 'ai_galleries',
 				  	'post_author'   => (int) get_current_user_ID()
