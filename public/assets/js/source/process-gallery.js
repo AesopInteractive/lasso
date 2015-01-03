@@ -248,7 +248,7 @@
 			wp.media.frames.ase_edit_frame.on('select', ase_media_edit_image);
 			wp.media.frames.ase_edit_frame.on('open',function(){
 				 var selection = wp.media.frames.ase_edit_frame.state().get('selection');
-				attachment = wp.media.attachment( clicked_button.parent().attr('id') );
+				var attachment = wp.media.attachment( clicked_button.parent().attr('id') );
 				attachment.fetch();
 				selection.add( attachment ? [ attachment ] : [] );
 			});
