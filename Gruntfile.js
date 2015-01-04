@@ -7,9 +7,9 @@ module.exports = function(grunt) {
 
         // watch our project for changes
         watch: {
-        	uglify: {
+        	concat: {
         		files: ['public/assets/js/source/*'],
-        		tasks:['uglify:publicscripts']
+        		tasks:['concat:dist']
         	},
             less: {
 				files: ['public/assets/less/**/*','admin/assets/less/**/*'],
@@ -31,26 +31,25 @@ module.exports = function(grunt) {
 		    	}
 		  	}
         },
-   		uglify: {
-            publicscripts: {
-               	files: {
-                    'public/assets/js/aesop-editor.js': [
-                    	'public/assets/js/source/util--undo.js',
-                    	'public/assets/js/source/util--rangy-core.js',
-                    	'public/assets/js/source/util--rangy-classapplier.js',
-                    	'public/assets/js/source/util--content-editable.js',
-                    	'public/assets/js/source/util--scrollbar.js',
-                    	'public/assets/js/source/util--sweet-alert.js',
-                    	'public/assets/js/source/enter-editor.js',
-                     	//'public/assets/js/source/modal.js',
-                     	'public/assets/js/source/settings-panel.js',
-                     	'public/assets/js/source/toolbar.js',
+   		concat: {
+            dist: {
+                src: [
+                        'public/assets/js/source/util--undo.js',
+                        'public/assets/js/source/util--rangy-core.js',
+                        'public/assets/js/source/util--rangy-classapplier.js',
+                        'public/assets/js/source/util--content-editable.js',
+                        'public/assets/js/source/util--scrollbar.js',
+                        'public/assets/js/source/util--sweet-alert.js',
+                        'public/assets/js/source/enter-editor.js',
+                        //'public/assets/js/source/modal.js',
+                        'public/assets/js/source/settings-panel.js',
+                        'public/assets/js/source/toolbar.js',
                         'public/assets/js/source/process-save.js',
-                     	'public/assets/js/source/process-gallery.js',
-                     	'public/assets/js/source/process-image-upload.js',
-                     	'public/assets/js/source/process-save-component.js'
-                    ]
-                }
+                        'public/assets/js/source/process-gallery.js',
+                        'public/assets/js/source/process-image-upload.js',
+                        'public/assets/js/source/process-save-component.js'
+                    ],
+                dest: 'public/assets/js/aesop-editor.js'
             }
         },
     });
