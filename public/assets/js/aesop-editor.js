@@ -9494,8 +9494,10 @@ jQuery(document).ready(function($){
 		/////////////
 
 	    $this.find('.aesop-generator-attr').each(function(){
+
 	      var optionName = $(this).closest('.aesop-option').data('option');
 	      if ( '' !== $(this).val() ) { window.component.attr( 'data-' + optionName, $(this).val() ); }
+
 	    });
 
 		/////////////
