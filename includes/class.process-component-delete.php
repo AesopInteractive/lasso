@@ -26,7 +26,7 @@ class aesopEditorComponentDelete {
 				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 				$unique 	= isset( $_POST['unique'] ) ? sanitize_text_field( trim( $_POST['unique'] ) ) : false;
 
-				delete_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ' );
+				//delete_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ' );
 
 				echo 'success';
 

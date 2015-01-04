@@ -32,11 +32,6 @@ class aesopEditorComponentSaving {
 					// if gallery images present update them
 					update_post_meta( $unique, '_ase_gallery_images', $gallery_ids );
 
-				} else {
-
-					// else update the meta for this component
-					update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.'', $options );
-
 				}
 
 
