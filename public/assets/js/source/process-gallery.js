@@ -84,6 +84,30 @@
 	});
 
 	//////////
+	// NEW GALLERY SWAP
+	//////////
+	$('.aesop-gallery-id #aesop-generator-attr-id').live('change',function(){
+
+		var data = {
+			action: 		'process_swap_gallery',
+			gallery_id: 	$(this).val(),
+			nonce: 			aesop_editor.swapGallNonce
+		}
+
+		$.post( aesop_editor.ajaxurl, data, function(response) {
+
+			console.log(response);
+
+			if( response ) {
+
+				$('.aesop-gallery-component').html( response );
+
+			}
+
+		});
+	});
+
+	//////////
 	// MNEW GALLERY SAVE
 	///////////
 	$(document).on('click','#aesop-editor--gallery__save',function(e){

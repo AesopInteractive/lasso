@@ -11,8 +11,34 @@ class aesopEditorProcessGallery {
 
 		add_action( 'wp_ajax_process_get_images', 				array($this, 'process_get_images' ));
 		add_action( 'wp_ajax_process_create_gallery', 				array($this, 'process_create_gallery' ));
+		add_action( 'wp_ajax_process_swap_gallery', 				array($this, 'process_swap_gallery' ));
 	}
 
+	/**
+	*
+	*	Swaps a gallery during live editing
+	*
+	*/
+	function process_swap_gallery(){
+
+		check_ajax_referer('aesop_swap_gallery','nonce');
+
+		// only run for logged in users and check caps
+		if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			return;
+
+		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
+
+		echo do_shortcode('[aesop_gallery id="'.(int) $id.'"]');
+
+		die();
+	}
+
+	/**
+	*
+	*	Creates a gallery
+	*
+	*/
 	function process_create_gallery(){
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_create_gallery' ) {
