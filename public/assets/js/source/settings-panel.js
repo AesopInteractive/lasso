@@ -21,57 +21,42 @@
 			});
 		}
 
+		var component, data;
+
 		/////////////
 		// OPEN COMPONENT SETTINGS
 		////////////
 		$('#aesop-component--settings__trigger').live('click',function(){
 
+			var settings 	= $('#aesop-editor--component__settings')
+
+			// let's set our globals
+			component = $(this).closest('.aesop-component');
+			data = component.data();
+
 			// add a body class
 			$('body').toggleClass('aesop-sidebar-open');
 
-			// get the component type
-			var type 		= $(this).closest('.aesop-component').attr('data-component-type')
-			,	unique 		= $(this).closest('.aesop-component').attr('data-unique')
-			,  	settings 	= $('#aesop-editor--component__settings')
-
-			// set the height on settings div
+			// set up settings panel
 			settingsHeight();
+			settings.html( aesop_editor.component_options[data.componentType] );
 
-			// add the options to the settings div
-			settings.html( aesop_editor.component_options[type] );
+			// add the type as a value in a hidden field in settings
+			settings.find('.component_type').val( data.componentType );
 
 			// fade in save controls
 			$('.aesop-buttoninsert-wrap').fadeIn(600);
-
-			// add the type as a value in ahidden field in settings
-			$('#aesop--component-settings-form .component_type').val( type );
-
-			// and also add the type and unique as data atts to the form field
-			$('#aesop--component-settings-form').attr({
-				'data-type': type,
-				'data-unique': unique
-			}).addClass(type);
-
-			// add the unique as a value
-			$('#aesop--component-settings-form input[name="unique"]').val( unique );
 
 			// initialize scrolbar
 			settings.perfectScrollbar('destroy');
 			settings.perfectScrollbar();
 
-			/////////////
-			//	UPDATE COMPONENT SETTINGS DATA ATTS
-			// 	- this is run when the user saves teh component which then let's us use these to map back to the original shortcode on post save
-			/////////////
+			settings.find('.aesop-option').each(function(){
 
-			$('#aesop--component-settings-form.'+type+'[data-unique="'+unique+'"] .aesop-generator-attr').each(function(){
-
-				var $this = 	$(this),
-					optionName = $(this).closest('.aesop-option').data('option');
-
-				if ( '' !== $this.val() ) {
-					$('#aesop-'+type+'-component-'+unique+' ').attr('data-'+optionName+'', $this.val() );
-				}
+				var option = $(this).data('option');
+				var field = $(this).find('.aesop-generator-attr');
+				
+				$( field[0] ).val(data[option]);
 
 			});
 
@@ -82,18 +67,19 @@
 			////////////
 
 			// - quote component -
-			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-background').live('change',function(){
-			  	$('#aesop-quote-component-'+unique+'').css({'background-color': $(this).val()});
+			settings.find('#aesop-generator-attr-background').live('change',function(){
+			  	component.css({'background-color': $(this).val()});
 			});
-			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-text').live('change',function(){
-			  	$('#aesop-quote-component-'+unique+'').css({'color': $(this).val()});
+			settings.find('#aesop-generator-attr-text').live('change',function(){
+			  	component.css({'color': $(this).val()});
 			});
-			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-quote').on('keyup',function(){
-			  	$('#aesop-quote-component-'+unique+' blockquote span').text( $(this).val() );
+			settings.find('#aesop-generator-attr-quote').on('keyup',function(){
+			  	component.find('blockquote span').text( $(this).val() );
 			});
-			$('#aesop--component-settings-form.quote[data-unique="'+unique+'"] #aesop-generator-attr-cite').on('keyup',function(){
-			  	$('#aesop-quote-component-'+unique+' blockquote cite').text( $(this).val() );
+			settings.find('#aesop-generator-attr-cite').on('keyup',function(){
+			  	component.find('blockquote cite').text( $(this).val() );
 			});
+
 			/////////////
 			// END LIVE EDITING OF COMPONENTS
 			////////////

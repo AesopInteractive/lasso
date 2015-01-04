@@ -131,10 +131,7 @@ jQuery(document).ready(function($){
 
 				$('body').removeClass('aesop-sidebar-open aesop-editing');
 
-				$('.aesop-editor--toolbar_wrap,
-					#aesop-editor--sidebar,
-					#aesop-editor--featImgControls')
-					.fadeOut().remove();
+				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls').fadeOut().remove();
 
 				$('#aesop-editor--edit').css('opacity',1);
 				$('.aesop-editor--controls__right').css('opacity',0);
