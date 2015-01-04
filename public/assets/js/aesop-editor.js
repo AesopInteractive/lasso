@@ -8690,8 +8690,6 @@ jQuery(document).ready(function($){
 			// END LIVE EDITING OF COMPONENTS
 			////////////
 
-
-
 			/////////////
 			// GET GALLERY IMAGES
 			/////////////
@@ -8699,7 +8697,7 @@ jQuery(document).ready(function($){
 			,	ajaxurl 	= aesop_editor.ajaxurl
 			,	form 		= $('#aesop--component-settings-form.gallery')
 			,	nonce 		= aesop_editor.getGallImgNonce
-			,	gall_id 	= $('#aesop--component-settings-form.gallery').data('unique')
+			,	gall_id 	= data['id']
 
 			var data      = {
 				action:    	'process_get_images',
