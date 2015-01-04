@@ -9496,7 +9496,10 @@ jQuery(document).ready(function($){
 	    $this.find('.aesop-generator-attr').each(function(){
 
 	      var optionName = $(this).closest('.aesop-option').data('option');
-	      if ( '' !== $(this).val() ) { window.component.attr( 'data-' + optionName, $(this).val() ); }
+	      if ( '' !== $(this).val() ) {
+	      	$component.attr( 'data-' + optionName, $(this).val() );
+	      	$component.data(optionName, $(this).val() );
+				}
 
 	    });
 
@@ -9521,15 +9524,12 @@ jQuery(document).ready(function($){
 	    });
 		*/
 
-	    var cleanFields = function( cdata ){
+    var cleanFields = function( cdata ){
+    	delete cdata['sortableItem'];
+    	return cdata;
+    }
 
-	    	delete cdata['sortableItem'];
-
-	    	return cdata;
-	    }
-
-
-	    $('#aesop-generator-insert').val('Saving...');
+	  $('#aesop-generator-insert').val('Saving...');
 
 		var data = {
 			action: 		'process_update_component',
