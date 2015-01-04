@@ -9525,7 +9525,7 @@ jQuery(document).ready(function($){
 			unique: 		cdata['unique'],
 			fields: 		JSON.stringify( optionArray ),
 			gallery_ids: 	$('#ase_gallery_ids').val(),
-			type: 			cdata['type'],
+			type: 			cdata['componentType'],
 			nonce: 			$('#aesop-generator-nonce').val()
 		}
 
