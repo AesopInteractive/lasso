@@ -35,7 +35,7 @@ class aesopEditorComponentSaving {
 				} else {
 
 					// else update the meta for this component
-					update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.' ', $options );
+					update_post_meta( $postid, '_aesop_options_'.$type.'-'.$unique.'', $options );
 
 				}
 
