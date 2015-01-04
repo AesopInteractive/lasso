@@ -9482,7 +9482,7 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 
 		var $component = window.component;
-		var data = $component.data();
+		var cdata = $component.data();
 
 		form = $('#aesop--component-settings-form');
 
@@ -9522,10 +9522,10 @@ jQuery(document).ready(function($){
 		var data = {
 			action: 		'process_update_component',
 			postid: 		aesop_editor.postid,
-			unique: 		data['unique'],
+			unique: 		cdata['unique'],
 			fields: 		JSON.stringify( optionArray ),
 			gallery_ids: 	$('#ase_gallery_ids').val(),
-			type: 			data['type'],
+			type: 			cdata['type'],
 			nonce: 			$('#aesop-generator-nonce').val()
 		}
 
