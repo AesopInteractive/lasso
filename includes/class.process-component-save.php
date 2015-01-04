@@ -27,8 +27,6 @@ class aesopEditorComponentSaving {
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
-				var_dump($_POST);
-
 				if ( $gallery_ids ) {
 
 					// if gallery images present update them

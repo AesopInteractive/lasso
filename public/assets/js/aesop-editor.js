@@ -9519,8 +9519,6 @@ jQuery(document).ready(function($){
 	    });
 		*/
 
-		console.log(cdata);
-
 	    var cleanFields = function( cdata ){
 
 	    	delete cdata['sortableItem'];
@@ -9535,7 +9533,7 @@ jQuery(document).ready(function($){
 			action: 		'process_update_component',
 			postid: 		aesop_editor.postid,
 			unique: 		cdata['unique'],
-			fields: 		cleanFields,
+			fields: 		cleanFields(cdata),
 			gallery_ids: 	$('#ase_gallery_ids').val(),
 			type: 			cdata['componentType'],
 			nonce: 			$('#aesop-generator-nonce').val()
