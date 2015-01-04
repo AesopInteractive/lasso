@@ -32,10 +32,16 @@
 
 			// let's set our globals
 			component = $(this).closest('.aesop-component');
+
+			// let's force globalize this until we refactor the js
+			window.component = component;
+
 			data = component.data();
 
 			// add a body class
 			$('body').toggleClass('aesop-sidebar-open');
+
+			settings.find('input[name="unique"]').val( data['unique'] );
 
 			// set up settings panel
 			settingsHeight();

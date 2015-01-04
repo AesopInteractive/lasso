@@ -1,30 +1,27 @@
 (function( $ ) {
-	'use strict';
 
-	$( '#aesop--component-settings-form' ).live('submit', function(e) {
+	var form;
+
+	$('#aesop--component-settings-form').live('submit', function(e) {
 
 		e.preventDefault();
 
-		var $this = $(this);
+		var $component = window.component;
+		var data = $component.data();
 
-		var unique = $(this).find('input[name="unique"]').val(),
-			type   = $(this).find('input[name="component_type"]').val();
+		form = $('#aesop--component-settings-form');
+
+		var $this = $(this);
 
 		/////////////
 		//	UPDATE COMPONENT SETTINGS DATA ATTS
 		// 	- this is run when the user saves teh component which then let's us use these to map back to the original shortcode on post save
 		/////////////
 
-		$('#aesop--component-settings-form.'+type+'[data-unique="'+unique+'"] .aesop-generator-attr').each(function(){
-
-			var $this = 	$(this),
-				optionName = $(this).closest('.aesop-option').data('option');
-
-			if ( '' !== $this.val() ) {
-				$('#aesop-'+type+'-component-'+unique+' ').attr('data-'+optionName+'', $this.val() );
-			}
-
-		});
+    $this.find('.aesop-generator-attr').each(function(){
+      var optionName = $(this).closest('.aesop-option').data('option');
+      if ( '' !== $(this).val() ) { window.component.attr( 'data-' + optionName, $(this).val() ); }
+    });
 
 		/////////////
 		//	PUSH SETTINGS INTO AN ARRAY AND STORY INTO POST META FOR SAFE KEEPING
@@ -50,10 +47,10 @@
 		var data = {
 			action: 		'process_update_component',
 			postid: 		aesop_editor.postid,
-			unique: 		unique,
+			unique: 		data['unique'],
 			fields: 		JSON.stringify( optionArray ),
 			gallery_ids: 	$('#ase_gallery_ids').val(),
-			type: 			type,
+			type: 			data['type'],
 			nonce: 			$('#aesop-generator-nonce').val()
 		}
 
