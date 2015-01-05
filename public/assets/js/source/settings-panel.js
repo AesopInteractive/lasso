@@ -86,6 +86,75 @@
 			  	component.find('blockquote cite').text( $(this).val() );
 			});
 
+			// parallax
+			settings.find('.aesop-parallax-caption > #aesop-generator-attr-caption').on('keyup',function(){
+				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
+			})
+
+			/////////////
+			// FILE UPLOAD
+			////////////
+			var file_frame;
+			var className;
+
+			$(document).on('click', '#aesop-upload-img', function( e ){
+
+			    e.preventDefault();
+
+			    className = e.currentTarget.parentElement.className;
+
+			    var unique = $(this).closest('form').data('unique'),	
+			    	type   = $('input[name="component_type"]').val()
+
+			    // If the media frame already exists, reopen it.
+			    if ( file_frame ) {
+			      	file_frame.open();
+			      	return;
+			    }
+
+			    // Create the media frame.
+			    file_frame = wp.media.frames.file_frame = wp.media({
+			      	title: 'Select Image',
+			      	button: {
+			        	text: 'Insert Image',
+			      	},
+			      	multiple: false  // Set to true to allow multiple files to be selected
+			    });
+
+			    // When an image is selected, run a callback.
+			    file_frame.on( 'select', function() {
+
+			      	var attachment = file_frame.state().get('selection').first().toJSON();
+
+			      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
+
+					/////////////
+					// LIVE EDITING OF COMPONENTS
+					// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
+					////////////
+			      	if ( 'parallax' == type ) {
+
+					  	component.find('.aesop-parallax-sc-img').css({
+					  		'background-image': 'url('+ attachment.url +')'
+					  	});
+
+			      	} else if ( 'quote' == type ) {
+
+					  	component.css({
+					  		'background-image': 'url('+ attachment.url +')'
+					  	});
+
+			      	}
+					/////////////
+					// END LIVE EDITING OF COMPONENTS
+					////////////
+
+			    });
+
+			    // Finally, open the modal
+			    file_frame.open();
+			});
+
 			/////////////
 			// END LIVE EDITING OF COMPONENTS
 			////////////
@@ -139,69 +208,8 @@
 			destroySidebar();
 			$('#aesop-editor--component__settings').perfectScrollbar('destroy');
 		});
-	});
 
-	/////////////
-	// FILE UPLOAD
-	////////////
-	var file_frame;
-	var className;
-
-	$(document).on('click', '#aesop-upload-img', function( e ){
-
-	    e.preventDefault();
-
-	    className = e.currentTarget.parentElement.className;
-
-	    var unique = $(this).closest('form').data('unique'),	
-	    	type   = $(this).closest('form').data('type');
-
-	    // If the media frame already exists, reopen it.
-	    if ( file_frame ) {
-	      	file_frame.open();
-	      	return;
-	    }
-
-	    // Create the media frame.
-	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: 'Select Image',
-	      	button: {
-	        	text: 'Insert Image',
-	      	},
-	      	multiple: false  // Set to true to allow multiple files to be selected
-	    });
-
-	    // When an image is selected, run a callback.
-	    file_frame.on( 'select', function() {
-
-	      	var attachment = file_frame.state().get('selection').first().toJSON();
-
-	      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
-
-			/////////////
-			// LIVE EDITING OF COMPONENTS
-			// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
-			////////////
-	      	if ( 'parallax' == type ) {
-
-			  	$('#aesop-parallax-component-'+unique+' .aesop-parallax-sc-img').css({
-			  		'background-image': 'url('+ attachment.url +')'
-			  	});
-	      	} else if ( 'quote' == type ) {
-
-			  	$('#aesop-quote-component-'+unique+' ').css({
-			  		'background-image': 'url('+ attachment.url +')'
-			  	});
-
-	      	}
-			/////////////
-			// END LIVE EDITING OF COMPONENTS
-			////////////
-
-	    });
-
-	    // Finally, open the modal
-	    file_frame.open();
-	});
+		
+});
 
 })( jQuery );

@@ -28,33 +28,12 @@
 
 	    });
 
-		/////////////
-		//	PUSH SETTINGS INTO AN ARRAY AND STORY INTO POST META FOR SAFE KEEPING
-		//	- at the moment this isn't being used anywhere but I've had the need to access settings like this before
-		// 	- it stores as post meta then when the component is deleted teh post meta is purged
-		/////////////
-		/*
-		var optionArray = [];
-	    $('.aesop-generator-attr').each(function() {
+	    var cleanFields = function( cdata ){
+	    	delete cdata['sortableItem'];
+	    	return cdata;
+	    }
 
-	        var name 	= $(this).attr('name'),
-	        	value 	= $(this).val();
-
-	        var item 	= {};
-	        item['name'] = name;
-	        item['value'] = value;
-
-	        optionArray.push(item);
-
-	    });
-		*/
-
-    var cleanFields = function( cdata ){
-    	delete cdata['sortableItem'];
-    	return cdata;
-    }
-
-	  $('#aesop-generator-insert').val('Saving...');
+	$('#aesop-generator-insert').val('Saving...');
 
 		var data = {
 			action: 		'process_update_component',
