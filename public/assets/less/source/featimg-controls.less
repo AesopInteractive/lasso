@@ -11,6 +11,7 @@
     margin:0 auto;
     font-size: @component-controls--font__size;
     border-radius: @editor--radius - 2;
+    line-height: 0;
     #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
     .box-shadow(inset 0 1px 0 rgba(255,255,255,0.1));
     .transition(opacity .15s ease);
@@ -18,6 +19,7 @@
     li {
         float:left;
         list-style-type: none;
+        line-height: 0;
         width:@featimg-controls--width;
         height:@featimg-controls--height;
         text-align: center;
@@ -25,6 +27,8 @@
 
         i {
             font-style: normal;
+            position: relative;
+            top:5px;
         }
 
         &:before {
