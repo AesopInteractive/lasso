@@ -56,7 +56,7 @@ jQuery(document).ready(function($){
 
 		// remove controls
 		// @todo - worry about saving later this is shit hack
-	  $('.aesop-component--controls').remove();
+	  //$('.aesop-component--controls').remove();
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');

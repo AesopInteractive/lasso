@@ -57,22 +57,22 @@
 			settings.perfectScrollbar('destroy');
 			settings.perfectScrollbar();
 
+			// map the settings from the data attributes on components into appropriate settings in settings panel
 			settings.find('.aesop-option').each(function(){
 
 				var option = $(this).data('option');
 				var field = $(this).find('.aesop-generator-attr');
-				
+
 				$( field[0] ).val(data[option]);
 
 			});
 
 			/////////////
-			// LIVE EDITING OF COMPONENTS
-			// @todo - due to the way shortcodes options are handled this is all manual for now and not dynamic
+			// START LIVE EDITING COMPONENTS
 			// @todo - this is hella dirty and needs to be cleaned up
 			////////////
 
-			// - quote component -
+			// quote component
 			settings.find('#aesop-generator-attr-background').live('change',function(){
 			  	component.css({'background-color': $(this).val()});
 			});
@@ -91,18 +91,21 @@
 				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
 			})
 
-			// image component
+			// image
 			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-image-component-caption').text( $(this).val() );
 			})
 
-			// character component
+			// character
 			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
 				component.find('.aesop-character-title').text( $(this).val() );
 			})
 			settings.find('.aesop-character-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-character-cap').text( $(this).val() );
 			})
+			/////////////
+			// END LIVE EDITING OF COMPONENTS
+			////////////
 
 
 			/////////////
@@ -143,7 +146,7 @@
 			      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
 
 					/////////////
-					// LIVE EDITING OF COMPONENTS
+					// START LIVE IMAGE EDITING COMPONENTS
 					// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
 					////////////
 			      	if ( 'parallax' == type ) {
@@ -168,7 +171,7 @@
 
 			      	}
 					/////////////
-					// END LIVE EDITING OF COMPONENTS
+					// EDN LIVE IMAGE EDITING COMPONENTS
 					////////////
 
 			    });
@@ -176,7 +179,6 @@
 			    // Finally, open the modal
 			    file_frame.open();
 			});
-
 			/////////////
 			// END LIVE EDITING OF COMPONENTS
 			////////////

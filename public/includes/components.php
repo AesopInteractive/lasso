@@ -102,7 +102,7 @@ function aesop_content_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_content columns="2"]Start typing here...[/aesop_content]');
+	echo do_shortcode('[aesop_content]Start typing here...[/aesop_content]');
 
 	return ob_get_clean();
 }
@@ -174,7 +174,7 @@ function aesop_video_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_video id="59940289"]');
+	echo do_shortcode('[aesop_video id="59940289" width="100%" align="center"]');
 
 	return ob_get_clean();
 }
