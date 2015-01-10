@@ -226,6 +226,7 @@
             border-radius:@editor--radius;
             left:-@toolbar--drop__width / 2 + 16;
             background:@toolbar--bg__accent;
+            line-height: 0;
 
             &:after {
                 content:'';
@@ -243,7 +244,7 @@
             }
 
             li {
-                line-height:1.5;
+                line-height:0;
                 text-align: center;
                 position:relative;
                 font-size:20px;
@@ -259,7 +260,7 @@
                 .box-shadow(1px 1px 0 rgba(0,0,0,0.3));
 
                 &:before {
-                    top:2px;
+                    top:6px;
                 }
 
 
