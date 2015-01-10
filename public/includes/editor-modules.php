@@ -329,6 +329,7 @@ function aesop_editor_component_modal(){
 
 			<!--<span id="aesop-editor--modal__close" >x</span>-->
 			<form id="aesop-editor--postsettings__form">
+
 				<div class="aesop-editor--postsettings__option story-status-option">
 					<label>Status</label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
@@ -346,7 +347,10 @@ function aesop_editor_component_modal(){
 					<input type="text" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 
-				<input type="submit" style="display:none" value="Save">
+				<div class="aesop-editor--postsettings__footer">
+					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="submit" value="Save">
+				</div>
 
 			</form>
 

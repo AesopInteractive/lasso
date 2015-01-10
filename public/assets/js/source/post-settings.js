@@ -22,7 +22,7 @@
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay').live('click',function(){
+		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay, .aesop-editor--postsettings-cancel').live('click',function(){
 			destroyModal();
 		});
 
