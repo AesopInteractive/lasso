@@ -9,13 +9,14 @@ class aesopEditorAssets {
 
 	function scripts(){
 
-		// only run on posts and pages if user is logged in
-		if ( is_singular() && is_user_logged_in() ) {
+		// only run on posts and pages if user is logged in and has teh right capabilities (edit_posts)
+		if ( is_singular() && aesop_editor_user_can_edit() ) {
 
 			wp_enqueue_style('aesop-editor-style', AESOP_EDITOR_URL.'/public/assets/css/aesop-editor.css', AESOP_EDITOR_VERSION, true);
 
 			wp_enqueue_script('jquery-ui-draggable');
 			wp_enqueue_script('jquery-ui-sortable');
+			wp_enqueue_script('jquery-ui-slider');
 
 			// media uploader
 			wp_enqueue_media();

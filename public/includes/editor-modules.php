@@ -278,13 +278,61 @@ function aesop_editor_component_modal(){
 	if ( !aesop_editor_user_can_edit() )
 		return;
 
+
+	$status = get_post_status( get_the_ID() );
+
+	switch ($status) {
+		case 'publish':
+			$code = 200;
+			break;
+		case 'draft':
+			$code = 100;
+			break;
+		default;
+			$code = 100;
+			break;
+
+	}
+
 	?>
+	<script>
+		jQuery(document).ready(function($){
+
+			var statusReturn = function( value ) {
+
+				var out;
+				if ( 100 == value ) {
+					out = 'Draft';
+				} else if ( 200 == value ) {
+					out = 'Published';
+				}
+				return out;
+			}
+
+		    $('#aesop-editor--slider').slider({
+		      	value:<?php echo $code;?>,
+		      	min: 100,
+		      	max: 200,
+		      	step: 100,
+		      	animate:true,
+		      	slide: function( event, ui ) {
+		        	$('#aesop-editor--slider__status').text( statusReturn(ui.value) );
+		      	}
+		    });
+		    $('#aesop-editor--slider__status').text( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+		});
+  </script>
 	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
 		<div class="aesop-editor--modal__inner">
 
 			<span id="aesop-editor--modal__close" >x</span>
 
-			<p>Post Settings</p>
+			<div class="aesop-editor--postsettings__option">
+				<label id="aesop-editor--slider__status"></label>
+				<div class="aesop-editor--slider_wrap">
+					<div id="aesop-editor--slider"></div>
+				</div>
+			</div>
 
 		</div>
 	</div>
