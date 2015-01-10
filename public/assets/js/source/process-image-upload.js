@@ -63,7 +63,7 @@
 
 	      	$('#aesop-editor--featImgSave a').trigger('click');
 
-	      	$('.no-post-cover-note').fadeOut.remove();
+	      	$('.no-post-cover-note').remove();
 
 	    });
 
