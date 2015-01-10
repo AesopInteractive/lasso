@@ -340,7 +340,12 @@ function aesop_editor_component_modal(){
 
 				<div class="aesop-editor--postsettings__option ">
 					<label>URL</label>
-					<input type="text" value="yo">
+					<input type="text" value="">
+				</div>
+
+				<div class="aesop-editor--postsettings__option ">
+					<label>Schedule</label>
+					<input type="text" value="">
 				</div>
 				<input type="submit" style="display:none" value="Save">
 
