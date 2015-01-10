@@ -325,10 +325,13 @@ function aesop_editor_component_modal(){
 	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
 		<div class="aesop-editor--modal__inner">
 
-			<span id="aesop-editor--modal__close" >x</span>
+			<!--<span id="aesop-editor--modal__close" >x</span>-->
 
-			<div class="aesop-editor--postsettings__option">
-				<label id="aesop-editor--slider__status"></label>
+			<div class="aesop-editor--postsettings__option ">
+				<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
+					<li id="aesop-editor--status-draft">Draft</li>
+					<li id="aesop-editor--status-publish">Published</li>
+				</ul>
 				<div class="aesop-editor--slider_wrap">
 					<div id="aesop-editor--slider"></div>
 				</div>

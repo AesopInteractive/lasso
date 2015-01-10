@@ -61,6 +61,40 @@
     padding:10px 15px;
 }
 
+// post status indicator
+.aesop-editor--postsettings__option {
+
+    .story-status {
+        margin:0;
+        padding:0;
+        .clearfix();
+
+        li {
+           float: left;
+        }
+
+        &.story-status-publish {
+            #aesop-editor--status-draft {
+                .opacity(0.3);
+            }
+        }
+        &.story-status-draft {
+            #aesop-editor--status-publish {
+                 .opacity(0.3);
+            }
+        }
+
+        #aesop-editor--status-draft {
+
+        }
+
+        // published
+        #aesop-editor--status-publish {
+            float: right;
+        }
+    }
+}
+
 // post status slider
 #aesop-editor--slider {
     position: relative;
