@@ -45,6 +45,7 @@ class Aesop_Editor {
 		require_once(AESOP_EDITOR_DIR.'/public/includes/class.assets.php');
 		require_once(AESOP_EDITOR_DIR.'/public/includes/editor-modules.php');
 		require_once(AESOP_EDITOR_DIR.'/public/includes/editor-modules--gallery.php');
+		require_once(AESOP_EDITOR_DIR.'/public/includes/editor-modules--map.php');
 		require_once(AESOP_EDITOR_DIR.'/public/includes/components.php');
 		require_once(AESOP_EDITOR_DIR.'/includes/class.process-save.php');
 		require_once(AESOP_EDITOR_DIR.'/includes/class.process-gallery.php');

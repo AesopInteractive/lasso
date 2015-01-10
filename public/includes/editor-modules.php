@@ -237,7 +237,7 @@ function aesop_editor_options_blob() {
 
 			} elseif ( 'map' == $shortcode['front_type'] ) {
 
-				$return .= 'MAP GO TIME';
+				$return .= aesop_map_editor_module();
 			}
 		}
 		///////////////////////////
