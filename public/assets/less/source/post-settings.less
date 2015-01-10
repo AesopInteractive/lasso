@@ -63,9 +63,10 @@
 
 // post status indicator
 .aesop-editor--postsettings__option {
-    border-bottom:1px solid @toolbar--border;
+    border-bottom:1px solid @modal--border;
     padding-bottom:15px;
     margin-bottom:10px;
+    position: relative;
 
     label {
         font-size: 17px;
@@ -107,7 +108,39 @@
             float: right;
         }
     }
+
+    // post slug option
+    &.story-slug-option {
+
+        .url-helper,
+        input {
+            height:34px;
+            font-size: @modal--font__size;
+        }
+
+        // the url mask
+        .url-helper {
+            position: absolute;
+            z-index: 1;
+            background:@modal--bg__accent;
+            height:32px;
+            bottom:1px;
+            left:1px;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            padding:1px 8px 2px;
+        }
+
+        // the url input
+        input {
+            z-index: 0;
+            padding-left:118px;
+            position: relative;
+        }
+    }
 }
+
+
 
 // post status slider
 #aesop-editor--slider {

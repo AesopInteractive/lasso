@@ -273,6 +273,8 @@ function aesop_editor_options_blob() {
 */
 function aesop_editor_component_modal(){
 
+	global $post;
+
 	ob_start();
 
 	if ( !aesop_editor_user_can_edit() )
@@ -327,7 +329,7 @@ function aesop_editor_component_modal(){
 
 			<!--<span id="aesop-editor--modal__close" >x</span>-->
 			<form id="aesop-editor--postsettings__form">
-				<div class="aesop-editor--postsettings__option ">
+				<div class="aesop-editor--postsettings__option story-status-option">
 					<label>Status</label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 						<li id="aesop-editor--status-draft">Draft</li>
@@ -338,15 +340,12 @@ function aesop_editor_component_modal(){
 					</div>
 				</div>
 
-				<div class="aesop-editor--postsettings__option ">
+				<div class="aesop-editor--postsettings__option story-slug-option">
 					<label>URL</label>
-					<input type="text" value="">
+					<div class="url-helper"><?php echo get_bloginfo('url');?></div>
+					<input type="text" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 
-				<div class="aesop-editor--postsettings__option ">
-					<label>Schedule</label>
-					<input type="text" value="">
-				</div>
 				<input type="submit" style="display:none" value="Save">
 
 			</form>
