@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                         'public/assets/js/source/util--sweet-alert.js',
                         'public/assets/js/source/util--geo-complete.js',
                         'public/assets/js/source/enter-editor.js',
-                        //'public/assets/js/source/modal.js',
+                        'public/assets/js/source/post-settings.js',
                         'public/assets/js/source/settings-panel.js',
                         'public/assets/js/source/toolbar.js',
                         'public/assets/js/source/process-save.js',

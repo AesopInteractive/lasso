@@ -21,6 +21,7 @@ function aesop_editor_controls() {
 
 		?><nav id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
 			<a href="#" id="aesop-editor--edit" title="Edit Post" class="aesop-editor--button__primary"></a>
+			<a href="#" id="aesop-editor--post-settings" title="Edit Post Settings" class="aesop-editor--button__primary"></a>
 			<div class="aesop-editor--controls__right">
 				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>
 				<?php if ( 'draft' == $status ) { ?>
@@ -266,6 +267,34 @@ function aesop_editor_options_blob() {
 	return $blob;
 }
 
+/**
+*
+*	Used to house post settings like scheduling, slugs and draft status
+*/
+function aesop_editor_component_modal(){
+
+	ob_start();
+
+	if ( !aesop_editor_user_can_edit() )
+		return;
+
+	?>
+	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
+		<div class="aesop-editor--modal__inner">
+
+			<span id="aesop-editor--modal__close" >x</span>
+
+			<p>Post Settings</p>
+
+		</div>
+	</div>
+	<div id="aesop-editor--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
+}
+
+
 /////////////////////////////////////////////
 // UTILITIES
 /////////////////////////////////////////////
@@ -283,33 +312,6 @@ function aesop_editor_user_can_edit(){
 	}
 
 }
-/////////////////////////////////////////////
-// NOT IN USE BUT WANT TO KEEP FOR NOW
-/////////////////////////////////////////////
 
-/**
-*
-*	This modal currently isn't being used but we're keeping it hust in case we need it for something
-*/
-function aesop_editor_component_modal(){
 
-	ob_start();
 
-	if ( !is_user_logged_in() || !current_user_can('edit_posts') )
-		return;
-
-	?>
-	<div id="aesop-editor--modal">
-		<div class="aesop-editor--modal__inner">
-
-			<span id="aesop-editor--modal__close" >x</span>
-
-			<p>Component Settings</p>
-
-		</div>
-	</div>
-	<div id="aesop-editor--modal__overlay"></div>
-	<?php
-
-	return ob_get_clean();
-}

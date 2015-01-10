@@ -3,7 +3,11 @@
     z-index:@z-index--toolbar;
     position:fixed;
     bottom:@toolbar--pos__bottom;
-    left:@toolbar--pos__bottom;
+    left:0;
+    right:0;
+    width:100%;
+    padding-left:@toolbar--pos__bottom;
+    padding-right:@toolbar--pos__bottom;
 
     a {
         display:inline-block;
@@ -37,7 +41,7 @@
 
 .aesop-editor--controls__right {
     position: fixed;
-    right: @toolbar--pos__bottom;
+    right: -10000px;
     bottom: @toolbar--pos__bottom;
     .opacity(0);
     .transition(opacity .2s ease);
@@ -54,6 +58,25 @@
     &:before {
         position:relative;
         content:'\e908';
+        top:3px;
+    }
+
+    &:hover {
+        background:@toolbar--hover;
+    }
+}
+
+// POST SETTINGS
+#aesop-editor--post-settings {
+    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
+    color:@control--color;
+    text-shadow:0 1px 1px rgba(0,0,0,0.4);
+    position: absolute;
+    right:@toolbar--pos__bottom;
+
+    &:before {
+        position:relative;
+        content:'\e994';
         top:3px;
     }
 
@@ -125,9 +148,12 @@
     }
 }
 
+
+
 // body class aesop is editing
 .aesop-editing {
 
+    #aesop-editor--post-settings,
     #aesop-editor--edit {
         .opacity(0);
         position: absolute;
@@ -136,6 +162,7 @@
 
     .aesop-editor--controls__right {
         .opacity(1);
+        right: @toolbar--pos__bottom;
     }
 
 }

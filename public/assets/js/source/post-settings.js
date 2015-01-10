@@ -1,16 +1,17 @@
 (function( $ ) {
-	'use strict';
 
 	$(document).ready(function(){
 
 		// method to destroy the modal
 		var destroyModal = function(){
 			$('body').removeClass('aesop-modal-open');
-			$('#aesop-editor--modal, #aesop-editor--modal__overlay').remove();
+			$('#aesop-editor--post-settings__modal, #aesop-editor--modal__overlay').remove();
 		}
 
 		// modal click
-		$('#aesop-component--settings__trigger').live('click',function(){
+		$('#aesop-editor--post-settings').live('click',function(e){
+
+			e.preventDefault();
 
 			// add a body class
 			$('body').toggleClass('aesop-modal-open');
