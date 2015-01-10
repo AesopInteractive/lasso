@@ -8691,6 +8691,20 @@ jQuery(document).ready(function($){
 				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
 			})
 
+			// image component
+			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
+				component.find('.aesop-image-component-caption').text( $(this).val() );
+			})
+
+			// character component
+			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
+				component.find('.aesop-character-title').text( $(this).val() );
+			})
+			settings.find('.aesop-character-caption > #aesop-generator-attr-caption').on('keyup',function(){
+				component.find('.aesop-character-cap').text( $(this).val() );
+			})
+
+
 			/////////////
 			// FILE UPLOAD
 			////////////
@@ -8743,6 +8757,14 @@ jQuery(document).ready(function($){
 					  	component.css({
 					  		'background-image': 'url('+ attachment.url +')'
 					  	});
+
+			      	} else if ( 'image' == type ) {
+
+					  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
+
+			      	} else if ( 'character' == type ) {
+
+					  	component.find('.aesop-character-avatar').attr('src', attachment.url)
 
 			      	}
 					/////////////
