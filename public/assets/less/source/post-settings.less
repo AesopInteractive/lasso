@@ -63,6 +63,19 @@
 
 // post status indicator
 .aesop-editor--postsettings__option {
+    border-bottom:1px solid @toolbar--border;
+    padding-bottom:15px;
+    margin-bottom:10px;
+
+    label {
+        font-size: 17px;
+    }
+
+    &:last-of-type {
+        border-bottom:none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 
     .story-status {
         margin:0;
@@ -71,6 +84,7 @@
 
         li {
            float: left;
+           font-size: 15px;
         }
 
         &.story-status-publish {
