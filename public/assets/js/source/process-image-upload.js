@@ -63,6 +63,8 @@
 
 	      	$('#aesop-editor--featImgSave a').trigger('click');
 
+	      	$('.no-post-cover-note').fadeOut.remove();
+
 	    });
 
 	    // Finally, open the modal
