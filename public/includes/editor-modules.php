@@ -354,7 +354,7 @@ function aesop_editor_component_modal(){
 					</div>
 				</div>
 
-				<div class="aesop-editor--postsettings__option story-slug-option">
+				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
 					<label>URL</label>
 					<div class="url-helper"><?php echo get_bloginfo('url');?></div>
 					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">

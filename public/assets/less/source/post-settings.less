@@ -77,15 +77,15 @@
         display: block;
     }
 
-    &:last-child {
+    &.aesop-editor--last-option {
         border-bottom:none;
         margin-bottom: 0;
         padding-bottom: 0;
     }
 
-    // ul
+    // story status label
     .story-status {
-        margin:0 0 8px;
+        margin:12px 0 8px;
         padding:0 10px;
         line-height: 1;
         .clearfix();
@@ -132,6 +132,7 @@
             background:@modal--bg__accent;
             height:32px;
             bottom:21px;
+            top:23px;
             left:1px;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
@@ -151,11 +152,16 @@
 .aesop-editor--postsettings__footer {
     text-align: right;
     font-size: @modal--font__size + 2;
+    padding-top:20px;
+    margin-top:22px;
+    border-top:1px solid @modal--border;
+    .box-shadow(0 -1px 1px rgba(255,255,255,0.05));
 
     a,input {
         display: inline-block;
     }
 
+    // cancel button
     .aesop-editor--postsettings-cancel {
         background: 0 0;
         color: @editor--color__error;
@@ -168,6 +174,7 @@
         }
     }
 
+    // save button
     input[type="submit"] {
         text-align: center;
         float: right;
@@ -201,12 +208,13 @@
 #aesop-editor--slider {
     position: relative;
     text-align: left;
-    background: @input--color;
+    background: @rail--track__color;
     top:5px;
     height:@rail__height;
     border-radius:4px;
     .box-shadow(inset 1px 1px 1px rgba(0,0,0,0.2));
 
+    // slider handle
     .ui-slider-handle {
         position: absolute;
         z-index: 2;
@@ -215,10 +223,11 @@
         cursor: default;
         -ms-touch-action: none;
         touch-action: none;
-        background:@editor--color__update;
-        top:-@rail__height / 2;
+        background:@rail--handle__color;
+        top:-6px;
         margin-left:-@rail--handle__w / 2;
         border-radius: 100%;
+        .box-shadow(0 0 7px -1px rgba(0,0,0,0.75));
 
         &:focus,
         &:active {
