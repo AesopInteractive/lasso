@@ -75,6 +75,7 @@
         line-height: 1;
         margin-bottom: 8px;
         display: block;
+        font-family: @editor--font;
     }
 
     &.aesop-editor--last-option {
@@ -93,6 +94,7 @@
         li {
             font-size: @modal--font__size;
             float: left;
+            list-style-type: none;
         }
 
         &.story-status-publish {
@@ -118,32 +120,32 @@
 
     // post slug option
     &.story-slug-option {
+        .clearfix();
 
         .url-helper,
         input {
+            float: left;
             height:34px;
             font-size: @modal--font__size;
+            overflow: hidden;
         }
 
         // the url mask
         .url-helper {
-            position: absolute;
-            z-index: 1;
             background:@modal--bg__accent;
-            height:32px;
-            bottom:21px;
-            top:23px;
-            left:1px;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
             padding:1px 8px 2px;
+            width:142px;
         }
 
         // the url input
         input {
+            width:200px;
             z-index: 0;
-            padding-left:118px;
             position: relative;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
     }
 }
