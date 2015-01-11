@@ -8635,6 +8635,18 @@ jQuery(document).ready(function($){
 			destroyModal();
 		});
 
+		/////////////////
+		/// EXIT SETTINGS
+		///////////////////
+		$(document).keyup(function(e) {
+
+			if ( 27 == e.keyCode ) {
+
+				destroyModal();
+			}
+
+		});
+
 		/////////////
 		// SAVE SETTINGS
 		//////////////

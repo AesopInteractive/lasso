@@ -324,6 +324,8 @@ function aesop_editor_component_modal(){
 				      	slide: function( event, ui ) {
 				        	$('input[name="status"]').val( statusReturn(ui.value) );
 
+				        	$('.aesop-editor--postsettings__footer').slideDown()
+
 				        	if ( 100 == ui.value ) {
 				        		$('.story-status').removeClass('story-status-publish').addClass('story-status-draft')
 				        	} else if ( 200 == ui.value ) {
@@ -332,6 +334,10 @@ function aesop_editor_component_modal(){
 				      	}
 				    });
 				    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+
+				     $('input[name="story_slug"]').on('keyup',function(){
+					  	$('.aesop-editor--postsettings__footer').slideDown()
+					});
 				});
 		  	</script>
 			<!--<span id="aesop-editor--modal__close" >x</span>-->
@@ -341,7 +347,7 @@ function aesop_editor_component_modal(){
 					<label>Status</label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 						<li id="aesop-editor--status-draft">Draft</li>
-						<li id="aesop-editor--status-publish">Published</li>
+						<li id="aesop-editor--status-publish">Publish</li>
 					</ul>
 					<div class="aesop-editor--slider_wrap">
 						<div id="aesop-editor--slider"></div>
@@ -354,7 +360,7 @@ function aesop_editor_component_modal(){
 					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 
-				<div class="aesop-editor--postsettings__footer">
+				<div class="aesop-editor--postsettings__footer" style="display:none;">
 					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
 					<input type="hidden" name="status" value="">
 					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
