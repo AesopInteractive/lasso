@@ -19,6 +19,16 @@
 			// append teh modal markup ( aesop_editor_component_modal() )
 			$('body').append(aesop_editor.component_modal);
 
+			////////////
+			// RESIZE THE URL HELPER FIELD
+			////////////
+			var mask 		= $('.url-helper')
+			,	mWidth 		= mask.outerWidth()
+			,	field  		= $('input[name="story_slug"]')
+			,	maxLength   = 342
+
+			field.css({'width':maxLength - mWidth});
+
 		});
 
 		// destroy modal if clicking close or overlay

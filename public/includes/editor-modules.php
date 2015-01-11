@@ -297,6 +297,17 @@ function aesop_editor_component_modal(){
 
 	}
 
+	// get current blog slug
+	if ( is_multisite() ) {
+
+		$sitedata = get_blog_details( get_current_blog_id() );
+
+		$site_url = $sitedata->path;
+
+	} else {
+		$site_url = get_bloginfo('url');
+	}
+
 	?>
 	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
 		<div class="aesop-editor--modal__inner">
@@ -359,7 +370,7 @@ function aesop_editor_component_modal(){
 
 				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
 					<label>URL</label>
-					<div class="url-helper"><?php echo get_bloginfo('url');?></div><input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
+					<div class="url-helper"><?php echo esc_url( $site_url );?></div><input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 
 				<div class="aesop-editor--postsettings__footer" style="display:none;">
