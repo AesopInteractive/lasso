@@ -8806,6 +8806,15 @@ jQuery(document).ready(function($){
 			settings.find('.aesop-character-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-character-cap').text( $(this).val() );
 			})
+
+			// chapter
+			settings.find('.aesop-option.aesop-chapter-title > #aesop-generator-attr-title').on('keyup',function(){
+				component.find('.aesop-cover-title span').text( $(this).val() );
+			})
+			settings.find('.aesop-option.aesop-chapter-subtitle > #aesop-generator-attr-subtitle').on('keyup',function(){
+				component.find('.aesop-cover-title small').text( $(this).val() );
+			})
+
 			/////////////
 			// END LIVE EDITING OF COMPONENTS
 			////////////
@@ -8871,6 +8880,12 @@ jQuery(document).ready(function($){
 			      	} else if ( 'character' == type ) {
 
 					  	component.find('.aesop-character-avatar').attr('src', attachment.url)
+
+			      	} else if ( 'chapter' == type ) {
+
+			      		component.find('.aesop-article-chapter').css({
+					  		'background-image': 'url('+ attachment.url +')'
+					  	});
 
 			      	}
 					/////////////

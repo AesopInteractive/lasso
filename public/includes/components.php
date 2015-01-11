@@ -147,7 +147,7 @@ function aesop_heading_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_chapter title="Chapter One" subtitle="It started this morning..." img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" ]');
+	echo do_shortcode('[aesop_chapter title="Chapter One" subtitle="It started this morning..." img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" full="on"]');
 
 	return ob_get_clean();
 }
