@@ -337,13 +337,6 @@ function aesop_editor_component_modal(){
 				    });
 				    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
 
-				    // init datepicker
-				    $( '#story-schedule' ).datepicker({
-				    	beforeShow: function(input, inst) {
-					       $('#ui-datepicker-div').addClass('story-schedule-calendar');
-					   }
-				    });
-
 				    // if any changes happen then show the footer
 				    $('input[name="story_slug"]').on('keyup',function(){
 					  	$('.aesop-editor--postsettings__footer').slideDown()
@@ -364,15 +357,10 @@ function aesop_editor_component_modal(){
 					</div>
 				</div>
 
-				<div class="aesop-editor--postsettings__option story-slug-option">
+				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
 					<label>URL</label>
 					<div class="url-helper"><?php echo get_bloginfo('url');?></div>
 					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
-				</div>
-
-				<div class="aesop-editor--postsettings__option story-schedule-option aesop-editor--last-option">
-					<label>Schedule Post</label>
-					<input type="text" id="story-schedule" name="story_schedule" value="">
 				</div>
 
 				<div class="aesop-editor--postsettings__footer" style="display:none;">

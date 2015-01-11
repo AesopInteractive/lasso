@@ -17,7 +17,6 @@ class aesopEditorAssets {
 			wp_enqueue_script('jquery-ui-draggable');
 			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('jquery-ui-slider');
-			wp_enqueue_script('jquery-ui-datepicker');
 
 			// media uploader
 			wp_enqueue_media();
