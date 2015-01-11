@@ -8630,7 +8630,8 @@ jQuery(document).ready(function($){
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay, .aesop-editor--postsettings-cancel').live('click',function(){
+		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay, .aesop-editor--postsettings-cancel').live('click',function(e){
+			e.preventDefault();
 			destroyModal();
 		});
 

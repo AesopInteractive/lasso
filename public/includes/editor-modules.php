@@ -306,6 +306,7 @@ function aesop_editor_component_modal(){
 					var statusReturn = function( value ) {
 
 						var out;
+
 						if ( 100 == value ) {
 							out = 'draft';
 						} else if ( 200 == value ) {
@@ -322,6 +323,12 @@ function aesop_editor_component_modal(){
 				      	animate:'fast',
 				      	slide: function( event, ui ) {
 				        	$('input[name="status"]').val( statusReturn(ui.value) );
+
+				        	if ( 100 == ui.value ) {
+				        		$('.story-status').removeClass('story-status-publish').addClass('story-status-draft')
+				        	} else if ( 200 == ui.value ) {
+				        		$('.story-status').removeClass('story-status-draft').addClass('story-status-publish')
+				        	}
 				      	}
 				    });
 				    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
