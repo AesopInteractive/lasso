@@ -20,13 +20,15 @@ class aesopEditorProcessUpdatePost {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-update-post-settings' ) ) {
 
-				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$status = isset( $_POST['status'] ) ? $_POST['status'] : false;
+				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 				$slug 	= isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
 
 				$args = array(
 					'ID'			=> (int) $postid,
 				  	//'post_title'    => wp_strip_all_tags( $title ),
-				  	'post_name'		=> sanitize_title( trim( $slug ) )
+				  	'post_name'		=> sanitize_title( trim( $slug ) ),
+				  	'post_status'	=> $status
 				);
 
 				wp_update_post( $args );

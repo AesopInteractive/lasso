@@ -307,9 +307,9 @@ function aesop_editor_component_modal(){
 
 						var out;
 						if ( 100 == value ) {
-							out = 'Draft';
+							out = 'draft';
 						} else if ( 200 == value ) {
-							out = 'Published';
+							out = 'publish';
 						}
 						return out;
 					}
@@ -321,10 +321,10 @@ function aesop_editor_component_modal(){
 				      	step: 100,
 				      	animate:'fast',
 				      	slide: function( event, ui ) {
-				        	$('#aesop-editor--slider__status').text( statusReturn(ui.value) );
+				        	$('input[name="status"]').val( statusReturn(ui.value) );
 				      	}
 				    });
-				    $('#aesop-editor--slider__status').text( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+				    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
 				});
 		  	</script>
 			<!--<span id="aesop-editor--modal__close" >x</span>-->
@@ -349,6 +349,7 @@ function aesop_editor_component_modal(){
 
 				<div class="aesop-editor--postsettings__footer">
 					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="hidden" name="status" value="">
 					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
 					<input type="hidden" name="action" value="process_update_post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
