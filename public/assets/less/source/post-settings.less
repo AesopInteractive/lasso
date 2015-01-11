@@ -133,8 +133,8 @@
         // the url mask
         .url-helper {
             background:@modal--bg__accent;
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
+            border-top-left-radius: @editor--radius;
+            border-bottom-left-radius: @editor--radius;
             padding:9px 8px 2px;
             line-height: 1;
         }
@@ -144,8 +144,7 @@
             z-index: 0;
             position: relative;
             padding-left: 6px;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+            border-radius: 0 @editor--radius @editor--radius 0;
         }
     }
 }
