@@ -280,10 +280,9 @@ function aesop_editor_component_modal(){
 	if ( !aesop_editor_user_can_edit() )
 		return;
 
-
 	$status = get_post_status( get_the_ID() );
 
-	switch ($status) {
+	switch ( $status ) {
 		case 'publish':
 			$code = 200;
 			break;
@@ -297,36 +296,35 @@ function aesop_editor_component_modal(){
 	}
 
 	?>
-	<script>
-		jQuery(document).ready(function($){
-
-			var statusReturn = function( value ) {
-
-				var out;
-				if ( 100 == value ) {
-					out = 'Draft';
-				} else if ( 200 == value ) {
-					out = 'Published';
-				}
-				return out;
-			}
-
-		    $('#aesop-editor--slider').slider({
-		      	value:<?php echo $code;?>,
-		      	min: 100,
-		      	max: 200,
-		      	step: 100,
-		      	animate:true,
-		      	slide: function( event, ui ) {
-		        	$('#aesop-editor--slider__status').text( statusReturn(ui.value) );
-		      	}
-		    });
-		    $('#aesop-editor--slider__status').text( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
-		});
-  </script>
 	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
 		<div class="aesop-editor--modal__inner">
+			<script>
+				jQuery(document).ready(function($){
 
+					var statusReturn = function( value ) {
+
+						var out;
+						if ( 100 == value ) {
+							out = 'Draft';
+						} else if ( 200 == value ) {
+							out = 'Published';
+						}
+						return out;
+					}
+
+				    $('#aesop-editor--slider').slider({
+				      	value:<?php echo $code;?>,
+				      	min: 100,
+				      	max: 200,
+				      	step: 100,
+				      	animate:'fast',
+				      	slide: function( event, ui ) {
+				        	$('#aesop-editor--slider__status').text( statusReturn(ui.value) );
+				      	}
+				    });
+				    $('#aesop-editor--slider__status').text( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+				});
+		  	</script>
 			<!--<span id="aesop-editor--modal__close" >x</span>-->
 			<form id="aesop-editor--postsettings__form">
 
