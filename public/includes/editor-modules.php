@@ -340,7 +340,7 @@ function aesop_editor_component_modal(){
 					});
 				});
 		  	</script>
-			<!--<span id="aesop-editor--modal__close" >x</span>-->
+
 			<form id="aesop-editor--postsettings__form" enctype="multipart/form-data" >
 
 				<div class="aesop-editor--postsettings__option story-status-option">

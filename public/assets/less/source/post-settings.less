@@ -65,13 +65,16 @@
 // post status indicator
 .aesop-editor--postsettings__option {
     padding-bottom:20px;
-    margin-bottom:10px;
+    margin-bottom:20px;
     position: relative;
     border-bottom:1px solid @modal--border;
     .box-shadow(0 1px 1px rgba(255,255,255,0.05));
 
     label {
         font-size: @modal--font__size;
+        line-height: 1;
+        margin-bottom: 8px;
+        display: block;
     }
 
     &:last-child {
@@ -200,20 +203,21 @@
     text-align: left;
     background: @input--color;
     top:5px;
-    height:8px;
+    height:@rail__height;
     border-radius:4px;
+    .box-shadow(inset 1px 1px 1px rgba(0,0,0,0.2));
 
     .ui-slider-handle {
         position: absolute;
         z-index: 2;
-        width: 20px;
-        height: 20px;
+        width: @rail--handle__w;
+        height: @rail--handle__h;
         cursor: default;
         -ms-touch-action: none;
         touch-action: none;
         background:@editor--color__update;
-        top:-6px;
-        margin-left:-10px;
+        top:-@rail__height / 2;
+        margin-left:-@rail--handle__w / 2;
         border-radius: 100%;
 
         &:focus,
