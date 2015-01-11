@@ -28,6 +28,7 @@ class aesopEditorAssets {
 				'article_object'	=> AESOP_EDITOR_TARGET,
 				'post_status'		=> get_post_status( get_the_ID() ),
 				'postid'			=> get_the_ID(),
+				'permalink'			=> get_permalink(),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'nonce'				=> wp_create_nonce('aesop_editor'),
 				'handle'			=> aesop_editor_settings_toolbar(),

@@ -67,6 +67,8 @@
 					$('input[type="submit"]').val('Saved!');
 					location.reload();
 
+					window.location.replace(aesop_editor.permalink);
+
 				} else if( 'error' == response ) {
 
 					alert('error');
