@@ -328,7 +328,7 @@ function aesop_editor_component_modal(){
 				});
 		  	</script>
 			<!--<span id="aesop-editor--modal__close" >x</span>-->
-			<form id="aesop-editor--postsettings__form">
+			<form id="aesop-editor--postsettings__form" enctype="multipart/form-data" >
 
 				<div class="aesop-editor--postsettings__option story-status-option">
 					<label>Status</label>
@@ -344,11 +344,13 @@ function aesop_editor_component_modal(){
 				<div class="aesop-editor--postsettings__option story-slug-option">
 					<label>URL</label>
 					<div class="url-helper"><?php echo get_bloginfo('url');?></div>
-					<input type="text" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
+					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 
 				<div class="aesop-editor--postsettings__footer">
 					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
+					<input type="hidden" name="action" value="process_update_post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="Save">
 				</div>

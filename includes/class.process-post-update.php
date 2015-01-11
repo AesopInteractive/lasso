@@ -21,6 +21,15 @@ class aesopEditorProcessUpdatePost {
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-update-post-settings' ) ) {
 
 				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$slug 	= isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
+
+				$args = array(
+					'ID'			=> (int) $postid,
+				  	//'post_title'    => wp_strip_all_tags( $title ),
+				  	'post_name'		=> sanitize_title( trim( $slug ) )
+				);
+
+				wp_update_post( $args );
 
 				echo 'success';
 

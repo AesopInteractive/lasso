@@ -8645,13 +8645,9 @@ jQuery(document).ready(function($){
 
 			var $this = $(this);
 
-			$(this).find('input[value="submit"]').val('Saving...');
+			$(this).find('input[type="submit"]').val('Saving...');
 
-			var data = {
-				action: 		'process_update_post',
-				postid: 		aesop_editor.postid,
-				nonce: 			$('input[name="nonce"]').val()
-			}
+			var data = $this.serialize();
 
 			/////////////
 			//	DO TEH SAVE
@@ -8662,8 +8658,9 @@ jQuery(document).ready(function($){
 
 				if( response == 'success' ) {
 
-					$('input[value="submit"]').addClass('saved');
-					$('input[value="submit"]').val('Saved!');
+					$('input[type="submit"]').addClass('saved');
+					$('input[type="submit"]').val('Saved!');
+					location.reload();
 
 				} else if( 'error' == response ) {
 
