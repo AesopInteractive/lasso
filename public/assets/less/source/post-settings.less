@@ -64,16 +64,17 @@
 
 // post status indicator
 .aesop-editor--postsettings__option {
-    border-bottom:1px solid @modal--border;
-    padding-bottom:15px;
+    padding-bottom:20px;
     margin-bottom:10px;
     position: relative;
+    border-bottom:1px solid @modal--border;
+    .box-shadow(0 1px 1px rgba(255,255,255,0.05));
 
     label {
-        font-size: 17px;
+        font-size: @modal--font__size;
     }
 
-    &:last-of-type {
+    &:last-child {
         border-bottom:none;
         margin-bottom: 0;
         padding-bottom: 0;
@@ -81,13 +82,14 @@
 
     // ul
     .story-status {
-        margin:0;
+        margin:0 0 8px;
         padding:0 10px;
+        line-height: 1;
         .clearfix();
 
         li {
-           float: left;
-           font-size: 15px;
+            font-size: @modal--font__size;
+            float: left;
         }
 
         &.story-status-publish {
@@ -126,7 +128,7 @@
             z-index: 1;
             background:@modal--bg__accent;
             height:32px;
-            bottom:16px;
+            bottom:21px;
             left:1px;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
