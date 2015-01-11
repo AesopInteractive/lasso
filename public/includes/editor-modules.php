@@ -282,6 +282,8 @@ function aesop_editor_component_modal(){
 
 	$status = get_post_status( get_the_ID() );
 
+	$nonce = wp_create_nonce('aesop-update-post-settings');
+
 	switch ( $status ) {
 		case 'publish':
 			$code = 200;
@@ -347,6 +349,7 @@ function aesop_editor_component_modal(){
 
 				<div class="aesop-editor--postsettings__footer">
 					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="Save">
 				</div>
 

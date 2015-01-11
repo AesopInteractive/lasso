@@ -8634,6 +8634,48 @@ jQuery(document).ready(function($){
 			destroyModal();
 		});
 
+		/////////////
+		// SAVE SETTINGS
+		//////////////
+		var form;
+
+		$('#aesop-editor--postsettings__form').live('submit', function(e) {
+
+			e.preventDefault();
+
+			var $this = $(this);
+
+			$(this).find('input[value="submit"]').val('Saving...');
+
+			var data = {
+				action: 		'process_update_post',
+				postid: 		aesop_editor.postid,
+				nonce: 			$('input[name="nonce"]').val()
+			}
+
+			/////////////
+			//	DO TEH SAVE
+			/////////////
+			$.post( aesop_editor.ajaxurl, data, function(response) {
+
+				console.log(response);
+
+				if( response == 'success' ) {
+
+					$('input[value="submit"]').addClass('saved');
+					$('input[value="submit"]').val('Saved!');
+
+				} else if( 'error' == response ) {
+
+					alert('error');
+
+				}
+
+
+			});
+
+		});
+
 	});
 
 })( jQuery );
