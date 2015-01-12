@@ -95,6 +95,10 @@
 			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-image-component-caption').text( $(this).val() );
 			})
+			// live image size
+			settings.find('.aesop-option.aesop-image-imgwidth > #aesop-generator-attr-imgwidth').on('keyup',function(){
+				component.find('.aesop-image-component-image').css('width', $(this).val() );
+			})
 
 			// character
 			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){

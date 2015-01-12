@@ -165,7 +165,7 @@ function aesop_timeline_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_timeline]');
+	echo do_shortcode('[aesop_timeline_stop num="Title" title="2014"]');
 
 	return ob_get_clean();
 }
