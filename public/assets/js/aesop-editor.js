@@ -9840,8 +9840,7 @@ jQuery(document).ready(function($){
 
 		/////////////
 		// SAVE TITLE
-		//////////////
-		var form;
+		/////////////
 
 		$(aesop_editor.titleClass).on('blur', function() {
 
