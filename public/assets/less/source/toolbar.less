@@ -1,23 +1,28 @@
 // main toolbar layout
 .aesop-editor--toolbar_wrap {
 
+    width:@toolbar--width;
+    left: ~'calc(50% - @{toolbar--width} / 2)';
+
+}
+
+// global styles wrapper for editor and toolbar controls
+.aesop-editor-controls--wrap {
+
     * { .box-sizing(border-box); }
 
     .editor--tool__bg();
-    width:@toolbar--width;
     height:@toolbar--height;
     font-size:16px;
     border-radius:@editor--radius;
     position:fixed;
     text-align: center;
-    left: ~'calc(50% - @{toolbar--width} / 2)';
     bottom:@toolbar--pos__bottom;
     z-index: @z-index--toolbar;
-
 }
 
-// toolbar inner
-.aesop-editor--toolbar__inner {
+// global styles  ul for the editor and toolbar controls
+.aesop-editor-controls{
     margin:0;
     padding:0;
     list-style: none;

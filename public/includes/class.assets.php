@@ -43,7 +43,8 @@ class aesopEditorAssets {
 				'createGallNonce'	=> wp_create_nonce('aesop_create_gallery'),
 				'swapGallNonce'		=> wp_create_nonce('aesop_swap_gallery'),
 				'component_options' => aesop_editor_options_blob(),
-				'userCanEdit'		=> current_user_can('edit_posts')
+				'userCanEdit'		=> current_user_can('edit_posts'),
+				'newPostModal'		=> aesop_editor_newpost_modal()
 			));
 		}
 

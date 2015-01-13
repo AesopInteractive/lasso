@@ -1,13 +1,28 @@
-// global styles for edit and save
+// global styles for edit buttons
 #aesop-editor--controls {
-    z-index:@z-index--toolbar;
-    position:fixed;
-    bottom:@toolbar--pos__bottom;
-    left:0;
-    right:0;
-    width:100%;
-    padding-left:@toolbar--pos__bottom;
-    padding-right:@toolbar--pos__bottom;
+
+
+}
+
+// center controls containing the editor editor, settings, and add new post button
+.aesop-editor--controls__center {
+
+    width:@control--width;
+    left: ~'calc(50% - @{control--width} / 2)';
+
+    li {
+        list-style-type: none;
+        line-height: 0;
+    }
+}
+
+// save and publish controls
+.aesop-editor--controls__right {
+    position: fixed;
+    right: -10000px;
+    bottom: @toolbar--pos__bottom;
+    .opacity(0);
+    .transition(opacity .2s ease);
 
     a {
         display:inline-block;
@@ -39,51 +54,17 @@
     }
 }
 
-.aesop-editor--controls__right {
-    position: fixed;
-    right: -10000px;
-    bottom: @toolbar--pos__bottom;
-    .opacity(0);
-    .transition(opacity .2s ease);
+
+#aesop-editor--edit:before {
+    content:'\e908';
+}
+#aesop-editor--post-settings:before {
+    content:'\e994';
+}
+#aesop-editor--post-new:before {
+     content:'\ea0a';
 }
 
-// EDIT BUTTON
-#aesop-editor--edit {
-    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
-    color:@control--color;
-    text-shadow:0 1px 1px rgba(0,0,0,0.4);
-    position: static;
-    left:0;
-
-    &:before {
-        position:relative;
-        content:'\e908';
-        top:3px;
-    }
-
-    &:hover {
-        background:@toolbar--hover;
-    }
-}
-
-// POST SETTINGS
-#aesop-editor--post-settings {
-    #gradient > .vertical( @toolbar--bg__accent, @toolbar--bg );
-    color:@control--color;
-    text-shadow:0 1px 1px rgba(0,0,0,0.4);
-    position: absolute;
-    right:@toolbar--pos__bottom;
-
-    &:before {
-        position:relative;
-        content:'\e994';
-        top:3px;
-    }
-
-    &:hover {
-        background:@toolbar--hover;
-    }
-}
 
 // SAVE BUTTON
 #aesop-editor--save {
@@ -95,7 +76,7 @@
         top:4px;
         left:0;
         height:auto;
-         content:'\e601';
+        content:'\e601';
     }
 
     &:hover {

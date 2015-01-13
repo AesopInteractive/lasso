@@ -19,16 +19,19 @@ function aesop_editor_controls() {
 
 		$status = get_post_status( get_the_ID() );
 
-		?><nav id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
-			<a href="#" id="aesop-editor--edit" title="Edit Post" class="aesop-editor--button__primary"></a>
-			<a href="#" id="aesop-editor--post-settings" title="Edit Post Settings" class="aesop-editor--button__primary"></a>
+		?><div id="aesop-editor--controls" class="aaesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
+			<ul class="aesop-editor--controls__center aesop-editor-controls aesop-editor-controls--wrap">
+				<li id="aesop-editor--post-settings"><a href="#" title="Edit Post Settings" class="aesop-editor--button__primary"></a></li>
+				<li id="aesop-editor--edit"><a href="#" title="Edit Post" class="aesop-editor--button__primary"></a></li>
+				<li id="aesop-editor--post-new"><a href="#" title="Add Post" class="aesop-editor--button__primary"></a></li>
+			</ul>
 			<div class="aesop-editor--controls__right">
 				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>
 				<?php if ( 'draft' == $status ) { ?>
 					<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-publish-post aesop-editor--button"></a>
 				<?php } ?>
 			</div>
-		</nav>
+		</div>
 
 	<?php }
 }
@@ -70,8 +73,8 @@ function aesop_editor_text_toolbar(){
 		return;
 
 	?>
-	<div class="aesop-editor--toolbar_wrap">
-		<ul class="aesop-editor--toolbar__inner">
+	<div class="aesop-editor--toolbar_wrap aesop-editor-controls--wrap">
+		<ul class="aesop-editor--toolbar__inner aesop-editor-controls">
 		    <li id="aesop-toolbar--bold"></li>
 		    <li id="aesop-toolbar--underline" ></li>
 		    <li id="aesop-toolbar--italic"></li>
@@ -381,6 +384,51 @@ function aesop_editor_component_modal(){
 	return ob_get_clean();
 }
 
+/**
+*
+*	Used to house the form for creating a new post within amodal
+*	@since 1.0
+*/
+function aesop_editor_newpost_modal(){
+
+	global $post;
+
+	ob_start();
+
+	if ( !aesop_editor_user_can_edit() )
+		return;
+
+	$status = get_post_status( get_the_ID() );
+
+	$nonce = wp_create_nonce('aesop-editor-new-post');
+
+	?>
+	<div id="aesop-editor--post-new__modal" class="aesop-editor--modal">
+		<div class="aesop-editor--modal__inner">
+
+			<form id="aesop-editor--postnew__form" enctype="multipart/form-data" >
+
+				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
+					<label>Title</label>
+					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" required name="story_title" value="">
+				</div>
+
+				<div class="aesop-editor--postsettings__footer">
+					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="hidden" name="action" value="process_new_post">
+					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
+					<input type="submit" value="Create">
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+	<div id="aesop-editor--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
+}
 
 /////////////////////////////////////////////
 // UTILITIES
