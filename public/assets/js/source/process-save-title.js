@@ -14,7 +14,7 @@
 			var data = {
 				action: 		'process_update_title',
 				postid: 		aesop_editor.postid,
-				title:          $this.text(),
+				title:          $.trim( $this.text() ),
 				nonce: 			aesop_editor.titleNonce
 			}
 
