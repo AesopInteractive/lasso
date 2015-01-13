@@ -143,6 +143,8 @@ jQuery(document).ready(function($){
 				$('.aesop-editor--controls__right').css('opacity',0);
 				$(post_container).attr('id','');
 
+				$(titleClass).attr('contenteditable', false);
+
 				articleMedium.destroy();
 			}
 
