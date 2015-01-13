@@ -42,7 +42,8 @@ class aesopEditorAssets {
 				'getGallImgNonce'	=> wp_create_nonce('aesop_get_gallery_images'),
 				'createGallNonce'	=> wp_create_nonce('aesop_create_gallery'),
 				'swapGallNonce'		=> wp_create_nonce('aesop_swap_gallery'),
-				'component_options' => aesop_editor_options_blob()
+				'component_options' => aesop_editor_options_blob(),
+				'userCanEdit'		=> current_user_can('edit_posts')
 			));
 		}
 

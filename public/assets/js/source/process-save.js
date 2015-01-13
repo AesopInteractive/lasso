@@ -31,12 +31,11 @@ jQuery(document).ready(function($){
 	// if the user tries to navigate away and this post was backed up and not saved warn them
 	window.onbeforeunload = function () {
 
-		if ( localStorage.getItem( 'aesop_backup_'+postid ) ) {
+		if ( localStorage.getItem( 'aesop_backup_'+postid ) && aesop_editor.userCanEdit ) {
         	return warnNoSave;
         	$('#aesop-editor--save').css('opacity',1);
         }
     }
-
 	// do the actual saving
 	$(save).live('click',function(e) {
 
