@@ -9,6 +9,7 @@ jQuery(document).ready(function($){
 		components 		= aesop_editor.components,
 		featImgClass   	= aesop_editor.featImgClass,
 		featImgNonce    = aesop_editor.featImgNonce,
+		titleClass      = aesop_editor.titleClass,
 		uploadControls  = aesop_editor.featImgControls,
 		aesopDragHandle = aesop_editor.handle;
 
@@ -48,6 +49,11 @@ jQuery(document).ready(function($){
 		// append upload bar to featured image if present
 		if ( $( featImgClass ).length > 0 ) {
 			$('.ast-entry-mast-img').append( uploadControls );
+		}
+
+		// append contenteditable to title if set
+		if ( $(titleClass).length > 0 ) {
+			$(titleClass).attr('contenteditable', true);
 		}
 
 		// append the toolbar to any components that dont have them

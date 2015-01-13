@@ -8405,6 +8405,7 @@ jQuery(document).ready(function($){
 		components 		= aesop_editor.components,
 		featImgClass   	= aesop_editor.featImgClass,
 		featImgNonce    = aesop_editor.featImgNonce,
+		titleClass      = aesop_editor.titleClass,
 		uploadControls  = aesop_editor.featImgControls,
 		aesopDragHandle = aesop_editor.handle;
 
@@ -8444,6 +8445,11 @@ jQuery(document).ready(function($){
 		// append upload bar to featured image if present
 		if ( $( featImgClass ).length > 0 ) {
 			$('.ast-entry-mast-img').append( uploadControls );
+		}
+
+		// append contenteditable to title if set
+		if ( $(titleClass).length > 0 ) {
+			$(titleClass).attr('contenteditable', true);
 		}
 
 		// append the toolbar to any components that dont have them
@@ -9818,6 +9824,40 @@ jQuery(document).ready(function($){
 
 				}
 
+
+			});
+
+		});
+
+	});
+
+})( jQuery );
+(function( $ ) {
+
+	$(document).ready(function(){
+
+		/////////////
+		// SAVE TITLE
+		//////////////
+		var form;
+
+		$(aesop_editor.titleClass).on('blur', function() {
+
+			var $this = $(this);
+
+			var data = {
+				action: 		'process_update_title',
+				postid: 		aesop_editor.postid,
+				title:          $this.text(),
+				nonce: 			aesop_editor.titleNonce
+			}
+
+			/////////////
+			//	UPDATE THE TITLE
+			/////////////
+			$.post( aesop_editor.ajaxurl, data, function(response) {
+
+				console.log(response);
 
 			});
 

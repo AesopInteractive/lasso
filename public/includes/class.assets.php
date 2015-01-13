@@ -37,11 +37,13 @@ class aesopEditorAssets {
 				'component_sidebar'	=> aesop_editor_component_sidebar(),
 				'components'		=> aesop_editor_components(),
 				'featImgClass'		=> AESOP_EDITOR_FEATIMG_CLASS,
+				'titleClass'		=> AESOP_EDITOR_TITLE_CLASS,
 				'featImgControls'   => aesop_editor_image_controls(),
 				'featImgNonce'		=> wp_create_nonce('aesop_editor_image'),
 				'getGallImgNonce'	=> wp_create_nonce('aesop_get_gallery_images'),
 				'createGallNonce'	=> wp_create_nonce('aesop_create_gallery'),
 				'swapGallNonce'		=> wp_create_nonce('aesop_swap_gallery'),
+				'titleNonce'		=> wp_create_nonce('aesop_update_title'),
 				'component_options' => aesop_editor_options_blob(),
 				'userCanEdit'		=> current_user_can('edit_posts'),
 				'newPostModal'		=> aesop_editor_newpost_modal()

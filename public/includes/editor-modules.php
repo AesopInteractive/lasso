@@ -409,7 +409,7 @@ function aesop_editor_newpost_modal(){
 			<form id="aesop-editor--postnew__form" enctype="multipart/form-data" >
 
 				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
-					<label>Title</label>
+					<label>New Post Title</label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" required name="story_title" value="">
 				</div>
 
