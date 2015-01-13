@@ -75,9 +75,11 @@
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val('Added!');
 
-					$this.before(response);
+					$this.append('<input type="hidden" name="new_link" value="'+response+'">');
 
-					//window.location.replace(aesop_editor.permalink);
+					var newLink = $this.find('input[name="new_link"]').val();
+
+					window.location.replace(newLink);
 
 				} else {
 

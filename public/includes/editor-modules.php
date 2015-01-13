@@ -21,9 +21,9 @@ function aesop_editor_controls() {
 
 		?><div id="aesop-editor--controls" class="aaesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
 			<ul class="aesop-editor--controls__center aesop-editor-controls aesop-editor-controls--wrap">
-				<li id="aesop-editor--post-settings"><a href="#" title="Edit Post Settings" class="aesop-editor--button__primary"></a></li>
-				<li id="aesop-editor--edit"><a href="#" title="Edit Post" class="aesop-editor--button__primary"></a></li>
-				<li id="aesop-editor--post-new"><a href="#" title="Add Post" class="aesop-editor--button__primary"></a></li>
+				<li id="aesop-editor--post-settings" title="Post Settings"><a href="#" class="aesop-editor--button__primary"></a></li>
+				<li id="aesop-editor--edit" title="Edit Post"><a href="#" class="aesop-editor--button__primary"></a></li>
+				<li id="aesop-editor--post-new" title="Add Post"><a href="#" class="aesop-editor--button__primary"></a></li>
 			</ul>
 			<div class="aesop-editor--controls__right">
 				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>

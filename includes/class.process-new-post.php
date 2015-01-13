@@ -34,12 +34,10 @@ class aesopEditorProcessNewPost {
 				  	'post_content'  => 'People are made of stories...'
 				);
 
-				//$post_id = wp_insert_post( $post_args );
-
-				$post_id = 24;
+				$post_id = wp_insert_post( $post_args );
 
 				// @todo - display a new thanks modal in place of this
-				echo '<div class="success"><p>Created! Edit your post <a href="'.get_permalink($post_id).'">here</a></p></div>';
+				echo get_permalink($post_id);
 
 
 			} else {
