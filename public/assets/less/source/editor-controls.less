@@ -55,8 +55,17 @@
 }
 
 
-#aesop-editor--edit:before {
-    content:'\e908';
+#aesop-editor--edit{
+    background: @toolbar--bg__accent;
+    border-top-left-radius: @editor--radius - 1;
+    border-bottom-left-radius: @editor--radius - 1;
+    &:before {
+        content:'\e908';
+    }
+
+    &:hover {
+        background: darken(@toolbar--bg__accent,3);
+    }
 }
 #aesop-editor--post-settings:before {
     content:'\e994';

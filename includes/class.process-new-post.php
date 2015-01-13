@@ -36,7 +36,6 @@ class aesopEditorProcessNewPost {
 
 				$post_id = wp_insert_post( $post_args );
 
-				// @todo - display a new thanks modal in place of this
 				echo get_permalink($post_id);
 
 

@@ -66,7 +66,6 @@
 
 			/////////////
 			//	DO TEH SAVE
-			// @todo this needs to load the new location
 			/////////////
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
@@ -75,11 +74,7 @@
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val('Added!');
 
-					$this.append('<input type="hidden" name="new_link" value="'+response+'">');
-
-					var newLink = $this.find('input[name="new_link"]').val();
-
-					window.location.replace(newLink);
+					window.location.replace(response);
 
 				} else {
 
