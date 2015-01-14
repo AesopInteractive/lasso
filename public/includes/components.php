@@ -66,7 +66,7 @@ function aesop_quote_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_quote quote="Stories are made of atoms." cite="This Author"]');
+	echo do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms." cite="Muriel Rukeyser"]');
 
 	return ob_get_clean();
 }
@@ -75,7 +75,7 @@ function aesop_image_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_image img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="content" caption="A lonely image is no image to be" ]');
+	echo do_shortcode('[aesop_image img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px" caption="A lonely image is no image to be" ]');
 
 	return ob_get_clean();
 }
