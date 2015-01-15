@@ -8618,6 +8618,10 @@ jQuery(document).ready(function($){
 
 	$(document).ready(function(){
 
+		/////////////////
+		/// MODAL LOGIC
+		///////////////////
+
 		// method to destroy the modal
 		var destroyModal = function(){
 			$('body').removeClass('aesop-modal-open');
@@ -8644,6 +8648,53 @@ jQuery(document).ready(function($){
 			,	maxLength   = 342
 
 			field.css({'width':maxLength - mWidth});
+
+			/////////////////
+			/// UI SLIDER INIT AND METHODS
+			///////////////////
+
+			// return the right value
+			var statusReturn = function( value ) {
+
+				var out;
+
+				if ( 100 == value ) {
+					out = 'draft';
+				} else if ( 200 == value ) {
+					out = 'publish';
+				} else if ( 'draft' == value ) {
+					out = 100;
+				} else if ( 'publish' == value ) {
+					out = 200;
+				}
+				return out;
+			}
+
+			// init slider
+		    $('#aesop-editor--slider').slider({
+		      	value:statusReturn(aesop_editor.post_status),
+		      	min: 100,
+		      	max: 200,
+		      	step: 100,
+		      	animate:'fast',
+		      	slide: function( event, ui ) {
+		        	$('input[name="status"]').val( statusReturn(ui.value) );
+
+		        	$('.aesop-editor--postsettings__footer').slideDown()
+
+		        	if ( 100 == ui.value ) {
+		        		$('.story-status').removeClass('story-status-publish').addClass('story-status-draft')
+		        	} else if ( 200 == ui.value ) {
+		        		$('.story-status').removeClass('story-status-draft').addClass('story-status-publish')
+		        	}
+		      	}
+		    });
+		    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+
+		    // if any changes happen then show the footer
+		    $('input[name="story_slug"]').on('keyup',function(){
+			  	$('.aesop-editor--postsettings__footer').slideDown()
+			});
 
 		});
 

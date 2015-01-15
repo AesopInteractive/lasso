@@ -308,50 +308,6 @@ function aesop_editor_component_modal(){
 	?>
 	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
 		<div class="aesop-editor--modal__inner">
-			<script>
-				jQuery(document).ready(function($){
-
-					// return the right value
-					var statusReturn = function( value ) {
-
-						var out;
-
-						if ( 100 == value ) {
-							out = 'draft';
-						} else if ( 200 == value ) {
-							out = 'publish';
-						}
-						return out;
-					}
-
-					// init slider
-				    $('#aesop-editor--slider').slider({
-				      	value:<?php echo $code;?>,
-				      	min: 100,
-				      	max: 200,
-				      	step: 100,
-				      	animate:'fast',
-				      	slide: function( event, ui ) {
-				        	$('input[name="status"]').val( statusReturn(ui.value) );
-
-				        	$('.aesop-editor--postsettings__footer').slideDown()
-
-				        	if ( 100 == ui.value ) {
-				        		$('.story-status').removeClass('story-status-publish').addClass('story-status-draft')
-				        	} else if ( 200 == ui.value ) {
-				        		$('.story-status').removeClass('story-status-draft').addClass('story-status-publish')
-				        	}
-				      	}
-				    });
-				    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
-
-				    // if any changes happen then show the footer
-				    $('input[name="story_slug"]').on('keyup',function(){
-					  	$('.aesop-editor--postsettings__footer').slideDown()
-					});
-				});
-		  	</script>
-
 			<form id="aesop-editor--postsettings__form" enctype="multipart/form-data" >
 
 				<div class="aesop-editor--postsettings__option story-status-option">
