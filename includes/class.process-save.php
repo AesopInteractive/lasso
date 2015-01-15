@@ -26,7 +26,7 @@ class aesopEditorProcessSaving {
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_save_content' ) {
 
 				$args = array(
-					'ID'           => $postid,
+					'ID'           => (int) $postid,
 	      			'post_content' => $content
 				);
 				wp_update_post( $args );
@@ -39,7 +39,7 @@ class aesopEditorProcessSaving {
 			} elseif ( isset( $_POST['action'] ) && $_POST['action'] == 'process_publish_content' ) {
 
 				$args = array(
-					'ID'           => $postid,
+					'ID'           => (int) $postid,
 	      			'post_content' => $content,
 	      			'post_status'	=> 'publish'
 				);
