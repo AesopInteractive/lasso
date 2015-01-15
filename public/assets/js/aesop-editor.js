@@ -9113,59 +9113,24 @@ jQuery(function( $ ) {
 	/////////////
 	/// DELETING
 	/////////////
-	var ajaxurl =  aesop_editor.ajaxurl;
-
 	$('.aesop-delete').live('click',function(e) {
-
-		// sore reference to this
-		var $this = $(this);
 
 		e.preventDefault();
 
-		var data = {
-			action: 'process_delete_component',
-			nonce: 	$this.data('nonce'),
-			postid: $this.data('postid'),
-			unique: $this.closest('.aesop-component').data('unique'),
-			type:   $this.closest('.aesop-component').data('component-type')
-		}
+		var $this = $(this);
 
-		var deleteComponent = function() {
-
-			swal({
-				title: "Delete this component?",
-				type: "warning",
-				text: false,
-				showCancelButton: true,
-				confirmButtonColor: "#d9534f",
-				confirmButtonText: "Yes, delete it!",
-				closeOnConfirm: true
-			},
-			function(){
-				$this.closest('.aesop-component').remove();
-			});
-		}
-
-		$.post( ajaxurl, data, function(response) {
-
-			console.log(response);
-
-			if( response == 'success' ) {
-
-				console.log('success');
-
-				deleteComponent();
-
-			} else if( 'error' == response ) {
-
-				alert('error');
-				console.log('error');
-
-			}
-
-
+		swal({
+			title: "Delete this component?",
+			type: "warning",
+			text: false,
+			showCancelButton: true,
+			confirmButtonColor: "#d9534f",
+			confirmButtonText: "Yes, delete it!",
+			closeOnConfirm: true
+		},
+		function(){
+			$this.closest('.aesop-component').remove();
 		});
-
 
 	});
 
