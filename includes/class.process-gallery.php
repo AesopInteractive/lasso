@@ -24,7 +24,7 @@ class aesopEditorProcessGallery {
 		check_ajax_referer('aesop_swap_gallery','nonce');
 
 		// only run for logged in users and check caps
-		if( !is_user_logged_in() || !current_user_can('edit_posts') )
+		if( !aesop_editor_user_can_edit() )
 			return;
 
 		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
@@ -65,10 +65,12 @@ class aesopEditorProcessGallery {
 				  	'post_author'   => (int) get_current_user_ID()
 				);
 
-				$post_id = wp_insert_post( $post_args );
+				$postid = wp_insert_post( $post_args );
 
 				// push gallery ids
-				update_post_meta( $post_id,'_ase_gallery_images', $gallery_ids );
+				update_post_meta( $postid,'_ase_gallery_images', $gallery_ids );
+
+				do_action( 'aesop_editor_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
 				echo 'success';
 

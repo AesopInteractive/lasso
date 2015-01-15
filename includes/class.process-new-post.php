@@ -18,7 +18,7 @@ class aesopEditorProcessNewPost {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_new_post' ) {
 
 			// only run for logged in users and check caps
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !aesop_editor_user_can_edit() )
 				return;
 
 			// ok security passes so let's process some data
@@ -34,9 +34,11 @@ class aesopEditorProcessNewPost {
 				  	'post_content'  => 'People are made of stories...'
 				);
 
-				$post_id = wp_insert_post( $post_args );
+				$postid = wp_insert_post( $post_args );
 
-				echo get_permalink($post_id);
+				do_action( 'aesop_editor_new_post', $postid, $title, get_current_user_ID() );
+
+				echo get_permalink($postid);
 
 
 			} else {

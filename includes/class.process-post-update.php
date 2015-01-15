@@ -14,7 +14,7 @@ class aesopEditorProcessUpdatePost {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_post' ) {
 
 			// only run for logged in users and check caps
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !aesop_editor_user_can_edit() )
 				return;
 
 			// ok security passes so let's process some data
@@ -26,12 +26,13 @@ class aesopEditorProcessUpdatePost {
 
 				$args = array(
 					'ID'			=> (int) $postid,
-				  	//'post_title'    => wp_strip_all_tags( $title ),
 				  	'post_name'		=> sanitize_title( trim( $slug ) ),
 				  	'post_status'	=> $status
 				);
 
 				wp_update_post( $args );
+
+				do_action( 'aesop_editor_post_updated', $postid, $slug, $status, get_current_user_ID() );
 
 				echo 'success';
 

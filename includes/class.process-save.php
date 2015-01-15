@@ -31,6 +31,8 @@ class aesopEditorProcessSaving {
 				);
 				wp_update_post( $args );
 
+				do_action( 'aesop_editor_post_saved', $postid, $content, get_current_user_ID() );
+
 				echo 'success';
 
 
@@ -42,6 +44,8 @@ class aesopEditorProcessSaving {
 	      			'post_status'	=> 'publish'
 				);
 				wp_update_post( $args );
+
+				do_action( 'aesop_editor_post_published', $postid, $content, get_current_user_ID() );
 
 				echo 'success';
 

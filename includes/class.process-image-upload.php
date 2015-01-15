@@ -18,7 +18,7 @@ class aesopEditorUploadFeatImage {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_upload' ) {
 
 			// only run for logged in users and check caps
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !aesop_editor_user_can_edit() )
 				return;
 
 			// ok security passes so let's process some data
@@ -28,6 +28,8 @@ class aesopEditorUploadFeatImage {
 				$image_id 	= isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
 
 				set_post_thumbnail( $postid, $image_id );
+
+				do_action( 'aesop_editor_featured_image_set', $postid, $image_id, get_current_user_ID() );
 
 				echo 'success';
 
