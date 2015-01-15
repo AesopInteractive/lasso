@@ -4,6 +4,12 @@
     width:@toolbar--width;
     left: ~'calc(50% - @{toolbar--width} / 2)';
 
+    &.ase-not-active {
+        @width: 167px;
+        width:@width;
+        left: ~'calc(50% - @{width} / 2)';
+    }
+
 }
 
 // global styles wrapper for editor and toolbar controls

@@ -72,8 +72,10 @@ function aesop_editor_text_toolbar(){
 	if ( !aesop_editor_user_can_edit() )
 		return;
 
+	$ase_status = class_exists('Aesop_Core') ? 'ase-active' : 'ase-not-active';
+
 	?>
-	<div class="aesop-editor--toolbar_wrap aesop-editor-controls--wrap">
+	<div class="aesop-editor--toolbar_wrap aesop-editor-controls--wrap <?php echo $ase_status;?>">
 		<ul class="aesop-editor--toolbar__inner aesop-editor-controls">
 		    <li id="aesop-toolbar--bold"></li>
 		    <li id="aesop-toolbar--underline" ></li>
@@ -88,6 +90,7 @@ function aesop_editor_text_toolbar(){
 		    		</div>
 		    	</div>
 		    </li>
+		    <?php if ( 'ase-active' == $ase_status ): ?>
 		    <li id="aesop-toolbar--components" title="Insert Component">
 			    <ul id="aesop-toolbar--components__list">
 					<li data-type="image" title="Image" class="image"></li>
@@ -103,8 +106,10 @@ function aesop_editor_text_toolbar(){
 					<li data-type="document" title="Document"  class="document"></li>
 					<li data-type="collection" title="Collection"  class="collection"></li>
 					<li data-type="gallery" title="Gallery"  class="gallery"></li>
+					<?php do_action('aesop_editor_toolbar_after');?>
 			    </ul>
 			</li>
+			<?php endif; ?>
 		</ul>
 	</div>
 	<?php return ob_get_clean();
@@ -429,24 +434,4 @@ function aesop_editor_newpost_modal(){
 
 	return ob_get_clean();
 }
-
-/////////////////////////////////////////////
-// UTILITIES
-/////////////////////////////////////////////
-
-/**
-*
-*	Check if the user is logged in and has teh correct capabilities 
-*/
-function aesop_editor_user_can_edit(){
-
-	if ( is_user_logged_in() && current_user_can('edit_posts') ) {
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-
 

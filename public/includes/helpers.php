@@ -24,3 +24,20 @@ function aesop_editor_get_option( $option, $section, $default = '' ) {
 
     return $default;
 }
+
+/**
+*
+*	Check if the user is logged in and has teh correct capabilities
+*/
+function aesop_editor_user_can_edit(){
+
+	$is_capable = apply_filters('aesop_editor_capabilities', current_user_can('edit_posts') );
+
+	if ( is_user_logged_in() && $is_capable ) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
