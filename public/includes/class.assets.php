@@ -21,11 +21,27 @@ class aesopEditorAssets {
 			// media uploader
 			wp_enqueue_media();
 
+			if ( function_exists('is_multisite') && is_multisite() ) {
+
+				switch_to_blog(1);
+
+					$article_object = aesop_editor_get_option('article_class','aesop_editor');
+					$featImgClass = aesop_editor_get_option('featimg_class','aesop_editor');
+					$titleClass = aesop_editor_get_option('title_class','aesop_editor');
+
+				restore_current_blog();
+
+			} else {
+
+				$article_object = aesop_editor_get_option('article_class','aesop_editor');
+				$featImgClass = aesop_editor_get_option('featimg_class','aesop_editor');
+				$titleClass = aesop_editor_get_option('title_class','aesop_editor');
+			}
+
 			wp_enqueue_script('aesop-editor', AESOP_EDITOR_URL.'/public/assets/js/aesop-editor.js', array('jquery'), AESOP_EDITOR_VERSION, true);
 			wp_localize_script('aesop-editor', 'aesop_editor',array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
 				'editor' 			=> 'aesop-editor--content', // ID of editable content (without #) DONT CHANGE
-				'article_object'	=> aesop_editor_get_option('article_class','aesop_editor'),
 				'post_status'		=> get_post_status( get_the_ID() ),
 				'postid'			=> get_the_ID(),
 				'permalink'			=> get_permalink(),
@@ -36,8 +52,9 @@ class aesopEditorAssets {
 				'component_modal'	=> aesop_editor_component_modal(),
 				'component_sidebar'	=> aesop_editor_component_sidebar(),
 				'components'		=> aesop_editor_components(),
-				'featImgClass'		=> aesop_editor_get_option('featimg_class','aesop_editor'),
-				'titleClass'		=> aesop_editor_get_option('title_class','aesop_editor'),
+				'article_object'	=> $article_object,
+				'featImgClass'		=> $featImgClass,
+				'titleClass'		=> $titleClass,
 				'featImgControls'   => aesop_editor_image_controls(),
 				'featImgNonce'		=> wp_create_nonce('aesop_editor_image'),
 				'getGallImgNonce'	=> wp_create_nonce('aesop_get_gallery_images'),
