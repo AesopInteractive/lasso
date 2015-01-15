@@ -446,6 +446,9 @@ class aesopEditor_Settings_API {
             	margin-top:5px;
             	display:block;
             }
+            #aesop_editor input[type="text"] {
+            	width:200px;
+            }
         </style>
         <?php
     }

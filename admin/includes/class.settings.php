@@ -23,6 +23,7 @@ class aesopEditorSettings {
 
     }
 
+    // init the settings and feields
     function admin_init() {
 
         //set the settings
@@ -33,11 +34,12 @@ class aesopEditorSettings {
         $this->settings_api->admin_init();
     }
 
+    // add menu page to options
 	function menu_page() {
 		add_submenu_page( 'options-general.php', 'Aesop Editor', __('Aesop Editor','aesop-editor'), 'manage_options', 'aesop-editor-settings', array($this,'page_content') );
 	}
 
-
+	// Draw the page wrap
 	function page_content() {
 
 		echo '<div class="wrap">';
@@ -50,6 +52,8 @@ class aesopEditorSettings {
 
 	}
 
+
+	// Draw the settings sections
     function sections() {
         $sections = array(
             array(
@@ -60,16 +64,15 @@ class aesopEditorSettings {
         return $sections;
     }
 
+    // Draw the settings fields
     function fields() {
-
-		// test test echo aesop_editor_get_option('article_class','aesop_editor');
 
         $settings_fields = array(
             'aesop_editor' => array(
             	array(
                     'name' 				=> 'article_class',
                     'label' 			=> __( 'Article Class', 'aesop-editor' ),
-                    'desc' 				=> 'Provide the CSS class of element that displays the post. This should be the first parent container class that holds the_content.',
+                    'desc' 				=> 'Provide the CSS class of container that holds the post. This should be the first parent container class that holds the_content.',
                     'type' 				=> 'text',
                     'default' 			=> '',
                     'sanitize_callback' => 'sanitize_text_field'
@@ -77,7 +80,7 @@ class aesopEditorSettings {
                 array(
                     'name' 				=> 'featimg_class',
                     'label' 			=> __( 'Featured Image Class', 'aesop-editor' ),
-                    'desc' 				=> 'Provide the CSS class that uses a featured image as a background image. This currently only supports themes that have the featuree image set as background image.',
+                    'desc' 				=> 'Provide the CSS class that uses a featured image as a background image. This currently only supports themes that have the featured image set as background image.',
                     'type' 				=> 'text',
                     'default' 			=> '',
                     'sanitize_callback' => 'sanitize_text_field'
@@ -95,46 +98,6 @@ class aesopEditorSettings {
 
         return $settings_fields;
     }
-
-    /**
-    *
-    *	Sanitize checkbox input
-    *
-    */
-    function sanitize_checkbox( $input ) {
-
-		if ( $input ) {
-
-			$output = '1';
-
-		} else {
-
-			$output = false;
-
-		}
-
-		return $output;
-	}
-
-	/**
-	*
-	*	Sanitize integers
-	*
-	*/
-	function sanitize_int( $input ) {
-
-		if ( $input ) {
-
-			$output = absint( $input );
-
-		} else {
-
-			$output = false;
-
-		}
-
-		return $output;
-	}
 }
 
 new aesopEditorSettings();

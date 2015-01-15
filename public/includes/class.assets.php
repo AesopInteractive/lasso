@@ -25,7 +25,7 @@ class aesopEditorAssets {
 			wp_localize_script('aesop-editor', 'aesop_editor',array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
 				'editor' 			=> 'aesop-editor--content', // ID of editable content (without #) DONT CHANGE
-				'article_object'	=> AESOP_EDITOR_TARGET,
+				'article_object'	=> aesop_editor_get_option('article_class','aesop_editor'),
 				'post_status'		=> get_post_status( get_the_ID() ),
 				'postid'			=> get_the_ID(),
 				'permalink'			=> get_permalink(),
@@ -36,8 +36,8 @@ class aesopEditorAssets {
 				'component_modal'	=> aesop_editor_component_modal(),
 				'component_sidebar'	=> aesop_editor_component_sidebar(),
 				'components'		=> aesop_editor_components(),
-				'featImgClass'		=> AESOP_EDITOR_FEATIMG_CLASS,
-				'titleClass'		=> AESOP_EDITOR_TITLE_CLASS,
+				'featImgClass'		=> aesop_editor_get_option('featimg_class','aesop_editor'),
+				'titleClass'		=> aesop_editor_get_option('title_class','aesop_editor'),
 				'featImgControls'   => aesop_editor_image_controls(),
 				'featImgNonce'		=> wp_create_nonce('aesop_editor_image'),
 				'getGallImgNonce'	=> wp_create_nonce('aesop_get_gallery_images'),
