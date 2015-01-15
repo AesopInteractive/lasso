@@ -3,12 +3,14 @@
 /**
 *
 *	These functions are then localized and then appended with JS in enter-editor.js
+* 	All are protectd under a capability and logged in check using a filterable function aesop_editor_user_can_edit()
+*
 *	@since 1.0
 */
 
 /**
 *
-*	Add the open editor and save controls
+*	Add the editor controls to any singular post object
 *
 *	@since 1.0
 */
@@ -19,7 +21,10 @@ function aesop_editor_controls() {
 
 		$status = get_post_status( get_the_ID() );
 
-		?><div id="aesop-editor--controls" class="aaesop-post-status--<?php echo sanitize_html_class( $status );?>" data-post-id="<?php echo get_the_ID();?>" >
+		// let users add custom css classes
+		$custom_classes = apply_filters('aesop_editor_control_classes', '' );
+
+		?><div id="aesop-editor--controls" class="aaesop-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 			<ul class="aesop-editor--controls__center aesop-editor-controls aesop-editor-controls--wrap">
 				<li id="aesop-editor--edit" title="Edit Post"><a href="#" class="aesop-editor--button__primary"></a></li>
 				<li id="aesop-editor--post-settings" title="Post Settings"><a href="#" class="aesop-editor--button__primary"></a></li>
@@ -40,7 +45,7 @@ function aesop_editor_controls() {
 *
 *	Draw the side panel that houses the component settings
 *	This is opened when the settings icon is clicked on a single component
-*	JS detects the type and will fill in the necessary options for the shortcode based on  aesop_editor_options_blob() below
+*	JS detects the type and will fill in the necessary options for the shortcode based on  aesop_editor_options_blob() at the end of this file
 *
 *	@since 1.0
 */
@@ -50,8 +55,11 @@ function aesop_editor_component_sidebar(){
 
 	if ( !aesop_editor_user_can_edit() )
 		return;
+
+	// let users add custom css classes
+	$custom_classes = apply_filters('aesop_editor_sidebar_classes', '' );
 	?>
-	<div id="aesop-editor--sidebar">
+	<div id="aesop-editor--sidebar" class="<?php echo sanitize_html_class( $custom_classes );?>" >
 		<div class="aesop-editor--sidebar__inner">
 			<div id="aesop-editor--component__settings"></div>
 		</div>
@@ -62,7 +70,8 @@ function aesop_editor_component_sidebar(){
 
 /**
 *
-*	Draw the toolbar used to edit text and triggers settings panel and html insert
+*	Draw the main toolbar used to edit the text
+*
 *	@since 1.0
 */
 function aesop_editor_text_toolbar(){
@@ -72,15 +81,19 @@ function aesop_editor_text_toolbar(){
 	if ( !aesop_editor_user_can_edit() )
 		return;
 
+	// check for aesop story engine and add a class doniting this
 	$ase_status = class_exists('Aesop_Core') ? 'ase-active' : 'ase-not-active';
 
+	// let users add custom css classes
+	$custom_classes = apply_filters('aesop_editor_toolbar_classes', '' );
+
 	?>
-	<div class="aesop-editor--toolbar_wrap aesop-editor-controls--wrap <?php echo $ase_status;?>">
+	<div class="aesop-editor--toolbar_wrap aesop-editor-controls--wrap <?php echo $ase_status.' '.sanitize_html_class( $custom_classes );?>">
 		<ul class="aesop-editor--toolbar__inner aesop-editor-controls">
-		    <li id="aesop-toolbar--bold"></li>
-		    <li id="aesop-toolbar--underline" ></li>
-		    <li id="aesop-toolbar--italic"></li>
-		    <li id="aesop-toolbar--strike"></li>
+		    <li id="aesop-toolbar--bold" title="Bold"></li>
+		    <li id="aesop-toolbar--underline" title="Underline"></li>
+		    <li id="aesop-toolbar--italic" title="Italicize"></li>
+		    <li id="aesop-toolbar--strike" title="Strikethrough"></li>
 		    <li id="aesop-toolbar--html" title="Insert HTML">
 		    	<div id="aesop-toolbar--html__wrap">
 		    		<div id="aesop-toolbar--html__inner" contenteditable="true" placeholder="Enter HTML to insert"></div>
@@ -118,6 +131,7 @@ function aesop_editor_text_toolbar(){
 /**
 *
 *	Draw the controls used for teh component settings within each component
+*
 *	@since 1.0
 */
 function aesop_editor_settings_toolbar(){
@@ -129,7 +143,10 @@ function aesop_editor_settings_toolbar(){
 	if ( !aesop_editor_user_can_edit() )
 		return;
 
-	?><ul class="aesop-component--controls" contenteditable="false">
+	// let users add custom css classes
+	$custom_classes = apply_filters('aesop_editor_component_classes', '' );
+
+	?><ul class="aesop-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="aesop-drag" title="Move"></li>
 		<li id="aesop-component--settings__trigger" class="aesop-settings" title="Settings"></li>
 		<li class="aesop-clone" title="Clone"></li>
@@ -159,6 +176,118 @@ function aesop_editor_image_controls(){
 		<li id="aesop-editor--featImgSave"><a href="#">save</a></li>
 	</ul>
 	<?php return ob_get_clean();
+}
+
+
+/**
+*
+*	Used to house post settings like scheduling, slugs and draft status
+*
+*	@since 1.0
+*/
+function aesop_editor_component_modal(){
+
+	ob_start();
+
+	if ( !aesop_editor_user_can_edit() )
+		return;
+
+	global $post;
+
+	$status = get_post_status( get_the_ID() );
+	$nonce = wp_create_nonce('aesop-update-post-settings');
+
+	// let users add custom css classes
+	$custom_classes = apply_filters('aesop_editor_modal_settings_classes', '' );
+
+	?>
+	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal <?php echo sanitize_html_class( $custom_classes );?>">
+		<div class="aesop-editor--modal__inner">
+			<form id="aesop-editor--postsettings__form" enctype="multipart/form-data" >
+
+				<div class="aesop-editor--postsettings__option story-status-option">
+					<label>Status</label>
+					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
+						<li id="aesop-editor--status-draft">Draft</li>
+						<li id="aesop-editor--status-publish">Publish</li>
+					</ul>
+					<div class="aesop-editor--slider_wrap">
+						<div id="aesop-editor--slider"></div>
+					</div>
+				</div>
+
+				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
+					<label>URL</label>
+					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div>
+					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
+				</div>
+
+				<div class="aesop-editor--postsettings__footer" style="display:none;">
+					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="hidden" name="status" value="">
+					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
+					<input type="hidden" name="action" value="process_update_post">
+					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
+					<input type="submit" value="Save">
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+	<div id="aesop-editor--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
+}
+
+/**
+*
+*	Used to house the form for creating a new post within amodal
+*	@since 1.0
+*/
+function aesop_editor_newpost_modal(){
+
+	global $post;
+
+	ob_start();
+
+	if ( !aesop_editor_user_can_edit() )
+		return;
+
+	$status = get_post_status( get_the_ID() );
+
+	$nonce = wp_create_nonce('aesop-editor-new-post');
+
+	// let users add custom css classes
+	$custom_classes = apply_filters('aesop_editor_modal_post_classes', '' );
+
+	?>
+	<div id="aesop-editor--post-new__modal" class="aesop-editor--modal <?php echo sanitize_html_class( $custom_classes );?>">
+		<div class="aesop-editor--modal__inner">
+
+			<form id="aesop-editor--postnew__form" enctype="multipart/form-data" >
+
+				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
+					<label>New Post Title</label>
+					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" required name="story_title" value="">
+				</div>
+
+				<div class="aesop-editor--postsettings__footer">
+					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
+					<input type="hidden" name="action" value="process_new_post">
+					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
+					<input type="submit" value="Create">
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+	<div id="aesop-editor--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
 }
 
 /**
@@ -273,121 +402,5 @@ function aesop_editor_options_blob() {
 	}
 
 	return $blob;
-}
-
-/**
-*
-*	Used to house post settings like scheduling, slugs and draft status
-*/
-function aesop_editor_component_modal(){
-
-	global $post;
-
-	ob_start();
-
-	if ( !aesop_editor_user_can_edit() )
-		return;
-
-	$status = get_post_status( get_the_ID() );
-
-	$nonce = wp_create_nonce('aesop-update-post-settings');
-
-	switch ( $status ) {
-		case 'publish':
-			$code = 200;
-			break;
-		case 'draft':
-			$code = 100;
-			break;
-		default;
-			$code = 100;
-			break;
-
-	}
-
-	?>
-	<div id="aesop-editor--post-settings__modal" class="aesop-editor--modal">
-		<div class="aesop-editor--modal__inner">
-			<form id="aesop-editor--postsettings__form" enctype="multipart/form-data" >
-
-				<div class="aesop-editor--postsettings__option story-status-option">
-					<label>Status</label>
-					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
-						<li id="aesop-editor--status-draft">Draft</li>
-						<li id="aesop-editor--status-publish">Publish</li>
-					</ul>
-					<div class="aesop-editor--slider_wrap">
-						<div id="aesop-editor--slider"></div>
-					</div>
-				</div>
-
-				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
-					<label>URL</label>
-					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
-				</div>
-
-				<div class="aesop-editor--postsettings__footer" style="display:none;">
-					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
-					<input type="hidden" name="status" value="">
-					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
-					<input type="hidden" name="action" value="process_update_post">
-					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
-					<input type="submit" value="Save">
-				</div>
-
-			</form>
-
-		</div>
-	</div>
-	<div id="aesop-editor--modal__overlay"></div>
-	<?php
-
-	return ob_get_clean();
-}
-
-/**
-*
-*	Used to house the form for creating a new post within amodal
-*	@since 1.0
-*/
-function aesop_editor_newpost_modal(){
-
-	global $post;
-
-	ob_start();
-
-	if ( !aesop_editor_user_can_edit() )
-		return;
-
-	$status = get_post_status( get_the_ID() );
-
-	$nonce = wp_create_nonce('aesop-editor-new-post');
-
-	?>
-	<div id="aesop-editor--post-new__modal" class="aesop-editor--modal">
-		<div class="aesop-editor--modal__inner">
-
-			<form id="aesop-editor--postnew__form" enctype="multipart/form-data" >
-
-				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
-					<label>New Post Title</label>
-					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" required name="story_title" value="">
-				</div>
-
-				<div class="aesop-editor--postsettings__footer">
-					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
-					<input type="hidden" name="action" value="process_new_post">
-					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
-					<input type="submit" value="Create">
-				</div>
-
-			</form>
-
-		</div>
-	</div>
-	<div id="aesop-editor--modal__overlay"></div>
-	<?php
-
-	return ob_get_clean();
 }
 
