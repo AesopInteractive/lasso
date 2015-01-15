@@ -299,6 +299,10 @@ function aesop_editor_newpost_modal(){
 */
 function aesop_editor_options_blob() {
 
+	// bail if no aesop story engine
+	if ( !class_exists('Aesop_Core') )
+		return;
+
 	$codes = function_exists('aesop_shortcodes') ? aesop_shortcodes() : null;
 	$nonce = wp_create_nonce('aesop-generator-settings');
 
