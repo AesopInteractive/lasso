@@ -8470,7 +8470,7 @@ jQuery(document).ready(function($){
 		        attributes: null,
 		        tags: null,
 		        placeholder:'Just write...',
-			    pasteAsText: false,
+			    pasteAsText: true,
 		    	cssClasses: {
 					editor: 'aesop-editor',
 					pasteHook: 'aesop-editor-paste-hook',
