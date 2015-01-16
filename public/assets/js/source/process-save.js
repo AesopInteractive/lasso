@@ -50,7 +50,7 @@ jQuery(document).ready(function($){
 		$(".aesop-editor--wpimg__wrap").each(function(){
 
 			$(this).children().unwrap()
-			$('#aesop-editor--wpimg-edit').remove();
+			$('.aesop-component--controls').remove();
 		});
 
 		////////////

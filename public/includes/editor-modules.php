@@ -296,9 +296,20 @@ function aesop_editor_wpimg_edit(){
 
 	ob_start();
 
-	?><a href="#" id="aesop-editor--wpimg-edit">Edit</a><?php
+	if ( !aesop_editor_user_can_edit() )
+		return;
 
-	return ob_get_clean();
+	// let users add custom css classes
+	$custom_classes = apply_filters('aesop_editor_wpimg_classes', '' );
+
+	?><ul class="aesop-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+		<li class="aesop-drag" title="Move"></li>
+		<li id="aesop-editor--wpimg-edit" class="aesop-settings" title="Settings"></li>
+		<li class="aesop-clone" title="Clone"></li>
+		<li class="aesop-delete" title="Delete"></li>
+	</ul>
+
+	<?php return ob_get_clean();
 }
 
 /**
