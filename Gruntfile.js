@@ -51,7 +51,8 @@ module.exports = function(grunt) {
                         'public/assets/js/source/process-image-upload.js',
                         'public/assets/js/source/process-save-component.js',
                         'public/assets/js/source/process-new-post.js',
-                        'public/assets/js/source/process-save-title.js'
+                        'public/assets/js/source/process-save-title.js',
+                        'public/assets/js/source/process-wpimg.js'
                     ],
                 dest: 'public/assets/js/aesop-editor.js'
             }

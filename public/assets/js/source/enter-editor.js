@@ -11,6 +11,7 @@ jQuery(document).ready(function($){
 		featImgNonce    = aesop_editor.featImgNonce,
 		titleClass      = aesop_editor.titleClass,
 		uploadControls  = aesop_editor.featImgControls,
+		wpImgEdit 		= aesop_editor.wpImgEdit,
 		aesopDragHandle = aesop_editor.handle;
 
 	function restoreSelection(range) {
@@ -62,6 +63,21 @@ jQuery(document).ready(function($){
 			if ( !$('.aesop-component--toolbar').length > 0 ) {
 				$(this).append( aesopDragHandle );
 			}
+		});
+
+		// find images inserted from within the wordpress backend post editor and
+		// wrap them in a div, then append an edit button for editing the image
+		$("[class*='wp-image-']").each(function(){
+
+			var $this = $(this)
+
+			if ( !$('.aesop-editor--wpimg-edit').length > 0 ) {
+
+				$this.wrap('<div class="aesop-editor--wpimg__wrap">')
+				$('.aesop-editor--wpimg__wrap').prepend(wpImgEdit)
+
+			}
+
 		});
 
 		/////////////////
@@ -137,11 +153,16 @@ jQuery(document).ready(function($){
 
 				$('body').removeClass('aesop-sidebar-open aesop-editing');
 
-				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls').fadeOut().remove();
+				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls, #aesop-editor--wpimg-edit').fadeOut().remove();
 
 				$('#aesop-editor--edit').css('opacity',1);
 				$('.aesop-editor--controls__right').css('opacity',0);
 				$(post_container).attr('id','');
+
+				// unwrap wp images
+				$(".aesop-editor--wpimg__wrap").each(function(){
+					$(this).children().unwrap()
+				});
 
 				$(titleClass).attr('contenteditable', false);
 

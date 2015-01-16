@@ -8407,6 +8407,7 @@ jQuery(document).ready(function($){
 		featImgNonce    = aesop_editor.featImgNonce,
 		titleClass      = aesop_editor.titleClass,
 		uploadControls  = aesop_editor.featImgControls,
+		wpImgEdit 		= aesop_editor.wpImgEdit,
 		aesopDragHandle = aesop_editor.handle;
 
 	function restoreSelection(range) {
@@ -8458,6 +8459,21 @@ jQuery(document).ready(function($){
 			if ( !$('.aesop-component--toolbar').length > 0 ) {
 				$(this).append( aesopDragHandle );
 			}
+		});
+
+		// find images inserted from within the wordpress backend post editor and
+		// wrap them in a div, then append an edit button for editing the image
+		$("[class*='wp-image-']").each(function(){
+
+			var $this = $(this)
+
+			if ( !$('.aesop-editor--wpimg-edit').length > 0 ) {
+
+				$this.wrap('<div class="aesop-editor--wpimg__wrap">')
+				$('.aesop-editor--wpimg__wrap').prepend(wpImgEdit)
+
+			}
+
 		});
 
 		/////////////////
@@ -8533,11 +8549,16 @@ jQuery(document).ready(function($){
 
 				$('body').removeClass('aesop-sidebar-open aesop-editing');
 
-				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls').fadeOut().remove();
+				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls, #aesop-editor--wpimg-edit').fadeOut().remove();
 
 				$('#aesop-editor--edit').css('opacity',1);
 				$('.aesop-editor--controls__right').css('opacity',0);
 				$(post_container).attr('id','');
+
+				// unwrap wp images
+				$(".aesop-editor--wpimg__wrap").each(function(){
+					$(this).children().unwrap()
+				});
 
 				$(titleClass).attr('contenteditable', false);
 
@@ -8926,9 +8947,7 @@ jQuery(document).ready(function($){
 					////////////
 			      	if ( 'parallax' == type ) {
 
-					  	component.find('.aesop-parallax-sc-img').css({
-					  		'background-image': 'url('+ attachment.url +')'
-					  	});
+					  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
 
 			      	} else if ( 'quote' == type ) {
 
@@ -9197,16 +9216,19 @@ jQuery(document).ready(function($){
 		// sore reference to this
 		var $this = $(this);
 
+		// unwrap wp images
+		$(".aesop-editor--wpimg__wrap").each(function(){
+
+			$(this).children().unwrap()
+			$('#aesop-editor--wpimg-edit').remove();
+		});
+
 		////////////
 		/// DO THE SAVE
 		////////////
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#aesop-editor--controls').data('post-id');
-
-		// remove controls
-		// @todo - worry about saving later this is shit hack
-	  //$('.aesop-component--controls').remove();
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
@@ -9877,6 +9899,72 @@ jQuery(document).ready(function($){
 				console.log(response);
 
 			});
+
+		});
+
+	});
+
+})( jQuery );
+(function( $ ) {
+
+	$(document).ready(function(){
+
+		$("[class*='wp-image-']").each(function() {
+
+			// get the attachment id from teh class wp-image-XXX, where XXX is the id of the attached iamge
+			// this oly works if the image was inserted from within the wordpress post editor
+			var id = $(this).attr('class').match(/\d+/);
+			var ase_edit_frame;
+			var className;
+
+			$(document).on('click', '#aesop-editor--wpimg-edit',function(e){
+  				e.preventDefault();
+  				var selected_img;
+  				var clicked = $(this)
+
+			    className = e.currentTarget.parentElement.className;
+
+			    // If the media frame already exists, reopen it.
+			    if ( ase_edit_frame ) {
+			      	ase_edit_frame.open();
+			      	return;
+			    }
+
+			    // Create the media frame.
+			    ase_edit_frame = wp.media.frames.ase_edit_frame = wp.media({
+			      	title: 'Select Image',
+			      	button: {
+			        	text: 'Insert Image',
+			      	},
+			      	multiple: false  // Set to true to allow multiple files to be selected
+			    });
+
+				ase_edit_frame.on('open',function(){
+					var selection = ase_edit_frame.state().get('selection');
+					var attachment = wp.media.attachment( id );
+					attachment.fetch();
+					selection.add( attachment ? [ attachment ] : [] );
+				});
+
+			    // When an image is selected update it
+			    ase_edit_frame.on( 'select', function() {
+
+			      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
+			      	console.log(attachment)
+
+			      	$(clicked).next('img').attr({
+			      		'src': attachment.sizes.large.url,
+			      		'alt': attachment.alt,
+			      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
+			      	})
+
+
+			    });
+
+			    // Finally, open the modal
+			    ase_edit_frame.open();
+
+			})
 
 		});
 

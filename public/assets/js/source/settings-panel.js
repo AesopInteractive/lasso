@@ -164,9 +164,7 @@
 					////////////
 			      	if ( 'parallax' == type ) {
 
-					  	component.find('.aesop-parallax-sc-img').css({
-					  		'background-image': 'url('+ attachment.url +')'
-					  	});
+					  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
 
 			      	} else if ( 'quote' == type ) {
 

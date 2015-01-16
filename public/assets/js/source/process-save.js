@@ -46,16 +46,19 @@ jQuery(document).ready(function($){
 		// sore reference to this
 		var $this = $(this);
 
+		// unwrap wp images
+		$(".aesop-editor--wpimg__wrap").each(function(){
+
+			$(this).children().unwrap()
+			$('#aesop-editor--wpimg-edit').remove();
+		});
+
 		////////////
 		/// DO THE SAVE
 		////////////
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#aesop-editor--controls').data('post-id');
-
-		// remove controls
-		// @todo - worry about saving later this is shit hack
-	  //$('.aesop-component--controls').remove();
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');

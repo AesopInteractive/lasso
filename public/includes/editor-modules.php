@@ -292,6 +292,15 @@ function aesop_editor_newpost_modal(){
 	return ob_get_clean();
 }
 
+function aesop_editor_wpimg_edit(){
+
+	ob_start();
+
+	?><a href="#" id="aesop-editor--wpimg-edit">Edit</a><?php
+
+	return ob_get_clean();
+}
+
 /**
 *
 *	Draw out the settings field based on the shortcodes array with options foudn in Aesop Story Engine
