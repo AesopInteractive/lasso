@@ -216,11 +216,13 @@ function aesop_editor_component_modal(){
 					</div>
 				</div>
 
+				<?php if ( 'publish' == $status ): ?>
 				<div class="aesop-editor--postsettings__option story-slug-option aesop-editor--last-option">
 					<label>URL</label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div>
 					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
+				<?php endif; ?>
 
 				<div class="aesop-editor--postsettings__footer" style="display:none;">
 					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
