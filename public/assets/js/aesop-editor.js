@@ -9956,10 +9956,10 @@ jQuery(document).ready(function($){
 			    // When an image is selected update it
 			    ase_edit_frame.on( 'select', function() {
 
-			      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
-			      	console.log(attachment)
 
-			      	$(clicked).next('img').attr({
+			      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
+
+			      	$(clicked).parent().next('img').attr({
 			      		'src': attachment.sizes.large.url,
 			      		'alt': attachment.alt,
 			      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
