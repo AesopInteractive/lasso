@@ -109,7 +109,13 @@ jQuery(function( $ ) {
 			closeOnConfirm: true
 		},
 		function(){
+
+			// remove component
 			$this.closest('.aesop-component').remove();
+
+			// remove wp image if its a wp image
+			$this.closest('.aesop-editor--wpimg__wrap').remove();
+
 		});
 
 	});
@@ -124,7 +130,8 @@ jQuery(function( $ ) {
 
 		e.preventDefault();
 
-		$this.closest('.aesop-component').clone().insertAfter( '.aesop-component' ).hide().fadeIn()
+		$this.closest('.aesop-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.aesop-editor--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 
 	});
 
