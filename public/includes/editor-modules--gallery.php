@@ -69,22 +69,6 @@ function aesop_gallery_editor_module(){
 			</div>
 		</div>
 
-		<!-- Global Gallery Options -->
-		<div class="ase-gallery-opts ase-gallery-opts--global">
-
-			<div class="ase-gallery-opts--single aesop-option">
-				<label for="aesop_gallery_width"><?php _e('Main Gallery Width','aesop-core');?></label>
-				<small class="aesop-option-desc"><?php _e('Adjust the overall width of the grid/thumbnail gallery. Acceptable values include 500px or 50%.','aesop-core');?></small>
-				<input type="text_small" name="aesop_gallery_width" value="<?php echo esc_html($width);?>">
-			</div>
-			<div class="ase-gallery-opts--single aesop-option">
-				<label for="aesop_gallery_caption"><?php _e('Gallery Caption','aesop-core');?></label>
-				<small class="aesop-option-desc"><?php _e('Add an optional caption for the gallery.','aesop-core');?></small>
-				<textarea name="aesop_gallery_caption"><?php echo esc_html($caption);?></textarea>
-			</div>
-
-		</div>
-
 		<!-- Conditionally Loaded Gallery Option - Grid Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--grid" style="display:none;">
 			<h3><?php _e('Grid Options','aesop-core');?></h3>
@@ -141,6 +125,21 @@ function aesop_gallery_editor_module(){
 
 		</div>
 
+		<!-- Global Gallery Options -->
+		<div class="ase-gallery-opts ase-gallery-opts--global">
+
+			<div class="ase-gallery-opts--single aesop-option">
+				<label for="aesop_gallery_width"><?php _e('Main Gallery Width','aesop-core');?></label>
+				<small class="aesop-option-desc"><?php _e('Adjust the overall width of the grid/thumbnail gallery. Acceptable values include 500px or 50%.','aesop-core');?></small>
+				<input type="text_small" name="aesop_gallery_width" value="<?php echo esc_html($width);?>">
+			</div>
+			<div class="ase-gallery-opts--single aesop-option">
+				<label for="aesop_gallery_caption"><?php _e('Gallery Caption','aesop-core');?></label>
+				<small class="aesop-option-desc"><?php _e('Add an optional caption for the gallery.','aesop-core');?></small>
+				<textarea name="aesop_gallery_caption"><?php echo esc_html($caption);?></textarea>
+			</div>
+
+		</div>
 
 	<!-- Push gallery id's here -->
 	<input type="hidden" id="ase_gallery_ids" name="ase_gallery_ids" value="">

@@ -47,6 +47,7 @@ module.exports = function(grunt) {
                         'public/assets/js/source/toolbar.js',
                         'public/assets/js/source/process-save.js',
                         'public/assets/js/source/process-gallery.js',
+                        'public/assets/js/source/process-gallery-opts.js',
                         'public/assets/js/source/process-map.js',
                         'public/assets/js/source/process-image-upload.js',
                         'public/assets/js/source/process-save-component.js',

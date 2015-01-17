@@ -68,9 +68,14 @@
 		    	return attachment.id;
 
 		    }).join(',');
+
+		    // populate gallery input with ids
 		    $('#ase_gallery_ids').val( ids );
 
+		    // show the save button
 	      	$('#aesop-editor--gallery__save').fadeIn();
+
+	      	// remove the select images button
 	      	$('#aesop-editor--gallery__selectImages').remove();
 
 	    });
@@ -229,6 +234,7 @@
 
 	// edit single image
 	var ase_media_edit_init = function()  {
+
 	    var clicked_button;
 
 	    $(document).on('click', '.ase-gallery-image > i.dashicons-edit', function(event){
