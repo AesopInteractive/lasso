@@ -13,6 +13,11 @@ class aesopEditorProcessNewPost {
 
 	}
 
+	/**
+	*
+	*
+	*	@todo - replace the echo with wp_send_json_success
+	*/
 	function process_new_post(){
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_new_post' ) {

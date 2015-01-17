@@ -32,7 +32,11 @@ function aesop_gallery_editor_module(){
 	</div>
 
 	<?php
+
+		// note this ID wont work because the gallery id is different from the post id
 		$id 			= get_the_ID();
+
+		$type 			= get_post_meta( $id,'aesop_gallery_type', true);
 
 		// global
 		$width 			= get_post_meta( $id, 'aesop_gallery_width', true );
@@ -51,6 +55,21 @@ function aesop_gallery_editor_module(){
 		$photoset_lb 	 = get_post_meta( $id, 'aesop_photoset_gallery_lightbox', true );
 
 		?>
+
+		<!-- Gallery Layout/Type Chooser -->
+		<div class="ase-gallery-opts ase-gallery-opts--type" >
+			<h3><?php _e('Gallery Type','aesop-core');?></h3>
+			<div class="ase-gallery-opts--single aesop-option">
+				<small class="aesop-option-desc"><?php _e('Select the type of gallery.','aesop-core');?></small>
+		      	<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="grid" <?php checked( $type, 'grid' ); ?> ><?php _e('Grid','aesop-core');?></label>
+		        <label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="thumbnail" <?php checked( $type, 'thumbnail' ); ?> ><?php _e('Thumbnail','aesop-core');?></label>
+				<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="sequence" <?php checked( $type, 'sequence' ); ?> >Sequence</label>
+				<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="photoset" <?php checked( $type, 'photoset' ); ?> ><?php _e('Photoset','aesop-core');?></label>
+				<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="stacked" <?php checked( $type, 'stacked' ); ?> ><?php _e('Parallax','aesop-core');?></label>
+			</div>
+		</div>
+
+		<!-- Global Gallery Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--global">
 
 			<div class="ase-gallery-opts--single aesop-option">
@@ -65,6 +84,8 @@ function aesop_gallery_editor_module(){
 			</div>
 
 		</div>
+
+		<!-- Conditionally Loaded Gallery Option - Grid Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--grid" style="display:none;">
 			<h3><?php _e('Grid Options','aesop-core');?></h3>
 
@@ -75,6 +96,8 @@ function aesop_gallery_editor_module(){
 			</div>
 
 		</div>
+
+		<!-- Conditionally Loaded Gallery Option - Thumb Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--thumb" style="display:none;">
 			<h3><?php _e('Thumbnail Options','aesop-core');?></h3>
 
@@ -100,6 +123,8 @@ function aesop_gallery_editor_module(){
 			</div>
 
 		</div>
+
+		<!-- Conditionally Loaded Gallery Option - Photoset Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--photoset" style="display:none;">
 			<h3><?php _e('Photoset Options','aesop-core');?></h3>
 

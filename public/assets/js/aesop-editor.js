@@ -9747,7 +9747,7 @@ jQuery(document).ready(function($){
 	    	return cdata;
 	    }
 
-	$('#aesop-generator-insert').val('Saving...');
+		$('#aesop-generator-insert').val('Saving...');
 
 		var data = {
 			action: 		'process_update_component',
