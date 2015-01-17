@@ -71,7 +71,6 @@ function aesop_gallery_editor_module(){
 
 		<!-- Conditionally Loaded Gallery Option - Grid Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--grid" style="display:none;">
-			<h3><?php _e('Grid Options','aesop-core');?></h3>
 
 			<div class="ase-gallery-opts--single aesop-option">
 				<label for="aesop_grid_gallery_width"><?php _e('Grid Gallery Width','aesop-core');?></label>
@@ -83,7 +82,6 @@ function aesop_gallery_editor_module(){
 
 		<!-- Conditionally Loaded Gallery Option - Thumb Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--thumb" style="display:none;">
-			<h3><?php _e('Thumbnail Options','aesop-core');?></h3>
 
 			<div class="ase-gallery-opts--single aesop-option">
 				<label for="aesop_thumb_gallery_transition"><?php _e('Gallery Transition','aesop-core');?></label>
@@ -110,7 +108,6 @@ function aesop_gallery_editor_module(){
 
 		<!-- Conditionally Loaded Gallery Option - Photoset Options -->
 		<div class="ase-gallery-opts ase-gallery-opts--photoset" style="display:none;">
-			<h3><?php _e('Photoset Options','aesop-core');?></h3>
 
 			<div class="ase-gallery-opts--single aesop-option">
 				<label for="aesop-photoset-gallery-layout"><?php _e('Gallery Layout','aesop-core');?></label>
