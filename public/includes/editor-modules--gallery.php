@@ -14,8 +14,8 @@ function aesop_gallery_editor_module(){
 	<div id="aesop-editor--gallery__edit">
 
 		<label>Manage Images
-			<a href="#" id="ase-gallery-add-image" class="aesop-editor-tiny-btn" title="Add Images"><span class="aesop-icon-pencil"></span></a>
-			<a href="#" id="aesop-editor--gallery__create" class="aesop-editor-tiny-btn" title="Create Gallery"><span class="aesop-icon-plus"></span></a>
+			<a href="#" id="ase-gallery-add-image" class="aesop-editor-tiny-btn" title="Add Images"><i class="aesop-icon-pencil"></i></a>
+			<a href="#" id="aesop-editor--gallery__create" class="aesop-editor-tiny-btn" title="Create Gallery"><i class="aesop-icon-plus"></i></a>
 		</label>
 		<small class="aesop-option-desc">Rearrange or edit the images in this gallery.</small>
 		<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></span></div>
@@ -58,14 +58,14 @@ function aesop_gallery_editor_module(){
 
 		<!-- Gallery Layout/Type Chooser -->
 		<div class="ase-gallery-opts ase-gallery-opts--type" >
-			<h3><?php _e('Gallery Type','aesop-core');?></h3>
 			<div class="ase-gallery-opts--single aesop-option">
+				<h3><?php _e('Gallery Type','aesop-core');?></h3>
 				<small class="aesop-option-desc"><?php _e('Select the type of gallery.','aesop-core');?></small>
-		      	<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="grid" <?php checked( $type, 'grid' ); ?> ><?php _e('Grid','aesop-core');?></label>
-		        <label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="thumbnail" <?php checked( $type, 'thumbnail' ); ?> ><?php _e('Thumbnail','aesop-core');?></label>
-				<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="sequence" <?php checked( $type, 'sequence' ); ?> >Sequence</label>
-				<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="photoset" <?php checked( $type, 'photoset' ); ?> ><?php _e('Photoset','aesop-core');?></label>
-				<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="stacked" <?php checked( $type, 'stacked' ); ?> ><?php _e('Parallax','aesop-core');?></label>
+		      		<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="grid" <?php checked( $type, 'grid' ); ?> ><?php _e('Grid','aesop-core');?></label>
+		        	<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="thumbnail" <?php checked( $type, 'thumbnail' ); ?> ><?php _e('Thumbnail','aesop-core');?></label>
+					<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="sequence" <?php checked( $type, 'sequence' ); ?> >Sequence</label>
+					<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="photoset" <?php checked( $type, 'photoset' ); ?> ><?php _e('Photoset','aesop-core');?></label>
+					<label class="ase-gallery-layout-label"><input class="ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="stacked" <?php checked( $type, 'stacked' ); ?> ><?php _e('Parallax','aesop-core');?></label>
 			</div>
 		</div>
 
