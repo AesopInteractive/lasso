@@ -52,7 +52,7 @@
 
 			console.log(response);
 
-			if( response == 'success' ) {
+			if( true == response.success ) {
 
 				$('#aesop-generator-insert').addClass('saved');
 				$('#aesop-generator-insert').val('Saved!');
@@ -61,7 +61,7 @@
 					$('body').removeClass('aesop-sidebar-open');
 				},800);
 
-			} else if( 'error' == response ) {
+			} else {
 
 				alert('error');
 

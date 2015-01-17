@@ -73,7 +73,7 @@ function aesop_gallery_editor_module(){
 		<div class="ase-gallery-opts ase-gallery-opts--grid" style="display:none;">
 
 			<div class="ase-gallery-opts--single aesop-option">
-				<label for="aesop_grid_gallery_width"><?php _e('Grid Gallery Width','aesop-core');?></label>
+				<label for="aesop_grid_gallery_width"><?php _e('Grid Item Width','aesop-core');?></label>
 				<small class="aesop-option-desc"><?php _e('Adjust the width of the individual grid items, only if using Grid gallery style. Default is 400.','aesop-core');?></small>
 				<input type="text_small" name="aesop_grid_gallery_width" value="<?php echo (int) $grid_item_width;?>">
 			</div>
@@ -138,7 +138,7 @@ function aesop_gallery_editor_module(){
 
 		</div>
 
-	<!-- Push gallery id's here -->
+
 	<input type="hidden" id="ase_gallery_ids" name="ase_gallery_ids" value="">
 
 	<?php

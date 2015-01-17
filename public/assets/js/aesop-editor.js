@@ -9668,8 +9668,8 @@ jQuery(document).ready(function($){
 
 			if ( $(this).is(':checked') ) {
 				$(this).parent().addClass('selected');
-			var value = $(this).val();
-	  		value_check(value);
+				var value = $(this).val();
+	  			value_check(value);
 
 			}
 
@@ -9680,6 +9680,9 @@ jQuery(document).ready(function($){
 			$(this).addClass('selected');
 			var value = $(this).find('input').val();
 			value_check(value);
+
+			// add the type to a hidden field
+			$('#ase_gallery_type').val( value )
 		});
 	})
 
@@ -9820,7 +9823,7 @@ jQuery(document).ready(function($){
 
 			console.log(response);
 
-			if( response == 'success' ) {
+			if( true == response.success ) {
 
 				$('#aesop-generator-insert').addClass('saved');
 				$('#aesop-generator-insert').val('Saved!');
@@ -9829,7 +9832,7 @@ jQuery(document).ready(function($){
 					$('body').removeClass('aesop-sidebar-open');
 				},800);
 
-			} else if( 'error' == response ) {
+			} else {
 
 				alert('error');
 

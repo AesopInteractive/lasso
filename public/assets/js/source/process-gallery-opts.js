@@ -32,8 +32,8 @@
 
 			if ( $(this).is(':checked') ) {
 				$(this).parent().addClass('selected');
-			var value = $(this).val();
-	  		value_check(value);
+				var value = $(this).val();
+	  			value_check(value);
 
 			}
 
@@ -44,6 +44,9 @@
 			$(this).addClass('selected');
 			var value = $(this).find('input').val();
 			value_check(value);
+
+			// add the type to a hidden field
+			$('#ase_gallery_type').val( value )
 		});
 	})
 

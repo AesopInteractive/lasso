@@ -32,16 +32,25 @@ class aesopEditorComponentSaving {
 					// if gallery images present update them
 					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
 
-					do_action( 'aesop_editor_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
-
 				}
 
+				var_dump($options);
 
-				echo 'success';
+				// update the gallery type
+				if ( $type ) {
+					//update_post_meta( $postid, 'aesop_gallery_type', $options[] );
+				}
+
+				// run an action
+				do_action( 'aesop_editor_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
+
+				// send back success
+				//wp_send_json_success();
 
 			} else {
 
-				echo 'error';
+				// aww snap something went wrong so say something
+				//wp_send_json_error();
 			}
 		}
 
