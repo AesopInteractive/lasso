@@ -120,9 +120,9 @@
 			/////////////
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				//console.log(response);
 
-				if( response == 'success' ) {
+				if( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val('Saved!');
@@ -130,7 +130,7 @@
 
 					window.location.replace(aesop_editor.permalink);
 
-				} else if( 'error' == response ) {
+				} else {
 
 					alert('error');
 

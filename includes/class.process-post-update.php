@@ -1,6 +1,11 @@
 <?php
 
-
+/**
+*
+*	This class is responsible for updating the post settings such as the post slug or post status
+*	and is toggle from the post settings modal
+*
+*/
 class aesopEditorProcessUpdatePost {
 
 	function __construct(){
@@ -34,11 +39,13 @@ class aesopEditorProcessUpdatePost {
 
 				do_action( 'aesop_editor_post_updated', $postid, $slug, $status, get_current_user_ID() );
 
-				echo 'success';
+				// send back success
+				wp_send_json_success();
 
 			} else {
 
-				echo 'error';
+				// send back success
+				wp_send_json_error();
 			}
 		}
 

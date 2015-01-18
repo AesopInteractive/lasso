@@ -8757,9 +8757,9 @@ jQuery(document).ready(function($){
 			/////////////
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				//console.log(response);
 
-				if( response == 'success' ) {
+				if( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val('Saved!');
@@ -8767,7 +8767,7 @@ jQuery(document).ready(function($){
 
 					window.location.replace(aesop_editor.permalink);
 
-				} else if( 'error' == response ) {
+				} else {
 
 					alert('error');
 
@@ -9319,7 +9319,7 @@ jQuery(document).ready(function($){
 		// post ajax response with data
 		$.post( ajaxurl, data, function(response) {
 
-			if ( 'success' == response ) {
+			if( true == response.success ) {
 
 				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
 
@@ -9333,7 +9333,7 @@ jQuery(document).ready(function($){
 			} else {
 
 				// testing
-				console.log(response);
+				//console.log(response);
 				$(save).removeClass('being-saved').addClass('aesop-editor--error');
 			}
 
@@ -9848,7 +9848,7 @@ jQuery(document).ready(function($){
 
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				//console.log(response);
 
 				if( true == response.success ) {
 

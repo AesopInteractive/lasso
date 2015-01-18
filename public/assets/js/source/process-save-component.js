@@ -77,7 +77,7 @@
 
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				//console.log(response);
 
 				if( true == response.success ) {
 

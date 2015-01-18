@@ -33,8 +33,8 @@ class aesopEditorProcessSaving {
 
 				do_action( 'aesop_editor_post_saved', $postid, $content, get_current_user_ID() );
 
-				echo 'success';
-
+				// send back success
+				wp_send_json_success();
 
 			} elseif ( isset( $_POST['action'] ) && $_POST['action'] == 'process_publish_content' ) {
 
@@ -47,8 +47,8 @@ class aesopEditorProcessSaving {
 
 				do_action( 'aesop_editor_post_published', $postid, $content, get_current_user_ID() );
 
-				echo 'success';
-
+				// send back success
+				wp_send_json_success();
 
 			}
 

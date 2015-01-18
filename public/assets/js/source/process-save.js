@@ -142,7 +142,7 @@ jQuery(document).ready(function($){
 		// post ajax response with data
 		$.post( ajaxurl, data, function(response) {
 
-			if ( 'success' == response ) {
+			if( true == response.success ) {
 
 				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
 
@@ -156,7 +156,7 @@ jQuery(document).ready(function($){
 			} else {
 
 				// testing
-				console.log(response);
+				//console.log(response);
 				$(save).removeClass('being-saved').addClass('aesop-editor--error');
 			}
 
