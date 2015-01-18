@@ -8,14 +8,14 @@
 
 		var $component = window.component;
 		var cdata = $component.data();
-		var saveSettings = $('#aesop-generator-insert');
+		var saveInsert = $('#aesop-generator-insert');
 
 		form = $('#aesop--component-settings-form');
 
 		var $this = $(this);
 
 		// let people know something is happening
-		saveSettings.val('Saving...');
+		saveInsert.val('Saving...');
 
 		/////////////
 		//	UPDATE COMPONENT SETTINGS DATA ATTS
@@ -46,17 +46,21 @@
 	    */
 	    var saveSequence = function( stall, timeout ){
 
+	    	// add a saved class then change the save label to saved
+	    	var saveActions = function(){
+	    		saveInsert.addClass('saved');
+				saveInsert.val('Saved!');
+	    	}
+
 	    	if ( true == stall ) {
 
 				setTimeout(function(){
-	    			saveSettings.addClass('saved');
-					saveSettings.val('Saved!');
+					saveActions();
 				}, 500 );
 
 	    	} else {
 
-		    	saveSettings.addClass('saved');
-				saveSettings.val('Saved!');
+		    	saveActions();
 
 	    	}
 
