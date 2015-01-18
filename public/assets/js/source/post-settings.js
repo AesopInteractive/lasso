@@ -31,7 +31,7 @@
 			,	field  		= $('input[name="story_slug"]')
 			,	maxLength   = 342
 
-			field.css({'width':maxLength - mWidth - 2});
+			field.css({'width':maxLength - mWidth + 2});
 
 			/////////////////
 			/// UI SLIDER INIT AND METHODS
