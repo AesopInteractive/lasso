@@ -8664,11 +8664,11 @@ jQuery(document).ready(function($){
 			// RESIZE THE URL HELPER FIELD
 			////////////
 			var mask 		= $('.url-helper')
-			,	mWidth 		= mask.innerWidth()
+			,	mWidth 		= mask.outerWidth()
 			,	field  		= $('input[name="story_slug"]')
 			,	maxLength   = 342
 
-			field.css({'width':maxLength - mWidth});
+			field.css({'width':maxLength - mWidth - 2});
 
 			/////////////////
 			/// UI SLIDER INIT AND METHODS
