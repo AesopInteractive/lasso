@@ -8,6 +8,10 @@
 			$('body').removeClass('aesop-sidebar-open');
 		}
 
+		$('body').on('click', '#'+aesop_editor.editor, function(){
+			destroySidebar()
+		});
+
 		// helper to set the height of the settings panel
 		var settingsHeight = function(){
 
