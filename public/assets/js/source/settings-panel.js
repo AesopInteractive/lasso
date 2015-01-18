@@ -207,7 +207,7 @@
 			,	ajaxurl 	= aesop_editor.ajaxurl
 			,	form 		= $('#aesop--component-settings-form.gallery')
 			,	nonce 		= aesop_editor.getGallImgNonce
-			,	gall_id 	= data['unique']
+			,	gall_id 	= data['id']
 
 			var data      = {
 				action:    	'process_get_images',

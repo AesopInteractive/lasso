@@ -20,13 +20,12 @@ class aesopEditorComponentSaving {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-generator-settings' ) ) {
 
-				$postid 	= isset( $_POST['unique'] ) ? sanitize_text_field( trim( $_POST['unique'] ) ) : false;
 				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
 				$type = $options ? $options['galleryType'] : false;
+				$postid = $options ? (int) $options['id'] : false;
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
-
 
 				// update gallery ids
 				if ( $gallery_ids ) {

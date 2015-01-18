@@ -8990,7 +8990,7 @@ jQuery(document).ready(function($){
 			,	ajaxurl 	= aesop_editor.ajaxurl
 			,	form 		= $('#aesop--component-settings-form.gallery')
 			,	nonce 		= aesop_editor.getGallImgNonce
-			,	gall_id 	= data['unique']
+			,	gall_id 	= data['id']
 
 			var data      = {
 				action:    	'process_get_images',
@@ -9848,7 +9848,7 @@ jQuery(document).ready(function($){
 
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				//console.log(response);
+				console.log(response);
 
 				if( true == response.success ) {
 
