@@ -8666,7 +8666,7 @@ jQuery(document).ready(function($){
 			var mask 		= $('.url-helper')
 			,	mWidth 		= mask.outerWidth()
 			,	field  		= $('input[name="story_slug"]')
-			,	maxLength   = 342
+			,	maxLength   = 341
 
 			field.css({'width':maxLength - mWidth});
 
