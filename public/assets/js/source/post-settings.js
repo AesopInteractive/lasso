@@ -27,9 +27,9 @@
 			// RESIZE THE URL HELPER FIELD
 			////////////
 			var mask 		= $('.url-helper')
-			,	mWidth 		= mask.outerWidth()
+			,	mWidth 		= mask.innerWidth()
 			,	field  		= $('input[name="story_slug"]')
-			,	maxLength   = 340
+			,	maxLength   = 342
 
 			field.css({'width':maxLength - mWidth});
 
