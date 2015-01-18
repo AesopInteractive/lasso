@@ -14,7 +14,7 @@
 
 		$('#aesop-editor--gallery__edit label').text('Add New Gallery');
 		$('#aesop-editor--gallery__edit .aesop-option-desc').text('Select new images to create a gallery with.');
-		
+
 		$('#aesop-editor--gallery__images').css('min-height','1px');
 
 	});

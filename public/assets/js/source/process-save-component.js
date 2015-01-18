@@ -8,10 +8,14 @@
 
 		var $component = window.component;
 		var cdata = $component.data();
+		var saveSettings = $('#aesop-generator-insert');
 
 		form = $('#aesop--component-settings-form');
 
 		var $this = $(this);
+
+		// let people know something is happening
+		saveSettings.val('Saving...');
 
 		/////////////
 		//	UPDATE COMPONENT SETTINGS DATA ATTS
@@ -20,11 +24,12 @@
 
 	    $this.find('.aesop-generator-attr').each(function(){
 
-	      var optionName = $(this).closest('.aesop-option').data('option');
-	      if ( '' !== $(this).val() ) {
-	      	$component.attr( 'data-' + optionName, $(this).val() );
-	      	$component.data(optionName, $(this).val() );
-				}
+	      	var optionName = $(this).closest('.aesop-option').data('option');
+
+	      	if ( '' !== $(this).val() ) {
+	      		$component.attr( 'data-' + optionName, $(this).val() );
+	      		$component.data(optionName, $(this).val() );
+			}
 
 	    });
 
@@ -33,42 +38,69 @@
 	    	return cdata;
 	    }
 
-		$('#aesop-generator-insert').val('Saving...');
+	    /**
+	    *
+	    *	Build a sequence that saves, adds a class, and removs the sidebar
+	    *	@param stall bool should we stall on save? typically used for all but the gallery component which runs an ajax call
+	    *	@param timeout int how long should we timeout before removing the settings sidebar
+	    */
+	    var saveSequence = function( stall, timeout ){
 
-		var data = {
-			action: 		'process_update_component',
-			postid: 		aesop_editor.postid,
-			unique: 		cdata['unique'],
-			fields: 		cleanFields(cdata),
-			gallery_ids: 	$('#ase_gallery_ids').val(),
-			type: 			cdata['componentType'],
-			nonce: 			$('#aesop-generator-nonce').val()
-		}
-
-		/////////////
-		//	DO TEH SAVE
-		/////////////
-		$.post( aesop_editor.ajaxurl, data, function(response) {
-
-			console.log(response);
-
-			if( true == response.success ) {
-
-				$('#aesop-generator-insert').addClass('saved');
-				$('#aesop-generator-insert').val('Saved!');
+	    	if ( true == stall ) {
 
 				setTimeout(function(){
-					$('body').removeClass('aesop-sidebar-open');
-				},800);
+	    			saveSettings.addClass('saved');
+					saveSettings.val('Saved!');
+				}, 500 );
 
-			} else {
+	    	} else {
 
-				alert('error');
+		    	saveSettings.addClass('saved');
+				saveSettings.val('Saved!');
 
+	    	}
+
+			setTimeout(function(){
+				$('body').removeClass('aesop-sidebar-open');
+			}, timeout );
+
+	    }
+
+		// make an ajax call to deal with gallery saving only if it's a gallery
+		if ( 'gallery' == cdata['componentType'] ) {
+
+			var data = {
+				action: 		'process_update_gallery',
+				postid: 		aesop_editor.postid,
+				unique: 		cdata['unique'],
+				fields: 		cleanFields(cdata),
+				gallery_ids: 	$('#ase_gallery_ids').val(),
+				//type: 			cdata['componentType'],
+				nonce: 			$('#aesop-generator-nonce').val()
 			}
 
+			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-		});
+				console.log(response);
+
+				if( true == response.success ) {
+
+					saveSequence(false,800);
+
+				} else {
+
+					alert('error');
+
+				}
+
+
+			});
+
+		} else {
+
+			saveSequence(true,1200);
+
+		}
 
 	});
 

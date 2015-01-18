@@ -5,13 +5,13 @@ class aesopEditorComponentSaving {
 
 	function __construct(){
 
-		add_action( 'wp_ajax_process_update_component', 				array($this, 'process_update_component' ));
+		add_action( 'wp_ajax_process_update_gallery', 				array($this, 'process_update_gallery' ));
 
 	}
 
-	function process_update_component(){
+	function process_update_gallery(){
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_component' ) {
+		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_gallery' ) {
 
 			// only run for logged in users and check caps
 			if( !aesop_editor_user_can_edit() )
@@ -26,6 +26,7 @@ class aesopEditorComponentSaving {
 				$type = $options ? $options['galleryType'] : false;
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
+
 
 				// update gallery ids
 				if ( $gallery_ids ) {
