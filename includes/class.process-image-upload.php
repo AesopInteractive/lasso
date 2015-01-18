@@ -31,11 +31,14 @@ class aesopEditorUploadFeatImage {
 
 				do_action( 'aesop_editor_featured_image_set', $postid, $image_id, get_current_user_ID() );
 
-				echo 'success';
+				// send back success
+				wp_send_json_success();
 
 			} else {
 
-				echo 'error';
+				// send back error
+				wp_send_json_error();
+
 			}
 		}
 

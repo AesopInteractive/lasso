@@ -15,7 +15,7 @@
 		}
 		$.post( aesop_editor.ajaxurl, data, function(response) {
 
-			if ( 'success' == response ) {
+			if ( true == response.success ) {
 				$('#aesop-editor--featImgSave').css('opacity',0);
 			}
 
