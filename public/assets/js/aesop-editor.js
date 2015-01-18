@@ -8850,7 +8850,25 @@ jQuery(document).ready(function($){
 				var option = $(this).data('option');
 				var field = $(this).find('.aesop-generator-attr');
 
-				$( field[0] ).val(data[option]);
+				// if it's a gallery data attribute map the cehcekd attribute to the right place
+				if ( 'gallery-type' == option ) {
+
+					$(field).each(function(){
+
+						if ( $(this).val() == data.galleryType ) {
+
+							$(this).parent().addClass('selected')
+							$(this).attr('checked',true);
+
+						}
+
+					});
+
+				} else {
+
+					$( field[0] ).val(data[option]);
+
+				}
 
 			});
 

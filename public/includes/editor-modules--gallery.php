@@ -33,7 +33,7 @@ function aesop_gallery_editor_module(){
 
 	<!-- Gallery Layout/Type Chooser -->
 	<div class="ase-gallery-opts ase-gallery-opts--type" >
-		<div data-option="type" class="ase-gallery-opts--single aesop-option">
+		<div data-option="gallery-type" class="ase-gallery-opts--single aesop-option">
 			<h3><?php _e('Gallery Type','aesop-core');?></h3>
 			<small class="aesop-option-desc"><?php _e('Select the type of gallery.','aesop-core');?></small>
 	      		<label class="ase-gallery-layout-label"><input class="aesop-generator-attr ase-gallery-type-radio" type="radio" name="aesop_gallery_type" value="grid"><?php _e('Grid','aesop-core');?></label>
