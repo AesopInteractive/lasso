@@ -9777,22 +9777,17 @@ jQuery(document).ready(function($){
 
 		e.preventDefault();
 
-		var $component = window.component;
-		var cdata = $component.data();
-		var saveInsert = $('#aesop-generator-insert');
-
-		form = $('#aesop--component-settings-form');
-
-		var $this = $(this);
+		// store some atts
+		var $component 	= window.component
+		,	cdata 		= $component.data()
+		,	saveInsert 	= $('#aesop-generator-insert')
+		,	form 		= $('#aesop--component-settings-form')
+		,	$this 		= $(this);
 
 		// let people know something is happening
 		saveInsert.val('Saving...');
 
-		/////////////
-		//	UPDATE COMPONENT SETTINGS DATA ATTS
-		// 	- this is run when the user saves teh component which then let's us use these to map back to the original shortcode on post save
-		/////////////
-
+		// send the new settings to the component and update it's data attributes
 	    $this.find('.aesop-generator-attr').each(function(){
 
 	      	var optionName = $(this).closest('.aesop-option').data('option');
@@ -9804,6 +9799,7 @@ jQuery(document).ready(function($){
 
 	    });
 
+	    // return the data attributes as field for the sortable item
 	    var cleanFields = function( cdata ){
 	    	delete cdata['sortableItem'];
 	    	return cdata;
@@ -9825,9 +9821,7 @@ jQuery(document).ready(function($){
 
 	    	if ( true == stall ) {
 
-				setTimeout(function(){
-					saveActions();
-				}, 500 );
+				setTimeout( function(){ saveActions(); }, 500 );
 
 	    	} else {
 
@@ -9835,9 +9829,7 @@ jQuery(document).ready(function($){
 
 	    	}
 
-			setTimeout(function(){
-				$('body').removeClass('aesop-sidebar-open');
-			}, timeout );
+			setTimeout( function(){ $('body').removeClass('aesop-sidebar-open'); }, timeout );
 
 	    }
 
@@ -9860,20 +9852,19 @@ jQuery(document).ready(function($){
 
 				if( true == response.success ) {
 
-					saveSequence(false,800);
+					saveSequence( false, 800 );
 
 				} else {
 
-					alert('error');
+					alert( 'error' );
 
 				}
-
 
 			});
 
 		} else {
 
-			saveSequence(true,1200);
+			saveSequence( true, 1200 );
 
 		}
 
