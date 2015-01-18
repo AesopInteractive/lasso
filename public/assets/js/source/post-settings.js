@@ -29,7 +29,7 @@
 			var mask 		= $('.url-helper')
 			,	mWidth 		= mask.outerWidth()
 			,	field  		= $('input[name="story_slug"]')
-			,	maxLength   = 343
+			,	maxLength   = 340
 
 			field.css({'width':maxLength - mWidth});
 
