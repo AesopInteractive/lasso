@@ -8904,6 +8904,28 @@ jQuery(document).ready(function($){
 			settings.find('.aesop-option.aesop-image-imgwidth > #aesop-generator-attr-imgwidth').on('keyup',function(){
 				component.find('.aesop-image-component-image').css('width', $(this).val() );
 			})
+			// live image alignment
+			settings.find('.aesop-option.aesop-image-align > #aesop-generator-attr-align').on('change',function(){
+
+				var value = $(this).val()
+
+				if ( 'left' == value ) {
+
+					component.find('.aesop-image-component-image').removeClass('aesop-component-align-right aesop-component-align-center')
+
+				} else if ( 'right' == value ) {
+
+					component.find('.aesop-image-component-image').removeClass('aesop-component-align-left aesop-component-align-center')
+
+				} else if ( 'center' == value ) {
+
+					component.find('.aesop-image-component-image').removeClass('aesop-component-align-left aesop-component-align-right')
+
+				}
+
+				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
+
+			})
 
 			// character
 			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
