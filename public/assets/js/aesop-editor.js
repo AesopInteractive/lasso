@@ -10017,12 +10017,12 @@ jQuery(document).ready(function($){
 
 		$(aesop_editor.titleClass).on('blur', function() {
 
-			var $this = $(this);
+			var target = $(this);
 
 			var data = {
 				action: 		'process_update_title',
 				postid: 		aesop_editor.postid,
-				title:          $.trim( $this.text() ),
+				title:          $.trim( target.text() ),
 				nonce: 			aesop_editor.titleNonce
 			}
 
@@ -10031,7 +10031,16 @@ jQuery(document).ready(function($){
 			/////////////
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				if ( true == response.success ) {
+
+					var saveClass = 'aesop-title-saved';
+
+					target.addClass(saveClass);
+
+					setTimeout(function(){
+						target.removeClass(saveClass);
+					},500);
+				}
 
 			});
 

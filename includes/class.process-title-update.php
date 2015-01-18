@@ -32,11 +32,11 @@ class aesopEditorProcessTitleUpdate {
 
 				do_action( 'aesop_editor_title_updated', $postid, $title, get_current_user_ID() );
 
-				echo 'success';
+				wp_send_json_success();
 
 			} else {
 
-				echo 'error';
+				wp_send_json_error();
 			}
 		}
 
