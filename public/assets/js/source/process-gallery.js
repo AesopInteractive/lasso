@@ -73,7 +73,7 @@
 		    $('#ase_gallery_ids').val( ids );
 
 		    // show the save button
-	      	$('#aesop-editor--gallery__save').fadeIn();
+	      	$('.has-galleries > #aesop-editor--gallery__save').fadeIn();
 
 	      	// remove the select images button
 	      	$('#aesop-editor--gallery__selectImages').remove();

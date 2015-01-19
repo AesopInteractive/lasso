@@ -9527,7 +9527,7 @@ jQuery(document).ready(function($){
 		    $('#ase_gallery_ids').val( ids );
 
 		    // show the save button
-	      	$('#aesop-editor--gallery__save').fadeIn();
+	      	$('.has-galleries > #aesop-editor--gallery__save').fadeIn();
 
 	      	// remove the select images button
 	      	$('#aesop-editor--gallery__selectImages').remove();
@@ -9946,6 +9946,7 @@ jQuery(document).ready(function($){
 	    }
 
 		// make an ajax call to deal with gallery saving only if it's a gallery
+		// @todo tie in new gallery creation here
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {

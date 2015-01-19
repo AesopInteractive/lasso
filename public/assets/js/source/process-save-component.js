@@ -63,6 +63,7 @@
 	    }
 
 		// make an ajax call to deal with gallery saving only if it's a gallery
+		// @todo tie in new gallery creation here
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {

@@ -375,6 +375,8 @@ function aesop_editor_options_blob() {
 		return;
 
 	$codes = function_exists('aesop_shortcodes') ? aesop_shortcodes() : null;
+	$galleries = aesop_editor_galleries_exist() ? 'has-galleries' : 'no-galleries';
+
 	$nonce = wp_create_nonce('aesop-generator-settings');
 
 	$blob = array();
@@ -390,7 +392,7 @@ function aesop_editor_options_blob() {
 
 				$prefix = isset($attr_info['prefix']) ? sprintf('<span class="aesop-option-prefix">%s</span>',$attr_info['prefix']) : null;
 
-				$return .= '<form id="aesop--component-settings-form" method="post">';
+				$return .= '<form id="aesop--component-settings-form" class="'.$galleries.'" method="post">';
 				$return .= '<p data-option="'.$attr_name.'" class="aesop-option aesop-'.$slug.'-'.$attr_name.'">';
 				$return .= '<label for="aesop-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
 				$return .= '<small class="aesop-option-desc">'.$attr_info['tip'].'</small>';

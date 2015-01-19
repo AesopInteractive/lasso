@@ -7,27 +7,43 @@
 */
 function aesop_gallery_editor_module(){
 
+	$galleries = aesop_editor_galleries_exist();
+
 	ob_start();
 
-	?>
+	if ( $galleries ) { ?>
 
-	<div id="aesop-editor--gallery__edit">
+		<div class="ase-gallery-opts ase-gallery-opts--edit-gallery" >
+			<div class="ase-gallery-opts--single aesop-option">
 
-		<label>Manage Images
-			<a href="#" id="ase-gallery-add-image" class="aesop-editor-tiny-btn" title="Add Images"><i class="aesop-icon-pencil"></i></a>
-			<a href="#" id="aesop-editor--gallery__create" class="aesop-editor-tiny-btn" title="Create Gallery"><i class="aesop-icon-plus"></i></a>
-		</label>
-		<small class="aesop-option-desc">Rearrange or edit the images in this gallery.</small>
-		<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></span></div>
+				<label>Manage Images
+					<a href="#" id="ase-gallery-add-image" class="aesop-editor-tiny-btn" title="Add Images"><i class="aesop-icon-pencil"></i></a>
+					<a href="#" id="aesop-editor--gallery__create" class="aesop-editor-tiny-btn" title="Create Gallery"><i class="aesop-icon-plus"></i></a>
+				</label>
+				<small class="aesop-option-desc">Rearrange or edit the images in this gallery.</small>
 
-	</div>
+				<div id="aesop-editor--gallery__images"><span class="aesop-icon-spinner6"></span></div>
 
-	<!-- Show this when Create New Gallery clicked above -->
-	<div style="display:none;" id="aesop-editor--gallery__upload">
+			</div>
 
-		<a href="#" id="aesop-editor--gallery__selectImages">Select Images</a>
+		</div>
 
-		<a style="display:none;" data-post-title="<?php echo esc_attr( strtolower( get_the_title() ) );?>" id="aesop-editor--gallery__save" href="#">Save Gallery</a>
+	<?php } ?>
+
+	<div class="ase-gallery-opts ase-gallery-opts--create-gallery" >
+
+		<div class="ase-gallery-opts--single aesop-option">
+
+			<label>Create a Gallery</label>
+			<small class="aesop-option-desc">Select images to create a gallery.</small>
+
+			<a href="#" class="editor-btn-secondary" id="aesop-editor--gallery__selectImages">Select Images</a>
+
+			<div id="ase-gallery-images"></div>
+
+			<a style="display:none;" class="editor-btn-secondary" data-post-title="<?php echo esc_attr( strtolower( get_the_title() ) );?>" id="aesop-editor--gallery__save" href="#">Create Gallery</a>
+
+		</div>
 
 	</div>
 
