@@ -25,9 +25,24 @@ function aesop_editor_controls() {
 		$custom_classes = apply_filters('aesop_editor_control_classes', '' );
 
 		// post settings accessibility
-		$post_access_class 		= '';
-		$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
-		$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
+		// @todo - redo this for proper multisite
+		if ( function_exists('is_multisite') && is_multisite() ) {
+
+			switch_to_blog(1);
+
+				$post_access_class 		= '';
+				$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
+				$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
+
+			restore_current_blog();
+
+		} else {
+
+			$post_access_class 		= '';
+			$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
+			$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
+
+		}
 
 		// css class based on accessibility
 		if ( 'on' == $post_new_disabled ) {
