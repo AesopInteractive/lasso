@@ -10,14 +10,14 @@
 
 		$(this).closest('form').addClass('creating-gallery');
 
-		$('#aesop-editor--gallery__upload').fadeIn();
+		$('.ase-gallery-opts--create-gallery').fadeIn();
+		$('.ase-gallery-opts--edit-gallery').fadeOut(1);
 
-		$('#ase-gallery-add-image, #aesop-editor--gallery__create, #ase-gallery-images li').remove();
+		$('#ase-gallery-images li').remove();
 
-		$('#aesop-editor--gallery__edit label').text('Add New Gallery');
-		$('#aesop-editor--gallery__edit .aesop-option-desc').text('Select new images to create a gallery with.');
+		$('.ase-gallery-opts--edit-gallery').text('Add New Gallery');
+		$('.ase-gallery-opts--edit-gallery .aesop-option-desc').text('Select new images to create a gallery with.');
 
-		$('#aesop-editor--gallery__images').css('min-height','1px');
 
 	});
 
