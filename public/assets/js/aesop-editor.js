@@ -8949,9 +8949,6 @@ jQuery(document).ready(function($){
 			    // Finally, open the modal
 			    file_frame.open();
 			});
-			/////////////
-			// END LIVE EDITING OF COMPONENTS
-			////////////
 
 			/////////////
 			// GET GALLERY IMAGES
