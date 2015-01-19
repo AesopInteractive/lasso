@@ -9927,17 +9927,31 @@ jQuery(document).ready(function($){
 	    *	@param stall bool should we stall on save? typically used for all but the gallery component which runs an ajax call
 	    *	@param timeout int how long should we timeout before removing the settings sidebar
 	    */
-	    var saveSequence = function( stall, timeout ){
+	    var saveSequence = function( stall, timeout, gallery ){
 
 	    	// add a saved class then change the save label to saved
-	    	var saveActions = function(){
+	    	var saveActions = function(gallery){
+
 	    		saveInsert.addClass('saved');
-				saveInsert.val('Saved!');
+
+	    		if ( true == gallery ) {
+
+					saveInsert.val('Gallery Created!');
+
+	    		} else {
+					saveInsert.val('Saved!');
+				}
 	    	}
 
 	    	if ( true == stall ) {
 
 				setTimeout( function(){ saveActions(); }, 500 );
+
+			} else if ( true == gallery ) {
+
+				form.addClass('hide-all-fields').prepend('<p class="aesop-editor--gallery_created_confirm">Gallery Created! Save your post and refresh the page to access this new gallery.</p>')
+
+				setTimeout( function(){ saveActions(true); }, 500 );
 
 	    	} else {
 
@@ -9949,8 +9963,7 @@ jQuery(document).ready(function($){
 
 	    }
 
-		// make an ajax call to deal with gallery saving only if it's a gallery
-		// @todo tie in new gallery creation here
+		// make an ajax call to deal with gallery saving or creating only if it's a gallery
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {
@@ -9958,9 +9971,7 @@ jQuery(document).ready(function($){
 				postid: 		aesop_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
-				curr_title:     $(this).data('post-title'),
 				gallery_ids: 	$('#ase_gallery_ids').val(),
-				//type: 			cdata['componentType'],
 				nonce: 			$('#aesop-generator-nonce').val()
 			}
 
@@ -9968,7 +9979,7 @@ jQuery(document).ready(function($){
 
 				if ( 'gallery-created' == response.data.message ) {
 
-					alert('gallery created! now do something with this message');
+					saveSequence( false, 5000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 

@@ -54,26 +54,45 @@ class aesopEditorProcessGallery {
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
+				// bail if no gallery ids
 				if ( empty( $gallery_ids ) )
 					return;
 
 				$curr_post_title = isset( $_POST['curr_title'] ) ? $_POST['curr_title'] : rand();
 
+				$postid 	= isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
+				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+
+				$type = $options ? $options['galleryType'] : false;
+
 				/*
 				// insert a new gallery
 				$post_args = array(
-				  	'post_title'    => $curr_post_title.'-'.rand(),
+				  	'post_title'    => $postid.'-'.rand(),
 				  	'post_status'   => 'publish',
 				  	'post_type'	  	=> 'ai_galleries'
 				);
 
 				$postid = wp_insert_post( $post_args );
 
-				// push gallery ids
-				update_post_meta( $postid,'_ase_gallery_images', $gallery_ids );
+				// update gallery ids
+				if ( $gallery_ids ) {
+
+					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
+
+				}
+
+				// update the gallery type
+				if ( $type ) {
+
+					update_post_meta( $postid, 'aesop_gallery_type', $type );
+
+				}
+
+				*/
 
 				do_action( 'aesop_editor_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
-				*/
+
 				wp_send_json_success(array('message' => 'gallery-created') );
 
 			} else {
@@ -135,7 +154,7 @@ class aesopEditorProcessGallery {
 
 		die();
 	}
-	
+
 	/**
 	*
 	*	When the user clicks the settings icon in the gallery component it 

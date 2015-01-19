@@ -177,6 +177,9 @@
         background-position: 5px -428px;
     }
 }
+.ase-gallery-opts {
+    .transition(opacity .25s ease);
+}
 
 // empty gallery placholder
 .aesop-editor--empty-gallery {
@@ -218,6 +221,9 @@
         .ase-gallery-opts--create-gallery {
             display: none;
         }
+    }
+    &.hide-all-fields .ase-gallery-opts {
+        .opacity(0);
     }
 }
 
