@@ -8970,7 +8970,6 @@ jQuery(document).ready(function($){
 
 				/////////////
 				// CALL SORTABLE ON RECIEVED IMAGES
-				// @todo - need to push gallery ids on init as well?
 				/////////////
 				var	gallery = $('#ase-gallery-images');
 
@@ -8983,6 +8982,10 @@ jQuery(document).ready(function($){
 						placeholder: 'ase-gallery-drop-zone',
 						forcePlaceholderSize:true,
 						update: function(){
+							var imageArray = $(this).sortable('toArray');
+					  		$('#ase_gallery_ids').val( imageArray );
+						},
+						create: function(){
 							var imageArray = $(this).sortable('toArray');
 					  		$('#ase_gallery_ids').val( imageArray );
 						}
