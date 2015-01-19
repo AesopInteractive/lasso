@@ -39,6 +39,7 @@
 	    *	Build a sequence that saves, adds a class, and removs the sidebar
 	    *	@param stall bool should we stall on save? typically used for all but the gallery component which runs an ajax call
 	    *	@param timeout int how long should we timeout before removing the settings sidebar
+	    *	@param gallery bool is this a gallery creation? otherwise let's mod the label
 	    */
 	    var saveSequence = function( stall, timeout, gallery ){
 
@@ -52,6 +53,7 @@
 					saveInsert.val('Gallery Created!');
 
 	    		} else {
+
 					saveInsert.val('Saved!');
 				}
 	    	}
@@ -92,7 +94,7 @@
 
 				if ( 'gallery-created' == response.data.message ) {
 
-					saveSequence( false, 5000, true );
+					saveSequence( false, 4000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 

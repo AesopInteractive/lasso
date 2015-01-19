@@ -65,7 +65,6 @@ class aesopEditorProcessGallery {
 
 				$type = $options ? $options['galleryType'] : false;
 
-				/*
 				// insert a new gallery
 				$post_args = array(
 				  	'post_title'    => $postid.'-'.rand(),
@@ -88,8 +87,6 @@ class aesopEditorProcessGallery {
 					update_post_meta( $postid, 'aesop_gallery_type', $type );
 
 				}
-
-				*/
 
 				do_action( 'aesop_editor_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
