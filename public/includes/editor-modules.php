@@ -375,7 +375,7 @@ function aesop_editor_options_blob() {
 		return;
 
 	$codes = function_exists('aesop_shortcodes') ? aesop_shortcodes() : null;
-	$galleries = aesop_editor_galleries_exist() ? 'has-galleries' : 'no-galleries';
+	$galleries = aesop_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
 	$nonce = wp_create_nonce('aesop-generator-settings');
 

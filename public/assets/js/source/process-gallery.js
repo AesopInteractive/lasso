@@ -8,6 +8,8 @@
 
 		e.preventDefault();
 
+		$(this).closest('form').addClass('creating-gallery');
+
 		$('#aesop-editor--gallery__upload').fadeIn();
 
 		$('#ase-gallery-add-image, #aesop-editor--gallery__create, #ase-gallery-images li').remove();
@@ -112,6 +114,7 @@
 	// MNEW GALLERY SAVE
 	// this likely has to be moved to process-ave-component.js so we has access to cdata and form fields
 	///////////
+	/*
 	$(document).on('click','#aesop-editor--gallery__save',function(e){
 
 		// run ajax to save gallery
@@ -146,6 +149,7 @@
 		});
 
 	});
+	*/
 
 	///////////
 	// EDIT GALLERY

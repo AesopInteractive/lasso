@@ -9462,6 +9462,8 @@ jQuery(document).ready(function($){
 
 		e.preventDefault();
 
+		$(this).closest('form').addClass('creating-gallery');
+
 		$('#aesop-editor--gallery__upload').fadeIn();
 
 		$('#ase-gallery-add-image, #aesop-editor--gallery__create, #ase-gallery-images li').remove();
@@ -9566,6 +9568,7 @@ jQuery(document).ready(function($){
 	// MNEW GALLERY SAVE
 	// this likely has to be moved to process-ave-component.js so we has access to cdata and form fields
 	///////////
+	/*
 	$(document).on('click','#aesop-editor--gallery__save',function(e){
 
 		// run ajax to save gallery
@@ -9600,6 +9603,7 @@ jQuery(document).ready(function($){
 		});
 
 	});
+	*/
 
 	///////////
 	// EDIT GALLERY
@@ -9950,10 +9954,11 @@ jQuery(document).ready(function($){
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {
-				action: 		'process_update_gallery',
+				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
 				postid: 		aesop_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
+				curr_title:     $(this).data('post-title'),
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				//type: 			cdata['componentType'],
 				nonce: 			$('#aesop-generator-nonce').val()
@@ -9961,9 +9966,11 @@ jQuery(document).ready(function($){
 
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				if ( 'gallery-created' == response.data.message ) {
 
-				if( true == response.success ) {
+					alert('gallery created! now do something with this message');
+
+				} else if ( 'gallery-updated' == response.data.message ) {
 
 					saveSequence( false, 800 );
 

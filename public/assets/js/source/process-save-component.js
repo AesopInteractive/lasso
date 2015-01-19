@@ -67,10 +67,11 @@
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {
-				action: 		'process_update_gallery',
+				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
 				postid: 		aesop_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
+				curr_title:     $(this).data('post-title'),
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				//type: 			cdata['componentType'],
 				nonce: 			$('#aesop-generator-nonce').val()
@@ -78,9 +79,11 @@
 
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				console.log(response);
+				if ( 'gallery-created' == response.data.message ) {
 
-				if( true == response.success ) {
+					alert('gallery created! now do something with this message');
+
+				} else if ( 'gallery-updated' == response.data.message ) {
 
 					saveSequence( false, 800 );
 
