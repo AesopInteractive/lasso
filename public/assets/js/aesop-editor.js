@@ -8782,7 +8782,6 @@ jQuery(document).ready(function($){
 
 })( jQuery );
 (function( $ ) {
-	'use strict';
 
 	$(document).ready(function(){
 
@@ -8886,8 +8885,7 @@ jQuery(document).ready(function($){
 
 			    className = e.currentTarget.parentElement.className;
 
-			    var unique = $(this).closest('form').data('unique'),	
-			    	type   = $('input[name="component_type"]').val()
+			    var type   = $('input[name="component_type"]').val()
 
 			    // If the media frame already exists, reopen it.
 			    if ( file_frame ) {
