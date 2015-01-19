@@ -8875,6 +8875,7 @@ jQuery(document).ready(function($){
 			/////////////
 			// START LIVE EDITING COMPONENTS
 			// @todo - this is hella dirty and needs to be cleaned up
+			// @todo - move this mess to it's own file
 			////////////
 
 			// quote component
