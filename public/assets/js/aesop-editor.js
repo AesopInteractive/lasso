@@ -9564,47 +9564,6 @@ jQuery(document).ready(function($){
 		});
 	});
 
-	//////////
-	// MNEW GALLERY SAVE
-	// this likely has to be moved to process-ave-component.js so we has access to cdata and form fields
-	///////////
-	/*
-	$(document).on('click','#aesop-editor--gallery__save',function(e){
-
-		// run ajax to save gallery
-		e.preventDefault();
-
-		var data = {
-			action: 		'process_create_gallery',
-			unique: 		$('input[name="unique"]').val(),
-			gallery_ids: 	$('#ase_gallery_ids').val(),
-			curr_title:     $(this).data('post-title'),
-			nonce: 			aesop_editor.createGallNonce
-		}
-
-		/////////////
-		//	DO TEH SAVE
-		/////////////
-		$.post( aesop_editor.ajaxurl, data, function(response) {
-
-			console.log(response);
-
-			if( response == 'success' ) {
-
-				console.log(response);
-
-			} else if( 'error' == response ) {
-
-				alert('error');
-
-			}
-
-
-		});
-
-	});
-	*/
-
 	///////////
 	// EDIT GALLERY
 	// the sortsble instat is in settingspanel.js
@@ -9676,6 +9635,17 @@ jQuery(document).ready(function($){
 				var url = attachment.attributes.sizes.thumbnail.url;
 				ase_insert_gallery_item(id, url);
 			});
+
+		    // insert the new ids from new gallery
+		    var ids = selection.map( function( attachment ) {
+
+		    	var attachment = attachment.toJSON();
+		    	return attachment.id;
+
+		    }).join(',');
+
+		    // populate gallery input with ids
+		    $('#ase_gallery_ids').val( ids );
 		};
 
     	wp.media.frames.ase_frame.on('select', ase_media_set_image);
@@ -9730,6 +9700,17 @@ jQuery(document).ready(function($){
 			    	var url = attachment.attributes.sizes.thumbnail.url;
 			    	ase_edit_gallery_item(id, url, clicked_button.parent());
 			    });
+
+		    	// insert the new ids from new gallery
+			    var ids = attachments.map( function( attachment ) {
+
+			    	var attachment = attachment.toJSON();
+			    	return attachment.id;
+
+			    }).join(',');
+
+			    // populate gallery input with ids
+			    $('#ase_gallery_ids').val( ids );
 			};
 
 			// image selection event
@@ -9976,6 +9957,7 @@ jQuery(document).ready(function($){
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				nonce: 			$('#aesop-generator-nonce').val()
 			}
+
 
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 

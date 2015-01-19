@@ -123,7 +123,7 @@ class aesopEditorProcessGallery {
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
 				// update gallery ids
-				if ( $gallery_ids ) {
+				if ( !empty( $gallery_ids ) ) {
 
 					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
 

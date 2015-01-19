@@ -90,6 +90,7 @@
 				nonce: 			$('#aesop-generator-nonce').val()
 			}
 
+
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
 				if ( 'gallery-created' == response.data.message ) {
