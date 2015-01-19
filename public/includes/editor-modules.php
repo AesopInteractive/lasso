@@ -68,11 +68,11 @@ function aesop_editor_controls() {
 
 				<li id="aesop-editor--edit" title="Edit Post"><a href="#" class="aesop-editor--button__primary"></a></li>
 
-				<?php if ( 'off' == $post_settings_disabled ) { ?>
+				<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
 					<li id="aesop-editor--post-settings" title="Post Settings"><a href="#" class="aesop-editor--button__primary"></a></li>
 				<?php }
 
-				if ( 'off' == $post_new_disabled ) { ?>
+				if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
 					<li id="aesop-editor--post-new" title="Add Post"><a href="#" class="aesop-editor--button__primary"></a></li>
 				<?php } ?>
 
