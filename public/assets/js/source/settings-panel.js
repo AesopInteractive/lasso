@@ -143,6 +143,27 @@
 				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
 
 			})
+			// live caption alighnent
+			settings.find('.aesop-option.aesop-image-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
+
+				var value = $(this).val();
+
+				if ( 'left' == value ) {
+
+					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-right aesop-image-component-caption-center')
+
+				} else if ( 'right' == value ) {
+
+					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-center')
+
+				} else if ( 'center' == value ) {
+
+					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-right')
+
+				}
+
+				component.find('.aesop-image-component-image').addClass('aesop-image-component-caption-'+value+' ');
+			});
 
 			// character
 			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
