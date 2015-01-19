@@ -59,6 +59,10 @@ class aesopEditorSettings {
             array(
                 'id' 	=> 'aesop_editor',
                 'title' => __( 'Setup', 'aesop-editor' )
+            ),
+            array(
+                'id' 	=> 'aesop_editor_advanced',
+                'title' => __( 'Advanced', 'aesop-editor' )
             )
         );
         return $sections;
@@ -93,11 +97,42 @@ class aesopEditorSettings {
                     'default' 			=> '',
                     'sanitize_callback' => 'sanitize_text_field'
                 )
-            )
+            ),
+			'aesop_editor_advanced' => array(
+            	array(
+                    'name' 				=> 'post_save_disabled',
+                    'label' 			=> __( 'Disable Post Saving', 'aesop-editor' ),
+                    'desc' 				=> 'By default the editor will update the database with the post or page it is being used on. Check this box to disable this. If you check this box, it is assumed that you will be using the provided filters to save your own content.',
+                    'type' 				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'sanitize_checkbox'
+                )
+			)
         );
 
         return $settings_fields;
     }
+
+    /**
+    *
+    *	Sanitize checkbox input
+    *
+    */
+    function sanitize_checkbox( $input ) {
+
+		if ( $input ) {
+
+			$output = '1';
+
+		} else {
+
+			$output = false;
+
+		}
+
+		return $output;
+	}
+
 }
 
 new aesopEditorSettings();
