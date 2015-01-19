@@ -14,6 +14,18 @@
         list-style-type: none;
         line-height: 0;
     }
+
+    &.aesop-editor--post-new-disabled {
+
+    }
+    &.aesop-editor--post-settings-disabled {
+
+    }
+    &.aesop-editor--post-all-disabled {
+        @d-width: 34px;
+        width:@d-width;
+        left: ~'calc(50% - @{d-width} / 2)';
+    }
 }
 
 // save and publish controls

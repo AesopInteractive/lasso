@@ -24,18 +24,52 @@ function aesop_editor_controls() {
 		// let users add custom css classes
 		$custom_classes = apply_filters('aesop_editor_control_classes', '' );
 
-		?><div id="aesop-editor--controls" class="aaesop-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
-			<ul class="aesop-editor--controls__center aesop-editor-controls aesop-editor-controls--wrap">
+		// post settings accessibility
+		$post_access_class 		= '';
+		$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
+		$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
+
+		// css class based on accessibility
+		if ( 'on' == $post_new_disabled ) {
+
+			$post_access_class = 'aesop-editor--post-new-disabled';
+
+		}
+
+		if ( 'on' == $post_settings_disabled ) {
+
+			$post_access_class = 'aesop-editor--post-settings-disabled';
+
+		}
+
+		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled ) {
+
+			$post_access_class = 'aesop-editor--post-all-disabled';
+		}
+
+		?><div id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
+
+			<ul class="aesop-editor--controls__center aesop-editor-controls aesop-editor-controls--wrap <?php echo $post_access_class;?> ">
+
 				<li id="aesop-editor--edit" title="Edit Post"><a href="#" class="aesop-editor--button__primary"></a></li>
-				<li id="aesop-editor--post-settings" title="Post Settings"><a href="#" class="aesop-editor--button__primary"></a></li>
-				<li id="aesop-editor--post-new" title="Add Post"><a href="#" class="aesop-editor--button__primary"></a></li>
+
+				<?php if ( 'off' == $post_settings_disabled ) { ?>
+					<li id="aesop-editor--post-settings" title="Post Settings"><a href="#" class="aesop-editor--button__primary"></a></li>
+				<?php }
+
+				if ( 'off' == $post_new_disabled ) { ?>
+					<li id="aesop-editor--post-new" title="Add Post"><a href="#" class="aesop-editor--button__primary"></a></li>
+				<?php } ?>
+
 			</ul>
+
 			<div class="aesop-editor--controls__right">
 				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>
 				<?php if ( 'draft' == $status ) { ?>
 					<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-publish-post aesop-editor--button"></a>
 				<?php } ?>
 			</div>
+
 		</div>
 
 	<?php }
@@ -353,7 +387,7 @@ function aesop_editor_options_blob() {
 
 					$i=0;
 
-					foreach ( $attr_info['values'] as $attr_value ) { 
+					foreach ( $attr_info['values'] as $attr_value ) {
 						$attr_value_selected = ( $attr_info['default'] == $attr_value ) ? ' selected="selected"' : '';
 
 						$return .= '<option value="'.$attr_info['values'][$i]['value'].'" ' . $attr_value_selected . '>'.$attr_info['values'][$i]['name'].'</option>';

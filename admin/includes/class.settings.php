@@ -106,6 +106,22 @@ class aesopEditorSettings {
                     'type' 				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'sanitize_checkbox'
+                ),
+            	array(
+                    'name' 				=> 'post_settings_disabled',
+                    'label' 			=> __( 'Disable Post Settings', 'aesop-editor' ),
+                    'desc' 				=> 'Check this to disable users from being able to edit post settings from the front-end.',
+                    'type' 				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'sanitize_checkbox'
+                ),
+            	array(
+                    'name' 				=> 'post_adding_disabled',
+                    'label' 			=> __( 'Disable Post Adding', 'aesop-editor' ),
+                    'desc' 				=> 'Check this to disable the ability to add new posts from the front-end.',
+                    'type' 				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'sanitize_checkbox'
                 )
 			)
         );

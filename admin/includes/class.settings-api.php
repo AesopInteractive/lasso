@@ -371,8 +371,7 @@ class aesopEditor_Settings_API {
         ?>
         <script>
             jQuery(document).ready(function($) {
-                //Initiate Color Picker
-                $('.wp-color-picker-field').wpColorPicker();
+
                 // Switches option sections
                 $('.group').hide();
                 var activetab = '';
