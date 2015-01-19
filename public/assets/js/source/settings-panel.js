@@ -112,6 +112,32 @@
 			settings.find('.aesop-parallax-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
 			})
+			// live parallax captoin alignment
+			settings.find('.aesop-parallax-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
+
+				var value = $(this).val()
+
+				if ( 'bottom-left' == value ) {
+
+					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-right top-left top-right')
+
+				} else if ( 'bottom-right' == value ) {
+
+					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-left top-left top-right')
+
+				} else if ( 'top-left' == value ) {
+
+					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-right top-right bottom-left')
+
+				} else if ( 'top-right' == value ) {
+
+					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-right bottom-left top-left')
+
+				}
+
+				component.find('.aesop-parallax-sc-caption-wrap').addClass( value );
+
+			})
 
 			// image
 			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
