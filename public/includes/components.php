@@ -138,7 +138,7 @@ function aesop_gallery_component(){
 
 	ob_start();
 
-	echo do_shortcode('[aesop_gallery id="1"]');
+	echo do_shortcode('[aesop_gallery]');
 
 	return ob_get_clean();
 }

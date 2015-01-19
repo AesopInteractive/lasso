@@ -190,3 +190,34 @@
         background-position: 5px -428px;
     }
 }
+
+// empty gallery placholder
+.aesop-editor--empty-gallery {
+    height:0;
+    .opacity(0);
+    text-align: center;
+    color:@input--color;
+    font-family: @editor--font;
+    font-size:@toolbar--font__size;
+    .transition(all .2s linear);
+
+    span {
+        position: relative;
+        top:2px;
+    }
+}
+.aesop-editing {
+    .aesop-gallery-component.empty-gallery {
+        .aesop-component--controls {
+            .opacity(1);
+            left:0;
+        }
+    }
+    .aesop-editor--empty-gallery {
+        height:150px;
+        padding-top:75px;
+        .opacity(1);
+    }
+}
+
+
