@@ -8878,7 +8878,7 @@ jQuery(document).ready(function($){
 			// @todo - move this mess to it's own file
 			////////////
 
-			// quote component
+			// QUOTE LIVE EDIT ///////////////////
 			settings.find('#aesop-generator-attr-background').live('change',function(){
 			  	component.css({'background-color': $(this).val()});
 			});
@@ -8892,11 +8892,10 @@ jQuery(document).ready(function($){
 			  	component.find('blockquote cite').text( $(this).val() );
 			});
 
-			// parallax
+			// PARALLAX LIVE EDIT ///////////////////
 			settings.find('.aesop-parallax-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
 			})
-			// live parallax captoin alignment
 			settings.find('.aesop-parallax-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val()
@@ -8923,15 +8922,13 @@ jQuery(document).ready(function($){
 
 			})
 
-			// image
+			// IMAGE LIVE EDIT ///////////////////
 			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-image-component-caption').text( $(this).val() );
 			})
-			// live image size
 			settings.find('.aesop-option.aesop-image-imgwidth > #aesop-generator-attr-imgwidth').on('keyup',function(){
 				component.find('.aesop-image-component-image').css('width', $(this).val() );
 			})
-			// live image alignment
 			settings.find('.aesop-option.aesop-image-align > #aesop-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
@@ -8953,7 +8950,6 @@ jQuery(document).ready(function($){
 				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
 
 			})
-			// live caption alighnent
 			settings.find('.aesop-option.aesop-image-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val();
@@ -8975,9 +8971,12 @@ jQuery(document).ready(function($){
 				component.find('.aesop-image-component-image').addClass('aesop-image-component-caption-'+value+' ');
 			});
 
-			// character
+			// CHARACTER LIVE EDIT ///////////////////
 			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
 				component.find('.aesop-character-title').text( $(this).val() );
+			})
+			settings.find('.aesop-character-caption > #aesop-generator-attr-caption').on('keyup',function(){
+				component.find('.aesop-character-cap').text( $(this).val() );
 			})
 			settings.find('.aesop-option.aesop-character-align > #aesop-generator-attr-align').on('change',function(){
 
@@ -8997,7 +8996,8 @@ jQuery(document).ready(function($){
 
 			});
 
-			// chapter
+
+			// CHAPTER LIVE EDIT ///////////////////
 			settings.find('.aesop-option.aesop-chapter-title > #aesop-generator-attr-title').on('keyup',function(){
 				component.find('.aesop-cover-title span').text( $(this).val() );
 			})
