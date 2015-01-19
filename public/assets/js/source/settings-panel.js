@@ -187,6 +187,7 @@
 
 				/////////////
 				// CALL SORTABLE ON RECIEVED IMAGES
+				// @todo - need to push gallery ids on init as well?
 				/////////////
 				var	gallery = $('#ase-gallery-images');
 
