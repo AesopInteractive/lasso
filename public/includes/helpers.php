@@ -15,8 +15,14 @@ function aesop_editor_get_option( $option, $section, $default = '' ) {
 	if ( empty( $option ) )
 		return;
 
-    $options = get_option( $section );
+	if ( function_exists('is_multisite') && is_multisite() ) {
 
+		$options = get_site_option( $section );
+
+	} else {
+
+    	$options = get_option( $section );
+    }
 
     if ( isset( $options[$option] ) ) {
         return $options[$option];
