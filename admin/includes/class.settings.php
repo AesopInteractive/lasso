@@ -40,7 +40,7 @@ class ahEditorNetworkSettings {
 
 			$options = array_map('sanitize_text_field', $options);
 
-			update_site_option( 'aesop_editor', $options );
+			update_option( 'aesop_editor', $options );
 
 		}
 
