@@ -237,16 +237,6 @@
 			    	ase_edit_gallery_item(id, url, clicked_button.parent());
 			    });
 
-		    	// insert the new ids from new gallery
-			    var ids = attachments.map( function( attachment ) {
-
-			    	var attachment = attachment.toJSON();
-			    	return attachment.id;
-
-			    }).join(',');
-
-			    // populate gallery input with ids
-			    $('#ase_gallery_ids').val( ids );
 			};
 
 			// image selection event
