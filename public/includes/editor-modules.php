@@ -131,7 +131,7 @@ function aesop_editor_text_toolbar(){
 		return;
 
 	// check for aesop story engine and add a class doniting this
-	$ase_status = class_exists('Aesop_Core') ? 'ase-active' : 'ase-not-active';
+	$ase_status = class_exists('Aesop_Core') || defined('AESOP_EDITOR_CUSTOM') ? 'ase-active' : 'ase-not-active';
 
 	// let users add custom css classes
 	$custom_classes = apply_filters('aesop_editor_toolbar_classes', '' );
@@ -152,7 +152,7 @@ function aesop_editor_text_toolbar(){
 		    		</div>
 		    	</div>
 		    </li>
-		    <?php if ( 'ase-active' == $ase_status ): ?>
+		    <?php if ( 'ase-active' == $ase_status || defined('AESOP_EDITOR_CUSTOM') ): ?>
 		    <li id="aesop-toolbar--components" title="Insert Component">
 			    <ul id="aesop-toolbar--components__list">
 					<li data-type="image" title="Image" class="image"></li>
