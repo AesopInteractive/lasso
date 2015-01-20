@@ -1,7 +1,20 @@
 <?php
+/**
+*
+*
+*	The functions in this file register the components that will be shown in the component drop-up menu
+*	and are filterable and pluggable
+*
+*/
 
-// @todo clean up this file
-
+/**
+*
+*	Build an array of components that will be shown in the
+*	component drop-up menu on click
+*
+*	@return array of components
+*	@since 1.0
+*/
 function aesop_editor_components(){
 
 	$array = array(
@@ -59,128 +72,184 @@ function aesop_editor_components(){
 		)
 	);
 
-	return $array;
+	return apply_filters('aesop_editor_components', $array );
 }
 
-function aesop_quote_component(){
+/**
+*
+*	Here each of the components content is being registered and retrieved above
+*
+*	Notes: 	- these functions are pluggable
+*	 	 	- custom modules must have data-component-type="whatever"
+*			- custom modules must have all options as data-attributes if utilizing settings panel
+*
+*	1.  Quote
+*	2.  Image
+*	3.	Parallax
+*	4.	Audio
+*	5.	Content
+*	6.	Character
+*	7.	Collections
+*	8.	Document
+*	9.	Gallery
+*	10. Heading
+*	11. Map
+*	12. Timeline
+*	13. Video
+*/
 
-	ob_start();
+// 1
+if ( !function_exists('aesop_quote_component') ):
+	function aesop_quote_component(){
 
-	echo do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms." cite="Muriel Rukeyser"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms." cite="Muriel Rukeyser"]');
 
-function aesop_image_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 2
+if ( !function_exists('aesop_image_component') ):
+	function aesop_image_component(){
 
-	echo do_shortcode('[aesop_image img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px" caption="A lonely image is no image to be" ]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_image img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px" caption="A lonely image is no image to be" ]');
 
-function aesop_parallax_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 3
+if ( !function_exists('aesop_parallax_component') ):
+	function aesop_parallax_component(){
 
-	echo do_shortcode('[aesop_parallax img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" caption="Love is all we need"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_parallax img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" caption="Love is all we need"]');
 
-function aesop_audio_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 4
+if ( !function_exists('aesop_audio_component') ):
+	function aesop_audio_component(){
 
-	echo do_shortcode('[aesop_audio src="http://users.skynet.be/fa046054/home/P22/track06.mp3"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_audio src="http://users.skynet.be/fa046054/home/P22/track06.mp3"]');
 
-function aesop_content_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 5
+if ( !function_exists('aesop_content_component') ):
+	function aesop_content_component(){
 
-	echo do_shortcode('[aesop_content]Start typing here...[/aesop_content]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_content]Start typing here...[/aesop_content]');
 
-function aesop_character_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 6
+if ( !function_exists('aesop_character_component') ):
+	function aesop_character_component(){
 
-	echo do_shortcode('[aesop_character img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" name="Joes Apartment" caption="Joe likes cockroaches." width="150px"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_character img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" name="Joes Apartment" caption="Joe likes cockroaches." width="150px"]');
 
-function aesop_collections_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 7
+if ( !function_exists('aesop_collections_component') ):
+	function aesop_collections_component(){
 
-	echo do_shortcode('[aesop_collection]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_collection]');
 
-function aesop_document_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 8
+if ( !function_exists('aesop_document_component') ):
+	function aesop_document_component(){
 
-	echo do_shortcode('[aesop_document src="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" ]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_document src="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" ]');
 
-function aesop_gallery_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 9
+if ( !function_exists('aesop_gallery_component') ):
+	function aesop_gallery_component(){
 
-	echo do_shortcode('[aesop_gallery]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_gallery]');
 
-function aesop_heading_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 10
+if ( !function_exists('aesop_heading_component') ):
+	function aesop_heading_component(){
 
-	echo do_shortcode('[aesop_chapter title="Chapter One" subtitle="It started this morning..." img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" full="on"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_chapter title="Chapter One" subtitle="It started this morning..." img="'.AESOP_EDITOR_URL.'/public/assets/img/empty-img.png" full="on"]');
 
-function aesop_map_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 11
+if ( !function_exists('aesop_map_component') ):
+	function aesop_map_component(){
 
-	echo do_shortcode('[aesop_map sticky="off"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_map sticky="off"]');
 
-function aesop_timeline_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 12
+if ( !function_exists('aesop_timeline_component') ):
+	function aesop_timeline_component(){
 
-	echo do_shortcode('[aesop_timeline_stop num="Title" title="2014"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_timeline_stop num="Title" title="2014"]');
 
-function aesop_video_component(){
+		return ob_get_clean();
+	}
+endif;
 
-	ob_start();
+// 13
+if ( !function_exists('aesop_video_component') ):
+	function aesop_video_component(){
 
-	echo do_shortcode('[aesop_video id="59940289" width="100%" align="center"]');
+		ob_start();
 
-	return ob_get_clean();
-}
+		echo do_shortcode('[aesop_video id="59940289" width="100%" align="center"]');
 
-
-
-
-
-
+		return ob_get_clean();
+	}
+endif;

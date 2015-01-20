@@ -29,13 +29,19 @@
     }
 }
 
-// drag placeholder
+// component being dragged around on the page
 .aesop-drag-holder {
     height:@editor--dropzone__height !important;
     background:#d7d7d7;
     text-align: center;
     width:60px;
 
+    // each component has a data-component-type data attribute
+    // with the compents slug. That's used to add a class on drag
+    // which we use here to place icons as :before elements
+    //
+    // Custom modules must have this data-component-type so that
+    // you can style the draggable placeholder
     .editor-icon-font();
     .editor--icon__list();
 
