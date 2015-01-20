@@ -28,7 +28,7 @@ class aesopEditorProcessSaving {
 
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_save_content' ) {
 
-				if ( 'off' == $save_to_post_disabled ) {
+				if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
 					$args = array(
 						'ID'           => (int) $postid,
@@ -46,7 +46,7 @@ class aesopEditorProcessSaving {
 
 			} elseif ( isset( $_POST['action'] ) && $_POST['action'] == 'process_publish_content' ) {
 
-				if ( 'off' == $save_to_post_disabled ) {
+				if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
 					$args = array(
 						'ID'           => (int) $postid,

@@ -1,26 +1,13 @@
 <?php
-/**
-*
-*	Class responsible for adding network settings
-*
-*/
 
-class ahEditorNetworkSettings {
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
-	function __construct(){
+function aesop_editor_settings_form(){
 
-		add_action('network_admin_menu',	array($this,'add_network_menu'));
-		add_action('admin_init',			array($this,'process_settings'));
-
-	}
-
-	function add_network_menu(){
-     	add_submenu_page( 'settings.php', 'Aesop Editor', 'Aesop Editor', 'manage_network', 'aesop-editor-settings', array($this, 'network_settings'));
-	}
-
-	function network_settings(){
-
-		if ( function_exists('is_multisite') && !is_multisite() && !current_user_can('manage_network') )
+		if ( !is_user_logged_in() )
 			return;
 
 		$article_object = aesop_editor_get_option('article_class','aesop_editor');
@@ -80,9 +67,9 @@ class ahEditorNetworkSettings {
 
 				<p class="submit">
 
-				    <input type="hidden" name="action" value="aesop-editor-network-settings" />
+				    <input type="hidden" name="action" value="aesop-editor-settings" />
 				    <input type="submit" class="button-primary" value="Save Settings" />
-					<?php wp_nonce_field( 'nonce','aesop_editor_network_settings' ); ?>
+					<?php wp_nonce_field( 'nonce','aesop_editor_settings' ); ?>
 				</p>
 			</form>
 
@@ -90,30 +77,3 @@ class ahEditorNetworkSettings {
 		</div><?php
 
 	}
-
-	/**
-	*
-	*	Save network settings
-	*
-	*/
-	function process_settings(){
-
-		if ( function_exists('is_multisite') && !is_multisite() && !current_user_can('manage_network') || !is_user_logged_in() )
-			return;
-
-		if ( isset( $_POST['action'] ) && 'aesop-editor-network-settings' == $_POST['action'] && check_admin_referer( 'nonce', 'aesop_editor_network_settings' ) ) {
-
-			$options = isset( $_POST['aesop_editor'] ) ? $_POST['aesop_editor'] : false;
-
-			//var_dump($_POST);wp_die();
-
-			$options = array_map('sanitize_text_field', $options);
-
-			update_site_option( 'aesop_editor', $options );
-
-		}
-
-	}
-
-}
-new ahEditorNetworkSettings;

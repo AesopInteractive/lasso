@@ -49,6 +49,7 @@ class Aesop_Editor_Admin {
 			require_once(AESOP_EDITOR_DIR.'/admin/includes/class.settings.php');
 
 		}
+		require_once(AESOP_EDITOR_DIR.'/admin/includes/settings-form.php');
 
 
 	}
