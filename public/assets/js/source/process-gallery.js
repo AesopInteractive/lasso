@@ -182,16 +182,6 @@
 				ase_insert_gallery_item(id, url);
 			});
 
-		    // insert the new ids from new gallery
-		    var ids = selection.map( function( attachment ) {
-
-		    	var attachment = attachment.toJSON();
-		    	return attachment.id;
-
-		    }).join(',');
-
-		    // populate gallery input with ids
-		    $('#ase_gallery_ids').val( ids );
 		};
 
     	wp.media.frames.ase_frame.on('select', ase_media_set_image);
