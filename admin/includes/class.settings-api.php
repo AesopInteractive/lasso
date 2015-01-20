@@ -76,8 +76,8 @@ class aesopEditor_Settings_API {
     function admin_init() {
         //register settings sections
         foreach ( $this->settings_sections as $section ) {
-            if ( false == get_site_option( $section['id'] ) ) {
-                add_site_option( $section['id'] );
+            if ( false == get_option( $section['id'] ) ) {
+                add_option( $section['id'] );
             }
             if ( isset($section['desc']) && !empty($section['desc']) ) {
                 $section['desc'] = '<div class="inside">'.$section['desc'].'</div>';
@@ -311,7 +311,7 @@ class aesopEditor_Settings_API {
      	* @return string
     */
     function get_option( $option, $section, $default = '' ) {
-        $options = get_site_option( $section );
+        $options = get_option( $section );
         if ( isset( $options[$option] ) ) {
             return $options[$option];
         }
