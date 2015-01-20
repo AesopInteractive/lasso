@@ -122,6 +122,14 @@ class aesopEditorSettings {
                     'type' 				=> 'checkbox',
                     'default' 			=> '',
                     'sanitize_callback' => 'sanitize_checkbox'
+                ),
+            	array(
+                    'name' 				=> 'shortcodify_disabled',
+                    'label' 			=> __( 'Disable Aesop Conversion', 'aesop-editor' ),
+                    'desc' 				=> 'Check this box to disable the conversion process used on Aesop Story Engine components.',
+                    'type' 				=> 'checkbox',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'sanitize_checkbox'
                 )
 			)
         );

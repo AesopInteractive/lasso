@@ -65,8 +65,8 @@ jQuery(document).ready(function($){
 
 		var data      = {
 			action:    	$this.hasClass('aesop-publish-post') ? 'process_publish_content' : 'process_save_content',
-			author:  		aesop_editor.author,
-			content: 		shortcodify(html),
+			author:  	aesop_editor.author,
+			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
 			post_id:   	postid,
 			nonce:     	aesop_editor.nonce
 		};

@@ -24,25 +24,10 @@ function aesop_editor_controls() {
 		// let users add custom css classes
 		$custom_classes = apply_filters('aesop_editor_control_classes', '' );
 
-		// post settings accessibility
-		// @todo - redo this for proper multisite
-		if ( function_exists('is_multisite') && is_multisite() ) {
-
-			switch_to_blog(1);
-
-				$post_access_class 		= '';
-				$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
-				$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
-
-			restore_current_blog();
-
-		} else {
-
-			$post_access_class 		= '';
-			$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
-			$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
-
-		}
+		$post_access_class 		= '';
+		$post_new_disabled 		= aesop_editor_get_option('post_adding_disabled','aesop_editor_advanced');
+		$post_settings_disabled = aesop_editor_get_option('post_settings_disabled','aesop_editor_advanced');
+		$shortcodify_disabled = aesop_editor_get_option('shortcodify_disabled','aesop_editor_advanced');
 
 		// css class based on accessibility
 		if ( 'on' == $post_new_disabled ) {
@@ -62,6 +47,8 @@ function aesop_editor_controls() {
 			$post_access_class = 'aesop-editor--post-all-disabled';
 		}
 
+		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
+
 		?><div id="aesop-editor--controls" class="aesop-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="aesop-editor--controls__center aesop-editor-controls aesop-editor-controls--wrap <?php echo $post_access_class;?> ">
@@ -79,9 +66,9 @@ function aesop_editor_controls() {
 			</ul>
 
 			<div class="aesop-editor--controls__right">
-				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button"></a>
+				<a href="#" title="Save Post" id="aesop-editor--save" class="aesop-save-post aesop-editor--button <?php echo $sc_saving_class;?>"></a>
 				<?php if ( 'draft' == $status ) { ?>
-					<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-publish-post aesop-editor--button"></a>
+					<a href="#" title="Publish Post" id="aesop-editor--publish" class="aesop-publish-post aesop-editor--button <?php echo $sc_saving_class;?>"></a>
 				<?php } ?>
 			</div>
 
@@ -372,7 +359,7 @@ function aesop_editor_wpimg_edit(){
 */
 function aesop_editor_options_blob() {
 
-	$codes 		= function_exists('aesop_shortcodes') ? aesop_shortcodes() : apply_filters('aesop_editor_custom_options', false );
+	$codes 		= function_exists('aesop_shortcodes') ? aesop_shortcodes() : apply_filters('aesop_editor_custom_options', '' );
 	$galleries 	= function_exists('aesop_editor_galleries_exist') && aesop_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
 	$nonce = wp_create_nonce('aesop-generator-settings');
