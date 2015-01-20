@@ -155,6 +155,7 @@ function aesop_editor_text_toolbar(){
 		    <?php if ( 'ase-active' == $ase_status || defined('AESOP_EDITOR_CUSTOM') ): ?>
 		    <li id="aesop-toolbar--components" title="Insert Component">
 			    <ul id="aesop-toolbar--components__list">
+			    	<?php if ( !defined('AESOP_EDITOR_CUSTOM') ) : ?>
 					<li data-type="image" title="Image" class="image"></li>
 					<li data-type="character" title="Character" class="character"></li>
 					<li data-type="quote" title="Quote"  class="quote"></li>
@@ -168,7 +169,8 @@ function aesop_editor_text_toolbar(){
 					<li data-type="document" title="Document"  class="document"></li>
 					<li data-type="collection" title="Collection"  class="collection"></li>
 					<li data-type="gallery" title="Gallery"  class="gallery"></li>
-					<?php do_action('aesop_editor_toolbar_after');?>
+					<?php endif;
+					do_action('aesop_editor_toolbar_components');?>
 			    </ul>
 			</li>
 			<?php endif; ?>
@@ -364,22 +366,21 @@ function aesop_editor_wpimg_edit(){
 /**
 *
 *	Draw out the settings field based on the shortcodes array with options foudn in Aesop Story Engine
-* 	This was mostly backported from aesop story engine
+* 	This was mostly backported from aesop story engine and modified to allow for non aesop shortcodes and components
 *
 *	@since 1.0
 */
 function aesop_editor_options_blob() {
 
-	// bail if no aesop story engine
-	if ( !class_exists('Aesop_Core') )
-		return;
-
-	$codes = function_exists('aesop_shortcodes') ? aesop_shortcodes() : null;
-	$galleries = aesop_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
+	$codes 		= function_exists('aesop_shortcodes') ? aesop_shortcodes() : apply_filters('aesop_editor_custom_options', false );
+	$galleries 	= function_exists('aesop_editor_galleries_exist') && aesop_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
 	$nonce = wp_create_nonce('aesop-generator-settings');
 
 	$blob = array();
+
+	if ( empty( $codes ) )
+		return;
 
 	foreach( $codes as $slug => $shortcode ) {
 		$return = '';
