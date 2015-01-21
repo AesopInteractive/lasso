@@ -10,9 +10,7 @@ function aesop_editor_settings_styles(){
 
 	$screen = get_current_screen();
 
-	//var_dump($screen);
-
-	if ( 'settings_page_aesop-editor-settings' == $screen->id ) {
+	if ( 'settings_page_aesop-editor-settings' == $screen->id || 'settings_page_aesop-editor-settings-network' == $screen->id ) {
 		wp_enqueue_script('aesop-editor-settings-script', AESOP_EDITOR_URL.'/admin/assets/js/aesop-editor-settings.js', array('jquery'), AESOP_EDITOR_VERSION, true );
 		wp_enqueue_style('aesop-editor-settings-style', AESOP_EDITOR_URL.'/admin/assets/css/aesop-editor-settings.css', AESOP_EDITOR_VERSION );
 	}
