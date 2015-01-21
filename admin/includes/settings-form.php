@@ -98,7 +98,7 @@ function aesop_editor_settings_form(){
 					</div>
 				</div>
 
-				<div class="submit">
+				<div class="aesop-editor-settings--submit">
 				    <input type="hidden" name="action" value="aesop-editor-settings" />
 				    <input type="submit" class="button-primary" value="Save Settings" />
 					<?php wp_nonce_field( 'nonce','aesop_editor_settings' ); ?>

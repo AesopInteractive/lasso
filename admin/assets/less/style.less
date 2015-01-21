@@ -3,14 +3,17 @@
 @main:    #fff;
 @border:    #cdcdcd;
 @desc-color:  #888;
+@main-width:  500px;
+@admin-bar-width: 160px;
 #aesop-editor-settings-form{
 
     * { .box-sizing(border-box); }
-    max-width:500px;
+    max-width:@main-width;
     padding:20px;
     background:@main;
     border-radius:5px;
     border:1px solid @border;
+    position: relative;
     .clearfix();
 
     .aesop-editor-settings--option-wrap {
@@ -48,12 +51,64 @@
         }
     }
 
+    input[type="submit"]{
+        &:active {
+            outline:none;
+        }
+        &:disabled {
+            .opacity(0.4);
+        }
+    }
+
     .aesop-editor--setting-description {
         display:block;
-        margin:5px 0;
+        margin:5px 0 10px;
         max-width:400px;
         color:@desc-color;
         line-height: 1.3;
         clear:left;
     }
+
+    // sunmit
+    .aesop-editor-settings--submit {
+        position: fixed;
+        top:88px;
+        left: @main-width + @admin-bar-width + 100;
+
+    }
+
+    .aesop-editor-settings--confirm {
+        background: @main;
+        border:1px solid @border;
+        border-radius:3px;
+        padding:10px 20px 14px 12px;
+        margin-top:10px;
+        .transition(all .2s linear);
+
+        &.success:before,
+        &.error:before {
+            font-family: 'Dashicons';
+            speak: none;
+            font-size:18px;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            top:4px;
+            right:3px;
+
+        }
+
+        &.success:before { content:'\f147'; color:#5CB85C; }
+        &.error:before { content: '\f158'; color:#d9534f; }
+
+    }
+
+}
+#wpbody #aesop-editor-settings-form .button-primary.saved {
+    background: #5CB85C !important;
 }

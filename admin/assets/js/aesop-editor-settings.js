@@ -15,11 +15,18 @@ jQuery(document).ready(function($){
 
 	  		if ( response.success ) {
 
-	  			alert('yep');
+	  			$this.find(':submit').addClass('saved');
+	  			$this.find('.aesop-editor-settings--submit').append('<div class="aesop-editor-settings--confirm success">Settings Saved!</div>');
+
+	  			setTimeout( function(){
+	  				$this.find(':submit').removeClass('saved');
+	  				$this.find('.aesop-editor-settings--confirm').remove();
+	  				$this.find(':submit').attr( 'disabled',false );
+	  			}, 2000 );
 
 	  		} else {
 
-	  			alert('error');
+	  			$this.find('.aesop-editor-settings--submit').append('<div class="aesop-editor-settings--confirm error">Something went wrong! :(</div>');
 
 	  		}
 	    });
