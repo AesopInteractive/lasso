@@ -40,17 +40,7 @@ class Aesop_Editor_Admin {
 		$plugin = Aesop_Editor::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
-		if ( function_exists('is_multisite') && is_multisite() ) {
-
-			require_once(AESOP_EDITOR_DIR.'/admin/includes/class.network-settings.php');
-
-		} else {
-
-			require_once(AESOP_EDITOR_DIR.'/admin/includes/class.settings.php');
-
-		}
-		require_once(AESOP_EDITOR_DIR.'/admin/includes/settings-form.php');
-
+		require_once(AESOP_EDITOR_DIR.'/admin/includes/class.settings.php');
 
 	}
 
