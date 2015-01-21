@@ -161,7 +161,7 @@ class ahEditorAdminSettings {
 					<div class="aesop-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="aesop_editor[post_adding_disabled]" id="aesop_editor[post_adding_disabled]" <?php echo checked( $post_new_disabled, 'on' );?> >
 						<label for="aesop_editor[post_adding_disabled]">Disable Post Adding</label>
-						<span class="aesop-editor--setting-description">By default the editor will update the database with the post or page it is being used on. Check this box to disable this. If you check this box, it is assumed that you will be using the provided filters to save your own content.</span>
+						<span class="aesop-editor--setting-description">Xheck this box to disable users from being able to add new posts from the front-end.</span>
 					</div>
 				</div>
 
