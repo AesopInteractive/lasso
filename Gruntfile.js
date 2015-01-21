@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         	},
             less: {
 				files: ['public/assets/less/**/*','admin/assets/less/**/*'],
-                tasks: ['less:coreLess']
+                tasks: ['less:coreLess','less:settingsLess']
             },
             livereload: {
                 options: { livereload: true },
@@ -29,7 +29,16 @@ module.exports = function(grunt) {
 		    	files: {
 		      		'public/assets/css/aesop-editor.css': 'public/assets/less/style.less'
 		    	}
-		  	}
+		  	},
+		  	settingsLess: {
+		  		options: {
+		      		paths: ['admin/assets/less/*'],
+		      		cleancss:true
+		    	},
+		    	files: {
+		      		'admin/assets/css/aesop-editor-settings.css': 'admin/assets/less/style.less'
+		    	}
+		    }
         },
    		concat: {
             dist: {
@@ -58,7 +67,7 @@ module.exports = function(grunt) {
                     ],
                 dest: 'public/assets/js/aesop-editor.js'
             }
-        },
+        }
     });
 
     // register task

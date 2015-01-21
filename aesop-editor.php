@@ -39,7 +39,7 @@ add_action( 'plugins_loaded', array( 'Aesop_Editor', 'get_instance' ) );
  * Dashboard and Administrative Functionality
  *----------------------------------------------------------------------------*/
 
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+if ( is_admin() ) {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-aesop-editor-admin.php' );
 	add_action( 'plugins_loaded', array( 'Aesop_Editor_Admin', 'get_instance' ) );

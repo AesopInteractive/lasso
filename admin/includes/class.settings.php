@@ -9,8 +9,8 @@ class ahEditorNetworkSettings {
 
 	function __construct(){
 
-		add_action('admin_menu',	array($this,'add_menu'));
-		add_action('admin_init',	array($this,'process_settings'));
+		add_action('admin_menu',				array($this,'add_menu'));
+		add_action('wp_ajax_aesop-editor-settings',	array($this,'process_settings'));
 
 	}
 
@@ -42,7 +42,11 @@ class ahEditorNetworkSettings {
 
 			update_option( 'aesop_editor', $options );
 
+			wp_send_json_success();
+
 		}
+
+		die();
 
 	}
 
