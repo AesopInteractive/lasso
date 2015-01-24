@@ -132,7 +132,7 @@
 					////////////
 			      	if ( 'parallax' == type ) {
 
-					  	component.find('.lasso-parallax-sc-img').attr('src', attachment.url )
+					  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
 
 			      	} else if ( 'quote' == type ) {
 
@@ -142,15 +142,15 @@
 
 			      	} else if ( 'image' == type ) {
 
-					  	component.find('.lasso-image-component-image > img').attr('src', attachment.url)
+					  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
 
 			      	} else if ( 'character' == type ) {
 
-					  	component.find('.lasso-character-avatar').attr('src', attachment.url)
+					  	component.find('.aesop-character-avatar').attr('src', attachment.url)
 
 			      	} else if ( 'chapter' == type ) {
 
-			      		component.find('.lasso-article-chapter').css({
+			      		component.find('.aesop-article-chapter').css({
 					  		'background-image': 'url('+ attachment.url +')'
 					  	});
 
