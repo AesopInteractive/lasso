@@ -37,15 +37,14 @@ class aesopEditorProcessNewObject {
 				  	'post_title'    => wp_strip_all_tags( trim( $title ) ),
 				  	'post_status'   => 'draft',
 				  	'post_type'	  	=> trim( $object ),
-				  	'post_content'  => 'People are made of stories...'
+				  	'post_content'  => apply_filters('aesop_editor_new_object_content','People are made of stories...')
 				);
 
-				$postid = wp_insert_post( $post_args );
+				$postid = wp_insert_post( apply_filters('aesop_editor_new_object_args', $post_args ) );
 
-				do_action( 'aesop_editor_new_post', $postid, $title, get_current_user_ID() );
+				do_action( 'aesop_editor_new_object', $postid, $object, $title, get_current_user_ID() );
 
-				echo get_permalink($postid);
-
+				wp_send_json_success(array('postlink' => get_permalink($postid)));
 
 			} else {
 

@@ -10041,12 +10041,12 @@ jQuery(document).ready(function($){
 			/////////////
 			$.post( aesop_editor.ajaxurl, data, function(response) {
 
-				if ( response ) {
+				if ( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val('Added!');
 
-					window.location.replace(response);
+					window.location.replace(response.data.postlink);
 
 				} else {
 
