@@ -4,7 +4,7 @@
 	/////////////
 	// NEW GALLERY CREATE
 	////////////
-	$('#aesop-editor--gallery__create').live('click',function(e){
+	$('#lasso--gallery__create').live('click',function(e){
 
 		e.preventDefault();
 
@@ -16,7 +16,7 @@
 		$('#ase-gallery-images li').remove();
 
 		$('.ase-gallery-opts--edit-gallery').text('Add New Gallery');
-		$('.ase-gallery-opts--edit-gallery .aesop-option-desc').text('Select new images to create a gallery with.');
+		$('.ase-gallery-opts--edit-gallery .lasso-option-desc').text('Select new images to create a gallery with.');
 
 
 	});
@@ -28,7 +28,7 @@
 	var file_frame;
 	var	gallery = $('#ase-gallery-images');
 
-	$(document).on('click', '#aesop-editor--gallery__selectImages', function( e ){
+	$(document).on('click', '#lasso--gallery__selectImages', function( e ){
 
 	    e.preventDefault();
 
@@ -75,10 +75,10 @@
 		    $('#ase_gallery_ids').val( ids );
 
 		    // show the save button
-	      	$('.has-galleries > #aesop-editor--gallery__save').fadeIn();
+	      	$('.has-galleries > #lasso--gallery__save').fadeIn();
 
 	      	// remove the select images button
-	      	$('#aesop-editor--gallery__selectImages').remove();
+	      	$('#lasso--gallery__selectImages').remove();
 
 	    });
 
@@ -89,21 +89,21 @@
 	//////////
 	// NEW GALLERY SWAP
 	//////////
-	$('.aesop-gallery-id #aesop-generator-attr-id').live('change',function(){
+	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
 
 		var data = {
 			action: 		'process_swap_gallery',
 			gallery_id: 	$(this).val(),
-			nonce: 			aesop_editor.swapGallNonce
+			nonce: 			lasso_editor.swapGallNonce
 		}
 
-		$.post( aesop_editor.ajaxurl, data, function(response) {
+		$.post( lasso_editor.ajaxurl, data, function(response) {
 
 			console.log(response);
 
 			if( response ) {
 
-				$('.aesop-gallery-component').html( response );
+				$('.lasso-gallery-component').html( response );
 
 			}
 
@@ -159,7 +159,7 @@
 		}
 
     	wp.media.frames.ase_frame = wp.media({
-			title: 'Select Aesop Gallery Image',
+			title: 'Select Lasso Gallery Image',
 			multiple: true,
 			library: {
 			    type: 'image'

@@ -8,20 +8,20 @@
 
 		// method to destroy the modal
 		var destroyModal = function(){
-			$('body').removeClass('aesop-modal-open');
-			$('#aesop-editor--post-settings__modal, #aesop-editor--modal__overlay').remove();
+			$('body').removeClass('lasso-modal-open');
+			$('#lasso--post-settings__modal, #lasso--modal__overlay').remove();
 		}
 
 		// modal click
-		$('#aesop-editor--post-settings').live('click',function(e){
+		$('#lasso--post-settings').live('click',function(e){
 
 			e.preventDefault();
 
 			// add a body class
-			$('body').toggleClass('aesop-modal-open');
+			$('body').toggleClass('lasso-modal-open');
 
-			// append teh modal markup ( aesop_editor_component_modal() )
-			$('body').append(aesop_editor.component_modal);
+			// append teh modal markup ( lasso_editor_component_modal() )
+			$('body').append(lasso_editor.component_modal);
 
 			////////////
 			// RESIZE THE URL HELPER FIELD
@@ -55,8 +55,8 @@
 			}
 
 			// init slider
-		    $('#aesop-editor--slider').slider({
-		      	value:statusReturn(aesop_editor.post_status),
+		    $('#lasso--slider').slider({
+		      	value:statusReturn(lasso_editor.post_status),
 		      	min: 100,
 		      	max: 200,
 		      	step: 100,
@@ -64,7 +64,7 @@
 		      	slide: function( event, ui ) {
 		        	$('input[name="status"]').val( statusReturn(ui.value) );
 
-		        	$('.aesop-editor--postsettings__footer').slideDown()
+		        	$('.lasso--postsettings__footer').slideDown()
 
 		        	if ( 100 == ui.value ) {
 		        		$('.story-status').removeClass('story-status-publish').addClass('story-status-draft')
@@ -73,17 +73,17 @@
 		        	}
 		      	}
 		    });
-		    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+		    $('input[name="status"]').val( statusReturn( $( "#lasso--slider" ).slider('value') ) );
 
 		    // if any changes happen then show the footer
 		    $('input[name="story_slug"]').on('keyup',function(){
-			  	$('.aesop-editor--postsettings__footer').slideDown()
+			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay, .aesop-editor--postsettings-cancel').live('click',function(e){
+		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -105,7 +105,7 @@
 		//////////////
 		var form;
 
-		$('#aesop-editor--postsettings__form').live('submit', function(e) {
+		$('#lasso--postsettings__form').live('submit', function(e) {
 
 			e.preventDefault();
 
@@ -118,7 +118,7 @@
 			/////////////
 			//	DO TEH SAVE
 			/////////////
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				//console.log(response);
 
@@ -128,7 +128,7 @@
 					$('input[type="submit"]').val('Saved!');
 					location.reload();
 
-					window.location.replace(aesop_editor.permalink);
+					window.location.replace(lasso_editor.permalink);
 
 				} else {
 

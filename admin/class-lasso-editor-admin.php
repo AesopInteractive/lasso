@@ -2,14 +2,14 @@
 /**
  * AH Stripe
  *
- * @package   Aesop_Editor_Admin
- * @author    Nick Haskins <nick@aesopinteractive.com>
+ * @package   Lasso_Editor_Admin
+ * @author    Nick Haskins <nick@lassointeractive.com>
  * @license   GPL-2.0+
- * @link      http://aesopinteractive.com
- * @copyright 2015 Aesopinteractive LLC
+ * @link      http://lassointeractive.com
+ * @copyright 2015 Lassointeractive LLC
  */
 
-class Aesop_Editor_Admin {
+class Lasso_Editor_Admin {
 
 	/**
 	 * Instance of this class.
@@ -37,10 +37,10 @@ class Aesop_Editor_Admin {
 	 */
 	private function __construct() {
 
-		$plugin = Aesop_Editor::get_instance();
+		$plugin = Lasso_Editor::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
-		require_once(AESOP_EDITOR_DIR.'/admin/includes/class.settings.php');
+		require_once(LASSO_DIR.'/admin/includes/class.settings.php');
 
 	}
 

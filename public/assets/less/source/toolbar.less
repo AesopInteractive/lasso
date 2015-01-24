@@ -1,5 +1,5 @@
 // main toolbar layout
-.aesop-editor--toolbar_wrap {
+.lasso--toolbar_wrap {
 
     width:@toolbar--width;
     left: ~'calc(50% - @{toolbar--width} / 2)';
@@ -13,7 +13,7 @@
 }
 
 // global styles wrapper for editor and toolbar controls
-.aesop-editor-controls--wrap {
+.lasso-editor-controls--wrap {
 
     * { .box-sizing(border-box); }
 
@@ -28,7 +28,7 @@
 }
 
 // global styles  ul for the editor and toolbar controls
-.aesop-editor-controls{
+.lasso-editor-controls{
     margin:0;
     padding:0;
     list-style: none;
@@ -79,29 +79,29 @@
 }
 
 // toolbar buttons
-#aesop-toolbar--bold:before {
+#lasso-toolbar--bold:before {
     content:'\ea62';
 }
-#aesop-toolbar--italic:before {
+#lasso-toolbar--italic:before {
     content:'\ea64';
 }
-#aesop-toolbar--underline:before {
+#lasso-toolbar--underline:before {
    content:'\ea63';
 }
-#aesop-toolbar--strike:before {
+#lasso-toolbar--strike:before {
     content:'\ea65';
 }
-#aesop-toolbar--html:before {
+#lasso-toolbar--html:before {
     content:'\ea7f';
 }
-#aesop-toolbar--components:before {
+#lasso-toolbar--components:before {
     content:'\ea0a';
 }
 
 // html insert
-#aesop-toolbar--html {
+#lasso-toolbar--html {
 
-    #aesop-toolbar--html__wrap{
+    #lasso-toolbar--html__wrap{
         position: absolute;
         left:-10000px;
         .opacity(0);
@@ -117,7 +117,7 @@
         box-shadow:none;
         background:@toolbar--hover;
 
-       #aesop-toolbar--html__wrap{
+       #lasso-toolbar--html__wrap{
             margin:0;
             padding:4px;
             .opacity(1);
@@ -149,7 +149,7 @@
             }
         }
 
-        #aesop-toolbar--html__inner {
+        #lasso-toolbar--html__inner {
             background: @toolbar--htmldrop__bg;
             color:@toolbar--htmldrop__color;
             height:@toolbar--htmldrop__theight;
@@ -176,7 +176,7 @@
             }
         }
 
-        #aesop-toolbar--html__footer {
+        #lasso-toolbar--html__footer {
             text-align: right;
             font-family: @editor--font;
             padding:7px 2px 2px;
@@ -195,7 +195,7 @@
             }
 
             // inset html
-            #aesop-toolbar--html__insert {
+            #lasso-toolbar--html__insert {
                 background:@editor--color__update;
 
                 &:hover {
@@ -208,13 +208,13 @@
             }
 
             // cancel
-            .aesop-toolbar--html__cancel {
+            .lasso-toolbar--html__cancel {
                 color:@editor--color__error;
             }
         }
     }
 }
-#aesop-toolbar--components{
+#lasso-toolbar--components{
 
     ul {
         position: absolute;

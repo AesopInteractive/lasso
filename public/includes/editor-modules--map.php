@@ -5,19 +5,19 @@
 *	Component settings for the Map component
 *
 */
-function aesop_map_editor_module(){
+function lasso_map_editor_module(){
 
 	$postid = get_the_ID();
 
 	ob_start();
 
-		echo '<div class="aesop-map-data" style="display: hidden;">';
+		echo '<div class="lasso-map-data" style="display: hidden;">';
 			wp_nonce_field( 'ase_map_meta', 'ase_map_meta_nonce' );
 		echo '</div>';
 
-		echo "Starting location: <input type='text' id='aesop-map-address'/>";
-		echo __('<em>Hint: Type to search for locations</em>','aesop-core');
-		//echo '<div id="aesop-map" style="height:350px;"></div>';
+		echo "Starting location: <input type='text' id='lasso-map-address'/>";
+		echo __('<em>Hint: Type to search for locations</em>','lasso-core');
+		//echo '<div id="lasso-map" style="height:350px;"></div>';
 
 		$ase_map_locations 		= get_post_meta( $postid, 'ase_map_component_locations' );
 		$ase_map_start_point 	= get_post_meta( $postid, 'ase_map_component_start_point', true );
@@ -31,7 +31,7 @@ function aesop_map_editor_module(){
 
 
 		?>
-		<!-- Aesop Maps -->
+		<!-- Lasso Maps -->
 		<script>
 
 			jQuery(document).ready(function(){
@@ -40,7 +40,7 @@ function aesop_map_editor_module(){
 				var start_zoom = <?php echo absint($ase_map_zoom); ?>;
 
 				/*
-				var map = L.map('aesop-map-component',{
+				var map = L.map('lasso-map-component',{
 					scrollWheelZoom: false,
 					zoom: start_zoom,
 					center: start_point
@@ -49,14 +49,14 @@ function aesop_map_editor_module(){
 
 				setMapCenter(start_point[0],start_point[1]);
 
-				jQuery('#aesop-map-address').geocomplete().bind('geocode:result', function(event, result){
+				jQuery('#lasso-map-address').geocomplete().bind('geocode:result', function(event, result){
 					var lat = result.geometry.location.k;
 					var lng = result.geometry.location.B;
 					map.panTo(new L.LatLng(lat,lng));
 					setMapCenter(lat,lng);
 					});
 				/*
-				L.tileLayer('//{s}.tiles.mapbox.com/v3/aesopinteractive.hkoag9o3/{z}/{x}/{y}.png', {
+				L.tileLayer('//{s}.tiles.mapbox.com/v3/lassointeractive.hkoag9o3/{z}/{x}/{y}.png', {
 					maxZoom: 20
 				}).addTo(map);
 				*/
@@ -77,13 +77,13 @@ function aesop_map_editor_module(){
 				function setMapCenter(k, B) {
 					var ldata = encodeLocationData(k,B);
 					jQuery('input[name="ase-map-component-start-point"]').remove();
-					jQuery('.aesop-map-data').append('<input type="hidden" name="ase-map-component-start-point" data-ase="map" value="' + ldata + '">');
-					jQuery('#aesop-map-address').val(k + ', ' + B);
+					jQuery('.lasso-map-data').append('<input type="hidden" name="ase-map-component-start-point" data-ase="map" value="' + ldata + '">');
+					jQuery('#lasso-map-address').val(k + ', ' + B);
 				}
 
 				function setMapZoom(z) {
 					jQuery('input[name="ase-map-component-zoom"]').remove();
-					jQuery('.aesop-map-data').append('<input type="hidden" name="ase-map-component-zoom" data-ase="map" value="' + z + '">');
+					jQuery('.lasso-map-data').append('<input type="hidden" name="ase-map-component-zoom" data-ase="map" value="' + z + '">');
 				}
 
 				function onMarkerDrag(e) {
@@ -201,7 +201,7 @@ function aesop_map_editor_module(){
 
 				// let's create a hidden form element for the marker
 				function createMarkerField(mid, mdata) {
-				  	jQuery('.aesop-map-data').append('<input type="hidden" name="ase-map-component-locations[]" data-ase="map" data-marker="' + mid + '" value="' + mdata + '">');
+				  	jQuery('.lasso-map-data').append('<input type="hidden" name="ase-map-component-locations[]" data-ase="map" data-marker="' + mid + '" value="' + mdata + '">');
 				}
 
 				function updateMarkerField(m) {

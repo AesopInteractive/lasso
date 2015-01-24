@@ -10,7 +10,7 @@
 			var ase_edit_frame;
 			var className;
 
-			$(document).on('click', '#aesop-editor--wpimg-edit',function(e){
+			$(document).on('click', '#lasso--wpimg-edit',function(e){
   				e.preventDefault();
   				var selected_img;
   				var clicked = $(this)

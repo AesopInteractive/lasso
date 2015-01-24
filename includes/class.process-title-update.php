@@ -1,7 +1,7 @@
 <?php
 
 
-class aesopEditorProcessTitleUpdate {
+class lassoEditorProcessTitleUpdate {
 
 	function __construct(){
 
@@ -14,11 +14,11 @@ class aesopEditorProcessTitleUpdate {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_title' ) {
 
 			// only run for logged in users and check caps
-			if( !aesop_editor_user_can_edit() )
+			if( !lasso_editor_user_can_edit() )
 				return;
 
 			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'aesop_update_title' ) ) {
+			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_update_title' ) ) {
 
 				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 				$title 	= isset( $_POST['title'] ) ? $_POST['title'] : false;
@@ -30,7 +30,7 @@ class aesopEditorProcessTitleUpdate {
 
 				wp_update_post( $args );
 
-				do_action( 'aesop_editor_title_updated', $postid, $title, get_current_user_ID() );
+				do_action( 'lasso_editor_title_updated', $postid, $title, get_current_user_ID() );
 
 				wp_send_json_success();
 
@@ -45,7 +45,7 @@ class aesopEditorProcessTitleUpdate {
 
 
 }
-new aesopEditorProcessTitleUpdate;
+new lassoEditorProcessTitleUpdate;
 
 
 

@@ -2,24 +2,24 @@
 
 	var form;
 
-	$('#aesop--component-settings-form').live('submit', function(e) {
+	$('#lasso--component-settings-form').live('submit', function(e) {
 
 		e.preventDefault();
 
 		// store some atts
 		var $component 	= window.component
 		,	cdata 		= $component.data()
-		,	saveInsert 	= $('#aesop-generator-insert')
-		,	form 		= $('#aesop--component-settings-form')
+		,	saveInsert 	= $('#lasso-generator-insert')
+		,	form 		= $('#lasso--component-settings-form')
 		,	$this 		= $(this);
 
 		// let people know something is happening
 		saveInsert.val('Saving...');
 
 		// send the new settings to the component and update it's data attributes
-	    $this.find('.aesop-generator-attr').each(function(){
+	    $this.find('.lasso-generator-attr').each(function(){
 
-	      	var optionName = $(this).closest('.aesop-option').data('option');
+	      	var optionName = $(this).closest('.lasso-option').data('option');
 
 	      	if ( '' !== $(this).val() ) {
 	      		$component.attr( 'data-' + optionName, $(this).val() );
@@ -64,7 +64,7 @@
 
 			} else if ( true == gallery ) {
 
-				form.addClass('hide-all-fields').prepend('<p class="aesop-editor--gallery_created_confirm">Gallery Created! Save your post and refresh the page to access this new gallery.</p>')
+				form.addClass('hide-all-fields').prepend('<p class="lasso--gallery_created_confirm">Gallery Created! Save your post and refresh the page to access this new gallery.</p>')
 
 				setTimeout( function(){ saveActions(true); }, 500 );
 
@@ -74,7 +74,7 @@
 
 	    	}
 
-			setTimeout( function(){ $('body').removeClass('aesop-sidebar-open'); }, timeout );
+			setTimeout( function(){ $('body').removeClass('lasso-sidebar-open'); }, timeout );
 
 	    }
 
@@ -83,15 +83,15 @@
 
 			var data = {
 				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
-				postid: 		aesop_editor.postid,
+				postid: 		lasso_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
 				gallery_ids: 	$('#ase_gallery_ids').val(),
-				nonce: 			$('#aesop-generator-nonce').val()
+				nonce: 			$('#lasso-generator-nonce').val()
 			}
 
 
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( 'gallery-created' == response.data.message ) {
 

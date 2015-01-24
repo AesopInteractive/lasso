@@ -2,19 +2,19 @@
 /**
  * AH Editor
  *
- * @package   Aesop_Editor
- * @author    Nick Haskins <nick@aesopinteractive.com>
+ * @package   Lasso_Editor
+ * @author    Nick Haskins <nick@lassointeractive.com>
  * @license   GPL-2.0+
- * @link      http://aesopinteractive.com
- * @copyright 2015 Aesopinteractive LLC
+ * @link      http://lassointeractive.com
+ * @copyright 2015 Lassointeractive LLC
  */
 
 /**
  *
- * @package Aesop_Editor
- * @author  Nick Haskins <nick@aesopinteractive.com>
+ * @package Lasso_Editor
+ * @author  Nick Haskins <nick@lassointeractive.com>
  */
-class Aesop_Editor {
+class Lasso_Editor {
 
 	/**
 	 *
@@ -22,7 +22,7 @@ class Aesop_Editor {
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'aesop-editor';
+	protected $plugin_slug = 'lasso-editor';
 
 	/**
 	 * Instance of this class.
@@ -42,18 +42,18 @@ class Aesop_Editor {
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-		require_once(AESOP_EDITOR_DIR.'/public/includes/class.assets.php');
-		require_once(AESOP_EDITOR_DIR.'/public/includes/editor-modules.php');
-		require_once(AESOP_EDITOR_DIR.'/public/includes/helpers.php');
-		require_once(AESOP_EDITOR_DIR.'/public/includes/editor-modules--gallery.php');
-		require_once(AESOP_EDITOR_DIR.'/public/includes/editor-modules--map.php');
-		require_once(AESOP_EDITOR_DIR.'/public/includes/components.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-save.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-gallery.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-post-update.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-image-upload.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-new-post.php');
-		require_once(AESOP_EDITOR_DIR.'/includes/class.process-title-update.php');
+		require_once(LASSO_DIR.'/public/includes/class.assets.php');
+		require_once(LASSO_DIR.'/public/includes/editor-modules.php');
+		require_once(LASSO_DIR.'/public/includes/helpers.php');
+		require_once(LASSO_DIR.'/public/includes/editor-modules--gallery.php');
+		require_once(LASSO_DIR.'/public/includes/editor-modules--map.php');
+		require_once(LASSO_DIR.'/public/includes/components.php');
+		require_once(LASSO_DIR.'/includes/class.process-save.php');
+		require_once(LASSO_DIR.'/includes/class.process-gallery.php');
+		require_once(LASSO_DIR.'/includes/class.process-post-update.php');
+		require_once(LASSO_DIR.'/includes/class.process-image-upload.php');
+		require_once(LASSO_DIR.'/includes/class.process-new-post.php');
+		require_once(LASSO_DIR.'/includes/class.process-title-update.php');
 
 	}
 

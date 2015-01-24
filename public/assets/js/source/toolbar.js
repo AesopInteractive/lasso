@@ -27,10 +27,10 @@ jQuery(function( $ ) {
 	/////////////
 	/// DROP UP
 	/////////////
-	$('#aesop-toolbar--components').live('click',function(){
+	$('#lasso-toolbar--components').live('click',function(){
 
 		$(this).toggleClass('toolbar--drop-up');
-		$('#aesop-toolbar--html').removeClass('html--drop-up');
+		$('#lasso-toolbar--html').removeClass('html--drop-up');
 
 		// get the height of the list of components
 		var dropUp 			= $(this).find('ul'),
@@ -49,9 +49,9 @@ jQuery(function( $ ) {
 	/// HTML DROP UP
 	/////////////
 
-	$('#aesop-toolbar--html').live('mousedown',function(){
+	$('#lasso-toolbar--html').live('mousedown',function(){
 		if( ! $(this).hasClass('html--drop-up') ) {
-			var article = document.getElementById(aesop_editor.editor);
+			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
 			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
 				article.highlight();
@@ -60,32 +60,32 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#aesop-toolbar--html__inner').live('focusout',function(){
+	$('#lasso-toolbar--html__inner').live('focusout',function(){
 		restoreSelection(window.selRange);
 	});
 
-	$('#aesop-toolbar--html__inner').live('focus',function(){
-		if ( $(saveSelection().commonAncestorContainer).parents('#aesop-editor--content').length != 0 ) {
+	$('#lasso-toolbar--html__inner').live('focus',function(){
+		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
 	});
 
 
-	$('#aesop-toolbar--html').live('click',function(e){
+	$('#lasso-toolbar--html').live('click',function(e){
 
 		$(this).toggleClass('html--drop-up');
-		$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
 		// prevent dropup from closing
-		$('#aesop-toolbar--html__wrap').live('click',function(){
+		$('#lasso-toolbar--html__wrap').live('click',function(){
 			return false;
 		});
 
-		$(this).find('#aesop-toolbar--html__inner').focus();
+		$(this).find('#lasso-toolbar--html__inner').focus();
 
 	});
 
-	$('.aesop-toolbar--html__cancel').live('click',function(){
+	$('.lasso-toolbar--html__cancel').live('click',function(){
 
 		$(this).closest('li').removeClass('html--drop-up');
 
@@ -93,7 +93,7 @@ jQuery(function( $ ) {
 	/////////////
 	/// DELETING
 	/////////////
-	$('.aesop-delete').live('click',function(e) {
+	$('.lasso-delete').live('click',function(e) {
 
 		e.preventDefault();
 
@@ -111,10 +111,10 @@ jQuery(function( $ ) {
 		function(){
 
 			// remove component
-			$this.closest('.aesop-component').remove();
+			$this.closest('.lasso-component').remove();
 
 			// remove wp image if its a wp image
-			$this.closest('.aesop-editor--wpimg__wrap').remove();
+			$this.closest('.lasso--wpimg__wrap').remove();
 
 		});
 
@@ -123,15 +123,15 @@ jQuery(function( $ ) {
 	/////////////
 	/// CLONING
 	/////////////
-	$('.aesop-clone').live('click',function(e) {
+	$('.lasso-clone').live('click',function(e) {
 
 		// sore reference to this
 		var $this = $(this);
 
 		e.preventDefault();
 
-		$this.closest('.aesop-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
-		$this.closest('.aesop-editor--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.lasso-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.lasso--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 
 	});
 

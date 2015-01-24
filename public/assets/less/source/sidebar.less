@@ -1,7 +1,7 @@
-.aesop-sidebar-open {
+.lasso-sidebar-open {
     overflow: hidden;
-    .aesop-buttoninsert-wrap,
-    #aesop-editor--sidebar {
+    .lasso-buttoninsert-wrap,
+    #lasso--sidebar {
         right:0;
 
     }
@@ -9,7 +9,7 @@
 }
 
 // modal outer
-#aesop-editor--sidebar {
+#lasso--sidebar {
     z-index: 9999;
     position:fixed;
     right:-@sidebar--width;
@@ -26,10 +26,10 @@
 // account for admin bar
 .admin-bar {
 
-    #aesop-editor--sidebar {
+    #lasso--sidebar {
         top:@admin-bar--height;
     }
-    #aesop-editor--component__settings {
+    #lasso--component__settings {
 
         form {
             padding-bottom:@insert--height + @admin-bar--height; // height of insert
@@ -39,7 +39,7 @@
 
 // sidebar inner
 
-.aesop-editor--sidebar__inner {
+.lasso--sidebar__inner {
     height:100%;
     font-family:@editor--font;
     font-size: @sidebar--font__size;
@@ -54,17 +54,17 @@
 
 
     // modal close // specificity
-    #aesop-editor--sidebar__close {
+    #lasso--sidebar__close {
         color:@sidebar--close__color;
     }
 
-    #aesop-editor--component__settings {
+    #lasso--component__settings {
         overflow: hidden;
         position: relative;
     }
 }
 
-#aesop-editor--sidebar__drag {
+#lasso--sidebar__drag {
     height:100px;
     width:50px;
     background:red;

@@ -1,5 +1,5 @@
 // draggable handle
-.aesop-component--controls {
+.lasso-component--controls {
     * { .box-sizing(border-box); }
     .editor--tool__bg();
     position: absolute;
@@ -55,7 +55,7 @@
             }
         }
 
-        &.aesop-drag{
+        &.lasso-drag{
             cursor:move ;
             &:hover {
                 cursor:move;
@@ -65,20 +65,20 @@
             }
         }
 
-        &.aesop-settings:before {
+        &.lasso-settings:before {
             content:'\e994';
         }
 
-        &.aesop-clone:before {
+        &.lasso-clone:before {
             content:'\e92c';
         }
-        &.aesop-delete:before {
+        &.lasso-delete:before {
             content:'\e9ad';
         }
     }
 
 }
-.aesop-editing .aesop-component:hover .aesop-component--controls{
+.lasso-editing .aesop-component:hover .lasso-component--controls{
     left:4px;
     .opacity(1);
 }

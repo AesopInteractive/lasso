@@ -1,6 +1,6 @@
 === @TODO: Plugin Name ===
 Contributors: (this should be a list of wordpress.org userids)
-Donate link: http://aesopinteractive.com/
+Donate link: http://lassointeractive.com/
 Tags: comments, spam
 Requires at least: 3.5.1
 Tested up to: 3.6

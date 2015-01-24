@@ -1,8 +1,8 @@
 {
-   "name": "aesop/aesop-editor",
+   "name": "lasso/lasso-editor",
    "type": "wordpress-plugin",
-   "description": "Aesop Editor",
-   "keywords": ["plugin","wordpress","aesop","editor","hosted"],
+   "description": "Lasso Editor",
+   "keywords": ["plugin","wordpress","lasso","editor","hosted"],
    "require": {
      "composer/installers": "~1.0.6"
    }

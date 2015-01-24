@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
 	// entry handler
-  	$('#aesop-editor-settings-form').submit(function(e) {
+  	$('#lasso-editor-settings-form').submit(function(e) {
 
   		var $this = $(this);
 
@@ -16,17 +16,17 @@ jQuery(document).ready(function($){
 	  		if ( response.success ) {
 
 	  			$this.find(':submit').addClass('saved');
-	  			$this.find('.aesop-editor-settings--submit').append('<div class="aesop-editor-settings--confirm success">Settings Saved!</div>');
+	  			$this.find('.lasso-editor-settings--submit').append('<div class="lasso-editor-settings--confirm success">Settings Saved!</div>');
 
 	  			setTimeout( function(){
 	  				$this.find(':submit').removeClass('saved');
-	  				$this.find('.aesop-editor-settings--confirm').remove();
+	  				$this.find('.lasso-editor-settings--confirm').remove();
 	  				$this.find(':submit').attr( 'disabled',false );
 	  			}, 2000 );
 
 	  		} else {
 
-	  			$this.find('.aesop-editor-settings--submit').append('<div class="aesop-editor-settings--confirm error">Something went wrong! :(</div>');
+	  			$this.find('.lasso-editor-settings--submit').append('<div class="lasso-editor-settings--confirm error">Something went wrong! :(</div>');
 
 	  		}
 	    });

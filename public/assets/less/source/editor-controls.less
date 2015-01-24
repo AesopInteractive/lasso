@@ -1,11 +1,11 @@
 // global styles for edit buttons
-#aesop-editor--controls {
+#lasso--controls {
 
 
 }
 
 // center controls containing the editor editor, settings, and add new post button
-.aesop-editor--controls__center {
+.lasso--controls__center {
 
     width:@control--width;
     left: ~'calc(50% - @{control--width} / 2)';
@@ -15,13 +15,13 @@
         line-height: 0;
     }
 
-    &.aesop-editor--post-new-disabled {
+    &.lasso--post-new-disabled {
 
     }
-    &.aesop-editor--post-settings-disabled {
+    &.lasso--post-settings-disabled {
 
     }
-    &.aesop-editor--post-all-disabled {
+    &.lasso--post-all-disabled {
         @d-width: 34px;
         width:@d-width;
         left: ~'calc(50% - @{d-width} / 2)';
@@ -29,7 +29,7 @@
 }
 
 // save and publish controls
-.aesop-editor--controls__right {
+.lasso--controls__right {
     position: fixed;
     right: -10000px;
     bottom: @toolbar--pos__bottom;
@@ -69,7 +69,7 @@
 }
 
 
-#aesop-editor--edit{
+#lasso--edit{
     background: @toolbar--bg__accent;
     border-top-left-radius: @editor--radius - 1;
     border-bottom-left-radius: @editor--radius - 1;
@@ -81,16 +81,16 @@
         background: darken(@toolbar--bg__accent,3);
     }
 }
-#aesop-editor--post-settings:before {
+#lasso--post-settings:before {
     content:'\e994';
 }
-#aesop-editor--post-new:before {
+#lasso--post-new:before {
      content:'\ea0a';
 }
 
 
 // SAVE BUTTON
-#aesop-editor--save {
+#lasso--save {
     background:@editor--color__update;
     font-size: @control--font__size + 2;
 
@@ -118,7 +118,7 @@
     }
 
     // post has been saved
-    &.aesop-editor--saved {
+    &.lasso--saved {
 
         background:@editor--color__success;
 
@@ -129,7 +129,7 @@
 
     }
     // post has an error saving
-    &.aesop-editor--error {
+    &.lasso--error {
 
         background: @editor--color__error;
 
@@ -142,7 +142,7 @@
 
 
 // PUBLISH BUTTON (if post is in draft)
-#aesop-editor--publish {
+#lasso--publish {
     background: @editor--color__error;
 
     &:before {
@@ -154,17 +154,17 @@
 
 
 
-// body class aesop is editing
-.aesop-editing {
+// body class lasso is editing
+.lasso-editing {
 
-    #aesop-editor--post-settings,
-    #aesop-editor--edit {
+    #lasso--post-settings,
+    #lasso--edit {
         .opacity(0);
         position: absolute;
         left:-10000px
     }
 
-    .aesop-editor--controls__right {
+    .lasso--controls__right {
         .opacity(1);
         right: @toolbar--pos__bottom;
     }

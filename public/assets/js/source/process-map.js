@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
 
-	$('#aesop-editor--edit').on('click',function(e){
+	$('#lasso--edit').on('click',function(e){
 
 
 	});

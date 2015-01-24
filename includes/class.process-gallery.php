@@ -5,7 +5,7 @@
 *	Process various gallery fucntions like fetching and saving images
 *
 */
-class aesopEditorProcessGallery {
+class lassoEditorProcessGallery {
 
 	function __construct(){
 
@@ -23,15 +23,15 @@ class aesopEditorProcessGallery {
 	*/
 	function process_swap_gallery(){
 
-		check_ajax_referer('aesop_swap_gallery','nonce');
+		check_ajax_referer('lasso_swap_gallery','nonce');
 
 		// only run for logged in users and check caps
-		if( !aesop_editor_user_can_edit() )
+		if( !lasso_editor_user_can_edit() )
 			return;
 
 		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
 
-		echo do_shortcode('[aesop_gallery id="'.(int) $id.'"]');
+		echo do_shortcode('[lasso_gallery id="'.(int) $id.'"]');
 
 		die();
 	}
@@ -50,7 +50,7 @@ class aesopEditorProcessGallery {
 				return;
 
 			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-generator-settings' ) ) {
+			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-generator-settings' ) ) {
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
@@ -84,11 +84,11 @@ class aesopEditorProcessGallery {
 				// update the gallery type
 				if ( $type ) {
 
-					update_post_meta( $postid, 'aesop_gallery_type', $type );
+					update_post_meta( $postid, 'lasso_gallery_type', $type );
 
 				}
 
-				do_action( 'aesop_editor_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
+				do_action( 'lasso_editor_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
 				wp_send_json_success(array('message' => 'gallery-created') );
 
@@ -109,11 +109,11 @@ class aesopEditorProcessGallery {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_gallery' ) {
 
 			// only run for logged in users and check caps
-			if( !aesop_editor_user_can_edit() )
+			if( !lasso_editor_user_can_edit() )
 				return;
 
 			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-generator-settings' ) ) {
+			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-generator-settings' ) ) {
 
 				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
@@ -132,12 +132,12 @@ class aesopEditorProcessGallery {
 				// update the gallery type
 				if ( $type ) {
 
-					update_post_meta( $postid, 'aesop_gallery_type', $type );
+					update_post_meta( $postid, 'lasso_gallery_type', $type );
 
 				}
 
 				// run an action
-				do_action( 'aesop_editor_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
+				do_action( 'lasso_editor_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success(array('message' => 'gallery-updated') );
@@ -171,7 +171,7 @@ class aesopEditorProcessGallery {
 				return;
 
 			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'aesop_get_gallery_images' ) ) {
+			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_get_gallery_images' ) ) {
 
 				$postid 	= isset( $_POST['post_id'] ) ? $_POST['post_id'] : false;
 
@@ -222,7 +222,7 @@ class aesopEditorProcessGallery {
 
 
 }
-new aesopEditorProcessGallery;
+new lassoEditorProcessGallery;
 
 
 

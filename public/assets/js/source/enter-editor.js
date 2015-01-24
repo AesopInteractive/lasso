@@ -1,18 +1,18 @@
 jQuery(document).ready(function($){
 
-	var editor 			= aesop_editor.editor,
-		post_container  = aesop_editor.article_object,
-		toolbar 		= aesop_editor.toolbar,
-		panel           = aesop_editor.component_sidebar,
-		postid          = aesop_editor.postid,
-		modal 			= aesop_editor.component_modal,
-		components 		= aesop_editor.components,
-		featImgClass   	= aesop_editor.featImgClass,
-		featImgNonce    = aesop_editor.featImgNonce,
-		titleClass      = aesop_editor.titleClass,
-		uploadControls  = aesop_editor.featImgControls,
-		wpImgEdit 		= aesop_editor.wpImgEdit,
-		aesopDragHandle = aesop_editor.handle;
+	var editor 			= lasso_editor.editor,
+		post_container  = lasso_editor.article_object,
+		toolbar 		= lasso_editor.toolbar,
+		panel           = lasso_editor.component_sidebar,
+		postid          = lasso_editor.postid,
+		modal 			= lasso_editor.component_modal,
+		components 		= lasso_editor.components,
+		featImgClass   	= lasso_editor.featImgClass,
+		featImgNonce    = lasso_editor.featImgNonce,
+		titleClass      = lasso_editor.titleClass,
+		uploadControls  = lasso_editor.featImgControls,
+		wpImgEdit 		= lasso_editor.wpImgEdit,
+		lassoDragHandle = lasso_editor.handle;
 
 	function restoreSelection(range) {
 	    if (range) {
@@ -26,11 +26,11 @@ jQuery(document).ready(function($){
 	    }
 	}
 
-	$('#aesop-editor--edit').click(function(e){
+	$('#lasso--edit').click(function(e){
 		e.preventDefault();
 
 		// add body class editing
-		$('body').toggleClass('aesop-editing');
+		$('body').toggleClass('lasso-editing');
 
 		//append editor id to post container
 		$(post_container).attr('id', editor);
@@ -39,7 +39,7 @@ jQuery(document).ready(function($){
 		$(toolbar).hide().appendTo('body').fadeIn(200);
 
 		// fade in controls if previous exacped
-		$('.aesop-editor--controls__right').css('opacity',1);
+		$('.lasso--controls__right').css('opacity',1);
 
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
@@ -60,8 +60,8 @@ jQuery(document).ready(function($){
 		// append the toolbar to any components that dont have them
 		$('.aesop-component').each(function(){
 
-			if ( !$('.aesop-component--toolbar').length > 0 ) {
-				$(this).append( aesopDragHandle );
+			if ( !$('.lasso-component--toolbar').length > 0 ) {
+				$(this).append( lassoDragHandle );
 			}
 		});
 
@@ -71,10 +71,10 @@ jQuery(document).ready(function($){
 
 			var $this = $(this)
 
-			if ( !$('.aesop-editor--wpimg-edit').length > 0 ) {
+			if ( !$('.lasso--wpimg-edit').length > 0 ) {
 
-				$this.wrap('<div class="aesop-editor--wpimg__wrap">')
-				$('.aesop-editor--wpimg__wrap').prepend(wpImgEdit)
+				$this.wrap('<div class="lasso--wpimg__wrap">')
+				$('.lasso--wpimg__wrap').prepend(wpImgEdit)
 
 			}
 
@@ -92,10 +92,10 @@ jQuery(document).ready(function($){
 	        placeholder:'Just write...',
 		    pasteAsText: true,
 	    	cssClasses: {
-				editor: 'aesop-editor',
-				pasteHook: 'aesop-editor-paste-hook',
-				placeholder: 'aesop-editor-placeholder',
-				clear: 'aesop-editor-clear'
+				editor: 'lasso-editor',
+				pasteHook: 'lasso-editor-paste-hook',
+				placeholder: 'lasso-editor-placeholder',
+				clear: 'lasso-editor-clear'
 			}
 	    });
 
@@ -106,39 +106,39 @@ jQuery(document).ready(function($){
 			}
 		};
 
-		document.getElementById('aesop-toolbar--bold').onmousedown = function() {
+		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
 			article.highlight();
 		    articleMedium.invokeElement('b');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--underline').onmousedown = function() {
+		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('u');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--italic').onmousedown = function() {
+		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('i');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--strike').onmousedown = function() {
+		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('strike');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
+		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
 
 		    restoreSelection(window.selRange);
-		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').text() );
+		    articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
 
 		    window.selRange = null;
 
 		    // close modal drag
-        	$('#aesop-toolbar--html').removeClass('html--drop-up');
+        	$('#lasso-toolbar--html').removeClass('html--drop-up');
 
 		    return false;
 		};
@@ -150,16 +150,16 @@ jQuery(document).ready(function($){
 
 			if ( 27 == e.keyCode ) {
 
-				$('body').removeClass('aesop-sidebar-open aesop-editing');
+				$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls, #aesop-editor--wpimg-edit').fadeOut().remove();
+				$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit').fadeOut().remove();
 
-				$('#aesop-editor--edit').css('opacity',1);
-				$('.aesop-editor--controls__right').css('opacity',0);
+				$('#lasso--edit').css('opacity',1);
+				$('.lasso--controls__right').css('opacity',0);
 				$(post_container).attr('id','');
 
 				// unwrap wp images
-				$(".aesop-editor--wpimg__wrap").each(function(){
+				$(".lasso--wpimg__wrap").each(function(){
 					$(this).children().unwrap()
 				});
 
@@ -175,8 +175,8 @@ jQuery(document).ready(function($){
 		///////////////////
 		$('#'+editor).sortable({
 			opacity: 0.65,
-			placeholder:'aesop-drop-zone',
-			handle: '.aesop-drag',
+			placeholder:'lasso-drop-zone',
+			handle: '.lasso-drag',
             cursor:'move',
             refreshPositions: true,
             helper: function( e, ui ) {
@@ -185,13 +185,13 @@ jQuery(document).ready(function($){
 				var item = ui['context'],
 					type = $(item).attr('data-component-type');
 
-            	return $('<div class="aesop-drag-holder '+type+'"></div>'); 
+            	return $('<div class="lasso-drag-holder '+type+'"></div>'); 
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
 
             	// close modal drag
-            	$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
+            	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
             	// get the item and type
 				var item = draggedItem['context'],
@@ -201,7 +201,7 @@ jQuery(document).ready(function($){
 				if ( origin == 'draggable' ) {
 
 					$(item).replaceWith( $(components[type]['content'])
-						.prepend( aesopDragHandle )
+						.prepend( lassoDragHandle )
 						.attr({
 							'data-component-type': type
 						})
@@ -211,7 +211,7 @@ jQuery(document).ready(function($){
 		    }
 		});
 
-		$('#aesop-toolbar--components__list li').draggable({
+		$('#lasso-toolbar--components__list li').draggable({
 			axis:'y',
 			helper:'clone',
 		    cursor: 'move',

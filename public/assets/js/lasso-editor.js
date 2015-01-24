@@ -5725,7 +5725,7 @@ Undo.Command.extend = function(protoProps) {
 							cl = (attr.className.split[' '] || [attr.className]).shift();
 							delete attr.className;
 						} else {
-							cl = 'aesop-' + tagName;
+							cl = 'lasso-' + tagName;
 						}
 
 						applier = rangy.createClassApplier(cl, {
@@ -8396,19 +8396,19 @@ Undo.Command.extend = function(protoProps) {
 (function($,window,document,undefined){var defaults={bounds:true,country:null,map:false,details:false,detailsAttribute:"name",autoselect:true,location:false,mapOptions:{zoom:14,scrollwheel:false,mapTypeId:"roadmap"},markerOptions:{draggable:false},maxZoom:16,types:["geocode"],blur:false};var componentTypes=("street_address route intersection political "+"country administrative_area_level_1 administrative_area_level_2 "+"administrative_area_level_3 colloquial_area locality sublocality "+"neighborhood premise subpremise postal_code natural_feature airport "+"park point_of_interest post_box street_number floor room "+"lat lng viewport location "+"formatted_address location_type bounds").split(" ");var placesDetails=("id place_id url website vicinity reference name rating "+"international_phone_number icon formatted_phone_number").split(" ");function GeoComplete(input,options){this.options=$.extend(true,{},defaults,options);this.input=input;this.$input=$(input);this._defaults=defaults;this._name="geocomplete";this.init()}$.extend(GeoComplete.prototype,{init:function(){this.initMap();this.initMarker();this.initGeocoder();this.initDetails();this.initLocation()},initMap:function(){if(!this.options.map){return}if(typeof this.options.map.setCenter=="function"){this.map=this.options.map;return}this.map=new google.maps.Map($(this.options.map)[0],this.options.mapOptions);google.maps.event.addListener(this.map,"click",$.proxy(this.mapClicked,this));google.maps.event.addListener(this.map,"zoom_changed",$.proxy(this.mapZoomed,this))},initMarker:function(){if(!this.map){return}var options=$.extend(this.options.markerOptions,{map:this.map});if(options.disabled){return}this.marker=new google.maps.Marker(options);google.maps.event.addListener(this.marker,"dragend",$.proxy(this.markerDragged,this))},initGeocoder:function(){var options={types:this.options.types,bounds:this.options.bounds===true?null:this.options.bounds,componentRestrictions:this.options.componentRestrictions};if(this.options.country){options.componentRestrictions={country:this.options.country}}this.autocomplete=new google.maps.places.Autocomplete(this.input,options);this.geocoder=new google.maps.Geocoder;if(this.map&&this.options.bounds===true){this.autocomplete.bindTo("bounds",this.map)}google.maps.event.addListener(this.autocomplete,"place_changed",$.proxy(this.placeChanged,this));this.$input.keypress(function(event){if(event.keyCode===13){return false}});this.$input.bind("geocode",$.proxy(function(){this.find()},this));if(this.options.blur===true){this.$input.blur($.proxy(function(){this.find()},this))}},initDetails:function(){if(!this.options.details){return}var $details=$(this.options.details),attribute=this.options.detailsAttribute,details={};function setDetail(value){details[value]=$details.find("["+attribute+"="+value+"]")}$.each(componentTypes,function(index,key){setDetail(key);setDetail(key+"_short")});$.each(placesDetails,function(index,key){setDetail(key)});this.$details=$details;this.details=details},initLocation:function(){var location=this.options.location,latLng;if(!location){return}if(typeof location=="string"){this.find(location);return}if(location instanceof Array){latLng=new google.maps.LatLng(location[0],location[1])}if(location instanceof google.maps.LatLng){latLng=location}if(latLng){if(this.map){this.map.setCenter(latLng)}if(this.marker){this.marker.setPosition(latLng)}}},find:function(address){this.geocode({address:address||this.$input.val()})},geocode:function(request){if(this.options.bounds&&!request.bounds){if(this.options.bounds===true){request.bounds=this.map&&this.map.getBounds()}else{request.bounds=this.options.bounds}}if(this.options.country){request.region=this.options.country}this.geocoder.geocode(request,$.proxy(this.handleGeocode,this))},selectFirstResult:function(){var selected="";if($(".pac-item-selected")[0]){selected="-selected"}var $span1=$(".pac-container .pac-item"+selected+":first span:nth-child(2)").text();var $span2=$(".pac-container .pac-item"+selected+":first span:nth-child(3)").text();var firstResult=$span1;if($span2){firstResult+=" - "+$span2}this.$input.val(firstResult);return firstResult},handleGeocode:function(results,status){if(status===google.maps.GeocoderStatus.OK){var result=results[0];this.$input.val(result.formatted_address);this.update(result);if(results.length>1){this.trigger("geocode:multiple",results)}}else{this.trigger("geocode:error",status)}},trigger:function(event,argument){this.$input.trigger(event,[argument])},center:function(geometry){if(geometry.viewport){this.map.fitBounds(geometry.viewport);if(this.map.getZoom()>this.options.maxZoom){this.map.setZoom(this.options.maxZoom)}}else{this.map.setZoom(this.options.maxZoom);this.map.setCenter(geometry.location)}if(this.marker){this.marker.setPosition(geometry.location);this.marker.setAnimation(this.options.markerOptions.animation)}},update:function(result){if(this.map){this.center(result.geometry)}if(this.$details){this.fillDetails(result)}this.trigger("geocode:result",result)},fillDetails:function(result){var data={},geometry=result.geometry,viewport=geometry.viewport,bounds=geometry.bounds;$.each(result.address_components,function(index,object){var name=object.types[0];$.each(object.types,function(index,name){data[name]=object.long_name;data[name+"_short"]=object.short_name})});$.each(placesDetails,function(index,key){data[key]=result[key]});$.extend(data,{formatted_address:result.formatted_address,location_type:geometry.location_type||"PLACES",viewport:viewport,bounds:bounds,location:geometry.location,lat:geometry.location.lat(),lng:geometry.location.lng()});$.each(this.details,$.proxy(function(key,$detail){var value=data[key];this.setDetail($detail,value)},this));this.data=data},setDetail:function($element,value){if(value===undefined){value=""}else if(typeof value.toUrlValue=="function"){value=value.toUrlValue()}if($element.is(":input")){$element.val(value)}else{$element.text(value)}},markerDragged:function(event){this.trigger("geocode:dragged",event.latLng)},mapClicked:function(event){this.trigger("geocode:click",event.latLng)},mapZoomed:function(event){this.trigger("geocode:zoom",this.map.getZoom())},resetMarker:function(){this.marker.setPosition(this.data.location);this.setDetail(this.details.lat,this.data.location.lat());this.setDetail(this.details.lng,this.data.location.lng())},placeChanged:function(){var place=this.autocomplete.getPlace();if(!place||!place.geometry){if(this.options.autoselect){var autoSelection=this.selectFirstResult();this.find(autoSelection)}}else{this.update(place)}}});$.fn.geocomplete=function(options){var attribute="plugin_geocomplete";if(typeof options=="string"){var instance=$(this).data(attribute)||$(this).geocomplete().data(attribute),prop=instance[options];if(typeof prop=="function"){prop.apply(instance,Array.prototype.slice.call(arguments,1));return $(this)}else{if(arguments.length==2){prop=arguments[1]}return prop}}else{return this.each(function(){var instance=$.data(this,attribute);if(!instance){instance=new GeoComplete(this,options);$.data(this,attribute,instance)}})}}})(jQuery,window,document);
 jQuery(document).ready(function($){
 
-	var editor 			= aesop_editor.editor,
-		post_container  = aesop_editor.article_object,
-		toolbar 		= aesop_editor.toolbar,
-		panel           = aesop_editor.component_sidebar,
-		postid          = aesop_editor.postid,
-		modal 			= aesop_editor.component_modal,
-		components 		= aesop_editor.components,
-		featImgClass   	= aesop_editor.featImgClass,
-		featImgNonce    = aesop_editor.featImgNonce,
-		titleClass      = aesop_editor.titleClass,
-		uploadControls  = aesop_editor.featImgControls,
-		wpImgEdit 		= aesop_editor.wpImgEdit,
-		aesopDragHandle = aesop_editor.handle;
+	var editor 			= lasso_editor.editor,
+		post_container  = lasso_editor.article_object,
+		toolbar 		= lasso_editor.toolbar,
+		panel           = lasso_editor.component_sidebar,
+		postid          = lasso_editor.postid,
+		modal 			= lasso_editor.component_modal,
+		components 		= lasso_editor.components,
+		featImgClass   	= lasso_editor.featImgClass,
+		featImgNonce    = lasso_editor.featImgNonce,
+		titleClass      = lasso_editor.titleClass,
+		uploadControls  = lasso_editor.featImgControls,
+		wpImgEdit 		= lasso_editor.wpImgEdit,
+		lassoDragHandle = lasso_editor.handle;
 
 	function restoreSelection(range) {
 	    if (range) {
@@ -8422,11 +8422,11 @@ jQuery(document).ready(function($){
 	    }
 	}
 
-	$('#aesop-editor--edit').click(function(e){
+	$('#lasso--edit').click(function(e){
 		e.preventDefault();
 
 		// add body class editing
-		$('body').toggleClass('aesop-editing');
+		$('body').toggleClass('lasso-editing');
 
 		//append editor id to post container
 		$(post_container).attr('id', editor);
@@ -8435,7 +8435,7 @@ jQuery(document).ready(function($){
 		$(toolbar).hide().appendTo('body').fadeIn(200);
 
 		// fade in controls if previous exacped
-		$('.aesop-editor--controls__right').css('opacity',1);
+		$('.lasso--controls__right').css('opacity',1);
 
 	    // set edtior to editable
 	    $('#'+editor).attr('contenteditable',true);
@@ -8456,8 +8456,8 @@ jQuery(document).ready(function($){
 		// append the toolbar to any components that dont have them
 		$('.aesop-component').each(function(){
 
-			if ( !$('.aesop-component--toolbar').length > 0 ) {
-				$(this).append( aesopDragHandle );
+			if ( !$('.lasso-component--toolbar').length > 0 ) {
+				$(this).append( lassoDragHandle );
 			}
 		});
 
@@ -8467,10 +8467,10 @@ jQuery(document).ready(function($){
 
 			var $this = $(this)
 
-			if ( !$('.aesop-editor--wpimg-edit').length > 0 ) {
+			if ( !$('.lasso--wpimg-edit').length > 0 ) {
 
-				$this.wrap('<div class="aesop-editor--wpimg__wrap">')
-				$('.aesop-editor--wpimg__wrap').prepend(wpImgEdit)
+				$this.wrap('<div class="lasso--wpimg__wrap">')
+				$('.lasso--wpimg__wrap').prepend(wpImgEdit)
 
 			}
 
@@ -8488,10 +8488,10 @@ jQuery(document).ready(function($){
 	        placeholder:'Just write...',
 		    pasteAsText: true,
 	    	cssClasses: {
-				editor: 'aesop-editor',
-				pasteHook: 'aesop-editor-paste-hook',
-				placeholder: 'aesop-editor-placeholder',
-				clear: 'aesop-editor-clear'
+				editor: 'lasso-editor',
+				pasteHook: 'lasso-editor-paste-hook',
+				placeholder: 'lasso-editor-placeholder',
+				clear: 'lasso-editor-clear'
 			}
 	    });
 
@@ -8502,39 +8502,39 @@ jQuery(document).ready(function($){
 			}
 		};
 
-		document.getElementById('aesop-toolbar--bold').onmousedown = function() {
+		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
 			article.highlight();
 		    articleMedium.invokeElement('b');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--underline').onmousedown = function() {
+		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('u');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--italic').onmousedown = function() {
+		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('i');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--strike').onmousedown = function() {
+		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('strike');
 			return false;
 		};
 
-		document.getElementById('aesop-toolbar--html__insert').onmousedown = function() {
+		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
 
 		    restoreSelection(window.selRange);
-		    articleMedium.insertHtml( $('#aesop-toolbar--html__inner').text() );
+		    articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
 
 		    window.selRange = null;
 
 		    // close modal drag
-        	$('#aesop-toolbar--html').removeClass('html--drop-up');
+        	$('#lasso-toolbar--html').removeClass('html--drop-up');
 
 		    return false;
 		};
@@ -8546,16 +8546,16 @@ jQuery(document).ready(function($){
 
 			if ( 27 == e.keyCode ) {
 
-				$('body').removeClass('aesop-sidebar-open aesop-editing');
+				$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-				$('.aesop-editor--toolbar_wrap, #aesop-editor--sidebar, #aesop-editor--featImgControls, #aesop-editor--wpimg-edit').fadeOut().remove();
+				$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit').fadeOut().remove();
 
-				$('#aesop-editor--edit').css('opacity',1);
-				$('.aesop-editor--controls__right').css('opacity',0);
+				$('#lasso--edit').css('opacity',1);
+				$('.lasso--controls__right').css('opacity',0);
 				$(post_container).attr('id','');
 
 				// unwrap wp images
-				$(".aesop-editor--wpimg__wrap").each(function(){
+				$(".lasso--wpimg__wrap").each(function(){
 					$(this).children().unwrap()
 				});
 
@@ -8571,8 +8571,8 @@ jQuery(document).ready(function($){
 		///////////////////
 		$('#'+editor).sortable({
 			opacity: 0.65,
-			placeholder:'aesop-drop-zone',
-			handle: '.aesop-drag',
+			placeholder:'lasso-drop-zone',
+			handle: '.lasso-drag',
             cursor:'move',
             refreshPositions: true,
             helper: function( e, ui ) {
@@ -8581,13 +8581,13 @@ jQuery(document).ready(function($){
 				var item = ui['context'],
 					type = $(item).attr('data-component-type');
 
-            	return $('<div class="aesop-drag-holder '+type+'"></div>'); 
+            	return $('<div class="lasso-drag-holder '+type+'"></div>'); 
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
 
             	// close modal drag
-            	$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
+            	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
             	// get the item and type
 				var item = draggedItem['context'],
@@ -8597,7 +8597,7 @@ jQuery(document).ready(function($){
 				if ( origin == 'draggable' ) {
 
 					$(item).replaceWith( $(components[type]['content'])
-						.prepend( aesopDragHandle )
+						.prepend( lassoDragHandle )
 						.attr({
 							'data-component-type': type
 						})
@@ -8607,7 +8607,7 @@ jQuery(document).ready(function($){
 		    }
 		});
 
-		$('#aesop-toolbar--components__list li').draggable({
+		$('#lasso-toolbar--components__list li').draggable({
 			axis:'y',
 			helper:'clone',
 		    cursor: 'move',
@@ -8644,20 +8644,20 @@ jQuery(document).ready(function($){
 
 		// method to destroy the modal
 		var destroyModal = function(){
-			$('body').removeClass('aesop-modal-open');
-			$('#aesop-editor--post-settings__modal, #aesop-editor--modal__overlay').remove();
+			$('body').removeClass('lasso-modal-open');
+			$('#lasso--post-settings__modal, #lasso--modal__overlay').remove();
 		}
 
 		// modal click
-		$('#aesop-editor--post-settings').live('click',function(e){
+		$('#lasso--post-settings').live('click',function(e){
 
 			e.preventDefault();
 
 			// add a body class
-			$('body').toggleClass('aesop-modal-open');
+			$('body').toggleClass('lasso-modal-open');
 
-			// append teh modal markup ( aesop_editor_component_modal() )
-			$('body').append(aesop_editor.component_modal);
+			// append teh modal markup ( lasso_editor_component_modal() )
+			$('body').append(lasso_editor.component_modal);
 
 			////////////
 			// RESIZE THE URL HELPER FIELD
@@ -8691,8 +8691,8 @@ jQuery(document).ready(function($){
 			}
 
 			// init slider
-		    $('#aesop-editor--slider').slider({
-		      	value:statusReturn(aesop_editor.post_status),
+		    $('#lasso--slider').slider({
+		      	value:statusReturn(lasso_editor.post_status),
 		      	min: 100,
 		      	max: 200,
 		      	step: 100,
@@ -8700,7 +8700,7 @@ jQuery(document).ready(function($){
 		      	slide: function( event, ui ) {
 		        	$('input[name="status"]').val( statusReturn(ui.value) );
 
-		        	$('.aesop-editor--postsettings__footer').slideDown()
+		        	$('.lasso--postsettings__footer').slideDown()
 
 		        	if ( 100 == ui.value ) {
 		        		$('.story-status').removeClass('story-status-publish').addClass('story-status-draft')
@@ -8709,17 +8709,17 @@ jQuery(document).ready(function($){
 		        	}
 		      	}
 		    });
-		    $('input[name="status"]').val( statusReturn( $( "#aesop-editor--slider" ).slider('value') ) );
+		    $('input[name="status"]').val( statusReturn( $( "#lasso--slider" ).slider('value') ) );
 
 		    // if any changes happen then show the footer
 		    $('input[name="story_slug"]').on('keyup',function(){
-			  	$('.aesop-editor--postsettings__footer').slideDown()
+			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay, .aesop-editor--postsettings-cancel').live('click',function(e){
+		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -8741,7 +8741,7 @@ jQuery(document).ready(function($){
 		//////////////
 		var form;
 
-		$('#aesop-editor--postsettings__form').live('submit', function(e) {
+		$('#lasso--postsettings__form').live('submit', function(e) {
 
 			e.preventDefault();
 
@@ -8754,7 +8754,7 @@ jQuery(document).ready(function($){
 			/////////////
 			//	DO TEH SAVE
 			/////////////
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				//console.log(response);
 
@@ -8764,7 +8764,7 @@ jQuery(document).ready(function($){
 					$('input[type="submit"]').val('Saved!');
 					location.reload();
 
-					window.location.replace(aesop_editor.permalink);
+					window.location.replace(lasso_editor.permalink);
 
 				} else {
 
@@ -8786,23 +8786,23 @@ jQuery(document).ready(function($){
 
 		// helper to dstry the sidebar
 		var destroySidebar = function(){
-			$('body').removeClass('aesop-sidebar-open');
+			$('body').removeClass('lasso-sidebar-open');
 		}
 
-		$('body').on('click', '#'+aesop_editor.editor, function(){
+		$('body').on('click', '#'+lasso_editor.editor, function(){
 			destroySidebar()
 		});
 
 		// helper to set the height of the settings panel
 		var settingsHeight = function(){
 
-			var settings = $('#aesop-editor--component__settings');
+			var settings = $('#lasso--component__settings');
 
 			settings.height( $(window).height() );
 
 			$(window).resize(function(){
 				settings.height( $(window).height() );
-				//$('#aesop-editor--component__settings').perfectScrollbar('update');
+				//$('#lasso--component__settings').perfectScrollbar('update');
 			});
 		}
 
@@ -8811,9 +8811,9 @@ jQuery(document).ready(function($){
 		/////////////
 		// OPEN COMPONENT SETTINGS
 		////////////
-		$('#aesop-component--settings__trigger').live('click',function(){
+		$('#lasso-component--settings__trigger').live('click',function(){
 
-			var settings 	= $('#aesop-editor--component__settings')
+			var settings 	= $('#lasso--component__settings')
 
 			// let's set our globals
 			component = $(this).closest('.aesop-component');
@@ -8824,29 +8824,29 @@ jQuery(document).ready(function($){
 			data = component.data();
 
 			// add a body class
-			$('body').toggleClass('aesop-sidebar-open');
+			$('body').toggleClass('lasso-sidebar-open');
 
 			settings.find('input[name="unique"]').val( data['unique'] );
 
 			// set up settings panel
 			settingsHeight();
-			settings.html( aesop_editor.component_options[data.componentType] );
+			settings.html( lasso_editor.component_options[data.componentType] );
 
 			// add the type as a value in a hidden field in settings
 			settings.find('.component_type').val( data.componentType );
 
 			// fade in save controls
-			$('.aesop-buttoninsert-wrap').fadeIn(600);
+			$('.lasso-buttoninsert-wrap').fadeIn(600);
 
 			// initialize scrolbar
 			settings.perfectScrollbar('destroy');
 			settings.perfectScrollbar();
 
 			// map the settings from the data attributes on components into appropriate settings in settings panel
-			settings.find('.aesop-option').each(function(){
+			settings.find('.lasso-option').each(function(){
 
 				var option = $(this).data('option');
-				var field = $(this).find('.aesop-generator-attr');
+				var field = $(this).find('.lasso-generator-attr');
 
 				// if it's a gallery data attribute map the cehcekd attribute to the right place
 				if ( 'gallery-type' == option ) {
@@ -8878,7 +8878,7 @@ jQuery(document).ready(function($){
 			var file_frame;
 			var className;
 
-			$(document).on('click', '#aesop-upload-img', function( e ){
+			$(document).on('click', '#lasso-upload-img', function( e ){
 
 			    e.preventDefault();
 
@@ -8906,7 +8906,7 @@ jQuery(document).ready(function($){
 
 			      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-			      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
+			      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
 
 					/////////////
 					// START LIVE IMAGE EDITING COMPONENTS
@@ -8914,7 +8914,7 @@ jQuery(document).ready(function($){
 					////////////
 			      	if ( 'parallax' == type ) {
 
-					  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
+					  	component.find('.lasso-parallax-sc-img').attr('src', attachment.url )
 
 			      	} else if ( 'quote' == type ) {
 
@@ -8924,15 +8924,15 @@ jQuery(document).ready(function($){
 
 			      	} else if ( 'image' == type ) {
 
-					  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
+					  	component.find('.lasso-image-component-image > img').attr('src', attachment.url)
 
 			      	} else if ( 'character' == type ) {
 
-					  	component.find('.aesop-character-avatar').attr('src', attachment.url)
+					  	component.find('.lasso-character-avatar').attr('src', attachment.url)
 
 			      	} else if ( 'chapter' == type ) {
 
-			      		component.find('.aesop-article-chapter').css({
+			      		component.find('.lasso-article-chapter').css({
 					  		'background-image': 'url('+ attachment.url +')'
 					  	});
 
@@ -8951,9 +8951,9 @@ jQuery(document).ready(function($){
 			// GET GALLERY IMAGES
 			/////////////
 			var $this 		= $(this)
-			,	ajaxurl 	= aesop_editor.ajaxurl
-			,	form 		= $('#aesop--component-settings-form.gallery')
-			,	nonce 		= aesop_editor.getGallImgNonce
+			,	ajaxurl 	= lasso_editor.ajaxurl
+			,	form 		= $('#lasso--component-settings-form.gallery')
+			,	nonce 		= lasso_editor.getGallImgNonce
 			,	gall_id 	= data['id']
 
 			var data      = {
@@ -8965,7 +8965,7 @@ jQuery(document).ready(function($){
 			// post ajax response with data
 			$.post( ajaxurl, data, function(response) {
 
-				$('#aesop-editor--gallery__images').html( response )
+				$('#lasso--gallery__images').html( response )
 
 				/////////////
 				// CALL SORTABLE ON RECIEVED IMAGES
@@ -8995,10 +8995,10 @@ jQuery(document).ready(function($){
 		});
 
 		// destroy panel if clicking close or overlay
-		$('#aesop-editor--sidebar__close').live('click',function(e){
+		$('#lasso--sidebar__close').live('click',function(e){
 			e.preventDefault();
 			destroySidebar();
-			$('#aesop-editor--component__settings').perfectScrollbar('destroy');
+			$('#lasso--component__settings').perfectScrollbar('destroy');
 		});
 
 		
@@ -9015,134 +9015,134 @@ jQuery(document).ready(function($){
 		// @todo - move this mess to it's own file
 		////////////
 
-		$('#aesop-component--settings__trigger').live('click', function(){
+		$('#lasso-component--settings__trigger').live('click', function(){
 
-			var settings 	= $('#aesop-editor--component__settings')
+			var settings 	= $('#lasso--component__settings')
 
 			// QUOTE LIVE EDIT ///////////////////
-			settings.find('#aesop-generator-attr-background').live('change',function(){
+			settings.find('#lasso-generator-attr-background').live('change',function(){
 			  	component.css({'background-color': $(this).val()});
 			});
-			settings.find('#aesop-generator-attr-text').live('change',function(){
+			settings.find('#lasso-generator-attr-text').live('change',function(){
 			  	component.css({'color': $(this).val()});
 			});
-			settings.find('#aesop-generator-attr-quote').on('keyup',function(){
+			settings.find('#lasso-generator-attr-quote').on('keyup',function(){
 			  	component.find('blockquote span').text( $(this).val() );
 			});
-			settings.find('#aesop-generator-attr-cite').on('keyup',function(){
+			settings.find('#lasso-generator-attr-cite').on('keyup',function(){
 			  	component.find('blockquote cite').text( $(this).val() );
 			});
 
 			// PARALLAX LIVE EDIT ///////////////////
-			settings.find('.aesop-parallax-caption > #aesop-generator-attr-caption').on('keyup',function(){
-				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
+			settings.find('.lasso-parallax-caption > #lasso-generator-attr-caption').on('keyup',function(){
+				component.find('.lasso-parallax-sc-caption-wrap').text( $(this).val() );
 			})
-			settings.find('.aesop-parallax-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
+			settings.find('.lasso-parallax-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val()
 
 				if ( 'bottom-left' == value ) {
 
-					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-right top-left top-right')
+					component.find('.lasso-parallax-sc-caption-wrap').removeClass('bottom-right top-left top-right')
 
 				} else if ( 'bottom-right' == value ) {
 
-					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-left top-left top-right')
+					component.find('.lasso-parallax-sc-caption-wrap').removeClass('bottom-left top-left top-right')
 
 				} else if ( 'top-left' == value ) {
 
-					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-right top-right bottom-left')
+					component.find('.lasso-parallax-sc-caption-wrap').removeClass('bottom-right top-right bottom-left')
 
 				} else if ( 'top-right' == value ) {
 
-					component.find('.aesop-parallax-sc-caption-wrap').removeClass('bottom-right bottom-left top-left')
+					component.find('.lasso-parallax-sc-caption-wrap').removeClass('bottom-right bottom-left top-left')
 
 				}
 
-				component.find('.aesop-parallax-sc-caption-wrap').addClass( value );
+				component.find('.lasso-parallax-sc-caption-wrap').addClass( value );
 
 			})
 
 			// IMAGE LIVE EDIT ///////////////////
-			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
-				component.find('.aesop-image-component-caption').text( $(this).val() );
+			settings.find('.lasso-image-caption > #lasso-generator-attr-caption').on('keyup',function(){
+				component.find('.lasso-image-component-caption').text( $(this).val() );
 			})
-			settings.find('.aesop-option.aesop-image-imgwidth > #aesop-generator-attr-imgwidth').on('keyup',function(){
-				component.find('.aesop-image-component-image').css('width', $(this).val() );
+			settings.find('.lasso-option.lasso-image-imgwidth > #lasso-generator-attr-imgwidth').on('keyup',function(){
+				component.find('.lasso-image-component-image').css('width', $(this).val() );
 			})
-			settings.find('.aesop-option.aesop-image-align > #aesop-generator-attr-align').on('change',function(){
+			settings.find('.lasso-option.lasso-image-align > #lasso-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
 				if ( 'left' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-component-align-right aesop-component-align-center')
+					component.find('.lasso-image-component-image').removeClass('lasso-component-align-right lasso-component-align-center')
 
 				} else if ( 'right' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-component-align-left aesop-component-align-center')
+					component.find('.lasso-image-component-image').removeClass('lasso-component-align-left lasso-component-align-center')
 
 				} else if ( 'center' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-component-align-left aesop-component-align-right')
+					component.find('.lasso-image-component-image').removeClass('lasso-component-align-left lasso-component-align-right')
 
 				}
 
-				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
+				component.find('.lasso-image-component-image').addClass('lasso-component-align-'+$(this).val()+' ')
 
 			})
-			settings.find('.aesop-option.aesop-image-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
+			settings.find('.lasso-option.lasso-image-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val();
 
 				if ( 'left' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-right aesop-image-component-caption-center')
+					component.find('.lasso-image-component-image').removeClass('lasso-image-component-caption-right lasso-image-component-caption-center')
 
 				} else if ( 'right' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-center')
+					component.find('.lasso-image-component-image').removeClass('lasso-image-component-caption-left lasso-image-component-caption-center')
 
 				} else if ( 'center' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-right')
+					component.find('.lasso-image-component-image').removeClass('lasso-image-component-caption-left lasso-image-component-caption-right')
 
 				}
 
-				component.find('.aesop-image-component-image').addClass('aesop-image-component-caption-'+value+' ');
+				component.find('.lasso-image-component-image').addClass('lasso-image-component-caption-'+value+' ');
 			});
 
 			// CHARACTER LIVE EDIT ///////////////////
-			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
-				component.find('.aesop-character-title').text( $(this).val() );
+			settings.find('.lasso-character-name > #lasso-generator-attr-name').on('keyup',function(){
+				component.find('.lasso-character-title').text( $(this).val() );
 			})
-			settings.find('.aesop-character-caption > #aesop-generator-attr-caption').on('keyup',function(){
-				component.find('.aesop-character-cap').text( $(this).val() );
+			settings.find('.lasso-character-caption > #lasso-generator-attr-caption').on('keyup',function(){
+				component.find('.lasso-character-cap').text( $(this).val() );
 			})
-			settings.find('.aesop-option.aesop-character-align > #aesop-generator-attr-align').on('change',function(){
+			settings.find('.lasso-option.lasso-character-align > #lasso-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
 				if ( 'left' == value ) {
 
-					component.removeClass('aesop-component-align-right aesop-component-align-center');
+					component.removeClass('lasso-component-align-right lasso-component-align-center');
 
 				} else if ( 'center' == value ) {
 
-					component.removeClass('aesop-component-align-left aesop-component-align-right');
+					component.removeClass('lasso-component-align-left lasso-component-align-right');
 
 				}
 
-				component.addClass('aesop-component-align-'+$(this).val()+' ');
+				component.addClass('lasso-component-align-'+$(this).val()+' ');
 
 			});
 
 			// CHAPTER LIVE EDIT ///////////////////
-			settings.find('.aesop-option.aesop-chapter-title > #aesop-generator-attr-title').on('keyup',function(){
-				component.find('.aesop-cover-title span').text( $(this).val() );
+			settings.find('.lasso-option.lasso-chapter-title > #lasso-generator-attr-title').on('keyup',function(){
+				component.find('.lasso-cover-title span').text( $(this).val() );
 			})
-			settings.find('.aesop-option.aesop-chapter-subtitle > #aesop-generator-attr-subtitle').on('keyup',function(){
-				component.find('.aesop-cover-title small').text( $(this).val() );
+			settings.find('.lasso-option.lasso-chapter-subtitle > #lasso-generator-attr-subtitle').on('keyup',function(){
+				component.find('.lasso-cover-title small').text( $(this).val() );
 			})
 
 		});
@@ -9180,10 +9180,10 @@ jQuery(function( $ ) {
 	/////////////
 	/// DROP UP
 	/////////////
-	$('#aesop-toolbar--components').live('click',function(){
+	$('#lasso-toolbar--components').live('click',function(){
 
 		$(this).toggleClass('toolbar--drop-up');
-		$('#aesop-toolbar--html').removeClass('html--drop-up');
+		$('#lasso-toolbar--html').removeClass('html--drop-up');
 
 		// get the height of the list of components
 		var dropUp 			= $(this).find('ul'),
@@ -9202,9 +9202,9 @@ jQuery(function( $ ) {
 	/// HTML DROP UP
 	/////////////
 
-	$('#aesop-toolbar--html').live('mousedown',function(){
+	$('#lasso-toolbar--html').live('mousedown',function(){
 		if( ! $(this).hasClass('html--drop-up') ) {
-			var article = document.getElementById(aesop_editor.editor);
+			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
 			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
 				article.highlight();
@@ -9213,32 +9213,32 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#aesop-toolbar--html__inner').live('focusout',function(){
+	$('#lasso-toolbar--html__inner').live('focusout',function(){
 		restoreSelection(window.selRange);
 	});
 
-	$('#aesop-toolbar--html__inner').live('focus',function(){
-		if ( $(saveSelection().commonAncestorContainer).parents('#aesop-editor--content').length != 0 ) {
+	$('#lasso-toolbar--html__inner').live('focus',function(){
+		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
 	});
 
 
-	$('#aesop-toolbar--html').live('click',function(e){
+	$('#lasso-toolbar--html').live('click',function(e){
 
 		$(this).toggleClass('html--drop-up');
-		$('#aesop-toolbar--components').removeClass('toolbar--drop-up');
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
 		// prevent dropup from closing
-		$('#aesop-toolbar--html__wrap').live('click',function(){
+		$('#lasso-toolbar--html__wrap').live('click',function(){
 			return false;
 		});
 
-		$(this).find('#aesop-toolbar--html__inner').focus();
+		$(this).find('#lasso-toolbar--html__inner').focus();
 
 	});
 
-	$('.aesop-toolbar--html__cancel').live('click',function(){
+	$('.lasso-toolbar--html__cancel').live('click',function(){
 
 		$(this).closest('li').removeClass('html--drop-up');
 
@@ -9246,7 +9246,7 @@ jQuery(function( $ ) {
 	/////////////
 	/// DELETING
 	/////////////
-	$('.aesop-delete').live('click',function(e) {
+	$('.lasso-delete').live('click',function(e) {
 
 		e.preventDefault();
 
@@ -9264,10 +9264,10 @@ jQuery(function( $ ) {
 		function(){
 
 			// remove component
-			$this.closest('.aesop-component').remove();
+			$this.closest('.lasso-component').remove();
 
 			// remove wp image if its a wp image
-			$this.closest('.aesop-editor--wpimg__wrap').remove();
+			$this.closest('.lasso--wpimg__wrap').remove();
 
 		});
 
@@ -9276,25 +9276,25 @@ jQuery(function( $ ) {
 	/////////////
 	/// CLONING
 	/////////////
-	$('.aesop-clone').live('click',function(e) {
+	$('.lasso-clone').live('click',function(e) {
 
 		// sore reference to this
 		var $this = $(this);
 
 		e.preventDefault();
 
-		$this.closest('.aesop-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
-		$this.closest('.aesop-editor--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.lasso-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.lasso--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 
 	});
 
 });
 jQuery(document).ready(function($){
 
-	var ajaxurl 	=  aesop_editor.ajaxurl,
-		save    	=  $('.aesop-editor--controls__right a'),
-		editor 		=  aesop_editor.editor,
-		postid 		=  aesop_editor.postid,
+	var ajaxurl 	=  lasso_editor.ajaxurl,
+		save    	=  $('.lasso--controls__right a'),
+		editor 		=  lasso_editor.editor,
+		postid 		=  lasso_editor.postid,
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
 
@@ -9306,25 +9306,25 @@ jQuery(document).ready(function($){
 
 		if ( oldHtml !== newHtml ) {
 
-			localStorage.setItem( 'aesop_backup_'+postid , newHtml );
+			localStorage.setItem( 'lasso_backup_'+postid , newHtml );
 
-			//$('#aesop-editor--save').css('opacity',1);
+			//$('#lasso--save').css('opacity',1);
 		}
 
 	});
 
-	if ( localStorage.getItem( 'aesop_backup_'+postid ) ) {
+	if ( localStorage.getItem( 'lasso_backup_'+postid ) ) {
 
-    $('#aesop-editor--save').css('opacity',1);
+    $('#lasso--save').css('opacity',1);
 
   }
 
 	// if the user tries to navigate away and this post was backed up and not saved warn them
 	window.onbeforeunload = function () {
 
-		if ( localStorage.getItem( 'aesop_backup_'+postid ) && aesop_editor.userCanEdit ) {
+		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
         	return warnNoSave;
-        	$('#aesop-editor--save').css('opacity',1);
+        	$('#lasso--save').css('opacity',1);
         }
     }
 	// do the actual saving
@@ -9338,10 +9338,10 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		// unwrap wp images
-		$(".aesop-editor--wpimg__wrap").each(function(){
+		$(".lasso--wpimg__wrap").each(function(){
 
 			$(this).children().unwrap()
-			$('.aesop-component--controls').remove();
+			$('.lasso-component--controls').remove();
 		});
 
 		////////////
@@ -9349,17 +9349,17 @@ jQuery(document).ready(function($){
 		////////////
 		// get the html from our div
 		var html = $('#'+editor).html(),
-			postid = $this.closest('#aesop-editor--controls').data('post-id');
+			postid = $this.closest('#lasso--controls').data('post-id');
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
 
 		var data      = {
-			action:    	$this.hasClass('aesop-publish-post') ? 'process_publish_content' : 'process_save_content',
-			author:  	aesop_editor.author,
+			action:    	$this.hasClass('lasso-publish-post') ? 'process_publish_content' : 'process_save_content',
+			author:  	lasso_editor.author,
 			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
 			post_id:   	postid,
-			nonce:     	aesop_editor.nonce
+			nonce:     	lasso_editor.nonce
 		};
 
 		/**
@@ -9435,20 +9435,20 @@ jQuery(document).ready(function($){
 
 			if( true == response.success ) {
 
-				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
+				$(save).removeClass('being-saved').addClass('lasso--saved');
 
 				setTimeout(function(){
-					$(save).removeClass('aesop-editor--saved');
+					$(save).removeClass('lasso--saved');
 				},1200);
 
 				// purge this post from local storage
-				localStorage.removeItem( 'aesop_backup_'+postid );
+				localStorage.removeItem( 'lasso_backup_'+postid );
 
 			} else {
 
 				// testing
 				//console.log(response);
-				$(save).removeClass('being-saved').addClass('aesop-editor--error');
+				$(save).removeClass('being-saved').addClass('lasso--error');
 			}
 
 		});
@@ -9461,7 +9461,7 @@ jQuery(document).ready(function($){
 	/////////////
 	// NEW GALLERY CREATE
 	////////////
-	$('#aesop-editor--gallery__create').live('click',function(e){
+	$('#lasso--gallery__create').live('click',function(e){
 
 		e.preventDefault();
 
@@ -9473,7 +9473,7 @@ jQuery(document).ready(function($){
 		$('#ase-gallery-images li').remove();
 
 		$('.ase-gallery-opts--edit-gallery').text('Add New Gallery');
-		$('.ase-gallery-opts--edit-gallery .aesop-option-desc').text('Select new images to create a gallery with.');
+		$('.ase-gallery-opts--edit-gallery .lasso-option-desc').text('Select new images to create a gallery with.');
 
 
 	});
@@ -9485,7 +9485,7 @@ jQuery(document).ready(function($){
 	var file_frame;
 	var	gallery = $('#ase-gallery-images');
 
-	$(document).on('click', '#aesop-editor--gallery__selectImages', function( e ){
+	$(document).on('click', '#lasso--gallery__selectImages', function( e ){
 
 	    e.preventDefault();
 
@@ -9532,10 +9532,10 @@ jQuery(document).ready(function($){
 		    $('#ase_gallery_ids').val( ids );
 
 		    // show the save button
-	      	$('.has-galleries > #aesop-editor--gallery__save').fadeIn();
+	      	$('.has-galleries > #lasso--gallery__save').fadeIn();
 
 	      	// remove the select images button
-	      	$('#aesop-editor--gallery__selectImages').remove();
+	      	$('#lasso--gallery__selectImages').remove();
 
 	    });
 
@@ -9546,21 +9546,21 @@ jQuery(document).ready(function($){
 	//////////
 	// NEW GALLERY SWAP
 	//////////
-	$('.aesop-gallery-id #aesop-generator-attr-id').live('change',function(){
+	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
 
 		var data = {
 			action: 		'process_swap_gallery',
 			gallery_id: 	$(this).val(),
-			nonce: 			aesop_editor.swapGallNonce
+			nonce: 			lasso_editor.swapGallNonce
 		}
 
-		$.post( aesop_editor.ajaxurl, data, function(response) {
+		$.post( lasso_editor.ajaxurl, data, function(response) {
 
 			console.log(response);
 
 			if( response ) {
 
-				$('.aesop-gallery-component').html( response );
+				$('.lasso-gallery-component').html( response );
 
 			}
 
@@ -9616,7 +9616,7 @@ jQuery(document).ready(function($){
 		}
 
     	wp.media.frames.ase_frame = wp.media({
-			title: 'Select Aesop Gallery Image',
+			title: 'Select Lasso Gallery Image',
 			multiple: true,
 			library: {
 			    type: 'image'
@@ -9770,7 +9770,7 @@ jQuery(document).ready(function($){
 jQuery(document).ready(function($){
 
 
-	$('#aesop-editor--edit').on('click',function(e){
+	$('#lasso--edit').on('click',function(e){
 
 
 	});
@@ -9779,7 +9779,7 @@ jQuery(document).ready(function($){
 (function( $ ) {
 	'use strict';
 
-	$( '#aesop-editor--featImgSave a' ).live('click', function(e) {
+	$( '#lasso--featImgSave a' ).live('click', function(e) {
 
 		e.preventDefault();
 
@@ -9787,14 +9787,14 @@ jQuery(document).ready(function($){
 
 		var data = {
 			action: 'process_featimg_upload',
-			postid: aesop_editor.postid,
+			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
-			nonce: 	aesop_editor.featImgNonce
+			nonce: 	lasso_editor.featImgNonce
 		}
-		$.post( aesop_editor.ajaxurl, data, function(response) {
+		$.post( lasso_editor.ajaxurl, data, function(response) {
 
 			if ( true == response.success ) {
-				$('#aesop-editor--featImgSave').css('opacity',0);
+				$('#lasso--featImgSave').css('opacity',0);
 			}
 
 		});
@@ -9807,7 +9807,7 @@ jQuery(document).ready(function($){
 	var file_frame;
 	var className;
 
-	$(document).on('click', '#aesop-editor--featImgUpload > a', function( e ){
+	$(document).on('click', '#lasso--featImgUpload > a', function( e ){
 
 	    e.preventDefault();
 
@@ -9833,13 +9833,13 @@ jQuery(document).ready(function($){
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-	      	$('#aesop-editor--featImgSave a').attr('data-featimg-id',attachment.id);
+	      	$('#lasso--featImgSave a').attr('data-featimg-id',attachment.id);
 
-	      	$(aesop_editor.featImgClass).css({
+	      	$(lasso_editor.featImgClass).css({
 	      		'background-image': 'url('+attachment.url+')'
 	      	});
 
-	      	$('#aesop-editor--featImgSave a').trigger('click');
+	      	$('#lasso--featImgSave a').trigger('click');
 
 	      	$('.no-post-cover-note').remove();
 
@@ -9853,24 +9853,24 @@ jQuery(document).ready(function($){
 
 	var form;
 
-	$('#aesop--component-settings-form').live('submit', function(e) {
+	$('#lasso--component-settings-form').live('submit', function(e) {
 
 		e.preventDefault();
 
 		// store some atts
 		var $component 	= window.component
 		,	cdata 		= $component.data()
-		,	saveInsert 	= $('#aesop-generator-insert')
-		,	form 		= $('#aesop--component-settings-form')
+		,	saveInsert 	= $('#lasso-generator-insert')
+		,	form 		= $('#lasso--component-settings-form')
 		,	$this 		= $(this);
 
 		// let people know something is happening
 		saveInsert.val('Saving...');
 
 		// send the new settings to the component and update it's data attributes
-	    $this.find('.aesop-generator-attr').each(function(){
+	    $this.find('.lasso-generator-attr').each(function(){
 
-	      	var optionName = $(this).closest('.aesop-option').data('option');
+	      	var optionName = $(this).closest('.lasso-option').data('option');
 
 	      	if ( '' !== $(this).val() ) {
 	      		$component.attr( 'data-' + optionName, $(this).val() );
@@ -9915,7 +9915,7 @@ jQuery(document).ready(function($){
 
 			} else if ( true == gallery ) {
 
-				form.addClass('hide-all-fields').prepend('<p class="aesop-editor--gallery_created_confirm">Gallery Created! Save your post and refresh the page to access this new gallery.</p>')
+				form.addClass('hide-all-fields').prepend('<p class="lasso--gallery_created_confirm">Gallery Created! Save your post and refresh the page to access this new gallery.</p>')
 
 				setTimeout( function(){ saveActions(true); }, 500 );
 
@@ -9925,7 +9925,7 @@ jQuery(document).ready(function($){
 
 	    	}
 
-			setTimeout( function(){ $('body').removeClass('aesop-sidebar-open'); }, timeout );
+			setTimeout( function(){ $('body').removeClass('lasso-sidebar-open'); }, timeout );
 
 	    }
 
@@ -9934,15 +9934,15 @@ jQuery(document).ready(function($){
 
 			var data = {
 				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
-				postid: 		aesop_editor.postid,
+				postid: 		lasso_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
 				gallery_ids: 	$('#ase_gallery_ids').val(),
-				nonce: 			$('#aesop-generator-nonce').val()
+				nonce: 			$('#lasso-generator-nonce').val()
 			}
 
 
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( 'gallery-created' == response.data.message ) {
 
@@ -9975,20 +9975,20 @@ jQuery(document).ready(function($){
 
 		// method to destroy the modal
 		var destroyModal = function(){
-			$('body').removeClass('aesop-modal-open');
-			$('.aesop-editor--modal, #aesop-editor--modal__overlay').remove();
+			$('body').removeClass('lasso-modal-open');
+			$('.lasso--modal, #lasso--modal__overlay').remove();
 		}
 
 		// modal click
-		$('#aesop-editor--post-new').live('click',function(e){
+		$('#lasso--post-new').live('click',function(e){
 
 			e.preventDefault();
 
 			// add a body class
-			$('body').toggleClass('aesop-modal-open');
+			$('body').toggleClass('lasso-modal-open');
 
-			// append teh modal markup ( aesop_editor_component_modal() )
-			$('body').append(aesop_editor.newPostModal);
+			// append teh modal markup ( lasso_editor_component_modal() )
+			$('body').append(lasso_editor.newPostModal);
 
 			////////////
 			// RESIZE THE URL HELPER FIELD
@@ -10003,7 +10003,7 @@ jQuery(document).ready(function($){
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#aesop-editor--modal__close, #aesop-editor--modal__overlay, .aesop-editor--postsettings-cancel').live('click',function(e){
+		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -10025,7 +10025,7 @@ jQuery(document).ready(function($){
 		//////////////
 		var form;
 
-		$('#aesop-editor--postnew__form').live('submit', function(e) {
+		$('#lasso--postnew__form').live('submit', function(e) {
 
 			e.preventDefault();
 
@@ -10038,7 +10038,7 @@ jQuery(document).ready(function($){
 			/////////////
 			//	DO TEH SAVE
 			/////////////
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( true == response.success ) {
 
@@ -10069,25 +10069,25 @@ jQuery(document).ready(function($){
 		// SAVE TITLE
 		/////////////
 
-		$(aesop_editor.titleClass).on('blur', function() {
+		$(lasso_editor.titleClass).on('blur', function() {
 
 			var target = $(this);
 
 			var data = {
 				action: 		'process_update_title',
-				postid: 		aesop_editor.postid,
+				postid: 		lasso_editor.postid,
 				title:          $.trim( target.text() ),
-				nonce: 			aesop_editor.titleNonce
+				nonce: 			lasso_editor.titleNonce
 			}
 
 			/////////////
 			//	UPDATE THE TITLE
 			/////////////
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( true == response.success ) {
 
-					var saveClass = 'aesop-title-saved';
+					var saveClass = 'lasso-title-saved';
 
 					target.addClass(saveClass);
 
@@ -10115,7 +10115,7 @@ jQuery(document).ready(function($){
 			var ase_edit_frame;
 			var className;
 
-			$(document).on('click', '#aesop-editor--wpimg-edit',function(e){
+			$(document).on('click', '#lasso--wpimg-edit',function(e){
   				e.preventDefault();
   				var selected_img;
   				var clicked = $(this)

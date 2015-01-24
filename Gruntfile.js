@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 		      		cleancss:true
 		    	},
 		    	files: {
-		      		'public/assets/css/aesop-editor.css': 'public/assets/less/style.less'
+		      		'public/assets/css/lasso-editor.css': 'public/assets/less/style.less'
 		    	}
 		  	},
 		  	settingsLess: {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 		      		cleancss:true
 		    	},
 		    	files: {
-		      		'admin/assets/css/aesop-editor-settings.css': 'admin/assets/less/style.less'
+		      		'admin/assets/css/lasso-editor-settings.css': 'admin/assets/less/style.less'
 		    	}
 		    }
         },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                         'public/assets/js/source/process-save-title.js',
                         'public/assets/js/source/process-wpimg.js'
                     ],
-                dest: 'public/assets/js/aesop-editor.js'
+                dest: 'public/assets/js/lasso-editor.js'
             }
         }
     });

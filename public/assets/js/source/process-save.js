@@ -1,9 +1,9 @@
 jQuery(document).ready(function($){
 
-	var ajaxurl 	=  aesop_editor.ajaxurl,
-		save    	=  $('.aesop-editor--controls__right a'),
-		editor 		=  aesop_editor.editor,
-		postid 		=  aesop_editor.postid,
+	var ajaxurl 	=  lasso_editor.ajaxurl,
+		save    	=  $('.lasso--controls__right a'),
+		editor 		=  lasso_editor.editor,
+		postid 		=  lasso_editor.postid,
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
 
@@ -15,25 +15,25 @@ jQuery(document).ready(function($){
 
 		if ( oldHtml !== newHtml ) {
 
-			localStorage.setItem( 'aesop_backup_'+postid , newHtml );
+			localStorage.setItem( 'lasso_backup_'+postid , newHtml );
 
-			//$('#aesop-editor--save').css('opacity',1);
+			//$('#lasso--save').css('opacity',1);
 		}
 
 	});
 
-	if ( localStorage.getItem( 'aesop_backup_'+postid ) ) {
+	if ( localStorage.getItem( 'lasso_backup_'+postid ) ) {
 
-    $('#aesop-editor--save').css('opacity',1);
+    $('#lasso--save').css('opacity',1);
 
   }
 
 	// if the user tries to navigate away and this post was backed up and not saved warn them
 	window.onbeforeunload = function () {
 
-		if ( localStorage.getItem( 'aesop_backup_'+postid ) && aesop_editor.userCanEdit ) {
+		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
         	return warnNoSave;
-        	$('#aesop-editor--save').css('opacity',1);
+        	$('#lasso--save').css('opacity',1);
         }
     }
 	// do the actual saving
@@ -47,10 +47,10 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		// unwrap wp images
-		$(".aesop-editor--wpimg__wrap").each(function(){
+		$(".lasso--wpimg__wrap").each(function(){
 
 			$(this).children().unwrap()
-			$('.aesop-component--controls').remove();
+			$('.lasso-component--controls').remove();
 		});
 
 		////////////
@@ -58,17 +58,17 @@ jQuery(document).ready(function($){
 		////////////
 		// get the html from our div
 		var html = $('#'+editor).html(),
-			postid = $this.closest('#aesop-editor--controls').data('post-id');
+			postid = $this.closest('#lasso--controls').data('post-id');
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
 
 		var data      = {
-			action:    	$this.hasClass('aesop-publish-post') ? 'process_publish_content' : 'process_save_content',
-			author:  	aesop_editor.author,
+			action:    	$this.hasClass('lasso-publish-post') ? 'process_publish_content' : 'process_save_content',
+			author:  	lasso_editor.author,
 			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
 			post_id:   	postid,
-			nonce:     	aesop_editor.nonce
+			nonce:     	lasso_editor.nonce
 		};
 
 		/**
@@ -144,20 +144,20 @@ jQuery(document).ready(function($){
 
 			if( true == response.success ) {
 
-				$(save).removeClass('being-saved').addClass('aesop-editor--saved');
+				$(save).removeClass('being-saved').addClass('lasso--saved');
 
 				setTimeout(function(){
-					$(save).removeClass('aesop-editor--saved');
+					$(save).removeClass('lasso--saved');
 				},1200);
 
 				// purge this post from local storage
-				localStorage.removeItem( 'aesop_backup_'+postid );
+				localStorage.removeItem( 'lasso_backup_'+postid );
 
 			} else {
 
 				// testing
 				//console.log(response);
-				$(save).removeClass('being-saved').addClass('aesop-editor--error');
+				$(save).removeClass('being-saved').addClass('lasso--error');
 			}
 
 		});

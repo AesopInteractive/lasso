@@ -5,7 +5,7 @@
 @desc-color:  #888;
 @main-width:  500px;
 @admin-bar-width: 160px;
-#aesop-editor-settings-form{
+#lasso-editor-settings-form{
 
     * { .box-sizing(border-box); }
     max-width:@main-width;
@@ -16,16 +16,16 @@
     position: relative;
     .clearfix();
 
-    .aesop-editor-settings--option-wrap {
+    .lasso-editor-settings--option-wrap {
         margin-bottom:25px;
 
-        &.last .aesop-editor-settings--option-inner{
+        &.last .lasso-editor-settings--option-inner{
             border-bottom: none;
             padding-bottom:0;
         }
     }
 
-    .aesop-editor-settings--option-inner {
+    .lasso-editor-settings--option-inner {
         border-bottom:1px solid lighten(@border,10);
         padding-bottom:25px;
     }
@@ -60,7 +60,7 @@
         }
     }
 
-    .aesop-editor--setting-description {
+    .lasso--setting-description {
         display:block;
         margin:5px 0 10px;
         max-width:400px;
@@ -70,14 +70,14 @@
     }
 
     // sunmit
-    .aesop-editor-settings--submit {
+    .lasso-editor-settings--submit {
         position: fixed;
         top:88px;
         left: @main-width + @admin-bar-width + 100;
 
     }
 
-    .aesop-editor-settings--confirm {
+    .lasso-editor-settings--confirm {
         background: @main;
         border:1px solid @border;
         border-radius:3px;
@@ -109,6 +109,6 @@
     }
 
 }
-#wpbody #aesop-editor-settings-form .button-primary.saved {
+#wpbody #lasso-editor-settings-form .button-primary.saved {
     background: #5CB85C !important;
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-class aesopEditorProcessSaving {
+class lassoEditorProcessSaving {
 
 	function __construct(){
 
@@ -12,19 +12,19 @@ class aesopEditorProcessSaving {
 
 	function process_save_content(){
 
-		check_ajax_referer('aesop_editor','nonce'); 
+		check_ajax_referer('lasso_editor','nonce'); 
 
 		if ( isset( $_POST['post_id'] ) ) {
 
 			// only run for logged in users and check caps
-			if( !aesop_editor_user_can_edit() )
+			if( !lasso_editor_user_can_edit() )
 				return;
 
 			// main variables being passed through include the postid and content
 			$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 			$content = isset( $_POST['content'] ) ? $_POST['content'] : null;
 
-			$save_to_post_disabled = aesop_editor_get_option('post_save_disabled','aesop_editor_advanced');
+			$save_to_post_disabled = lasso_editor_get_option('post_save_disabled','lasso_editor_advanced');
 
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_save_content' ) {
 
@@ -39,7 +39,7 @@ class aesopEditorProcessSaving {
 				}
 
 				// run save action
-				do_action( 'aesop_editor_post_saved', $postid, $content, get_current_user_ID() );
+				do_action( 'lasso_editor_post_saved', $postid, $content, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();
@@ -57,7 +57,7 @@ class aesopEditorProcessSaving {
 
 				}
 
-				do_action( 'aesop_editor_post_published', $postid, $content, get_current_user_ID() );
+				do_action( 'lasso_editor_post_published', $postid, $content, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();
@@ -70,7 +70,7 @@ class aesopEditorProcessSaving {
 
 
 }
-new aesopEditorProcessSaving;
+new lassoEditorProcessSaving;
 
 
 

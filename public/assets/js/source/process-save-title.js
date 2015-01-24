@@ -6,25 +6,25 @@
 		// SAVE TITLE
 		/////////////
 
-		$(aesop_editor.titleClass).on('blur', function() {
+		$(lasso_editor.titleClass).on('blur', function() {
 
 			var target = $(this);
 
 			var data = {
 				action: 		'process_update_title',
-				postid: 		aesop_editor.postid,
+				postid: 		lasso_editor.postid,
 				title:          $.trim( target.text() ),
-				nonce: 			aesop_editor.titleNonce
+				nonce: 			lasso_editor.titleNonce
 			}
 
 			/////////////
 			//	UPDATE THE TITLE
 			/////////////
-			$.post( aesop_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( true == response.success ) {
 
-					var saveClass = 'aesop-title-saved';
+					var saveClass = 'lasso-title-saved';
 
 					target.addClass(saveClass);
 

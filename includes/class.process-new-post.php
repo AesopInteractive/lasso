@@ -5,7 +5,7 @@
 *	Adds a new post object
 *
 */
-class aesopEditorProcessNewObject {
+class lassoEditorProcessNewObject {
 
 	function __construct(){
 
@@ -23,11 +23,11 @@ class aesopEditorProcessNewObject {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_new_object' ) {
 
 			// only run for logged in users and check caps
-			if( !aesop_editor_user_can_edit() )
+			if( !lasso_editor_user_can_edit() )
 				return;
 
 			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'aesop-editor-new-post' ) ) {
+			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-editor-new-post' ) ) {
 
 				$title 	= isset( $_POST['story_title'] ) ? $_POST['story_title'] : false;
 				$object = isset( $_POST['object'] ) ? $_POST['object'] : false;
@@ -37,12 +37,12 @@ class aesopEditorProcessNewObject {
 				  	'post_title'    => wp_strip_all_tags( trim( $title ) ),
 				  	'post_status'   => 'draft',
 				  	'post_type'	  	=> trim( $object ),
-				  	'post_content'  => apply_filters('aesop_editor_new_object_content','People are made of stories...')
+				  	'post_content'  => apply_filters('lasso_editor_new_object_content','People are made of stories...')
 				);
 
-				$postid = wp_insert_post( apply_filters('aesop_editor_new_object_args', $post_args ) );
+				$postid = wp_insert_post( apply_filters('lasso_editor_new_object_args', $post_args ) );
 
-				do_action( 'aesop_editor_new_object', $postid, $object, $title, get_current_user_ID() );
+				do_action( 'lasso_editor_new_object', $postid, $object, $title, get_current_user_ID() );
 
 				wp_send_json_success(array('postlink' => get_permalink($postid)));
 
@@ -57,7 +57,7 @@ class aesopEditorProcessNewObject {
 
 
 }
-new aesopEditorProcessNewObject;
+new lassoEditorProcessNewObject;
 
 
 

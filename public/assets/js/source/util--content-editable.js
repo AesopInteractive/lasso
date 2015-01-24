@@ -843,7 +843,7 @@
 							cl = (attr.className.split[' '] || [attr.className]).shift();
 							delete attr.className;
 						} else {
-							cl = 'aesop-' + tagName;
+							cl = 'lasso-' + tagName;
 						}
 
 						applier = rangy.createClassApplier(cl, {

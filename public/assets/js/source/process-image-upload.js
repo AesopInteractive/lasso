@@ -1,7 +1,7 @@
 (function( $ ) {
 	'use strict';
 
-	$( '#aesop-editor--featImgSave a' ).live('click', function(e) {
+	$( '#lasso--featImgSave a' ).live('click', function(e) {
 
 		e.preventDefault();
 
@@ -9,14 +9,14 @@
 
 		var data = {
 			action: 'process_featimg_upload',
-			postid: aesop_editor.postid,
+			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
-			nonce: 	aesop_editor.featImgNonce
+			nonce: 	lasso_editor.featImgNonce
 		}
-		$.post( aesop_editor.ajaxurl, data, function(response) {
+		$.post( lasso_editor.ajaxurl, data, function(response) {
 
 			if ( true == response.success ) {
-				$('#aesop-editor--featImgSave').css('opacity',0);
+				$('#lasso--featImgSave').css('opacity',0);
 			}
 
 		});
@@ -29,7 +29,7 @@
 	var file_frame;
 	var className;
 
-	$(document).on('click', '#aesop-editor--featImgUpload > a', function( e ){
+	$(document).on('click', '#lasso--featImgUpload > a', function( e ){
 
 	    e.preventDefault();
 
@@ -55,13 +55,13 @@
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
-	      	$('#aesop-editor--featImgSave a').attr('data-featimg-id',attachment.id);
+	      	$('#lasso--featImgSave a').attr('data-featimg-id',attachment.id);
 
-	      	$(aesop_editor.featImgClass).css({
+	      	$(lasso_editor.featImgClass).css({
 	      		'background-image': 'url('+attachment.url+')'
 	      	});
 
-	      	$('#aesop-editor--featImgSave a').trigger('click');
+	      	$('#lasso--featImgSave a').trigger('click');
 
 	      	$('.no-post-cover-note').remove();
 

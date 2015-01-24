@@ -1,9 +1,9 @@
-.aesop-modal-open {
+.lasso-modal-open {
     overflow: hidden;
 }
 
 // modal overlay
-#aesop-editor--modal__overlay {
+#lasso--modal__overlay {
     z-index: 999;
     position: fixed;
     left:0;
@@ -14,7 +14,7 @@
 }
 
 // modal outer
-.aesop-editor--modal{
+.lasso--modal{
     z-index: 1001;
     position:fixed;
     display: table;
@@ -33,7 +33,7 @@
 }
 
 // modal inner
-.aesop-editor--modal__inner {
+.lasso--modal__inner {
     display:table-cell;
     vertical-align: middle;
     background:@modal--bg;
@@ -46,7 +46,7 @@
 }
 
 // modal close
-#aesop-editor--modal__close {
+#lasso--modal__close {
     position:absolute;
     right:20px;
     top:10px;
@@ -57,13 +57,13 @@
 }
 
 // post status slider wrap
-.aesop-editor--slider_wrap {
+.lasso--slider_wrap {
     padding:0 10px;
     height:18px;
 }
 
 // post status indicator
-.aesop-editor--postsettings__option {
+.lasso--postsettings__option {
     padding-bottom:20px;
     margin-bottom:20px;
     position: relative;
@@ -78,7 +78,7 @@
         font-family: @editor--font;
     }
 
-    &.aesop-editor--last-option {
+    &.lasso--last-option {
         border-bottom:none;
         margin-bottom: 0;
         padding-bottom: 0;
@@ -98,22 +98,22 @@
         }
 
         &.story-status-publish {
-            #aesop-editor--status-draft {
+            #lasso--status-draft {
                 .opacity(0.3);
             }
         }
         &.story-status-draft {
-            #aesop-editor--status-publish {
+            #lasso--status-publish {
                  .opacity(0.3);
             }
         }
 
-        #aesop-editor--status-draft {
+        #lasso--status-draft {
 
         }
 
         // published
-        #aesop-editor--status-publish {
+        #lasso--status-publish {
             float: right;
         }
     }
@@ -150,7 +150,7 @@
 }
 
 // post settings form footer
-.aesop-editor--postsettings__footer {
+.lasso--postsettings__footer {
     text-align: right;
     font-size: @modal--font__size + 2;
     padding-top:20px;
@@ -164,7 +164,7 @@
 
 
     // cancel button
-    .aesop-editor--postsettings-cancel {
+    .lasso--postsettings-cancel {
         background: 0 0;
         color: @editor--color__error;
         position: relative;
@@ -207,7 +207,7 @@
 
 
 // post status slider
-#aesop-editor--slider {
+#lasso--slider {
     position: relative;
     text-align: left;
     background: @rail--track__color;

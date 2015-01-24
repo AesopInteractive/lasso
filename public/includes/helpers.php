@@ -10,7 +10,7 @@
 *	@return the option value
 *	@since 1.0
 */
-function aesop_editor_get_option( $option, $section, $default = '' ) {
+function lasso_editor_get_option( $option, $section, $default = '' ) {
 
 	if ( empty( $option ) )
 		return;
@@ -36,9 +36,9 @@ function aesop_editor_get_option( $option, $section, $default = '' ) {
 *	Check if the user is logged in and has teh correct capabilities
 *	@since 1.0
 */
-function aesop_editor_user_can_edit(){
+function lasso_editor_user_can_edit(){
 
-	$is_capable = apply_filters('aesop_editor_capabilities', current_user_can('edit_posts') );
+	$is_capable = apply_filters('lasso_editor_capabilities', current_user_can('edit_posts') );
 
 	if ( is_user_logged_in() && $is_capable ) {
 		return true;
@@ -50,10 +50,10 @@ function aesop_editor_user_can_edit(){
 
 /**
 *
-*	Check to see if any Aesop galleries exist
+*	Check to see if any Lasso galleries exist
 *	@since 1.0
 */
-function aesop_editor_galleries_exist(){
+function lasso_editor_galleries_exist(){
 
 	$q = new wp_query(array('post_type' => 'ai_galleries','posts_per_page' => -1,'post_status' => 'publish'));
 
