@@ -24,9 +24,9 @@ class ahEditorAdminSettings {
 	function menu(){
 
 		if ( function_exists('is_multisite') && is_multisite() ) {
-			add_submenu_page( 'settings.php', 'Lasso Editor', 'Lasso Editor', 'manage_network', 'lasso-editor-settings', array($this, 'settings'));
+			add_submenu_page( 'settings.php', 'Lasso', 'Lasso', 'manage_network', 'lasso-editor-settings', array($this, 'settings'));
 		} else {
-     		add_submenu_page( 'options-general.php', 'Lasso Editor', 'Lasso Editor', 'manage_options', 'lasso-editor-settings', array($this, 'settings'));
+     		add_submenu_page( 'options-general.php', 'Lasso', 'Lasso', 'manage_options', 'lasso-editor-settings', array($this, 'settings'));
 		}
 	}
 
@@ -110,7 +110,7 @@ class ahEditorAdminSettings {
 		?>
 		<div class="wrap">
 
-	    	<h2>Lasso Editor Settings</h2>
+	    	<h2>Lasso Settings</h2>
 
 			<form id="lasso-editor-settings-form" method="post" enctype="multipart/form-data">
 
