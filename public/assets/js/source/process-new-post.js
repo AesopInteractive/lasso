@@ -50,7 +50,7 @@
 		});
 
 		/////////////
-		// SAVE SETTINGS
+		// MAKE NEW POST OBJECT
 		//////////////
 		var form;
 

@@ -302,6 +302,9 @@ function aesop_editor_newpost_modal(){
 	// let users add custom css classes
 	$custom_classes = apply_filters('aesop_editor_modal_post_classes', '' );
 
+	// return the post type
+	$type = get_post_type( get_the_ID() );
+
 	?>
 	<div id="aesop-editor--post-new__modal" class="aesop-editor--modal <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="aesop-editor--modal__inner">
@@ -315,7 +318,8 @@ function aesop_editor_newpost_modal(){
 
 				<div class="aesop-editor--postsettings__footer">
 					<a href="#" class="aesop-editor--postsettings-cancel">Cancel</a>
-					<input type="hidden" name="action" value="process_new_post">
+					<input type="hidden" name="action" value="process_new_object">
+					<input type="hidden" name="object" value="<?php echo $type;?>">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="Create">
 				</div>
