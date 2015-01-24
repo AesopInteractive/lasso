@@ -31,7 +31,7 @@ class lassoEditorProcessGallery {
 
 		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
 
-		echo do_shortcode('[lasso_gallery id="'.(int) $id.'"]');
+		echo do_shortcode('[aesop_gallery id="'.(int) $id.'"]');
 
 		die();
 	}
@@ -84,7 +84,7 @@ class lassoEditorProcessGallery {
 				// update the gallery type
 				if ( $type ) {
 
-					update_post_meta( $postid, 'lasso_gallery_type', $type );
+					update_post_meta( $postid, 'aesop_gallery_type', $type );
 
 				}
 
@@ -132,7 +132,7 @@ class lassoEditorProcessGallery {
 				// update the gallery type
 				if ( $type ) {
 
-					update_post_meta( $postid, 'lasso_gallery_type', $type );
+					update_post_meta( $postid, 'aesop_gallery_type', $type );
 
 				}
 

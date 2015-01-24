@@ -9,7 +9,7 @@
  *
  * Plugin Name:       Lasso
  * Plugin URI:        http://lasso.is
- * Description:       Lasso - Front End Creation Kit
+ * Description:       Front-end editing and creation suite.
  * Version:           Beta0.1
  * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
  */
