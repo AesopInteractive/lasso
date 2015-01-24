@@ -58,6 +58,7 @@ jQuery(document).ready(function($){
 		}
 
 		// append the toolbar to any components that dont have them
+		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
 		$('.aesop-component').each(function(){
 
 			if ( !$('.lasso-component--toolbar').length > 0 ) {

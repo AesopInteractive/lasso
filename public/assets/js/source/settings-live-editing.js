@@ -27,10 +27,10 @@
 			});
 
 			// PARALLAX LIVE EDIT ///////////////////
-			settings.find('.aesop-parallax-caption > #lasso-generator-attr-caption').on('keyup',function(){
-				component.find('.lasso-parallax-sc-caption-wrap').text( $(this).val() );
+			settings.find('.lasso-parallax-caption > #lasso-generator-attr-caption').on('keyup',function(){
+				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
 			})
-			settings.find('.aesop-parallax-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
+			settings.find('.lasso-parallax-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val()
 
@@ -60,10 +60,10 @@
 			settings.find('.lasso-image-caption > #lasso-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-image-component-caption').text( $(this).val() );
 			})
-			settings.find('.lasso-option.aesop-image-imgwidth > #lasso-generator-attr-imgwidth').on('keyup',function(){
+			settings.find('.lasso-image-imgwidth > #lasso-generator-attr-imgwidth').on('keyup',function(){
 				component.find('.aesop-image-component-image').css('width', $(this).val() );
 			})
-			settings.find('.lasso-option.lasso-image-align > #lasso-generator-attr-align').on('change',function(){
+			settings.find('.lasso-image-align > #lasso-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
@@ -84,7 +84,7 @@
 				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
 
 			})
-			settings.find('.lasso-option.lasso-image-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
+			settings.find('.lasso-image-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val();
 
@@ -106,13 +106,13 @@
 			});
 
 			// CHARACTER LIVE EDIT ///////////////////
-			settings.find('.aesop-character-name > #lasso-generator-attr-name').on('keyup',function(){
+			settings.find('.lasso-character-name > #lasso-generator-attr-name').on('keyup',function(){
 				component.find('.aesop-character-title').text( $(this).val() );
 			})
-			settings.find('.aesop-character-caption > #lasso-generator-attr-caption').on('keyup',function(){
+			settings.find('.lasso-character-caption > #lasso-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-character-cap').text( $(this).val() );
 			})
-			settings.find('.lasso-option.lasso-character-align > #lasso-generator-attr-align').on('change',function(){
+			settings.find('.lasso-character-align > #lasso-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
@@ -131,10 +131,10 @@
 			});
 
 			// CHAPTER LIVE EDIT ///////////////////
-			settings.find('.lasso-option.lasso-chapter-title > #lasso-generator-attr-title').on('keyup',function(){
+			settings.find('.lasso-chapter-title > #lasso-generator-attr-title').on('keyup',function(){
 				component.find('.aesop-cover-title span').text( $(this).val() );
 			})
-			settings.find('.lasso-option.lasso-chapter-subtitle > #lasso-generator-attr-subtitle').on('keyup',function(){
+			settings.find('.lasso-chapter-subtitle > #lasso-generator-attr-subtitle').on('keyup',function(){
 				component.find('.aesop-cover-title small').text( $(this).val() );
 			})
 
