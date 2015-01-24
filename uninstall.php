@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package   Lasso_Editor
+ * @package   Lasso
  * @author    Nick Haskins <nick@lassointeractive.com>
  * @license   GPL-2.0+
  * @link      http://lassointeractive.com

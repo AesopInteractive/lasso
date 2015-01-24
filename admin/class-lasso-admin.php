@@ -2,14 +2,14 @@
 /**
  * AH Stripe
  *
- * @package   Lasso_Editor_Admin
+ * @package   Lasso_Admin
  * @author    Nick Haskins <nick@lassointeractive.com>
  * @license   GPL-2.0+
  * @link      http://lassointeractive.com
  * @copyright 2015 Lassointeractive LLC
  */
 
-class Lasso_Editor_Admin {
+class Lasso_Admin {
 
 	/**
 	 * Instance of this class.
@@ -37,7 +37,7 @@ class Lasso_Editor_Admin {
 	 */
 	private function __construct() {
 
-		$plugin = Lasso_Editor::get_instance();
+		$plugin = Lasso::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		require_once(LASSO_DIR.'/admin/includes/class.settings.php');

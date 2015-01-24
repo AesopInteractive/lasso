@@ -9,9 +9,9 @@
  *
  * Plugin Name:       Lasso
  * Plugin URI:        http://lasso.is
- * Description:       Lasso - Front End Editor
+ * Description:       Lasso - Front End Creation Kit
  * Version:           Beta0.1
- * GitLab Plugin URI: https://gitlab.com/lasso/lasso-editor
+ * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
  */
 
 // If this file is called directly, abort.
@@ -27,13 +27,13 @@ define('LASSO_URL', plugins_url( '', __FILE__ ));
 /*----------------------------------------------------------------------------*
  * Public-Facing Functionality
  *----------------------------------------------------------------------------*/
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-lasso-editor.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'public/class-lasso.php' );
 
 
-register_activation_hook( __FILE__, array( 'Lasso_Editor', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Lasso_Editor', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'Lasso', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Lasso', 'deactivate' ) );
 
-add_action( 'plugins_loaded', array( 'Lasso_Editor', 'get_instance' ) );
+add_action( 'plugins_loaded', array( 'Lasso', 'get_instance' ) );
 
 /*----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality
@@ -41,7 +41,7 @@ add_action( 'plugins_loaded', array( 'Lasso_Editor', 'get_instance' ) );
 
 if ( is_admin() ) {
 
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-lasso-editor-admin.php' );
-	add_action( 'plugins_loaded', array( 'Lasso_Editor_Admin', 'get_instance' ) );
+	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php' );
+	add_action( 'plugins_loaded', array( 'Lasso_Admin', 'get_instance' ) );
 
 }

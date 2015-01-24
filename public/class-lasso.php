@@ -2,7 +2,7 @@
 /**
  * AH Editor
  *
- * @package   Lasso_Editor
+ * @package   Lasso
  * @author    Nick Haskins <nick@lassointeractive.com>
  * @license   GPL-2.0+
  * @link      http://lassointeractive.com
@@ -11,10 +11,10 @@
 
 /**
  *
- * @package Lasso_Editor
+ * @package Lasso
  * @author  Nick Haskins <nick@lassointeractive.com>
  */
-class Lasso_Editor {
+class Lasso {
 
 	/**
 	 *
