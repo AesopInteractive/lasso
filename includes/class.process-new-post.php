@@ -2,7 +2,7 @@
 
 /**
 *
-*	Adds a new post
+*	Adds a new post object
 *
 */
 class aesopEditorProcessNewObject {

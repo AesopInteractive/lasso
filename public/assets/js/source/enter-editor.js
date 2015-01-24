@@ -15,15 +15,15 @@ jQuery(document).ready(function($){
 		aesopDragHandle = aesop_editor.handle;
 
 	function restoreSelection(range) {
-    if (range) {
-        if (window.getSelection) {
-            sel = window.getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
-        } else if (document.selection && range.select) {
-            range.select();
-        }
-    }
+	    if (range) {
+	        if (window.getSelection) {
+	            sel = window.getSelection();
+	            sel.removeAllRanges();
+	            sel.addRange(range);
+	        } else if (document.selection && range.select) {
+	            range.select();
+	        }
+	    }
 	}
 
 	$('#aesop-editor--edit').click(function(e){
@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
 
 		// append upload bar to featured image if present
 		if ( $( featImgClass ).length > 0 ) {
-			$('.ast-entry-mast-img').append( uploadControls );
+			$(featImgClass).append( uploadControls );
 		}
 
 		// append contenteditable to title if set
@@ -83,21 +83,21 @@ jQuery(document).ready(function($){
 		/////////////////
 		/// CONTENT EDITABLE / TOOLBAR
 		///////////////////
-				article = document.getElementById(editor),
-		    articleMedium = new Medium({
-		        element: article,
-		        mode: Medium.richMode,
-		        attributes: null,
-		        tags: null,
-		        placeholder:'Just write...',
-			    pasteAsText: true,
-		    	cssClasses: {
-					editor: 'aesop-editor',
-					pasteHook: 'aesop-editor-paste-hook',
-					placeholder: 'aesop-editor-placeholder',
-					clear: 'aesop-editor-clear'
-				}
-		    });
+		article = document.getElementById(editor),
+	    articleMedium = new Medium({
+	        element: article,
+	        mode: Medium.richMode,
+	        attributes: null,
+	        tags: null,
+	        placeholder:'Just write...',
+		    pasteAsText: true,
+	    	cssClasses: {
+				editor: 'aesop-editor',
+				pasteHook: 'aesop-editor-paste-hook',
+				placeholder: 'aesop-editor-placeholder',
+				clear: 'aesop-editor-clear'
+			}
+	    });
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
@@ -138,8 +138,7 @@ jQuery(document).ready(function($){
 		    window.selRange = null;
 
 		    // close modal drag
-        $('#aesop-toolbar--html').removeClass('html--drop-up');
-
+        	$('#aesop-toolbar--html').removeClass('html--drop-up');
 
 		    return false;
 		};
