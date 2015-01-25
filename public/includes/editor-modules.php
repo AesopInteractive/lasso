@@ -29,24 +29,16 @@ function lasso_editor_controls() {
 		$post_settings_disabled = lasso_editor_get_option('post_settings_disabled','lasso_editor_advanced');
 		$shortcodify_disabled = lasso_editor_get_option('shortcodify_disabled','lasso_editor_advanced');
 
-		// css class based on accessibility
-		if ( 'on' == $post_new_disabled ) {
+		// CSS class if adding new post objects is disabled
+		if ( 'on' == $post_new_disabled )      { $post_access_class = 'lasso--post-new-disabled'; }
 
-			$post_access_class = 'lasso--post-new-disabled';
+		// CSS class if adjust settings is disabled
+		if ( 'on' == $post_settings_disabled ) { $post_access_class = 'lasso--post-settings-disabled'; }
 
-		}
+		// CSS class if adding new post objects AND settings are disabled OR if the user doesnt have the correct capability
+		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled || !lasso_user_can('publish_posts') ) { $post_access_class = 'lasso--post-all-disabled'; }
 
-		if ( 'on' == $post_settings_disabled ) {
-
-			$post_access_class = 'lasso--post-settings-disabled';
-
-		}
-
-		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled || !lasso_user_can('publish_posts') ) {
-
-			$post_access_class = 'lasso--post-all-disabled';
-		}
-
+		// CSS class if shortcodify or (Aesop Shortcode Conversion) is disabled
 		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
