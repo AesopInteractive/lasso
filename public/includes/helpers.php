@@ -33,26 +33,6 @@ function lasso_editor_get_option( $option, $section, $default = '' ) {
 
 /**
 *
-*	Check if the user is logged in and has the correctly passed capability
-*
-*	@param $action string a capability such as edit_posts or publish_posts
-*	@since 1.0
-*/
-function lasso_user_can( $action = 'edit_posts' ){
-
-	if ( empty( $action ) )
-		$action = 'edit_posts';
-
-	if ( is_user_logged_in() && current_user_can( $action ) ) {
-		return true;
-	} else {
-		return false;
-	}
-
-}
-
-/**
-*
 *	Check to see if any Lasso galleries exist
 *	@since 1.0
 */
@@ -65,3 +45,29 @@ function lasso_editor_galleries_exist(){
 	else
 		return false;
 }
+
+////////////////////
+// PLUGGABLE
+////////////////////
+
+/**
+*
+*	Check if the user is logged in and has the correctly passed capability
+*
+*	@param $action string a capability such as edit_posts or publish_posts
+*	@since 1.0
+*/
+if ( !function_exists('lass_user_can') ):
+	function lasso_user_can( $action = 'edit_posts' ){
+
+		if ( empty( $action ) )
+			$action = 'edit_posts';
+
+		if ( is_user_logged_in() && current_user_can( $action ) ) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+endif;
