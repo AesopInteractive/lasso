@@ -3,10 +3,10 @@
  * Fired when the plugin is uninstalled.
  *
  * @package   Lasso
- * @author    Nick Haskins <nick@lassointeractive.com>
+ * @author    Nick Haskins <nick@aesopinteractive.com>
  * @license   GPL-2.0+
- * @link      http://lassointeractive.com
- * @copyright 2015 Lassointeractive LLC
+ * @link      http://aesopinteractive.com
+ * @copyright 2015 Aesopinteractive LLC
  */
 
 // If uninstall not called from WordPress, then exit
