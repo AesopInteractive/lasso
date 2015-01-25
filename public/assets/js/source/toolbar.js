@@ -94,9 +94,26 @@ jQuery(function( $ ) {
 	//////////////////
 	// HTML FORMATTING IN HTML DROP UP MENU
 	//////////////////
+	var htmlItemInsert = function(markup){
+
+		return $('#lasso-toolbar--html__inner').text(markup);
+
+	}
 	$('#lasso-html--h2').live('click',function(e){
 		e.preventDefault();
-		$('#lasso-toolbar--html__inner').text('<h2>H2 Heading</h2>');
+		htmlItemInsert('<h2>H2 Heading</h2>');
+	});
+	$('#lasso-html--h3').live('click',function(e){
+		e.preventDefault();
+		htmlItemInsert('<h3>H2 Heading</h2>');
+	});
+	$('#lasso-html--ul').live('click',function(e){
+		e.preventDefault();
+		htmlItemInsert('<ul><li>Item</li></ul>');
+	});
+	$('#lasso-html--ol').live('click',function(e){
+		e.preventDefault();
+		htmlItemInsert('<ol><li>Item</li></ol>');
 	});
 
 	/////////////

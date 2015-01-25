@@ -99,7 +99,30 @@
 }
 
 // html insert icons
-#lasso-toolbar--html {
+.lasso-toolbar--html-snips {
+    font-size:@toolbar--htmldrop__font-size - 2;
+    line-height: 0;
+    float:left;
+    .clearfix();
+
+    li {
+        line-height: 0;
+        height:25px;
+        margin-right:4px;
+        border:none;
+        background:@toolbar--htmldrop__bg;
+        border:1px solid darken(@toolbar--htmldrop__bg,2);
+        border-radius:@editor--radius;
+
+        &:before {
+            top:5px;
+        }
+
+        &:last-child {
+            border-right:1px solid darken(@toolbar--htmldrop__bg,2);
+        }
+    }
+
     #lasso-html--h2:before {
         content:'H2';
     }
