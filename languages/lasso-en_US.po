@@ -1,0 +1,313 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Lasso\n"
+"POT-Creation-Date: 2015-01-24 18:40-0600\n"
+"PO-Revision-Date: 2015-01-24 18:40-0600\n"
+"Last-Translator: Team Aesop <support@aesopinteractive.com>\n"
+"Language-Team: Team Aesop <info@aesopinteractive.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _e;__(\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../includes/class.process-gallery.php:209
+msgid "Delete From Gallery"
+msgstr ""
+
+#: ../includes/class.process-gallery.php:210
+msgid "Edit Image Caption"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:19
+msgid "Manage Images"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:23
+msgid "Rearrange or edit the images in this gallery."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:37
+msgid "Create a Gallery"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:38
+msgid "Select images to create a gallery."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:40
+msgid "Select Images"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:44
+msgid "Create Gallery"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:53
+msgid "Gallery Type"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:54
+msgid "Select the type of gallery."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:55
+msgid "Grid"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:56
+msgid "Thumbnail"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:58
+msgid "Photoset"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:59
+#: ../public/includes/editor-modules.php:151
+msgid "Parallax"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:67
+msgid "Grid Item Width"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:68
+msgid ""
+"Adjust the width of the individual grid items, only if using Grid gallery "
+"style. Default is 400."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:78
+msgid "Gallery Transition"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:79
+msgid ""
+"Adjust the transition effect for the Thumbnail gallery. Default is slide."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:81
+msgid "Fade"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:82
+msgid "Slide"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:83
+msgid "Dissolve"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:88
+msgid "Gallery Transition Speed"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:89
+msgid ""
+"Activate slideshow by setting a speed for the transition.5000 = 5 seconds."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:95
+msgid "Hide Gallery Thumbnails"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:104
+msgid "Gallery Layout"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:105
+msgid ""
+"Let's say you have 4 images in this gallery. If you enter 121 you will have "
+"one image on the top row, two images on the second row, and one image on the "
+"third row."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:111
+msgid "Enable Lightbox"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:120
+msgid "Main Gallery Width"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:121
+msgid ""
+"Adjust the overall width of the grid/thumbnail gallery. Acceptable values "
+"include 500px or 50%."
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:125
+msgid "Gallery Caption"
+msgstr ""
+
+#: ../public/includes/editor-modules--gallery.php:126
+msgid "Add an optional caption for the gallery."
+msgstr ""
+
+#: ../public/includes/editor-modules.php:56
+msgid "Edit Post"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:59
+msgid "Post Settings"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:63
+msgid "Add Post"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:69
+msgid "Save Post"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:71
+msgid "Publish Post"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:129
+msgid "Bold"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:130
+msgid "Underline"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:131
+msgid "Italicize"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:132
+msgid "Strikethrough"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:133
+#: ../public/includes/editor-modules.php:138
+msgid "Insert HTML"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:135
+msgid "Enter HTML to insert"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:137
+#: ../public/includes/editor-modules.php:266
+#: ../public/includes/editor-modules.php:320
+msgid "Cancel"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:138
+msgid "Insert"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:143
+msgid "Insert Component"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:146
+msgid "Image"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:147
+msgid "Character"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:148
+msgid "Quote"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:149
+msgid "Content"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:150
+msgid "Chapter"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:152
+msgid "Audio"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:153
+msgid "Video"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:154
+msgid "Map"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:155
+msgid "Timeline"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:156
+msgid "Document"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:157
+msgid "Collection"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:158
+msgid "Gallery"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:188
+#: ../public/includes/editor-modules.php:348
+msgid "Move"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:189
+#: ../public/includes/editor-modules.php:349
+msgid "Settings"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:190
+#: ../public/includes/editor-modules.php:350
+msgid "Clone"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:191
+#: ../public/includes/editor-modules.php:351
+msgid "Delete"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:213
+msgid "Replace Image"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:214
+msgid "save"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:247
+msgid "Status"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:249
+msgid "Draft"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:250
+msgid "Publish"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:259
+msgid "URL"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:271
+msgid "Save"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:315
+msgid "New Post Title"
+msgstr ""
+
+#: ../public/includes/editor-modules.php:324
+msgid "Create"
+msgstr ""

@@ -22,7 +22,7 @@ class Lasso {
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'lasso-editor';
+	protected $plugin_slug = 'lasso';
 
 	/**
 	 * Instance of this class.
@@ -54,6 +54,10 @@ class Lasso {
 		require_once(LASSO_DIR.'/includes/class.process-image-upload.php');
 		require_once(LASSO_DIR.'/includes/class.process-new-object.php');
 		require_once(LASSO_DIR.'/includes/class.process-title-update.php');
+
+		// Load plugin text domain
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+
 
 	}
 
@@ -220,6 +224,18 @@ class Lasso {
 		// @TODO: Define deactivation functionality here
 	}
 
+	/**
+	 	* Load the plugin text domain for translation.
+	 	*
+	 	* @since    1.0.0
+	*/
+	public function load_plugin_textdomain() {
+
+		$domain = $this->plugin_slug;
+		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+
+		$out = load_textdomain( $domain, trailingslashit( LASSO_DIR ). 'languages/' . $domain . '-' . $locale . '.mo' );
+	}
 }
 
 

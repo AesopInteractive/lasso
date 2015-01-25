@@ -206,8 +206,8 @@ class lassoProcessGallery {
 
 		        	?>
 		        	<li id="<?php echo $image_id;?>" class="ase-gallery-image">
-		        		<i class="dashicons dashicons-no-alt" title="Delete From Gallery"></i>
-		        		<i class='dashicons dashicons-edit' title="Edit Image Caption"></i>
+		        		<i class="dashicons dashicons-no-alt" title="<?php _e('Delete From Gallery','lasso');?>"></i>
+		        		<i class='dashicons dashicons-edit' title="<?php _e('Edit Image Caption','lasso');?>"></i>
 		           	<img src="<?php echo $image[0];?>">
 		          </li>
 		          <?php
