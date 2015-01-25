@@ -130,6 +130,12 @@ function lasso_editor_text_toolbar(){
 		    	<div id="lasso-toolbar--html__wrap">
 		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php _e('Enter HTML to insert','lasso');?>"></div>
 		    		<div id="lasso-toolbar--html__footer">
+		    			<ul class="lasso-toolbar--html-snips">
+		    				<li id="lasso-html--h2" title="<?php _e('H2 Heading','lasso');?>">
+		    				<li id="lasso-html--h3" title="<?php _e('H3 Heading','lasso');?>">
+		    				<li id="lasso-html--ul" title="<?php _e('Unordered List','lasso');?>">
+		    				<li id="lasso-html--ol" title="<?php _e('Ordered List','lasso');?>">
+		    			</ul>
 		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e('Cancel','lasso');?></a>
 		    			<a href="#" title="<?php _e('Insert HTML','lasso');?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e('Insert','lasso');?></a>
 		    		</div>

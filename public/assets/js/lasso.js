@@ -9251,6 +9251,15 @@ jQuery(function( $ ) {
 		$(this).closest('li').removeClass('html--drop-up');
 
 	});
+
+	//////////////////
+	// HTML FORMATTING IN HTML DROP UP MENU
+	//////////////////
+	$('#lasso-html--h2').live('click',function(e){
+		e.preventDefault();
+		$('#lasso-toolbar--html__inner').text('<h2>H2 Heading</h2>');
+	});
+
 	/////////////
 	/// DELETING
 	/////////////
