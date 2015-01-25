@@ -131,6 +131,25 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		/*
+
+		This is really buggy right now - when a user clicks this and if they are on a new line it wraps it in a paragraph tag
+		In addition, if a user presses enter at the end of a heading, it'll go to the next line but it marks it up as a p tag
+		the filters firing on the_content are what's responsible for the formatting
+
+		document.getElementById('lasso-toolbar--h2').onmousedown = function() {
+			article.highlight();
+			articleMedium.invokeElement('h2');
+			return false;
+		};
+		document.getElementById('lasso-toolbar--h3').onmousedown = function() {
+			article.highlight();
+			articleMedium.invokeElement('h3');
+			return false;
+		};
+
+		*/
+
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
 
 		    restoreSelection(window.selRange);
