@@ -8478,7 +8478,14 @@ jQuery(document).ready(function($){
 		});
 
 		/////////////////
-		/// CONTENT EDITABLE / TOOLBAR
+		///
+		///   CONTENT EDITABLE / TOOLBAR
+		///
+		/// - attributes and tags are set to null to allow any markup and block level items to be passed through
+		///   this means that medium.js is only providing us with a helper API to invoke certain markup and to 
+		///   insert HTML. It's important to realize that the_content filter together with wpautop is responsible
+		///   for automatically making new paragraph elements on enter
+		///
 		///////////////////
 		article = document.getElementById(editor),
 	    articleMedium = new Medium({
