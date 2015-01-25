@@ -30,7 +30,7 @@ class lassoEditorProcessTitleUpdate {
 
 				wp_update_post( $args );
 
-				do_action( 'lasso_editor_title_updated', $postid, $title, get_current_user_ID() );
+				do_action( 'lasso_title_updated', $postid, $title, get_current_user_ID() );
 
 				wp_send_json_success();
 

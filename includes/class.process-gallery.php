@@ -88,7 +88,7 @@ class lassoEditorProcessGallery {
 
 				}
 
-				do_action( 'lasso_editor_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
+				do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
 				wp_send_json_success(array('message' => 'gallery-created') );
 
@@ -137,7 +137,7 @@ class lassoEditorProcessGallery {
 				}
 
 				// run an action
-				do_action( 'lasso_editor_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
+				do_action( 'lasso_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success(array('message' => 'gallery-updated') );

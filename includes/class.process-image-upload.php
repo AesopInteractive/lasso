@@ -29,7 +29,7 @@ class lassoEditorUploadFeatImage {
 
 				set_post_thumbnail( $postid, $image_id );
 
-				do_action( 'lasso_editor_featured_image_set', $postid, $image_id, get_current_user_ID() );
+				do_action( 'lasso_featured_image_set', $postid, $image_id, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();

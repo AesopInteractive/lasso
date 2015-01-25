@@ -39,7 +39,7 @@ class lassoEditorProcessSaving {
 				}
 
 				// run save action
-				do_action( 'lasso_editor_post_saved', $postid, $content, get_current_user_ID() );
+				do_action( 'lasso_post_saved', $postid, $content, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();
@@ -57,7 +57,7 @@ class lassoEditorProcessSaving {
 
 				}
 
-				do_action( 'lasso_editor_post_published', $postid, $content, get_current_user_ID() );
+				do_action( 'lasso_post_published', $postid, $content, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();

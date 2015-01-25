@@ -22,7 +22,7 @@ function lasso_editor_controls() {
 		$status = get_post_status( get_the_ID() );
 
 		// let users add custom css classes
-		$custom_classes = apply_filters('lasso_editor_control_classes', '' );
+		$custom_classes = apply_filters('lasso_control_classes', '' );
 
 		$post_access_class 		= '';
 		$post_new_disabled 		= lasso_editor_get_option('post_adding_disabled','lasso_editor_advanced');
@@ -93,7 +93,7 @@ function lasso_editor_component_sidebar(){
 		return;
 
 	// let users add custom css classes
-	$custom_classes = apply_filters('lasso_editor_sidebar_classes', '' );
+	$custom_classes = apply_filters('lasso_sidebar_classes', '' );
 	?>
 	<div id="lasso--sidebar" class="<?php echo sanitize_html_class( $custom_classes );?>" >
 		<div class="lasso--sidebar__inner">
@@ -121,7 +121,7 @@ function lasso_editor_text_toolbar(){
 	$ase_status = class_exists('Aesop_Core') || defined('LASSO_CUSTOM') ? 'ase-active' : 'ase-not-active';
 
 	// let users add custom css classes
-	$custom_classes = apply_filters('lasso_editor_toolbar_classes', '' );
+	$custom_classes = apply_filters('lasso_toolbar_classes', '' );
 
 	?>
 	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $ase_status.' '.sanitize_html_class( $custom_classes );?>">
@@ -182,7 +182,7 @@ function lasso_editor_settings_toolbar(){
 		return;
 
 	// let users add custom css classes
-	$custom_classes = apply_filters('lasso_editor_component_classes', '' );
+	$custom_classes = apply_filters('lasso_component_classes', '' );
 
 	?><ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="Move"></li>
@@ -236,7 +236,7 @@ function lasso_editor_component_modal(){
 	$nonce = wp_create_nonce('lasso-update-post-settings');
 
 	// let users add custom css classes
-	$custom_classes = apply_filters('lasso_editor_modal_settings_classes', '' );
+	$custom_classes = apply_filters('lasso_modal_settings_classes', '' );
 
 	?>
 	<div id="lasso--post-settings__modal" class="lasso--modal <?php echo sanitize_html_class( $custom_classes );?>">
@@ -300,7 +300,7 @@ function lasso_editor_newpost_modal(){
 	$nonce = wp_create_nonce('lasso-editor-new-post');
 
 	// let users add custom css classes
-	$custom_classes = apply_filters('lasso_editor_modal_post_classes', '' );
+	$custom_classes = apply_filters('lasso_modal_post_classes', '' );
 
 	// return the post type
 	$type = get_post_type( get_the_ID() );
@@ -342,7 +342,7 @@ function lasso_editor_wpimg_edit(){
 		return;
 
 	// let users add custom css classes
-	$custom_classes = apply_filters('lasso_editor_wpimg_classes', '' );
+	$custom_classes = apply_filters('lasso_wpimg_classes', '' );
 
 	?><ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="Move"></li>
@@ -363,7 +363,7 @@ function lasso_editor_wpimg_edit(){
 */
 function lasso_editor_options_blob() {
 
-	$codes 		= function_exists('aesop_shortcodes') ? aesop_shortcodes() : apply_filters('lasso_editor_custom_options', '' );
+	$codes 		= function_exists('aesop_shortcodes') ? aesop_shortcodes() : apply_filters('lasso_custom_options', '' );
 	$galleries 	= function_exists('lasso_editor_galleries_exist') && lasso_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
 	$nonce = wp_create_nonce('lasso-generator-settings');

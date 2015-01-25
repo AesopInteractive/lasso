@@ -37,7 +37,7 @@ class lassoEditorProcessUpdatePost {
 
 				wp_update_post( $args );
 
-				do_action( 'lasso_editor_post_updated', $postid, $slug, $status, get_current_user_ID() );
+				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();
