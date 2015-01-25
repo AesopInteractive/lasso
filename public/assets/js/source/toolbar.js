@@ -116,6 +116,24 @@ jQuery(function( $ ) {
 		htmlItemInsert('<ol><li>Item</li></ol>');
 	});
 
+	////////////
+	/// LINK DROP UIP
+	////////////
+	$('#lasso-toolbar--link').live('click',function(e){
+
+		$(this).toggleClass('link--drop-up');
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
+		$('#lasso-toolbar--html').removeClass('html--drop-up');
+
+		// prevent dropup from closing
+		$('#lasso-toolbar--link__wrap').live('click',function(){
+			return false;
+		});
+
+		$(this).find('#lasso-toolbar--link__inner').focus();
+
+	});
+
 	/////////////
 	/// DELETING
 	/////////////

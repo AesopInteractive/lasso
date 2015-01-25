@@ -91,6 +91,9 @@
 #lasso-toolbar--strike:before {
     content:'\ea65';
 }
+#lasso-toolbar--link:before {
+    content:'\e9cb';
+}
 #lasso-toolbar--html:before {
     content:'\ea7f';
 }
@@ -98,47 +101,7 @@
     content:'\ea0a';
 }
 
-// html insert icons
-.lasso-toolbar--html-snips {
-    font-size:@toolbar--htmldrop__font-size - 2;
-    line-height: 0;
-    float:left;
-    .clearfix();
-
-    li {
-        line-height: 0;
-        height:25px;
-        margin-right:4px;
-        border:none;
-        background:@toolbar--htmldrop__bg;
-        border:1px solid darken(@toolbar--htmldrop__bg,2);
-        border-radius:@editor--radius;
-        .box-shadow(inset 1px 1px 0 rgba(255,255,255,0.05));
-
-        &:before {
-            top:5px;
-        }
-
-        &:last-child {
-            border-right:1px solid darken(@toolbar--htmldrop__bg,2);
-        }
-    }
-
-    #lasso-html--h2:before {
-        content:'H2';
-    }
-    #lasso-html--h3:before {
-        content:'H3';
-    }
-    #lasso-html--ul:before {
-        content:'UL';
-    }
-    #lasso-html--ol:before {
-        content:'OL';
-    }
-}
-
-// html insert
+// html drop up
 #lasso-toolbar--html {
 
     #lasso-toolbar--html__wrap{
@@ -254,6 +217,48 @@
         }
     }
 }
+
+// html insert icons
+.lasso-toolbar--html-snips {
+    font-size:@toolbar--htmldrop__font-size - 2;
+    line-height: 0;
+    float:left;
+    .clearfix();
+
+    li {
+        line-height: 0;
+        height:25px;
+        margin-right:4px;
+        border:none;
+        background:@toolbar--htmldrop__bg;
+        border:1px solid darken(@toolbar--htmldrop__bg,2);
+        border-radius:@editor--radius;
+        .box-shadow(inset 1px 1px 0 rgba(255,255,255,0.05));
+
+        &:before {
+            top:5px;
+        }
+
+        &:last-child {
+            border-right:1px solid darken(@toolbar--htmldrop__bg,2);
+        }
+    }
+
+    #lasso-html--h2:before {
+        content:'H2';
+    }
+    #lasso-html--h3:before {
+        content:'H3';
+    }
+    #lasso-html--ul:before {
+        content:'UL';
+    }
+    #lasso-html--ol:before {
+        content:'OL';
+    }
+}
+
+// components drop up
 #lasso-toolbar--components{
 
     ul {
@@ -338,3 +343,99 @@
     }
 }
 
+// link drop up
+#lasso-toolbar--link {
+
+    * { .box-sizing(border-box); }
+
+    // drop up
+    #lasso-toolbar--link__wrap {
+        position: absolute;
+        left:-10000px;
+        .opacity(0);
+    }
+
+    &.link--drop-up {
+        #lasso-toolbar--link__wrap {
+            margin:0;
+            padding:4px;
+            .opacity(1);
+            list-style-type: none;
+            width:@toolbar--linkdrop__width;
+            height:@toolbar--linkdrop__height;
+            bottom:45px;
+            border-radius:@editor--radius;
+            left:-@toolbar--linkdrop__width / 2 + 16;
+            background:@toolbar--bg__accent;
+
+            &:after {
+                content:'';
+                position:absolute;
+                width: 0;
+                height: 0;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid @toolbar--hover;
+                left:0;
+                right:0;
+                bottom:-6px;
+                text-align: center;
+                margin:0 auto;
+            }
+
+            &:hover {
+                cursor: default;
+            }
+        }
+        #lasso-toolbar--link__inner {
+            background: @toolbar--htmldrop__bg;
+            color:@toolbar--htmldrop__color;
+            height:@toolbar--linkdrop__height - 8;
+            overflow: scroll;
+            text-align: left;
+            line-height: 1.25;
+            padding:@toolbar--htmldrop__padding;
+            border-radius: @editor--radius - 2;
+            font-family: monospace;  /* monospace font */
+            white-space: pre;        /* behave like <pre> */
+            font-size: @toolbar--htmldrop__font-size;
+            .box-shadow(inset 0 0 4px 1px rgba(0,0,0,0.25));
+
+            &:empty:before {
+                content: attr(placeholder);
+                color:fadeout(@toolbar--htmldrop__color,50);
+            }
+
+            &:hover {
+                cursor: text;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    // save link
+    .lasso-toolbar--link__control {
+        position: absolute;
+        top:8px;
+        right:8px;
+        width:25px;
+        font-family: @editor--font;
+        font-size:@toolbar--htmldrop__font-size - 2;
+        font-weight:bold;
+        padding:5px 7px 4px;
+        line-height: 1;
+        border-radius:@editor--radius - 2;
+        display: inline-block;
+        text-decoration: none;
+        color:white;
+        text-shadow:0 1px 1px rgba(0,0,0,0.25);
+        background: @editor--color__update;
+
+        &:before {
+            .editor-icon-font();
+            content:'\ea10';
+        }
+    }
+}
