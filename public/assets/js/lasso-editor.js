@@ -9265,7 +9265,7 @@ jQuery(function( $ ) {
 		function(){
 
 			// remove component
-			$this.closest('.lasso-component').remove();
+			$this.closest('.aesop-component').remove();
 
 			// remove wp image if its a wp image
 			$this.closest('.lasso--wpimg__wrap').remove();
@@ -9284,7 +9284,7 @@ jQuery(function( $ ) {
 
 		e.preventDefault();
 
-		$this.closest('.lasso-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.aesop-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 		$this.closest('.lasso--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 
 	});
