@@ -1,5 +1,5 @@
 {
-   "name": "aesop/lasso",
+   "name": "aesop/ah-editor",
    "type": "wordpress-plugin",
    "description": "Lasso Front-end Creator",
    "keywords": ["plugin","wordpress","lasso","editor","hosted"],
