@@ -50,14 +50,10 @@ class lassoProcessNewObject {
 
 			} else {
 
-				echo 'error';
+				wp_send_json_error();
 			}
 		}
-
-		die();
 	}
-
-
 }
 new lassoProcessNewObject;
 

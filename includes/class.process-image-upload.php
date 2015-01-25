@@ -42,11 +42,7 @@ class lassoUploadFeatImage {
 
 			}
 		}
-
-		die();
 	}
-
-
 }
 new lassoUploadFeatImage;
 

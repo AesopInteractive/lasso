@@ -97,8 +97,6 @@ class lassoProcessGallery {
 				wp_send_json_error();
 			}
 		}
-
-		die();
 	}
 	/**
 	*
@@ -149,8 +147,6 @@ class lassoProcessGallery {
 				wp_send_json_error();
 			}
 		}
-
-		die();
 	}
 
 	/**

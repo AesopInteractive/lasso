@@ -50,11 +50,7 @@ class lassoProcessTitleUpdate {
 				wp_send_json_error();
 			}
 		}
-
-		die();
 	}
-
-
 }
 new lassoProcessTitleUpdate;
 

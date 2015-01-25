@@ -73,13 +73,18 @@ class lassoProcessSaving {
 				// send back success
 				wp_send_json_success();
 
+			} else {
+
+				wp_send_json_error();
+
 			}
 
+		} else {
+
+			wp_send_json_error();
+
 		}
-		die();
 	}
-
-
 }
 new lassoProcessSaving;
 

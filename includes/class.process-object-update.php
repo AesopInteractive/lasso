@@ -55,11 +55,7 @@ class lassoProcessUpdatePost {
 				wp_send_json_error();
 			}
 		}
-
-		die();
 	}
-
-
 }
 new lassoProcessUpdatePost;
 
