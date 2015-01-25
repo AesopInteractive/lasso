@@ -27,7 +27,7 @@ class lassoProcessGallery {
 		check_ajax_referer('lasso_swap_gallery','nonce');
 
 		// only run for logged in users and check caps
-		if( !lasso_editor_user_can_edit() )
+		if( !lasso_user_can() )
 			return;
 
 		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
@@ -47,7 +47,7 @@ class lassoProcessGallery {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_create_gallery' ) {
 
 			// only run for logged in users and check caps
-			if( !is_user_logged_in() || !current_user_can('edit_posts') )
+			if( !is_user_logged_in() || !lasso_user_can('publish_posts') )
 				return;
 
 			// ok security passes so let's process some data
@@ -108,7 +108,7 @@ class lassoProcessGallery {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_gallery' ) {
 
 			// only run for logged in users and check caps
-			if( !lasso_editor_user_can_edit() )
+			if( !lasso_user_can() )
 				return;
 
 			// ok security passes so let's process some data

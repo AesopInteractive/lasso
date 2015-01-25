@@ -19,7 +19,11 @@ function lasso_gallery_editor_module(){
 
 				<label><?php _e('Manage Images','lasso');?>
 					<a href="#" id="ase-gallery-add-image" class="lasso-editor-tiny-btn" title="Add Images"><i class="lasso-icon-pencil"></i></a>
-					<a href="#" id="lasso--gallery__create" class="lasso-editor-tiny-btn" title="Create Gallery"><i class="lasso-icon-plus"></i></a>
+
+					<?php if ( lasso_user_can('publish_posts') ): ?>
+						<a href="#" id="lasso--gallery__create" class="lasso-editor-tiny-btn" title="Create Gallery"><i class="lasso-icon-plus"></i></a>
+					<?php endif; ?>
+
 				</label>
 				<small class="lasso-option-desc"><?php _e('Rearrange or edit the images in this gallery.','lasso');?></small>
 
@@ -29,24 +33,28 @@ function lasso_gallery_editor_module(){
 
 		</div>
 
-	<?php } ?>
+	<?php }
 
-	<div class="ase-gallery-opts ase-gallery-opts--create-gallery" >
+	if ( lasso_user_can('publish_posts') ): ?>
 
-		<div class="ase-gallery-opts--single lasso-option">
+		<div class="ase-gallery-opts ase-gallery-opts--create-gallery" >
 
-			<label><?php _e('Create a Gallery','lasso');?></label>
-			<small class="lasso-option-desc"><?php _e('Select images to create a gallery.','lasso');?></small>
+			<div class="ase-gallery-opts--single lasso-option">
 
-			<a href="#" class="editor-btn-secondary" id="lasso--gallery__selectImages"><?php _e('Select Images','lasso');?></a>
+				<label><?php _e('Create a Gallery','lasso');?></label>
+				<small class="lasso-option-desc"><?php _e('Select images to create a gallery.','lasso');?></small>
 
-			<div id="ase-gallery-images"></div>
+				<a href="#" class="editor-btn-secondary" id="lasso--gallery__selectImages"><?php _e('Select Images','lasso');?></a>
 
-			<a style="display:none;" class="editor-btn-secondary" data-post-title="<?php echo esc_attr( strtolower( get_the_title() ) );?>" id="lasso--gallery__save" href="#"><?php _e('Create Gallery','lasso');?></a>
+				<div id="ase-gallery-images"></div>
+
+				<a style="display:none;" class="editor-btn-secondary" data-post-title="<?php echo esc_attr( strtolower( get_the_title() ) );?>" id="lasso--gallery__save" href="#"><?php _e('Create Gallery','lasso');?></a>
+
+			</div>
 
 		</div>
 
-	</div>
+	<?php endif; ?>
 
 	<!-- Gallery Layout/Type Chooser -->
 	<div class="ase-gallery-opts ase-gallery-opts--type" >

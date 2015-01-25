@@ -28,7 +28,7 @@ class lassoProcessSaving {
 		if ( isset( $_POST['post_id'] ) ) {
 
 			// only run for logged in users and check caps
-			if( !lasso_editor_user_can_edit() )
+			if( !lasso_user_can() )
 				return;
 
 			// main variables being passed through include the postid and content

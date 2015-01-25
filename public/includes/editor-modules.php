@@ -3,7 +3,7 @@
 /**
 *
 *	These functions are then localized and then appended with JS in enter-editor.js
-* 	All are protectd under a capability and logged in check using a filterable function lasso_editor_user_can_edit()
+* 	All are protectd under a capability and logged in check using a filterable function lasso_user_can()
 *
 *	@since 1.0
 */
@@ -17,7 +17,7 @@
 add_action( 'wp_footer', 'lasso_editor_controls');
 function lasso_editor_controls() {
 
-	if ( is_singular() && lasso_editor_user_can_edit() ) {
+	if ( is_singular() && lasso_user_can() ) {
 
 		$status = get_post_status( get_the_ID() );
 
@@ -42,7 +42,7 @@ function lasso_editor_controls() {
 
 		}
 
-		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled ) {
+		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled || !lasso_user_can('publish_posts') ) {
 
 			$post_access_class = 'lasso--post-all-disabled';
 		}
@@ -55,13 +55,17 @@ function lasso_editor_controls() {
 
 				<li id="lasso--edit" title="<?php _e('Edit Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
-					<li id="lasso--post-settings" title="<?php _e('Post Settings','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
-				<?php }
+				<?php if ( lasso_user_can('publish_posts') ) : ?>
 
-				if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
-					<li id="lasso--post-new" title="<?php _e('Add Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
-				<?php } ?>
+					<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
+						<li id="lasso--post-settings" title="<?php _e('Post Settings','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
+					<?php }
+
+					if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
+						<li id="lasso--post-new" title="<?php _e('Add Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
+					<?php } ?>
+
+				<?php endif; ?>
 
 			</ul>
 
@@ -89,7 +93,7 @@ function lasso_editor_component_sidebar(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can() )
 		return;
 
 	// let users add custom css classes
@@ -114,7 +118,7 @@ function lasso_editor_text_toolbar(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can() )
 		return;
 
 	// check for lasso story engine and add a class doniting this
@@ -178,7 +182,7 @@ function lasso_editor_settings_toolbar(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can() )
 		return;
 
 	// let users add custom css classes
@@ -205,7 +209,7 @@ function lasso_editor_image_controls(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can('publish_posts') )
 		return;
 
 	?>
@@ -227,7 +231,7 @@ function lasso_editor_component_modal(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can() )
 		return;
 
 	global $post;
@@ -292,7 +296,7 @@ function lasso_editor_newpost_modal(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can() )
 		return;
 
 	$status = get_post_status( get_the_ID() );
@@ -338,7 +342,7 @@ function lasso_editor_wpimg_edit(){
 
 	ob_start();
 
-	if ( !lasso_editor_user_can_edit() )
+	if ( !lasso_user_can() )
 		return;
 
 	// let users add custom css classes

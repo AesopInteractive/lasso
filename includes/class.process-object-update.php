@@ -26,7 +26,7 @@ class lassoProcessUpdatePost {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_post' ) {
 
 			// only run for logged in users and check caps
-			if( !lasso_editor_user_can_edit() )
+			if( !lasso_user_can() )
 				return;
 
 			// ok security passes so let's process some data
