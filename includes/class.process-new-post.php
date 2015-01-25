@@ -5,7 +5,7 @@
 *	Adds a new post object
 *
 */
-class lassoEditorProcessNewObject {
+class lassoProcessNewObject {
 
 	function __construct(){
 
@@ -57,7 +57,7 @@ class lassoEditorProcessNewObject {
 
 
 }
-new lassoEditorProcessNewObject;
+new lassoProcessNewObject;
 
 
 

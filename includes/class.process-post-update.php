@@ -6,7 +6,7 @@
 *	and is toggle from the post settings modal
 *
 */
-class lassoEditorProcessUpdatePost {
+class lassoProcessUpdatePost {
 
 	function __construct(){
 
@@ -54,7 +54,7 @@ class lassoEditorProcessUpdatePost {
 
 
 }
-new lassoEditorProcessUpdatePost;
+new lassoProcessUpdatePost;
 
 
 

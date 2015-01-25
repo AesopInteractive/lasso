@@ -1,7 +1,7 @@
 <?php
 
 
-class lassoEditorProcessSaving {
+class lassoProcessSaving {
 
 	function __construct(){
 
@@ -70,7 +70,7 @@ class lassoEditorProcessSaving {
 
 
 }
-new lassoEditorProcessSaving;
+new lassoProcessSaving;
 
 
 

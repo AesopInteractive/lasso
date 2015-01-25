@@ -1,7 +1,7 @@
 <?php
 
 
-class lassoEditorProcessTitleUpdate {
+class lassoProcessTitleUpdate {
 
 	function __construct(){
 
@@ -45,7 +45,7 @@ class lassoEditorProcessTitleUpdate {
 
 
 }
-new lassoEditorProcessTitleUpdate;
+new lassoProcessTitleUpdate;
 
 
 

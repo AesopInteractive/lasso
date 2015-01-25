@@ -12,7 +12,7 @@ class lassoEditorAssets {
 		// only run on posts and pages if user is logged in and has teh right capabilities (edit_posts)
 		if ( is_singular() && lasso_editor_user_can_edit() ) {
 
-			wp_enqueue_style('lasso-editor-style', LASSO_URL.'/public/assets/css/lasso-editor.css', LASSO_VERSION, true);
+			wp_enqueue_style('lasso-editor-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
 			wp_enqueue_script('jquery-ui-draggable');
 			wp_enqueue_script('jquery-ui-sortable');
@@ -25,7 +25,7 @@ class lassoEditorAssets {
 			$featImgClass = lasso_editor_get_option('featimg_class','lasso_editor');
 			$titleClass = lasso_editor_get_option('title_class','lasso_editor');
 
-			wp_enqueue_script('lasso-editor', LASSO_URL.'/public/assets/js/lasso-editor.js', array('jquery'), LASSO_VERSION, true);
+			wp_enqueue_script('lasso-editor', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
 			wp_localize_script('lasso-editor', 'lasso_editor',array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE

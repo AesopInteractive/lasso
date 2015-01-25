@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 		      		cleancss:true
 		    	},
 		    	files: {
-		      		'public/assets/css/lasso-editor.css': 'public/assets/less/style.less'
+		      		'public/assets/css/lasso.css': 'public/assets/less/style.less'
 		    	}
 		  	},
 		  	settingsLess: {
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                         'public/assets/js/source/process-save-title.js',
                         'public/assets/js/source/process-wpimg.js'
                     ],
-                dest: 'public/assets/js/lasso-editor.js'
+                dest: 'public/assets/js/lasso.js'
             }
         }
     });

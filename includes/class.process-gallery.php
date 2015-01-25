@@ -5,7 +5,7 @@
 *	Process various gallery fucntions like fetching and saving images
 *
 */
-class lassoEditorProcessGallery {
+class lassoProcessGallery {
 
 	function __construct(){
 
@@ -222,7 +222,7 @@ class lassoEditorProcessGallery {
 
 
 }
-new lassoEditorProcessGallery;
+new lassoProcessGallery;
 
 
 

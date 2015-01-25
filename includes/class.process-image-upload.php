@@ -5,7 +5,7 @@
 *	Process a user uploading an image for the featured image in a post
 *
 */
-class lassoEditorUploadFeatImage {
+class lassoUploadFeatImage {
 
 	function __construct(){
 
@@ -47,7 +47,7 @@ class lassoEditorUploadFeatImage {
 
 
 }
-new lassoEditorUploadFeatImage;
+new lassoUploadFeatImage;
 
 
 
