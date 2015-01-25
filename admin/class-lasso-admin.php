@@ -3,9 +3,9 @@
  * AH Stripe
  *
  * @package   Lasso_Admin
- * @author    Nick Haskins <nick@lassointeractive.com>
+ * @author    Nick Haskins <nick@aesopinteractive.com>
  * @license   GPL-2.0+
- * @link      http://lassointeractive.com
+ * @link      http://aesopinteractive.com
  * @copyright 2015 Lassointeractive LLC
  */
 
