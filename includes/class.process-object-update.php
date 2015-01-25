@@ -15,6 +15,12 @@ class lassoProcessUpdatePost {
 
 	}
 
+	/**
+	*
+	*	Process the post update
+	*
+	*	@since 1.0
+	*/
 	function process_update_post(){
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_post' ) {

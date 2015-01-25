@@ -14,6 +14,12 @@ class lassoProcessTitleUpdate {
 
 	}
 
+	/**
+	*
+	*	Process title update
+	*
+	*	@since 1.0
+	*/
 	function process_update_title(){
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_title' ) {

@@ -15,6 +15,12 @@ class lassoProcessSaving {
 
 	}
 
+	/**
+	*
+	*	Process the post save
+	*
+	*	@since 1.0
+	*/
 	function process_save_content(){
 
 		check_ajax_referer('lasso_editor','nonce'); 

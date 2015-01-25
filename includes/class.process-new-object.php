@@ -16,8 +16,9 @@ class lassoProcessNewObject {
 
 	/**
 	*
+	*	Process the post object
 	*
-	*	@todo - replace the echo with wp_send_json_success
+	*	@since 1.0
 	*/
 	function process_new_object() {
 
