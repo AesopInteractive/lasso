@@ -125,13 +125,13 @@ function lasso_editor_text_toolbar(){
 		    <li id="lasso-toolbar--bold" title="<?php _e('Bold','lasso');?>"></li>
 		    <li id="lasso-toolbar--underline" title="<?php _e('Underline','lasso');?>"></li>
 		    <li id="lasso-toolbar--italic" title="<?php _e('Italicize','lasso');?>"></li>
+		    <li id="lasso-toolbar--strike" title="<?php _e('Strikethrough','lasso');?>"></li>
 		    <li id="lasso-toolbar--link" title="<?php _e('Anchor Link','lasso');?>">
 		    	<div id="lasso-toolbar--link__wrap">
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php _e('http://url.com','lasso');?>"></div>
 		    		<a href="#" title="<?php _e('Create Link','lasso');?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
 		    	</div>
 		    </li>
-		    <li id="lasso-toolbar--strike" title="<?php _e('Strikethrough','lasso');?>"></li>
 		    <li id="lasso-toolbar--html" title="<?php _e('Insert HTML','lasso');?>">
 		    	<div id="lasso-toolbar--html__wrap">
 		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php _e('Enter HTML to insert','lasso');?>"></div>
