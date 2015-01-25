@@ -15,7 +15,7 @@ class lassoAssets {
 
 	function scripts(){
 
-		// only run on posts and pages if user is logged in and has teh right capabilities (edit_posts)
+		// only run on posts and pages if user is logged in and has teh right capabilities (edit_posts) by default
 		if ( is_singular() && lasso_user_can() ) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);

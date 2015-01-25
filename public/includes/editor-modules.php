@@ -161,7 +161,7 @@ function lasso_editor_text_toolbar(){
 					<li data-type="collection" title="<?php _e('Collection','lasso');?>"  class="collection"></li>
 					<li data-type="gallery" title="<?php _e('Gallery','lasso');?>"  class="gallery"></li>
 					<?php endif;
-					do_action('lasso_editor_toolbar_components');?>
+					do_action('lasso_toolbar_components');?>
 			    </ul>
 			</li>
 			<?php endif; ?>
@@ -209,7 +209,7 @@ function lasso_editor_image_controls(){
 
 	ob_start();
 
-	if ( !lasso_user_can('publish_posts') )
+	if ( !lasso_user_can() )
 		return;
 
 	?>
@@ -224,6 +224,9 @@ function lasso_editor_image_controls(){
 /**
 *
 *	Used to house post settings like scheduling, slugs and draft status
+*	Note: the "add new" will use the same object as the currently shown. For example, if the user
+*	is currently on a post, and clicks add new, then it'll add a new post. If the user is on a 
+*	post type like "dog", then it will create a new post type called "dog"
 *
 *	@since 1.0
 */
@@ -316,7 +319,7 @@ function lasso_editor_newpost_modal(){
 			<form id="lasso--postnew__form" enctype="multipart/form-data" >
 
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
-					<label><?php _e('New Post Title','lasso');?></label>
+					<label><?php _e('New '.ucfirst( $type ).' Title','lasso');?></label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" required name="story_title" value="">
 				</div>
 
@@ -462,7 +465,7 @@ function lasso_editor_options_blob() {
 
 		} else {
 
-			$return .= '<p><label>' . __( 'Content', 'lasso-core' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
+			$return .= '<p><label>' . __( 'Content', 'lasso' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
 		}
 
 		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
