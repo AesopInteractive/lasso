@@ -4,6 +4,7 @@
 *
 *	Build the gallery creation and management area shown in panel
 *
+*	@since 1.0
 */
 function lasso_gallery_editor_module(){
 
