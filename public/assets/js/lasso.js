@@ -9197,6 +9197,7 @@ jQuery(function( $ ) {
 
 		$(this).toggleClass('toolbar--drop-up');
 		$('#lasso-toolbar--html').removeClass('html--drop-up');
+		$('#lasso-toolbar--link').removeClass('link--drop-up');
 
 		// get the height of the list of components
 		var dropUp 			= $(this).find('ul'),
@@ -9241,6 +9242,7 @@ jQuery(function( $ ) {
 
 		$(this).toggleClass('html--drop-up');
 		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
+		$('#lasso-toolbar--link').removeClass('link--drop-up');
 
 		// prevent dropup from closing
 		$('#lasso-toolbar--html__wrap').live('click',function(){
