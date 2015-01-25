@@ -42,7 +42,7 @@ class lassoProcessUpdatePost {
 				  	'post_status'	=> $status
 				);
 
-				wp_update_post( $args );
+				wp_update_post( apply_filters('lasso_object_status_update_args', $args ) );
 
 				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
 

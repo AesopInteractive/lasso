@@ -35,14 +35,14 @@ class lassoProcessNewObject {
 				$object = isset( $_POST['object'] ) ? $_POST['object'] : false;
 
 				// insert a new post
-				$post_args = array(
+				$args = array(
 				  	'post_title'    => wp_strip_all_tags( trim( $title ) ),
 				  	'post_status'   => 'draft',
 				  	'post_type'	  	=> trim( $object ),
 				  	'post_content'  => apply_filters('lasso_new_object_content',__('People are made of stories...'))
 				);
 
-				$postid = wp_insert_post( apply_filters('lasso_new_object_args', $post_args ) );
+				$postid = wp_insert_post( apply_filters('lasso_insert_object_args', $args ) );
 
 				do_action( 'lasso_new_object', $postid, $object, $title, get_current_user_ID() );
 

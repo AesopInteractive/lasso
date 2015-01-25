@@ -45,7 +45,7 @@ class lassoProcessSaving {
 						'ID'           => (int) $postid,
 			  			'post_content' => $content
 					);
-					wp_update_post( $args );
+					wp_update_post( apply_filters('lasso_object_save_args', $args ) );
 
 				}
 
@@ -64,7 +64,7 @@ class lassoProcessSaving {
 			  			'post_content' => $content,
 			  			'post_status'	=> 'publish'
 					);
-					wp_update_post( $args );
+					wp_update_post( apply_filters('lasso_object_publish_args', $args ) );
 
 				}
 

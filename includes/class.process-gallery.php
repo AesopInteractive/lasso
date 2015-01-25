@@ -67,13 +67,13 @@ class lassoProcessGallery {
 				$type = $options ? $options['galleryType'] : false;
 
 				// insert a new gallery
-				$post_args = array(
+				$args = array(
 				  	'post_title'    => $postid.'-'.rand(),
 				  	'post_status'   => 'publish',
 				  	'post_type'	  	=> 'ai_galleries'
 				);
 
-				$postid = wp_insert_post( $post_args );
+				$postid = wp_insert_post( apply_filters('lasso_insert_gallery_args', $args ) );
 
 				// update gallery ids
 				if ( $gallery_ids ) {

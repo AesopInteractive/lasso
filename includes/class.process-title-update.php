@@ -39,7 +39,7 @@ class lassoProcessTitleUpdate {
 				  	'post_title'    => wp_strip_all_tags( $title )
 				);
 
-				wp_update_post( $args );
+				wp_update_post( apply_filters('lasso_title_updated_args', $args ) );
 
 				do_action( 'lasso_title_updated', $postid, $title, get_current_user_ID() );
 
