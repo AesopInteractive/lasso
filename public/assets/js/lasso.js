@@ -8503,6 +8503,11 @@ jQuery(document).ready(function($){
 			}
 	    });
 
+	    // this forces the default new element in content editable to be a paragraph element if
+	    // it has no previous element to depart from 
+	    // ref http://stackoverflow.com/a/15482748
+	    document.execCommand('defaultParagraphSeparator', false, 'p');
+
 		article.highlight = function() {
 			if (document.activeElement !== article) {
 				articleMedium.select();
