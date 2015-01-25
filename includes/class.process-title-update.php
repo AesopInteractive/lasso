@@ -1,6 +1,11 @@
 <?php
 
-
+/**
+*
+*	Class responsible for processing the post title change
+*
+*	@since 1.0
+*/
 class lassoProcessTitleUpdate {
 
 	function __construct(){

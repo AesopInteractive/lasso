@@ -4,7 +4,7 @@
  * @package   Lasso
  * @author    Nick Haskins <nick@aesopinteractive.com>
  * @license   GPL-2.0+
- * @link      http://aesopinteractive.com
+ * @link      http://lasso.is
  * @copyright 2015 Aesopinteractive LLC
  *
  * Plugin Name:       Lasso

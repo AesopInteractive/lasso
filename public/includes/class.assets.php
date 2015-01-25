@@ -1,5 +1,11 @@
 <?php
 
+/**
+*
+*	Load the assets used for Lasso
+*
+*	@since 1.0
+*/
 class lassoEditorAssets {
 
 	function __construct(){

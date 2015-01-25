@@ -5,6 +5,7 @@
 *	This class is responsible for updating the post settings such as the post slug or post status
 *	and is toggle from the post settings modal
 *
+*	@since 1.0
 */
 class lassoProcessUpdatePost {
 

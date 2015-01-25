@@ -4,6 +4,7 @@
 *
 *	Adds a new post object
 *
+*	@since 1.0
 */
 class lassoProcessNewObject {
 

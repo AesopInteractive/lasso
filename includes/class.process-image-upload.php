@@ -4,6 +4,7 @@
 *
 *	Process a user uploading an image for the featured image in a post
 *
+*	@since 1.0
 */
 class lassoUploadFeatImage {
 

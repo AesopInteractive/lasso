@@ -1,6 +1,11 @@
 <?php
 
-
+/**
+*
+*	Main class responsible for saving the post object
+*
+*	@since 1.0
+*/
 class lassoProcessSaving {
 
 	function __construct(){
