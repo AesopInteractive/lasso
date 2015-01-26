@@ -9179,27 +9179,27 @@ jQuery(document).ready(function($){
 jQuery(function( $ ) {
 
 	function saveSelection() {
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.getRangeAt && sel.rangeCount) {
-            return sel.getRangeAt(0);
-        }
-    } else if (document.selection && document.selection.createRange) {
-        return document.selection.createRange();
-    }
-    return null;
+	    if (window.getSelection) {
+	        sel = window.getSelection();
+	        if (sel.getRangeAt && sel.rangeCount) {
+	            return sel.getRangeAt(0);
+	        }
+	    } else if (document.selection && document.selection.createRange) {
+	        return document.selection.createRange();
+	    }
+	    return null;
 	}
 
 	function restoreSelection(range) {
-    if (range) {
-        if (window.getSelection) {
-            sel = window.getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
-        } else if (document.selection && range.select) {
-            range.select();
-        }
-    }
+	    if (range) {
+	        if (window.getSelection) {
+	            sel = window.getSelection();
+	            sel.removeAllRanges();
+	            sel.addRange(range);
+	        } else if (document.selection && range.select) {
+	            range.select();
+	        }
+	    }
 	}
 
 	/////////////
@@ -9248,7 +9248,6 @@ jQuery(function( $ ) {
 			window.selRange = saveSelection();
 		}
 	});
-
 
 	$('#lasso-toolbar--html').live('click',function(e){
 
