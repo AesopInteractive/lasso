@@ -146,7 +146,7 @@ jQuery(document).ready(function($){
 
 		    restoreSelection(window.selRange);
 
-			articleMedium.insertHtml('<a href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 
 		    window.selRange = null;
 

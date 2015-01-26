@@ -8542,7 +8542,7 @@ jQuery(document).ready(function($){
 
 		    restoreSelection(window.selRange);
 
-			articleMedium.insertHtml('<a href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 
 		    window.selRange = null;
 
@@ -9332,6 +9332,25 @@ jQuery(function( $ ) {
 
 		$(this).find('#lasso-toolbar--link__inner').focus();
 
+	});
+
+	// RESTORING LINK SELECTION
+	$('.lasso-link').each(function(){
+
+		$('.lasso-link').live('click',function(e){
+
+			e.preventDefault();
+
+			// prevent dropup from closing
+			$('#lasso-toolbar--link__wrap').live('click',function(){
+				return false;
+			});
+
+			var link = $(this).attr('href');
+
+			$('#lasso-toolbar--link').addClass('link--drop-up');
+			$('#lasso-toolbar--link__inner').text(link);
+		});
 	});
 
 	/////////////
