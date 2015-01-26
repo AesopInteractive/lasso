@@ -76,7 +76,7 @@
 		    $('input[name="status"]').val( statusReturn( $( "#lasso--slider" ).slider('value') ) );
 
 		    // if any changes happen then show the footer
-		    $('input[name="story_slug"]').on('keyup',function(){
+		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 

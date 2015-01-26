@@ -8737,7 +8737,7 @@ jQuery(document).ready(function($){
 		    $('input[name="status"]').val( statusReturn( $( "#lasso--slider" ).slider('value') ) );
 
 		    // if any changes happen then show the footer
-		    $('input[name="story_slug"]').on('keyup',function(){
+		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
@@ -10106,6 +10106,11 @@ jQuery(document).ready(function($){
 			,	maxLength   = 342
 
 			field.css({'width':maxLength - mWidth});
+
+		    // if any changes happen then show the footer
+		    $('.lasso--modal__trigger-footer').on('keyup',function(){
+			  	$('.lasso--postsettings__footer').slideDown()
+			});
 
 		});
 

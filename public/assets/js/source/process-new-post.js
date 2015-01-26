@@ -29,6 +29,11 @@
 
 			field.css({'width':maxLength - mWidth});
 
+		    // if any changes happen then show the footer
+		    $('.lasso--modal__trigger-footer').on('keyup',function(){
+			  	$('.lasso--postsettings__footer').slideDown()
+			});
+
 		});
 
 		// destroy modal if clicking close or overlay

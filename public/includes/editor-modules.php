@@ -269,7 +269,7 @@ function lasso_editor_component_modal(){
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
 					<label><?php _e('URL','lasso');?></label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div>
-					<input type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
+					<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 				<?php endif; ?>
 
@@ -324,10 +324,10 @@ function lasso_editor_newpost_modal(){
 
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
 					<label><?php _e('New '.ucfirst( $type ).' Title','lasso');?></label>
-					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input type="text" required name="story_title" value="">
+					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="">
 				</div>
 
-				<div class="lasso--postsettings__footer">
+				<div class="lasso--postsettings__footer" style="display:none;">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e('Cancel','lasso');?></a>
 					<input type="hidden" name="action" value="process_new_object">
 					<input type="hidden" name="object" value="<?php echo $type;?>">
