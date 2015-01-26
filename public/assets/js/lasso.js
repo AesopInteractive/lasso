@@ -8538,7 +8538,19 @@ jQuery(document).ready(function($){
 			articleMedium.invokeElement('strike');
 			return false;
 		};
+		document.getElementById('lasso-toolbar--link__create').onmousedown = function() {
 
+		    restoreSelection(window.selRange);
+
+			articleMedium.insertHtml('<a href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+
+		    window.selRange = null;
+
+		    // close modal drag
+        	$('#lasso-toolbar--link').removeClass('link--drop-up');
+
+		    return false;
+		};
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
 
 		    restoreSelection(window.selRange);
@@ -9287,6 +9299,27 @@ jQuery(function( $ ) {
 	////////////
 	/// LINK DROP UIP
 	////////////
+	$('#lasso-toolbar--link').live('mousedown',function(){
+		if( ! $(this).hasClass('link--drop-up') ) {
+			var article = document.getElementById(lasso_editor.editor);
+			window.selRange = saveSelection();
+			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
+				article.highlight();
+				window.selRange = saveSelection();
+			}
+		}
+	});
+
+	$('#lasso-toolbar--link__inner').live('focusout',function(){
+		restoreSelection(window.selRange);
+	});
+
+	$('#lasso-toolbar--link__inner').live('focus',function(){
+		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
+			window.selRange = saveSelection();
+		}
+	});
+
 	$('#lasso-toolbar--link').live('click',function(e){
 
 		$(this).toggleClass('link--drop-up');

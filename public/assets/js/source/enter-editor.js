@@ -142,7 +142,19 @@ jQuery(document).ready(function($){
 			articleMedium.invokeElement('strike');
 			return false;
 		};
+		document.getElementById('lasso-toolbar--link__create').onmousedown = function() {
 
+		    restoreSelection(window.selRange);
+
+			articleMedium.insertHtml('<a href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+
+		    window.selRange = null;
+
+		    // close modal drag
+        	$('#lasso-toolbar--link').removeClass('link--drop-up');
+
+		    return false;
+		};
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
 
 		    restoreSelection(window.selRange);
