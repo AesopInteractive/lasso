@@ -42,6 +42,10 @@ class Lasso_Admin {
 
 		require_once(LASSO_DIR.'/admin/includes/class.settings.php');
 
+		// bootstrap updater for story.am while in beta
+		require_once(LASSO_DIR.'/admin/includes/wp-updates-plugin.php');
+		new WPUpdatesPluginUpdater_875( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
+
 	}
 
 	/**
