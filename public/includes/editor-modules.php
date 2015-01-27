@@ -255,7 +255,7 @@ function lasso_editor_component_modal(){
 			<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
 				<div class="lasso--postsettings__option story-status-option">
-					<label><?php _e('Status','lasso');?></label>
+					<label><?php _e('Status','lasso');?><i style="display:inline-block;position:relative;" class="lasso-icon-help lasso-util--help" title="Cool"></i></label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 						<li id="lasso--status-draft"><?php _e('Draft','lasso');?></li>
 						<li id="lasso--status-publish"><?php _e('Publish','lasso');?></li>
