@@ -255,7 +255,7 @@ function lasso_editor_component_modal(){
 			<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
 				<div class="lasso--postsettings__option story-status-option">
-					<label><?php _e('Status','lasso');?><i style="display:inline-block;position:relative;" class="lasso-icon-help lasso-util--help" title="Cool"></i></label>
+					<label><?php _e('Status','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Change the status of the post to draft or publish."><i class="lasso-icon-help"></i></span></label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 						<li id="lasso--status-draft"><?php _e('Draft','lasso');?></li>
 						<li id="lasso--status-publish"><?php _e('Publish','lasso');?></li>
@@ -267,7 +267,7 @@ function lasso_editor_component_modal(){
 
 				<?php if ( 'publish' == $status ): ?>
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
-					<label><?php _e('URL','lasso');?></label>
+					<label><?php _e('URL','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Change the URL (slug) of this post."><i class="lasso-icon-help"></i></span></label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div>
 					<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
@@ -323,7 +323,7 @@ function lasso_editor_newpost_modal(){
 			<form id="lasso--postnew__form" enctype="multipart/form-data" >
 
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
-					<label><?php _e('New '.ucfirst( $type ).' Title','lasso');?></label>
+					<label><?php _e('New '.ucfirst( $type ).' Title','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Specify title for new post, then save to edit."><i class="lasso-icon-help"></i></span></label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="">
 				</div>
 
