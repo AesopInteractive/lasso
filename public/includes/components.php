@@ -104,7 +104,7 @@ if ( !function_exists('lasso_quote_component') ):
 
 		ob_start();
 
-		echo do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms." cite="Muriel Rukeyser"]');
+		echo do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms."]');
 
 		return ob_get_clean();
 	}
@@ -116,7 +116,7 @@ if ( !function_exists('lasso_image_component') ):
 
 		ob_start();
 
-		echo do_shortcode('[aesop_image img="'.LASSO_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px" caption="A lonely image is no image to be" ]');
+		echo do_shortcode('[aesop_image img="'.LASSO_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px"]');
 
 		return ob_get_clean();
 	}
@@ -128,7 +128,7 @@ if ( !function_exists('lasso_parallax_component') ):
 
 		ob_start();
 
-		echo do_shortcode('[aesop_parallax img="'.LASSO_URL.'/public/assets/img/empty-img.png" caption="Love is all we need"]');
+		echo do_shortcode('[aesop_parallax img="'.LASSO_URL.'/public/assets/img/empty-img.png"]');
 
 		return ob_get_clean();
 	}
@@ -164,7 +164,7 @@ if ( !function_exists('lasso_character_component') ):
 
 		ob_start();
 
-		echo do_shortcode('[aesop_character img="'.LASSO_URL.'/public/assets/img/empty-img.png" name="Joes Apartment" caption="Joe likes cockroaches." width="150px"]');
+		echo do_shortcode('[aesop_character img="'.LASSO_URL.'/public/assets/img/empty-img.png" name="Joes Apartment" width="150px"]');
 
 		return ob_get_clean();
 	}
@@ -212,7 +212,7 @@ if ( !function_exists('lasso_heading_component') ):
 
 		ob_start();
 
-		echo do_shortcode('[aesop_chapter title="Chapter One" subtitle="It started this morning..." img="'.LASSO_URL.'/public/assets/img/empty-img.png" full="on"]');
+		echo do_shortcode('[aesop_chapter title="Chapter One" img="'.LASSO_URL.'/public/assets/img/empty-img.png" full="on"]');
 
 		return ob_get_clean();
 	}
