@@ -45,7 +45,7 @@
         &:focus {
             box-shadow: none;
             outline:none;
-            border:1px solid darken(@input--border,15);
+            border:1px solid @editor--color__update;
         }
     }
 
@@ -60,7 +60,7 @@
         &:focus {
             box-shadow: none;
             outline:none;
-            border:1px solid darken(@input--border,15);
+            border:1px solid @editor--color__update;
         }
     }
 
@@ -135,6 +135,7 @@
         &:before {
             content:'\e9c6';
             position: relative;
+            color:@input--bg;
         }
 
     }
@@ -156,6 +157,11 @@
     padding:15px @sidebar--padding @sidebar--padding;
     .clearfix();
     .box-shadow(0 1px 1px rgba(255,255,255,0.05));
+    .transition(background .15s ease);
+
+    &:hover {
+        background: fadeout(@sidebar--bg__accent,50);
+    }
 }
 
 // update setting button
