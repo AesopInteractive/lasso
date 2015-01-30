@@ -120,11 +120,7 @@
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				if ( 'map-created' == response.data.message ) {
-
-					saveSequence( false, 4000, true );
-
-				} else if ( 'map-updated' == response.data.message ) {
+				if ( 'map-updated' == response.data.message ) {
 
 					saveSequence( false, 800 );
 
