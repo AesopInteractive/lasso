@@ -111,6 +111,7 @@
 
 		} else if ( 'map' == cdata['componentType'] ) {
 
+
 			var data = {
 				action: 		'process_map_save',
 				postid: 		lasso_editor.postid,
@@ -120,15 +121,17 @@
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				if ( 'map-updated' == response.data.message ) {
+				console.log(response);
 
-					saveSequence( false, 800 );
+				//if ( 'map-updated' == response.data.message ) {
 
-				} else {
+				//	saveSequence( false, 800 );
 
-					alert( 'error' );
+				//} else {
 
-				}
+				//	alert( 'error' );
+
+				//}
 
 			});
 

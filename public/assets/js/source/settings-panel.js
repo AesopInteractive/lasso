@@ -7,7 +7,9 @@
 			$('body').removeClass('lasso-sidebar-open');
 		}
 
+		// close the sidebar when clicking outside of it
 		$('body').on('click', '#'+lasso_editor.editor, function(){
+
 			destroySidebar()
 		});
 
@@ -67,6 +69,7 @@
 				var field = $(this).find('.lasso-generator-attr');
 
 				// if it's a gallery data attribute map the cehcekd attribute to the right place
+				// @todo - account for map stuff
 				if ( 'gallery-type' == option ) {
 
 					$(field).each(function(){

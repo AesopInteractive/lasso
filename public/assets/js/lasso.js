@@ -8814,7 +8814,9 @@ jQuery(document).ready(function($){
 			$('body').removeClass('lasso-sidebar-open');
 		}
 
+		// close the sidebar when clicking outside of it
 		$('body').on('click', '#'+lasso_editor.editor, function(){
+
 			destroySidebar()
 		});
 
@@ -8874,6 +8876,7 @@ jQuery(document).ready(function($){
 				var field = $(this).find('.lasso-generator-attr');
 
 				// if it's a gallery data attribute map the cehcekd attribute to the right place
+				// @todo - account for map stuff
 				if ( 'gallery-type' == option ) {
 
 					$(field).each(function(){
@@ -10069,6 +10072,7 @@ jQuery(document).ready(function($){
 
 		} else if ( 'map' == cdata['componentType'] ) {
 
+
 			var data = {
 				action: 		'process_map_save',
 				postid: 		lasso_editor.postid,
@@ -10078,15 +10082,17 @@ jQuery(document).ready(function($){
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				if ( 'map-updated' == response.data.message ) {
+				console.log(response);
 
-					saveSequence( false, 800 );
+				//if ( 'map-updated' == response.data.message ) {
 
-				} else {
+				//	saveSequence( false, 800 );
 
-					alert( 'error' );
+				//} else {
 
-				}
+				//	alert( 'error' );
+
+				//}
 
 			});
 
