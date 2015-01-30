@@ -225,6 +225,8 @@ function lasso_map_editor_module(){
 				}
 			});
 		</script>
+
+		<?php echo '<input type="hidden" name="action" value="process_map_save">';?>
 	<?php
 
 	return ob_get_clean();

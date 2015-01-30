@@ -54,6 +54,7 @@ class Lasso {
 		require_once(LASSO_DIR.'/includes/class.process-image-upload.php');
 		require_once(LASSO_DIR.'/includes/class.process-new-object.php');
 		require_once(LASSO_DIR.'/includes/class.process-title-update.php');
+		require_once(LASSO_DIR.'/includes/class.process-map.php');
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
