@@ -61,8 +61,30 @@ jQuery(document).ready(function($){
 		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
 		$('.aesop-component').each(function(){
 
+			// if there's no toolbar present
 			if ( !$('.lasso-component--toolbar').length > 0 ) {
-				$(this).append( lassoDragHandle );
+
+				// if this is a map then we need to first wrap it so that we can drag the  map around
+				if ( $(this).hasClass('aesop-map-component') ) {
+
+					var $this = $(this)
+
+					$this.css('margin',0);
+
+					// so wrap it with a aesop-compoentn aesop-map-component div
+					$this.wrap('<div class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle );
+
+					// then copy all the data attributes from the child to the parent so that the settings panel works
+					var attributes = $this.prop('attributes');
+
+					$.each(attributes, function() {
+					    $('.aesop-map-component').attr(this.name, this.value);
+					});
+
+				} else {
+
+					$(this).append( lassoDragHandle );
+				}
 			}
 		});
 
@@ -184,8 +206,14 @@ jQuery(document).ready(function($){
 				$(post_container).attr('id','');
 
 				// unwrap wp images
-				$(".lasso--wpimg__wrap").each(function(){
+				$('.lasso--wpimg__wrap').each(function(){
 					$(this).children().unwrap()
+				});
+
+				// unwrap map from hits drag holder
+				$('.aesop-map-component').each(function(){
+					$(this).children().unwrap()
+					$(this).find('.lasso-component--controls ').remove()
 				});
 
 				$(titleClass).attr('contenteditable', false);

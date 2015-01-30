@@ -53,6 +53,12 @@ jQuery(document).ready(function($){
 			$('.lasso-component--controls').remove();
 		});
 
+		// unwrap map from hits drag holder
+		$('.aesop-map-component').each(function(){
+			$(this).children().unwrap()
+			$(this).find('.lasso-component--controls ').remove()
+		});
+
 		////////////
 		/// DO THE SAVE
 		////////////
