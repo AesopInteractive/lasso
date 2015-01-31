@@ -39,27 +39,27 @@ function lasso_map_editor_module(){
 				var start_point = <?php echo $ase_map_start_point; ?>;
 				var start_zoom = <?php echo absint($ase_map_zoom); ?>;
 
-				/*
-				var map = L.map('lasso-map-component',{
+				
+				var map = L.map('aesop-map-component',{
 					scrollWheelZoom: false,
 					zoom: start_zoom,
 					center: start_point
 				});
-				*/
+	
 
 				setMapCenter(start_point[0],start_point[1]);
 
-				jQuery('#lasso-map-address').geocomplete().bind('geocode:result', function(event, result){
-					var lat = result.geometry.location.k;
-					var lng = result.geometry.location.B;
-					map.panTo(new L.LatLng(lat,lng));
-					setMapCenter(lat,lng);
-					});
-				/*
+				//jQuery('#lasso-map-address').geocomplete().bind('geocode:result', function(event, result){
+					//var lat = result.geometry.location.k;
+					///var lng = result.geometry.location.B;
+					//map.panTo(new L.LatLng(lat,lng));
+					//setMapCenter(lat,lng);
+					//});
+				
 				L.tileLayer('//{s}.tiles.mapbox.com/v3/lassointeractive.hkoag9o3/{z}/{x}/{y}.png', {
 					maxZoom: 20
 				}).addTo(map);
-				*/
+				
 				<?php if ( ! empty( $ase_map_locations ) ) : ?>
 					var ase_map_locations = <?php echo $ase_map_locations; ?>
 				<?php endif; ?>
@@ -70,7 +70,7 @@ function lasso_map_editor_module(){
 				});
 
 				// adding a new marker
-				map.on('click', onMapClick);
+				map.on('mousedown', onMapClick);
 				map.on('dragend', onMapDrag);
 				map.on('zoomend', onMapZoom);
 
