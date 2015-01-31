@@ -8613,7 +8613,7 @@ jQuery(document).ready(function($){
 				});
 
 				// unwrap map from hits drag holder
-				$('.aesop-map-component').each(function(){
+				$('.lasso--map-drag-holder').each(function(){
 					$(this).children().unwrap()
 					$(this).find('.lasso-component--controls ').remove()
 				});
