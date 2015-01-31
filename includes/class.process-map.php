@@ -25,7 +25,7 @@ class lassoProcessMap {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-process-map' ) ) {
 
-				$postid 		= isset( $_POST['postid'] ) ? $_POST['postid'] : null;
+				$postid 		= get_the_ID();
 
 				if ( empty( $postid ) )
 					return;
@@ -55,12 +55,12 @@ class lassoProcessMap {
 				// send back success
 				//wp_send_json_success(array('message' => 'map-updated') );
 
-			} else {
+			}// else {
 
 				// send back error
-				wp_send_json_error();
+				//wp_send_json_error();
 
-			}
+			//}
 		}
 	}
 }

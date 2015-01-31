@@ -10136,6 +10136,7 @@ jQuery(document).ready(function($){
 
 			console.log(response);
 
+
 		});
 
 	});
@@ -10322,32 +10323,6 @@ jQuery(document).ready(function($){
 					alert( 'error' );
 
 				}
-
-			});
-
-		} else if ( 'map' == cdata['componentType'] ) {
-
-
-			var data = {
-				action: 		'process_map_save',
-				postid: 		lasso_editor.postid,
-				fields: 		cleanFields(cdata),
-				nonce: 			$('#lasso-generator-nonce').val()
-			}
-
-			$.post( lasso_editor.ajaxurl, data, function(response) {
-
-				console.log(response);
-
-				//if ( 'map-updated' == response.data.message ) {
-
-				//	saveSequence( false, 800 );
-
-				//} else {
-
-				//	alert( 'error' );
-
-				//}
 
 			});
 
