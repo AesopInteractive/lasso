@@ -257,7 +257,7 @@ jQuery(document).ready(function($){
 			}).addTo(map);
 
 			// adding a new marker
-			map.on('mousedown', onMapClick);
+			map.on('click', onMapClick);
 			map.on('dragend', onMapDrag);
 			map.on('zoomend', onMapZoom);
 
