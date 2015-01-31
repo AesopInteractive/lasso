@@ -8627,6 +8627,8 @@ jQuery(document).ready(function($){
 
 		///////////
 		// INITIALIZE MAPS
+		// @todo - this fucker isnt going to work. we need the input fields in the settings panel becuase thats teh form. either that 
+		// or we have to make a minitiature form just for maps? copy the fields? fuck this
 		///////////
 		var mapsGoTime = function(){
 
