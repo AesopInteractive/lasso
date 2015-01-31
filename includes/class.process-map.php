@@ -25,20 +25,16 @@ class lassoProcessMap {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-process-map' ) ) {
 
-				$postid 		= get_the_ID();
+				$postid 		= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 
-				if ( empty( $postid ) )
-					return;
-
-
-				$fields 		= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-
-				$locations 		= isset( $fields['locations'] ) ? $fields['locations'] : false;
-				$start_point 	= isset( $fields['start-point'] ) ? json_decode( urldecode( $fields['start-point'] ), true ) : false;
-				$zoom 			= isset( $fields['zoom'] ) ? json_decode( urldecode( $fields['zoom'] ), true ) : false;
+				$locations  = isset( $_POST['ase-map-component-locations'] ) ? $_POST['ase-map-component-locations'] : false;
+				$start_point  = isset( $_POST['ase-map-component-start-point'] ) ? $_POST['ase-map-component-start-point'] : false;
+				$zoom  = isset( $_POST['ase-map-component-zoom'] ) ? $_POST['ase-map-component-zoom'] : false;
 
 
 				var_dump($_POST);
+
+				/*
 
 				// update locations if set
 				foreach ( $locations as $location ){
@@ -54,6 +50,9 @@ class lassoProcessMap {
 
 				// send back success
 				//wp_send_json_success(array('message' => 'map-updated') );
+				*/
+
+				die();
 
 			}// else {
 

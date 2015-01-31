@@ -8796,7 +8796,7 @@ jQuery(document).ready(function($){
 
 			// let's create a hidden form element for the marker
 			function createMarkerField(mid, mdata) {
-			  	jQuery('.lasso-map-data').append('<input type="hidden" name="ase-map-component-locations[]" data-ase="map" data-marker="' + mid + '" value="' + mdata + '">');
+			  	jQuery('#lasso--map-form').append('<input type="hidden" name="ase-map-component-locations[]" data-ase="map" data-marker="' + mid + '" value="' + mdata + '">');
 			}
 
 			function updateMarkerField(m) {

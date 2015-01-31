@@ -372,10 +372,13 @@ function lasso_editor_wpimg_edit(){
 */
 function lasso_map_form_footer(){
 
+	$nonce = wp_create_nonce('lasso-process-map');
+
 	ob_start();
 
 		?>
-		<input type="hidden" name="nonce" value="lasso-process-map">
+		<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
+		<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 		<input type="hidden" name="action" value="process_map_save">
 		<input type="submit" class="lasso--map-form__submit" value="Save Locations">
 		<?php
