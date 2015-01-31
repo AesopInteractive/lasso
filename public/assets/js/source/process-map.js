@@ -1,9 +1,26 @@
-jQuery(document).ready(function($){
+(function( $ ) {
 
+	var form;
 
-	$('#lasso--edit').on('click',function(e){
+	$('#lasso--map-form').live('submit', function(e) {
 
+		e.preventDefault();
+
+		var $this = $(this);
+
+		$(this).find('input[type="submit"]').val('Saving...');
+
+		var data = $this.serialize();
+
+		/////////////
+		//	DO TEH SAVE
+		/////////////
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+
+			console.log(response);
+
+		});
 
 	});
 
-});
+})( jQuery );

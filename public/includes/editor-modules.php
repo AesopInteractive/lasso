@@ -375,7 +375,8 @@ function lasso_map_form_footer(){
 	ob_start();
 
 		?>
-		<input type="hidden" action="process_map_save">
+		<input type="hidden" name="nonce" value="lasso-process-map">
+		<input type="hidden" name="action" value="process_map_save">
 		<input type="submit" class="lasso--map-form__submit" value="Save Locations">
 		<?php
 
