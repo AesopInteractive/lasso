@@ -221,9 +221,12 @@ jQuery(document).ready(function($){
 				});
 
 				// unwrap map from hits drag holder
-				$('.lasso--map-drag-holder').each(function(){
-					$(this).children().unwrap()
-					$(this).find('.lasso-component--controls ').remove()
+				$('#lasso--map-form').each(function(){
+
+					var $this = $(this)
+
+					$this.unwrap()
+					$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
 				});
 
 				$(titleClass).attr('contenteditable', false);
@@ -273,13 +276,13 @@ jQuery(document).ready(function($){
 			function setMapCenter(k, B) {
 				var ldata = encodeLocationData(k,B);
 				jQuery('input[name="ase-map-component-start-point"]').remove();
-				jQuery('#lasso--map-form').append('<input type="hidden" name="ase-map-component-start-point" data-ase="map" value="' + ldata + '">');
+				jQuery('.lasso--map-form__footer').append('<input type="hidden" name="ase-map-component-start-point" data-ase="map" value="' + ldata + '">');
 				jQuery('#lasso-map-address').val(k + ', ' + B);
 			}
 
 			function setMapZoom(z) {
 				jQuery('input[name="ase-map-component-zoom"]').remove();
-				jQuery('#lasso--map-form').append('<input type="hidden" name="ase-map-component-zoom" data-ase="map" value="' + z + '">');
+				jQuery('.lasso--map-form__footer').append('<input type="hidden" name="ase-map-component-zoom" data-ase="map" value="' + z + '">');
 			}
 
 			function onMarkerDrag(e) {
@@ -397,7 +400,7 @@ jQuery(document).ready(function($){
 
 			// let's create a hidden form element for the marker
 			function createMarkerField(mid, mdata) {
-			  	jQuery('#lasso--map-form').append('<input type="hidden" name="ase-map-component-locations[]" data-ase="map" data-marker="' + mid + '" value="' + mdata + '">');
+			  	jQuery('.lasso--map-form__footer').append('<input type="hidden" name="ase-map-component-locations[]" data-ase="map" data-marker="' + mid + '" value="' + mdata + '">');
 			}
 
 			function updateMarkerField(m) {

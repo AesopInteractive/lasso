@@ -24,9 +24,9 @@ jQuery(document).ready(function($){
 
 	if ( localStorage.getItem( 'lasso_backup_'+postid ) ) {
 
-    $('#lasso--save').css('opacity',1);
+	    $('#lasso--save').css('opacity',1);
 
-  }
+	}
 
 	// if the user tries to navigate away and this post was backed up and not saved warn them
 	window.onbeforeunload = function () {
@@ -54,9 +54,12 @@ jQuery(document).ready(function($){
 		});
 
 		// unwrap map from hits drag holder
-		$('.lasso--map-drag-holder').each(function(){
-			$(this).children().unwrap()
-			$(this).find('.lasso-component--controls ').remove()
+		$('#lasso--map-form').each(function(){
+
+			var $this = $(this)
+
+			$this.unwrap()
+			$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
 		});
 
 		////////////

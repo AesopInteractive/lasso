@@ -377,10 +377,12 @@ function lasso_map_form_footer(){
 	ob_start();
 
 		?>
-		<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
-		<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
-		<input type="hidden" name="action" value="process_map_save">
-		<input type="submit" class="lasso--map-form__submit" value="Save Locations">
+		<div class="lasso--map-form__footer">
+			<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
+			<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
+			<input type="hidden" name="action" value="process_map_save">
+			<input type="submit" class="lasso--map-form__submit" value="Save Locations">
+		</div>
 		<?php
 
 	return ob_get_clean();
