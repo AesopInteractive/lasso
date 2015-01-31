@@ -225,8 +225,9 @@ jQuery(document).ready(function($){
 
 					var $this = $(this)
 
-					$this.unwrap()
 					$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
+					
+					$this.children().unwrap()
 				});
 
 				$(titleClass).attr('contenteditable', false);
