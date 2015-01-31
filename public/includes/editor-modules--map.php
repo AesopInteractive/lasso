@@ -31,6 +31,7 @@ function lasso_map_editor_module(){
 
 
 		?>
+
 		<!-- Lasso Maps -->
 		<script>
 
@@ -49,12 +50,12 @@ function lasso_map_editor_module(){
 
 				setMapCenter(start_point[0],start_point[1]);
 
-				//jQuery('#lasso-map-address').geocomplete().bind('geocode:result', function(event, result){
-					//var lat = result.geometry.location.k;
-					///var lng = result.geometry.location.B;
-					//map.panTo(new L.LatLng(lat,lng));
-					//setMapCenter(lat,lng);
-					//});
+				jQuery('#lasso-map-address').geocomplete().bind('geocode:result', function(event, result){
+					var lat = result.geometry.location.k;
+					var lng = result.geometry.location.B;
+					map.panTo(new L.LatLng(lat,lng));
+					setMapCenter(lat,lng);
+				});
 				
 				L.tileLayer('//{s}.tiles.mapbox.com/v3/lassointeractive.hkoag9o3/{z}/{x}/{y}.png', {
 					maxZoom: 20

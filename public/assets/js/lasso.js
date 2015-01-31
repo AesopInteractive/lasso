@@ -8568,6 +8568,8 @@ jQuery(document).ready(function($){
 
 		    restoreSelection(window.selRange);
 
+		    // we need to account for a link that's already been established
+
 			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 
 		    window.selRange = null;
@@ -8661,6 +8663,8 @@ jQuery(document).ready(function($){
 					)
 
 					if ( 'map' == type ) {
+
+						// i dont think this is the right way to do this. we need to work off the map init from editor-modules--map.php
 
 						var map = L.map('aesop-map-component',{
 							scrollWheelZoom: false,
