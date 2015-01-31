@@ -6,6 +6,28 @@
         top:10px;
         right:10px;
         z-index: 100;
+        background: @editor--color__update;
+        border:1px solid darken(@editor--color__update,2);
+        padding:8px 12px;
+        font-size: 14px;
+        line-height: 1.2;
+        font-family: @editor--font;
+        text-shadow:1px 1px rgba(0,0,0,0.1);
+        .box-shadow(0 0 5px -1px rgba(0,0,0,0.4));
+
+        &:active,
+        &:focus {
+            outline:none;
+        }
+
+        &:hover {
+            background:darken(@editor--color__update,10);
+            border:1px solid darken(@editor--color__update,12);
+        }
+
+        &:active {
+            box-shadow: none;
+        }
     }
 }
 
@@ -71,13 +93,13 @@
         }
     }
     .marker-update-button {
-        background:@editor--color__success;
+        background:@editor--color__update;
 
         &:hover {
-            background:darken(@editor--color__success,6);
+            background:darken(@editor--color__update,6);
         }
         &:active {
-            background:darken(@editor--color__success,10);
+            background:darken(@editor--color__update,10);
         }
 
         &:before {
