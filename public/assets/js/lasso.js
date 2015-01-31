@@ -8627,8 +8627,6 @@ jQuery(document).ready(function($){
 
 		///////////
 		// INITIALIZE MAPS
-		// @todo - this fucker isnt going to work. we need the input fields in the settings panel becuase thats teh form. either that 
-		// or we have to make a minitiature form just for maps? copy the fields? fuck this
 		///////////
 		var mapsGoTime = function(){
 
@@ -8858,12 +8856,8 @@ jQuery(document).ready(function($){
 						})
 					)
 
-					if ( 'map' == type ) {
+					if ( 'map' == type ) { mapsGoTime() }
 
-						// i dont think this is the right way to do this. we need to work off the map init from editor-modules--map.php
-
-						mapsGoTime()
-					}
 				}
 
 		    }

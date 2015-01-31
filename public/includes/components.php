@@ -224,7 +224,7 @@ if ( !function_exists('lasso_map_component') ):
 
 		ob_start();
 
-		echo do_shortcode('[aesop_map sticky="off"]');
+		echo '<div class="aesop-component aesop-map-component lasso--map-drag-holder">'.do_shortcode('[aesop_map sticky="off"]').'</div>';
 
 		return ob_get_clean();
 	}
