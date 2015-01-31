@@ -477,9 +477,6 @@ function lasso_editor_options_blob() {
 
 				$return .= lasso_gallery_editor_module();
 
-			} elseif ( 'map' == $shortcode['front_type'] ) {
-
-				$return .= lasso_map_editor_module();
 			}
 		}
 		///////////////////////////
