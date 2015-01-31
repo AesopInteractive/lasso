@@ -60,7 +60,7 @@ class lassoAssets {
 				'userCanEdit'		=> current_user_can('edit_posts'),
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'mapForm'			=> lasso_map_form_footer(),
-				'mapLocations'		=> json_encode(lasso_map_locations( get_the_ID() ))
+				'mapLocations'		=> lasso_map_locations( get_the_ID() )
 			));
 		}
 

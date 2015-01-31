@@ -259,7 +259,7 @@ jQuery(document).ready(function($){
 			}).addTo(map);
 
 			console.log(mapLocations)
-				mapLocations.each(function(location) {
+				mapLocations.forEach(function(location) {
 					createMapMarker([location['lat'],location['lng']],location['title']).addTo(map);
 					createMarkerField( marker._leaflet_id, encodeMarkerData(location['lat'], location['lng'], location['title']) );
 				});
