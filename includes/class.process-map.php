@@ -27,9 +27,9 @@ class lassoProcessMap {
 
 				$postid 		= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 
-				$locations  = isset( $_POST['ase-map-component-locations'] ) ? $_POST['ase-map-component-locations'] : false;
-				$start_point  = isset( $_POST['ase-map-component-start-point'] ) ? json_decode(urldecode($_POST['ase-map-component-start-point']), true) : false;
-				$zoom  = isset( $_POST['ase-map-component-zoom'] ) ? json_decode(urldecode($_POST['ase-map-component-zoom']), true) : false;
+				$locations  	= isset( $_POST['ase-map-component-locations'] ) ? $_POST['ase-map-component-locations'] : false;
+				$start_point  	= isset( $_POST['ase-map-component-start-point'] ) ? json_decode(urldecode($_POST['ase-map-component-start-point']), true) : false;
+				$zoom  			= isset( $_POST['ase-map-component-zoom'] ) ? json_decode(urldecode($_POST['ase-map-component-zoom']), true) : false;
 
 				delete_post_meta( $postid, 'ase_map_component_locations' );
 

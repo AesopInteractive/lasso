@@ -60,7 +60,9 @@ class lassoAssets {
 				'userCanEdit'		=> current_user_can('edit_posts'),
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'mapForm'			=> lasso_map_form_footer(),
-				'mapLocations'		=> lasso_map_locations( get_the_ID() )
+				'mapLocations'		=> get_post_meta( get_the_ID(), 'ase_map_component_locations' ),
+				'mapStart'			=> get_post_meta( get_the_ID(), 'ase_map_component_start_point', true ),
+				'mapZoom'			=> get_post_meta( get_the_ID(), 'ase_map_component_zoom', true )
 			));
 		}
 

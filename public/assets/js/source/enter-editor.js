@@ -14,7 +14,9 @@ jQuery(document).ready(function($){
 		wpImgEdit 		= lasso_editor.wpImgEdit,
 		lassoDragHandle = lasso_editor.handle,
 		lassoMapForm 	= lasso_editor.mapFormFooter,
-		mapLocations    = lasso_editor.mapLocations
+		mapLocations    = lasso_editor.mapLocations,
+		mapZoom    		= lasso_editor.mapZoom,
+		mapStart        = lasso_editor.mapStart
 
 	function restoreSelection(range) {
 	    if (range) {
@@ -236,8 +238,8 @@ jQuery(document).ready(function($){
 		///////////
 		var mapsGoTime = function(){
 
-			var start_point = [29.76, -95.38];
-			var start_zoom = 12;
+			var start_point = mapStart ? mapStart : [29.76, -95.38];
+			var start_zoom = mapZoom ? mapZoom : 12;
 
 			var map = L.map('aesop-map-component',{
 				scrollWheelZoom: false,
@@ -258,12 +260,11 @@ jQuery(document).ready(function($){
 				maxZoom: 20
 			}).addTo(map);
 
-			console.log(mapLocations)
-				mapLocations.forEach(function(location) {
-					createMapMarker([location['lat'],location['lng']],location['title']).addTo(map);
-					createMarkerField( marker._leaflet_id, encodeMarkerData(location['lat'], location['lng'], location['title']) );
-				});
-		
+			mapLocations.forEach(function(location) {
+				createMapMarker([location['lat'],location['lng']],location['title']).addTo(map);
+				createMarkerField( marker._leaflet_id, encodeMarkerData(location['lat'], location['lng'], location['title']) );
+			});
+
 			// adding a new marker
 			map.on('click', onMapClick);
 			map.on('dragend', onMapDrag);
