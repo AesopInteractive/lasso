@@ -387,6 +387,15 @@ function lasso_map_form_footer(){
 
 }
 
+function lasso_map_locations( $postid ) {
+
+	$postid = get_the_ID();
+
+	$meta = get_post_meta( $postid, 'ase_map_component_locations');
+
+	return !empty( $meta ) ? $meta : false;
+}
+
 /**
 *
 *	Draw out the settings field based on the shortcodes array with options foudn in Lasso Story Engine

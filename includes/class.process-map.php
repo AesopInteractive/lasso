@@ -28,13 +28,9 @@ class lassoProcessMap {
 				$postid 		= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 
 				$locations  = isset( $_POST['ase-map-component-locations'] ) ? $_POST['ase-map-component-locations'] : false;
-				$start_point  = isset( $_POST['ase-map-component-start-point'] ) ? $_POST['ase-map-component-start-point'] : false;
-				$zoom  = isset( $_POST['ase-map-component-zoom'] ) ? $_POST['ase-map-component-zoom'] : false;
+				$start_point  = isset( $_POST['ase-map-component-start-point'] ) ? json_decode(urldecode($_POST['ase-map-component-start-point']), true) : false;
+				$zoom  = isset( $_POST['ase-map-component-zoom'] ) ? json_decode(urldecode($_POST['ase-map-component-zoom']), true) : false;
 
-
-				var_dump($_POST);
-
-				/*
 
 				// update locations if set
 				foreach ( $locations as $location ){
@@ -49,17 +45,14 @@ class lassoProcessMap {
 				update_post_meta( $postid, 'ase_map_component_zoom', $zoom);
 
 				// send back success
-				//wp_send_json_success(array('message' => 'map-updated') );
-				*/
+				wp_send_json_success();
 
-				die();
-
-			}// else {
+			} else {
 
 				// send back error
-				//wp_send_json_error();
+				wp_send_json_error();
 
-			//}
+			}
 		}
 	}
 }

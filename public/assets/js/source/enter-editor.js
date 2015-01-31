@@ -13,7 +13,8 @@ jQuery(document).ready(function($){
 		uploadControls  = lasso_editor.featImgControls,
 		wpImgEdit 		= lasso_editor.wpImgEdit,
 		lassoDragHandle = lasso_editor.handle,
-		lassoMapForm 	= lasso_editor.mapFormFooter;
+		lassoMapForm 	= lasso_editor.mapFormFooter,
+		mapLocations    = lasso_editor.mapLocations
 
 	function restoreSelection(range) {
 	    if (range) {
@@ -257,17 +258,12 @@ jQuery(document).ready(function($){
 				maxZoom: 20
 			}).addTo(map);
 
-			/*
-			<?php if ( ! empty( $ase_map_locations ) ) : ?>
-				var ase_map_locations = <?php echo $ase_map_locations; ?>
-			<?php endif; ?>
-
-			ase_map_locations.forEach(function(location) {
-				createMapMarker([location['lat'],location['lng']],location['title']).addTo(map);
-				createMarkerField( marker._leaflet_id, encodeMarkerData(location['lat'], location['lng'], location['title']) );
-			});
-			*/
-
+			console.log(mapLocations)
+				mapLocations.each(function(location) {
+					createMapMarker([location['lat'],location['lng']],location['title']).addTo(map);
+					createMarkerField( marker._leaflet_id, encodeMarkerData(location['lat'], location['lng'], location['title']) );
+				});
+		
 			// adding a new marker
 			map.on('click', onMapClick);
 			map.on('dragend', onMapDrag);
@@ -276,13 +272,13 @@ jQuery(document).ready(function($){
 			function setMapCenter(k, B) {
 				var ldata = encodeLocationData(k,B);
 				jQuery('input[name="ase-map-component-start-point"]').remove();
-				jQuery('.lasso-map-data').append('<input type="hidden" name="ase-map-component-start-point" data-ase="map" value="' + ldata + '">');
+				jQuery('#lasso--map-form').append('<input type="hidden" name="ase-map-component-start-point" data-ase="map" value="' + ldata + '">');
 				jQuery('#lasso-map-address').val(k + ', ' + B);
 			}
 
 			function setMapZoom(z) {
 				jQuery('input[name="ase-map-component-zoom"]').remove();
-				jQuery('.lasso-map-data').append('<input type="hidden" name="ase-map-component-zoom" data-ase="map" value="' + z + '">');
+				jQuery('#lasso--map-form').append('<input type="hidden" name="ase-map-component-zoom" data-ase="map" value="' + z + '">');
 			}
 
 			function onMarkerDrag(e) {
