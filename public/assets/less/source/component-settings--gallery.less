@@ -182,7 +182,7 @@
 }
 
 // empty gallery placholder
-.lasso--empty-gallery {
+.lasso--empty-component {
     height:0;
     .opacity(0);
     text-align: center;
@@ -197,19 +197,20 @@
     }
 }
 .lasso-editing {
-    .lasso-gallery-component.empty-gallery {
+
+    .aesop-map-component.empty-map,
+    .aesop-gallery-component.empty-gallery {
         .lasso-component--controls {
             .opacity(1);
             left:0;
         }
     }
-    .lasso--empty-gallery {
+    .lasso--empty-component {
         height:150px;
         padding-top:75px;
         .opacity(1);
     }
 }
-
 // no galleries
 #lasso--component-settings-form{
     &.creating-gallery {
