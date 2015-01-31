@@ -8659,6 +8659,21 @@ jQuery(document).ready(function($){
 							'data-component-type': type
 						})
 					)
+
+					if ( 'map' == type ) {
+
+						var map = L.map('aesop-map-component',{
+							scrollWheelZoom: false,
+							zoom: 12,
+							center: [-34.3,23.4]
+						});
+
+						L.tileLayer('//{s}.tiles.mapbox.com/v3/aesopinteractive.hkoag9o3/{z}/{x}/{y}.png', {
+							maxZoom: 20
+						}).addTo(map);
+
+						map.invalidateSize(false);
+					}
 				}
 
 		    }
