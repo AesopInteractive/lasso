@@ -8468,7 +8468,7 @@ jQuery(document).ready(function($){
 					$this.css('margin',0);
 
 					// so wrap it with a aesop-compoentn aesop-map-component div
-					$this.wrap('<div class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle );
+					$this.wrap('<form id="lasso--map-settings-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle );
 
 					// then copy all the data attributes from the child to the parent so that the settings panel works
 					var attributes = $this.prop('attributes');
