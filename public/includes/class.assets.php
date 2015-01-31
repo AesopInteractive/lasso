@@ -27,12 +27,12 @@ class lassoAssets {
 			// media uploader
 			wp_enqueue_media();
 
-			$article_object = lasso_editor_get_option('article_class','lasso_editor');
-			$featImgClass = lasso_editor_get_option('featimg_class','lasso_editor');
-			$titleClass = lasso_editor_get_option('title_class','lasso_editor');
+			$article_object 	= lasso_editor_get_option('article_class','lasso_editor');
+			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
+			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 
-			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
-			wp_localize_script('lasso', 'lasso_editor',array(
+			// localized objects
+			$objects = array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE
 				'article_object'	=> $article_object,
@@ -63,7 +63,10 @@ class lassoAssets {
 				'mapLocations'		=> get_post_meta( get_the_ID(), 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( get_the_ID(), 'ase_map_component_start_point', true ),
 				'mapZoom'			=> get_post_meta( get_the_ID(), 'ase_map_component_zoom', true )
-			));
+			);
+
+			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
+			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 		}
 
 	}
