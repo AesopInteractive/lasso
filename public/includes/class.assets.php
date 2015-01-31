@@ -66,7 +66,7 @@ class lassoAssets {
 			);
 
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
-			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
+				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 		}
 
 	}
