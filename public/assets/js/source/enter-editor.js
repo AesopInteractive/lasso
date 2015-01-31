@@ -269,7 +269,7 @@ jQuery(document).ready(function($){
 						var map = L.map('aesop-map-component',{
 							scrollWheelZoom: false,
 							zoom: 12,
-							center: [-34.3,23.4]
+							center: [29.76, -95.38]
 						});
 
 						L.tileLayer('//{s}.tiles.mapbox.com/v3/aesopinteractive.hkoag9o3/{z}/{x}/{y}.png', {
