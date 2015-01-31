@@ -8652,6 +8652,17 @@ jQuery(document).ready(function($){
 				maxZoom: 20
 			}).addTo(map);
 
+			/*
+			<?php if ( ! empty( $ase_map_locations ) ) : ?>
+				var ase_map_locations = <?php echo $ase_map_locations; ?>
+			<?php endif; ?>
+
+			ase_map_locations.forEach(function(location) {
+				createMapMarker([location['lat'],location['lng']],location['title']).addTo(map);
+				createMarkerField( marker._leaflet_id, encodeMarkerData(location['lat'], location['lng'], location['title']) );
+			});
+			*/
+
 			// adding a new marker
 			map.on('click', onMapClick);
 			map.on('dragend', onMapDrag);
