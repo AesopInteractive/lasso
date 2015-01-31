@@ -234,7 +234,7 @@ jQuery(document).ready(function($){
 		///////////
 		var mapsGoTime = function(){
 
-			var start_point = [23,234];
+			var start_point = [29.76, -95.38];
 			var start_zoom = 12;
 
 			var map = L.map('aesop-map-component',{
