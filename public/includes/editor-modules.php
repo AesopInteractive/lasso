@@ -367,6 +367,24 @@ function lasso_editor_wpimg_edit(){
 
 /**
 *
+*	Used to house the hidden input fields for actions and process saving for the map component
+*	@since 1.0
+*/
+function lasso_map_form_footer(){
+
+	ob_start();
+
+		?>
+		<input type="hidden" action="process_map_save">
+		<input type="submit" class="lasso--map-form__submit" value="Save Locations">
+		<?php
+
+	return ob_get_clean();
+
+}
+
+/**
+*
 *	Draw out the settings field based on the shortcodes array with options foudn in Lasso Story Engine
 * 	This was mostly backported from lasso story engine and modified to allow for non lasso shortcodes and components
 *

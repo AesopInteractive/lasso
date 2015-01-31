@@ -8408,7 +8408,8 @@ jQuery(document).ready(function($){
 		titleClass      = lasso_editor.titleClass,
 		uploadControls  = lasso_editor.featImgControls,
 		wpImgEdit 		= lasso_editor.wpImgEdit,
-		lassoDragHandle = lasso_editor.handle;
+		lassoDragHandle = lasso_editor.handle,
+		lassoMapForm 	= lasso_editor.mapFormFooter;
 
 	function restoreSelection(range) {
 	    if (range) {
@@ -8468,7 +8469,7 @@ jQuery(document).ready(function($){
 					$this.css('margin',0);
 
 					// so wrap it with a aesop-compoentn aesop-map-component div
-					$this.wrap('<form id="lasso--map-settings-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle ).prepend('<input type="submit" class="lasso--map-form__submit" value="Save Locations">');
+					$this.wrap('<form id="lasso--map-settings-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle ).prepend( lassoMapForm );
 
 					// then copy all the data attributes from the child to the parent so that the settings panel works
 					var attributes = $this.prop('attributes');

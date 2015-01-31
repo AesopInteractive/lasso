@@ -225,7 +225,7 @@ if ( !function_exists('lasso_map_component') ):
 		ob_start();
 
 		echo '<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder">
-				<input type="submit" class="lasso--map-form__submit" value="Save Locations">
+				'.lasso_map_form_footer().'
 				'.do_shortcode('[aesop_map sticky="off"]').'
 			</form>';
 

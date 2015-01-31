@@ -58,7 +58,8 @@ class lassoAssets {
 				'wpImgNonce'		=> wp_create_nonce('lasso_update_wpimg'),
 				'component_options' => lasso_editor_options_blob(),
 				'userCanEdit'		=> current_user_can('edit_posts'),
-				'newPostModal'		=> lasso_editor_newpost_modal()
+				'newPostModal'		=> lasso_editor_newpost_modal(),
+				'mapForm'			=> lasso_map_form_footer()
 			));
 		}
 
