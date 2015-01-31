@@ -8532,8 +8532,12 @@ jQuery(document).ready(function($){
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
+
 				articleMedium.select();
 
+			} else {
+
+				return false;
 			}
 		};
 

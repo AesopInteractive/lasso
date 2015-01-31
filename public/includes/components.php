@@ -72,7 +72,7 @@ function lasso_editor_components(){
 		)
 	);
 
-	return apply_filters('lasso_editor_components', $array );
+	return apply_filters('lasso_components', $array );
 }
 
 /**
