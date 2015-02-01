@@ -236,16 +236,15 @@ jQuery(document).ready(function($){
 		///////////
 		// INITIALIZE MAPS
 		///////////
-					var start_point = mapStart ? mapStart : [29.76, -95.38];
-			var start_zoom = mapZoom ? mapZoom : 12;
 		var mapsGoTime = function(){
 
-
+			var start_point = mapStart ? mapStart : [29.76, -95.38];
+			var start_zoom = mapZoom ? mapZoom : 12;
 
 			var map = L.map('aesop-map-component',{
 				scrollWheelZoom: false,
 				zoom: start_zoom,
-				center: start_point
+				center: [29.76, -95.38]
 			});
 
 			setMapCenter(start_point[0],start_point[1]);
