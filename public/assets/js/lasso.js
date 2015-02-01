@@ -9910,9 +9910,9 @@ jQuery(document).ready(function($){
 
 			console.log(response);
 
-			if( response ) {
+			if( true == response.success ) {
 
-				$('.aesop-gallery-component').html( response );
+				$('.aesop-gallery-component').html( response.data.gallery );
 
 			}
 

@@ -32,9 +32,9 @@ class lassoProcessGallery {
 
 		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
 
-		echo do_shortcode('[aesop_gallery id="'.(int) $id.'"]');
 
-		die();
+		wp_send_json_success(array('gallery' => do_shortcode('[aesop_gallery id="'.(int) $id.'"]') ) );
+
 	}
 
 	/**
