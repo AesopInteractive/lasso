@@ -8472,14 +8472,10 @@ jQuery(document).ready(function($){
 					$this.css('margin',0);
 
 					// so wrap it with a aesop-compoentn aesop-map-component div
-					$this.wrap('<form id="lasso--map-settings-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle ).prepend( lassoMapForm );
-
-					// then copy all the data attributes from the child to the parent so that the settings panel works
-					var attributes = $this.prop('attributes');
-
-					$.each(attributes, function() {
-					    $('.aesop-map-component').attr(this.name, this.value);
-					});
+					// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
+					// to
+					//$this.wrap('<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle ).after( lassoMapForm );
+					$this.wrap('<div class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle );
 
 				} else {
 
@@ -8636,10 +8632,11 @@ jQuery(document).ready(function($){
 		///////////
 		// INITIALIZE MAPS
 		///////////
+					var start_point = mapStart ? mapStart : [29.76, -95.38];
+			var start_zoom = mapZoom ? mapZoom : 12;
 		var mapsGoTime = function(){
 
-			var start_point = mapStart ? mapStart : [29.76, -95.38];
-			var start_zoom = mapZoom ? mapZoom : 12;
+
 
 			var map = L.map('aesop-map-component',{
 				scrollWheelZoom: false,
@@ -9074,9 +9071,14 @@ jQuery(document).ready(function($){
 		$('#lasso-component--settings__trigger').live('click',function(){
 
 			var settings 	= $('#lasso--component__settings')
+			var click       = $(this)
 
 			// let's set our globals
-			component = $(this).closest('.aesop-component');
+			if ( $(this).parent().parent().hasClass('aesop-map-component') ) {
+				component = $(this).parent().parent().find('.aesop-component');
+			} else {
+				component = $(this).closest('.aesop-component');
+			}
 
 			// let's force globalize this until we refactor the js
 			window.component = component;
