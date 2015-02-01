@@ -9689,11 +9689,11 @@ jQuery(document).ready(function($){
 
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){
-
 			var $this = $(this)
 
-			$this.unwrap()
 			$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
+
+			$this.children().unwrap()
 		});
 
 		////////////
