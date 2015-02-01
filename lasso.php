@@ -10,7 +10,7 @@
  * Plugin Name:       Lasso
  * Plugin URI:        http://lasso.is
  * Description:       Real-time story creation suite.
- * Version:           0.2
+ * Version:           0.3
  * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
  */
 
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('LASSO_VERSION', '0.2');
+define('LASSO_VERSION', '0.3');
 define('LASSO_DIR', plugin_dir_path( __FILE__ ));
 define('LASSO_URL', plugins_url( '', __FILE__ ));
 
