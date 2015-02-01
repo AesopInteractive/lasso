@@ -73,8 +73,6 @@ jQuery(document).ready(function($){
 
 					var $this = $(this)
 
-					$this.css('margin',0);
-
 					// so wrap it with a aesop-compoentn aesop-map-component div
 					// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
 					// to
