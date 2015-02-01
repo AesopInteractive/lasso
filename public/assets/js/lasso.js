@@ -9232,6 +9232,11 @@ jQuery(document).ready(function($){
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
+
+			if ( $(this).parent().parent().hasClass('empty-gallery') ) {
+				settings.addClass('gallery-no-images')
+			}
+
 			if ( $(this).parent().parent().hasClass('aesop-gallery-component') ) {
 
 				var $this 		= $(this)
@@ -9938,8 +9943,6 @@ jQuery(document).ready(function($){
 		}
 
 		$.post( lasso_editor.ajaxurl, data, function(response) {
-
-			console.log(response);
 
 			if( true == response.success ) {
 
