@@ -7,7 +7,10 @@ jQuery(document).ready(function($){
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
 
-	// if unsaved changes store in local storage
+	///////////////////////
+	// 1. IF UNSAVED CHANGES STORE IN LOCAL STORAGE
+	// @todo - need to account for component on the page this only accounts for text
+	///////////////////////
 	$('#'+editor).live('change',function(){
 
 		var $this = $(this),
@@ -16,19 +19,13 @@ jQuery(document).ready(function($){
 		if ( oldHtml !== newHtml ) {
 
 			localStorage.setItem( 'lasso_backup_'+postid , newHtml );
-
-			//$('#lasso--save').css('opacity',1);
 		}
 
 	});
 
-	if ( localStorage.getItem( 'lasso_backup_'+postid ) ) {
-
-	    $('#lasso--save').css('opacity',1);
-
-	}
-
-	// if the user tries to navigate away and this post was backed up and not saved warn them
+	///////////////////////
+	// 2. WARN THE USER IF THEY TRY TO NAVIGATE AWAY WITH UNSAVED CHANGES
+	///////////////////////
 	window.onbeforeunload = function () {
 
 		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
@@ -36,7 +33,10 @@ jQuery(document).ready(function($){
         	$('#lasso--save').css('opacity',1);
         }
     }
-	// do the actual saving
+
+	///////////////////////
+	// 3. SAVE OR PUBLISH OBJECT
+	///////////////////////
 	$(save).live('click',function(e) {
 
 		var warnNoSave = null;
@@ -59,13 +59,10 @@ jQuery(document).ready(function($){
 			var $this = $(this)
 
 			$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
-			
+
 			$this.children().unwrap()
 		});
 
-		////////////
-		/// DO THE SAVE
-		////////////
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
@@ -73,6 +70,7 @@ jQuery(document).ready(function($){
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
 
+		// gather the data
 		var data      = {
 			action:    	$this.hasClass('lasso-publish-post') ? 'process_publish_content' : 'process_save_content',
 			author:  	lasso_editor.author,
@@ -96,26 +94,26 @@ jQuery(document).ready(function($){
 			// Iterate through the array of dom objects
 			for (var i = 0; i < j.length; i++) {
 
-    		var component = $(j[i]);
+	    		var component = $(j[i]);
 
-    		// If it's not a component, move along
-    		if ( !component.hasClass('aesop-component') ) {
+	    		// If it's not a component, move along
+	    		if ( !component.hasClass('aesop-component') ) {
 
-    			// Let's test what kind of object it is
-    			if ( component.context.nodeType == 3 ) {
-    				// Text only object without dom
-    				processed += j[i].data;
-    			} else {
-    				// DOM object
-    				processed += j[i].outerHTML;
-    			}
-    			continue;
-    		}
+	    			// Let's test what kind of object it is
+	    			if ( component.context.nodeType == 3 ) {
+	    				// Text only object without dom
+	    				processed += j[i].data;
+	    			} else {
+	    				// DOM object
+	    				processed += j[i].outerHTML;
+	    			}
+	    			continue;
+	    		}
 
-    		var data = component.data();
-    		var params = '';
+	    		var data = component.data();
+	    		var params = '';
 
-    		// It's a component, let's check to make sure it's defined properly
+	    		// It's a component, let's check to make sure it's defined properly
 				if ( data.hasOwnProperty('componentType') ) {
 
 					for ( var index in data ) {
@@ -149,18 +147,25 @@ jQuery(document).ready(function($){
 
 		}
 
-		// post ajax response with data
+		// make the actual ajax call to save or publish
 		$.post( ajaxurl, data, function(response) {
 
 			if( true == response.success ) {
 
+				// change button class to saved
 				$(save).removeClass('being-saved').addClass('lasso--saved');
 
+				// if this is being published then remove the publish button afterwards
+				if ( $this.hasClass('lasso-publish-post') ) {
+					$this.remove();
+				}
+
+				// wait a bit then remvoe the button class so they can save again
 				setTimeout(function(){
 					$(save).removeClass('lasso--saved');
 				},1200);
 
-				// purge this post from local storage
+				// then remove this copy from local stoarge
 				localStorage.removeItem( 'lasso_backup_'+postid );
 
 			} else {
