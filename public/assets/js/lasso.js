@@ -8571,6 +8571,11 @@ jQuery(document).ready(function($){
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;
 
+			if ( containerTag == 'a' ) {
+				var containerObject = $(window.selRange.startContainer.parentNode);
+				containerObject.replaceWith(containerObject[0].innerHTML);
+			}
+
 		    window.selRange = null;
 
 		    // close modal drag
