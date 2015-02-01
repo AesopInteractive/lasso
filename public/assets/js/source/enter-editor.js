@@ -175,11 +175,6 @@ jQuery(document).ready(function($){
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;
 
-			if ( containerTag == 'a' ) {
-				var containerObject = $(window.selRange.startContainer.parentNode);
-				containerObject.replaceWith(containerObject[0].innerHTML);
-			}
-
 		    window.selRange = null;
 
 		    // close modal drag
@@ -190,7 +185,19 @@ jQuery(document).ready(function($){
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
 
 		    restoreSelection(window.selRange);
-		    articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
+
+			var container = window.selRange.startContainer.parentNode,
+				containerTag = container.localName;
+
+			if ( containerTag == 'p' ) {
+				var containerObject = $(window.selRange.startContainer.parentNode),
+					htmlContent = $('#lasso-toolbar--html__inner').text();
+
+				htmlContent = $(htmlContent);
+				htmlContent.insertAfter( containerObject );
+			} else {
+				articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
+			}
 
 		    window.selRange = null;
 
