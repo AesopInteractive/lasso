@@ -21,7 +21,7 @@ jQuery(document).ready(function($){
 	function restoreSelection(range) {
 	    if (range) {
 	        if (window.getSelection) {
-	            sel = window.getSelection();
+	            var sel = window.getSelection();
 	            sel.removeAllRanges();
 	            sel.addRange(range);
 	        } else if (document.selection && range.select) {
@@ -170,9 +170,15 @@ jQuery(document).ready(function($){
 
 		    restoreSelection(window.selRange);
 
-		    // we need to account for a link that's already been established
-
 			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+
+			var container = window.selRange.startContainer.parentNode,
+				containerTag = container.localName;
+
+			if ( containerTag == 'a' ) {
+				var containerObject = $(window.selRange.startContainer.parentNode);
+				containerObject.replaceWith(containerObject[0].innerHTML);
+			}
 
 		    window.selRange = null;
 
