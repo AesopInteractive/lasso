@@ -8587,17 +8587,20 @@ jQuery(document).ready(function($){
 
 		    restoreSelection(window.selRange);
 
-			var container = window.selRange.startContainer.parentNode,
+			var container = window.selRange.startContainer,
 				containerTag = container.localName;
 
 			if ( containerTag == 'p' ) {
-				var containerObject = $(window.selRange.startContainer.parentNode),
+
+				var containerObject = $(window.selRange.startContainer),
 					htmlContent = $('#lasso-toolbar--html__inner').text();
 
 				htmlContent = $(htmlContent);
 				htmlContent.insertAfter( containerObject );
+				containerObject.remove();
 			} else {
 				articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
+
 			}
 
 		    window.selRange = null;
