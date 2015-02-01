@@ -8475,7 +8475,7 @@ jQuery(document).ready(function($){
 					// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
 					// to
 					//$this.wrap('<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle ).after( lassoMapForm );
-					$this.wrap('<div class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle );
+					$this.wrap('<div id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder">').before( lassoDragHandle );
 
 				} else {
 
@@ -9690,10 +9690,11 @@ jQuery(document).ready(function($){
 
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){
+
 			var $this = $(this)
 
 			$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
-
+			
 			$this.children().unwrap()
 		});
 
