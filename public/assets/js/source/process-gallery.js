@@ -103,7 +103,7 @@
 
 			if( true == response.success ) {
 
-				$('.aesop-gallery-component').html( response.data.gallery );
+				$('.aesop-gallery-component').replaceWith( response.data.gallery );
 
 			}
 
