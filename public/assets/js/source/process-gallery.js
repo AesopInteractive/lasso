@@ -103,7 +103,7 @@
 
 			if( response ) {
 
-				$('.lasso-gallery-component').html( response );
+				$('.aesop-gallery-component').html( response );
 
 			}
 

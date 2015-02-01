@@ -9912,7 +9912,7 @@ jQuery(document).ready(function($){
 
 			if( response ) {
 
-				$('.lasso-gallery-component').html( response );
+				$('.aesop-gallery-component').html( response );
 
 			}
 
