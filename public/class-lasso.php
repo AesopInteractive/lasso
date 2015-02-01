@@ -57,9 +57,6 @@ class Lasso {
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-		add_action( 'wp_ajax_render_shortcode', array( $this, 'ajax_render_shortcode'));
-		add_action( 'wp_ajax_nopriv_render_shortcode', array( $this, 'ajax_render_shortcode'));
-
 
 	}
 
@@ -182,24 +179,6 @@ class Lasso {
 		switch_to_blog( $blog_id );
 		self::single_activate();
 		restore_current_blog();
-
-	}
-
-	/**
-	 * Used to return a rendered shortcode
-	 */
-	public function ajax_render_shortcode( ) {
-
-		if ( empty( $_REQUEST['shortcode'] ) )
-			die( '0' );
-
-		$shortcode = $_REQUEST['shortcode'];
-
-		echo 'the shortcode is ' . $shortcode;
-
-		echo do_shortcode($shortcode);
-
-		exit();
 
 	}
 

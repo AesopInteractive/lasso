@@ -202,6 +202,7 @@ jQuery(document).ready(function($){
 				htmlContent = $(htmlContent);
 				htmlContent.insertAfter( containerObject );
 				containerObject.remove();
+
 			} else {
 				articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
 
