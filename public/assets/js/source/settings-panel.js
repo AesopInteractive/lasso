@@ -172,51 +172,60 @@
 			    // Finally, open the modal
 			    file_frame.open();
 			});
-
+	
 			/////////////
-			// GET GALLERY IMAGES
+			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
-			var $this 		= $(this)
-			,	ajaxurl 	= lasso_editor.ajaxurl
-			,	form 		= $('#lasso--component-settings-form.gallery')
-			,	nonce 		= lasso_editor.getGallImgNonce
-			,	gall_id 	= data['id']
 
-			var data      = {
-				action:    	'process_get_images',
-				post_id:   	gall_id,
-				nonce: 		nonce
-			};
+			if ( $(this).parent().parent().hasClass('empty-gallery') ) {
+				settings.addClass('gallery-no-images')
+			}
 
-			// post ajax response with data
-			$.post( ajaxurl, data, function(response) {
+			if ( $(this).parent().parent().hasClass('aesop-gallery-component') ) {
 
-				$('#lasso--gallery__images').html( response )
+				var $this 		= $(this)
+				,	ajaxurl 	= lasso_editor.ajaxurl
+				,	form 		= $('#lasso--component-settings-form.gallery')
+				,	nonce 		= lasso_editor.getGallImgNonce
+				,	gall_id 	= data['id']
 
-				/////////////
-				// CALL SORTABLE ON RECIEVED IMAGES
-				/////////////
-				var	gallery = $('#ase-gallery-images');
+				var data      = {
+					action:    	'process_get_images',
+					post_id:   	gall_id,
+					nonce: 		nonce
+				};
 
-				gallery.ready(function(){
+				// post ajax response with data
+				$.post( ajaxurl, data, function(response) {
 
-					gallery.sortable({
-						containment: 'parent',
-						cursor: 'move',
-						opacity: 0.8,
-						placeholder: 'ase-gallery-drop-zone',
-						forcePlaceholderSize:true,
-						update: function(){
-							var imageArray = $(this).sortable('toArray');
-					  		$('#ase_gallery_ids').val( imageArray );
-						},
-						create: function(){
-							var imageArray = $(this).sortable('toArray');
-					  		$('#ase_gallery_ids').val( imageArray );
-						}
+					$('#lasso--gallery__images').html( response )
+
+					/////////////
+					// CALL SORTABLE ON RECIEVED IMAGES
+					/////////////
+					var	gallery = $('#ase-gallery-images');
+
+					gallery.ready(function(){
+
+						gallery.sortable({
+							containment: 'parent',
+							cursor: 'move',
+							opacity: 0.8,
+							placeholder: 'ase-gallery-drop-zone',
+							forcePlaceholderSize:true,
+							update: function(){
+								var imageArray = $(this).sortable('toArray');
+						  		$('#ase_gallery_ids').val( imageArray );
+							},
+							create: function(){
+								var imageArray = $(this).sortable('toArray');
+						  		$('#ase_gallery_ids').val( imageArray );
+							}
+						});
 					});
 				});
-			});
+
+			}
 
 		});
 

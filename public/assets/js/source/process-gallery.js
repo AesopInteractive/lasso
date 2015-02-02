@@ -99,8 +99,6 @@
 
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
-			console.log(response);
-
 			if( true == response.success ) {
 
 				$('.aesop-gallery-component').replaceWith( response.data.gallery );
