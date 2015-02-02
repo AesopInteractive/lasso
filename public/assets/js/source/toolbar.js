@@ -106,7 +106,7 @@ jQuery(function( $ ) {
 	});
 	$('#lasso-html--h3').live('click',function(e){
 		e.preventDefault();
-		htmlItemInsert('<h3>H2 Heading</h2>');
+		htmlItemInsert('<h3>H3 Heading</h3>');
 	});
 	$('#lasso-html--ul').live('click',function(e){
 		e.preventDefault();
