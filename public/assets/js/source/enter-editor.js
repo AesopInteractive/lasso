@@ -192,20 +192,35 @@ jQuery(document).ready(function($){
 		    restoreSelection(window.selRange);
 
 			var container = window.selRange.startContainer,
-				containerTag = container.localName;
+				containerTag;
 
-			if ( containerTag == 'p' ) {
+			containerTag = container.localName;
 
-				var containerObject = $(window.selRange.startContainer),
+			// handle 3 specific scenarios dealing with <p>'s
+			// note: might need climb up dom tree depending on nesting use case
+			if (containerTag == 'p') {
+				// empty p tag
+				var containerObject = $(container),
 					htmlContent = $('#lasso-toolbar--html__inner').text();
 
 				htmlContent = $(htmlContent);
 				htmlContent.insertAfter( containerObject );
 				containerObject.remove();
-
 			} else {
-				articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
+				// within a p tag
+				container = container.parentNode;
+				containerTag = container.localName;
 
+				if( containerTag == 'p') {
+					var containerObject = $(container),
+						htmlContent = $('#lasso-toolbar--html__inner').text();
+
+					htmlContent = $(htmlContent);
+					htmlContent.insertAfter( containerObject );
+				} else {
+					// let's just go ahead and paste it on location
+					articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
+				}
 			}
 
 		    window.selRange = null;
