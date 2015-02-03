@@ -133,7 +133,7 @@ function lasso_gallery_editor_module(){
 		<div data-option="caption" class="ase-gallery-opts--single lasso-option">
 			<label for="lasso_gallery_caption"><?php _e('Gallery Caption','lasso');?></label>
 			<small class="lasso-option-desc"><?php _e('Add an optional caption for the gallery.','lasso');?></small>
-			<textarea name="lasso_gallery_caption" class="lasso-generator-attr"><?php echo esc_html($caption);?></textarea>
+			<textarea name="lasso_gallery_caption" class="lasso-generator-attr"></textarea>
 		</div>
 
 	</div>
