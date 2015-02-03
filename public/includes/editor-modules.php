@@ -273,12 +273,15 @@ function lasso_editor_component_modal(){
 				</div>
 				<?php endif; ?>
 
+				<?php do_action('lasso_modal_post_form'); // action ?>
+
 				<div class="lasso--postsettings__footer" style="display:none;">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e('Cancel','lasso');?></a>
 					<input type="hidden" name="status" value="">
 					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
 					<input type="hidden" name="action" value="process_update_post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
+					<?php do_action('lasso_modal_post_form_footer'); // action ?>
 					<input type="submit" value="<?php _e('Save','lasso');?>">
 				</div>
 
