@@ -25,9 +25,9 @@ function lasso_editor_controls() {
 		$custom_classes = apply_filters('lasso_control_classes', '' );
 
 		$post_access_class 		= '';
-		$post_new_disabled 		= lasso_editor_get_option('post_adding_disabled','lasso_editor_advanced');
-		$post_settings_disabled = lasso_editor_get_option('post_settings_disabled','lasso_editor_advanced');
-		$shortcodify_disabled = lasso_editor_get_option('shortcodify_disabled','lasso_editor_advanced');
+		$post_new_disabled 		= lasso_editor_get_option('post_adding_disabled','lasso_editor');
+		$post_settings_disabled = lasso_editor_get_option('post_settings_disabled','lasso_editor');
+		$shortcodify_disabled = lasso_editor_get_option('shortcodify_disabled','lasso_editor');
 
 		// CSS class if adding new post objects is disabled
 		if ( 'on' == $post_new_disabled )      { $post_access_class = 'lasso--post-new-disabled'; }

@@ -35,7 +35,7 @@ class lassoProcessSaving {
 			$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 			$content = isset( $_POST['content'] ) ? $_POST['content'] : null;
 
-			$save_to_post_disabled = lasso_editor_get_option('post_save_disabled','lasso_editor_advanced');
+			$save_to_post_disabled = lasso_editor_get_option('post_save_disabled','lasso_editor');
 
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_save_content' ) {
 
