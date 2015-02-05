@@ -44,4 +44,8 @@ if ( is_admin() ) {
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php' );
 	add_action( 'plugins_loaded', array( 'Lasso_Admin', 'get_instance' ) );
 
+	// bootstrap updater for story.am while in beta
+	require_once(LASSO_DIR.'/admin/includes/wp-updates-plugin.php');
+	new WPUpdatesPluginUpdater_875( 'http://wp-updates.com/api/2/plugin', plugin_basename(__FILE__));
+
 }

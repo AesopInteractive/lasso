@@ -18,7 +18,7 @@ Refer to owners manual
 
 == Changelog ==
 
-= 0.3 =
+= 0.25 =
 * full maps compatibility
 * links now editable
 * insert html now no longer inserting into p
