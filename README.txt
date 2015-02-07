@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: http://story.am
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.3
+Stable tag: 0.5
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,13 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.5 =
+* full gallery compatibility
+* misc fixes and improvements for founder launch
+
+= 0.3 =
+* filter fixes
 
 = 0.25 =
 * full maps compatibility

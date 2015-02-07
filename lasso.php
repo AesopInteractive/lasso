@@ -3,16 +3,19 @@
  *
  * @package   Lasso
  * @author    Nick Haskins <nick@aesopinteractive.com>
- * @license   GPL-2.0+
  * @link      http://lasso.is
  * @copyright 2015 Aesopinteractive LLC
  *
  * Plugin Name:       Lasso
  * Plugin URI:        http://lasso.is
  * Description:       Real-time story creation suite.
- * Version:           0.3
+ * Version:           0.5
  * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
- */
+ * Author:            Aesopinteractive LLC
+ * Author URI:        http://aesopstoryengine.com
+ * Text Domain:       lasso
+ * Domain Path:       /languages
+*/
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -20,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('LASSO_VERSION', '0.3');
+define('LASSO_VERSION', '0.5');
 define('LASSO_DIR', plugin_dir_path( __FILE__ ));
 define('LASSO_URL', plugins_url( '', __FILE__ ));
 
