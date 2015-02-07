@@ -46,7 +46,7 @@ class lassoProcessNewObject {
 
 				do_action( 'lasso_new_object', $postid, $object, $title, get_current_user_ID() );
 
-				wp_send_json_success(array('postlink' => get_permalink($postid)));
+				wp_send_json_success( array( 'postlink' => get_permalink($postid) ) );
 
 			} else {
 

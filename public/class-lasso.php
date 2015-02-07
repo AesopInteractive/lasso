@@ -39,9 +39,6 @@ class Lasso {
 	 */
 	private function __construct() {
 
-		// Activate plugin when new blog is added
-		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
-
 		require_once(LASSO_DIR.'/public/includes/class.assets.php');
 		require_once(LASSO_DIR.'/public/includes/editor-modules.php');
 		require_once(LASSO_DIR.'/public/includes/helpers.php');
@@ -54,6 +51,10 @@ class Lasso {
 		require_once(LASSO_DIR.'/includes/class.process-new-object.php');
 		require_once(LASSO_DIR.'/includes/class.process-title-update.php');
 		require_once(LASSO_DIR.'/includes/class.process-map.php');
+
+
+		// Activate plugin when new blog is added
+		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
