@@ -67,6 +67,15 @@ module.exports = function(grunt) {
                     ],
                 dest: 'public/assets/js/lasso.js'
             }
+        },
+   		uglify: {
+            scripts: {
+                files: {
+                    'public/assets/js/lasso.min.js': [
+                        'public/assets/js/lasso.js'
+                    ]
+                }
+            }
         }
     });
 
