@@ -57,7 +57,7 @@ function lasso_editor_galleries_exist(){
 *	@param $action string a capability such as edit_posts or publish_posts
 *	@since 1.0
 */
-if ( !function_exists('lass_user_can') ):
+if ( !function_exists('lasso_user_can') ):
 	function lasso_user_can( $action = 'edit_posts' ){
 
 		if ( empty( $action ) )
