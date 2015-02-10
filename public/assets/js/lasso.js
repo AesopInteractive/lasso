@@ -10628,3 +10628,60 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
+(function( $ ) {
+
+	// dyanmically center modals vertically based on size of modal
+	jQuery(document).ready(function($){
+
+		modalResizer = function(){
+
+			var modal = $('.lasso--modal')
+			,   mHeight = modal.height()
+			,	wHeight  = $(window).height()
+
+			modal.css({
+				'top' : (wHeight - mHeight) / 2
+			})
+
+		}
+
+		modalResizer();
+
+		jQuery(window).resize(function(){ modalResizer(); });
+
+	});
+
+})( jQuery );
+(function( $ ) {
+
+	$(document).ready(function(){
+
+		$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
+
+			e.preventDefault();
+
+			var target = $(this);
+
+			var data = {
+				action: 		'process_hide_tour',
+				nonce: 			$(this).data('nonce')
+			}
+
+
+			$.post( lasso_editor.ajaxurl, data, function(response) {
+
+				console.log(response)
+
+				if ( true == response.success ) {
+
+					$(this).closest('.lasso--tour__modal').remove()
+
+				}
+
+			});
+
+		});
+
+	});
+
+})( jQuery );

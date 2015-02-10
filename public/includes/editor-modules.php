@@ -17,7 +17,7 @@
 add_action( 'wp_footer', 'lasso_editor_controls');
 function lasso_editor_controls() {
 
-	if ( is_singular() && lasso_user_can() ) {
+	if ( apply_filters('lasso_runs_on', is_singular() ) && lasso_user_can() ) {
 
 		$status = get_post_status( get_the_ID() );
 
