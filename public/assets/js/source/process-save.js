@@ -58,10 +58,6 @@ jQuery(document).ready(function($){
 			$('.lasso-component--controls').remove();
 		});
 
-		// hack shit this is because if a user makes something a heading an dits on a new line it becomes nexted in the p
-		if ( $('.lasso-h2').parent('p').length ) { $('p > .lasso-h2').unwrap() }
-		if ( $('.lasso-h3').parent('p').length ) { $('p > .lasso-h3').unwrap() }
-
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){
 
