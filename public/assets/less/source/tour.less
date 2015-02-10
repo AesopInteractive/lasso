@@ -10,6 +10,45 @@
         padding-bottom:0;
         margin-bottom: 0;
         float: left;
+        top:4px;
+        position: relative;
+
+        label {
+            padding-left:23px;
+            font-size:@modal--font__size;
+            font-weight: normal;
+        }
+
+        .control-indicator {
+            width:14px;
+            height:14px;
+        }
+    }
+
+    ul {
+        margin:0;
+        padding:0;
+
+        li {
+            list-style: none;
+        }
+    }
+
+    li {
+        img{
+            background: @modal--border;
+            padding:6px;
+            border-radius:3px;
+            .box-shadow(0 1px 1px rgba(255,255,255,0.1));
+        }
+        p {
+            font-family: @editor--font;
+            font-size:@modal--font__size + 2;
+            line-height: 1.25;
+            margin:15px auto 0;
+            padding-right:4px;
+            padding-left:4px;
+        }
     }
 
 }
