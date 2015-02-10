@@ -3,6 +3,7 @@ jQuery(document).ready(function($){
 	var editor 			= lasso_editor.editor,
 		post_container  = lasso_editor.article_object,
 		toolbar 		= lasso_editor.toolbar,
+		toolbarHeading 	= lasso_editor.toolbarHeadings,
 		panel           = lasso_editor.component_sidebar,
 		postid          = lasso_editor.postid,
 		modal 			= lasso_editor.component_modal,
@@ -162,19 +163,22 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
-		document.getElementById('lasso-toolbar--h2').onmousedown = function() {
-			article.highlight();
+		if ( toolbarHeading ) {
 
-			articleMedium.invokeElement('h2');
+			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
+				article.highlight();
 
-			return false;
-		};
+				articleMedium.invokeElement('h2');
 
-		document.getElementById('lasso-toolbar--h3').onmousedown = function() {
-			article.highlight();
-			articleMedium.invokeElement('h3');
-			return false;
-		};
+				return false;
+			};
+
+			document.getElementById('lasso-toolbar--h3').onmousedown = function() {
+				article.highlight();
+				articleMedium.invokeElement('h3');
+				return false;
+			};
+		}
 
 		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
 			article.highlight();

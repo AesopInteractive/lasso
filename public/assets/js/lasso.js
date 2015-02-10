@@ -8399,6 +8399,7 @@ jQuery(document).ready(function($){
 	var editor 			= lasso_editor.editor,
 		post_container  = lasso_editor.article_object,
 		toolbar 		= lasso_editor.toolbar,
+		toolbarHeading 	= lasso_editor.toolbarHeadings,
 		panel           = lasso_editor.component_sidebar,
 		postid          = lasso_editor.postid,
 		modal 			= lasso_editor.component_modal,
@@ -8558,19 +8559,22 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
-		document.getElementById('lasso-toolbar--h2').onmousedown = function() {
-			article.highlight();
+		if ( toolbarHeading ) {
 
-			articleMedium.invokeElement('h2');
+			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
+				article.highlight();
 
-			return false;
-		};
+				articleMedium.invokeElement('h2');
 
-		document.getElementById('lasso-toolbar--h3').onmousedown = function() {
-			article.highlight();
-			articleMedium.invokeElement('h3');
-			return false;
-		};
+				return false;
+			};
+
+			document.getElementById('lasso-toolbar--h3').onmousedown = function() {
+				article.highlight();
+				articleMedium.invokeElement('h3');
+				return false;
+			};
+		}
 
 		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
 			article.highlight();
@@ -9746,6 +9750,17 @@ jQuery(document).ready(function($){
 			$(this).children().unwrap()
 			$('.lasso-component--controls').remove();
 		});
+
+		// unwrap custom components
+		$('.lasso-component').each(function(){
+			$('.lasso-component--controls').remove();
+		});
+
+		// hack shit this is because if a user makes something a heading an dits on a new line it becomes nexted in the p
+		if ( $('.lasso-h2').parent('p').length ) {
+
+			$('p > .lasso-h2').unwrap()
+		}
 
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){

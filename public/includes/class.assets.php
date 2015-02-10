@@ -30,6 +30,7 @@ class lassoAssets {
 			$article_object 	= lasso_editor_get_option('article_class','lasso_editor');
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
+			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 
 			// localized objects
 			$objects = array(
@@ -45,6 +46,7 @@ class lassoAssets {
 				'nonce'				=> wp_create_nonce('lasso_editor'),
 				'handle'			=> lasso_editor_settings_toolbar(),
 				'toolbar'			=> lasso_editor_text_toolbar(),
+				'toolbarHeadings'   => $toolbar_headings,
 				'component_modal'	=> lasso_editor_component_modal(),
 				'component_sidebar'	=> lasso_editor_component_sidebar(),
 				'components'		=> lasso_editor_components(),

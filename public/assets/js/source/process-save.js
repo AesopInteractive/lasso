@@ -53,6 +53,17 @@ jQuery(document).ready(function($){
 			$('.lasso-component--controls').remove();
 		});
 
+		// unwrap custom components
+		$('.lasso-component').each(function(){
+			$('.lasso-component--controls').remove();
+		});
+
+		// hack shit this is because if a user makes something a heading an dits on a new line it becomes nexted in the p
+		if ( $('.lasso-h2').parent('p').length ) {
+
+			$('p > .lasso-h2').unwrap()
+		}
+
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){
 
