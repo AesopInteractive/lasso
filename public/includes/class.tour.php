@@ -33,7 +33,15 @@ class lassoEditorWelcome {
 			$custom_classes = apply_filters('lasso_modal_tour_classes', '' );
 
 			?>
-			<script> jQuery(document).ready(function($){ $('body').addClass('lasso-modal-open'); }); </script>
+			<script>
+			jQuery(document).ready(function($){
+				$('body').addClass('lasso-modal-open');
+				$('#lasso--tour__slides').unslider({
+					dots: true,
+					delay:100000
+				});
+			});
+			</script>
 			<div id="lasso--tour__modal" class="lasso--modal lasso--tour__modal lasso--modal__checkbox <?php echo sanitize_html_class( $custom_classes );?>">
 
 				<div class="lasso--modal__inner">
@@ -68,13 +76,18 @@ class lassoEditorWelcome {
 	function tour_slides(){
 
 		?>
-
-		<ul>
-			<li>
-				<img src="http://placehold.it/400x260">
-				<p>Story components can be added by clicking and dragging from the component try into the story.</p>
-			</li>
-		</ul>
+		<div id="lasso--tour__slides">
+			<ul>
+				<li>
+					<img src="http://placehold.it/400x260">
+					<p>Story components can be added by clicking and dragging from the component try into the story.</p>
+				</li>
+				<li>
+					<img src="http://placehold.it/300x260">
+					<p>Another item.</p>
+				</li>
+			</ul>
+		</div>
 
 		<?php
 
