@@ -35,11 +35,16 @@ class lassoEditorWelcome {
 			?>
 			<script>
 			jQuery(document).ready(function($){
+
 				$('body').addClass('lasso-modal-open');
+
+				$('#lasso--tour__slides').fadeIn();
+
 				$('#lasso--tour__slides').unslider({
 					dots: true,
 					delay:100000
 				});
+
 			});
 			</script>
 			<div id="lasso--tour__modal" class="lasso--modal lasso--tour__modal lasso--modal__checkbox <?php echo sanitize_html_class( $custom_classes );?>">
@@ -58,7 +63,7 @@ class lassoEditorWelcome {
 					        </label>
 						</div>
 
-						<input type="submit" value="<?php _e('Okay, got it','lasso');?>" data-nonce="<?php echo $nonce;?>" >
+						<input type="submit" value="<?php _e('Okay, got it!','lasso');?>" data-nonce="<?php echo $nonce;?>" >
 					</div>
 
 				</div>
@@ -76,16 +81,21 @@ class lassoEditorWelcome {
 	function tour_slides(){
 
 		?>
-		<div id="lasso--tour__slides">
+		<div id="lasso--tour__slides" style="display:none;">
 			<ul>
 				<li>
 					<img src="http://placehold.it/400x260">
-					<p>Story components can be added by clicking and dragging from the component try into the story.</p>
+					<p>Begin editing by clicking the Pen icon. Access additional settings with the settings icon, and add a new post with the plus icon.</p>
 				</li>
 				<li>
-					<img src="http://placehold.it/300x260">
-					<p>Another item.</p>
+					<img src="http://placehold.it/400x260">
+					<p>Story components can be added by clicking the plus icon, and dragging any component from the component tray into the story.</p>
 				</li>
+				<li>
+					<img src="http://placehold.it/400x260">
+					<p>Highlight a piece of text, and click on a formatting option to style it.</p>
+				</li>
+				<?php do_action('lasso_tour_slides') ;?>
 			</ul>
 		</div>
 
