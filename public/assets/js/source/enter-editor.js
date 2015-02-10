@@ -132,6 +132,7 @@ jQuery(document).ready(function($){
 	    // ref http://stackoverflow.com/a/15482748
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
+
 		article.highlight = function() {
 			if (document.activeElement !== article) {
 
@@ -158,6 +159,20 @@ jQuery(document).ready(function($){
 		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
 			article.highlight();
 			articleMedium.invokeElement('i');
+			return false;
+		};
+
+		document.getElementById('lasso-toolbar--h2').onmousedown = function() {
+			article.highlight();
+
+			articleMedium.invokeElement('h2');
+
+			return false;
+		};
+
+		document.getElementById('lasso-toolbar--h3').onmousedown = function() {
+			article.highlight();
+			articleMedium.invokeElement('h3');
 			return false;
 		};
 

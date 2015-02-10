@@ -10,6 +10,12 @@
         left: ~'calc(50% - @{width} / 2)';
     }
 
+    &.toolbar-extended {
+        @width: 313px;
+        width:@width;
+        left: ~'calc(50% - @{width} / 2)';
+    }
+
 }
 
 // global styles wrapper for editor and toolbar controls
@@ -93,6 +99,20 @@
 }
 #lasso-toolbar--link:before {
     content:'\e9cb';
+}
+#lasso-toolbar--h2:before {
+    content:'H2';
+    top:9px;
+    font-size:17px;
+    font-weight:bold;
+    letter-spacing: 0.05em;
+}
+#lasso-toolbar--h3:before {
+    content:'H3';
+    top:9px;
+    font-size:17px;
+    font-weight:bold;
+    letter-spacing: 0.05em;
 }
 #lasso-toolbar--html:before {
     content:'\ea7f';

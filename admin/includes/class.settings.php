@@ -111,6 +111,8 @@ class ahEditorAdminSettings {
 		$post_settings_disabled = lasso_editor_get_option('post_settings_disabled','lasso_editor');
 		$shortcodify_disabled 	= lasso_editor_get_option('shortcodify_disabled','lasso_editor');
 
+		$toolbar_headings      = lasso_editor_get_option('toolbar_headings', 'lasso_editor');
+
 		?>
 		<div class="wrap">
 
@@ -143,6 +145,14 @@ class ahEditorAdminSettings {
 				</div>
 
 				<!-- Advanced -->
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
+						<label for="lasso_editor[toolbar_headings]">Enable Toolbar Headings</label>
+						<span class="lasso--setting-description">By default the H2 and H3 options for headings are in the insert HTML area. You may prefer those headings to act just like the underline, and strikethrough, so toggling this will add them to the toolbar.</span>
+
+					</div>
+				</div>
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
