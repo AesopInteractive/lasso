@@ -8844,39 +8844,49 @@ jQuery(document).ready(function($){
 		/////////////////
 		/// EXIT EDITOR
 		///////////////////
+		function exitEditor(){
+
+			$('body').removeClass('lasso-sidebar-open lasso-editing');
+
+			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit').fadeOut().remove();
+
+			$('#lasso--edit').css('opacity',1);
+			$('.lasso--controls__right').css('opacity',0);
+			$(post_container).attr('id','');
+
+			// unwrap wp images
+			$('.lasso--wpimg__wrap').each(function(){
+				$(this).children().unwrap()
+			});
+
+			// unwrap map from hits drag holder
+			$('#lasso--map-form').each(function(){
+
+				var $this = $(this)
+
+				$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
+
+				$this.children().unwrap()
+			});
+
+			$(titleClass).attr('contenteditable', false);
+
+			articleMedium.destroy();
+		}
+		// on escape key exit
 		$(document).keyup(function(e) {
 
 			if ( 27 == e.keyCode ) {
 
-				$('body').removeClass('lasso-sidebar-open lasso-editing');
-
-				$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit').fadeOut().remove();
-
-				$('#lasso--edit').css('opacity',1);
-				$('.lasso--controls__right').css('opacity',0);
-				$(post_container).attr('id','');
-
-				// unwrap wp images
-				$('.lasso--wpimg__wrap').each(function(){
-					$(this).children().unwrap()
-				});
-
-				// unwrap map from hits drag holder
-				$('#lasso--map-form').each(function(){
-
-					var $this = $(this)
-
-					$this.find('.lasso-component--controls, .lasso--map-form__footer ').remove()
-					
-					$this.children().unwrap()
-				});
-
-				$(titleClass).attr('contenteditable', false);
-
-				articleMedium.destroy();
+				exitEditor()
 			}
 
 		});
+		// on utility class exit
+		$('#lasso--exit').live('click',function(e){
+			e.preventDefault();
+			exitEditor();
+		})
 
 		///////////
 		// INITIALIZE MAPS
