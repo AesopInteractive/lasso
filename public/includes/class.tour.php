@@ -11,7 +11,7 @@ class lassoEditorWelcome {
 
 	function __construct(){
 
-		//add_action( 'wp_footer', 						array($this,'draw_tour'));
+		add_action( 'wp_footer', 						array($this,'draw_tour'));
 		add_action('wp_ajax_process_hide_tour', 		array($this,'process_hide_tour'));
 
 	}
