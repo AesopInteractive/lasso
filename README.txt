@@ -18,6 +18,11 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.6 =
+* H2 and H3 heading support added to toolbar with option
+* new user tour
+* better modal positioning logic
+
 = 0.5 =
 * full gallery compatibility
 * misc fixes and improvements for founder launch
