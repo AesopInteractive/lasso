@@ -84,16 +84,16 @@ class lassoEditorWelcome {
 		<div id="lasso--tour__slides" style="display:none;">
 			<ul>
 				<li>
-					<img src="http://placehold.it/400x260">
+					<img src="<?php echo LASSO_URL.'/public/assets/img/enter-editor.gif';?>">
 					<p>Begin editing by clicking the Pen icon. Access additional settings with the settings icon, and add a new post with the plus icon.</p>
 				</li>
 				<li>
-					<img src="http://placehold.it/400x260">
-					<p>Story components can be added by clicking the plus icon, and dragging any component from the component tray into the story.</p>
+					<img src="<?php echo LASSO_URL.'/public/assets/img/editor-highlight.gif';?>">
+					<p>Highlight a piece of text, and click on a formatting option to style it.</p>
 				</li>
 				<li>
-					<img src="http://placehold.it/400x260">
-					<p>Highlight a piece of text, and click on a formatting option to style it.</p>
+					<img src="<?php echo LASSO_URL.'/public/assets/img/editor-component.gif';?>">
+					<p>Story components can be added by clicking the plus icon, and dragging any component from the component tray into the story.</p>
 				</li>
 				<?php do_action('lasso_tour_slides') ;?>
 			</ul>
