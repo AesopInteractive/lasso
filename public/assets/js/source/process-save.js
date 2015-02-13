@@ -68,6 +68,11 @@ jQuery(document).ready(function($){
 			$this.children().unwrap()
 		});
 
+		// if tehre are any scrollnav sections we need to break them open so the editor doesnt save the html
+		$('.scroll-nav__section').each(function(){
+			$(this).children().unwrap();
+		})
+
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');

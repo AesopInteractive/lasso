@@ -8693,11 +8693,6 @@ jQuery(document).ready(function($){
 
 		});
 
-		// if tehre are any scrollnav sections we need to break them open so the editor doesnt save the html
-		$('.scroll-nav__section').each(function(){
-			$(this).children().unwrap();
-		})
-
 		/////////////////
 		///
 		///   CONTENT EDITABLE / TOOLBAR
@@ -8897,7 +8892,30 @@ jQuery(document).ready(function($){
 		// INITIALIZE TIMELINE
 		//////////
 		var timelineGoTime = function(){
-			alert('yay')
+
+			// if there's no toolbar present
+			if ( !$('.aesop-timeline').length > 0 ) {
+				$('body').append('<div class="aesop-timeline"></div>').addClass('has-timeline');
+			}
+
+			if ( !$('.aesop-timeline .scroll-nav').length > 0 ) {
+
+				$('.aesop-entry-content').scrollNav({
+				    sections: '.aesop-timeline-stop',
+				    arrowKeys: true,
+				    insertTarget: '.aesop-timeline',
+				    insertLocation: 'appendTo',
+				    showTopLink: false,
+				    showHeadline: false,
+				    scrollOffset: 0,
+				});
+
+				$('.aesop-timeline-stop').each(function(){
+					var label = $(this).attr('data-title');
+					$(this).text(label);
+				});
+			}
+
 		}
 
 		///////////
@@ -9127,7 +9145,7 @@ jQuery(document).ready(function($){
 
 					if ( 'map' == type ) { mapsGoTime() }
 
-					if ('timeline' == type ) { timelineGoTime() }
+					if ('timeline_stop' == type ) { timelineGoTime() }
 				}
 
 		    }
@@ -9983,6 +10001,11 @@ jQuery(document).ready(function($){
 
 			$this.children().unwrap()
 		});
+
+		// if tehre are any scrollnav sections we need to break them open so the editor doesnt save the html
+		$('.scroll-nav__section').each(function(){
+			$(this).children().unwrap();
+		})
 
 		// get the html from our div
 		var html = $('#'+editor).html(),
