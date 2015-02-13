@@ -102,6 +102,11 @@ jQuery(document).ready(function($){
 
 		});
 
+		// if tehre are any scrollnav sections we need to break them open so the editor doesnt save the html
+		$('.scroll-nav__section').each(function(){
+			$(this).children().unwrap();
+		})
+
 		/////////////////
 		///
 		///   CONTENT EDITABLE / TOOLBAR
@@ -296,6 +301,13 @@ jQuery(document).ready(function($){
 			e.preventDefault();
 			exitEditor();
 		})
+
+		///////////
+		// INITIALIZE TIMELINE
+		//////////
+		var timelineGoTime = function(){
+			alert('yay')
+		}
 
 		///////////
 		// INITIALIZE MAPS
@@ -524,6 +536,7 @@ jQuery(document).ready(function($){
 
 					if ( 'map' == type ) { mapsGoTime() }
 
+					if ('timeline' == type ) { timelineGoTime() }
 				}
 
 		    }

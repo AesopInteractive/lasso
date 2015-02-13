@@ -62,7 +62,7 @@ function lasso_editor_components(){
 			'name' 	  => 'Map',
 			'content' => lasso_map_component(),
 		),
-		'timeline' => array(
+		'timeline_stop' => array(
 			'name' 	  => 'Timeline',
 			'content' => lasso_timeline_component(),
 		),

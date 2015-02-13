@@ -171,7 +171,7 @@ function lasso_editor_text_toolbar(){
 					<li data-type="audio" title="<?php _e('Audio','lasso');?>"  class="audio"></li>
 					<li data-type="video" title="<?php _e('Video','lasso');?>"  class="video"></li>
 					<li data-type="map" title="<?php _e('Map','lasso');?>"  class="map"></li>
-					<li data-type="timeline" title="<?php _e('Timeline','lasso');?>"  class="timeline"></li>
+					<li data-type="timeline_stop" title="<?php _e('Timeline','lasso');?>"  class="timeline"></li>
 					<li data-type="document" title="<?php _e('Document','lasso');?>"  class="document"></li>
 					<li data-type="collection" title="<?php _e('Collection','lasso');?>"  class="collection"></li>
 					<li data-type="gallery" title="<?php _e('Gallery','lasso');?>"  class="gallery"></li>
