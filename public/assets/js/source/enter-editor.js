@@ -328,6 +328,13 @@ jQuery(document).ready(function($){
 		}
 
 		///////////
+		// INITIALIZE VIDEO
+		///////////
+		var videoGoTime = function(){
+			$('.aesop-video-component').fitVids()
+		}
+
+		///////////
 		// INITIALIZE MAPS
 		///////////
 		var mapsGoTime = function(){
@@ -555,6 +562,8 @@ jQuery(document).ready(function($){
 					if ( 'map' == type ) { mapsGoTime() }
 
 					if ('timeline_stop' == type ) { timelineGoTime() }
+
+					if ('video' == type ) { videoGoTime() }
 				}
 
 		    }
