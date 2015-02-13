@@ -8653,6 +8653,11 @@ jQuery(document).ready(function($){
 			$(titleClass).attr('contenteditable', true);
 		}
 
+		// if tehre are any scrollnav sections we need to break them open so that we can drag compnents around in them
+		$('.scroll-nav__section').each(function(){
+			$(this).children().unwrap();
+		})
+
 		// append the toolbar to any components that dont have them
 		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
 		$('.aesop-component').each(function(){
