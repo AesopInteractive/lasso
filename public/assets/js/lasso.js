@@ -8903,6 +8903,7 @@ jQuery(document).ready(function($){
 				$('body').append('<div class="aesop-timeline"></div>').addClass('has-timeline');
 			}
 
+
 			if ( !$('.aesop-timeline .scroll-nav').length > 0 ) {
 
 				$('.aesop-entry-content').scrollNav({
@@ -8917,9 +8918,11 @@ jQuery(document).ready(function($){
 
 				$('.aesop-timeline-stop').each(function(){
 					var label = $(this).attr('data-title');
-					$(this).text(label);
+					$(this).text(label).append( lassoDragHandle );
 				});
+
 			}
+
 
 		}
 
