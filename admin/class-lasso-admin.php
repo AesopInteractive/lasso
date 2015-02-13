@@ -41,6 +41,7 @@ class Lasso_Admin {
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		require_once(LASSO_DIR.'/admin/includes/class.settings.php');
+		require_once(LASSO_DIR.'/admin/includes/class.welcome.php');
 
 	}
 

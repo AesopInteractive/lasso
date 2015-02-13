@@ -214,7 +214,9 @@ class Lasso {
 	 * @since    0.0.1
 	 */
 	private static function single_activate() {
-		// @TODO: Define activation functionality here
+
+		set_transient( '_welcome_screen_activation_redirect', true, 30 );
+
 	}
 
 	/**
