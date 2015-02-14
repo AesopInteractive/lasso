@@ -1,0 +1,40 @@
+// iOS
+.os-ios {
+    .lasso-component--controls {
+        .opacity(1);
+        left:0;
+    }
+}
+
+// small screens
+@media(max-width:600px){
+
+    // editor controls
+    .lasso-editing {
+        .lasso--toolbar_wrap {
+            border-radius: 0;
+            bottom:0;
+            width:100%;
+            left:0;
+            right:0;
+        }
+        .lasso--controls__right {
+            z-index: 1000; // clears toolbar wrap
+            bottom:0;
+            right:0;
+
+            a {
+                background:none;
+            }
+
+            #lasso--save{
+                background: none;
+                &:before {
+                    color:@editor--color__update;
+                    top:3px;
+                }
+            }
+        }
+    }
+
+}
