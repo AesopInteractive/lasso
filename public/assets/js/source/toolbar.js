@@ -27,7 +27,7 @@ jQuery(function( $ ) {
 	/////////////
 	/// DROP UP
 	/////////////
-	$('#lasso-toolbar--components').live('click',function(){
+	$(document).on('click', '#lasso-toolbar--components', function(e){
 
 		$(this).toggleClass('toolbar--drop-up');
 		$('#lasso-toolbar--html').removeClass('html--drop-up');
@@ -71,7 +71,7 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#lasso-toolbar--html').live('click',function(e){
+	$(document).on('click', '#lasso-toolbar--html', function(e){
 
 		$(this).toggleClass('html--drop-up');
 		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
@@ -141,7 +141,7 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#lasso-toolbar--link').live('click',function(e){
+	$(document).on('click', '#lasso-toolbar--link', function(e){
 
 		$(this).toggleClass('link--drop-up');
 		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
