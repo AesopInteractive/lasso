@@ -9869,6 +9869,21 @@ jQuery(document).ready(function($){
 
 				component.find('.lasso-image-component-image').addClass('lasso-image-component-caption-'+value+' ');
 			});
+			settings.find('.lasso-image-offset > #lasso-generator-attr-offset').on('keyup',function(){
+
+				var value = $(this).val();
+
+				if ( component.find('.aesop-image-component-image').hasClass('aesop-component-align-left') ) {
+
+					component.find('.aesop-image-component-image').css('margin-left', $(this).val() );
+
+				} else {
+
+					component.find('.aesop-image-component-image').css('margin-right', $(this).val() );
+				}
+
+			});
+
 
 			// CHARACTER LIVE EDIT ///////////////////
 			settings.find('.lasso-character-name > #lasso-generator-attr-name').on('keyup',function(){
