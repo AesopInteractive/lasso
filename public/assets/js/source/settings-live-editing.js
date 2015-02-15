@@ -61,7 +61,7 @@
 				component.find('.aesop-image-component-caption').text( $(this).val() );
 			})
 			settings.find('.lasso-image-imgwidth > #lasso-generator-attr-imgwidth').on('keyup',function(){
-				component.find('.aesop-image-component-image').css('width', $(this).val() );
+				component.find('.aesop-image-component-image').css('max-width', $(this).val() );
 			})
 			settings.find('.lasso-image-align > #lasso-generator-attr-align').on('change',function(){
 
@@ -84,40 +84,40 @@
 				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
 
 			})
-			settings.find('.lasso-image-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
+				settings.find('.lasso-image-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
 
-				var value = $(this).val();
+					var value = $(this).val();
 
-				if ( 'left' == value ) {
+					if ( 'left' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-right aesop-image-component-caption-center')
+						component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-right aesop-image-component-caption-center')
 
-				} else if ( 'right' == value ) {
+					} else if ( 'right' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-center')
+						component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-center')
 
-				} else if ( 'center' == value ) {
+					} else if ( 'center' == value ) {
 
-					component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-right')
+						component.find('.aesop-image-component-image').removeClass('aesop-image-component-caption-left aesop-image-component-caption-right')
 
-				}
+					}
 
-				component.find('.lasso-image-component-image').addClass('lasso-image-component-caption-'+value+' ');
-			});
-			settings.find('.lasso-image-offset > #lasso-generator-attr-offset').on('keyup',function(){
+					component.find('.lasso-image-component-image').addClass('lasso-image-component-caption-'+value+' ');
+				});
+				settings.find('.lasso-image-offset > #lasso-generator-attr-offset').on('keyup',function(){
 
-				var value = $(this).val();
+					var value = $(this).val();
 
-				if ( component.find('.aesop-image-component-image').hasClass('aesop-component-align-left') ) {
+					if ( component.find('.aesop-image-component-image').hasClass('aesop-component-align-left') ) {
 
-					component.find('.aesop-image-component-image').css('margin-left', $(this).val() );
+						component.find('.aesop-image-component-image').css('margin-left', $(this).val() );
 
-				} else {
+					} else {
 
-					component.find('.aesop-image-component-image').css('margin-right', $(this).val() );
-				}
+						component.find('.aesop-image-component-image').css('margin-right', $(this).val() );
+					}
 
-			});
+				});
 
 
 			// CHARACTER LIVE EDIT ///////////////////
@@ -153,7 +153,27 @@
 				component.find('.aesop-cover-title small').text( $(this).val() );
 			})
 
+			// VIDEO LIVE EDITOR /////////////////////
+			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('change blur',function(){
+
+				src = $(this).val()
+				iSrc = component.find('.aesop-video-container')
+
+				console.log(src)
+
+				if ( iSrc.hasClass('vimeo') ) {
+					component.find('iframe').attr('src', '//player.vimeo.com/video/'+src+' ')
+				} else if ( iSrc.hasClass('youtube') ) {
+					component.find('iframe').attr('src', '//www.youtube.com/embed/'+src+'?rel=0&wmode=transparent')
+				}
+
+			})
+				settings.find('.lasso-video-width > #lasso-generator-attr-width').on('keyup',function(){
+					component.find('.aesop-video-container').css('max-width', $(this).val() );
+				})
+
 		});
+
 
 	});
 

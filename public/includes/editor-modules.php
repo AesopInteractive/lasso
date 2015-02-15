@@ -446,7 +446,7 @@ function lasso_editor_options_blob() {
 					$i=0;
 
 					foreach ( $attr_info['values'] as $attr_value ) {
-						$attr_value_selected = ( $attr_info['default'] == $attr_value ) ? ' selected="selected"' : '';
+						$attr_value_selected = $attr_info['default'] == $attr_value ? ' selected="selected"' : '';
 
 						$return .= '<option value="'.$attr_info['values'][$i]['value'].'" ' . $attr_value_selected . '>'.$attr_info['values'][$i]['name'].'</option>';
 
