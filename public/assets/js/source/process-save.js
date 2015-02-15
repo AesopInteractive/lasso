@@ -96,7 +96,7 @@ jQuery(document).ready(function($){
 				type: "warning",
 				text: false,
 				showCancelButton: true,
-				confirmButtonColor: "#d9534f",
+				confirmButtonColor: "#5CB85C",
 				confirmButtonText: "Yes, publish it!",
 				closeOnConfirm: true
 			},
@@ -192,12 +192,16 @@ jQuery(document).ready(function($){
 					// if this is being published then remove the publish button afterwards
 					if ( $this.hasClass('lasso-publish-post') ) {
 						$this.remove();
-						location.reload()
 					}
 
 					// wait a bit then remvoe the button class so they can save again
 					setTimeout(function(){
 						$(save).removeClass('lasso--saved');
+
+						if ( $this.hasClass('lasso-publish-post') ) {
+							location.reload()
+						}
+
 					},1200);
 
 					// then remove this copy from local stoarge

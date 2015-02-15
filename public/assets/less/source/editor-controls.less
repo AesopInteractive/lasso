@@ -66,6 +66,10 @@
             .editor-icon-font();
         }
 
+        &:focus {
+            outline:none;
+        }
+
     }
 }
 
@@ -144,7 +148,7 @@
 
 // PUBLISH BUTTON (if post is in draft)
 #lasso--publish {
-    background: @editor--color__error;
+    background: @editor--color__success;
 
     &:before {
         content:'\e909';
