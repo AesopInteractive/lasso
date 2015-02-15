@@ -8812,7 +8812,7 @@ jQuery(document).ready(function($){
 		$(post_container).attr('id', editor);
 
 		// append toolbar
-		$(toolbar).hide().appendTo('body').fadeIn(200);
+		$(toolbar).hide().appendTo('body').fadeIn(300);
 
 		// fade in controls if previous exacped
 		$('.lasso--controls__right').css('opacity',1);
