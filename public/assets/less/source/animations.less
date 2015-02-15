@@ -6,3 +6,58 @@
         .transition(all .25s linear);
     }
 }
+.lassoShowAnimate {
+    -webkit-animation: lassoShowAnimate 0.2s;
+    -moz-animation: lassoShowAnimate 0.2s;
+    animation: lassoShowAnimate 0.2s;
+}
+.lassoHideAnimate {
+    -webkit-animation: lassoHideAnimate 0.2s;
+    -moz-animation: lassoHideAnimate 0.2s;
+    animation: lassoHideAnimate 0.2s;
+}
+@-webkit-keyframes lassoShowAnimate {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7); }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } 
+}
+@-moz-keyframes lassoShowAnimate {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7); }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } 
+}
+@keyframes lassoShowAnimate {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7); }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } 
+}
+@-webkit-keyframes lassoHideAnimate {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1); }
+  100% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5); } }
+@-moz-keyframes lassoHideAnimate {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1); }
+  100% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5); } }
+@keyframes lassoHideAnimate {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1); }
+  100% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5); } }

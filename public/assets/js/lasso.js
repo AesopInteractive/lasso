@@ -10287,10 +10287,10 @@ jQuery(document).ready(function($){
 		if ( $this.hasClass('lasso-publish-post') ) {
 			swal({
 				title: "Publish Post?",
-				type: "warning",
+				type: "info",
 				text: false,
 				showCancelButton: true,
-				confirmButtonColor: "#5CB85C",
+				confirmButtonColor: "#5bc0de",
 				confirmButtonText: "Yes, publish it!",
 				closeOnConfirm: true
 			},

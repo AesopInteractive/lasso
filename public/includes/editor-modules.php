@@ -261,7 +261,7 @@ function lasso_editor_component_modal(){
 	$custom_classes = apply_filters('lasso_modal_settings_classes', '' );
 
 	?>
-	<div id="lasso--post-settings__modal" class="lasso--modal <?php echo sanitize_html_class( $custom_classes );?>">
+	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 			<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
@@ -331,7 +331,7 @@ function lasso_editor_newpost_modal(){
 	$type = get_post_type( get_the_ID() );
 
 	?>
-	<div id="lasso--post-new__modal" class="lasso--modal <?php echo sanitize_html_class( $custom_classes );?>">
+	<div id="lasso--post-new__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
 			<form id="lasso--postnew__form" enctype="multipart/form-data" >
