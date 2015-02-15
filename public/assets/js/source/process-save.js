@@ -89,6 +89,29 @@ jQuery(document).ready(function($){
 			nonce:     	lasso_editor.nonce
 		};
 
+		// intercept if publish to confirm
+		if ( $this.hasClass('lasso-publish-post') ) {
+			swal({
+				title: "Publish Post?",
+				type: "warning",
+				text: false,
+				showCancelButton: true,
+				confirmButtonColor: "#d9534f",
+				confirmButtonText: "Yes, publish it!",
+				closeOnConfirm: true
+			},
+			function(){
+
+				runSavePublish()
+
+			});
+
+		} else {
+
+			runSavePublish()
+
+		}
+
 		/**
 		 * Turn content html into shortcodes
 		 * @param  {[type]} content  [description]
@@ -158,34 +181,37 @@ jQuery(document).ready(function($){
 		}
 
 		// make the actual ajax call to save or publish
-		$.post( ajaxurl, data, function(response) {
+		function runSavePublish(){
+			$.post( ajaxurl, data, function(response) {
 
-			if( true == response.success ) {
+				if( true == response.success ) {
 
-				// change button class to saved
-				$(save).removeClass('being-saved').addClass('lasso--saved');
+					// change button class to saved
+					$(save).removeClass('being-saved').addClass('lasso--saved');
 
-				// if this is being published then remove the publish button afterwards
-				if ( $this.hasClass('lasso-publish-post') ) {
-					$this.remove();
+					// if this is being published then remove the publish button afterwards
+					if ( $this.hasClass('lasso-publish-post') ) {
+						$this.remove();
+						location.reload()
+					}
+
+					// wait a bit then remvoe the button class so they can save again
+					setTimeout(function(){
+						$(save).removeClass('lasso--saved');
+					},1200);
+
+					// then remove this copy from local stoarge
+					localStorage.removeItem( 'lasso_backup_'+postid );
+
+				} else {
+
+					// testing
+					//console.log(response);
+					$(save).removeClass('being-saved').addClass('lasso--error');
 				}
 
-				// wait a bit then remvoe the button class so they can save again
-				setTimeout(function(){
-					$(save).removeClass('lasso--saved');
-				},1200);
-
-				// then remove this copy from local stoarge
-				localStorage.removeItem( 'lasso_backup_'+postid );
-
-			} else {
-
-				// testing
-				//console.log(response);
-				$(save).removeClass('being-saved').addClass('lasso--error');
-			}
-
-		});
+			});
+		}
 
 	});
 });
