@@ -159,8 +159,6 @@
 				src = $(this).val()
 				iSrc = component.find('.aesop-video-container')
 
-				console.log(src)
-
 				if ( iSrc.hasClass('vimeo') ) {
 					component.find('iframe').attr('src', '//player.vimeo.com/video/'+src+' ')
 				} else if ( iSrc.hasClass('youtube') ) {
@@ -172,6 +170,36 @@
 					component.find('.aesop-video-container').css('max-width', $(this).val() );
 				})
 
+			// CONTENT COMPONENT LIVE EDIT /////
+			settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
+			  	component.find('.aesop-content-comp-wrap').css({'background-color': $(this).val()});
+			});
+				settings.find('.lasso-content-color > #lasso-generator-attr-color').live('change',function(){
+				  	component.find('.aesop-content-comp-wrap').css({'color': $(this).val()});
+				});
+				settings.find('.lasso-content-height > #lasso-generator-attr-height').live('keyup',function(){
+
+					val = $(this).val()
+
+					component.find('.aesop-content-comp-wrap').css({'min-height': $(this).val()});
+
+				});
+				settings.find('.lasso-content-columns > #lasso-generator-attr-columns').live('change',function(){
+
+					val = $(this).val()
+
+					if ( '1' == val ) {
+						component.find('.aesop-content-comp-wrap').removeClass('aesop-content-comp-columns-2 aesop-content-comp-columns-3 aesop-content-comp-columns-4').addClass('aesop-content-comp-columns-1')
+					} else if ( '2' == val ) {
+						component.find('.aesop-content-comp-wrap').removeClass('aesop-content-comp-columns-1 aesop-content-comp-columns-3 aesop-content-comp-columns-4').addClass('aesop-content-comp-columns-2')
+					} else if ( '3' == val ) {
+						component.find('.aesop-content-comp-wrap').removeClass('aesop-content-comp-columns-1 aesop-content-comp-columns-2 aesop-content-comp-columns-4').addClass('aesop-content-comp-columns-3')
+					} else if ( '4' == val ) {
+						component.find('.aesop-content-comp-wrap').removeClass('aesop-content-comp-columns-1 aesop-content-comp-columns-2 aesop-content-comp-columns-3').addClass('aesop-content-comp-columns-4')
+					}
+
+
+				});
 		});
 
 
