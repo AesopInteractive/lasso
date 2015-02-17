@@ -45,16 +45,16 @@ function lasso_editor_controls() {
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
 
-				<li id="lasso--edit" title="<?php _e('Edit Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
+				<li id="lasso--edit" title="<?php esc_attr_e('Edit Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
 
 				<?php if ( lasso_user_can('publish_posts') ) : ?>
 
 					<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
-						<li id="lasso--post-settings" title="<?php _e('Post Settings','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
+						<li id="lasso--post-settings" title="<?php esc_attr_e('Post Settings','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
 					<?php }
 
 					if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
-						<li id="lasso--post-new" title="<?php _e('Add Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
+						<li id="lasso--post-new" title="<?php esc_attr_e('Add Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
 					<?php } ?>
 
 				<?php endif; ?>
@@ -62,9 +62,9 @@ function lasso_editor_controls() {
 			</ul>
 
 			<div class="lasso--controls__right">
-				<a href="#" title="<?php _e('Save Post','lasso');?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+				<a href="#" title="<?php esc_attr_e('Save Post','lasso');?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
 				<?php if ( 'draft' == $status ) { ?>
-					<a href="#" title="<?php _e('Publish Post','lasso');?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<a href="#" title="<?php esc_attr_e('Publish Post','lasso');?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
 				<?php } ?>
 			</div>
 
@@ -128,53 +128,53 @@ function lasso_editor_text_toolbar(){
 	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>">
 		<ul class="lasso--toolbar__inner lasso-editor-controls">
 			<?php do_action('lasso_toolbar_components_before');?>
-		    <li id="lasso-toolbar--bold" title="<?php _e('Bold','lasso');?>"></li>
-		    <li id="lasso-toolbar--underline" title="<?php _e('Underline','lasso');?>"></li>
-		    <li id="lasso-toolbar--italic" title="<?php _e('Italicize','lasso');?>"></li>
-		    <li id="lasso-toolbar--strike" title="<?php _e('Strikethrough','lasso');?>"></li>
+		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e('Bold','lasso');?>"></li>
+		    <li id="lasso-toolbar--underline" title="<?php esc_attr_e('Underline','lasso');?>"></li>
+		    <li id="lasso-toolbar--italic" title="<?php esc_attr_e('Italicize','lasso');?>"></li>
+		    <li id="lasso-toolbar--strike" title="<?php esc_attr_e('Strikethrough','lasso');?>"></li>
 		    <?php if ( $toolbar_headings ): ?>
-		    <li id="lasso-toolbar--h2" title="<?php _e('H2 Heading','lasso');?>"></li>
-		    <li id="lasso-toolbar--h3" title="<?php _e('H3 Heading','lasso');?>"></li>
+		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e('H2 Heading','lasso');?>"></li>
+		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e('H3 Heading','lasso');?>"></li>
 			<?php endif; ?>
-		    <li id="lasso-toolbar--link" title="<?php _e('Anchor Link','lasso');?>">
+		    <li id="lasso-toolbar--link" title="<?php esc_attr_e('Anchor Link','lasso');?>">
 		    	<div id="lasso-toolbar--link__wrap">
-		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php _e('http://url.com','lasso');?>"></div>
-		    		<a href="#" title="<?php _e('Create Link','lasso');?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
+		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e('http://url.com','lasso');?>"></div>
+		    		<a href="#" title="<?php esc_attr_e('Create Link','lasso');?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
 		    	</div>
 		    </li>
 		    <?php do_action('lasso_toolbar_components_after');?>
-		    <li id="lasso-toolbar--html" title="<?php _e('Insert HTML','lasso');?>">
+		    <li id="lasso-toolbar--html" title="<?php esc_attr_e('Insert HTML','lasso');?>">
 		    	<div id="lasso-toolbar--html__wrap">
-		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php _e('Enter HTML to insert','lasso');?>"></div>
+		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e('Enter HTML to insert','lasso');?>"></div>
 		    		<div id="lasso-toolbar--html__footer">
 		    			<ul class="lasso-toolbar--html-snips">
-		    				<li id="lasso-html--h2" title="<?php _e('H2 Heading','lasso');?>">
-		    				<li id="lasso-html--h3" title="<?php _e('H3 Heading','lasso');?>">
-		    				<li id="lasso-html--ul" title="<?php _e('Unordered List','lasso');?>">
-		    				<li id="lasso-html--ol" title="<?php _e('Ordered List','lasso');?>">
+		    				<li id="lasso-html--h2" title="<?php esc_attr_e('H2 Heading','lasso');?>">
+		    				<li id="lasso-html--h3" title="<?php esc_attr_e('H3 Heading','lasso');?>">
+		    				<li id="lasso-html--ul" title="<?php esc_attr_e('Unordered List','lasso');?>">
+		    				<li id="lasso-html--ol" title="<?php esc_attr_e('Ordered List','lasso');?>">
 		    			</ul>
 		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e('Cancel','lasso');?></a>
-		    			<a href="#" title="<?php _e('Insert HTML','lasso');?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e('Insert','lasso');?></a>
+		    			<a href="#" title="<?php esc_attr_e('Insert HTML','lasso');?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e('Insert','lasso');?></a>
 		    		</div>
 		    	</div>
 		    </li>
 		    <?php if ( 'ase-active' == $ase_status || defined('LASSO_CUSTOM') ): ?>
-		    <li id="lasso-toolbar--components" title="<?php _e('Insert Component','lasso');?>">
+		    <li id="lasso-toolbar--components" title="<?php esc_attr_e('Insert Component','lasso');?>">
 			    <ul id="lasso-toolbar--components__list">
 			    	<?php if ( !defined('LASSO_CUSTOM') ) : ?>
-					<li data-type="image" title="<?php _e('Image','lasso');?>" class="image"></li>
-					<li data-type="character" title="<?php _e('Character','lasso');?>" class="character"></li>
-					<li data-type="quote" title="<?php _e('Quote','lasso');?>"  class="quote"></li>
-					<li data-type="content" title="<?php _e('Content','lasso');?>"  class="content"></li>
-					<li data-type="chapter" title="<?php _e('Chapter','lasso');?>"  class="chapter"></li>
-					<li data-type="parallax" title="<?php _e('Parallax','lasso');?>"  class="parallax"></li>
-					<li data-type="audio" title="<?php _e('Audio','lasso');?>"  class="audio"></li>
-					<li data-type="video" title="<?php _e('Video','lasso');?>"  class="video"></li>
-					<li data-type="map" title="<?php _e('Map','lasso');?>"  class="map"></li>
-					<li data-type="timeline_stop" title="<?php _e('Timeline','lasso');?>"  class="timeline"></li>
-					<li data-type="document" title="<?php _e('Document','lasso');?>"  class="document"></li>
-					<li data-type="collection" title="<?php _e('Collection','lasso');?>"  class="collection"></li>
-					<li data-type="gallery" title="<?php _e('Gallery','lasso');?>"  class="gallery"></li>
+					<li data-type="image" title="<?php esc_attr_e('Image','lasso');?>" class="image"></li>
+					<li data-type="character" title="<?php esc_attr_e('Character','lasso');?>" class="character"></li>
+					<li data-type="quote" title="<?php esc_attr_e('Quote','lasso');?>"  class="quote"></li>
+					<li data-type="content" title="<?php esc_attr_e('Content','lasso');?>"  class="content"></li>
+					<li data-type="chapter" title="<?php esc_attr_e('Chapter','lasso');?>"  class="chapter"></li>
+					<li data-type="parallax" title="<?php esc_attr_e('Parallax','lasso');?>"  class="parallax"></li>
+					<li data-type="audio" title="<?php esc_attr_e('Audio','lasso');?>"  class="audio"></li>
+					<li data-type="video" title="<?php esc_attr_e('Video','lasso');?>"  class="video"></li>
+					<li data-type="map" title="<?php esc_attr_e('Map','lasso');?>"  class="map"></li>
+					<li data-type="timeline_stop" title="<?php esc_attr_e('Timeline','lasso');?>"  class="timeline"></li>
+					<li data-type="document" title="<?php esc_attr_e('Document','lasso');?>"  class="document"></li>
+					<li data-type="collection" title="<?php esc_attr_e('Collection','lasso');?>"  class="collection"></li>
+					<li data-type="gallery" title="<?php esc_attr_e('Gallery','lasso');?>"  class="gallery"></li>
 					<?php endif;
 					do_action('lasso_toolbar_components');?>
 			    </ul>
@@ -204,10 +204,10 @@ function lasso_editor_settings_toolbar(){
 	$custom_classes = apply_filters('lasso_component_classes', '' );
 
 	?><ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
-		<li class="lasso-drag" title="<?php _e('Move','lasso');?>"></li>
-		<li id="lasso-component--settings__trigger" class="lasso-settings" title="<?php _e('Settings','lasso');?>"></li>
-		<li class="lasso-clone" title="<?php _e('Clone','lasso');?>"></li>
-		<li class="lasso-delete" data-postid="<?php echo get_the_ID();?>" data-nonce="<?php echo $delete_nonce;?>" title="<?php _e('Delete','lasso');?>"></li>
+		<li class="lasso-drag" title="<?php esc_attr_e('Move','lasso');?>"></li>
+		<li id="lasso-component--settings__trigger" class="lasso-settings" title="<?php esc_attr_e('Settings','lasso');?>"></li>
+		<li class="lasso-clone" title="<?php esc_attr_e('Clone','lasso');?>"></li>
+		<li class="lasso-delete" data-postid="<?php echo get_the_ID();?>" data-nonce="<?php echo $delete_nonce;?>" title="<?php esc_attr_e('Delete','lasso');?>"></li>
 	</ul>
 
 	<?php return ob_get_clean();
@@ -229,8 +229,8 @@ function lasso_editor_image_controls(){
 
 	?>
 	<ul id="lasso--featImgControls">
-		<li id="lasso--featImgUpload"><a title="<?php _e('Replace Image','lasso');?>" href="#"><i class="lasso-icon-image"></i></a></li>
-		<li id="lasso--featImgSave"><a href="#"><?php _e('save','lasso');?></a></li>
+		<li id="lasso--featImgUpload"><a title="<?php esc_attr_e('Replace Image','lasso');?>" href="#"><i class="lasso-icon-image"></i></a></li>
+		<li id="lasso--featImgSave"><a href="#"><?php esc_attr_e('save','lasso');?></a></li>
 	</ul>
 	<?php return ob_get_clean();
 }
@@ -370,10 +370,10 @@ function lasso_editor_wpimg_edit(){
 	$custom_classes = apply_filters('lasso_wpimg_classes', '' );
 
 	?><ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
-		<li class="lasso-drag" title="<?php _e('Move','lasso');?>"></li>
-		<li id="lasso--wpimg-edit" class="lasso-settings" title="<?php _e('Settings','lasso');?>"></li>
-		<li class="lasso-clone" title="<?php _e('Clone','lasso');?>"></li>
-		<li class="lasso-delete" title="<?php _e('Delete','lasso');?>"></li>
+		<li class="lasso-drag" title="<?php esc_attr_e('Move','lasso');?>"></li>
+		<li id="lasso--wpimg-edit" class="lasso-settings" title="<?php esc_attr_e('Settings','lasso');?>"></li>
+		<li class="lasso-clone" title="<?php esc_attr_e('Clone','lasso');?>"></li>
+		<li class="lasso-delete" title="<?php esc_attr_e('Delete','lasso');?>"></li>
 	</ul>
 
 	<?php return ob_get_clean();

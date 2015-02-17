@@ -102,11 +102,7 @@ function lasso_editor_components(){
 if ( !function_exists('lasso_quote_component') ):
 	function lasso_quote_component(){
 
-		ob_start();
-
-		echo do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms."]');
-
-		return ob_get_clean();
+		return do_shortcode('[aesop_quote quote="The Universe is made of stories, not of atoms."]');
 	}
 endif;
 
@@ -114,11 +110,7 @@ endif;
 if ( !function_exists('lasso_image_component') ):
 	function lasso_image_component(){
 
-		ob_start();
-
-		echo do_shortcode('[aesop_image img="'.LASSO_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px"]');
-
-		return ob_get_clean();
+		return do_shortcode('[aesop_image img="'.LASSO_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px"]');
 	}
 endif;
 
@@ -126,11 +118,7 @@ endif;
 if ( !function_exists('lasso_parallax_component') ):
 	function lasso_parallax_component(){
 
-		ob_start();
-
-		echo do_shortcode('[aesop_parallax img="'.LASSO_URL.'/public/assets/img/empty-img.png"]');
-
-		return ob_get_clean();
+		return do_shortcode('[aesop_parallax img="'.LASSO_URL.'/public/assets/img/empty-img.png"]');
 	}
 endif;
 
@@ -138,11 +126,8 @@ endif;
 if ( !function_exists('lasso_audio_component') ):
 	function lasso_audio_component(){
 
-		ob_start();
+		return do_shortcode('[aesop_audio src="http://users.skynet.be/fa046054/home/P22/track06.mp3"]');
 
-		echo do_shortcode('[aesop_audio src="http://users.skynet.be/fa046054/home/P22/track06.mp3"]');
-
-		return ob_get_clean();
 	}
 endif;
 
@@ -150,11 +135,7 @@ endif;
 if ( !function_exists('lasso_content_component') ):
 	function lasso_content_component(){
 
-		ob_start();
-
-		echo do_shortcode('[aesop_content]Start typing here...[/lasso_content]');
-
-		return ob_get_clean();
+		return do_shortcode('[aesop_content]Start typing here...[/lasso_content]');
 	}
 endif;
 
@@ -162,11 +143,8 @@ endif;
 if ( !function_exists('lasso_character_component') ):
 	function lasso_character_component(){
 
-		ob_start();
+		return do_shortcode('[aesop_character img="'.LASSO_URL.'/public/assets/img/empty-img.png" name="Joes Apartment" width="150px"]');
 
-		echo do_shortcode('[aesop_character img="'.LASSO_URL.'/public/assets/img/empty-img.png" name="Joes Apartment" width="150px"]');
-
-		return ob_get_clean();
 	}
 endif;
 
@@ -174,11 +152,7 @@ endif;
 if ( !function_exists('lasso_collections_component') ):
 	function lasso_collections_component(){
 
-		ob_start();
-
-		echo do_shortcode('[aesop_collection]');
-
-		return ob_get_clean();
+		return do_shortcode('[aesop_collection]');
 	}
 endif;
 
@@ -186,11 +160,8 @@ endif;
 if ( !function_exists('lasso_document_component') ):
 	function lasso_document_component(){
 
-		ob_start();
+		return do_shortcode('[aesop_document src="'.LASSO_URL.'/public/assets/img/empty-img.png" ]');
 
-		echo do_shortcode('[aesop_document src="'.LASSO_URL.'/public/assets/img/empty-img.png" ]');
-
-		return ob_get_clean();
 	}
 endif;
 
@@ -198,11 +169,8 @@ endif;
 if ( !function_exists('lasso_gallery_component') ):
 	function lasso_gallery_component(){
 
-		ob_start();
+		return do_shortcode('[aesop_gallery]');
 
-		echo do_shortcode('[aesop_gallery]');
-
-		return ob_get_clean();
 	}
 endif;
 
@@ -210,11 +178,7 @@ endif;
 if ( !function_exists('lasso_heading_component') ):
 	function lasso_heading_component(){
 
-		ob_start();
-
-		echo do_shortcode('[aesop_chapter title="Chapter One" img="'.LASSO_URL.'/public/assets/img/empty-img.png" full="on"]');
-
-		return ob_get_clean();
+		return do_shortcode('[aesop_chapter title="Chapter One" img="'.LASSO_URL.'/public/assets/img/empty-img.png" full="on"]');
 	}
 endif;
 
@@ -237,11 +201,8 @@ endif;
 if ( !function_exists('lasso_timeline_component') ):
 	function lasso_timeline_component(){
 
-		ob_start();
+		return do_shortcode('[aesop_timeline_stop num="Title" title="2014"]');
 
-		echo do_shortcode('[aesop_timeline_stop num="Title" title="2014"]');
-
-		return ob_get_clean();
 	}
 endif;
 
@@ -249,10 +210,7 @@ endif;
 if ( !function_exists('lasso_video_component') ):
 	function lasso_video_component(){
 
-		ob_start();
+		return do_shortcode('[aesop_video id="59940289" width="100%" align="center"]');
 
-		echo do_shortcode('[aesop_video id="59940289" width="100%" align="center"]');
-
-		return ob_get_clean();
 	}
 endif;

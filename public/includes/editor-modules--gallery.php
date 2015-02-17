@@ -18,10 +18,10 @@ function lasso_gallery_editor_module(){
 			<div class="ase-gallery-opts--single lasso-option">
 
 				<label><?php _e('Manage Images','lasso');?>
-					<a href="#" id="ase-gallery-add-image" class="lasso-editor-tiny-btn" title="Add Images"><i class="lasso-icon-pencil"></i></a>
+					<a href="#" id="ase-gallery-add-image" class="lasso-editor-tiny-btn" title="<?php esc_attr_e('Add Images','lasso');?>"><i class="lasso-icon-pencil"></i></a>
 
 					<?php if ( lasso_user_can('publish_posts') ): ?>
-						<a href="#" id="lasso--gallery__create" class="lasso-editor-tiny-btn" title="Create Gallery"><i class="lasso-icon-plus"></i></a>
+						<a href="#" id="lasso--gallery__create" class="lasso-editor-tiny-btn" title="<?php esc_attr_e('Create Gallery','lasso');?>"><i class="lasso-icon-plus"></i></a>
 					<?php endif; ?>
 
 				</label>
@@ -48,7 +48,7 @@ function lasso_gallery_editor_module(){
 
 				<div id="ase-gallery-images"></div>
 
-				<a style="display:none;" class="editor-btn-secondary" data-post-title="<?php echo esc_attr( strtolower( get_the_title() ) );?>" id="lasso--gallery__save" href="#"><?php _e('Create Gallery','lasso');?></a>
+				<a style="display:none;" class="editor-btn-secondary" data-post-title="<?php echo esc_attr( strtolower( the_title_attribute() ) );?>" id="lasso--gallery__save" href="#"><?php _e('Create Gallery','lasso');?></a>
 
 			</div>
 
