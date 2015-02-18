@@ -64,7 +64,7 @@
 
 			} else if ( true == gallery ) {
 
-				form.addClass('hide-all-fields').prepend('<p class="lasso--gallery_created_confirm">Gallery Created! Save your post and refresh the page to access this new gallery.</p>')
+				form.addClass('hide-all-fields').prepend('<div id="lasso--pagerefresh">Gallery Created! Save your post and refresh the page to access this new gallery.</div>')
 
 				setTimeout( function(){ saveActions(true); }, 500 );
 
@@ -99,7 +99,8 @@
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
-					saveSequence( false, 800 );
+					saveSequence( false, 5000 );
+					form.before(lasso_editor.refreshRequired);
 
 				} else {
 

@@ -405,6 +405,24 @@ function lasso_map_form_footer(){
 
 /**
 *
+*	Some things aren't real-time updatable so we need to append a message in certain areas on certain actions
+*	@since 1.0
+*/
+function lasso_editor_refresh_message(){
+
+	ob_start();
+
+	?>
+	<div id="lasso--pagerefresh" class="visible">
+		<?php _e('Save this post and refesh the page to see these changes.','lasso');?>
+	</div>
+	<?php
+
+	return ob_get_clean();
+}
+
+/**
+*
 *	Draw out the settings field based on the shortcodes array with options foudn in Lasso Story Engine
 * 	This was mostly backported from lasso story engine and modified to allow for non lasso shortcodes and components
 *
