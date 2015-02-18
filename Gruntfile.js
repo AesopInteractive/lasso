@@ -80,7 +80,28 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        }
+        },
+        makepot: {
+	      target: {
+	        options: {
+	          domainPath: '/languages/',    // Where to save the POT file.
+	          exclude: ['build/.*'],
+	          mainFile: 'lasso.php',    // Main project file.
+	          potFilename: 'lasso.pot',    // Name of the POT file.
+	          potHeaders: {
+	                    poedit: true,                 // Includes common Poedit headers.
+	                    'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
+	                },
+	          type: 'wp-plugin',    // Type of project (wp-plugin or wp-theme).
+	          updateTimestamp: true,    // Whether the POT-Creation-Date should be updated without other changes.
+	          processPot: function( pot, options ) {
+	            pot.headers['report-msgid-bugs-to'] = 'http://lasso.is';
+	            pot.headers['language'] = 'en_US';
+	            return pot;
+	          }
+	        }
+	      }
+	    }
     });
 
     // register task
