@@ -64,7 +64,7 @@ class lassoProcessGallery {
 				$postid 	= isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
 				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
-				$type = $options ? $options['galleryType'] : false;
+				$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
 
 				// insert a new gallery
 				$args = array(
@@ -83,12 +83,11 @@ class lassoProcessGallery {
 				}
 
 				// update the gallery type
-				if ( $type ) {
+				if ( !empty( $type ) ) {
 
-					update_post_meta( $postid, 'aesop_gallery_type', $type );
+					update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
 
 				}
-
 				do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
 				wp_send_json_success(array('message' => 'gallery-created') );
@@ -116,8 +115,9 @@ class lassoProcessGallery {
 
 				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
 
-				$type = $options ? $options['galleryType'] : false;
-				$postid = $options ? (int) $options['id'] : false;
+				$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
+
+				$postid = !empty( $options ) ? (int) $options['id'] : false;
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
@@ -129,9 +129,9 @@ class lassoProcessGallery {
 				}
 
 				// update the gallery type
-				if ( $type ) {
+				if ( !empty( $type ) ) {
 
-					update_post_meta( $postid, 'aesop_gallery_type', $type );
+					update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
 
 				}
 

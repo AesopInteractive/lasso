@@ -86,10 +86,10 @@
 				postid: 		lasso_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
+				gallery_type:   $('#ase_gallery_type').val(),
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
-
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 

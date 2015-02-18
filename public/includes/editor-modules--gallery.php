@@ -61,11 +61,13 @@ function lasso_gallery_editor_module(){
 		<div data-option="gallery-type" class="ase-gallery-opts--single lasso-option">
 			<h3><?php _e('Gallery Type','lasso');?></h3>
 			<small class="lasso-option-desc"><?php _e('Select the type of gallery.','lasso');?></small>
+			<fieldset>
 	      		<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="grid"><?php _e('Grid','lasso');?></label>
 	        	<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="thumbnail"><?php _e('Thumbnail','lasso');?></label>
 				<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="sequence">Sequence</label>
 				<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="photoset"><?php _e('Photoset','lasso');?></label>
 				<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="stacked"><?php _e('Parallax','lasso');?></label>
+			</fieldset>
 		</div>
 	</div>
 
@@ -140,7 +142,7 @@ function lasso_gallery_editor_module(){
 
 
 	<input type="hidden" id="ase_gallery_ids" name="ase_gallery_ids" value="">
-
+	<input type="hidden" id="ase_gallery_type" name="ase_gallery_type" value="">
 	<?php
 
 	return ob_get_clean();
