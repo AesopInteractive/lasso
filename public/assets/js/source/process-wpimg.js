@@ -25,9 +25,9 @@
 
 			    // Create the media frame.
 			    ase_edit_frame = wp.media.frames.ase_edit_frame = wp.media({
-			      	title: 'Select Image',
+			      	title: lasso_editor.strings.selectImage,
 			      	button: {
-			        	text: 'Insert Image',
+			        	text: lasso_editor.strings.insertImage,
 			      	},
 			      	multiple: false  // Set to true to allow multiple files to be selected
 			    });

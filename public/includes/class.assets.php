@@ -32,6 +32,30 @@ class lassoAssets {
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 
+			// localized strings
+			$strings = array(
+				'saving' 			=> __('Saving...','lasso'),
+				'saved'				=> __('Saved!','lasso'),
+				'adding' 			=> __('Adding...','lasso'),
+				'added'				=> __('Added!','lasso'),
+				'galleryCreated' 	=> __('Gallery Created!','lasso'),
+				'galleryUpdated' 	=> __('Gallery Updated!','lasso'),
+				'justWrite'			=> __('Just write...','lasso'),
+				'chooseImage'		=> __('Choose an image','lasso'),
+				'updateImage'		=> __('Update Image','lasso'),
+				'insertImage'		=> __('Insert Image','lasso'),
+				'selectImage'		=> __('Select Image','lasso'),
+				'updateSelectedImg' => __('Update Selected Image','lasso'),
+				'chooseImages'		=> __('Choose images','lasso'),
+				'editImage'			=> __('Edit Image','lasso'),
+				'addImages'			=> __('Add Images','lasso'),
+				'addNewGallery'		=> __('Add New Gallery','lasso'),
+				'selectGallery'		=> __('Select Lasso Gallery Image','lasso'),
+				'useSelectedImages' => __('Use Selected Images','lasso'),
+				'publishPost'		=> __('Publish Post?','lasso'),
+				'publishYes'		=> __('Yes, publish it!','lasso')
+			);
+
 			// localized objects
 			$objects = array(
 				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
@@ -39,6 +63,7 @@ class lassoAssets {
 				'article_object'	=> $article_object,
 				'featImgClass'		=> $featImgClass,
 				'titleClass'		=> $titleClass,
+				'strings'			=> $strings,
 				'post_status'		=> get_post_status( get_the_ID() ),
 				'postid'			=> get_the_ID(),
 				'permalink'			=> get_permalink(),

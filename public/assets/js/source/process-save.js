@@ -92,12 +92,12 @@ jQuery(document).ready(function($){
 		// intercept if publish to confirm
 		if ( $this.hasClass('lasso-publish-post') ) {
 			swal({
-				title: "Publish Post?",
+				title: lasso_editor.strings.publishPost,
 				type: "info",
 				text: false,
 				showCancelButton: true,
 				confirmButtonColor: "#5bc0de",
-				confirmButtonText: "Yes, publish it!",
+				confirmButtonText: lasso_editor.strings.publishYes,
 				closeOnConfirm: true
 			},
 			function(){

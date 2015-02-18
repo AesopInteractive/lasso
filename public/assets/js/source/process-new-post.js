@@ -65,7 +65,7 @@
 
 			var $this = $(this);
 
-			$(this).find('input[type="submit"]').val('Adding...');
+			$(this).find('input[type="submit"]').val(lasso_editor.strings.adding);
 
 			var data = $this.serialize();
 
@@ -77,7 +77,7 @@
 				if ( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
-					$('input[type="submit"]').val('Added!');
+					$('input[type="submit"]').val(lasso_editor.strings.added);
 
 					window.location.replace(response.data.postlink);
 

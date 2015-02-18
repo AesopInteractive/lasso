@@ -14,7 +14,7 @@
 		,	$this 		= $(this);
 
 		// let people know something is happening
-		saveInsert.val('Saving...');
+		saveInsert.val(lasso_editor.strings.saving);
 
 		// send the new settings to the component and update it's data attributes
 	    $this.find('.lasso-generator-attr').each(function(){
@@ -50,11 +50,11 @@
 
 	    		if ( true == gallery ) {
 
-					saveInsert.val('Gallery Created!');
+					saveInsert.val(lasso_editor.strings.galleryCreated);
 
 	    		} else {
 
-					saveInsert.val('Saved!');
+					saveInsert.val(lasso_editor.strings.saved);
 				}
 	    	}
 

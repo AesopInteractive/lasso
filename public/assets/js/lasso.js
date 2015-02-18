@@ -8894,7 +8894,7 @@ jQuery(document).ready(function($){
 	        mode: Medium.richMode,
 	        attributes: null,
 	        tags: null,
-	        placeholder:'Just write...',
+	        placeholder:lasso_editor.strings.justWrite,
 		    pasteAsText: true,
 	    	cssClasses: {
 				editor: 'lasso-editor',
@@ -9488,7 +9488,7 @@ jQuery(document).ready(function($){
 
 			var $this = $(this);
 
-			$(this).find('input[type="submit"]').val('Saving...');
+			$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
 
 			var data = $this.serialize();
 
@@ -9502,7 +9502,7 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
-					$('input[type="submit"]').val('Saved!');
+					$('input[type="submit"]').val(lasso_editor.strings.saved);
 					location.reload();
 
 					window.location.replace(lasso_editor.permalink);
@@ -10286,12 +10286,12 @@ jQuery(document).ready(function($){
 		// intercept if publish to confirm
 		if ( $this.hasClass('lasso-publish-post') ) {
 			swal({
-				title: "Publish Post?",
+				title: lasso_editor.strings.publishPost,
 				type: "info",
 				text: false,
 				showCancelButton: true,
 				confirmButtonColor: "#5bc0de",
-				confirmButtonText: "Yes, publish it!",
+				confirmButtonText: lasso_editor.strings.publishYes,
 				closeOnConfirm: true
 			},
 			function(){
@@ -10430,7 +10430,7 @@ jQuery(document).ready(function($){
 
 		$('#ase-gallery-images li').remove();
 
-		$('.ase-gallery-opts--edit-gallery').text('Add New Gallery');
+		$('.ase-gallery-opts--edit-gallery').text(lasso_editor.strings.addNewGallery);
 		$('.ase-gallery-opts--edit-gallery .lasso-option-desc').text('Select new images to create a gallery with.');
 
 
@@ -10455,9 +10455,9 @@ jQuery(document).ready(function($){
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: 'Choose images',
+	      	title: lasso_editor.strings.chooseImages,
 	      	button: {
-	        	text: 'Add Images',
+	        	text: lasso_editor.strings.addImages,
 	      	},
 	      	multiple: true  // Set to true to allow multiple files to be selected
 	    });
@@ -10572,13 +10572,13 @@ jQuery(document).ready(function($){
 		}
 
     	wp.media.frames.ase_frame = wp.media({
-			title: 'Select Lasso Gallery Image',
+			title: lasso_editor.strings.selectGallery,
 			multiple: true,
 			library: {
 			    type: 'image'
 			},
 			button: {
-			    text: 'Use Selected Images'
+			    text: lasso_editor.strings.useSelectedImages
 			}
 		});
 
@@ -10626,13 +10626,13 @@ jQuery(document).ready(function($){
 			}
 
 			wp.media.frames.ase_edit_frame = wp.media({
-				title: 'Edit Image',
+				title: lasso_editor.strings.editImage,
 				multiple: false,
 				library: {
 				  	type: 'image'
 				},
 				button: {
-				  	text: 'Update Selected Image'
+				  	text: lasso_editor.strings.updateSelectedImg
 				}
 			});
 
@@ -10806,9 +10806,9 @@ jQuery(document).ready(function($){
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: 'Choose an image',
+	      	title: lasso_editor.strings.chooseImage,
 	      	button: {
-	        	text: 'Update Image',
+	        	text: lasso_editor.strings.updateImage,
 	      	},
 	      	multiple: false  // Set to true to allow multiple files to be selected
 	    });
@@ -10850,7 +10850,7 @@ jQuery(document).ready(function($){
 		,	$this 		= $(this);
 
 		// let people know something is happening
-		saveInsert.val('Saving...');
+		saveInsert.val(lasso_editor.strings.saving);
 
 		// send the new settings to the component and update it's data attributes
 	    $this.find('.lasso-generator-attr').each(function(){
@@ -10886,11 +10886,11 @@ jQuery(document).ready(function($){
 
 	    		if ( true == gallery ) {
 
-					saveInsert.val('Gallery Created!');
+					saveInsert.val(lasso_editor.strings.galleryCreated);
 
 	    		} else {
 
-					saveInsert.val('Saved!');
+					saveInsert.val(lasso_editor.strings.saved);
 				}
 	    	}
 
@@ -11022,7 +11022,7 @@ jQuery(document).ready(function($){
 
 			var $this = $(this);
 
-			$(this).find('input[type="submit"]').val('Adding...');
+			$(this).find('input[type="submit"]').val(lasso_editor.strings.adding);
 
 			var data = $this.serialize();
 
@@ -11034,7 +11034,7 @@ jQuery(document).ready(function($){
 				if ( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
-					$('input[type="submit"]').val('Added!');
+					$('input[type="submit"]').val(lasso_editor.strings.added);
 
 					window.location.replace(response.data.postlink);
 
@@ -11121,9 +11121,9 @@ jQuery(document).ready(function($){
 
 			    // Create the media frame.
 			    ase_edit_frame = wp.media.frames.ase_edit_frame = wp.media({
-			      	title: 'Select Image',
+			      	title: lasso_editor.strings.selectImage,
 			      	button: {
-			        	text: 'Insert Image',
+			        	text: lasso_editor.strings.insertImage,
 			      	},
 			      	multiple: false  // Set to true to allow multiple files to be selected
 			    });

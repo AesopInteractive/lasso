@@ -123,7 +123,7 @@ jQuery(document).ready(function($){
 	        mode: Medium.richMode,
 	        attributes: null,
 	        tags: null,
-	        placeholder:'Just write...',
+	        placeholder:lasso_editor.strings.justWrite,
 		    pasteAsText: true,
 	    	cssClasses: {
 				editor: 'lasso-editor',

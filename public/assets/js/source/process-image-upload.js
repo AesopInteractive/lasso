@@ -43,9 +43,9 @@
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: 'Choose an image',
+	      	title: lasso_editor.strings.chooseImage,
 	      	button: {
-	        	text: 'Update Image',
+	        	text: lasso_editor.strings.updateImage,
 	      	},
 	      	multiple: false  // Set to true to allow multiple files to be selected
 	    });

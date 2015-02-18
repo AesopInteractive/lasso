@@ -15,7 +15,7 @@
 
 		$('#ase-gallery-images li').remove();
 
-		$('.ase-gallery-opts--edit-gallery').text('Add New Gallery');
+		$('.ase-gallery-opts--edit-gallery').text(lasso_editor.strings.addNewGallery);
 		$('.ase-gallery-opts--edit-gallery .lasso-option-desc').text('Select new images to create a gallery with.');
 
 
@@ -40,9 +40,9 @@
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      	title: 'Choose images',
+	      	title: lasso_editor.strings.chooseImages,
 	      	button: {
-	        	text: 'Add Images',
+	        	text: lasso_editor.strings.addImages,
 	      	},
 	      	multiple: true  // Set to true to allow multiple files to be selected
 	    });
@@ -157,13 +157,13 @@
 		}
 
     	wp.media.frames.ase_frame = wp.media({
-			title: 'Select Lasso Gallery Image',
+			title: lasso_editor.strings.selectGallery,
 			multiple: true,
 			library: {
 			    type: 'image'
 			},
 			button: {
-			    text: 'Use Selected Images'
+			    text: lasso_editor.strings.useSelectedImages
 			}
 		});
 
@@ -211,13 +211,13 @@
 			}
 
 			wp.media.frames.ase_edit_frame = wp.media({
-				title: 'Edit Image',
+				title: lasso_editor.strings.editImage,
 				multiple: false,
 				library: {
 				  	type: 'image'
 				},
 				button: {
-				  	text: 'Update Selected Image'
+				  	text: lasso_editor.strings.updateSelectedImg
 				}
 			});
 
