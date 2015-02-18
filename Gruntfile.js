@@ -43,32 +43,32 @@ module.exports = function(grunt) {
    		concat: {
             dist: {
                 src: [
-                        'public/assets/js/source/util--undo.js',
-                        'public/assets/js/source/util--rangy-core.js',
-                        'public/assets/js/source/util--rangy-classapplier.js',
-                        'public/assets/js/source/util--content-editable.js',
-                        'public/assets/js/source/util--scrollbar.js',
-                        'public/assets/js/source/util--sweet-alert.js',
-                        'public/assets/js/source/util--geo-complete.js',
-                        'public/assets/js/source/util--slider.js',
-                        'public/assets/js/source/util--touch-punch.js',
-                        'public/assets/js/source/enter-editor.js',
-                        'public/assets/js/source/post-settings.js',
-                        'public/assets/js/source/settings-panel.js',
-                        'public/assets/js/source/settings-live-editing.js',
-                        'public/assets/js/source/toolbar.js',
-                        'public/assets/js/source/process-save.js',
-                        'public/assets/js/source/process-gallery.js',
-                        'public/assets/js/source/process-gallery-opts.js',
-                        'public/assets/js/source/process-map.js',
-                        'public/assets/js/source/process-image-upload.js',
-                        'public/assets/js/source/process-save-component.js',
-                        'public/assets/js/source/process-new-post.js',
-                        'public/assets/js/source/process-save-title.js',
-                        'public/assets/js/source/process-wpimg.js',
-                        'public/assets/js/source/modal-sizing.js',
-                        'public/assets/js/source/tour.js'
-                    ],
+                    'public/assets/js/source/util--undo.js',
+                    'public/assets/js/source/util--rangy-core.js',
+                    'public/assets/js/source/util--rangy-classapplier.js',
+                    'public/assets/js/source/util--content-editable.js',
+                    'public/assets/js/source/util--scrollbar.js',
+                    'public/assets/js/source/util--sweet-alert.js',
+                    'public/assets/js/source/util--geo-complete.js',
+                    'public/assets/js/source/util--slider.js',
+                    'public/assets/js/source/util--touch-punch.js',
+                    'public/assets/js/source/enter-editor.js',
+                    'public/assets/js/source/post-settings.js',
+                    'public/assets/js/source/settings-panel.js',
+                    'public/assets/js/source/settings-live-editing.js',
+                    'public/assets/js/source/toolbar.js',
+                    'public/assets/js/source/process-save.js',
+                    'public/assets/js/source/process-gallery.js',
+                    'public/assets/js/source/process-gallery-opts.js',
+                    'public/assets/js/source/process-map.js',
+                    'public/assets/js/source/process-image-upload.js',
+                    'public/assets/js/source/process-save-component.js',
+                    'public/assets/js/source/process-new-post.js',
+                    'public/assets/js/source/process-save-title.js',
+                    'public/assets/js/source/process-wpimg.js',
+                    'public/assets/js/source/modal-sizing.js',
+                    'public/assets/js/source/tour.js'
+               	],
                 dest: 'public/assets/js/lasso.js'
             }
         },
@@ -82,25 +82,25 @@ module.exports = function(grunt) {
             }
         },
         makepot: {
-	      target: {
-	        options: {
-	          domainPath: '/languages/',    // Where to save the POT file.
-	          exclude: ['build/.*'],
-	          mainFile: 'lasso.php',    // Main project file.
-	          potFilename: 'lasso.pot',    // Name of the POT file.
-	          potHeaders: {
-	                    poedit: true,                 // Includes common Poedit headers.
-	                    'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
-	                },
-	          type: 'wp-plugin',    // Type of project (wp-plugin or wp-theme).
-	          updateTimestamp: true,    // Whether the POT-Creation-Date should be updated without other changes.
-	          processPot: function( pot, options ) {
-	            pot.headers['report-msgid-bugs-to'] = 'http://lasso.is';
-	            pot.headers['language'] = 'en_US';
-	            return pot;
-	          }
-	        }
-	      }
+		    target: {
+		        options: {
+		          	domainPath: '/languages/',    // Where to save the POT file.
+		          	exclude: ['build/.*'],
+		          	mainFile: 'lasso.php',    // Main project file.
+		          	potFilename: 'lasso.pot',    // Name of the POT file.
+		          	potHeaders: {
+		                poedit: true,                 // Includes common Poedit headers.
+		              	'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
+		           	},
+		         	type: 'wp-plugin',    // Type of project (wp-plugin or wp-theme).
+		          	updateTimestamp: true,    // Whether the POT-Creation-Date should be updated without other changes.
+		          	processPot: function( pot, options ) {
+		            	pot.headers['report-msgid-bugs-to'] = 'http://lasso.is';
+		            	pot.headers['language'] = 'en_US';
+		            	return pot;
+		          	}
+		        }
+		    }
 	    }
     });
 

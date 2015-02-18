@@ -186,14 +186,11 @@ endif;
 if ( !function_exists('lasso_map_component') ):
 	function lasso_map_component(){
 
-		ob_start();
-
-		echo '<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" enctype="multipart/form-data">
+		return '<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" enctype="multipart/form-data">
 				'.lasso_map_form_footer().'
 				'.do_shortcode('[aesop_map sticky="off"]').'
 			</form>';
 
-		return ob_get_clean();
 	}
 endif;
 
