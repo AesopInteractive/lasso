@@ -18,7 +18,7 @@
 
 			    className = e.currentTarget.parentElement.className;
 
-			    // Create the media frame.
+			    // create frame
 			    ase_edit_frame = wp.media.frames.ase_edit_frame = wp.media({
 			      	title: lasso_editor.strings.selectImage,
 			      	button: {
@@ -27,6 +27,7 @@
 			      	multiple: false  // Set to true to allow multiple files to be selected
 			    });
 
+			    // open frame
 				ase_edit_frame.on('open',function(){
 					var selection = ase_edit_frame.state().get('selection');
 					var attachment = wp.media.attachment( id );
@@ -34,9 +35,8 @@
 					selection.add( attachment ? [ attachment ] : [] );
 				});
 
-			    // When an image is selected update it
+			    // update image on select
 			    ase_edit_frame.on( 'select', function() {
-
 
 			      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
 
@@ -45,7 +45,6 @@
 			      		'alt': attachment.alt,
 			      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 			      	})
-
 
 			    });
 

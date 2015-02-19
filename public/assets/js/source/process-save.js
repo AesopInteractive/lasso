@@ -49,8 +49,11 @@ jQuery(document).ready(function($){
 		// unwrap wp images
 		$(".lasso--wpimg__wrap").each(function(){
 
-			$(this).children().unwrap()
-			$('.lasso-component--controls').remove();
+			if ( !$(this).hasClass('wp-caption') ) {
+
+				$(this).children().unwrap()
+				$('.lasso-component--controls').remove();
+			}
 		});
 
 		// unwrap custom components
