@@ -5,13 +5,19 @@
     left: ~'calc(50% - @{toolbar--width} / 2)';
 
     &.ase-not-active {
-        @width: 167px;
+        @width: 199px;
         width:@width;
         left: ~'calc(50% - @{width} / 2)';
     }
 
     &.toolbar-extended {
         @width: 313px;
+        width:@width;
+        left: ~'calc(50% - @{width} / 2)';
+    }
+
+    &.ase-not-active.toolbar-extended {
+        @width: 280px;
         width:@width;
         left: ~'calc(50% - @{width} / 2)';
     }

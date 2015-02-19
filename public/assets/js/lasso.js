@@ -10320,11 +10320,11 @@ jQuery(document).ready(function($){
 		}
 
 		/**
-		 * Turn content html into shortcodes
-		 * @param  {[type]} content  [description]
-		 * @param  {[type]} selector [description]
-		 * @return {[type]}          [description]
-		 */
+		 	* Turn content html into shortcodes
+		 	* @param  {[type]} content  [description]
+		 	* @param  {[type]} selector [description]
+		 	* @return {[type]}          [description]
+		*/
 		function shortcodify(content,selector){
 
 			// Convert the html into a series of jQuery objects
