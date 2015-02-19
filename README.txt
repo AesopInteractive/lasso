@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: http://story.am
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.7
+Stable tag: 0.8
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,14 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.8 =
+* added a confirmation to publish in case publish button is accidentally triggered
+* more mobile work for iOS
+* various UX improvements and animation additions
+* fixed gallery type not saving
+* all strings localized
+* pot file generated
 
 = 0.7 =
 * video component live editing
