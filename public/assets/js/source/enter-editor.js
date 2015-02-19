@@ -100,8 +100,16 @@ jQuery(document).ready(function($){
 
 			if ( !$('.lasso--wpimg-edit').length > 0 ) {
 
-				$this.wrap('<div class="lasso--wpimg__wrap">')
-				$('.lasso--wpimg__wrap').prepend(wpImgEdit)
+				if ( $this.parent().hasClass('wp-caption') ) {
+
+					$this.parent().addClass('lasso--wpimg__wrap')
+
+				} else {
+
+					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap">')
+				}
+
+				$this.parent().prepend(wpImgEdit)
 
 			}
 
@@ -544,6 +552,8 @@ jQuery(document).ready(function($){
 		    	// get the curent target and add the type class to the drag event
 				var item = ui['context'],
 					type = $(item).attr('data-component-type');
+
+					console.log(item)
 
             	return $('<div class="lasso-drag-holder '+type+'"></div>'); 
             },
