@@ -9809,7 +9809,17 @@ jQuery(document).ready(function($){
 
 			// PARALLAX LIVE EDIT ///////////////////
 			settings.find('.lasso-parallax-caption > #lasso-generator-attr-caption').on('keyup',function(){
-				component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
+
+
+				var t = component.find('.aesop-parallax-sc-caption-wrap')
+
+				if ( 0 == t.length ) {
+
+					component.find('img').after( '<figcaption class="aesop-parallax-sc-caption-wrap bottom-left">'+$(this).val()+'</figcaption>' );
+
+				} else {
+			  		component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
+				}
 			})
 			settings.find('.lasso-parallax-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
 
