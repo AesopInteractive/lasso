@@ -9795,7 +9795,16 @@ jQuery(document).ready(function($){
 			  	component.find('blockquote span').text( $(this).val() );
 			});
 			settings.find('#lasso-generator-attr-cite').on('keyup',function(){
-			  	component.find('blockquote cite').text( $(this).val() );
+
+				var t = component.find('blockquote cite');
+
+				if ( 0 == t.length ) {
+
+					component.find('blockquote').append( '<cite class="aesop-quote-component-cite">'+$(this).val()+'</cite>' );
+
+				} else {
+			  		component.find('blockquote cite').text( $(this).val() );
+				}
 			});
 
 			// PARALLAX LIVE EDIT ///////////////////
@@ -9830,7 +9839,17 @@ jQuery(document).ready(function($){
 
 			// IMAGE LIVE EDIT ///////////////////
 			settings.find('.lasso-image-caption > #lasso-generator-attr-caption').on('keyup',function(){
-				component.find('.aesop-image-component-caption').text( $(this).val() );
+
+				var t = component.find('.aesop-image-component-caption');
+
+				if ( 0 == t.length ) {
+
+					component.find('img').after( '<p class="aesop-image-component-caption">'+$(this).val()+'</p>' );
+
+				} else {
+					component.find('.aesop-image-component-caption').text( $(this).val() );
+				}
+
 			})
 			settings.find('.lasso-image-imgwidth > #lasso-generator-attr-imgwidth').on('keyup',function(){
 				component.find('.aesop-image-component-image').css('max-width', $(this).val() );
@@ -9913,7 +9932,7 @@ jQuery(document).ready(function($){
 
 				}
 
-				component.addClass('lasso-component-align-'+$(this).val()+' ');
+				component.addClass('aesop-component-align-'+$(this).val()+' ');
 
 			});
 
