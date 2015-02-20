@@ -9634,8 +9634,6 @@ jQuery(document).ready(function($){
 			/////////////
 			// FILE UPLOAD
 			////////////
-			var file_frame;
-			var className;
 
 			$(document).on('click', '#lasso-upload-img', function( e ){
 
@@ -9646,13 +9644,12 @@ jQuery(document).ready(function($){
 			    var type   = $('input[name="component_type"]').val()
 
 			    // If the media frame already exists, reopen it.
-			    if ( file_frame ) {
-			      	file_frame.open();
-			      	return;
-			    }
+				if ( typeof lasso_file_frame != 'undefined' ) {
+					lasso_file_frame.close();
+				}
 
 			    // Create the media frame.
-			    file_frame = wp.media.frames.file_frame = wp.media({
+			    lasso_file_frame = wp.media.frames.file_frame = wp.media({
 			      	title: 'Select Image',
 			      	button: {
 			        	text: 'Insert Image',
@@ -9661,9 +9658,9 @@ jQuery(document).ready(function($){
 			    });
 
 			    // When an image is selected, run a callback.
-			    file_frame.on( 'select', function() {
+			    lasso_file_frame.on( 'select', function() {
 
-			      	var attachment = file_frame.state().get('selection').first().toJSON();
+			      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
 
 			      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
 
@@ -9703,7 +9700,7 @@ jQuery(document).ready(function($){
 			    });
 
 			    // Finally, open the modal
-			    file_frame.open();
+				lasso_file_frame.open();
 			});
 	
 			/////////////
@@ -10256,8 +10253,10 @@ jQuery(document).ready(function($){
 			if ( !$(this).hasClass('wp-caption') ) {
 
 				$(this).children().unwrap()
-				$('.lasso-component--controls').remove();
+
 			}
+
+			$('.lasso-component--controls').remove();
 		});
 
 		// unwrap custom components
@@ -11111,59 +11110,54 @@ jQuery(document).ready(function($){
 
 	$(document).ready(function(){
 
-		//$("[class*='wp-image-']").each(function() {
+		// get the attachment id from teh class wp-image-XXX, where XXX is the id of the attached iamge
+		// this oly works if the image was inserted from within the wordpress post editor
+		var ase_edit_frame;
+		var className;
 
-			// get the attachment id from teh class wp-image-XXX, where XXX is the id of the attached iamge
-			// this oly works if the image was inserted from within the wordpress post editor
-			var ase_edit_frame;
-			var className;
+		$(document).on('click', '#lasso--wpimg-edit',function(e){
 
-			$(document).on('click', '#lasso--wpimg-edit',function(e){
+				e.preventDefault()
+				var selected_img
+				, 	clicked = $(this)
+				, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
 
-  				e.preventDefault()
-  				var selected_img
-  				, 	clicked = $(this)
-  				, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
+		    className = e.currentTarget.parentElement.className;
 
-			    className = e.currentTarget.parentElement.className;
+		    // create frame
+		    ase_edit_frame = wp.media.frames.ase_edit_frame = wp.media({
+		      	title: lasso_editor.strings.selectImage,
+		      	button: {
+		        	text: lasso_editor.strings.insertImage,
+		      	},
+		      	multiple: false  // Set to true to allow multiple files to be selected
+		    });
 
-			    // create frame
-			    ase_edit_frame = wp.media.frames.ase_edit_frame = wp.media({
-			      	title: lasso_editor.strings.selectImage,
-			      	button: {
-			        	text: lasso_editor.strings.insertImage,
-			      	},
-			      	multiple: false  // Set to true to allow multiple files to be selected
-			    });
+		    // open frame
+			ase_edit_frame.on('open',function(){
+				var selection = ase_edit_frame.state().get('selection');
+				var attachment = wp.media.attachment( id );
+				attachment.fetch();
+				selection.add( attachment ? [ attachment ] : [] );
+			});
 
-			    // open frame
-				ase_edit_frame.on('open',function(){
-					var selection = ase_edit_frame.state().get('selection');
-					var attachment = wp.media.attachment( id );
-					attachment.fetch();
-					selection.add( attachment ? [ attachment ] : [] );
-				});
+		    // update image on select
+		    ase_edit_frame.on( 'select', function() {
 
-			    // update image on select
-			    ase_edit_frame.on( 'select', function() {
+		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
 
-			      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
+		      	$(clicked).parent().next('img').attr({
+		      		'src': attachment.sizes.large.url,
+		      		'alt': attachment.alt,
+		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
+		      	})
 
-			      	$(clicked).parent().next('img').attr({
-			      		'src': attachment.sizes.large.url,
-			      		'alt': attachment.alt,
-			      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
-			      	})
+		    });
 
-			    });
+		    // Finally, open the modal
+		    ase_edit_frame.open();
 
-			    // Finally, open the modal
-			    ase_edit_frame.open();
-
-			})
-
-		//});
-
+		})
 	});
 
 })( jQuery );

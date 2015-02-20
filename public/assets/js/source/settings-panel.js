@@ -101,8 +101,6 @@
 			/////////////
 			// FILE UPLOAD
 			////////////
-			var file_frame;
-			var className;
 
 			$(document).on('click', '#lasso-upload-img', function( e ){
 
@@ -113,13 +111,12 @@
 			    var type   = $('input[name="component_type"]').val()
 
 			    // If the media frame already exists, reopen it.
-			    if ( file_frame ) {
-			      	file_frame.open();
-			      	return;
-			    }
+				if ( typeof lasso_file_frame != 'undefined' ) {
+					lasso_file_frame.close();
+				}
 
 			    // Create the media frame.
-			    file_frame = wp.media.frames.file_frame = wp.media({
+			    lasso_file_frame = wp.media.frames.file_frame = wp.media({
 			      	title: 'Select Image',
 			      	button: {
 			        	text: 'Insert Image',
@@ -128,9 +125,9 @@
 			    });
 
 			    // When an image is selected, run a callback.
-			    file_frame.on( 'select', function() {
+			    lasso_file_frame.on( 'select', function() {
 
-			      	var attachment = file_frame.state().get('selection').first().toJSON();
+			      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
 
 			      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
 
@@ -170,7 +167,7 @@
 			    });
 
 			    // Finally, open the modal
-			    file_frame.open();
+				lasso_file_frame.open();
 			});
 	
 			/////////////

@@ -52,8 +52,10 @@ jQuery(document).ready(function($){
 			if ( !$(this).hasClass('wp-caption') ) {
 
 				$(this).children().unwrap()
-				$('.lasso-component--controls').remove();
+
 			}
+
+			$('.lasso-component--controls').remove();
 		});
 
 		// unwrap custom components

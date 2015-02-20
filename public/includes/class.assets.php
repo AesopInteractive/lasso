@@ -32,7 +32,6 @@ class lassoAssets {
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 
-			// localized strings
 			$strings = array(
 				'saving' 			=> __('Saving...','lasso'),
 				'saved'				=> __('Saved!','lasso'),
