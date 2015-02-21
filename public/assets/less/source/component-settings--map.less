@@ -133,3 +133,24 @@
         display: none;
     }
 }
+
+// account for sticky maps
+.aesop-sticky-map {
+    #lasso--map-form .lasso-component--controls {
+        position: fixed;
+        z-index: 999;
+        width:61px;
+
+        .lasso-drag {
+            display: none;
+        }
+    }
+    &.aesop-sticky-map-left #lasso--map-form .lasso-component--controls{
+        left: 183px;
+        right: auto;
+    }
+    &.aesop-sticky-map-right #lasso--map-form .lasso-component--controls{
+        right: 183px;
+        left: auto;
+    }
+}
