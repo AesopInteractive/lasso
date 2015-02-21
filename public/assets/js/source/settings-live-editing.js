@@ -34,6 +34,45 @@
 			  		component.find('blockquote cite').text( $(this).val() );
 				}
 			});
+			settings.find('.lasso-quote-width > #lasso-generator-attr-width').on('keyup',function(){
+				component.css('width', $(this).val() );
+			})
+			settings.find('.lasso-quote-type #lasso-generator-attr-type').on('change',function(){
+
+				var value = $(this).val()
+
+				if ( 'pull' == value ) {
+					component.css('background-color','transparent')
+				}
+
+				component.removeClass('aesop-quote-type-block aesop-quote-type-pull')
+
+				component.addClass('aesop-quote-type-'+$(this).val()+' ')
+			});
+
+			settings.find('.lasso-quote-align #lasso-generator-attr-align').on('change',function(){
+
+				var value = $(this).val()
+
+				if ( 'left' == value ) {
+
+					component.removeClass('aesop-component-align-right aesop-component-align-center')
+					component.find('blockquote').removeClass('aesop-component-align-right aesop-component-align-center')
+
+				} else if ( 'right' == value ) {
+
+					component.removeClass('aesop-component-align-left aesop-component-align-center')
+					component.find('blockquote').removeClass('aesop-component-align-left aesop-component-align-center')
+
+				} else if ( 'center' == value ) {
+
+					component.removeClass('aesop-component-align-left aesop-component-align-right')
+					component.find('blockquote').removeClass('aesop-component-align-left aesop-component-align-right')
+
+				}
+				component.addClass('aesop-component-align-'+$(this).val()+' ')
+				component.find('blockquote').addClass('aesop-component-align-'+$(this).val()+' ')
+			});
 
 			// PARALLAX LIVE EDIT ///////////////////
 			settings.find('.lasso-parallax-caption > #lasso-generator-attr-caption').on('keyup',function(){
