@@ -9121,18 +9121,22 @@ jQuery(document).ready(function($){
 			$('.aesop-video-component').fitVids()
 		}
 
+		var start_point 	= mapStart ? mapStart : [29.76, -95.38]
+		, 	start_zoom 		= mapZoom ? mapZoom : 12
+		, 	mapTileProvider = lasso_editor.mapTileProvider;
+
 		///////////
 		// INITIALIZE MAPS
 		///////////
 		var mapsGoTime = function(){
 
-			var start_point = mapStart ? mapStart : [29.76, -95.38];
-			var start_zoom = mapZoom ? mapZoom : 12;
+			var lat = start_point.lat ? start_point.lat : 29.76
+			,	lng = start_point.lng ? start_point.lng : -95.38;
 
 			var map = L.map('aesop-map-component',{
 				scrollWheelZoom: false,
 				zoom: start_zoom,
-				center: [29.76, -95.38]
+				center: [lat, lng]
 			});
 
 			setMapCenter(start_point[0],start_point[1]);
@@ -9144,8 +9148,8 @@ jQuery(document).ready(function($){
 				setMapCenter(lat,lng);
 			});
 
-			L.tileLayer('//{s}.tiles.mapbox.com/v3/aesopinteractive.hkoag9o3/{z}/{x}/{y}.png', {
-				maxZoom: 20
+			L.tileLayer(mapTileProvider, {
+				maxZoom: start_zoom
 			}).addTo(map);
 
 			mapLocations.forEach(function(location) {

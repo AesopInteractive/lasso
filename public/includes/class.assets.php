@@ -32,6 +32,9 @@ class lassoAssets {
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 
+			// post id reference
+			$postid 			= get_the_ID();
+
 			$strings = array(
 				'saving' 			=> __('Saving...','lasso'),
 				'saved'				=> __('Saved!','lasso'),
@@ -63,8 +66,8 @@ class lassoAssets {
 				'featImgClass'		=> $featImgClass,
 				'titleClass'		=> $titleClass,
 				'strings'			=> $strings,
-				'post_status'		=> get_post_status( get_the_ID() ),
-				'postid'			=> get_the_ID(),
+				'post_status'		=> get_post_status( $postid ),
+				'postid'			=> $postid,
 				'permalink'			=> get_permalink(),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'nonce'				=> wp_create_nonce('lasso_editor'),
@@ -87,9 +90,10 @@ class lassoAssets {
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'mapFormFooter'		=> lasso_map_form_footer(),
 				'refreshRequired'	=> lasso_editor_refresh_message(),
-				'mapLocations'		=> get_post_meta( get_the_ID(), 'ase_map_component_locations' ),
-				'mapStart'			=> get_post_meta( get_the_ID(), 'ase_map_component_start_point', true ),
-				'mapZoom'			=> get_post_meta( get_the_ID(), 'ase_map_component_zoom', true )
+				'mapTileProvider'   => aesop_map_tile_provider( $postid ),
+				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
+				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
+				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
