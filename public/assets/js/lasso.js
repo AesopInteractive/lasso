@@ -9614,12 +9614,42 @@ jQuery(document).ready(function($){
 				// @todo - account for map stuff
 				if ( 'gallery-type' == option ) {
 
+					// this function is repeated on process-gallery-opts line 4
+					var value_check = function( value ){
+
+						if ( 'grid' == value ) {
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--grid').fadeIn();
+						} else {
+							$('.ase-gallery-opts--grid').fadeOut();
+						}
+
+						if ( 'thumbnail' == value ) {
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeIn();
+						} else {
+							$('.ase-gallery-opts--thumb').fadeOut();
+						}
+
+						if ( 'photoset' == value ) {
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeIn();
+						} else {
+							$('.ase-gallery-opts--photoset').fadeOut();
+						}
+					}
+
 					$(field).each(function(){
 
 						if ( $(this).val() == data.galleryType ) {
 
 							$(this).parent().addClass('selected')
 							$(this).attr('checked',true);
+
+							value_check( $(this).val() );
 
 						}
 
@@ -10757,6 +10787,8 @@ jQuery(document).ready(function($){
 (function( $ ) {
 
 	$(document).ready(function($){
+
+		// this function is repeated on settings-panel.js
 		var value_check = function( value ){
 
 			if ( 'grid' == value ) {

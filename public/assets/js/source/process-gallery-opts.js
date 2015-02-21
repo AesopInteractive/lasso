@@ -1,6 +1,8 @@
 (function( $ ) {
 
 	$(document).ready(function($){
+
+		// this function is repeated on settings-panel.js
 		var value_check = function( value ){
 
 			if ( 'grid' == value ) {

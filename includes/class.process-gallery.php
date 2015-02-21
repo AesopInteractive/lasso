@@ -121,6 +121,12 @@ class lassoProcessGallery {
 
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
+				// gallery width
+				$gallery_width = isset( $options ) ? $options['width'] : false;
+
+				// gallery grid item width
+				$item_width = isset( $options ) ? $options['itemWidth'] : false;
+
 				// update gallery ids
 				if ( !empty( $gallery_ids ) ) {
 
@@ -135,6 +141,19 @@ class lassoProcessGallery {
 
 				}
 
+				// udpate gallery width
+				if ( !empty( $gallery_width ) ) {
+
+					update_post_meta( $postid, 'aesop_gallery_width', sanitize_text_field( trim( $gallery_width ) ) );
+
+				}
+
+				// update galelry item width
+				if ( !empty( $item_width ) ) {
+
+					update_post_meta( $postid, 'aesop_grid_gallery_width', sanitize_text_field( trim( $item_width ) ) );
+
+				}
 				// run an action
 				do_action( 'lasso_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
 

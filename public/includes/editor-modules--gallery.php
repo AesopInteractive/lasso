@@ -74,7 +74,7 @@ function lasso_gallery_editor_module(){
 	<!-- Conditionally Loaded Gallery Option - Grid Options -->
 	<div class="ase-gallery-opts ase-gallery-opts--grid" style="display:none;">
 
-		<div data-option="width" class="ase-gallery-opts--single lasso-option">
+		<div data-option="item-width" class="ase-gallery-opts--single lasso-option">
 			<label for="lasso_grid_gallery_width"><?php _e('Grid Item Width','lasso');?></label>
 			<small class="lasso-option-desc"><?php _e('Adjust the width of the individual grid items, only if using Grid gallery style. Default is 400.','lasso');?></small>
 			<input type="text_small" class="lasso-generator-attr" name="lasso_grid_gallery_width" value="">
