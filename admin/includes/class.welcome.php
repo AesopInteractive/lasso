@@ -105,9 +105,16 @@ class lassoWelcome {
 			   	<div class="lasso--welcome__section lasso--welcome__section--quickstart">
 			   		<h2><?php _e('Changelog','lasso');?></h2>
 			   		<p class="lasso--welcome__lead"><?php _e('Here\'s what\'s changed in Lasso since the last update.','lasso');?></p>
-					<div class="lasso--welcome__changelog">
-						changelog here
-					</div>
+					<ul class="lasso--welcome__changelog">
+						<li>* fixed media library sometimes not closing after selecting an image</li>
+						<li>* fixed bug with editing more than one standard WordPress image inserted from the backend</li>
+						<li>* fixed bugs with toolbar size with extended options on and aesop story engine off</li>
+						<li>* when live editing image, parallax, and quote and no caption or cite exists, append it live</li>
+						<li>* compatibility with the new "Pull Quote" option in Aesop 1.5 with live editing</li>
+						<li>* fixed map zoom and location not saving</li>
+						<li>* fixed map controls if map is used in sticky mode</li>
+						<li>* fixed gallery options not saving</li>
+					</ul>
 				</div>
 
 		  	</div>
