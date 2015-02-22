@@ -11043,15 +11043,18 @@ jQuery(document).ready(function($){
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
 
+
+
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
+				console.log(response)
 				if ( 'gallery-created' == response.data.message ) {
 
 					saveSequence( false, 4000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
-					saveSequence( false, 5000 );
+					saveSequence( false, 4000 );
 					form.before(lasso_editor.refreshRequired);
 
 				} else {

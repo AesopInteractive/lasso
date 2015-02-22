@@ -125,8 +125,25 @@ class lassoProcessGallery {
 				$gallery_width = isset( $options['width'] ) ? $options['width'] : false;
 
 				// gallery grid item width
-				$item_width = isset( $options['itemWidth'] ) ? $options['itemWidth'] : false;
+				$item_width = isset( $options['itemwidth'] ) ? $options['itemwidth'] : false;
 
+				// caption
+				$caption = isset( $options['caption'] ) ? $options['caption'] : false;
+
+				// gallery transition
+				$transition = isset( $options['transition'] ) ? $options['transition'] : false;
+
+				// gallery transition speed
+				$transitionSpeed = isset( $options['speed'] ) ? $options['speed'] : false;
+
+				// gallery hide thumbs
+				$hideThumbs = isset( $options['hideThumbs'] ) ? $options['hideThumbs'] : false;
+
+				// photoset layout
+				$psLayout = isset( $options['pslayout'] ) ? $options['pslayout'] : false;
+
+				// photoset layout
+				$psLightbox = isset( $options['pslightbox'] ) ? $options['pslightbox'] : false;
 
 				// update gallery ids
 				if ( !empty( $gallery_ids ) ) {
@@ -135,28 +152,27 @@ class lassoProcessGallery {
 
 				}
 
-				// update the gallery type
-				if ( !empty( $type ) ) {
 
-					update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
+				update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
 
-				}
+				update_post_meta( $postid, 'aesop_gallery_width', sanitize_text_field( trim( $gallery_width ) ) );
 
-				// udpate gallery width
-				if ( !empty( $gallery_width ) ) {
+				update_post_meta( $postid, 'aesop_grid_gallery_width', sanitize_text_field( trim( $item_width ) ) );
 
-					update_post_meta( $postid, 'aesop_gallery_width', sanitize_text_field( trim( $gallery_width ) ) );
+				update_post_meta( $postid, 'aesop_gallery_caption', sanitize_text_field( trim( $caption ) ) );
 
-				}
+				update_post_meta( $postid, 'aesop_thumb_gallery_transition', sanitize_text_field( trim( $transition ) ) );
 
-				// update galelry item width
-				if ( !empty( $item_width ) ) {
+				update_post_meta( $postid, 'aesop_thumb_gallery_transition_speed', absint( trim( $transitionSpeed ) ) );
 
-					update_post_meta( $postid, 'aesop_grid_gallery_width', sanitize_text_field( trim( $item_width ) ) );
+				update_post_meta( $postid, 'aesop_thumb_gallery_hide_thumbs', sanitize_text_field( trim( $hideThumbs ) ) );
 
-				}
+				update_post_meta( $postid, 'aesop_photoset_gallery_layout', sanitize_text_field( trim( $psLayout ) ) );
+
+				update_post_meta( $postid, 'aesop_photoset_gallery_lightbox', sanitize_text_field( trim( $psLightbox ) ) );
+
 				// run an action
-				do_action( 'lasso_gallery_saved', $postid, $gallery_ids, get_current_user_ID() );
+				do_action( 'lasso_gallery_saved', $postid, $gallery_ids, $options, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success(array('message' => 'gallery-updated') );

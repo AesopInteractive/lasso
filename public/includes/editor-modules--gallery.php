@@ -74,7 +74,7 @@ function lasso_gallery_editor_module(){
 	<!-- Conditionally Loaded Gallery Option - Grid Options -->
 	<div class="ase-gallery-opts ase-gallery-opts--grid" style="display:none;">
 
-		<div data-option="item-width" class="ase-gallery-opts--single lasso-option">
+		<div data-option="itemwidth" class="ase-gallery-opts--single lasso-option">
 			<label for="lasso_grid_gallery_width"><?php _e('Grid Item Width','lasso');?></label>
 			<small class="lasso-option-desc"><?php _e('Adjust the width of the individual grid items, only if using Grid gallery style. Default is 400.','lasso');?></small>
 			<input type="text_small" class="lasso-generator-attr" name="lasso_grid_gallery_width" value="">
@@ -95,7 +95,7 @@ function lasso_gallery_editor_module(){
 		    </select>
 		</div>
 
-		<div data-option="transition-speed" class="ase-gallery-opts--single lasso-option">
+		<div data-option="speed" class="ase-gallery-opts--single lasso-option">
 			<label for="lasso_thumb_gallery_transition_speed"><?php _e('Gallery Transition Speed','lasso');?></label>
 			<small class="lasso-option-desc"><?php _e('Activate slideshow by setting a speed for the transition.5000 = 5 seconds.','lasso');?></small>
 			<input type="text" class="lasso-generator-attr" name="lasso_thumb_gallery_transition_speed" value="">
@@ -111,13 +111,13 @@ function lasso_gallery_editor_module(){
 	<!-- Conditionally Loaded Gallery Option - Photoset Options -->
 	<div class="ase-gallery-opts ase-gallery-opts--photoset" style="display:none;">
 
-		<div data-option="ps-layout" class="ase-gallery-opts--single lasso-option">
+		<div data-option="pslayout" class="ase-gallery-opts--single lasso-option">
 			<label for="lasso-photoset-gallery-layout"><?php _e('Gallery Layout','lasso');?></label>
 			<small class="lasso-option-desc"><?php _e('Let\'s say you have 4 images in this gallery. If you enter 121 you will have one image on the top row, two images on the second row, and one image on the third row.','lasso');?></small>
 			<input type="text" class="lasso-generator-attr" name="lasso_photoset_gallery_layout" value="">
 		</div>
 
-		<div data-option="ps-lightbox" class="ase-gallery-opts--single lasso-option">
+		<div data-option="pslightbox" class="ase-gallery-opts--single lasso-option">
 			<input type="checkbox" class="lasso-generator-attr" name="lasso_photoset_gallery_lightbox">
 			<label for="lasso_photoset_gallery_lightbox"><?php _e('Enable Lightbox','lasso');?></label>
 		</div>
