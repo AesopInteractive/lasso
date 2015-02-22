@@ -110,9 +110,12 @@
 						if ( $(this).val() == data.galleryType ) {
 
 							$(this).parent().addClass('selected')
-							$(this).attr('checked',true);
+							$(this).prop('checked',true);
 
 							value_check( $(this).val() );
+
+							// add the type to a hidden field
+							$('#ase_gallery_type').val( $(this).val() )
 
 						}
 

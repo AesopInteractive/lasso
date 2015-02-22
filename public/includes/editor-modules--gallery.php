@@ -62,11 +62,11 @@ function lasso_gallery_editor_module(){
 			<h3><?php _e('Gallery Type','lasso');?></h3>
 			<small class="lasso-option-desc"><?php _e('Select the type of gallery.','lasso');?></small>
 			<fieldset>
-	      		<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="grid"><?php _e('Grid','lasso');?></label>
-	        	<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="thumbnail"><?php _e('Thumbnail','lasso');?></label>
-				<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="sequence">Sequence</label>
-				<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="photoset"><?php _e('Photoset','lasso');?></label>
-				<label class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="stacked"><?php _e('Parallax','lasso');?></label>
+	      		<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="grid"><?php _e('Grid','lasso');?></label>
+	        	<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="thumbnail"><?php _e('Thumbnail','lasso');?></label>
+				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="sequence">Sequence</label>
+				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="photoset"><?php _e('Photoset','lasso');?></label>
+				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="stacked"><?php _e('Parallax','lasso');?></label>
 			</fieldset>
 		</div>
 	</div>

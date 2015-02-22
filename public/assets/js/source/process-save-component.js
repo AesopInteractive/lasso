@@ -91,11 +91,8 @@
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
 
-
-
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				console.log(response)
 				if ( 'gallery-created' == response.data.message ) {
 
 					saveSequence( false, 4000, true );
