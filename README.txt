@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: http://story.am
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.8
+Stable tag: 0.8.1
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,16 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.8.1 =
+* fixed media library sometimes not closing after selecting an image
+* fixed bug with editing more than one standard WordPress image inserted from the backend
+* fixed bugs with toolbar size with extended options on and aesop story engine off
+* when live editing image, parallax, and quote and no caption or cite exists, append it live
+* compatibility with the new "Pull Quote" option in Aesop 1.5 with live editing
+* fixed map zoom and location not saving
+* fixed map controls if map is used in sticky mode
+* fixed gallery options not saving
 
 = 0.8 =
 * added a confirmation to publish in case publish button is accidentally triggered
