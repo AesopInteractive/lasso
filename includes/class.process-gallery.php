@@ -122,10 +122,11 @@ class lassoProcessGallery {
 				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
 				// gallery width
-				$gallery_width = isset( $options ) ? $options['width'] : false;
+				$gallery_width = isset( $options['width'] ) ? $options['width'] : false;
 
 				// gallery grid item width
-				$item_width = isset( $options ) ? $options['itemWidth'] : false;
+				$item_width = isset( $options['itemWidth'] ) ? $options['itemWidth'] : false;
+
 
 				// update gallery ids
 				if ( !empty( $gallery_ids ) ) {
@@ -163,7 +164,7 @@ class lassoProcessGallery {
 			} else {
 
 				// aww snap something went wrong so say something
-				wp_send_json_error();
+				wp_send_json_error(array('message' => 'error'));
 			}
 		}
 	}
