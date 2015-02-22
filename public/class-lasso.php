@@ -220,7 +220,7 @@ class Lasso {
 
 		// update upgraded from
 		if ( $curr_version ) {
-			update_option( 'lasso_upgraded_from', $curr_version );
+			update_option( 'lasso_updated_from', $curr_version );
 		}
 
 		// update lasso version option

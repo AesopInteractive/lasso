@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso 0.8.1\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-02-22 23:05:02+00:00\n"
+"POT-Creation-Date: 2015-02-22 23:35:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,45 +24,21 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/includes/class.welcome.php:49
-msgid "Welcome to Lasso "
-msgstr ""
-
-#: admin/includes/class.welcome.php:50
-msgid "It's a mighty fine time to wrangle us some content!"
-msgstr ""
-
-#: admin/includes/class.welcome.php:54
-msgid "Website"
-msgstr ""
-
-#: admin/includes/class.welcome.php:55
-msgid "Documentation"
-msgstr ""
-
-#: admin/includes/class.welcome.php:56
-msgid "Twitter"
-msgstr ""
-
-#: admin/includes/class.welcome.php:57
-msgid "Facebook"
-msgstr ""
-
-#: admin/includes/class.welcome.php:63
+#: admin/includes/class.welcome.php:74
 msgid "Getting Started"
 msgstr ""
 
-#: admin/includes/class.welcome.php:64
+#: admin/includes/class.welcome.php:75
 msgid ""
 "It's easy to get Lasso implemented into your theme. Just follow these short "
 "steps below and you'll be on your way!"
 msgstr ""
 
-#: admin/includes/class.welcome.php:67
+#: admin/includes/class.welcome.php:78
 msgid "Add Article Class"
 msgstr ""
 
-#: admin/includes/class.welcome.php:68
+#: admin/includes/class.welcome.php:79
 msgid ""
 "At minimum, the editor requires the CSS class of the main container holding "
 "the post content to be saved in the settings at Settings-->Lasso-->Article "
@@ -71,15 +47,47 @@ msgid ""
 "so Lasso knows where it needs to work"
 msgstr ""
 
-#: admin/includes/class.welcome.php:71
+#: admin/includes/class.welcome.php:82
 msgid "View a Post"
 msgstr ""
 
-#: admin/includes/class.welcome.php:72
+#: admin/includes/class.welcome.php:83
 msgid ""
 "After you have entered your CSS class, view any existing post to start "
 "editing. If that post happens to have existing Aesop Story Engine "
 "components, then they will all automatically work with Lasso"
+msgstr ""
+
+#: admin/includes/class.welcome.php:106
+msgid "Changelog"
+msgstr ""
+
+#: admin/includes/class.welcome.php:107
+msgid "Here's what's changed in Lasso since the last update."
+msgstr ""
+
+#: admin/includes/class.welcome.php:130
+msgid "Welcome to Lasso "
+msgstr ""
+
+#: admin/includes/class.welcome.php:131
+msgid "It's a mighty fine time to wrangle us some content!"
+msgstr ""
+
+#: admin/includes/class.welcome.php:135
+msgid "Website"
+msgstr ""
+
+#: admin/includes/class.welcome.php:136
+msgid "Documentation"
+msgstr ""
+
+#: admin/includes/class.welcome.php:137
+msgid "Twitter"
+msgstr ""
+
+#: admin/includes/class.welcome.php:138
+msgid "Facebook"
 msgstr ""
 
 #: admin/includes/wp-updates-plugin.php:87
