@@ -61,7 +61,7 @@ class lassoWelcome {
 
 			   	<div class="lasso--welcome__section lasso--welcome__section--quickstart">
 			   		<h2><?php _e('Getting Started','lasso');?></h2>
-			   		<p class="lasso--welcome__lead"><?php _e('It\'s easy to get Aesop Story Engine implemented into your theme. Just follow these short steps below and you\'ll be on your way!','lasso');?></p>
+			   		<p class="lasso--welcome__lead"><?php _e('It\'s easy to get Lasso implemented into your theme. Just follow these short steps below and you\'ll be on your way!','lasso');?></p>
 					<ul class="lasso--welcome__steps">
 						<li>
 							<strong><?php _e('Add Article Class','lasso');?></strong>
