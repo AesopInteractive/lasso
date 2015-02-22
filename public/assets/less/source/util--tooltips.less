@@ -4,7 +4,8 @@
     cursor: pointer;
     color: @tooltip--icon__color;
     display: inline-block;
-    .opacity(0.5);
+    .transition(opacity .15s ease);
+    .opacity(0.75);
 
     &:hover {
         text-decoration: none;
@@ -61,7 +62,7 @@
         background-color: @tooltip--bg;
         color: @tooltip--color;
         font-family: @editor--font;
-        text-shadow:1px 1px rgba(255,255,255,0.2);
+        //text-shadow:1px 1px rgba(255,255,255,0.2);
         content: attr(data-tooltip);
         font-size: @tooltip--font__size;
         line-height: 1.2;

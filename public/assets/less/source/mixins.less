@@ -54,26 +54,27 @@
     color: @color;
     border-radius: 100%;
     font-weight: normal;
-    padding: 3px;
     height: 18px;
     width: 18px;
+    line-height: 20px;
     text-align: center;
     text-shadow: 1px 1px rgba(0,0,0,0.1);
 
     &:focus,
     &:active,
     &:hover {
+        outline: none;
+        color:@color;
         text-decoration: none;
     }
 
     &:hover {
         color:@color;
-        background: darken(@bg,7);
+        background: fadeout(@editor--color__update,20);
     }
     &:active {
         color:@color;
-        background:darken(@bg,14);
-        .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
+        background:@editor--color__update;
     }
 }
 
