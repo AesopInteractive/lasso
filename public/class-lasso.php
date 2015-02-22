@@ -48,6 +48,7 @@ class Lasso {
 
 		require_once(LASSO_DIR.'/includes/class.process-save.php');
 		require_once(LASSO_DIR.'/includes/class.process-gallery.php');
+		require_once(LASSO_DIR.'/includes/class.save-gallery.php');
 		require_once(LASSO_DIR.'/includes/class.process-object-update.php');
 		require_once(LASSO_DIR.'/includes/class.process-image-upload.php');
 		require_once(LASSO_DIR.'/includes/class.process-new-object.php');

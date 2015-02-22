@@ -113,63 +113,9 @@ class lassoProcessGallery {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-generator-settings' ) ) {
 
-				$options 	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-
-				$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
-
-				$postid = !empty( $options ) ? (int) $options['id'] : false;
-
-				$gallery_ids = isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
-
-				// gallery width
-				$gallery_width = isset( $options['width'] ) ? $options['width'] : false;
-
-				// gallery grid item width
-				$item_width = isset( $options['itemwidth'] ) ? $options['itemwidth'] : false;
-
-				// caption
-				$caption = isset( $options['caption'] ) ? $options['caption'] : false;
-
-				// gallery transition
-				$transition = isset( $options['transition'] ) ? $options['transition'] : false;
-
-				// gallery transition speed
-				$transitionSpeed = isset( $options['speed'] ) ? $options['speed'] : false;
-
-				// gallery hide thumbs
-				$hideThumbs = isset( $options['hideThumbs'] ) ? $options['hideThumbs'] : false;
-
-				// photoset layout
-				$psLayout = isset( $options['pslayout'] ) ? $options['pslayout'] : false;
-
-				// photoset layout
-				$psLightbox = isset( $options['pslightbox'] ) ? $options['pslightbox'] : false;
-
-				// update gallery ids
-				if ( !empty( $gallery_ids ) ) {
-
-					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
-
-				}
-
-
-				update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
-
-				update_post_meta( $postid, 'aesop_gallery_width', sanitize_text_field( trim( $gallery_width ) ) );
-
-				update_post_meta( $postid, 'aesop_grid_gallery_width', sanitize_text_field( trim( $item_width ) ) );
-
-				update_post_meta( $postid, 'aesop_gallery_caption', sanitize_text_field( trim( $caption ) ) );
-
-				update_post_meta( $postid, 'aesop_thumb_gallery_transition', sanitize_text_field( trim( $transition ) ) );
-
-				update_post_meta( $postid, 'aesop_thumb_gallery_transition_speed', absint( trim( $transitionSpeed ) ) );
-
-				update_post_meta( $postid, 'aesop_thumb_gallery_hide_thumbs', sanitize_text_field( trim( $hideThumbs ) ) );
-
-				update_post_meta( $postid, 'aesop_photoset_gallery_layout', sanitize_text_field( trim( $psLayout ) ) );
-
-				update_post_meta( $postid, 'aesop_photoset_gallery_lightbox', sanitize_text_field( trim( $psLightbox ) ) );
+				$options 		= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+				$postid 		= !empty( $options ) ? (int) $options['id'] : false;
+				$gallery_ids 	= isset( $_POST['gallery_ids']) ? $_POST['gallery_ids'] : false;
 
 				// run an action
 				do_action( 'lasso_gallery_saved', $postid, $gallery_ids, $options, get_current_user_ID() );
