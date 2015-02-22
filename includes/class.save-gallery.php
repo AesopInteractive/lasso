@@ -16,10 +16,9 @@ class lassoSaveGallery {
 	/**
 	*
 	*	Update an existing galleries options
-	*
+	* 	@todo this needs to be cleaned up
 	*/
 	function save_gallery_options($postid, $gallery_ids, $options){
-
 
 		$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
 
@@ -73,7 +72,6 @@ class lassoSaveGallery {
 		update_post_meta( $postid, 'aesop_photoset_gallery_lightbox', sanitize_text_field( trim( $psLightbox ) ) );
 
 	}
-
 
 }
 new lassoSaveGallery;
