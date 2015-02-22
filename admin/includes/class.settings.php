@@ -12,7 +12,6 @@ class ahEditorAdminSettings {
 		add_action('admin_menu',					array($this,'menu'));
 		add_action('network_admin_menu',			array($this,'menu'));
 		add_action('wp_ajax_lasso-editor-settings',	array($this,'process_settings'));
-		add_action('admin_head',					array($this,'lasso_editor_settings_styles'));
 
 	}
 
@@ -38,21 +37,6 @@ class ahEditorAdminSettings {
 	function settings(){
 
 		echo self::lasso_editor_settings_form();
-	}
-
-	/**
-	*
-	*	Load some assets for the save page
-	*	@since 1.0
-	*/
-	function lasso_editor_settings_styles(){
-
-		$screen = get_current_screen();
-
-		if ( 'settings_page_lasso-editor-settings' == $screen->id || 'settings_page_lasso-editor-settings-network' == $screen->id ) {
-			wp_enqueue_script('lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array('jquery'), LASSO_VERSION, true );
-			wp_enqueue_style('lasso-editor-settings-style', LASSO_URL.'/admin/assets/css/lasso-editor-settings.css', LASSO_VERSION );
-		}
 	}
 
 	/**

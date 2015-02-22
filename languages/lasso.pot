@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Lasso package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Lasso 0.7\n"
+"Project-Id-Version: Lasso 0.8.1\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-02-18 02:27:52+00:00\n"
+"POT-Creation-Date: 2015-02-22 22:59:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +24,64 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
+#: admin/includes/class.welcome.php:49
+msgid "Welcome to Lasso "
+msgstr ""
+
+#: admin/includes/class.welcome.php:50
+msgid "It's a mighty fine time to wrangle us some content!"
+msgstr ""
+
+#: admin/includes/class.welcome.php:54
+msgid "Website"
+msgstr ""
+
+#: admin/includes/class.welcome.php:55
+msgid "Documentation"
+msgstr ""
+
+#: admin/includes/class.welcome.php:56
+msgid "Twitter"
+msgstr ""
+
+#: admin/includes/class.welcome.php:57
+msgid "Facebook"
+msgstr ""
+
+#: admin/includes/class.welcome.php:63
+msgid "Getting Started"
+msgstr ""
+
+#: admin/includes/class.welcome.php:64
+msgid ""
+"It's easy to get Aesop Story Engine implemented into your theme. Just "
+"follow these short steps below and you'll be on your way!"
+msgstr ""
+
+#: admin/includes/class.welcome.php:67
+msgid "Add Article Class"
+msgstr ""
+
+#: admin/includes/class.welcome.php:68
+msgid ""
+"At minimum, the editor requires the CSS class of the main container holding "
+"the post content to be saved in the settings at Settings-->Lasso-->Article "
+"Class. All other settings are optional. You an use a tool such as Chrome "
+"Inspector to find the CSS class that you'll need to enter into the settings "
+"so Lasso knows where it needs to work"
+msgstr ""
+
+#: admin/includes/class.welcome.php:71
+msgid "View a Post"
+msgstr ""
+
+#: admin/includes/class.welcome.php:72
+msgid ""
+"After you have entered your CSS class, view any existing post to start "
+"editing. If that post happens to have existing Aesop Story Engine "
+"components, then they will all automatically work with Lasso"
+msgstr ""
+
 #: admin/includes/wp-updates-plugin.php:87
 msgid ""
 "An Unexpected HTTP Error occurred during the API request.</p> <p><a "
@@ -35,11 +93,11 @@ msgstr ""
 msgid "An unknown error occurred"
 msgstr ""
 
-#: includes/class.process-gallery.php:206
+#: includes/class.process-gallery.php:188
 msgid "Delete From Gallery"
 msgstr ""
 
-#: includes/class.process-gallery.php:207
+#: includes/class.process-gallery.php:189
 msgid "Edit Image Caption"
 msgstr ""
 
@@ -47,84 +105,84 @@ msgstr ""
 msgid "People are made of stories..."
 msgstr ""
 
-#: public/includes/class.assets.php:37
+#: public/includes/class.assets.php:39
 msgid "Saving..."
 msgstr ""
 
-#: public/includes/class.assets.php:38
+#: public/includes/class.assets.php:40
 msgid "Saved!"
 msgstr ""
 
-#: public/includes/class.assets.php:39
+#: public/includes/class.assets.php:41
 msgid "Adding..."
 msgstr ""
 
-#: public/includes/class.assets.php:40
+#: public/includes/class.assets.php:42
 msgid "Added!"
 msgstr ""
 
-#: public/includes/class.assets.php:41
+#: public/includes/class.assets.php:43
 msgid "Gallery Created!"
 msgstr ""
 
-#: public/includes/class.assets.php:42
+#: public/includes/class.assets.php:44
 msgid "Gallery Updated!"
 msgstr ""
 
-#: public/includes/class.assets.php:43
+#: public/includes/class.assets.php:45
 msgid "Just write..."
 msgstr ""
 
-#: public/includes/class.assets.php:44
+#: public/includes/class.assets.php:46
 msgid "Choose an image"
 msgstr ""
 
-#: public/includes/class.assets.php:45
+#: public/includes/class.assets.php:47
 msgid "Update Image"
 msgstr ""
 
-#: public/includes/class.assets.php:46
+#: public/includes/class.assets.php:48
 msgid "Insert Image"
 msgstr ""
 
-#: public/includes/class.assets.php:47
+#: public/includes/class.assets.php:49
 msgid "Select Image"
 msgstr ""
 
-#: public/includes/class.assets.php:48
+#: public/includes/class.assets.php:50
 msgid "Update Selected Image"
 msgstr ""
 
-#: public/includes/class.assets.php:49
+#: public/includes/class.assets.php:51
 msgid "Choose images"
 msgstr ""
 
-#: public/includes/class.assets.php:50
+#: public/includes/class.assets.php:52
 msgid "Edit Image"
 msgstr ""
 
-#: public/includes/class.assets.php:51
+#: public/includes/class.assets.php:53
 #: public/includes/editor-modules--gallery.php:21
 msgid "Add Images"
 msgstr ""
 
-#: public/includes/class.assets.php:52
+#: public/includes/class.assets.php:54
 msgid "Add New Gallery"
 msgstr ""
 
-#: public/includes/class.assets.php:53
+#: public/includes/class.assets.php:55
 msgid "Select Lasso Gallery Image"
 msgstr ""
 
-#: public/includes/class.assets.php:54
+#: public/includes/class.assets.php:56
 msgid "Use Selected Images"
 msgstr ""
 
-#: public/includes/class.assets.php:55
+#: public/includes/class.assets.php:57
 msgid "Publish Post?"
 msgstr ""
 
-#: public/includes/class.assets.php:56
+#: public/includes/class.assets.php:58
 msgid "Yes, publish it!"
 msgstr ""
 

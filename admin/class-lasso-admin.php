@@ -40,6 +40,8 @@ class Lasso_Admin {
 		$plugin = Lasso::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
+		add_action('admin_head',		array($this,'admin_assets'));
+
 		require_once(LASSO_DIR.'/admin/includes/class.settings.php');
 		require_once(LASSO_DIR.'/admin/includes/class.welcome.php');
 
@@ -60,5 +62,26 @@ class Lasso_Admin {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	*
+	*	Load some assets for the appropriate pages in admin
+	*	@since 1.0
+	*/
+	function admin_assets(){
+
+		$screen = get_current_screen();
+
+		$pages = array(
+			'settings_page_lasso-editor-settings',
+			'settings_page_lasso-editor-settings-network',
+			'dashboard_page_lasso-welcome-screen'
+		);
+
+		foreach( $pages as $page ){
+			wp_enqueue_script('lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array('jquery'), LASSO_VERSION, true );
+			wp_enqueue_style('lasso-editor-settings-style', LASSO_URL.'/admin/assets/css/lasso-editor-settings.css', LASSO_VERSION );
+		}
 	}
 }

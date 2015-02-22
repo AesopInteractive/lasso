@@ -1,0 +1,98 @@
+.lasso--welcome {
+
+    * { .box-sizing(border-box); }
+
+    @bg:        white;
+    @accent:    darken(@bg,5);
+    @border:    darken(@bg, 10);
+    @link:      #F59E00;
+
+    // global section
+    .lasso--welcome__section {
+        padding:25px;
+        background: @bg;
+        border:1px solid @border;
+        border-radius:4px;
+        margin:20px auto;
+
+        &:first-of-type {
+            margin-top:25px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h3 {
+            color:#777;
+        }
+    }
+
+    .lasso--welcome__section--top {
+        .clearfix();
+
+        .lasso--welcome__left,
+        .lasso--welcome__right {
+            float: left;
+        }
+        .lasso--welcome__left {
+            width:66%;
+            margin-right: 2%;
+        }
+        .lasso--welcome__right {
+            width:32%;
+        }
+        img {
+            max-width:150px;
+            float:left;
+            margin-left:-20px;
+            border-radius:3px;
+        }
+    }
+
+    // social
+    .lasso--welcome__social {
+        list-style: none;
+        margin:0;
+        padding:0;
+        .clearfix();
+
+        li {
+            display: block;
+        }
+
+        a {
+            padding:2px 6px;
+            display: block;
+            text-decoration: none;
+            color:inherit;
+
+            &:hover {
+                color:@link;
+                text-decoration: none;
+            }
+
+            i {
+                font-size:16px;
+                top:2px;
+                line-height: 19px;
+                color:@link;
+            }
+        }
+    }
+
+    .lasso--welcome__steps {
+        list-style-type: upper-roman;
+        margin:0;
+        padding:0;
+        list-style-position: inside;
+
+        pre {
+            word-wrap:break-word;
+            background:@accent;
+            padding:10px;
+            border-radius:2px;
+        }
+    }
+}
+
