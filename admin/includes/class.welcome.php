@@ -29,7 +29,7 @@ class lassoWelcome {
 	    	return;
 	  	}
 
-	  	// Redirect to bbPress about page
+	  	// Redirect to welcome page
 	  	wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-welcome-screen' ), admin_url( 'index.php' ) ) );
 
 	}

@@ -216,7 +216,19 @@ class Lasso {
 	 */
 	private static function single_activate() {
 
-		set_transient( '_welcome_screen_activation_redirect', true, 30 );
+		$curr_version = get_option( 'lasso_version' );
+
+		// update upgraded from
+		if ( $curr_version ) {
+			update_option( 'lasso_upgraded_from', $curr_version );
+		}
+
+		// update lasso version option
+		update_option( 'lasso_version', LASSO_VERSION );
+
+		// set transietn for activation welcome
+		set_transient( '_lasso_welcome_redirect', true, 30 );
+
 
 	}
 
