@@ -45,6 +45,8 @@ function lasso_editor_controls() {
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
 
+				<?php do_action('lasso_editor_controls_before');?>
+
 				<li id="lasso--edit" title="<?php esc_attr_e('Edit Post','lasso');?>"><a href="#" class="lasso--button__primary"></a></li>
 
 				<?php if ( lasso_user_can('publish_posts') ) : ?>
@@ -58,6 +60,8 @@ function lasso_editor_controls() {
 					<?php } ?>
 
 				<?php endif; ?>
+
+				<?php do_action('lasso_editor_controls_after');?>
 
 			</ul>
 
