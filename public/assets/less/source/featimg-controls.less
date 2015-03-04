@@ -18,6 +18,10 @@
 
     &.lasso--featImg--has-thumb {
         width:@featimg-controls--width * 2;
+
+        #lasso--featImgDelete {
+            .opacity(1);
+        }
     }
 
     li {
@@ -58,6 +62,10 @@
 
     #lasso--featImgSave {
         .lasso--featImg--controlHidden;
+    }
+
+    #lasso--featImgDelete {
+        .opacity(0);
     }
 
     a {
