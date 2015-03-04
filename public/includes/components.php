@@ -135,7 +135,7 @@ endif;
 if ( !function_exists('lasso_content_component') ):
 	function lasso_content_component(){
 
-		return do_shortcode('[aesop_content]Start typing here...[/lasso_content]');
+		return do_shortcode('[aesop_content]Start typing here...[/aesop_content]');
 	}
 endif;
 
