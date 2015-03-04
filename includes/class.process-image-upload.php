@@ -11,7 +11,7 @@ class lassoUploadFeatImage {
 	function __construct(){
 
 		add_action( 'wp_ajax_process_featimg_upload', 				array($this, 'process_featimg_upload' ));
-
+		add_action( 'wp_ajax_process_featimg_delete', 				array($this, 'process_featimg_delete' ));
 	}
 
 	function process_featimg_upload(){
@@ -31,6 +31,35 @@ class lassoUploadFeatImage {
 				set_post_thumbnail( $postid, $image_id );
 
 				do_action( 'lasso_featured_image_set', $postid, $image_id, get_current_user_ID() );
+
+				// send back success
+				wp_send_json_success();
+
+			} else {
+
+				// send back error
+				wp_send_json_error();
+
+			}
+		}
+	}
+
+	function process_featimg_delete(){
+
+		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_delete' ) {
+
+			// only run for logged in users and check caps
+			if( !lasso_user_can() )
+				return;
+
+			// ok security passes so let's process some data
+			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_editor_image' ) ) {
+
+				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+
+				delete_post_thumbnail( $postid );
+
+				do_action( 'lasso_featured_image_deleted', $postid, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();

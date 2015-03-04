@@ -231,9 +231,13 @@ function lasso_editor_image_controls(){
 	if ( !lasso_user_can() )
 		return;
 
+	// has post thumbnail
+	$has_thumbnail = has_post_thumbnail( get_the_ID() ) ? 'class="lasso--featImg--has-thumb"' : false;
+
 	?>
-	<ul id="lasso--featImgControls">
+	<ul id="lasso--featImgControls" <?php echo $has_thumbnail;?>>
 		<li id="lasso--featImgUpload"><a title="<?php esc_attr_e('Replace Image','lasso');?>" href="#"><i class="lasso-icon-image"></i></a></li>
+		<li id="lasso--featImgDelete"><a title="<?php esc_attr_e('Delete Image','lasso');?>" href="#"><i class="lasso-icon-bin2"></i></a></li>
 		<li id="lasso--featImgSave"><a href="#"><?php esc_attr_e('save','lasso');?></a></li>
 	</ul>
 	<?php return ob_get_clean();

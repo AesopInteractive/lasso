@@ -74,4 +74,59 @@
 	    // Finally, open the modal
 	    file_frame.open();
 	});
+
+	////////////
+	// FEAT IMAGE DELETE
+	////////////
+	$(document).on('click', '#lasso--featImgDelete > a', function( e ){
+
+		e.preventDefault();
+
+		var $this = $(this);
+
+		var data = {
+			action: 'process_featimg_delete',
+			postid: lasso_editor.postid,
+			nonce: 	lasso_editor.featImgNonce
+		}
+
+		swal({
+			title: "Delete image?",
+			type: "warning",
+			text: false,
+			showCancelButton: true,
+			confirmButtonColor: "#d9534f",
+			confirmButtonText: "Yes, delete it!",
+			closeOnConfirm: true
+		},
+		function(){
+
+			$.post( lasso_editor.ajaxurl, data, function(response) {
+
+				if ( true == response.success ) {
+
+					// add a body class so we can do whatever with
+					$('body').addClass('lasso--post-thumb-removed');
+
+					// add the hidden class to control shell to allow for delete button
+					$('#lasso--featImgDelete').addClass('lasso--featImg--controlHidden');
+					$this.closest('ul').removeClass('lasso--featImg--has-thumb');
+
+					// remove teh attr src - just a real-time update
+			      	$(lasso_editor.featImgClass).css({
+			      		'background-image': 'url()'
+			      	});
+
+
+				}
+
+			});
+
+		});
+
+
+
+	});
+
+
 })( jQuery );
