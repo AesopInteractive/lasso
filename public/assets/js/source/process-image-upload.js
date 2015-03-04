@@ -55,6 +55,8 @@
 
 	      	var attachment = file_frame.state().get('selection').first().toJSON();
 
+	      	$('body').addClass('lasso--post-thumb-applied');
+
 	      	$('#lasso--featImgSave a').attr('data-featimg-id',attachment.id);
 
 	      	$(lasso_editor.featImgClass).css({
