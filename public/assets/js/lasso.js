@@ -10939,6 +10939,8 @@ jQuery(document).ready(function($){
 
 	      	$('body').addClass('lasso--post-thumb-applied');
 
+	      	$('article').removeClass('no-post-thumbnail').addClass('has-post-thumbnail');
+
 	      	$('#lasso--featImgSave a').attr('data-featimg-id',attachment.id);
 
 	      	$(lasso_editor.featImgClass).css({
