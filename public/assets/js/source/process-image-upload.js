@@ -108,6 +108,8 @@
 					// add a body class so we can do whatever with
 					$('body').addClass('lasso--post-thumb-removed');
 
+					$('article').removeClass('has-post-thumbnail').addClass('no-post-thumbnail');
+
 					// add the hidden class to control shell to allow for delete button
 					$('#lasso--featImgDelete').addClass('lasso--featImg--controlHidden');
 					$this.closest('ul').removeClass('lasso--featImg--has-thumb');
