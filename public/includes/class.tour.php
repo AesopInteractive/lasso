@@ -88,11 +88,11 @@ class lassoEditorWelcome {
 			$out = '<ul>';
 				$out .= '<li>';
 					$out .= sprintf('<img src="%s">', LASSO_URL.'/public/assets/img/enter-editor.gif' );
-					$out .= '<p>Begin editing by clicking the Pen icon. Access additional settings with the settings icon, and add a new post with the plus icon.</p>';
+					$out .= '<p>Edit by clicking the Pen icon. Access post settings with the settings icon, and add a new post with the plus icon.</p>';
 				$out .= '</li>';
 				$out .= '<li>';
 					$out .= sprintf('<img src="%s">', LASSO_URL.'/public/assets/img/editor-highlight.gif' );
-					$out .= '<p>Highlight a piece of text, and click on a formatting option to style it.</p>';
+					$out .= '<p>Highlight a piece of text, and click on a formatting option to style it. Click the Disck icon to save. Press escape to exit the editor.</p>';
 				$out .= '</li>';
 				$out .= '<li>';
 					$out .= sprintf('<img src="%s">', LASSO_URL.'/public/assets/img/editor-component.gif' );

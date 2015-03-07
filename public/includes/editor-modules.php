@@ -286,7 +286,7 @@ function lasso_editor_component_modal(){
 
 				<?php if ( 'publish' == $status ): ?>
 				<div class="lasso--postsettings__option story-slug-option">
-					<label><?php _e('URL','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Change the URL (slug) of this post."><i class="lasso-icon-help"></i></span></label>
+					<label><?php _e('Post Slug','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Change the URL (slug) of this post."><i class="lasso-icon-help"></i></span></label>
 					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div>
 					<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
