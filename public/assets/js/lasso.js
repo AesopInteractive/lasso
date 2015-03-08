@@ -11163,7 +11163,7 @@ jQuery(document).ready(function($){
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
-						modalResizer()
+			modalResizer()
 
 		});
 

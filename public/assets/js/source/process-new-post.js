@@ -34,7 +34,7 @@
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
-						modalResizer()
+			modalResizer()
 
 		});
 
