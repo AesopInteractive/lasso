@@ -34,6 +34,8 @@
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
+						modalResizer()
+
 		});
 
 		// destroy modal if clicking close or overlay
