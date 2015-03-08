@@ -18,6 +18,15 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.8.5 =
+* misc bug fixes
+* removed the "url helper" field for creating new posts as it was confusing some users
+* added helper text to the field for creating new posts as a better visual guide
+* new activation welcome screen in WordPress
+* fixed the content component from not correctly saving
+* added two actions: lasso_editor_controls_before && lasso_editor_controls_after
+* added two css classes that get applied to the body when a featured thumbnail is added or removed : lasso-post-thumb-added && lasso-post-thumb-removed
+
 = 0.8.1 =
 * fixed media library sometimes not closing after selecting an image
 * fixed bug with editing more than one standard WordPress image inserted from the backend
