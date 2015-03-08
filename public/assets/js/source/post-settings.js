@@ -23,16 +23,6 @@
 			// append teh modal markup ( lasso_editor_component_modal() )
 			$('body').append(lasso_editor.component_modal);
 
-			////////////
-			// RESIZE THE URL HELPER FIELD
-			////////////
-			var mask 		= $('.url-helper')
-			,	mWidth 		= mask.outerWidth()
-			,	field  		= $('input[name="story_slug"]')
-			,	maxLength   = 342
-
-			field.css({'width':maxLength - mWidth});
-
 			/////////////////
 			/// UI SLIDER INIT AND METHODS
 			///////////////////
@@ -79,6 +69,8 @@
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
+
+			modalResizer()
 
 		});
 

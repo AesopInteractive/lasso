@@ -274,7 +274,7 @@ function lasso_editor_component_modal(){
 			<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
 				<div class="lasso--postsettings__option story-status-option">
-					<label><?php _e('Status','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Change the status of the post to draft or publish."><i class="lasso-icon-help"></i></span></label>
+					<label><?php _e('Status','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e('Change the status of the post to draft or publish.','lasso');?>"><i class="lasso-icon-help"></i></span></label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 						<li id="lasso--status-draft"><?php _e('Draft','lasso');?></li>
 						<li id="lasso--status-publish"><?php _e('Publish','lasso');?></li>
@@ -286,8 +286,7 @@ function lasso_editor_component_modal(){
 
 				<?php if ( 'publish' == $status ): ?>
 				<div class="lasso--postsettings__option story-slug-option">
-					<label><?php _e('Post Slug','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Change the URL (slug) of this post."><i class="lasso-icon-help"></i></span></label>
-					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div>
+					<label><?php _e('Post URL','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e('Change the URL (slug) of this post.','lasso');?>"><i class="lasso-icon-help"></i></span></label>
 					<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
 				</div>
 				<?php endif; ?>
@@ -301,7 +300,7 @@ function lasso_editor_component_modal(){
 					<input type="hidden" name="action" value="process_update_post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<?php do_action('lasso_modal_post_form_footer'); // action ?>
-					<input type="submit" value="<?php _e('Save','lasso');?>">
+					<input type="submit" value="<?php esc_attr_e('Save','lasso');?>">
 				</div>
 
 			</form>
@@ -345,8 +344,8 @@ function lasso_editor_newpost_modal(){
 			<form id="lasso--postnew__form" enctype="multipart/form-data" >
 
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
-					<label><?php _e('New '.ucfirst( $type ).' Title','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="Specify title for new post, then save to edit."><i class="lasso-icon-help"></i></span></label>
-					<div class="url-helper"><?php echo esc_url( get_bloginfo('url') );?></div><input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="">
+					<label><?php esc_attr_e('New '.ucfirst( $type ).' Title','lasso');?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e('Specify title for new post, then save to edit.','lasso');?>"><i class="lasso-icon-help"></i></span></label>
+					<input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="" placeholder="<?php esc_attr_e('Grump Wizards Make Toxic Brew','lasso');?>">
 				</div>
 
 				<div class="lasso--postsettings__footer" style="display:none;">
@@ -354,7 +353,7 @@ function lasso_editor_newpost_modal(){
 					<input type="hidden" name="action" value="process_new_object">
 					<input type="hidden" name="object" value="<?php echo $type;?>">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
-					<input type="submit" value="<?php _e('Create','lasso');?>">
+					<input type="submit" value="<?php esc_attr_e('Create','lasso');?>">
 				</div>
 
 			</form>
@@ -403,7 +402,7 @@ function lasso_map_form_footer(){
 			<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
 			<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 			<input type="hidden" name="action" value="process_map_save">
-			<input type="submit" class="lasso--map-form__submit" value="Save Locations">
+			<input type="submit" class="lasso--map-form__submit" value="<?php esc_attr_e('Save Locations','lasso');?>">
 		</div>
 		<?php
 
@@ -530,7 +529,7 @@ function lasso_editor_options_blob() {
 
 		} else {
 
-			$return .= '<p><label>' . __( 'Content', 'lasso' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
+			$return .= '<p data-option="content" class="lasso-option lasso-c-comp-text"><label>' . __( 'Content', 'lasso' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
 		}
 
 		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';

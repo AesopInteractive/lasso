@@ -87,6 +87,15 @@
     // general input
     input[type="text"] {
         background: @input--bg;
+        border:1px solid @input--border;
+        color:@input--color;
+        height:@input--height;
+        font-size: @sidebar--font__size;
+        z-index: 0;
+        position: relative;
+        padding-left: 6px;
+        border-radius: @editor--radius @editor--radius;
+        .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
     }
 
     &.lasso--last-option {
@@ -131,36 +140,23 @@
 
     // post slug option
     &.story-slug-option {
-        .clearfix();
-
-        .url-helper,
-        input {
-            float: left;
-            height:34px;
-            font-size: @modal--font__size;
-            overflow: hidden;
-        }
-
-        // the url mask
-        .url-helper {
-            background:@modal--bg__accent;
-            border-top-left-radius: @editor--radius;
-            border-bottom-left-radius: @editor--radius;
-            padding:9px 8px 2px;
-            line-height: 1;
-        }
-
-        // the url input
-        input {
-            z-index: 0;
-            position: relative;
-            padding-left: 6px;
-            border-radius: 0 @editor--radius @editor--radius 0;
+        + .lasso--postsettings__footer {
+            margin-top:inherit;
+            padding-top:inherit;
+            padding-to:20px;
+            margin-top:20px;
         }
     }
 
     &.checkbox-option {
 
+    }
+
+    + .lasso--postsettings__footer {
+        border-top:none;
+        box-shadow: none;
+        margin-top:0;
+        padding-top:0;
     }
 }
 

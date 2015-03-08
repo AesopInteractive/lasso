@@ -9414,16 +9414,6 @@ jQuery(document).ready(function($){
 			// append teh modal markup ( lasso_editor_component_modal() )
 			$('body').append(lasso_editor.component_modal);
 
-			////////////
-			// RESIZE THE URL HELPER FIELD
-			////////////
-			var mask 		= $('.url-helper')
-			,	mWidth 		= mask.outerWidth()
-			,	field  		= $('input[name="story_slug"]')
-			,	maxLength   = 342
-
-			field.css({'width':maxLength - mWidth});
-
 			/////////////////
 			/// UI SLIDER INIT AND METHODS
 			///////////////////
@@ -9470,6 +9460,8 @@ jQuery(document).ready(function($){
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
+
+			modalResizer()
 
 		});
 
@@ -11339,9 +11331,10 @@ jQuery(document).ready(function($){
 			var modal = $('.lasso--modal')
 			,   mHeight = modal.height()
 			,	wHeight  = $(window).height()
+			,	eHeight  = $('.lasso--modal').hasClass('lasso--tour__modal') ? 0 : 30 // this is the height of the submit button that is hidden utnil the user changes a setting
 
 			modal.css({
-				'top' : (wHeight - mHeight) / 2
+				'top' : (wHeight - mHeight - eHeight) / 2
 			})
 
 		}
