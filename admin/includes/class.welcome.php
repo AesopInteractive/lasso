@@ -51,55 +51,38 @@ class lassoWelcome {
 	*/
 	function welcome() {
 
-		$article_object = lasso_editor_get_option('article_class','lasso_editor');
-
-		$theme 			= wp_get_theme();
-		$theme_domain 	= $theme->get('TextDomain');
-		$theme_class 	= $theme_domain ? lasso_supported_themes( $theme_domain ) : false;
 
 	  	?>
 		  	<div class="wrap lasso--welcome">
 
 		  		<?php self::header();?>
 
-		  		<?php if ( !empty( $article_object ) ) : ?>
+		  		<ul class="lasso--welcome__steps">
 
-			  		<ul class="lasso--welcome__steps">
+		  		<?php
+			  		$checks = self::lasso_preflight_check();
 
-			  			<li>
+			  		if ( $checks ):
 
-			  				<h3>Tell Lasso Where to Work</h3>
+				  		foreach ( (array) $checks as $key => $check) {
 
-			  				<p>Before using Lasso, paste the CSS class of the container hold your post content into the first option under <a href="<?php echo esc_url( admin_url('options-general.php?page=lasso-editor-settings') );?>">Lasso Settings</a>.</p>
+				  			echo $check;
+				  		}
 
-			  				<?php if ( false !== $theme_class ): ?>
+				  	else:
 
-			  					<p>For your convienience, we've detected that you're running <?php echo $theme->get( 'Name' );?>. Here's the CSS class that you'll need:</p>
-
-			  					<code><?php echo $theme_class; ?></code>
-
-			  				<?php else: ?>
-
-			  					<p>You can use a tool like inspector in Chrome or Firefox to find this CSS class.</p>
-
-			  				<?php endif; ?>
-			  			</li>
-
-			  		</ul>
-
-		  		<?php else: ?>
-
-			  		<ul class="lasso--starting__steps">
-
-			  			<li>
-			  				<h3>Write with a Pen</h3>
+				  		// pre-flight is go for flight
+				  		?>
+						<li>
+							<h3>Write with a Pen</h3>
 			  				<p>By default Lasso will show a small menu on the bottom of every post and page.Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.</p>
 			  			</li>
+			  			<?php
 
-			  		</ul>
+				  	endif;
 
-			  	<?php endif; ?>
-
+			  	?>
+			  	</ul>
 		  	</div>
 	 	<?php
 	}
@@ -136,21 +119,64 @@ class lassoWelcome {
     	remove_submenu_page( 'index.php', 'lasso-welcome-screen' );
 	}
 
+	/**
+	*
+	*	Run a series of checks to inform the user about incompatibilities, missing option fields, and suggested addons which is shown to the user on the welcome page when the plugin is activated
+	*
+	*	@since 0.8.6
+	*/
+	function lasso_preflight_check(){
+
+		$notices = array();
+
+		$article_object = lasso_editor_get_option('article_class','lasso_editor');
+
+		$theme 			= wp_get_theme();
+		$theme_domain 	= $theme->get('TextDomain');
+		$theme_class 	= $theme_domain ? lasso_supported_themes( $theme_domain ) : false;
+
+		// if the required CSS class has not been saved
+		if ( empty( $article_object ) ) :
+
+			// if we have a theme that we automatically support
+			if ( false !== $theme_class ) {
+
+				$notices[] = sprintf('<li>
+										<h3>Tell Lasso Where to Work</h3>
+										<p>Before using Lasso, <a href="%s">enter and save</a> the CSS class of the container that holds your post and page content.We\'ve detected that you\'re running %s. Here\'s the CSS class that you\'ll need:</p>
+										<code style="display:inline-block;margin-top:15px;">%s</code>
+									</li>',admin_url('options-general.php?page=lasso-editor-settings'), $theme->get( 'Name' ), $theme_class );
+
+			// we dont automatically support this theme so show them otherwise
+			} else {
+
+				$notices[] = '<li>
+								<h3>Tell Lasso Where to Work</h3>
+								<p>You can use a tool like inspector in Chrome or Firefox to find this CSS class, or <a href="mailto:help@lasso.is">email us</a> with a link to a public URL with the theme and we\'ll find it for you.</p>
+								</li>';
+			}
+
+		endif;
+
+		// aesop story engine isnt active
+		if ( !class_exists('Aesop_Core') ) {
+			$notices[] = '<li><h3>Aesop Story Engine not Activated!</h3>
+							<p>Just a heads up that Aesop Story Engine isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!</p>
+							</li>';
+		}
+
+		// we dont really get along with wp side comments because of the section ids that get applied dynamically. since we save our html, it'll get saved along with the post as HTML
+		if ( class_exists('WP_Side_Comments') ) {
+			$notices[] = '<li><h3>WP Side Comments Compatibility Warning!</h3>
+							<p>Since Lasso saves the HTML of a post, this may cause undesired issues. We\'re working to resolve incompatibilities faster than a jack rabbit in a hot greasy griddle in the middle of August.</p>
+							</li>';
+		}
+
+		return apply_filters('lasso_preflight_notices', $notices );
+
+	}
 }
 new lassoWelcome;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
