@@ -29,20 +29,7 @@ class lassoWelcome {
 	    	return;
 	  	}
 
-	  	$updated = get_option( 'lasso_updated_from' );
-
-		if( !$updated ) {
-
-			// first time visitor
-	  		wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-welcome-screen' ), admin_url( 'index.php' ) ) );
-
-	  	} else {
-
-	  		// upgraded
-	  		wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-welcome-back' ), admin_url( 'index.php' ) ) );
-
-	  	}
-
+	  	wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-welcome-screen' ), admin_url( 'index.php' ) ) );
 
 	}
 
@@ -54,7 +41,6 @@ class lassoWelcome {
 	*/
 	function lasso_welcome() {
 	  	add_dashboard_page('Welcome to Lasso','Welcome to Lasso','read','lasso-welcome-screen',array($this,'welcome'));
-	  	add_dashboard_page('Welcome Back to Lasso','Welcome Back to Lasso','read','lasso-welcome-back',array($this,'welcome_back'));
 	}
 
 	/**
@@ -65,57 +51,54 @@ class lassoWelcome {
 	*/
 	function welcome() {
 
-	  	?>
-		  	<div class="wrap lasso--welcome">
+		$article_object = lasso_editor_get_option('article_class','lasso_editor');
 
-		  		<?php echo self::header();?>
-
-			   	<div class="lasso--welcome__section lasso--welcome__section--quickstart">
-			   		<h2><?php _e('Getting Started','lasso');?></h2>
-			   		<p class="lasso--welcome__lead"><?php _e('It\'s easy to get Lasso implemented into your theme. Just follow these short steps below and you\'ll be on your way!','lasso');?></p>
-					<ul class="lasso--welcome__steps">
-						<li>
-							<strong><?php _e('Add Article Class','lasso');?></strong>
-							<p><?php _e('At minimum, the editor requires the CSS class of the main container holding the post content to be saved in the settings at Settings-->Lasso-->Article Class. All other settings are optional. You an use a tool such as Chrome Inspector to find the CSS class that you\'ll need to enter into the settings so Lasso knows where it needs to work','lasso');?></p>
-						</li>
-						<li>
-							<strong><?php _e('View a Post','lasso');?></strong>
-							<p><?php _e('After you have entered your CSS class, view any existing post to start editing. If that post happens to have existing Aesop Story Engine components, then they will all automatically work with Lasso','lasso');?></p>
-						</li>
-					</ul>
-				</div>
-
-		  	</div>
-	 	<?php
-	}
-
-	/**
-	*
-	*	Callback for the screen for users who havew updated from a previous version
-	*
-	*	@since 0.8.2
-	*/
-	function welcome_back() {
+		$theme 			= wp_get_theme();
+		$theme_domain 	= $theme->get('TextDomain');
+		$theme_class 	= $theme_domain ? lasso_supported_themes( $theme_domain ) : false;
 
 	  	?>
 		  	<div class="wrap lasso--welcome">
 
-				<?php echo self::header();?>
+		  		<?php self::header();?>
 
-			   	<div class="lasso--welcome__section lasso--welcome__section--quickstart">
-			   		<h2><?php _e('Changelog','lasso');?></h2>
-			   		<p class="lasso--welcome__lead"><?php _e('Here\'s what\'s changed in Lasso since the last update.','lasso');?></p>
-					<ul class="lasso--welcome__changelog">
-						<li>* fixed media library sometimes not closing after selecting an image</li>
-						<li>* fixed bug with editing more than one standard WordPress image inserted from the backend</li>
-						<li>* fixed bugs with toolbar size with extended options on and aesop story engine off</li>
-						<li>* when live editing image, parallax, and quote and no caption or cite exists, append it live</li>
-						<li>* compatibility with the new "Pull Quote" option in Aesop 1.5 with live editing</li>
-						<li>* fixed map zoom and location not saving</li>
-						<li>* fixed map controls if map is used in sticky mode</li>
-						<li>* fixed gallery options not saving</li>
-					</ul>
-				</div>
+		  		<?php if ( !empty( $article_object ) ) : ?>
+
+			  		<ul class="lasso--welcome__steps">
+
+			  			<li>
+
+			  				<h3>Tell Lasso Where to Work</h3>
+
+			  				<p>Before using Lasso, paste the CSS class of the container hold your post content into the first option under <a href="<?php echo esc_url( admin_url('options-general.php?page=lasso-editor-settings') );?>">Lasso Settings</a>.</p>
+
+			  				<?php if ( false !== $theme_class ): ?>
+
+			  					<p>For your convienience, we've detected that you're running <?php echo $theme->get( 'Name' );?>. Here's the CSS class that you'll need:</p>
+
+			  					<code><?php echo $theme_class; ?></code>
+
+			  				<?php else: ?>
+
+			  					<p>You can use a tool like inspector in Chrome or Firefox to find this CSS class.</p>
+
+			  				<?php endif; ?>
+			  			</li>
+
+			  		</ul>
+
+		  		<?php else: ?>
+
+			  		<ul class="lasso--starting__steps">
+
+			  			<li>
+			  				<h3>Write with a Pen</h3>
+			  				<p>By default Lasso will show a small menu on the bottom of every post and page.Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.</p>
+			  			</li>
+
+			  		</ul>
+
+			  	<?php endif; ?>
 
 		  	</div>
 	 	<?php
@@ -131,20 +114,19 @@ class lassoWelcome {
 
 	  	?>
 
-	  		<div class="lasso--welcome__section lasso--welcome__section--top">
-	  			<div class="lasso--welcome__left">
-		  			<img src="<?php echo LASSO_URL.'/admin/assets/img/logo.svg';?>">
-		    		<h1><?php _e('Welcome to Lasso ','lasso');?><?php echo LASSO_VERSION;?></h1>
-		    		<h3><?php _e('It\'s a mighty fine time to wrangle us some content!','lasso');?></h3>
-		    	</div>
-		    	<div class="lass--welcome__right">
-			    	<ul class="lasso--welcome__social">
-			    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
-			    		<li><a href="https://dl.dropboxusercontent.com/u/5594632/aesop-editor-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Documentation', 'lasso');?></a></li>
-			    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e('Twitter','lasso');?></a></li>
-			    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e('Facebook','lasso');?></a></li>
-			    	</ul>
-			    </div>
+	  		<div class="lasso--welcome__top">
+
+	  			<img src="<?php echo LASSO_URL.'/admin/assets/img/logo.svg';?>">
+	    		<h1><?php _e('Welcome to Lasso','lasso');?></h1>
+	    		<p>Version <?php echo LASSO_VERSION;?></p>
+
+		    	<ul class="lasso--welcome__social">
+		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
+		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Documentation', 'lasso');?></a></li>
+		    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e('Twitter','lasso');?></a></li>
+		    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e('Facebook','lasso');?></a></li>
+		    	</ul>
+	
 		    </div>
 
 	 	<?php
@@ -152,7 +134,24 @@ class lassoWelcome {
 
 	function remove_menu() {
     	remove_submenu_page( 'index.php', 'lasso-welcome-screen' );
-    	remove_submenu_page( 'index.php', 'lasso-welcome-back' );
 	}
+
 }
 new lassoWelcome;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

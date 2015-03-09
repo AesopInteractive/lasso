@@ -46,6 +46,44 @@ function lasso_editor_galleries_exist(){
 		return false;
 }
 
+/**
+*
+*	Get a list of themes automatically supported by Lasso and return their contents CSS class
+*
+*	@param $textdomain string the textdomain of the WordPress theme. We're using the textdomain because it's automatically slugified by the author and its easy.
+*	@since 0.8.6
+*	@return a css class if the theme is supported, false if nothing
+*/
+function lasso_supported_themes( $textdomain = '' ) {
+
+	if ( empty( $textdomain ) )
+		return;
+
+	switch ( $textdomain ) {
+
+		case 'twentytwelve':
+			$out = '.entry-content';
+			break;
+		case 'twentythirteen':
+			$out = '.entry-content';
+			break;
+		case 'twentyfourteen':
+			$out = '.entry-content';
+			break;
+		case 'twentyfifteen':
+			$out = '.entry-content';
+			break;
+		case 'aesop-story-theme':
+			$out = '.aesop-entry-content';
+			break;
+		default:
+			$out = '.entry-content';
+			break;
+	}
+
+	return $out ? $out : false;
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////
