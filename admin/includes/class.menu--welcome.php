@@ -139,7 +139,7 @@ class lassoWelcome {
 		$theme_domain 	= $theme->get('TextDomain');
 		$theme_class 	= $theme_domain ? lasso_supported_themes( $theme_domain ) : false;
 
-		// if the required CSS class has not been saved
+		// if1 the required CSS class has not been saved
 		if ( empty( $article_object ) ) :
 
 			// if we have a theme that we automatically support
