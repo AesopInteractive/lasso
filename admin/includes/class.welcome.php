@@ -74,7 +74,7 @@ class lassoWelcome {
 				  		// pre-flight is go for flight
 				  		?>
 						<li>
-							<h3>Write with a Pen</h3>
+							<h3>Pre-flight Check is Go!</h3>
 			  				<p>By default Lasso will show a small menu on the bottom of every post and page.Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.</p>
 			  			</li>
 			  			<?php
@@ -104,12 +104,13 @@ class lassoWelcome {
 	    		<p>Version <?php echo LASSO_VERSION;?></p>
 
 		    	<ul class="lasso--welcome__social">
-		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
+		    		<li><a href="<?php echo admin_url('options-general.php?page=lasso-editor-settings');?>"><i class="dashicons dashicons-admin-generic"></i> <?php _e('Settings', 'lasso');?></a></li>
 		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Documentation', 'lasso');?></a></li>
+		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
 		    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e('Twitter','lasso');?></a></li>
 		    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e('Facebook','lasso');?></a></li>
 		    	</ul>
-	
+
 		    </div>
 
 	 	<?php
@@ -161,7 +162,8 @@ class lassoWelcome {
 		// aesop story engine isnt active
 		if ( !class_exists('Aesop_Core') ) {
 			$notices[] = '<li><h3>Aesop Story Engine not Activated!</h3>
-							<p>Just a heads up that Aesop Story Engine isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!</p>
+							<p>Just a heads up that <a href="https://wordpress.org/plugins/aesop-story-engine/" target="_blank
+							">Aesop Story Engine</a> isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!</p>
 							</li>';
 		}
 
