@@ -42,8 +42,9 @@ class Lasso_Admin {
 
 		add_action('admin_head',		array($this,'admin_assets'));
 
-		require_once(LASSO_DIR.'/admin/includes/class.settings.php');
-		require_once(LASSO_DIR.'/admin/includes/class.welcome.php');
+		require_once(LASSO_DIR.'/admin/includes/class.menu--welcome.php');
+		require_once(LASSO_DIR.'/admin/includes/class.menu--settings.php');
+		require_once(LASSO_DIR.'/admin/includes/class.menu--addons.php');
 
 	}
 

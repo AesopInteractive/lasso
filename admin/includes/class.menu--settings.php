@@ -5,7 +5,7 @@
 *
 */
 
-class ahEditorAdminSettings {
+class lassoMenuSettings {
 
 	function __construct(){
 
@@ -17,15 +17,19 @@ class ahEditorAdminSettings {
 
 	/**
 	*
-	*	Add a submenu page to the "Settings" tab
+	*	Add a submenu page to the "Settings" tab if network activated, otherwise add to our menu page
 	*	@since 1.0
 	*/
 	function menu(){
 
 		if ( function_exists('is_multisite') && is_multisite() ) {
-			add_submenu_page( 'settings.php', 'Lasso', 'Lasso', 'manage_network', 'lasso-editor-settings', array($this, 'settings'));
+
+			add_submenu_page( 'settings.php', __('Lasso','lasso'), __('Lasso','lasso'), 'manage_network', 'lasso-editor', array($this, 'settings'));
+
 		} else {
-     		add_submenu_page( 'options-general.php', 'Lasso', 'Lasso', 'manage_options', 'lasso-editor-settings', array($this, 'settings'));
+
+     		add_submenu_page( 'lasso-editor', __('Settings','lasso'), __('Settings','lasso'), 'manage_options', 'lasso-editor-settings', array($this, 'settings'));
+
 		}
 	}
 
@@ -182,4 +186,4 @@ class ahEditorAdminSettings {
 
 	}
 }
-new ahEditorAdminSettings;
+new lassoMenuSettings;

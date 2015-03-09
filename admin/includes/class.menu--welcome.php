@@ -1,8 +1,9 @@
 <?php
 /**
 *
-*	Creates a welcome screen when the plugin is activated
+*	Creates a welcome screen with pre-flight check sequence
 *
+*	@since 0.8.2
 */
 class lassoWelcome {
 
@@ -10,7 +11,6 @@ class lassoWelcome {
 
 		add_action( 'admin_init', 		array($this,'redirect' ));
 		add_action('admin_menu', 		array($this,'lasso_welcome'));
-		add_action( 'admin_head', 		array($this,'remove_menu' ));
 
 	}
 
@@ -29,7 +29,7 @@ class lassoWelcome {
 	    	return;
 	  	}
 
-	  	wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-welcome-screen' ), admin_url( 'index.php' ) ) );
+	  	wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-editor' ), admin_url( 'admin.php' ) ) );
 
 	}
 
@@ -40,7 +40,13 @@ class lassoWelcome {
 	*	@since 0.8
 	*/
 	function lasso_welcome() {
-	  	add_dashboard_page('Welcome to Lasso','Welcome to Lasso','read','lasso-welcome-screen',array($this,'welcome'));
+
+		if ( function_exists('is_multisite') && !is_multisite() ) {
+
+			add_menu_page( __('Lasso','lasso'), __('Lasso','lasso'), 'manage_options', 'lasso-editor','','dashicons-heart');
+			add_submenu_page( 'lasso-editor', __('Welcome','lasso'), __('Welcome','lasso'), 'manage_options', 'lasso-editor', array($this, 'welcome'));
+		}
+
 	}
 
 	/**
@@ -73,9 +79,9 @@ class lassoWelcome {
 
 				  		// pre-flight is go for flight
 				  		?>
-						<li>
-							<h3>Pre-flight Check is Go!</h3>
-			  				<p>By default Lasso will show a small menu on the bottom of every post and page.Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.</p>
+						<li class="success">
+							<h3><?php _e('You\'re Ready to Rock!','lasso');?></h3>
+			  				<p><?php _e('Lasso will place a small menu on the bottom of every post and page. Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.','lasso');?></p>
 			  			</li>
 			  			<?php
 
@@ -105,7 +111,8 @@ class lassoWelcome {
 
 		    	<ul class="lasso--welcome__social">
 		    		<li><a href="<?php echo admin_url('options-general.php?page=lasso-editor-settings');?>"><i class="dashicons dashicons-admin-generic"></i> <?php _e('Settings', 'lasso');?></a></li>
-		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Documentation', 'lasso');?></a></li>
+		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Docs', 'lasso');?></a></li>
+		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e('Help', 'lasso');?></a></li>
 		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
 		    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e('Twitter','lasso');?></a></li>
 		    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e('Facebook','lasso');?></a></li>
@@ -114,10 +121,6 @@ class lassoWelcome {
 		    </div>
 
 	 	<?php
-	}
-
-	function remove_menu() {
-    	remove_submenu_page( 'index.php', 'lasso-welcome-screen' );
 	}
 
 	/**
@@ -142,18 +145,18 @@ class lassoWelcome {
 			// if we have a theme that we automatically support
 			if ( false !== $theme_class ) {
 
-				$notices[] = sprintf('<li>
-										<h3>Tell Lasso Where to Work</h3>
-										<p>Before using Lasso, <a href="%s">enter and save</a> the CSS class of the container that holds your post and page content.We\'ve detected that you\'re running %s. Here\'s the CSS class that you\'ll need:</p>
+				$notices[] = sprintf('<li class="error">
+										<h3>'.__('Article CSS Class Needed!','lasso').'</h3>
+										<p>'.__('Before using Lasso,','lasso').' <a href="%s">'.__('enter and save','lasso').'</a> '.__('the CSS class of the container that holds your post and page content. We\'ve automatically detected that you\'re running ','lasso').' %s. '.__('Here\'s the CSS class that you\'ll need:','lasso').'</p>
 										<code style="display:inline-block;margin-top:15px;">%s</code>
-									</li>',admin_url('options-general.php?page=lasso-editor-settings'), $theme->get( 'Name' ), $theme_class );
+									</li>',admin_url('admin.php?page=lasso-editor-settings'), $theme->get( 'Name' ), $theme_class );
 
 			// we dont automatically support this theme so show them otherwise
 			} else {
 
-				$notices[] = '<li>
-								<h3>Tell Lasso Where to Work</h3>
-								<p>You can use a tool like inspector in Chrome or Firefox to find this CSS class, or <a href="mailto:help@lasso.is">email us</a> with a link to a public URL with the theme and we\'ll find it for you.</p>
+				$notices[] = '<li class="error">
+								<h3>'.__('Article CSS Class Needed!.','lasso').'</h3>
+								<p>'.__('You can use a tool like inspector in Chrome or Firefox to find this CSS class, or ','lasso').' <a href="mailto:help@lasso.is">'.__('email us.','lasso').'</a> '.__('with a link to a public URL with the theme and we\'ll find it for you.','lasso').'</p>
 								</li>';
 			}
 
@@ -161,16 +164,16 @@ class lassoWelcome {
 
 		// aesop story engine isnt active
 		if ( !class_exists('Aesop_Core') ) {
-			$notices[] = '<li><h3>Aesop Story Engine not Activated!</h3>
-							<p>Just a heads up that <a href="https://wordpress.org/plugins/aesop-story-engine/" target="_blank
-							">Aesop Story Engine</a> isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!</p>
+			$notices[] = '<li class="info"><h3>Aesop Story Engine not Activated!</h3>
+							<p>'.__('Just a heads up that ','lasso').'<a href="https://wordpress.org/plugins/aesop-story-engine/" target="_blank
+							">'.__('Aesop Story Engine','lasso').'</a> '.__('isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!','lasso').'</p>
 							</li>';
 		}
 
 		// we dont really get along with wp side comments because of the section ids that get applied dynamically. since we save our html, it'll get saved along with the post as HTML
 		if ( class_exists('WP_Side_Comments') ) {
-			$notices[] = '<li><h3>WP Side Comments Compatibility Warning!</h3>
-							<p>Since Lasso saves the HTML of a post, this may cause undesired issues. We\'re working to resolve incompatibilities faster than a jack rabbit in a hot greasy griddle in the middle of August.</p>
+			$notices[] = '<li class="error"><h3>'.__('WP Side Comments Compatibility Warning!','lasso').'</h3>
+							<p>'.__('Since Lasso saves the HTML of a post, this may cause undesired issues. We\'re working to resolve incompatibilities faster than a jack rabbit in a hot greasy griddle in the middle of August.','lasso').'</p>
 							</li>';
 		}
 

@@ -1,13 +1,19 @@
 .lasso--welcome {
 
     * { .box-sizing(border-box); }
-        -webkit-font-smoothing: antialiased;
+
+    max-width:600px;
+    margin:20px auto;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
     @bg:        white;
     @accent:    darken(@bg,5);
     @border:    darken(@bg, 15);
     @link:      #007aab;
+    @success:   #4DA34D;
+    @error:     #d9534f;
+    @info:      lighten(@link,25);
 
     p {
         font-size:15px;
@@ -17,7 +23,6 @@
     .lasso--welcome__steps {
         padding:0;
         list-style-type:none;
-        max-width:500px;
         margin:0 auto;
 
         li {
@@ -31,9 +36,7 @@
             margin-bottom: 100px;
 
             &:before {
-                content: '\f348';
                 font-family: Dashicons;
-                background:#be1f33;
                 color:white;
                 padding: 14px 27px 15px 14px;
                 width: 22px;
@@ -49,6 +52,18 @@
                 line-height: 37px;
             }
 
+            &.info:before {
+                content: '\f348';
+                background: @info;
+            }
+            &.success:before {
+                content: '\f147';
+                background: @success;
+            }
+            &.error:before {
+                content: '\f227';
+                background:@error;
+            }
             p{
                 margin-bottom: 0;
             }
@@ -69,6 +84,10 @@
             border-radius:3px;
         }
 
+        h1 + p {
+            font-style: italic;
+        }
+
         margin-bottom:100px;
     }
 
@@ -76,11 +95,15 @@
     .lasso--welcome__social {
         list-style: none;
         margin:0;
-        padding:0;
+        padding:7px 0;
         .clearfix();
+        border-top:1px solid @border;
+        border-bottom:1px solid @border;
 
         li {
             display: inline-block;
+            line-height: 1;
+            margin:0;
         }
 
         a {
@@ -88,6 +111,8 @@
             display: block;
             text-decoration: none;
             color:inherit;
+            line-height: 1.5;
+            font-weight: bold;
 
             &:hover {
                 color:@link;
