@@ -44,7 +44,7 @@ class lassoWelcome {
 		if ( function_exists('is_multisite') && !is_multisite() ) {
 
 			add_menu_page( __('Lasso','lasso'), __('Lasso','lasso'), 'manage_options', 'lasso-editor','','dashicons-heart');
-			add_submenu_page( 'lasso-editor', __('Welcome','lasso'), __('Welcome','lasso'), 'manage_options', 'lasso-editor', array($this, 'welcome'));
+			add_submenu_page( 'lasso-editor', __('Welcome','lasso'), __('Status','lasso'), 'manage_options', 'lasso-editor', array($this, 'welcome'));
 		}
 
 	}
@@ -125,7 +125,7 @@ class lassoWelcome {
 
 	/**
 	*
-	*	Run a series of checks to inform the user about incompatibilities, missing option fields, and suggested addons which is shown to the user on the welcome page when the plugin is activated
+	*	Run a series of checks to inform the user about incompatibilities, missing option fields, missing license keys for updates and suggested addons
 	*
 	*	@since 0.8.6
 	*/
@@ -138,6 +138,9 @@ class lassoWelcome {
 		$theme 			= wp_get_theme();
 		$theme_domain 	= $theme->get('TextDomain');
 		$theme_class 	= $theme_domain ? lasso_supported_themes( $theme_domain ) : false;
+
+		$license 		= get_option( 'lasso_license_key' );
+		$status 		= get_option( 'lasso_license_status' );
 
 		// if1 the required CSS class has not been saved
 		if ( empty( $article_object ) ) :
@@ -176,6 +179,21 @@ class lassoWelcome {
 							<p>'.__('Since Lasso saves the HTML of a post, this may cause undesired issues. We\'re working to resolve incompatibilities faster than a jack rabbit in a hot greasy griddle in the middle of August.','lasso').'</p>
 							</li>';
 		}
+
+		// if the license key isnt activated
+		if( empty( $license ) ) {
+			$notices[] = '<li class="info"><h3>'.__('License Key Not Activated','lasso').'</h3>
+							<p>'.__('Just a heads up, your license key isnt activated. Enter your license key into the License tab on the left in order to receive plugin update notifications.','lasso').'</p>
+							</li>';
+		}
+		if( !empty( $license ) && 'invalid' == $status ) {
+			$notices[] = '<li class="error"><h3>'.__('License Key Invalid','lasso').'</h3>
+							<p>'.__('The license key that you entered is ','lasso').'<strong>'.__('invalid','lasso').'</strong>'.__('. It may have been entered incorreclty, or may have expired.','lasso').'</p>
+							</li>';
+		}
+
+		// if their license key is invalid
+
 
 		return apply_filters('lasso_preflight_notices', $notices );
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso 0.8.5\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-03-09 18:05:45+00:00\n"
+"POT-Creation-Date: 2015-03-10 01:43:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,40 +24,211 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/includes/class.welcome.php:103
-msgid "Welcome to Lasso"
+#: admin/includes/EDD_SL_Plugin_Updater.php:177
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" "
+"class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
 msgstr ""
 
-#: admin/includes/class.welcome.php:107 public/includes/editor-modules.php:212
+#: admin/includes/EDD_SL_Plugin_Updater.php:184
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" "
+"class=\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a "
+"href=\"%4$s\">update now</a>."
+msgstr ""
+
+#: admin/includes/EDD_SL_Plugin_Updater.php:324
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: admin/includes/EDD_SL_Plugin_Updater.php:324
+msgid "Error"
+msgstr ""
+
+#: admin/includes/class.menu--addons.php:25
+msgid "Addons"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Aesopinteractive LLC"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:33
+#: admin/includes/class.menu--license.php:51
+msgid "License Key"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:33
+msgid "License"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:41
+msgid "Lasso License"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:42
+msgid ""
+"Input the license key you recieved with your purchase to ensure your "
+"version of Lasso stays updated."
+msgstr ""
+
+#: admin/includes/class.menu--license.php:60
+#: admin/includes/class.menu--license.php:69
+msgid "Activate License"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:64
+msgid "active"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:66
+msgid "Deactivate License"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Lasso"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:31
+#: admin/includes/class.menu--welcome.php:113
+#: public/includes/editor-modules.php:212
 #: public/includes/editor-modules.php:381
 msgid "Settings"
 msgstr ""
 
-#: admin/includes/class.welcome.php:108
-msgid "Documentation"
+#: admin/includes/class.menu--welcome.php:47
+msgid "Welcome"
 msgstr ""
 
-#: admin/includes/class.welcome.php:109
+#: admin/includes/class.menu--welcome.php:47
+#: public/includes/editor-modules.php:277
+msgid "Status"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:83
+msgid "You're Ready to Rock!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:84
+msgid ""
+"Lasso will place a small menu on the bottom of every post and page. Click "
+"the \"pen\" icon to go into edit mode. Press escape to get out of edit mode."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:109
+msgid "Welcome to Lasso"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:114
+msgid "Docs"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:115
+msgid "Help"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:116
 msgid "Website"
 msgstr ""
 
-#: admin/includes/class.welcome.php:110
+#: admin/includes/class.menu--welcome.php:117
 msgid "Twitter"
 msgstr ""
 
-#: admin/includes/class.welcome.php:111
+#: admin/includes/class.menu--welcome.php:118
 msgid "Facebook"
 msgstr ""
 
-#: admin/includes/wp-updates-plugin.php:87
-msgid ""
-"An Unexpected HTTP Error occurred during the API request.</p> <p><a "
-"href=\"?\" onclick=\"document.location.reload(); return false;\">Try "
-"again</a>"
+#: admin/includes/class.menu--welcome.php:152
+msgid "Article CSS Class Needed!"
 msgstr ""
 
-#: admin/includes/wp-updates-plugin.php:91
-msgid "An unknown error occurred"
+#: admin/includes/class.menu--welcome.php:153
+msgid "Before using Lasso,"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:153
+msgid "enter and save"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:153
+msgid ""
+"the CSS class of the container that holds your post and page content. We've "
+"automatically detected that you're running "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:153
+msgid "Here's the CSS class that you'll need:"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:161
+msgid "Article CSS Class Needed!."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:162
+msgid ""
+"You can use a tool like inspector in Chrome or Firefox to find this CSS "
+"class, or "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:162
+msgid "email us."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:162
+msgid "with a link to a public URL with the theme and we'll find it for you."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:171
+msgid "Just a heads up that "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:172
+msgid "Aesop Story Engine"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:172
+msgid ""
+"isn't activated. It's not required to use Lasso, but you won't get the cool "
+"drag and drop components without it activated. It's free!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:178
+msgid "WP Side Comments Compatibility Warning!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:179
+msgid ""
+"Since Lasso saves the HTML of a post, this may cause undesired issues. "
+"We're working to resolve incompatibilities faster than a jack rabbit in a "
+"hot greasy griddle in the middle of August."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:185
+msgid "License Key Not Activated"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:186
+msgid ""
+"Just a heads up, your license key isnt activated. Enter your license key "
+"into the License tab on the left in order to receive plugin update "
+"notifications."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:190
+msgid "License Key Invalid"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:191
+msgid "The license key that you entered is "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:191
+msgid "invalid"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:191
+msgid ". It may have been entered incorreclty, or may have expired."
 msgstr ""
 
 #: includes/class.process-gallery.php:188
@@ -448,10 +619,6 @@ msgid "save"
 msgstr ""
 
 #: public/includes/editor-modules.php:277
-msgid "Status"
-msgstr ""
-
-#: public/includes/editor-modules.php:277
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
@@ -495,20 +662,12 @@ msgstr ""
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "Lasso"
-msgstr ""
-
 #. Plugin URI of the plugin/theme
 msgid "http://lasso.is"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid "Real-time story creation suite."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Aesopinteractive LLC"
 msgstr ""
 
 #. Author URI of the plugin/theme
