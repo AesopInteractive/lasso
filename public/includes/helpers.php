@@ -96,10 +96,7 @@ function lasso_supported_themes( $textdomain = '' ) {
 *	@since 1.0
 */
 if ( !function_exists('lasso_user_can') ):
-	function lasso_user_can( $action = 'edit_posts' ){
-
-		if ( empty( $action ) )
-			$action = 'edit_posts';
+	function lasso_user_can( $action = 'edit_post' ){
 
 		if ( is_user_logged_in() && current_user_can( $action ) ) {
 			return true;
