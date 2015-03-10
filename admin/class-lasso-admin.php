@@ -42,9 +42,14 @@ class Lasso_Admin {
 
 		add_action('admin_head',		array($this,'admin_assets'));
 
+		if( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+			include( LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php' );
+		}
+
 		require_once(LASSO_DIR.'/admin/includes/class.menu--welcome.php');
 		require_once(LASSO_DIR.'/admin/includes/class.menu--settings.php');
 		require_once(LASSO_DIR.'/admin/includes/class.menu--addons.php');
+		require_once(LASSO_DIR.'admin/includes/class.menu--license.php');
 
 	}
 

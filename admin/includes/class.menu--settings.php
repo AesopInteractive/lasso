@@ -106,7 +106,7 @@ class lassoMenuSettings {
 
 	    	<h2>Lasso Settings</h2>
 
-			<form id="lasso-editor-settings-form" method="post" enctype="multipart/form-data">
+			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
