@@ -15,7 +15,7 @@ class lassoMenuAddons {
 
 	/**
 	*
-	*	Add a submenu page to the "Settings" tab if network activated, otherwise add to our menu page
+	*	Add a submenu page only if not network activated
 	*	@since 1.0
 	*/
 	function menu(){
@@ -36,9 +36,9 @@ class lassoMenuAddons {
 		?>
 		<div class="wrap">
 
-	    	<h2>Lasso Addons</h2>
+	    	<h2><?php _e('Lasso Addons','lasso');?></h2>
 
-			Coming soon!!
+			<p><?php _e('Coming soon!!','lasso');?></p>
 
 		</div>
 		<?php

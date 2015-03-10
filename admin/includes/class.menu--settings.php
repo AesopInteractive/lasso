@@ -104,30 +104,30 @@ class lassoMenuSettings {
 		?>
 		<div class="wrap">
 
-	    	<h2>Lasso Settings</h2>
+	    	<h2><?php _e('Lasso Settings','lasso');?></h2>
 
 			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
-						<label>Article Class</label>
-						<span class="lasso--setting-description"> Provide the CSS class of container that holds the post. This should be the first parent container class that holds the_content.</span>
+						<label><?php _e('Article Class','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Provide the CSS class of container that holds the post. This should be the first parent container class that holds the_content.','lasso');?></span>
 						<input required type="text" name="lasso_editor[article_class]" id="lasso_editor[article_class]" value="<?php echo esc_attr( $article_object );?>" placeholder=".entry-content">
 					</div>
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
-						<label>Featured Image Class</label>
-						<span class="lasso--setting-description"> Provide the CSS class that uses a featured image as a background image. This currently only supports themes that have the featured image set as background image.</span>
+						<label><?php _e('Featured Image Class','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Provide the CSS class that uses a featured image as a background image. This currently only supports themes that have the featured image set as background image.','lasso');?></span>
 						<input type="text" name="lasso_editor[featimg_class]" id="lasso_editor[featimg_class]" value="<?php echo esc_attr( $featImgClass );?>" placeholder=".entry-content">
 					</div>
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
-						<label>Article Title Class</label>
-						<span class="lasso--setting-description"> Provide the CSS class for the post title. This will enable you to update the title of the post by clicking and typing.</span>
+						<label><?php _e('Article Title Class','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Provide the CSS class for the post title. This will enable you to update the title of the post by clicking and typing.','lasso');?></span>
 						<input type="text" name="lasso_editor[title_class]" id="lasso_editor[title_class]" value="<?php echo esc_attr( $titleClass );?>" placeholder=".entry-content">
 					</div>
 				</div>
@@ -136,8 +136,8 @@ class lassoMenuSettings {
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
-						<label for="lasso_editor[toolbar_headings]">Enable Toolbar Headings</label>
-						<span class="lasso--setting-description">By default the H2 and H3 options for headings are in the insert HTML area. You may prefer those headings to act just like the underline, and strikethrough, so toggling this will add them to the toolbar.</span>
+						<label for="lasso_editor[toolbar_headings]"><?php _e('Enable Toolbar Headings','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('By default the H2 and H3 options for headings are in the insert HTML area. You may prefer those headings to act just like the underline, and strikethrough, so toggling this will add them to the toolbar.','lasso');?></span>
 
 					</div>
 				</div>
@@ -145,8 +145,8 @@ class lassoMenuSettings {
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_save_disabled]" id="lasso_editor[post_save_disabled]" <?php echo checked( $save_to_post_disabled, 'on' );?> >
-						<label for="lasso_editor[post_save_disabled]">Disable Post Saving</label>
-						<span class="lasso--setting-description">By default the editor will update the database with the post or page it is being used on. Check this box to disable this. If you check this box, it is assumed that you will be using the provided filters to save your own content.</span>
+						<label for="lasso_editor[post_save_disabled]"><?php _e('Disable Post Saving','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('By default the editor will update the database with the post or page it is being used on. Check this box to disable this. If you check this box, it is assumed that you will be using the provided filters to save your own content.','lasso');?></span>
 
 					</div>
 				</div>
@@ -154,30 +154,30 @@ class lassoMenuSettings {
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_settings_disabled]" id="lasso_editor[post_settings_disabled]" <?php echo checked( $post_settings_disabled, 'on' );?> >
-						<label for="lasso_editor[post_settings_disabled]"> Disable Post Settings</label>
-						<span class="lasso--setting-description">Check this to disable users from being able to edit post settings from the front-end.</span>
+						<label for="lasso_editor[post_settings_disabled]"> <?php _e('Disable Post Settings','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Check this to disable users from being able to edit post settings from the front-end.','lasso');?></span>
 					</div>
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_adding_disabled]" id="lasso_editor[post_adding_disabled]" <?php echo checked( $post_new_disabled, 'on' );?> >
-						<label for="lasso_editor[post_adding_disabled]">Disable Post Adding</label>
-						<span class="lasso--setting-description">Xheck this box to disable users from being able to add new posts from the front-end.</span>
+						<label for="lasso_editor[post_adding_disabled]"><?php _e('Disable Post Adding','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Xheck this box to disable users from being able to add new posts from the front-end.','lasso');?></span>
 					</div>
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap last">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[shortcodify_disabled]" id="lasso_editor[shortcodify_disabled]" <?php echo checked( $shortcodify_disabled, 'on' );?> >
-						<label for="lasso_editor[shortcodify_disabled]">Disable Lasso Component Conversion</label>
-						<span class="lasso--setting-description">Check this box to disable the conversion process used on Lasso Story Engine components.</span>
+						<label for="lasso_editor[shortcodify_disabled]"><?php _e('Disable Lasso Component Conversion','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Check this box to disable the conversion process used on Lasso Story Engine components.','lasso');?></span>
 					</div>
 				</div>
 
 				<div class="lasso-editor-settings--submit">
 				    <input type="hidden" name="action" value="lasso-editor-settings" />
-				    <input type="submit" class="button-primary" value="Save Settings" />
+				    <input type="submit" class="button-primary" value="<?php esc_attr_e('Save Settings','lasso');?>" />
 					<?php wp_nonce_field( 'nonce','lasso_editor_settings' ); ?>
 				</div>
 			</form>

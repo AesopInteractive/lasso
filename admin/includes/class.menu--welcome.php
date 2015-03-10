@@ -17,7 +17,7 @@ class lassoWelcome {
 	function redirect() {
 
 	  	// Bail if no activation redirect
-	    if ( ! get_transient( '_lasso_welcome_redirect' ) ) {
+	    if ( !get_transient( '_lasso_welcome_redirect' ) ) {
 	    	return;
 	  	}
 
