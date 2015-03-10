@@ -107,7 +107,7 @@ class lassoWelcome {
 
 	  			<img src="<?php echo LASSO_URL.'/admin/assets/img/logo.svg';?>">
 	    		<h1><?php _e('Welcome to Lasso','lasso');?></h1>
-	    		<p>Version <?php echo LASSO_VERSION;?></p>
+	    		<p><?php _e('Version','lasso');echo '<span> '.LASSO_VERSION.'</span>';?></p>
 
 		    	<ul class="lasso--welcome__social">
 		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Docs', 'lasso');?></a></li>
