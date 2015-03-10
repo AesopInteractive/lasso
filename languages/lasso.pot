@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso 0.8.5\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-03-10 01:43:47+00:00\n"
+"POT-Creation-Date: 2015-03-10 02:06:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,39 +49,47 @@ msgstr ""
 msgid "Addons"
 msgstr ""
 
+#: admin/includes/class.menu--addons.php:39
+msgid "Lasso Addons"
+msgstr ""
+
+#: admin/includes/class.menu--addons.php:41
+msgid "Coming soon!!"
+msgstr ""
+
 #. Author of the plugin/theme
 msgid "Aesopinteractive LLC"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:33
-#: admin/includes/class.menu--license.php:51
+#: admin/includes/class.menu--license.php:35
+#: admin/includes/class.menu--license.php:54
 msgid "License Key"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:33
+#: admin/includes/class.menu--license.php:35
 msgid "License"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:41
+#: admin/includes/class.menu--license.php:44
 msgid "Lasso License"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:42
+#: admin/includes/class.menu--license.php:45
 msgid ""
 "Input the license key you recieved with your purchase to ensure your "
 "version of Lasso stays updated."
 msgstr ""
 
-#: admin/includes/class.menu--license.php:60
-#: admin/includes/class.menu--license.php:69
+#: admin/includes/class.menu--license.php:63
+#: admin/includes/class.menu--license.php:72
 msgid "Activate License"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:64
+#: admin/includes/class.menu--license.php:67
 msgid "active"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:66
+#: admin/includes/class.menu--license.php:69
 msgid "Deactivate License"
 msgstr ""
 
@@ -94,6 +102,98 @@ msgstr ""
 #: public/includes/editor-modules.php:212
 #: public/includes/editor-modules.php:381
 msgid "Settings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:107
+msgid "Lasso Settings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:113
+msgid "Article Class"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:114
+msgid ""
+"Provide the CSS class of container that holds the post. This should be the "
+"first parent container class that holds the_content."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:121
+msgid "Featured Image Class"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:122
+msgid ""
+"Provide the CSS class that uses a featured image as a background image. "
+"This currently only supports themes that have the featured image set as "
+"background image."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:129
+msgid "Article Title Class"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:130
+msgid ""
+"Provide the CSS class for the post title. This will enable you to update "
+"the title of the post by clicking and typing."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:139
+msgid "Enable Toolbar Headings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:140
+msgid ""
+"By default the H2 and H3 options for headings are in the insert HTML area. "
+"You may prefer those headings to act just like the underline, and "
+"strikethrough, so toggling this will add them to the toolbar."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:148
+msgid "Disable Post Saving"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:149
+msgid ""
+"By default the editor will update the database with the post or page it is "
+"being used on. Check this box to disable this. If you check this box, it is "
+"assumed that you will be using the provided filters to save your own "
+"content."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:157
+msgid "Disable Post Settings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:158
+msgid ""
+"Check this to disable users from being able to edit post settings from the "
+"front-end."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:165
+msgid "Disable Post Adding"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:166
+msgid ""
+"Xheck this box to disable users from being able to add new posts from the "
+"front-end."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:173
+msgid "Disable Lasso Component Conversion"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:174
+msgid ""
+"Check this box to disable the conversion process used on Lasso Story Engine "
+"components."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:180
+msgid "Save Settings"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:47
