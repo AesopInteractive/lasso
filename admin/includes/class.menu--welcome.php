@@ -9,7 +9,7 @@ class lassoWelcome {
 
 	function __construct(){
 
-		add_action( 'admin_init', 		array($this,'redirect' ));
+		add_action('admin_init', 		array($this,'redirect' ));
 		add_action('admin_menu', 		array($this,'lasso_welcome'));
 
 	}

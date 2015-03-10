@@ -30,7 +30,10 @@ class lassoUpdater {
 
 	}
 	function license_menu() {
-		add_submenu_page( 'lasso-editor', __('License Key','lasso'), __('License','lasso'), 'manage_options', 'lasso-license', array($this,'license_page') );
+
+		if ( function_exists('is_multisite') && !is_multisite() ) {
+			add_submenu_page( 'lasso-editor', __('License Key','lasso'), __('License','lasso'), 'manage_options', 'lasso-license', array($this,'license_page') );
+		}
 	}
 	function license_page() {
 		$license 	= get_option( 'lasso_license_key' );
