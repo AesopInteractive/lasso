@@ -110,7 +110,6 @@ class lassoWelcome {
 	    		<p>Version <?php echo LASSO_VERSION;?></p>
 
 		    	<ul class="lasso--welcome__social">
-		    		<li><a href="<?php echo admin_url('options-general.php?page=lasso-editor-settings');?>"><i class="dashicons dashicons-admin-generic"></i> <?php _e('Settings', 'lasso');?></a></li>
 		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Docs', 'lasso');?></a></li>
 		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e('Help', 'lasso');?></a></li>
 		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
