@@ -90,7 +90,7 @@ class lassoAssets {
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'mapFormFooter'		=> lasso_map_form_footer(),
 				'refreshRequired'	=> lasso_editor_refresh_message(),
-				'mapTileProvider'   => aesop_map_tile_provider( $postid ),
+				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
