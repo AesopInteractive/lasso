@@ -43,7 +43,7 @@ class lassoWelcome {
 
 		if ( function_exists('is_multisite') && !is_multisite() ) {
 
-			add_menu_page( __('Lasso','lasso'), __('Lasso','lasso'), 'manage_options', 'lasso-editor','','dashicons-heart');
+			add_menu_page( __('Lasso','lasso'), __('Lasso','lasso'), 'manage_options', 'lasso-editor','',LASSO_URL.'/admin/assets/img/menu-icon.png');
 			add_submenu_page( 'lasso-editor', __('Welcome','lasso'), __('Status','lasso'), 'manage_options', 'lasso-editor', array($this, 'welcome'));
 		}
 
