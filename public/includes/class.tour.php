@@ -34,11 +34,12 @@ class lassoEditorWelcome {
 
 			?>
 			<script>
-			jQuery(document).ready(function($){
+			jQuery(window).ready(function($){
 
 				$('body').addClass('lasso-modal-open');
 
-				$('#lasso--tour__slides').fadeIn();
+    			$('.lasso--tour__loading').remove();
+				$('#lasso--tour__slides').hide().fadeIn()
 
 				$('#lasso--tour__slides').unslider({
 					dots: true,
@@ -81,7 +82,8 @@ class lassoEditorWelcome {
 	function tour_slides(){
 
 		?>
-		<div id="lasso--tour__slides" style="display:none;">
+		<div id="lasso--tour__loading" class="lasso--tour__loading"><div class="lasso--tour__loader"></div></div>
+		<div id="lasso--tour__slides">
 
 			<?php
 

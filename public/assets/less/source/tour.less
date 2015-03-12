@@ -4,6 +4,10 @@
         .clearfix();
     }
 
+    .lasso--modal__inner {
+        position: relative;
+    }
+
     .lasso--postsettings__option {
         border-bottom: none;
         box-shadow:none;
@@ -29,6 +33,7 @@
     #lasso--tour__slides {
         position: relative;
         overflow: auto;
+        display: none;
     }
 
     ul {
@@ -92,4 +97,51 @@
         }
 
     }
+}
+
+.lasso--tour__loading {
+    height:auto;
+    //position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    width:100%;
+}
+
+
+.lasso--tour__loader {
+    height:40px;
+    width:40px;
+    margin:10px auto;
+    top:48%;
+    position:relative;
+    -webkit-animation: rotation .6s infinite linear;
+    -moz-animation: rotation .6s infinite linear;
+    -o-animation: rotation .6s infinite linear;
+    animation: rotation .6s infinite linear;
+    border-left:3px solid fadeout(@editor--color__update,80);
+    border-right:3px solid fadeout(@editor--color__update,80);
+    border-bottom:3px solid fadeout(@editor--color__update,80);
+    border-top:3px solid @editor--color__update;
+    border-radius:100%;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(359deg);}
+}
+
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(359deg);}
+}
+
+@-o-keyframes rotation {
+    from {-o-transform: rotate(0deg);}
+    to {-o-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
 }
