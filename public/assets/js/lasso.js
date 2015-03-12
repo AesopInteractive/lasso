@@ -9328,9 +9328,7 @@ jQuery(document).ready(function($){
 				var item = ui['context'],
 					type = $(item).attr('data-component-type');
 
-					console.log(item)
-
-            	return $('<div class="lasso-drag-holder '+type+'"></div>'); 
+            	return $('<div class="lasso-drag-holder '+type+'"></div>');
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
