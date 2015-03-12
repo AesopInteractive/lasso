@@ -98,7 +98,7 @@ function lasso_supported_themes( $textdomain = '' ) {
 if ( !function_exists('lasso_user_can') ):
 	function lasso_user_can( $action = 'edit_post' ){
 
-		if ( is_user_logged_in() && current_user_can( $action ) ) {
+		if ( is_user_logged_in() && current_user_can( $action, get_the_ID() ) ) {
 			return true;
 		} else {
 			return false;
