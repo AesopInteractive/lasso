@@ -33,23 +33,22 @@ class lassoEditorWelcome {
 			$custom_classes = apply_filters('lasso_modal_tour_classes', '' );
 
 			?>
-			<script>
-			jQuery(window).ready(function($){
-
-				$('body').addClass('lasso-modal-open');
-
-    			$('.lasso--tour__loading').remove();
-				$('#lasso--tour__slides').hide().fadeIn()
-
-				$('#lasso--tour__slides').unslider({
-					dots: true,
-					delay:100000
-				});
-
-			});
-			</script>
 			<div id="lasso--tour__modal" class="lasso--modal lasso--tour__modal lasso--modal__checkbox <?php echo sanitize_html_class( $custom_classes );?>">
+				<script>
+					jQuery(window).ready(function($){
 
+						$('body').addClass('lasso-modal-open');
+
+		    			$('.lasso--tour__loading').remove();
+						$('#lasso--tour__slides').hide().fadeIn()
+
+						$('#lasso--tour__slides').unslider({
+							dots: true,
+							delay:100000
+						});
+
+					});
+				</script>
 				<div class="lasso--modal__inner">
 
 					<?php echo self::tour_slides();?>
@@ -94,7 +93,7 @@ class lassoEditorWelcome {
 				$out .= '</li>';
 				$out .= '<li>';
 					$out .= sprintf('<img src="%s">', LASSO_URL.'/public/assets/img/editor-highlight.gif' );
-					$out .= '<p>Highlight a piece of text, and click on a formatting option to style it. Click the Disck icon to save. Press escape to exit the editor.</p>';
+					$out .= '<p>Highlight a piece of text, and click on a formatting option to style it. Click the Disc icon to save. Press escape to exit the editor.</p>';
 				$out .= '</li>';
 				$out .= '<li>';
 					$out .= sprintf('<img src="%s">', LASSO_URL.'/public/assets/img/editor-component.gif' );
