@@ -4,6 +4,9 @@
 *
 *	Grab an optoin from our settings
 *
+*	If we're on multsite we'll grab the site option which is stored in the main blogs site option tables, otherwise
+*	we'll grab the option which is stored on the single blogs option tables
+*
 *	@param $option string name of the option
 *	@param $section string name of the section
 *	@param $default string/int default option value
@@ -76,12 +79,24 @@ function lasso_supported_themes( $textdomain = '' ) {
 		case 'aesop-story-theme':
 			$out = '.aesop-entry-content';
 			break;
+		case 'largo': // upthemes
+			$out = '.entry-content';
+			break;
+		case 'worldview': // upthemes
+			$out = '.entry-content';
+			break;
+		case 'genesis': // genesis
+			$out = '.entry-content';
+			break;
+		case 'camera': // array.is
+			$out = '.entry-content';
+			break;
 		default:
 			$out = '.entry-content';
 			break;
 	}
 
-	return $out ? $out : false;
+	return !empty( $out ) ? $out : false;
 }
 
 ////////////////////
@@ -98,10 +113,14 @@ function lasso_supported_themes( $textdomain = '' ) {
 if ( !function_exists('lasso_user_can') ):
 	function lasso_user_can( $action = 'edit_post' ){
 
-		if ( is_user_logged_in() && current_user_can( $action, get_the_ID() ) ) {
+		if ( is_user_logged_in() && current_user_can( trim( $action ), absint( get_the_ID() ) ) ) {
+
 			return true;
+
 		} else {
+
 			return false;
+
 		}
 
 	}

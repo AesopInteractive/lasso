@@ -112,7 +112,6 @@ class lassoEditorWelcome {
 	}
 
 	/*
-	*
 	*	When the user decides to not have this show again save user meta
 	*/
 	function process_hide_tour(){
