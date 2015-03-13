@@ -18,6 +18,16 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.8.6 =
+* new pre-flight function to check to ensure plugin settings are configured
+* added automatic theme support for WordPress core themes and UpThemes
+* added a new define define('LASSO_AGENCY_MODE') which removes the license page and links out to Lasso website
+* added a new tab for Lasso to hold the status page, license page, and settings
+* added new license menu page in preperation of the public launch of this plugin
+* fixed an issue with the height in the Tour slider sometimes not calculating correctly
+* fixed a permission issue where a user was allowed to edit another users posts. we were using edit_posts and switched to edit_post
+
+
 = 0.8.5 =
 * misc bug fixes
 * removed the "url helper" field for creating new posts as it was confusing some users
