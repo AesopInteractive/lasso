@@ -64,30 +64,32 @@ class lassoWelcome {
 
 		  		<ul class="lasso--welcome__steps">
 
-		  		<?php
-			  		$checks = self::lasso_preflight_check();
+			  		<?php
+				  		$checks = self::lasso_preflight_check();
 
-			  		if ( $checks && !defined('LASSO_AGENCY_MODE') ):
+				  		if ( $checks && !defined('LASSO_AGENCY_MODE') ):
 
-				  		foreach ( (array) $checks as $key => $check) {
+					  		foreach ( (array) $checks as $key => $check) {
 
-				  			echo $check;
-				  		}
+					  			echo $check;
+					  		}
 
-				  	else:
+					  	else:
 
-				  		// pre-flight is go for flight
-				  		?>
-						<li class="success">
-							<h3><?php _e('You\'re Ready to Rock!','lasso');?></h3>
-			  				<p><?php _e('Lasso will place a small menu on the bottom of every post and page. Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.','lasso');?></p>
-			  			</li>
-			  			<?php
+					  		// pre-flight is go for flight
+					  		?>
+							<li class="success">
+								<h3><?php _e('You\'re Ready to Rock!','lasso');?></h3>
+				  				<p><?php _e('Lasso will place a small menu on the bottom of every post and page. Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.','lasso');?></p>
+				  			</li>
+				  			<?php
 
-				  	endif;
+					  	endif;
 
-			  	?>
+				  	?>
+
 			  	</ul>
+
 		  	</div>
 	 	<?php
 	}

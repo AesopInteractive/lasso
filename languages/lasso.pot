@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso 0.8.5\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-03-10 02:06:34+00:00\n"
+"POT-Creation-Date: 2015-03-13 00:25:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -43,18 +43,6 @@ msgstr ""
 
 #: admin/includes/EDD_SL_Plugin_Updater.php:324
 msgid "Error"
-msgstr ""
-
-#: admin/includes/class.menu--addons.php:25
-msgid "Addons"
-msgstr ""
-
-#: admin/includes/class.menu--addons.php:39
-msgid "Lasso Addons"
-msgstr ""
-
-#: admin/includes/class.menu--addons.php:41
-msgid "Coming soon!!"
 msgstr ""
 
 #. Author of the plugin/theme
@@ -98,63 +86,62 @@ msgid "Lasso"
 msgstr ""
 
 #: admin/includes/class.menu--settings.php:31
-#: admin/includes/class.menu--welcome.php:113
 #: public/includes/editor-modules.php:212
 #: public/includes/editor-modules.php:381
 msgid "Settings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:107
+#: admin/includes/class.menu--settings.php:108
 msgid "Lasso Settings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:113
+#: admin/includes/class.menu--settings.php:114
 msgid "Article Class"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:114
+#: admin/includes/class.menu--settings.php:115
 msgid ""
 "Provide the CSS class of container that holds the post. This should be the "
 "first parent container class that holds the_content."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:121
+#: admin/includes/class.menu--settings.php:122
 msgid "Featured Image Class"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:122
+#: admin/includes/class.menu--settings.php:123
 msgid ""
 "Provide the CSS class that uses a featured image as a background image. "
 "This currently only supports themes that have the featured image set as "
 "background image."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:129
+#: admin/includes/class.menu--settings.php:130
 msgid "Article Title Class"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:130
+#: admin/includes/class.menu--settings.php:131
 msgid ""
 "Provide the CSS class for the post title. This will enable you to update "
 "the title of the post by clicking and typing."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:139
+#: admin/includes/class.menu--settings.php:140
 msgid "Enable Toolbar Headings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:140
+#: admin/includes/class.menu--settings.php:141
 msgid ""
 "By default the H2 and H3 options for headings are in the insert HTML area. "
 "You may prefer those headings to act just like the underline, and "
 "strikethrough, so toggling this will add them to the toolbar."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:148
+#: admin/includes/class.menu--settings.php:149
 msgid "Disable Post Saving"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:149
+#: admin/includes/class.menu--settings.php:150
 msgid ""
 "By default the editor will update the database with the post or page it is "
 "being used on. Check this box to disable this. If you check this box, it is "
@@ -162,37 +149,37 @@ msgid ""
 "content."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:157
+#: admin/includes/class.menu--settings.php:158
 msgid "Disable Post Settings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:158
+#: admin/includes/class.menu--settings.php:159
 msgid ""
 "Check this to disable users from being able to edit post settings from the "
 "front-end."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:165
+#: admin/includes/class.menu--settings.php:166
 msgid "Disable Post Adding"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:166
+#: admin/includes/class.menu--settings.php:167
 msgid ""
-"Xheck this box to disable users from being able to add new posts from the "
+"Check this box to disable users from being able to add new posts from the "
 "front-end."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:173
-msgid "Disable Lasso Component Conversion"
+#: admin/includes/class.menu--settings.php:174
+msgid "Disable Aesop Component Conversion"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:174
+#: admin/includes/class.menu--settings.php:175
 msgid ""
-"Check this box to disable the conversion process used on Lasso Story Engine "
+"Check this box to disable the conversion process used on Aesop Story Engine "
 "components."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:180
+#: admin/includes/class.menu--settings.php:181
 msgid "Save Settings"
 msgstr ""
 
@@ -205,129 +192,133 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:83
+#: admin/includes/class.menu--welcome.php:82
 msgid "You're Ready to Rock!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:84
+#: admin/includes/class.menu--welcome.php:83
 msgid ""
 "Lasso will place a small menu on the bottom of every post and page. Click "
 "the \"pen\" icon to go into edit mode. Press escape to get out of edit mode."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:109
+#: admin/includes/class.menu--welcome.php:110
 msgid "Welcome to Lasso"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:114
-msgid "Docs"
-msgstr ""
-
-#: admin/includes/class.menu--welcome.php:115
-msgid "Help"
+#: admin/includes/class.menu--welcome.php:111
+msgid "Version"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:116
-msgid "Website"
+msgid "Docs"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:117
-msgid "Twitter"
+msgid "Help"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:118
+msgid "Website"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:119
+msgid "Twitter"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:120
 msgid "Facebook"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:152
+#: admin/includes/class.menu--welcome.php:156
 msgid "Article CSS Class Needed!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:153
+#: admin/includes/class.menu--welcome.php:157
 msgid "Before using Lasso,"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:153
+#: admin/includes/class.menu--welcome.php:157
 msgid "enter and save"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:153
+#: admin/includes/class.menu--welcome.php:157
 msgid ""
 "the CSS class of the container that holds your post and page content. We've "
 "automatically detected that you're running "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:153
+#: admin/includes/class.menu--welcome.php:157
 msgid "Here's the CSS class that you'll need:"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:161
+#: admin/includes/class.menu--welcome.php:165
 msgid "Article CSS Class Needed!."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:162
+#: admin/includes/class.menu--welcome.php:166
 msgid ""
 "You can use a tool like inspector in Chrome or Firefox to find this CSS "
 "class, or "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:162
+#: admin/includes/class.menu--welcome.php:166
 msgid "email us."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:162
+#: admin/includes/class.menu--welcome.php:166
 msgid "with a link to a public URL with the theme and we'll find it for you."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:171
+#: admin/includes/class.menu--welcome.php:175
 msgid "Just a heads up that "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:172
+#: admin/includes/class.menu--welcome.php:176
 msgid "Aesop Story Engine"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:172
+#: admin/includes/class.menu--welcome.php:176
 msgid ""
 "isn't activated. It's not required to use Lasso, but you won't get the cool "
 "drag and drop components without it activated. It's free!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:178
+#: admin/includes/class.menu--welcome.php:182
 msgid "WP Side Comments Compatibility Warning!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:179
+#: admin/includes/class.menu--welcome.php:183
 msgid ""
 "Since Lasso saves the HTML of a post, this may cause undesired issues. "
 "We're working to resolve incompatibilities faster than a jack rabbit in a "
 "hot greasy griddle in the middle of August."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:185
+#: admin/includes/class.menu--welcome.php:189
 msgid "License Key Not Activated"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:186
+#: admin/includes/class.menu--welcome.php:190
 msgid ""
 "Just a heads up, your license key isnt activated. Enter your license key "
 "into the License tab on the left in order to receive plugin update "
 "notifications."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:190
+#: admin/includes/class.menu--welcome.php:194
 msgid "License Key Invalid"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:191
+#: admin/includes/class.menu--welcome.php:195
 msgid "The license key that you entered is "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:191
+#: admin/includes/class.menu--welcome.php:195
 msgid "invalid"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:191
+#: admin/includes/class.menu--welcome.php:195
 msgid ". It may have been entered incorreclty, or may have expired."
 msgstr ""
 
