@@ -50,6 +50,7 @@ class lassoMenuSettings {
 	*/
 	function process_settings(){
 
+		// bail out if current user isn't and administrator and they are not logged in
 		if ( !current_user_can('manage_options') || !is_user_logged_in() )
 			return;
 
@@ -163,15 +164,15 @@ class lassoMenuSettings {
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_adding_disabled]" id="lasso_editor[post_adding_disabled]" <?php echo checked( $post_new_disabled, 'on' );?> >
 						<label for="lasso_editor[post_adding_disabled]"><?php _e('Disable Post Adding','lasso');?></label>
-						<span class="lasso--setting-description"><?php _e('Xheck this box to disable users from being able to add new posts from the front-end.','lasso');?></span>
+						<span class="lasso--setting-description"><?php _e('Check this box to disable users from being able to add new posts from the front-end.','lasso');?></span>
 					</div>
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap last">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[shortcodify_disabled]" id="lasso_editor[shortcodify_disabled]" <?php echo checked( $shortcodify_disabled, 'on' );?> >
-						<label for="lasso_editor[shortcodify_disabled]"><?php _e('Disable Lasso Component Conversion','lasso');?></label>
-						<span class="lasso--setting-description"><?php _e('Check this box to disable the conversion process used on Lasso Story Engine components.','lasso');?></span>
+						<label for="lasso_editor[shortcodify_disabled]"><?php _e('Disable Aesop Component Conversion','lasso');?></label>
+						<span class="lasso--setting-description"><?php _e('Check this box to disable the conversion process used on Aesop Story Engine components.','lasso');?></span>
 					</div>
 				</div>
 

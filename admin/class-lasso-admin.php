@@ -48,8 +48,10 @@ class Lasso_Admin {
 
 		require_once(LASSO_DIR.'/admin/includes/class.menu--welcome.php');
 		require_once(LASSO_DIR.'/admin/includes/class.menu--settings.php');
-		require_once(LASSO_DIR.'/admin/includes/class.menu--addons.php');
-		require_once(LASSO_DIR.'admin/includes/class.menu--license.php');
+
+		if ( !defined('LASSO_AGENCY_MODE') ) {
+			require_once(LASSO_DIR.'admin/includes/class.menu--license.php');
+		}
 
 	}
 

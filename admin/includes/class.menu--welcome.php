@@ -57,7 +57,6 @@ class lassoWelcome {
 	*/
 	function welcome() {
 
-
 	  	?>
 		  	<div class="wrap lasso--welcome">
 
@@ -68,7 +67,7 @@ class lassoWelcome {
 		  		<?php
 			  		$checks = self::lasso_preflight_check();
 
-			  		if ( $checks ):
+			  		if ( $checks && !defined('LASSO_AGENCY_MODE') ):
 
 				  		foreach ( (array) $checks as $key => $check) {
 
@@ -109,13 +108,17 @@ class lassoWelcome {
 	    		<h1><?php _e('Welcome to Lasso','lasso');?></h1>
 	    		<p><?php _e('Version','lasso');echo '<span> '.LASSO_VERSION.'</span>';?></p>
 
-		    	<ul class="lasso--welcome__social">
-		    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Docs', 'lasso');?></a></li>
-		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e('Help', 'lasso');?></a></li>
-		    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
-		    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e('Twitter','lasso');?></a></li>
-		    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e('Facebook','lasso');?></a></li>
-		    	</ul>
+	    		<?php if ( !defined('LASSO_AGENCY_MODE') ): ?>
+
+			    	<ul class="lasso--welcome__social">
+			    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e('Docs', 'lasso');?></a></li>
+			    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e('Help', 'lasso');?></a></li>
+			    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e('Website', 'lasso');?></a></li>
+			    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e('Twitter','lasso');?></a></li>
+			    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e('Facebook','lasso');?></a></li>
+			    	</ul>
+
+			    <?php endif; ?>
 
 		    </div>
 
