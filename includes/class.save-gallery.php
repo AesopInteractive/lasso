@@ -1,24 +1,22 @@
 <?php
 
 /**
-*
-*	Process various gallery fucntions like fetching and saving images
-*
-*	@since 1.0
-*/
+ * Process various gallery fucntions like fetching and saving images
+ *
+ * @since 1.0
+ */
 class lassoSaveGallery {
 
-	function __construct(){
+	function __construct() {
 
-		add_action( 'lasso_gallery_saved', 				array($this, 'save_gallery_options' ), 10, 3);
+		add_action( 'lasso_gallery_saved',     array( $this, 'save_gallery_options' ), 10, 3 );
 	}
 
 	/**
-	*
-	*	Update an existing galleries options
-	* 	@todo this needs to be cleaned up
-	*/
-	function save_gallery_options($postid, $gallery_ids, $options){
+	 * Update an existing galleries options
+	 *  @todo this needs to be cleaned up
+	 */
+	function save_gallery_options( $postid, $gallery_ids, $options ) {
 
 		$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
 
@@ -75,34 +73,3 @@ class lassoSaveGallery {
 
 }
 new lassoSaveGallery;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

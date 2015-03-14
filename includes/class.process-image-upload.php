@@ -1,32 +1,31 @@
 <?php
 
 /**
-*
-*	Process a user uploading an image for the featured image in a post
-*
-*	@since 1.0
-*/
+ * Process a user uploading an image for the featured image in a post
+ *
+ * @since 1.0
+ */
 class lassoUploadFeatImage {
 
-	function __construct(){
+	function __construct() {
 
-		add_action( 'wp_ajax_process_featimg_upload', 				array($this, 'process_featimg_upload' ));
-		add_action( 'wp_ajax_process_featimg_delete', 				array($this, 'process_featimg_delete' ));
+		add_action( 'wp_ajax_process_featimg_upload',     array( $this, 'process_featimg_upload' ) );
+		add_action( 'wp_ajax_process_featimg_delete',     array( $this, 'process_featimg_delete' ) );
 	}
 
-	function process_featimg_upload(){
+	function process_featimg_upload() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_upload' ) {
 
 			// only run for logged in users and check caps
-			if( !lasso_user_can() )
+			if ( !lasso_user_can() )
 				return;
 
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_editor_image' ) ) {
 
-				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$image_id 	= isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
+				$postid  = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$image_id  = isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
 
 				set_post_thumbnail( $postid, $image_id );
 
@@ -44,18 +43,18 @@ class lassoUploadFeatImage {
 		}
 	}
 
-	function process_featimg_delete(){
+	function process_featimg_delete() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_delete' ) {
 
 			// only run for logged in users and check caps
-			if( !lasso_user_can() )
+			if ( !lasso_user_can() )
 				return;
 
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_editor_image' ) ) {
 
-				$postid 	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$postid  = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 
 				delete_post_thumbnail( $postid );
 
@@ -74,6 +73,3 @@ class lassoUploadFeatImage {
 	}
 }
 new lassoUploadFeatImage;
-
-
-

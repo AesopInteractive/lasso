@@ -2,16 +2,16 @@
 
 class lassoUpdater {
 
-	function __construct(){
+	function __construct() {
 
-		define('LASSO_STORE_ITEM_NAME','lasso');
-		define('LASSO_STORE_URL','https://lasso.is');
+		define( 'LASSO_STORE_ITEM_NAME', 'lasso' );
+		define( 'LASSO_STORE_URL', 'https://lasso.is' );
 
-		add_action('admin_init', 	array($this,'plugin_updater'), 0 );
-		add_action('admin_menu', 	array($this,'license_menu'));
-		add_action('admin_init', 	array($this,'register_option'));
-		add_action('admin_init', 	array($this,'activate_license'));
-		add_action('admin_init', 	array($this,'deactivate_license'));
+		add_action( 'admin_init',  array( $this, 'plugin_updater' ), 0 );
+		add_action( 'admin_menu',  array( $this, 'license_menu' ) );
+		add_action( 'admin_init',  array( $this, 'register_option' ) );
+		add_action( 'admin_init',  array( $this, 'activate_license' ) );
+		add_action( 'admin_init',  array( $this, 'deactivate_license' ) );
 	}
 
 	function plugin_updater() {
@@ -21,62 +21,62 @@ class lassoUpdater {
 
 		// setup the updater
 		$edd_updater = new EDD_SL_Plugin_Updater( LASSO_STORE_URL , __FILE__, array(
-				'version' 	=> LASSO_VERSION,
-				'license' 	=> $license_key,
+				'version'  => LASSO_VERSION,
+				'license'  => $license_key,
 				'item_name' => LASSO_STORE_ITEM_NAME,
-				'author' 	=> __('Aesopinteractive LLC','lasso')
+				'author'  => __( 'Aesopinteractive LLC', 'lasso' )
 			)
 		);
 
 	}
 	function license_menu() {
 
-		if ( function_exists('is_multisite') && !is_multisite() ) {
-			add_submenu_page( 'lasso-editor', __('License Key','lasso'), __('License','lasso'), 'manage_options', 'lasso-license', array($this,'license_page') );
+		if ( function_exists( 'is_multisite' ) && !is_multisite() ) {
+			add_submenu_page( 'lasso-editor', __( 'License Key', 'lasso' ), __( 'License', 'lasso' ), 'manage_options', 'lasso-license', array( $this, 'license_page' ) );
 		}
 	}
 	function license_page() {
-		$license 	= get_option( 'lasso_license_key' );
-		$status 	= get_option( 'lasso_license_status' );
+		$license  = get_option( 'lasso_license_key' );
+		$status  = get_option( 'lasso_license_status' );
 
-		?>
+?>
 		<div class="wrap">
-			<h2><?php _e('Lasso License','lasso'); ?></h2>
-			<p><?php _e('Input the license key you recieved with your purchase to ensure your version of Lasso stays updated.','lasso');?></p>
+			<h2><?php _e( 'Lasso License', 'lasso' ); ?></h2>
+			<p><?php _e( 'Input the license key you recieved with your purchase to ensure your version of Lasso stays updated.', 'lasso' );?></p>
 			<form class="lasso--form-settings" method="post" action="options.php">
 
-				<?php settings_fields('lasso_license'); ?>
+				<?php settings_fields( 'lasso_license' ); ?>
 
 				<table class="form-table">
 					<tbody>
 						<tr valign="top">
 							<th scope="row" valign="top">
-								<?php _e('License Key','lasso'); ?>
+								<?php _e( 'License Key', 'lasso' ); ?>
 							</th>
 							<td>
 								<input id="lasso_license_key" name="lasso_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $license ); ?>" />
 							</td>
 						</tr>
-						<?php if( false !== $license ) { ?>
+						<?php if ( false !== $license ) { ?>
 							<tr valign="top">
 								<th scope="row" valign="top">
-									<?php _e('Activate License','lasso'); ?>
+									<?php _e( 'Activate License', 'lasso' ); ?>
 								</th>
 								<td>
-									<?php if( $status !== false && $status == 'valid' ) { ?>
-										<span style="color:green;"><?php _e('active'); ?></span>
+									<?php if ( $status !== false && $status == 'valid' ) { ?>
+										<span style="color:green;"><?php _e( 'active' ); ?></span>
 										<?php wp_nonce_field( 'lasso_license_nonce', 'lasso_license_nonce' ); ?>
-										<input type="submit" class="button-secondary" name="edd_license_deactivate" value="<?php esc_attr_e('Deactivate License','lasso'); ?>"/>
+										<input type="submit" class="button-secondary" name="edd_license_deactivate" value="<?php esc_attr_e( 'Deactivate License', 'lasso' ); ?>"/>
 									<?php } else {
-										wp_nonce_field( 'lasso_license_nonce', 'lasso_license_nonce' ); ?>
-										<input type="submit" class="button-secondary" name="edd_license_activate" value="<?php esc_attr_e('Activate License','lasso'); ?>"/>
+				wp_nonce_field( 'lasso_license_nonce', 'lasso_license_nonce' ); ?>
+										<input type="submit" class="button-secondary" name="edd_license_activate" value="<?php esc_attr_e( 'Activate License', 'lasso' ); ?>"/>
 									<?php } ?>
 								</td>
 							</tr>
 						<?php } ?>
 					</tbody>
 				</table>
-				<?php submit_button('Save License'); ?>
+				<?php submit_button( 'Save License' ); ?>
 
 			</form>
 		<?php
@@ -85,13 +85,13 @@ class lassoUpdater {
 	// register option
 	function register_option() {
 
-		register_setting('lasso_license', 'lasso_license_key', array($this,'sanitize_license') );
+		register_setting( 'lasso_license', 'lasso_license_key', array( $this, 'sanitize_license' ) );
 	}
 
 	// santize
 	function sanitize_license( $new ) {
 		$old = get_option( 'lasso_license_key' );
-		if( $old && $old != $new ) {
+		if ( $old && $old != $new ) {
 			delete_option( 'lasso_license_status' ); // new license has been entered, so must reactivate
 		}
 		return $new;
@@ -101,10 +101,10 @@ class lassoUpdater {
 	function activate_license() {
 
 		// listen for our activate button to be clicked
-		if( isset( $_POST['edd_license_activate'] ) ) {
+		if ( isset( $_POST['edd_license_activate'] ) ) {
 
 			// run a quick security check
-		 	if( ! check_admin_referer( 'lasso_license_nonce', 'lasso_license_nonce' ) )
+			if ( ! check_admin_referer( 'lasso_license_nonce', 'lasso_license_nonce' ) )
 				return; // get out if we didn't click the Activate button
 
 			// retrieve the license from the database
@@ -113,7 +113,7 @@ class lassoUpdater {
 			// data to send in our API request
 			$api_params = array(
 				'edd_action'=> 'activate_license',
-				'license' 	=> $license,
+				'license'  => $license,
 				'item_name' => urlencode( LASSO_STORE_ITEM_NAME ), // the name of our product in EDD
 				'url'       => home_url()
 			);
@@ -138,10 +138,10 @@ class lassoUpdater {
 	function deactivate_license() {
 
 		// listen for our activate button to be clicked
-		if( isset( $_POST['edd_license_deactivate'] ) ) {
+		if ( isset( $_POST['edd_license_deactivate'] ) ) {
 
 			// run a quick security check
-		 	if( ! check_admin_referer( 'lasso_license_nonce', 'lasso_license_nonce' ) )
+			if ( ! check_admin_referer( 'lasso_license_nonce', 'lasso_license_nonce' ) )
 				return; // get out if we didn't click the Activate button
 
 			// retrieve the license from the database
@@ -151,7 +151,7 @@ class lassoUpdater {
 			// data to send in our API request
 			$api_params = array(
 				'edd_action'=> 'deactivate_license',
-				'license' 	=> $license,
+				'license'  => $license,
 				'item_name' => urlencode( LASSO_STORE_ITEM_NAME ), // the name of our product in EDD
 				'url'       => home_url()
 			);
@@ -167,7 +167,7 @@ class lassoUpdater {
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 			// $license_data->license will be either "deactivated" or "failed"
-			if( $license_data->license == 'deactivated' )
+			if ( $license_data->license == 'deactivated' )
 				delete_option( 'lasso_license_status' );
 
 		}
@@ -195,7 +195,7 @@ class lassoUpdater {
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-		if( $license_data->license == 'valid' ) {
+		if ( $license_data->license == 'valid' ) {
 			echo 'valid'; exit;
 			// this license is still valid
 		} else {

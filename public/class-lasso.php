@@ -11,12 +11,14 @@
 
 /**
  *
+ *
  * @package Lasso
  * @author  Nick Haskins <nick@aesopinteractive.com>
  */
 class Lasso {
 
 	/**
+	 *
 	 *
 	 * @since    0.0.1
 	 *
@@ -35,25 +37,26 @@ class Lasso {
 
 	/**
 	 *
+	 *
 	 * @since     0.0.1
 	 */
 	private function __construct() {
 
-		require_once(LASSO_DIR.'/public/includes/class.assets.php');
-		require_once(LASSO_DIR.'/public/includes/editor-modules.php');
-		require_once(LASSO_DIR.'/public/includes/helpers.php');
-		require_once(LASSO_DIR.'/public/includes/editor-modules--gallery.php');
-		require_once(LASSO_DIR.'/public/includes/components.php');
-		require_once(LASSO_DIR.'/public/includes/class.tour.php');
+		require_once LASSO_DIR.'/public/includes/class.assets.php';
+		require_once LASSO_DIR.'/public/includes/editor-modules.php';
+		require_once LASSO_DIR.'/public/includes/helpers.php';
+		require_once LASSO_DIR.'/public/includes/editor-modules--gallery.php';
+		require_once LASSO_DIR.'/public/includes/components.php';
+		require_once LASSO_DIR.'/public/includes/class.tour.php';
 
-		require_once(LASSO_DIR.'/includes/class.process-save.php');
-		require_once(LASSO_DIR.'/includes/class.process-gallery.php');
-		require_once(LASSO_DIR.'/includes/class.save-gallery.php');
-		require_once(LASSO_DIR.'/includes/class.process-object-update.php');
-		require_once(LASSO_DIR.'/includes/class.process-image-upload.php');
-		require_once(LASSO_DIR.'/includes/class.process-new-object.php');
-		require_once(LASSO_DIR.'/includes/class.process-title-update.php');
-		require_once(LASSO_DIR.'/includes/class.process-map.php');
+		require_once LASSO_DIR.'/includes/class.process-save.php';
+		require_once LASSO_DIR.'/includes/class.process-gallery.php';
+		require_once LASSO_DIR.'/includes/class.save-gallery.php';
+		require_once LASSO_DIR.'/includes/class.process-object-update.php';
+		require_once LASSO_DIR.'/includes/class.process-image-upload.php';
+		require_once LASSO_DIR.'/includes/class.process-new-object.php';
+		require_once LASSO_DIR.'/includes/class.process-title-update.php';
+		require_once LASSO_DIR.'/includes/class.process-map.php';
 
 
 		// Activate plugin when new blog is added
@@ -97,7 +100,7 @@ class Lasso {
 	 *
 	 * @since    0.0.1
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses
+	 * @param boolean $network_wide True if WPMU superadmin uses
 	 *                                       "Network Activate" action, false if
 	 *                                       WPMU is disabled or plugin is
 	 *                                       activated on an individual blog.
@@ -134,7 +137,7 @@ class Lasso {
 	 *
 	 * @since    0.0.1
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses
+	 * @param boolean $network_wide True if WPMU superadmin uses
 	 *                                       "Network Deactivate" action, false if
 	 *                                       WPMU is disabled or plugin is
 	 *                                       deactivated on an individual blog.
@@ -172,7 +175,7 @@ class Lasso {
 	 *
 	 * @since    0.0.1
 	 *
-	 * @param    int    $blog_id    ID of the new blog.
+	 * @param int     $blog_id ID of the new blog.
 	 */
 	public function activate_new_site( $blog_id ) {
 
@@ -242,10 +245,10 @@ class Lasso {
 	}
 
 	/**
-	 	* Load the plugin text domain for translation.
-	 	*
-	 	* @since    1.0.0
-	*/
+	 * Load the plugin text domain for translation.
+	 *
+	 * @since    1.0.0
+	 */
 	public function load_plugin_textdomain() {
 
 		$domain = $this->plugin_slug;
@@ -254,8 +257,3 @@ class Lasso {
 		$out = load_textdomain( $domain, trailingslashit( LASSO_DIR ). 'languages/' . $domain . '-' . $locale . '.mo' );
 	}
 }
-
-
-
-
-

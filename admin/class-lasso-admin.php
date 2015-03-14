@@ -40,17 +40,17 @@ class Lasso_Admin {
 		$plugin = Lasso::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
-		add_action('admin_head',		array($this,'admin_assets'));
+		add_action( 'admin_head',  array( $this, 'admin_assets' ) );
 
-		if( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
-			include( LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php' );
+		if ( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
 		}
 
-		require_once(LASSO_DIR.'/admin/includes/class.menu--welcome.php');
-		require_once(LASSO_DIR.'/admin/includes/class.menu--settings.php');
+		require_once LASSO_DIR.'/admin/includes/class.menu--welcome.php';
+		require_once LASSO_DIR.'/admin/includes/class.menu--settings.php';
 
-		if ( !defined('LASSO_AGENCY_MODE') ) {
-			require_once(LASSO_DIR.'admin/includes/class.menu--license.php');
+		if ( !defined( 'LASSO_AGENCY_MODE' ) ) {
+			require_once LASSO_DIR.'admin/includes/class.menu--license.php';
 		}
 
 	}
@@ -73,11 +73,11 @@ class Lasso_Admin {
 	}
 
 	/**
-	*
-	*	Load some assets for the appropriate pages in admin
-	*	@since 1.0
-	*/
-	function admin_assets(){
+	 * Load some assets for the appropriate pages in admin
+	 *
+	 * @since 1.0
+	 */
+	function admin_assets() {
 
 		$screen = get_current_screen();
 
@@ -87,9 +87,9 @@ class Lasso_Admin {
 			'dashboard_page_lasso-welcome-screen'
 		);
 
-		foreach( $pages as $page ){
-			wp_enqueue_script('lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array('jquery'), LASSO_VERSION, true );
-			wp_enqueue_style('lasso-editor-settings-style', LASSO_URL.'/admin/assets/css/lasso-editor-settings.css', LASSO_VERSION );
+		foreach ( $pages as $page ) {
+			wp_enqueue_script( 'lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array( 'jquery' ), LASSO_VERSION, true );
+			wp_enqueue_style( 'lasso-editor-settings-style', LASSO_URL.'/admin/assets/css/lasso-editor-settings.css', LASSO_VERSION );
 		}
 	}
 }
