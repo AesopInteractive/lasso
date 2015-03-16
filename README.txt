@@ -18,6 +18,9 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.8.7 =
+* added a new option that lets you list CSS classes of items to ignore on save. This makes Lasso compatible wity 99.99% of all WordPress themes
+
 = 0.8.6 =
 * new pre-flight function to check to ensure plugin settings are configured
 * added automatic theme support for WordPress core themes and UpThemes
