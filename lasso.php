@@ -7,13 +7,13 @@
  * @link      http://lasso.is
  * @copyright 2015 Aesopinteractive LLC
  *
- * Plugin Name:       Lasso
+ * Plugin Name:       Lasso (beta)
  * Plugin URI:        http://lasso.is
- * Description:       Real-time story creation suite.
+ * Description:       Front-end editing for WordPress
  * Version:           0.8.6
  * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
  * Author:            Aesopinteractive LLC
- * Author URI:        http://aesopstoryengine.com
+ * Author URI:        http://nickhaskins.com
  * Text Domain:       lasso
  * Domain Path:       /languages
  */

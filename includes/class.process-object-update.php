@@ -35,9 +35,9 @@ class lassoProcessUpdatePost {
 				$slug  = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
 
 				$args = array(
-					'ID'   => (int) $postid,
-					'post_name'  => sanitize_title( trim( $slug ) ),
-					'post_status' => $status
+					'ID'   			=> (int) $postid,
+					'post_name'  	=> sanitize_title( trim( $slug ) ),
+					'post_status' 	=> $status
 				);
 
 				wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );

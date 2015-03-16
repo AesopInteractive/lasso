@@ -97,6 +97,18 @@ function lasso_supported_themes( $textdomain = '' ) {
 	return !empty( $out ) ? $out : false;
 }
 
+/**
+*	Return a string of classes with items that Lasso will remove when entering the editor
+*	so that we don't save them as HTML
+*
+*	@since 0.8.7
+*	@return string of comma separated classes
+*/
+function lasso_supported_no_save(){
+
+	return apply_filters('lasso_dont_save', '.sharedaddy, .us_wrapper');
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////

@@ -36,7 +36,7 @@ class lassoProcessNewObject {
 				$args = array(
 					'post_title'    => wp_strip_all_tags( trim( $title ) ),
 					'post_status'   => 'draft',
-					'post_type'    => trim( $object ),
+					'post_type'    	=> trim( $object ),
 					'post_content'  => apply_filters( 'lasso_new_object_content', __( 'People are made of stories...' ) )
 				);
 

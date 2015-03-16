@@ -30,6 +30,7 @@ class lassoAssets {
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
+			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 
 			// post id reference
 			$postid 			= get_the_ID();
@@ -89,6 +90,8 @@ class lassoAssets {
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'mapFormFooter'		=> lasso_map_form_footer(),
 				'refreshRequired'	=> lasso_editor_refresh_message(),
+				'objectsNoSave'		=> $objectsNoSave,
+				'supportedNoSave'	=> lasso_supported_no_save(),
 				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),

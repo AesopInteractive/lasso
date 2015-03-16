@@ -57,17 +57,15 @@ class lassoProcessGallery {
 					return;
 
 				$curr_post_title = isset( $_POST['curr_title'] ) ? $_POST['curr_title'] : rand();
-
-				$postid  = isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
-				$options  = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-
-				$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
+				$postid  	= isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
+				$options  	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+				$type 		= isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
 
 				// insert a new gallery
 				$args = array(
 					'post_title'    => $postid.'-'.rand(),
 					'post_status'   => 'publish',
-					'post_type'    => 'ai_galleries'
+					'post_type'    	=> 'ai_galleries'
 				);
 
 				$postid = wp_insert_post( apply_filters( 'lasso_insert_gallery_args', $args ) );
@@ -85,6 +83,7 @@ class lassoProcessGallery {
 					update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
 
 				}
+
 				do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
 				wp_send_json_success( array( 'message' => 'gallery-created' ) );
@@ -175,19 +174,20 @@ class lassoProcessGallery {
 		echo '<ul id="ase-gallery-images">';
 
 		if ( !empty( $image_ids ) ):
-			foreach ( $image_ids as $image_id ):
+
+			foreach ( $image_ids as $image_id ) {
 
 				$image    =  wp_get_attachment_image_src( $image_id, 'thumbnail', false );
 
-?>
-		        	<li id="<?php echo $image_id;?>" class="ase-gallery-image">
-		        		<i class="dashicons dashicons-no-alt" title="<?php _e( 'Delete From Gallery', 'lasso' );?>"></i>
-		        		<i class='dashicons dashicons-edit' title="<?php _e( 'Edit Image Caption', 'lasso' );?>"></i>
+				?>
+		        <li id="<?php echo $image_id;?>" class="ase-gallery-image">
+		        	<i class="dashicons dashicons-no-alt" title="<?php _e( 'Delete From Gallery', 'lasso' );?>"></i>
+		        	<i class='dashicons dashicons-edit' title="<?php _e( 'Edit Image Caption', 'lasso' );?>"></i>
 		           	<img src="<?php echo $image[0];?>">
-		          </li>
-		          <?php
+		        </li>
+		        <?php
 
-		endforeach;
+			}
 
 		endif;
 

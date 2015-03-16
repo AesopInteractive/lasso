@@ -24,8 +24,8 @@ class lassoUploadFeatImage {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_editor_image' ) ) {
 
-				$postid  = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$image_id  = isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
+				$postid  	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+				$image_id  	= isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
 
 				set_post_thumbnail( $postid, $image_id );
 

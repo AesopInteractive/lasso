@@ -17,7 +17,9 @@ jQuery(document).ready(function($){
 		lassoMapForm 	= lasso_editor.mapFormFooter,
 		mapLocations    = lasso_editor.mapLocations,
 		mapZoom    		= lasso_editor.mapZoom,
-		mapStart        = lasso_editor.mapStart
+		mapStart        = lasso_editor.mapStart,
+		objectsNoSave   = lasso_editor.objectsNoSave,
+		supportedNoSave = lasso_editor.supportedNoSave
 
 	function restoreSelection(range) {
 	    if (range) {
@@ -114,6 +116,10 @@ jQuery(document).ready(function($){
 			}
 
 		});
+
+		// remove any additional markup so we dont save it as HTML
+		$(objectsNoSave).remove();
+		$(supportedNoSave).remove();
 
 		/////////////////
 		///

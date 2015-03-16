@@ -54,39 +54,36 @@ class lassoWelcome {
 	 */
 	function welcome() {
 
-?>
-		  	<div class="wrap lasso--welcome">
+		?>
+		  <div class="wrap lasso--welcome">
 
 		  		<?php self::header();?>
 
 		  		<ul class="lasso--welcome__steps">
 
 			  		<?php
-		$checks = self::lasso_preflight_check();
+					$checks = self::lasso_preflight_check();
 
-		if ( $checks && !defined( 'LASSO_AGENCY_MODE' ) ):
+					if ( $checks && !defined( 'LASSO_AGENCY_MODE' ) ):
 
-			foreach ( (array) $checks as $key => $check ) {
+						foreach ( (array) $checks as $key => $check ) {
 
-				echo $check;
-			}
+							echo $check;
+						}
 
-		else:
+						else:
 
-			// pre-flight is go for flight
-?>
-							<li class="success">
-								<h3><?php _e( 'You\'re Ready to Rock!', 'lasso' );?></h3>
-				  				<p><?php _e( 'Lasso will place a small menu on the bottom of every post and page. Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.', 'lasso' );?></p>
-				  			</li>
-				  			<?php
+							// pre-flight is go for flight
+						?>
+						<li class="success">
+							<h3><?php _e( 'You\'re Ready to Rock!', 'lasso' );?></h3>
+			  				<p><?php _e( 'Lasso will place a small menu on the bottom of every post and page. Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.', 'lasso' );?></p>
+			  			</li>
+			  			<?php
 
-		endif;
-
-?>
+					endif; ?>
 
 			  	</ul>
-
 		  	</div>
 	 	<?php
 	}
@@ -109,9 +106,7 @@ class lassoWelcome {
 	    		<?php if ( !defined( 'LASSO_AGENCY_MODE' ) ): ?>
 
 			    	<ul class="lasso--welcome__social">
-			    		<li><a href="dl.dropboxusercontent.com/u/5594632/storyam-media/lasso-docs/index.html" target="_blank"><i class="dashicons dashicons-editor-help"></i> <?php _e( 'Docs', 'lasso' );?></a></li>
-			    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e( 'Help', 'lasso' );?></a></li>
-			    		<li><a href="https://lasso.is" target="_blank"><i class="dashicons dashicons-admin-site"></i> <?php _e( 'Website', 'lasso' );?></a></li>
+			    		<li><a href="https://lasso.is/help" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e( 'Help', 'lasso' );?></a></li>
 			    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e( 'Twitter', 'lasso' );?></a></li>
 			    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e( 'Facebook', 'lasso' );?></a></li>
 			    	</ul>

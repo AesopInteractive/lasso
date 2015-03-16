@@ -58,9 +58,9 @@ class lassoProcessSaving {
 				if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
 					$args = array(
-						'ID'           => (int) $postid,
-						'post_content' => $content,
-						'post_status' => 'publish'
+						'ID'           	=> (int) $postid,
+						'post_content' 	=> $content,
+						'post_status' 	=> 'publish'
 					);
 					wp_update_post( apply_filters( 'lasso_object_publish_args', $args ) );
 
