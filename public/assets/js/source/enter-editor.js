@@ -1,6 +1,8 @@
 jQuery(document).ready(function($){
 
 	var editor 			= lasso_editor.editor,
+		strings 		= lasso_editor.strings,
+		settingsLink	= lasso_editor.settingsLink,
 		post_container  = lasso_editor.article_object,
 		toolbar 		= lasso_editor.toolbar,
 		toolbarHeading 	= lasso_editor.toolbarHeadings,
@@ -31,6 +33,22 @@ jQuery(document).ready(function($){
 	            range.select();
 	        }
 	    }
+	}
+
+	// if the hasn't saved teh article class to use Lasso, warn them
+	if ( post_container.length == false ) {
+		swal({
+			title: strings.warning,
+			type: 'info',
+			text: strings.missingClass,
+			showCancelButton: false,
+			confirmButtonColor: '#007aab',
+			confirmButtonText: strings.missingConfirm,
+			closeOnConfirm: false
+		},
+		function(){
+			location.replace(settingsLink);
+		});
 	}
 
 	$('#lasso--edit').click(function(e){

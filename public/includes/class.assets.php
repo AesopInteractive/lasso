@@ -55,7 +55,10 @@ class lassoAssets {
 				'selectGallery'		=> __('Select Lasso Gallery Image','lasso'),
 				'useSelectedImages' => __('Use Selected Images','lasso'),
 				'publishPost'		=> __('Publish Post?','lasso'),
-				'publishYes'		=> __('Yes, publish it!','lasso')
+				'publishYes'		=> __('Yes, publish it!','lasso'),
+				'warning'			=> __('Oh snap!','laso'),
+				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso needs this to function correctly.','lasso'),
+				'missingConfirm'	=> __('Update Settings', 'lasso')
 			);
 
 			// localized objects
@@ -66,6 +69,7 @@ class lassoAssets {
 				'featImgClass'		=> $featImgClass,
 				'titleClass'		=> $titleClass,
 				'strings'			=> $strings,
+				'settingsLink'		=> function_exists('is_multisite') && is_multisite() ? network_admin_url( 'settings.php?page=lasso-editor' ) : admin_url( 'admin.php?page=lasso-editor-settings' ),
 				'post_status'		=> get_post_status( $postid ),
 				'postid'			=> $postid,
 				'permalink'			=> get_permalink(),

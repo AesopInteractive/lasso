@@ -46,9 +46,10 @@
         line-height: 40px;
         display: block;
         font-family: inherit;
+
     }
     p {
-        color: #797979;
+        color: @modal--color;
         font-size: 16px;
         text-align: center;
         font-weight: 300;
@@ -58,6 +59,10 @@
         margin: 0;
         padding: 0;
         line-height: normal;
+
+        ~ button {
+            margin-bottom:20px;
+        }
     }
     // button
     button {
