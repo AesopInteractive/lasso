@@ -10,7 +10,7 @@
  * Plugin Name:       Lasso (beta)
  * Plugin URI:        http://lasso.is
  * Description:       Front-end editing for WordPress
- * Version:           0.8.7
+ * Version:           0.8.8
  * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
  * Author:            Aesopinteractive LLC
  * Author URI:        http://nickhaskins.com
@@ -24,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '0.8.7' );
+define( 'LASSO_VERSION', '0.8.8' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 

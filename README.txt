@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: http://story.am
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.8.7
+Stable tag: 0.8.8
 
 Front-end editing and creation suite.
 
@@ -20,6 +20,8 @@ Refer to owners manual
 
 = 0.8.8 =
 * added an alert that pops up if the user tries to use the editor but hasn't added the required Article Class in order to use Lasso
+* added all Aesop built themes to automatically supported themes list
+* updated pot file
 
 = 0.8.7 =
 * added a new option that lets you list CSS classes of items to ignore on save. This makes Lasso compatible with 99.99% of all WordPress themes
