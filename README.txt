@@ -33,7 +33,6 @@ Refer to owners manual
 * fixed an issue with the height in the Tour slider sometimes not calculating correctly
 * fixed a permission issue where a user was allowed to edit another users posts. we were using edit_posts and switched to edit_post
 
-
 = 0.8.5 =
 * misc bug fixes
 * removed the "url helper" field for creating new posts as it was confusing some users

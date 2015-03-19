@@ -62,36 +62,45 @@ function lasso_supported_themes( $textdomain = '' ) {
 
 	switch ( $textdomain ) {
 
-	case 'twentytwelve':
-		$out = '.entry-content';
-		break;
-	case 'twentythirteen':
-		$out = '.entry-content';
-		break;
-	case 'twentyfourteen':
-		$out = '.entry-content';
-		break;
-	case 'twentyfifteen':
-		$out = '.entry-content';
-		break;
-	case 'aesop-story-theme':
-		$out = '.aesop-entry-content';
-		break;
-	case 'largo': // upthemes
-		$out = '.entry-content';
-		break;
-	case 'worldview': // upthemes
-		$out = '.entry-content';
-		break;
-	case 'genesis': // genesis
-		$out = '.entry-content';
-		break;
-	case 'camera': // array.is
-		$out = '.entry-content';
-		break;
-	default:
-		$out = '.entry-content';
-		break;
+		case 'twentytwelve': // automattic
+			$out = '.entry-content';
+			break;
+		case 'twentythirteen': // automattic
+			$out = '.entry-content';
+			break;
+		case 'twentyfourteen': // automattic
+			$out = '.entry-content';
+			break;
+		case 'twentyfifteen': // automattic
+			$out = '.entry-content';
+			break;
+		case 'aesop-story-theme': // aesop
+			$out = '.aesop-entry-content';
+			break;
+		case 'jorgen': // aesop
+			$out = '.aesop-entry-content';
+			break;
+		case 'novella': // aesop
+			$out = '.novella-entry-content';
+			break;
+		case 'genji': // aesop
+			$out = '.genji-entry-content';
+			break;
+		case 'kerouac': // aesop
+			$out = '.kerouac-entry-content';
+			break;
+		case 'worldview': // upthemes
+			$out = '.entry-content';
+			break;
+		case 'genesis': // genesis
+			$out = '.entry-content';
+			break;
+		case 'camera': // array.is
+			$out = '.entry-content';
+			break;
+		default:
+			$out = '.entry-content';
+
 	}
 
 	return !empty( $out ) ? $out : false;
@@ -106,7 +115,7 @@ function lasso_supported_themes( $textdomain = '' ) {
 */
 function lasso_supported_no_save(){
 
-	return apply_filters('lasso_dont_save', '.sharedaddy, .us_wrapper');
+	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper');
 }
 
 ////////////////////
