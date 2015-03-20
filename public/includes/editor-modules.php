@@ -53,7 +53,7 @@ function lasso_editor_controls() {
 						<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 					<?php }
 
-		if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
+					if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
 						<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 					<?php } ?>
 
@@ -65,7 +65,7 @@ function lasso_editor_controls() {
 
 			<div class="lasso--controls__right">
 				<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
-				<?php if ( 'draft' == $status ) { ?>
+				<?php if ( 'draft' == $status && lasso_user_can('publish_posts') ) { ?>
 					<a href="#" title="<?php esc_attr_e( 'Publish Post', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
 				<?php } ?>
 			</div>

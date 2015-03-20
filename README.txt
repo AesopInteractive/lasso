@@ -18,6 +18,9 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.8.9 =
+* fixed a capability issue where contributors were allowed to publish posts
+
 = 0.8.8 =
 * added an alert that pops up if the user tries to use the editor but hasn't added the required Article Class in order to use Lasso
 * added all Aesop built themes to automatically supported themes list

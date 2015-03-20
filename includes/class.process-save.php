@@ -57,6 +57,10 @@ class lassoProcessSaving {
 
 				if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
+					// bail out if the user can't publish posts
+					if ( !lasso_user_can( 'publish_posts' ) )
+						return;
+
 					$args = array(
 						'ID'           	=> (int) $postid,
 						'post_content' 	=> $content,
