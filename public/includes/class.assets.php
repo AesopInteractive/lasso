@@ -7,12 +7,12 @@
 */
 class lassoAssets {
 
-	function __construct(){
+	public function __construct(){
 
 		add_action('wp_enqueue_scripts', array($this,'scripts'));
 	}
 
-	function scripts(){
+	public function scripts(){
 
 		// only run on posts and pages if user is logged in and has teh right capabilities (edit_post) by default
 		if ( apply_filters('lasso_runs_on', is_singular() ) && lasso_user_can() ) {

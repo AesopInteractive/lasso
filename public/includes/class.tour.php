@@ -8,7 +8,7 @@
 
 class lassoEditorWelcome {
 
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'wp_footer',       array( $this, 'draw_tour' ) );
 		add_action( 'wp_ajax_process_hide_tour',   array( $this, 'process_hide_tour' ) );
@@ -18,7 +18,7 @@ class lassoEditorWelcome {
 	/*
 	*	Draw the modal used to house the walk through
 	*/
-	function draw_tour() {
+	public function draw_tour() {
 
 		$tour_hidden = get_user_meta( get_current_user_ID(), 'lasso_hide_tour', true );
 
@@ -77,7 +77,7 @@ class lassoEditorWelcome {
 	/*
 	*	Draw the inner slides for the welcome walkthrough
 	*/
-	function tour_slides() {
+	public function tour_slides() {
 
 ?>
 		<div id="lasso--tour__loading" class="lasso--tour__loading"><div class="lasso--tour__loader"></div></div>
@@ -113,7 +113,7 @@ class lassoEditorWelcome {
 	/*
 	*	When the user decides to not have this show again save user meta
 	*/
-	function process_hide_tour() {
+	public function process_hide_tour() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_hide_tour' ) {
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso (beta) 0.8.8\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-03-19 21:15:32+00:00\n"
+"POT-Creation-Date: 2015-03-21 17:31:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -327,16 +327,20 @@ msgstr ""
 msgid ". It may have been entered incorreclty, or may have expired."
 msgstr ""
 
-#: includes/class.process-gallery.php:184
+#: includes/class.process-gallery.php:33
+msgid "Save and refresh to view gallery."
+msgstr ""
+
+#: includes/class.process-gallery.php:191
 msgid "Delete From Gallery"
 msgstr ""
 
-#: includes/class.process-gallery.php:185
+#: includes/class.process-gallery.php:192
 msgid "Edit Image Caption"
 msgstr ""
 
 #: includes/class.process-new-object.php:40
-msgid "People are made of stories..."
+msgid "Once upon a time..."
 msgstr ""
 
 #: public/includes/class.assets.php:39
@@ -781,9 +785,9 @@ msgid "http://lasso.is"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Front-end editing for WordPress"
+msgid "Front-end editor and story builder."
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://nickhaskins.com"
+msgid "http://aesopstoryengine.com"
 msgstr ""

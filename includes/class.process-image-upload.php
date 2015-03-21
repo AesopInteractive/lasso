@@ -7,13 +7,18 @@
  */
 class lassoUploadFeatImage {
 
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'wp_ajax_process_featimg_upload',     array( $this, 'process_featimg_upload' ) );
 		add_action( 'wp_ajax_process_featimg_delete',     array( $this, 'process_featimg_delete' ) );
 	}
 
-	function process_featimg_upload() {
+	/**
+	 *  Set the post thumbnail when the user sets it on the front end
+	 *
+	 * @since 0.1
+	 */
+	public function process_featimg_upload() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_upload' ) {
 
@@ -43,7 +48,12 @@ class lassoUploadFeatImage {
 		}
 	}
 
-	function process_featimg_delete() {
+	/**
+	 *  Delete the post thumbnail when deleted from front end
+	 *
+	 * @since 0.1
+	 */
+	public function process_featimg_delete() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_delete' ) {
 

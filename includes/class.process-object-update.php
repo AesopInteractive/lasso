@@ -8,7 +8,7 @@
  */
 class lassoProcessUpdatePost {
 
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'wp_ajax_process_update_post',     array( $this, 'process_update_post' ) );
 
@@ -19,7 +19,7 @@ class lassoProcessUpdatePost {
 	 *
 	 * @since 1.0
 	 */
-	function process_update_post() {
+	public function process_update_post() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_post' ) {
 
@@ -32,7 +32,7 @@ class lassoProcessUpdatePost {
 
 				$status = isset( $_POST['status'] ) ? $_POST['status'] : false;
 				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$slug  = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
+				$slug   = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
 
 				$args = array(
 					'ID'   			=> (int) $postid,

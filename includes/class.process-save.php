@@ -7,10 +7,10 @@
  */
 class lassoProcessSaving {
 
-	function __construct() {
+	public function __construct() {
 
-		add_action( 'wp_ajax_process_save_content',     array( $this, 'process_save_content' ) );
-		add_action( 'wp_ajax_process_publish_content',     array( $this, 'process_save_content' ) );
+		add_action( 'wp_ajax_process_save_content',     	array( $this, 'process_save_content' ) );
+		add_action( 'wp_ajax_process_publish_content',      array( $this, 'process_save_content' ) );
 
 	}
 
@@ -19,7 +19,7 @@ class lassoProcessSaving {
 	 *
 	 * @since 1.0
 	 */
-	function process_save_content() {
+	public function process_save_content() {
 
 		check_ajax_referer( 'lasso_editor', 'nonce' );
 
@@ -30,7 +30,7 @@ class lassoProcessSaving {
 				return;
 
 			// main variables being passed through include the postid and content
-			$postid = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
+			$postid  = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
 			$content = isset( $_POST['content'] ) ? $_POST['content'] : null;
 
 			$save_to_post_disabled = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );

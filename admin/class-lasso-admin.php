@@ -41,6 +41,7 @@ class Lasso_Admin {
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		add_action( 'admin_head',  array( $this, 'admin_assets' ) );
+		add_filter( 'plugin_row_meta',    array( $this, 'plugin_meta' ), 10, 2 );
 
 		if ( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
 			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
@@ -77,7 +78,7 @@ class Lasso_Admin {
 	 *
 	 * @since 1.0
 	 */
-	function admin_assets() {
+	public function admin_assets() {
 
 		$screen = get_current_screen();
 
@@ -91,5 +92,28 @@ class Lasso_Admin {
 			wp_enqueue_script( 'lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array( 'jquery' ), LASSO_VERSION, true );
 			wp_enqueue_style( 'lasso-editor-settings-style', LASSO_URL.'/admin/assets/css/lasso-editor-settings.css', LASSO_VERSION );
 		}
+	}
+
+	/**
+	 * Add some custom links to the plugins.php page
+	 *
+	 * @since 0.8.8
+	 * @param unknown $links array array of new links
+	 * @param unknown $file
+	 *
+	 * @return array new array of links for our plugin listing on plugins.php
+	 */
+	public function plugin_meta( $links, $file ) {
+
+		if ( strpos( $file, 'lasso.php' ) !== false && !defined( 'LASSO_AGENCY_MODE' ) ) {
+
+			$new_links = array(
+				'<a href="https://lasso.is/help" target="_blank">Help</a>'
+			);
+
+			$links = array_merge( $links, $new_links );
+		}
+
+		return $links;
 	}
 }

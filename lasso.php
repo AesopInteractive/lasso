@@ -9,11 +9,10 @@
  *
  * Plugin Name:       Lasso (beta)
  * Plugin URI:        http://lasso.is
- * Description:       Front-end editing for WordPress
+ * Description:       Front-end editor and story builder.
  * Version:           0.8.8
- * GitLab Plugin URI: https://gitlab.com/aesop/ah-editor
  * Author:            Aesopinteractive LLC
- * Author URI:        http://nickhaskins.com
+ * Author URI:        http://aesopstoryengine.com
  * Text Domain:       lasso
  * Domain Path:       /languages
  */

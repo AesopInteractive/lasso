@@ -7,7 +7,7 @@
  */
 class lassoProcessNewObject {
 
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'wp_ajax_process_new_object',     array( $this, 'process_new_object' ) );
 
@@ -18,7 +18,7 @@ class lassoProcessNewObject {
 	 *
 	 * @since 1.0
 	 */
-	function process_new_object() {
+	public function process_new_object() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_new_object' ) {
 
@@ -37,7 +37,7 @@ class lassoProcessNewObject {
 					'post_title'    => wp_strip_all_tags( trim( $title ) ),
 					'post_status'   => 'draft',
 					'post_type'    	=> trim( $object ),
-					'post_content'  => apply_filters( 'lasso_new_object_content', __( 'People are made of stories...' ) )
+					'post_content'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') )
 				);
 
 				$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );

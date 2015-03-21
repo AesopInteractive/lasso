@@ -7,11 +7,11 @@
  */
 class lassoProcessGallery {
 
-	function __construct() {
+	public function __construct() {
 
-		add_action( 'wp_ajax_process_get_images',     array( $this, 'process_get_images' ) );
+		add_action( 'wp_ajax_process_get_images',     	 array( $this, 'process_get_images' ) );
 		add_action( 'wp_ajax_process_create_gallery',    array( $this, 'process_create_gallery' ) );
-		add_action( 'wp_ajax_process_swap_gallery',    array( $this, 'process_swap_gallery' ) );
+		add_action( 'wp_ajax_process_swap_gallery',    	 array( $this, 'process_swap_gallery' ) );
 		add_action( 'wp_ajax_process_update_gallery',    array( $this, 'process_update_gallery' ) );
 
 	}
@@ -20,7 +20,7 @@ class lassoProcessGallery {
 	 * Swaps a gallery during live editing
 	 *
 	 */
-	function process_swap_gallery() {
+	public function process_swap_gallery() {
 
 		check_ajax_referer( 'lasso_swap_gallery', 'nonce' );
 
@@ -30,7 +30,8 @@ class lassoProcessGallery {
 
 		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
 
-		$markup = sprintf( '<div contenteditable="false" class="lasso--empty-component aesop-component aesop-gallery-component" data-component-type="gallery" data-id="%s">Save and refresh to view gallery.</div>', $id );
+		$markup = sprintf( '<div contenteditable="false" class="lasso--empty-component aesop-component aesop-gallery-component" data-component-type="gallery" data-id="%s">%s</div>', $id, __( 'Save and refresh to view gallery.','lasso' ) );
+
 		wp_send_json_success( array( 'gallery' => $markup ) );
 
 	}
@@ -39,7 +40,7 @@ class lassoProcessGallery {
 	 * Creates a gallery
 	 *
 	 */
-	function process_create_gallery() {
+	public function process_create_gallery() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_create_gallery' ) {
 
@@ -57,15 +58,15 @@ class lassoProcessGallery {
 					return;
 
 				$curr_post_title = isset( $_POST['curr_title'] ) ? $_POST['curr_title'] : rand();
-				$postid  	= isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
-				$options  	= isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-				$type 		= isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
+				$postid   		 = isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
+				$options   		 = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+				$type   		 = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
 
 				// insert a new gallery
 				$args = array(
 					'post_title'    => $postid.'-'.rand(),
 					'post_status'   => 'publish',
-					'post_type'    	=> 'ai_galleries'
+					'post_type'     => 'ai_galleries'
 				);
 
 				$postid = wp_insert_post( apply_filters( 'lasso_insert_gallery_args', $args ) );
@@ -97,7 +98,7 @@ class lassoProcessGallery {
 	 * Update an existing gallery
 	 *
 	 */
-	function process_update_gallery() {
+	public function process_update_gallery() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_gallery' ) {
 
@@ -108,8 +109,8 @@ class lassoProcessGallery {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-generator-settings' ) ) {
 
-				$options   = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-				$postid   = !empty( $options ) ? (int) $options['id'] : false;
+				$options      = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+				$postid   	  = !empty( $options ) ? (int) $options['id'] : false;
 				$gallery_ids  = isset( $_POST['gallery_ids'] ) ? $_POST['gallery_ids'] : false;
 
 				// run an action
@@ -132,7 +133,7 @@ class lassoProcessGallery {
 	 *
 	 * @since 0.12
 	 */
-	function process_get_images() {
+	public function process_get_images() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_get_images' ) {
 
@@ -164,7 +165,13 @@ class lassoProcessGallery {
 		die();
 	}
 
-	function get_images( $image_ids = '' ) {
+	/**
+	 *  Return images for a specific gallery when the user goes to edit a gallery
+	 *
+	 * @param $image_ids array array of image ids
+	 * @since 0.1
+	 */
+	private function get_images( $image_ids = '' ) {
 
 		if ( empty( $image_ids ) )
 			return;
@@ -180,10 +187,10 @@ class lassoProcessGallery {
 				$image    =  wp_get_attachment_image_src( $image_id, 'thumbnail', false );
 
 				?>
-		        <li id="<?php echo $image_id;?>" class="ase-gallery-image">
+		        <li id="<?php echo absint( $image_id );?>" class="ase-gallery-image">
 		        	<i class="dashicons dashicons-no-alt" title="<?php _e( 'Delete From Gallery', 'lasso' );?>"></i>
 		        	<i class='dashicons dashicons-edit' title="<?php _e( 'Edit Image Caption', 'lasso' );?>"></i>
-		           	<img src="<?php echo $image[0];?>">
+		           	<img src="<?php echo esc_url( $image[0] );?>">
 		        </li>
 		        <?php
 

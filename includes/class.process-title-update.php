@@ -7,7 +7,7 @@
  */
 class lassoProcessTitleUpdate {
 
-	function __construct() {
+	public function __construct() {
 
 		add_action( 'wp_ajax_process_update_title',     array( $this, 'process_update_title' ) );
 
@@ -18,7 +18,7 @@ class lassoProcessTitleUpdate {
 	 *
 	 * @since 1.0
 	 */
-	function process_update_title() {
+	public function process_update_title() {
 
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_title' ) {
 
