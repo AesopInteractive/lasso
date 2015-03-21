@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: http://story.am
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.8.8
+Stable tag: 0.9
 
 Front-end editing and creation suite.
 
@@ -18,8 +18,9 @@ Refer to owners manual
 
 == Changelog ==
 
-= 0.8.9 =
+= 0.9 =
 * fixed a capability issue where contributors were allowed to publish posts
+* class visibility methods
 
 = 0.8.8 =
 * added an alert that pops up if the user tries to use the editor but hasn't added the required Article Class in order to use Lasso
