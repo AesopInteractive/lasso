@@ -46,11 +46,12 @@ class lassoProcessUpdatePost {
 
 
 				// update any terms
-				self::set_post_terms( $postid, $terms, 'category' );
+				self::set_post_cats( $postid, $terms, 'category' );
 
 				// let plugins hook in
 				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
 
+				die();
 				// send back success
 				//wp_send_json_success();
 
@@ -63,35 +64,31 @@ class lassoProcessUpdatePost {
 	}
 
 	/**
-	 * Appends the specified taxonomy term to the incoming post object. If
+	 * Appends the specified taxonomy term to the incoming postid object. If
 	 * the term doesn't already exist in the database, it will be created. This
 	 * function now supports multiple terms.
 	 *
-	 * @param    WP_Post    $post        The current post with which we're working
+	 * @param    WP_Post    $postid       The current ppostid with which we're working
 	 * @param    string     $value       The term value (or term name)
 	 * @param    string     $taxonomy    The name of the taxonomy to which the term belongs.
 	 * @access   private
 	 * @since    1.0.0
 	 */
-	public function set_post_terms( $post, $value, $taxonomy ) {
+	public function set_post_cats( $postid, $value, $taxonomy ) {
 
-		/* First check to see if there are multiple terms and,
-		 * if so, then loop through the values and update each
-		 * term.
-		 */
+		// first check if multiple
+		if ( self::has_multiple_cats( $value ) ) {
 
-		if ( self::has_multiple_terms( $value ) ) {
-
-			self::set_multiple_terms( $post, $value, $taxonomy );
+			self::set_multiple_cats( $postid, $value, $taxonomy );
 
 		} else {
 
+			// check if term exists
 			$term = term_exists( strtolower( $value ), $taxonomy );
 
-			// If the taxonomy doesn't exist, then we create it
 			if ( 0 === $term || null === $term ) {
 
-				$term = wp_insert_term(
+				$args = array(
 					$value,
 					$taxonomy,
 					array(
@@ -99,12 +96,16 @@ class lassoProcessUpdatePost {
 					)
 				);
 
+				$term = wp_insert_term( $args );
+
+			} else {
+				$term = null;
 			}
 
 		}
 
 		// Then we can set the taxonomy
-		wp_set_post_terms( $post, $term, $taxonomy, true );
+		wp_set_post_terms( $postid, $term, $taxonomy, true );
 
 	}
 
@@ -115,23 +116,24 @@ class lassoProcessUpdatePost {
 	 * @param    string   $value    The value to evaluate for multiple terms.
 	 * @return   bool               True if there are multiple terms; otherwise, false.
 	 */
-	public function has_multiple_terms( $value ) {
+	public function has_multiple_cats( $value ) {
 		return 0 < strpos( $value, ',' );
 	}
 
 	/**
 	 * Loops through each of the multiple terms that exist and use the
-	 * set_profile_terms function to apply each value to the given post
+	 * set_profile_terms function to apply each value to the given postid
 	 *
-	 * @param    WP_Post    $post        The post which we're applying the terms.
+	 * @param    WP_Post    $postid        The post which we're applying the terms.
 	 * @param    string     $values      The delimited list of terms.
 	 * @param    string     $taxonomy    The taxonomy to which the terms belong.
 	 */
-	public function set_multiple_terms( $post, $values, $taxonomy ) {
+	public function set_multiple_cats( $postid, $values, $taxonomy ) {
 
 		$terms = explode( ',', $values );
+		var_dump($terms);
 		foreach( $terms as $term ) {
-			self::set_post_terms( $post, $term, $taxonomy );
+			self::set_post_cats( $postid, trim( $term ), $taxonomy );
 		}
 
 	}
