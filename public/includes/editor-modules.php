@@ -284,6 +284,11 @@ function lasso_editor_component_modal() {
 				</div>
 				<?php endif; ?>
 
+				<div class="lasso--postsettings__option story-categories-option">
+					<label><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+					<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="text" name="story_cats">
+				</div>
+
 				<?php do_action( 'lasso_modal_post_form' ); // action ?>
 
 				<div class="lasso--postsettings__footer" style="display:none;">
