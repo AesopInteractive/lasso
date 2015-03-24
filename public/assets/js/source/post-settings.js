@@ -70,12 +70,17 @@
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
-			$('#lasso--cat-select').tagsinput({
+		    // categories
+		    var cats 		= $('#lasso--cat-select')
+
+			cats.tagsinput({
 				tagClass: 'lasso--cat__item'
 			});
-			$('#lasso--cat-select').on('itemAdded', function(event) {
-			  	$('.lasso--postsettings__footer').slideDown()
-			});
+
+			cats.on('change',function(event){
+				$('.lasso--postsettings__footer').slideDown()
+				$('input[name="categories"]').val( cats.tagsinput('items') )
+			})
 
 			modalResizer()
 
@@ -119,9 +124,9 @@
 			/////////////
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				if( true == response.success ) {
+				console.log(response)
 
-					console.log(response);
+				if( true == response.success ) {
 
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);

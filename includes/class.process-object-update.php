@@ -33,7 +33,7 @@ class lassoProcessUpdatePost {
 				$status = isset( $_POST['status'] ) ? $_POST['status'] : false;
 				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 				$slug   = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
-				$terms  = isset( $_POST['story_cats'] ) ? $_POST['story_cats']  : false;
+				$terms  = isset( $_POST['categories'] ) ? $_POST['categories']  : false;
 
 				$args = array(
 					'ID'   			=> (int) $postid,
@@ -44,8 +44,9 @@ class lassoProcessUpdatePost {
 				// udpate the post
 				wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
 
+
 				// update any terms
-				$this->set_post_terms( $postid, $terms, 'category' );
+				self::set_post_terms( $postid, $terms, 'category' );
 
 				// let plugins hook in
 				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
@@ -72,14 +73,16 @@ class lassoProcessUpdatePost {
 	 * @access   private
 	 * @since    1.0.0
 	 */
-	private function set_post_terms( $post, $value, $taxonomy ) {
+	public function set_post_terms( $post, $value, $taxonomy ) {
 
 		/* First check to see if there are multiple terms and,
 		 * if so, then loop through the values and update each
 		 * term.
 		 */
-		if ( $this->has_multiple_terms( $value ) ) {
-			$this->set_multiple_terms( $post, $value, $taxonomy );
+		if ( self::has_multiple_terms( $value ) ) {
+
+			self::set_multiple_terms( $post, $value, $taxonomy );
+
 		} else {
 
 			$term = term_exists( strtolower( $value ), $taxonomy );
@@ -100,7 +103,7 @@ class lassoProcessUpdatePost {
 		}
 
 		// Then we can set the taxonomy
-		wp_set_post_terms( $post['ID'], $term, $taxonomy, true );
+		wp_set_post_terms( $post, $term, $taxonomy, true );
 
 	}
 
@@ -111,7 +114,7 @@ class lassoProcessUpdatePost {
 	 * @param    string   $value    The value to evaluate for multiple terms.
 	 * @return   bool               True if there are multiple terms; otherwise, false.
 	 */
-	private function has_multiple_terms( $value ) {
+	public function has_multiple_terms( $value ) {
 		return 0 < strpos( $value, ',' );
 	}
 
@@ -123,11 +126,11 @@ class lassoProcessUpdatePost {
 	 * @param    string     $values      The delimited list of terms.
 	 * @param    string     $taxonomy    The taxonomy to which the terms belong.
 	 */
-	private function set_multiple_terms( $post, $values, $taxonomy ) {
+	public function set_multiple_terms( $post, $values, $taxonomy ) {
 
 		$terms = explode( ';', $values );
 		foreach( $terms as $term ) {
-			$this->set_post_terms( $post, $term, $taxonomy );
+			self::set_post_terms( $post, $term, $taxonomy );
 		}
 
 	}

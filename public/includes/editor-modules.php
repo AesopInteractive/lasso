@@ -261,6 +261,10 @@ function lasso_editor_component_modal() {
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_settings_classes', '' );
 
+	// this objects categories
+	$categories = lasso_get_post_categories();
+
+
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
@@ -286,7 +290,7 @@ function lasso_editor_component_modal() {
 
 				<div class="lasso--postsettings__option story-categories-option">
 					<label><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
-					<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="text" name="story_cats">
+					<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="text" name="story_cats" value="<?php echo esc_html($categories);?>">
 				</div>
 
 				<?php do_action( 'lasso_modal_post_form' ); // action ?>
@@ -294,6 +298,7 @@ function lasso_editor_component_modal() {
 				<div class="lasso--postsettings__footer" style="display:none;">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 					<input type="hidden" name="status" value="">
+					<input type="hidden" name="categories" value="">
 					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
 					<input type="hidden" name="action" value="process_update_post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">

@@ -118,6 +118,25 @@ function lasso_supported_no_save(){
 	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper');
 }
 
+function lasso_get_post_categories( $postid = 0 ) {
+
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$cats = get_categories();
+
+	if ( empty( $cats) )
+		return;
+
+	$out = '';
+	foreach( $cats as $cat ) {
+		$out .= $cat->slug.', ';
+	}
+
+	return $out;
+
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////
