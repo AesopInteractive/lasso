@@ -262,7 +262,7 @@ function lasso_editor_component_modal() {
 	$custom_classes = apply_filters( 'lasso_modal_settings_classes', '' );
 
 	// this objects categories
-	$categories = lasso_get_post_categories();
+	$categories = lasso_get_post_categories( $post->ID );
 
 
 ?>

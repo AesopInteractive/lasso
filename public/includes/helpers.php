@@ -118,12 +118,18 @@ function lasso_supported_no_save(){
 	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper');
 }
 
-function lasso_get_post_categories( $postid = 0 ) {
+/**
+ *	Return a comma delimited list of categories for a specific post object
+ *
+ *	@since 0.9.1
+ *	@return string of comma delimited category slugs
+*/
+function lasso_get_post_categories( $postid = '') {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
 
-	$cats = get_categories();
+	$cats = get_the_category( $postid );
 
 	if ( empty( $cats) )
 		return;
@@ -133,7 +139,7 @@ function lasso_get_post_categories( $postid = 0 ) {
 		$out .= $cat->slug.', ';
 	}
 
-	return $out;
+	return rtrim($out, ', ');
 
 }
 
