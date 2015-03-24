@@ -79,6 +79,7 @@ class lassoProcessUpdatePost {
 		 * if so, then loop through the values and update each
 		 * term.
 		 */
+
 		if ( self::has_multiple_terms( $value ) ) {
 
 			self::set_multiple_terms( $post, $value, $taxonomy );
@@ -128,7 +129,7 @@ class lassoProcessUpdatePost {
 	 */
 	public function set_multiple_terms( $post, $values, $taxonomy ) {
 
-		$terms = explode( ';', $values );
+		$terms = explode( ',', $values );
 		foreach( $terms as $term ) {
 			self::set_post_terms( $post, $term, $taxonomy );
 		}
