@@ -229,7 +229,7 @@ endif;
 if ( !function_exists('lasso_wp_quote') ):
 
 	function lasso_wp_quote(){
-		return '<blockquote data-component-type="wpquote" class="lasso--wpquote lasso-component"><p>The universe is made of stories.<small>Muriel Someone</small></p></blockquote>';
+		return '<blockquote data-component-type="wpquote" class="lasso--wpquote lasso-component"><p>The universe is made of stories.</p></blockquote>';
 	}
 
 endif;

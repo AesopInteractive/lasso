@@ -18,6 +18,10 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.1 =
+* added ability to insert standard WordPress images and blockquote. If Aesop Story Engine is activated, it replaces these with Aesop Story Engine's story components.
+* fixed css class names in toolbar components not being namespaced
+
 = 0.9 =
 * fixed a capability issue where contributors were allowed to publish posts
 * class visibility methods
