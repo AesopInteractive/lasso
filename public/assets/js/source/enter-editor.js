@@ -135,6 +135,17 @@ jQuery(document).ready(function($){
 
 		});
 
+		$('.lasso-component').each(function(){
+
+			var $this = $(this)
+
+			if ( !$('.lasso-component--toolbar').length > 0 ) {
+				$(this).append( lassoDragHandle );
+
+			}
+
+		})
+
 		// remove any additional markup so we dont save it as HTML
 		$(objectsNoSave).remove();
 		$(supportedNoSave).remove();

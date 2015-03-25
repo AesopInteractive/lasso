@@ -196,7 +196,7 @@ jQuery(function( $ ) {
 			$this.closest('.aesop-component').remove();
 
 			// remove wp image if its a wp image
-			$this.closest('.lasso--wpimg__wrap').remove();
+			$this.closest('.lasso-component').remove();
 
 		});
 
@@ -213,7 +213,7 @@ jQuery(function( $ ) {
 		e.preventDefault();
 
 		$this.closest('.aesop-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
-		$this.closest('.lasso--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.lasso-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 
 	});
 

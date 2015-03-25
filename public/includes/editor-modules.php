@@ -175,8 +175,10 @@ function lasso_editor_text_toolbar() {
 						<li data-type="collection" title="<?php esc_attr_e( 'Collection', 'lasso' );?>"  class="collection"></li>
 						<li data-type="gallery" title="<?php esc_attr_e( 'Gallery', 'lasso' );?>"  class="gallery"></li>
 						<li class="lasso-toolbar--component__break"></li>
-					<?php endif; ?>
+					<?php else: ?>
 						<li data-type="wpimg" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
+						<li data-type="wpquote" title="<?php esc_attr_e( 'WordPress Quote', 'lasso' );?>" class="quote lasso-toolbar--component__quote"></li>
+					<?php endif; ?>
 					<?php do_action( 'lasso_toolbar_components' );?>
 			    </ul>
 			</li>
