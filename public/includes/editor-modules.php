@@ -125,7 +125,7 @@ function lasso_editor_text_toolbar() {
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
 
 ?>
-	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.sanitize_html_class( $custom_classes );?>">
+	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>">
 		<ul class="lasso--toolbar__inner lasso-editor-controls">
 			<?php do_action( 'lasso_toolbar_components_before' );?>
 		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>

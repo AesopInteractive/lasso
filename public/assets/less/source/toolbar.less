@@ -4,20 +4,8 @@
     width:@toolbar--width;
     left: ~'calc(50% - @{toolbar--width} / 2)';
 
-    &.ase-not-active {
-        @width: 199px;
-        width:@width;
-        left: ~'calc(50% - @{width} / 2)';
-    }
-
     &.toolbar-extended {
         @width: 313px;
-        width:@width;
-        left: ~'calc(50% - @{width} / 2)';
-    }
-
-    &.ase-not-active.toolbar-extended {
-        @width: 280px;
         width:@width;
         left: ~'calc(50% - @{width} / 2)';
     }
@@ -301,6 +289,7 @@
         left:-10000px;
         .opacity(0);
     }
+
     // drop up menu
     &.toolbar--drop-up {
 
@@ -475,5 +464,16 @@
             .editor-icon-font();
             content:'\ea10';
         }
+    }
+}
+
+// aesop not active
+.ase-not-active {
+    @width:94px;
+    #lasso-toolbar--components #lasso-toolbar--components__list {
+        width:@width;
+        left: ~'calc(50% - @{width} / 2)';
+        height:48px;
+        top:-55px;
     }
 }
