@@ -143,6 +143,28 @@ function lasso_get_post_categories( $postid = '') {
 
 }
 
+/**
+ *	Return an array of categories for autocomplete
+ *
+ *	@since 0.9.1
+ *	@return array all categoiries
+*/
+function lasso_get_categories() {
+
+	$cats = get_categories(array('hide_empty' => 0));
+
+	if ( empty( $cats) )
+		return;
+
+	$out = array();
+	foreach( $cats as $cat ) {
+		$out[] = $cat->slug;
+	}
+
+	return $out;
+
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////

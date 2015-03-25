@@ -97,6 +97,7 @@ class lassoAssets {
 				'refreshRequired'	=> lasso_editor_refresh_message(),
 				'objectsNoSave'		=> $objectsNoSave,
 				'supportedNoSave'	=> lasso_supported_no_save(),
+				'postCategories'    => lasso_get_categories(),
 				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),

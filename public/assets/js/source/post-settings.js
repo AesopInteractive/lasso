@@ -75,19 +75,7 @@
 
 			cats.tagit({
 				fieldName:'story_cats',
-				availableTags: ['test','one','two','three']
-				/*
-				tagSource: function(search, showChoices) {
-
-					var data = ['test','one','two']
-
- 					$.post( lasso_editor.ajaxurl, data, function(response) {
-
-				        showChoices(response)
-
-				    });
-				}
-				*/
+				availableTags: lasso_editor.postCategories
 			});
 			/*
 			cats.on('change',function(event){
