@@ -125,7 +125,7 @@ function lasso_editor_text_toolbar() {
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
 
 ?>
-	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>">
+	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.sanitize_html_class( $custom_classes );?>">
 		<ul class="lasso--toolbar__inner lasso-editor-controls">
 			<?php do_action( 'lasso_toolbar_components_before' );?>
 		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>
@@ -158,28 +158,28 @@ function lasso_editor_text_toolbar() {
 		    		</div>
 		    	</div>
 		    </li>
-		    <?php if ( 'ase-active' == $ase_status || defined( 'LASSO_CUSTOM' ) ): ?>
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
 			    <ul id="lasso-toolbar--components__list">
-			    	<?php if ( !defined( 'LASSO_CUSTOM' ) ) : ?>
-					<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="image"></li>
-					<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="character"></li>
-					<li data-type="quote" title="<?php esc_attr_e( 'Quote', 'lasso' );?>"  class="quote"></li>
-					<li data-type="content" title="<?php esc_attr_e( 'Content', 'lasso' );?>"  class="content"></li>
-					<li data-type="chapter" title="<?php esc_attr_e( 'Chapter', 'lasso' );?>"  class="chapter"></li>
-					<li data-type="parallax" title="<?php esc_attr_e( 'Parallax', 'lasso' );?>"  class="parallax"></li>
-					<li data-type="audio" title="<?php esc_attr_e( 'Audio', 'lasso' );?>"  class="audio"></li>
-					<li data-type="video" title="<?php esc_attr_e( 'Video', 'lasso' );?>"  class="video"></li>
-					<li data-type="map" title="<?php esc_attr_e( 'Map', 'lasso' );?>"  class="map"></li>
-					<li data-type="timeline_stop" title="<?php esc_attr_e( 'Timeline', 'lasso' );?>"  class="timeline"></li>
-					<li data-type="document" title="<?php esc_attr_e( 'Document', 'lasso' );?>"  class="document"></li>
-					<li data-type="collection" title="<?php esc_attr_e( 'Collection', 'lasso' );?>"  class="collection"></li>
-					<li data-type="gallery" title="<?php esc_attr_e( 'Gallery', 'lasso' );?>"  class="gallery"></li>
-					<?php endif;
-	do_action( 'lasso_toolbar_components' );?>
+			    	<?php if ( 'ase-active' == $ase_status ): ?>
+						<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="image"></li>
+						<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="character"></li>
+						<li data-type="quote" title="<?php esc_attr_e( 'Quote', 'lasso' );?>"  class="quote"></li>
+						<li data-type="content" title="<?php esc_attr_e( 'Content', 'lasso' );?>"  class="content"></li>
+						<li data-type="chapter" title="<?php esc_attr_e( 'Chapter', 'lasso' );?>"  class="chapter"></li>
+						<li data-type="parallax" title="<?php esc_attr_e( 'Parallax', 'lasso' );?>"  class="parallax"></li>
+						<li data-type="audio" title="<?php esc_attr_e( 'Audio', 'lasso' );?>"  class="audio"></li>
+						<li data-type="video" title="<?php esc_attr_e( 'Video', 'lasso' );?>"  class="video"></li>
+						<li data-type="map" title="<?php esc_attr_e( 'Map', 'lasso' );?>"  class="map"></li>
+						<li data-type="timeline_stop" title="<?php esc_attr_e( 'Timeline', 'lasso' );?>"  class="timeline"></li>
+						<li data-type="document" title="<?php esc_attr_e( 'Document', 'lasso' );?>"  class="document"></li>
+						<li data-type="collection" title="<?php esc_attr_e( 'Collection', 'lasso' );?>"  class="collection"></li>
+						<li data-type="gallery" title="<?php esc_attr_e( 'Gallery', 'lasso' );?>"  class="gallery"></li>
+						<li class="lasso-toolbar--component__break"></li>
+					<?php endif; ?>
+						<li data-type="wpimg" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
+					<?php do_action( 'lasso_toolbar_components' );?>
 			    </ul>
 			</li>
-			<?php endif; ?>
 		</ul>
 	</div>
 	<?php return ob_get_clean();

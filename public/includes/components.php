@@ -66,6 +66,10 @@ function lasso_editor_components() {
 		'video' => array(
 			'name'    => 'Video',
 			'content' => lasso_video_component(),
+		),
+		'wpimg' => array(
+			'name'    => 'WordPress Image',
+			'content' => lasso_wp_image(),
 		)
 	);
 
@@ -206,4 +210,12 @@ if ( !function_exists( 'lasso_video_component' ) ):
 		return do_shortcode( '[aesop_video id="59940289" width="100%" align="center"]' );
 
 	}
+endif;
+
+if ( !function_exists('lasso_wp_image') ):
+
+	function lasso_wp_image(){
+		return '<div data-component-type="wpimg" class="lasso--wpimg__wrap"><img class="wp-image-0" src="'.LASSO_URL.'/public/assets/img/empty-img.png"></div>';
+	}
+
 endif;

@@ -9367,12 +9367,21 @@ jQuery(document).ready(function($){
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
-					$(item).replaceWith( $(components[type]['content'])
-						.prepend( lassoDragHandle )
-						.attr({
-							'data-component-type': type
-						})
-					)
+					// if a stock wordpress image is dragged in
+					if ( 'wpimg' == type ) {
+
+						$(item).replaceWith( $(components[type]['content']).prepend( wpImgEdit ) )
+
+					// else it's likely an aesop component
+					} else {
+
+						$(item).replaceWith( $(components[type]['content'])
+							.prepend( lassoDragHandle )
+							.attr({
+								'data-component-type': type
+							})
+						)
+					}
 
 					if ( 'map' == type ) { mapsGoTime() }
 
@@ -11301,10 +11310,10 @@ jQuery(document).ready(function($){
 
 		$(document).on('click', '#lasso--wpimg-edit',function(e){
 
-				e.preventDefault()
-				var selected_img
-				, 	clicked = $(this)
-				, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
+			e.preventDefault()
+			var selected_img
+			, 	clicked = $(this)
+			, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
 
 		    className = e.currentTarget.parentElement.className;
 
