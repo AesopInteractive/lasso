@@ -46,7 +46,7 @@ class lassoProcessUpdatePost {
 
 
 				// update any terms
-				self::set_post_cats( $postid, $terms, 'category' );
+				//self::set_post_cats( $postid, $terms, 'category' );
 
 				// let plugins hook in
 				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );

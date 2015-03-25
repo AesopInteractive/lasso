@@ -71,16 +71,30 @@
 			});
 
 		    // categories
-		    var cats 		= $('#lasso--cat-select')
+		    var cats = $('#lasso--cat-select')
 
-			cats.tagsinput({
-				tagClass: 'lasso--cat__item'
+			cats.tagit({
+				fieldName:'story_cats',
+				availableTags: ['test','one','two','three']
+				/*
+				tagSource: function(search, showChoices) {
+
+					var data = ['test','one','two']
+
+ 					$.post( lasso_editor.ajaxurl, data, function(response) {
+
+				        showChoices(response)
+
+				    });
+				}
+				*/
 			});
-
+			/*
 			cats.on('change',function(event){
 				$('.lasso--postsettings__footer').slideDown()
 				$('input[name="categories"]').val( cats.tagsinput('items') )
 			})
+			*/
 
 			modalResizer()
 
