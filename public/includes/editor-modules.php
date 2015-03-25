@@ -162,19 +162,19 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
 			    <ul id="lasso-toolbar--components__list">
 			    	<?php if ( !defined( 'LASSO_CUSTOM' ) ) : ?>
-					<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="image"></li>
-					<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="character"></li>
-					<li data-type="quote" title="<?php esc_attr_e( 'Quote', 'lasso' );?>"  class="quote"></li>
-					<li data-type="content" title="<?php esc_attr_e( 'Content', 'lasso' );?>"  class="content"></li>
-					<li data-type="chapter" title="<?php esc_attr_e( 'Chapter', 'lasso' );?>"  class="chapter"></li>
-					<li data-type="parallax" title="<?php esc_attr_e( 'Parallax', 'lasso' );?>"  class="parallax"></li>
-					<li data-type="audio" title="<?php esc_attr_e( 'Audio', 'lasso' );?>"  class="audio"></li>
-					<li data-type="video" title="<?php esc_attr_e( 'Video', 'lasso' );?>"  class="video"></li>
-					<li data-type="map" title="<?php esc_attr_e( 'Map', 'lasso' );?>"  class="map"></li>
-					<li data-type="timeline_stop" title="<?php esc_attr_e( 'Timeline', 'lasso' );?>"  class="timeline"></li>
-					<li data-type="document" title="<?php esc_attr_e( 'Document', 'lasso' );?>"  class="document"></li>
-					<li data-type="collection" title="<?php esc_attr_e( 'Collection', 'lasso' );?>"  class="collection"></li>
-					<li data-type="gallery" title="<?php esc_attr_e( 'Gallery', 'lasso' );?>"  class="gallery"></li>
+					<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="lasso-toolbar--component__image"></li>
+					<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="lasso-toolbar--component__character"></li>
+					<li data-type="quote" title="<?php esc_attr_e( 'Quote', 'lasso' );?>"  class="lasso-toolbar--component__quote"></li>
+					<li data-type="content" title="<?php esc_attr_e( 'Content', 'lasso' );?>"  class="lasso-toolbar--component__content"></li>
+					<li data-type="chapter" title="<?php esc_attr_e( 'Chapter', 'lasso' );?>"  class="lasso-toolbar--component__chapter"></li>
+					<li data-type="parallax" title="<?php esc_attr_e( 'Parallax', 'lasso' );?>"  class="lasso-toolbar--component__parallax"></li>
+					<li data-type="audio" title="<?php esc_attr_e( 'Audio', 'lasso' );?>"  class="lasso-toolbar--component__audio"></li>
+					<li data-type="video" title="<?php esc_attr_e( 'Video', 'lasso' );?>"  class="lasso-toolbar--component__video"></li>
+					<li data-type="map" title="<?php esc_attr_e( 'Map', 'lasso' );?>"  class="lasso-toolbar--component__map"></li>
+					<li data-type="timeline_stop" title="<?php esc_attr_e( 'Timeline', 'lasso' );?>"  class="lasso-toolbar--component__timeline"></li>
+					<li data-type="document" title="<?php esc_attr_e( 'Document', 'lasso' );?>"  class="lasso-toolbar--component__document"></li>
+					<li data-type="collection" title="<?php esc_attr_e( 'Collection', 'lasso' );?>"  class="lasso-toolbar--component__collection"></li>
+					<li data-type="gallery" title="<?php esc_attr_e( 'Gallery', 'lasso' );?>"  class="lasso-toolbar--component__gallery"></li>
 					<?php endif;
 	do_action( 'lasso_toolbar_components' );?>
 			    </ul>
