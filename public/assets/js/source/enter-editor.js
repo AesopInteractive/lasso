@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 
 				} else {
 
-					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap">')
+					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
 				}
 
 				$this.parent().prepend(wpImgEdit)
