@@ -75,14 +75,14 @@
 
 			cats.tagit({
 				fieldName:'story_cats',
+				placeholderText: 'Type...',
 				availableTags: lasso_editor.postCategories
 			});
-			/*
+			
 			cats.on('change',function(event){
 				$('.lasso--postsettings__footer').slideDown()
-				$('input[name="categories"]').val( cats.tagsinput('items') )
 			})
-			*/
+			
 
 			modalResizer()
 
