@@ -33,7 +33,7 @@ class lassoProcessUpdatePost {
 				$status = isset( $_POST['status'] ) ? $_POST['status'] : false;
 				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 				$slug   = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
-				$terms  = isset( $_POST['categories'] ) ? $_POST['categories']  : false;
+				$terms  = isset( $_POST['story_cats'] ) ? $_POST['story_cats']  : false;
 
 				$args = array(
 					'ID'   			=> (int) $postid,
@@ -44,14 +44,14 @@ class lassoProcessUpdatePost {
 				// udpate the post
 				wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
 
-
 				// update any terms
-				//self::set_post_cats( $postid, $terms, 'category' );
+				self::set_post_cats( $postid, $terms, 'category' );
+
+				die();
 
 				// let plugins hook in
 				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
 
-				die();
 				// send back success
 				//wp_send_json_success();
 
@@ -76,6 +76,7 @@ class lassoProcessUpdatePost {
 	 */
 	public function set_post_cats( $postid, $value, $taxonomy ) {
 
+
 		// first check if multiple
 		if ( self::has_multiple_cats( $value ) ) {
 
@@ -84,16 +85,13 @@ class lassoProcessUpdatePost {
 		} else {
 
 			// check if term exists
-			$term = term_exists( strtolower( $value ), $taxonomy );
 
-			if ( 0 === $term || null === $term ) {
+			if ( ! term_exists( strtolower( $value ), $taxonomy ) ) {
 
 				$args = array(
 					$value,
 					$taxonomy,
-					array(
-						'slug' => strtolower( str_ireplace( ' ', '-', $value ) )
-					)
+					array( 'slug' => strtolower( str_ireplace( ' ', '-', $value ) ) )
 				);
 
 				$term = wp_insert_term( $args );
@@ -133,6 +131,7 @@ class lassoProcessUpdatePost {
 		$terms = explode( ',', $values );
 
 		foreach( $terms as $term ) {
+
 			self::set_post_cats( $postid, trim( $term ), $taxonomy );
 		}
 

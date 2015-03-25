@@ -10077,15 +10077,14 @@ jQuery(document).ready(function($){
 		    var cats = $('#lasso--cat-select')
 
 			cats.tagit({
-				fieldName:'story_cats',
+				//fieldName:'itemName[fieldName][]',
 				placeholderText: 'Type...',
 				availableTags: lasso_editor.postCategories
 			});
-			
+
 			cats.on('change',function(event){
 				$('.lasso--postsettings__footer').slideDown()
 			})
-			
 
 			modalResizer()
 
