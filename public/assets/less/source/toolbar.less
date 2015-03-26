@@ -4,20 +4,8 @@
     width:@toolbar--width;
     left: ~'calc(50% - @{toolbar--width} / 2)';
 
-    &.ase-not-active {
-        @width: 199px;
-        width:@width;
-        left: ~'calc(50% - @{width} / 2)';
-    }
-
     &.toolbar-extended {
         @width: 313px;
-        width:@width;
-        left: ~'calc(50% - @{width} / 2)';
-    }
-
-    &.ase-not-active.toolbar-extended {
-        @width: 280px;
         width:@width;
         left: ~'calc(50% - @{width} / 2)';
     }
@@ -47,9 +35,10 @@
 
 
 // global styles  ul for the editor and toolbar controls
-.lasso-editor-controls{
+ul.lasso-editor-controls{
     margin:0;
     padding:0;
+    letter-spacing: 0;
     list-style: none;
     height:@toolbar--height;
     line-height:1;
@@ -143,6 +132,7 @@
         .opacity(0);
     }
 
+    &.html--drop-down,
     &.html--drop-up {
 
         * {
@@ -252,7 +242,7 @@
 }
 
 // html insert icons
-.lasso-toolbar--html-snips {
+ul.lasso-toolbar--html-snips {
     font-size:@toolbar--htmldrop__font-size - 2;
     line-height: 0;
     float:left;
@@ -301,7 +291,9 @@
         left:-10000px;
         .opacity(0);
     }
+
     // drop up menu
+    &.toolbar--drop-down,
     &.toolbar--drop-up {
 
         * { .box-sizing(border-box); }
@@ -390,6 +382,7 @@
         .opacity(0);
     }
 
+    &.link--drop-down,
     &.link--drop-up {
         box-shadow:none;
         background:@toolbar--hover;
@@ -429,19 +422,33 @@
             background: @toolbar--htmldrop__bg;
             color:@toolbar--htmldrop__color;
             height:@toolbar--linkdrop__height - 8;
-            overflow: scroll;
+            white-space: nowrap;
+            overflow: hidden;
             text-align: left;
             line-height: 1.25;
             padding:@toolbar--htmldrop__padding;
             border-radius: @editor--radius - 2;
             font-family: monospace;  /* monospace font */
-            white-space: pre;        /* behave like <pre> */
             font-size: @toolbar--htmldrop__font-size;
             .box-shadow(inset 0 0 4px 1px rgba(0,0,0,0.25));
 
             &:empty:before {
                 content: attr(placeholder);
                 color:fadeout(@toolbar--htmldrop__color,50);
+            }
+
+            &:after {
+                content:'';
+                height:20px;
+                width:20px;
+                position:absolute;
+                background: @toolbar--htmldrop__bg;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+                right: 4px;
+                top: 4px;
+                height: 32px;
+                width: 36px;
             }
 
             &:hover {
@@ -475,5 +482,16 @@
             .editor-icon-font();
             content:'\ea10';
         }
+    }
+}
+
+// aesop not active
+.ase-not-active {
+    @width:94px;
+    #lasso-toolbar--components #lasso-toolbar--components__list {
+        width:@width;
+        left: ~'calc(50% - @{width} / 2)';
+        height:48px;
+        top:-55px;
     }
 }

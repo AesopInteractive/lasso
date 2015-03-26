@@ -115,7 +115,7 @@ function lasso_supported_themes( $textdomain = '' ) {
 */
 function lasso_supported_no_save(){
 
-	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper');
+	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet');
 }
 
 /**

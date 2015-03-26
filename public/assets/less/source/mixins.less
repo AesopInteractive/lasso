@@ -20,32 +20,34 @@
 
 .editor--icon__list(){
     // image
-    &.wpimg:before { content: "\e90f"; }
-    &.image:before { content: "\e90f"; }
+
+    &.lasso-toolbar--component__wpimg:before,
+    &.lasso-toolbar--component__image:before { content: "\e90f"; }
     // character
-    &.character:before { content: "\e971"; }
+    &.lasso-toolbar--component__character:before { content: "\e971"; }
     // qupte
-    &.quote:before { content: "\e977"; }
+    &.lasso-toolbar--component__wpquote:before,
+    &.lasso-toolbar--component__quote:before { content: "\e977"; }
     // content
-    &.content:before { content: "\ea78"; }
+    &.lasso-toolbar--component__content:before { content: "\ea78"; }
     // chapter head
-    &.chapter:before { content: "\e91f"; }
+    &.lasso-toolbar--component__chapter:before { content: "\e91f"; }
     // parallax
-    &.parallax:before { content: "\ea6e"; }
+    &.lasso-toolbar--component__parallax:before { content: "\ea6e"; }
     // audio
-    &.audio:before { content: "\e910"; }
+    &.lasso-toolbar--component__audio:before { content: "\e910"; }
     // video
-    &.video:before { content: "\e913"; }
+    &.lasso-toolbar--component__video:before { content: "\e913"; }
     // map
-    &.map:before { content: "\e947"; }
+    &.lasso-toolbar--component__map:before { content: "\e947"; }
     // video
-    &.timeline:before { content: "\e94e"; }
+    &.lasso-toolbar--component__timeline:before { content: "\e94e"; }
     // document
-    &.document:before { content: "\e926"; }
+    &.lasso-toolbar--component__document:before { content: "\e926"; }
     // collection
-    &.collection:before { content: "\e920"; }
+    &.lasso-toolbar--component__collection:before { content: "\e920"; }
     // collection
-    &.gallery:before { content: "\e90e"; }
+    &.lasso-toolbar--component__gallery:before { content: "\e90e"; }
 }
 
 .tiny-circle-btn( @bg: @editor--color__update, @color: white ) {

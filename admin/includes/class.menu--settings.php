@@ -112,7 +112,7 @@ class lassoMenuSettings {
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<label><?php _e( 'Article Class', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'Provide the CSS class of container that holds the post. This should be the first parent container class that holds the_content.', 'lasso' );?></span>
+						<span class="lasso--setting-description"><?php _e( 'Provide the CSS class (including the preceding dot) of container that holds the post. This should be the first parent container class that holds the_content.', 'lasso' );?></span>
 						<input required type="text" name="lasso_editor[article_class]" id="lasso_editor[article_class]" value="<?php echo esc_attr( $article_object );?>" placeholder=".entry-content">
 					</div>
 				</div>

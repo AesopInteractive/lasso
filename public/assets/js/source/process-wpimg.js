@@ -9,10 +9,10 @@
 
 		$(document).on('click', '#lasso--wpimg-edit',function(e){
 
-				e.preventDefault()
-				var selected_img
-				, 	clicked = $(this)
-				, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
+			e.preventDefault()
+			var selected_img
+			, 	clicked = $(this)
+			, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
 
 		    className = e.currentTarget.parentElement.className;
 

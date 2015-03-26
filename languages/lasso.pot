@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Lasso (beta) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Lasso (beta) 0.8.8\n"
+"Project-Id-Version: Lasso (beta) 0.9.1\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-03-21 17:31:33+00:00\n"
+"POT-Creation-Date: 2015-03-26 21:52:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -87,8 +87,8 @@ msgid "Lasso"
 msgstr ""
 
 #: admin/includes/class.menu--settings.php:30
-#: public/includes/editor-modules.php:207
-#: public/includes/editor-modules.php:374
+#: public/includes/editor-modules.php:210
+#: public/includes/editor-modules.php:377
 msgid "Settings"
 msgstr ""
 
@@ -102,8 +102,9 @@ msgstr ""
 
 #: admin/includes/class.menu--settings.php:115
 msgid ""
-"Provide the CSS class of container that holds the post. This should be the "
-"first parent container class that holds the_content."
+"Provide the CSS class (including the preceding dot) of container that holds "
+"the post. This should be the first parent container class that holds "
+"the_content."
 msgstr ""
 
 #: admin/includes/class.menu--settings.php:122
@@ -201,7 +202,7 @@ msgid "Welcome"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:45
-#: public/includes/editor-modules.php:270
+#: public/includes/editor-modules.php:273
 msgid "Status"
 msgstr ""
 
@@ -236,14 +237,17 @@ msgid "Facebook"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:146
+#: admin/includes/class.menu--welcome.php:155
 msgid "Article CSS Class Needed!"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:147
+#: admin/includes/class.menu--welcome.php:156
 msgid "Before using Lasso,"
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:147
+#: admin/includes/class.menu--welcome.php:156
 msgid "enter and save"
 msgstr ""
 
@@ -257,14 +261,13 @@ msgstr ""
 msgid "Here's the CSS class that you'll need:"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:155
-msgid "Article CSS Class Needed!."
-msgstr ""
-
 #: admin/includes/class.menu--welcome.php:156
 msgid ""
-"You can use a tool like inspector in Chrome or Firefox to find this CSS "
-"class, or "
+"the CSS class of the container that holds your post and page content. You "
+"can <a "
+"href=\"https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/"
+"using-inspector-lasso.gif\" target=\"_blank\">use a tool like inspector</a> "
+"in Chrome or Firefox to find this CSS class, or "
 msgstr ""
 
 #: admin/includes/class.menu--welcome.php:156
@@ -488,7 +491,7 @@ msgid "Photoset"
 msgstr ""
 
 #: public/includes/editor-modules--gallery.php:68
-#: public/includes/editor-modules.php:170
+#: public/includes/editor-modules.php:171
 msgid "Parallax"
 msgstr ""
 
@@ -604,12 +607,12 @@ msgid "Strikethrough"
 msgstr ""
 
 #: public/includes/editor-modules.php:136
-#: public/includes/editor-modules.php:151
+#: public/includes/editor-modules.php:152
 msgid "H2 Heading"
 msgstr ""
 
 #: public/includes/editor-modules.php:137
-#: public/includes/editor-modules.php:152
+#: public/includes/editor-modules.php:153
 msgid "H3 Heading"
 msgstr ""
 
@@ -626,7 +629,7 @@ msgid "Create Link"
 msgstr ""
 
 #: public/includes/editor-modules.php:146
-#: public/includes/editor-modules.php:157
+#: public/includes/editor-modules.php:159
 msgid "Insert HTML"
 msgstr ""
 
@@ -634,145 +637,153 @@ msgstr ""
 msgid "Enter HTML to insert"
 msgstr ""
 
-#: public/includes/editor-modules.php:153
+#: public/includes/editor-modules.php:155
 msgid "Unordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:154
+#: public/includes/editor-modules.php:156
 msgid "Ordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:156
-#: public/includes/editor-modules.php:290
-#: public/includes/editor-modules.php:345
+#: public/includes/editor-modules.php:158
+#: public/includes/editor-modules.php:293
+#: public/includes/editor-modules.php:348
 msgid "Cancel"
 msgstr ""
 
-#: public/includes/editor-modules.php:157
+#: public/includes/editor-modules.php:159
 msgid "Insert"
 msgstr ""
 
-#: public/includes/editor-modules.php:162
+#: public/includes/editor-modules.php:163
 msgid "Insert Component"
 msgstr ""
 
-#: public/includes/editor-modules.php:165
+#: public/includes/editor-modules.php:166
 msgid "Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:166
+#: public/includes/editor-modules.php:167
 msgid "Character"
 msgstr ""
 
-#: public/includes/editor-modules.php:167
+#: public/includes/editor-modules.php:168
 msgid "Quote"
 msgstr ""
 
-#: public/includes/editor-modules.php:168
-#: public/includes/editor-modules.php:524
+#: public/includes/editor-modules.php:169
+#: public/includes/editor-modules.php:527
 msgid "Content"
 msgstr ""
 
-#: public/includes/editor-modules.php:169
+#: public/includes/editor-modules.php:170
 msgid "Chapter"
 msgstr ""
 
-#: public/includes/editor-modules.php:171
+#: public/includes/editor-modules.php:172
 msgid "Audio"
 msgstr ""
 
-#: public/includes/editor-modules.php:172
+#: public/includes/editor-modules.php:173
 msgid "Video"
 msgstr ""
 
-#: public/includes/editor-modules.php:173
+#: public/includes/editor-modules.php:174
 msgid "Map"
 msgstr ""
 
-#: public/includes/editor-modules.php:174
+#: public/includes/editor-modules.php:175
 msgid "Timeline"
 msgstr ""
 
-#: public/includes/editor-modules.php:175
+#: public/includes/editor-modules.php:176
 msgid "Document"
 msgstr ""
 
-#: public/includes/editor-modules.php:176
+#: public/includes/editor-modules.php:177
 msgid "Collection"
 msgstr ""
 
-#: public/includes/editor-modules.php:177
+#: public/includes/editor-modules.php:178
 msgid "Gallery"
 msgstr ""
 
-#: public/includes/editor-modules.php:206
-#: public/includes/editor-modules.php:373
-msgid "Move"
+#: public/includes/editor-modules.php:180
+msgid "WordPress Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:208
-#: public/includes/editor-modules.php:375
-msgid "Clone"
+#: public/includes/editor-modules.php:181
+msgid "WordPress Quote"
 msgstr ""
 
 #: public/includes/editor-modules.php:209
 #: public/includes/editor-modules.php:376
+msgid "Move"
+msgstr ""
+
+#: public/includes/editor-modules.php:211
+#: public/includes/editor-modules.php:378
+msgid "Clone"
+msgstr ""
+
+#: public/includes/editor-modules.php:212
+#: public/includes/editor-modules.php:379
 msgid "Delete"
 msgstr ""
 
-#: public/includes/editor-modules.php:233
+#: public/includes/editor-modules.php:236
 msgid "Replace Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:234
+#: public/includes/editor-modules.php:237
 msgid "Delete Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:235
+#: public/includes/editor-modules.php:238
 msgid "save"
 msgstr ""
 
-#: public/includes/editor-modules.php:270
+#: public/includes/editor-modules.php:273
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
-#: public/includes/editor-modules.php:272
+#: public/includes/editor-modules.php:275
 msgid "Draft"
 msgstr ""
 
-#: public/includes/editor-modules.php:273
+#: public/includes/editor-modules.php:276
 msgid "Publish"
 msgstr ""
 
-#: public/includes/editor-modules.php:282
+#: public/includes/editor-modules.php:285
 msgid "Post URL"
 msgstr ""
 
-#: public/includes/editor-modules.php:282
+#: public/includes/editor-modules.php:285
 msgid "Change the URL (slug) of this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:296
+#: public/includes/editor-modules.php:299
 msgid "Save"
 msgstr ""
 
-#: public/includes/editor-modules.php:340
+#: public/includes/editor-modules.php:343
 msgid "Specify title for new post, then save to edit."
 msgstr ""
 
-#: public/includes/editor-modules.php:341
+#: public/includes/editor-modules.php:344
 msgid "Grump Wizards Make Toxic Brew"
 msgstr ""
 
-#: public/includes/editor-modules.php:349
+#: public/includes/editor-modules.php:352
 msgid "Create"
 msgstr ""
 
-#: public/includes/editor-modules.php:398
+#: public/includes/editor-modules.php:401
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:417
+#: public/includes/editor-modules.php:420
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 

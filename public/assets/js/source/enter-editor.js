@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 
 				} else {
 
-					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap">')
+					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
 				}
 
 				$this.parent().prepend(wpImgEdit)
@@ -134,6 +134,17 @@ jQuery(document).ready(function($){
 			}
 
 		});
+
+		$('.lasso-component').each(function(){
+
+			var $this = $(this)
+
+			if ( !$('.lasso-component--toolbar').length > 0 ) {
+				$(this).append( lassoDragHandle );
+
+			}
+
+		})
 
 		// remove any additional markup so we dont save it as HTML
 		$(objectsNoSave).remove();
@@ -581,7 +592,7 @@ jQuery(document).ready(function($){
 				var item = ui['context'],
 					type = $(item).attr('data-component-type');
 
-            	return $('<div class="lasso-drag-holder '+type+'"></div>');
+            	return $('<div class="lasso-drag-holder lasso-toolbar--component__'+type+'"></div>');
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
@@ -596,12 +607,21 @@ jQuery(document).ready(function($){
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
-					$(item).replaceWith( $(components[type]['content'])
-						.prepend( lassoDragHandle )
-						.attr({
-							'data-component-type': type
-						})
-					)
+					// if a stock wordpress image is dragged in
+					if ( 'wpimg' == type ) {
+
+						$(item).replaceWith( $(components[type]['content']).prepend( wpImgEdit ) )
+
+					// else it's likely an aesop component
+					} else {
+
+						$(item).replaceWith( $(components[type]['content'])
+							.prepend( lassoDragHandle )
+							.attr({
+								'data-component-type': type
+							})
+						)
+					}
 
 					if ( 'map' == type ) { mapsGoTime() }
 

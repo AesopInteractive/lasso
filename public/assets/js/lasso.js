@@ -9487,7 +9487,7 @@ jQuery(document).ready(function($){
 
 				} else {
 
-					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap">')
+					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
 				}
 
 				$this.parent().prepend(wpImgEdit)
@@ -9495,6 +9495,17 @@ jQuery(document).ready(function($){
 			}
 
 		});
+
+		$('.lasso-component').each(function(){
+
+			var $this = $(this)
+
+			if ( !$('.lasso-component--toolbar').length > 0 ) {
+				$(this).append( lassoDragHandle );
+
+			}
+
+		})
 
 		// remove any additional markup so we dont save it as HTML
 		$(objectsNoSave).remove();
@@ -9942,7 +9953,7 @@ jQuery(document).ready(function($){
 				var item = ui['context'],
 					type = $(item).attr('data-component-type');
 
-            	return $('<div class="lasso-drag-holder '+type+'"></div>');
+            	return $('<div class="lasso-drag-holder lasso-toolbar--component__'+type+'"></div>');
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
@@ -9957,12 +9968,21 @@ jQuery(document).ready(function($){
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
-					$(item).replaceWith( $(components[type]['content'])
-						.prepend( lassoDragHandle )
-						.attr({
-							'data-component-type': type
-						})
-					)
+					// if a stock wordpress image is dragged in
+					if ( 'wpimg' == type ) {
+
+						$(item).replaceWith( $(components[type]['content']).prepend( wpImgEdit ) )
+
+					// else it's likely an aesop component
+					} else {
+
+						$(item).replaceWith( $(components[type]['content'])
+							.prepend( lassoDragHandle )
+							.attr({
+								'data-component-type': type
+							})
+						)
+					}
 
 					if ( 'map' == type ) { mapsGoTime() }
 
@@ -10729,14 +10749,25 @@ jQuery(function( $ ) {
 	    }
 	}
 
+	var ifSmallWidth = function(){
+
+		return 600 <= $(window).width() ? true : false;
+	}
+
+	var dropClass = function() {
+
+		return ifSmallWidth() ? 'up' : 'down';
+
+	}
+
 	/////////////
 	/// DROP UP
 	/////////////
 	$(document).on('click', '#lasso-toolbar--components', function(e){
 
-		$(this).toggleClass('toolbar--drop-up');
-		$('#lasso-toolbar--html').removeClass('html--drop-up');
-		$('#lasso-toolbar--link').removeClass('link--drop-up');
+		$(this).toggleClass('toolbar--drop-'+dropClass() );
+		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
+		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 
 		// get the height of the list of components
 		var dropUp 			= $(this).find('ul'),
@@ -10744,10 +10775,15 @@ jQuery(function( $ ) {
 			caretSpacing  	= 15; // this is the height of the caret
 
 		// and adjust the drop up position as necessary
-		$(dropUp).css({
-			dropUp: dropUpHeight,
-			top:    -(dropUpHeight + caretSpacing)
-		});
+		if ( true == ifSmallWidth() ) {
+
+			$(dropUp).css({
+				dropUp: dropUpHeight,
+				top: -(dropUpHeight + caretSpacing)
+			});
+
+		}
+
 
 	});
 
@@ -10756,7 +10792,7 @@ jQuery(function( $ ) {
 	/////////////
 
 	$('#lasso-toolbar--html').live('mousedown',function(){
-		if( ! $(this).hasClass('html--drop-up') ) {
+		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
 			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
@@ -10778,9 +10814,9 @@ jQuery(function( $ ) {
 
 	$(document).on('click', '#lasso-toolbar--html', function(e){
 
-		$(this).toggleClass('html--drop-up');
-		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
-		$('#lasso-toolbar--link').removeClass('link--drop-up');
+		$(this).toggleClass('html--drop-'+dropClass() );
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
+		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 
 		// prevent dropup from closing
 		$('#lasso-toolbar--html__wrap').live('click',function(){
@@ -10793,7 +10829,7 @@ jQuery(function( $ ) {
 
 	$('.lasso-toolbar--html__cancel').live('click',function(){
 
-		$(this).closest('li').removeClass('html--drop-up');
+		$(this).closest('li').removeClass('html--drop-'+dropClass() );
 
 	});
 
@@ -10848,9 +10884,9 @@ jQuery(function( $ ) {
 
 	$(document).on('click', '#lasso-toolbar--link', function(e){
 
-		$(this).toggleClass('link--drop-up');
-		$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
-		$('#lasso-toolbar--html').removeClass('html--drop-up');
+		$(this).toggleClass('link--drop-'+dropClass());
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
+		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 
 		// prevent dropup from closing
 		$('#lasso-toolbar--link__wrap').live('click',function(){
@@ -10873,7 +10909,7 @@ jQuery(function( $ ) {
 
 		var link = $(this).attr('href');
 
-		$('#lasso-toolbar--link').addClass('link--drop-up');
+		$('#lasso-toolbar--link').addClass('link--drop-'+dropClass());
 		$('#lasso-toolbar--link__inner').text(link);
 	});
 
@@ -10901,7 +10937,7 @@ jQuery(function( $ ) {
 			$this.closest('.aesop-component').remove();
 
 			// remove wp image if its a wp image
-			$this.closest('.lasso--wpimg__wrap').remove();
+			$this.closest('.lasso-component').remove();
 
 		});
 
@@ -10918,7 +10954,7 @@ jQuery(function( $ ) {
 		e.preventDefault();
 
 		$this.closest('.aesop-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
-		$this.closest('.lasso--wpimg__wrap').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
+		$this.closest('.lasso-component').clone().insertAfter( $(this).parent().parent() ).hide().fadeIn()
 
 	});
 
@@ -11906,10 +11942,10 @@ jQuery(document).ready(function($){
 
 		$(document).on('click', '#lasso--wpimg-edit',function(e){
 
-				e.preventDefault()
-				var selected_img
-				, 	clicked = $(this)
-				, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
+			e.preventDefault()
+			var selected_img
+			, 	clicked = $(this)
+			, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
 
 		    className = e.currentTarget.parentElement.className;
 

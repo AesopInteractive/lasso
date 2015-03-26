@@ -1,12 +1,26 @@
-// edit wp-image -wrap {
+// edit wp-image -wrap .
+.lasso--wpquote, 
 .lasso--wpimg__wrap {
     position: relative;
 }
 
-
+.lasso--wpquote:hover,
 .lasso--wpimg__wrap:hover {
     .lasso-component--controls {
         .opacity(1);
         left:0;
+    }
+}
+
+.lasso--wpquote {
+    .lasso-component--controls {
+        width:91px;
+        #lasso-component--settings__trigger {
+            position: absolute;
+            left:-10000px;
+            height:0;
+            .opacity(0);
+            display:none;
+        }
     }
 }
