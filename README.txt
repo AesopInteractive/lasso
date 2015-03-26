@@ -23,6 +23,7 @@ Refer to owners manual
 * fixed css class names in toolbar components not being namespaced
 * better iOS compatibility with editing toolbar
 * removed H2 and H3 buttons from the insert HTML area if Extended Toolbar is selected as its redundant(Extended Toolbar puts H2, and H3 buttons into the toolbar)
+* if an embedded Tweet is in the content, we now remove it when you enter the editor so it's not save as HTML. In a future update, we plan to actually have some type of live ombed parsing system. This is a good fix for the time being.
 * prepended a ul class to ul.editor-controls and ul.editor-component-controls as well as set letter-spacing to 0 in hopes of clearing up theme CSS conflicting with Lasso CSS. Normally this is bad practice (ul.this), but it's better than applying !important.
 
 = 0.9 =
