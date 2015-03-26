@@ -148,8 +148,10 @@ function lasso_editor_text_toolbar() {
 		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?>"></div>
 		    		<div id="lasso-toolbar--html__footer">
 		    			<ul class="lasso-toolbar--html-snips">
+		    				<?php if ( !$toolbar_headings ): ?>
 		    				<li id="lasso-html--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>">
 		    				<li id="lasso-html--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>">
+		    				<?php endif; ?>
 		    				<li id="lasso-html--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>">
 		    				<li id="lasso-html--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>">
 		    			</ul>

@@ -22,6 +22,7 @@ Refer to owners manual
 * added ability to insert standard WordPress images and blockquote. If Aesop Story Engine is activated, it replaces these with Aesop Story Engine's story components.
 * fixed css class names in toolbar components not being namespaced
 * better iOS compatibility with editing toolbar
+* removed H2 and H3 buttons from the insert HTML area if Extended Toolbar is selected as its redundant(Extended Toolbar puts H2, and H3 buttons into the toolbar)
 * prepended a ul class to ul.editor-controls and ul.editor-component-controls as well as set letter-spacing to 0 in hopes of clearing up theme CSS conflicting with Lasso CSS. Normally this is bad practice (ul.this), but it's better than applying !important.
 
 = 0.9 =
