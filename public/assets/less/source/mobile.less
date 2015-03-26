@@ -16,14 +16,14 @@
         .lasso--toolbar_wrap.ase-not-active.toolbar-extended,
         .lasso--toolbar_wrap {
             border-radius: 0;
-            bottom:0;
+            top:0;
             width:100%;
             left:0;
             right:0;
         }
         .lasso--controls__right {
             z-index: 1000; // clears toolbar wrap
-            bottom:0;
+            top:0;
             right:0;
 
             a {
@@ -38,6 +38,55 @@
                 }
             }
         }
-    }
 
+        #lasso-toolbar--link.link--drop-down,
+        #lasso-toolbar--html.html--drop-down {
+            position: static;
+
+            #lasso-toolbar--link__wrap,
+            #lasso-toolbar--html__wrap {
+                left:0;
+                right:0;
+                top:44px;
+                bottom:auto;
+                width:100%;
+
+                &:after {
+                    margin:0;
+                    top:-6px;
+                    border-top: none;
+                    border-bottom: 6px solid @toolbar--hover;
+                }
+            }
+        }
+        #lasso-toolbar--link.link--drop-down #lasso-toolbar--link__wrap:after { left:142px; }
+        #lasso-toolbar--html.html--drop-down #lasso-toolbar--html__wrap:after { left:175px; }
+
+        #lasso-toolbar--components.toolbar--drop-down {
+
+            position: static;
+
+            ul {
+                top:44px;
+                left:0;
+                right:0;
+                width:100%;
+
+                &:after {
+                    left:206px;
+                    margin:0;
+                    top:-6px;
+                    border-top: none;
+                    border-bottom: 6px solid @toolbar--hover;
+                }
+            }
+        }
+
+        .toolbar-extended {
+            #lasso-toolbar--link.link--drop-down #lasso-toolbar--link__wrap:after { left:222px; }
+            #lasso-toolbar--html.html--drop-down #lasso-toolbar--html__wrap:after { left:255px; }
+            #lasso-toolbar--components.toolbar--drop-down ul:after { left:288px; }
+        }
+
+    }
 }
