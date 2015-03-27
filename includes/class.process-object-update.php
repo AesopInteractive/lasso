@@ -33,7 +33,9 @@ class lassoProcessUpdatePost {
 				$status = isset( $_POST['status'] ) ? $_POST['status'] : false;
 				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 				$slug   = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
-				$terms  = isset( $_POST['story_cats'] ) ? $_POST['story_cats']  : false;
+				$cats  = isset( $_POST['story_cats'] ) ? $_POST['story_cats'] : false;
+				$tags  = isset( $_POST['story_tags'] ) ? $_POST['story_tags'] : false;
+
 
 				$args = array(
 					'ID'   			=> (int) $postid,
@@ -44,10 +46,13 @@ class lassoProcessUpdatePost {
 				// udpate the post
 				wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
 
-				// update any terms
-				self::set_post_cats( $postid, $terms, 'category' );
+				// update categories
+				self::set_post_objects( $postid, $cats, 'category' );
 
-				die();
+				// update tags
+				//self::set_post_objects( $postid, $terms, 'post_tag' );
+
+				die(); // <--temp die
 
 				// let plugins hook in
 				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
@@ -64,23 +69,21 @@ class lassoProcessUpdatePost {
 	}
 
 	/**
-	 * Appends the specified taxonomy term to the incoming postid object. If
-	 * the term doesn't already exist in the database, it will be created. This
-	 * function now supports multiple terms.
+	 * Appends the specified term or category to the incoming postid object. If term doesn't exist, we create it
 	 *
-	 * @param    int    $postid       The current ppostid with which we're working
-	 * @param    string     $value       The term value (or term name)
-	 * @param    string     $taxonomy    The name of the taxonomy to which the term belongs.
+	 * @param    int    	$postid       	The current postid
+	 * @param    string     $value       	The term value (or term name)
+	 * @param    string     $taxonomy    	The name of the taxonomy to which the term belongs.
 	 * @since    0.9.1
 	 *	@todo 	update existing with id's instead of array
 	 */
-	public function set_post_cats( $postid, $value, $taxonomy ) {
+	public function set_post_objects( $postid, $value, $taxonomy ) {
 
 
 		// first check if multiple
-		if ( self::has_multiple_cats( $value ) ) {
+		if ( self::has_multiple_objects( $value ) ) {
 
-			self::set_multiple_cats( $postid, $value, $taxonomy );
+			self::set_multiple_objects( $postid, $value, $taxonomy );
 
 		} else {
 
@@ -94,13 +97,13 @@ class lassoProcessUpdatePost {
 					array( 'slug' => strtolower( str_ireplace( ' ', '-', $value ) ) )
 				);
 
-				$term = wp_insert_term( $args );
+				$object = wp_insert_term( $args );
 
 			}
 		}
 
 		// set the tax
-		wp_set_post_terms( $postid, $term, $taxonomy, true );
+		wp_set_object_terms( $postid, $object, $taxonomy, true );
 
 	}
 
@@ -110,8 +113,9 @@ class lassoProcessUpdatePost {
 	 *
 	 * @param    string   $value    The value to evaluate for multiple terms.
 	 * @return   bool               True if there are multiple terms; otherwise, false.
+	 *	@since   0.9.1
 	 */
-	public function has_multiple_cats( $value ) {
+	public function has_multiple_objects( $value ) {
 
 		return 0 < strpos( $value, ',' );
 
@@ -121,18 +125,17 @@ class lassoProcessUpdatePost {
 	 * Loops through each of the multiple terms that exist and use the
 	 * set_post_cats function to apply each value to the given postid
 	 *
-	 * @param    int
-	 *	    $postid        The post which we're applying the terms.
-	 * @param    string     $values      The delimited list of terms.
-	 * @param    string     $taxonomy    The taxonomy to which the terms belong.
+	 * @param    int 		$postid      current post id
+	 * @param    string     $values      delimited list of terms or ids
+	 * @param    string     $taxonomy    category or tag
 	 */
-	public function set_multiple_cats( $postid, $values, $taxonomy ) {
+	public function set_multiple_objects( $postid, $values, $taxonomy ) {
 
 		$terms = explode( ',', $values );
 
 		foreach( $terms as $term ) {
 
-			self::set_post_cats( $postid, trim( $term ), $taxonomy );
+			self::set_post_objects( $postid, trim( $term ), $taxonomy );
 		}
 
 	}

@@ -72,6 +72,7 @@
 
 		    // categories
 		    var cats = $('#lasso--cat-select')
+		    ,	tags = $('#lasso--tag-select')
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
@@ -80,6 +81,16 @@
 			});
 
 			cats.on('change',function(event){
+				$('.lasso--postsettings__footer').slideDown()
+			})
+
+			tags.tagit({
+				//fieldName:'itemName[fieldName][]',
+				placeholderText: 'Type...',
+				availableTags: lasso_editor.postTags
+			});
+
+			tags.on('change',function(event){
 				$('.lasso--postsettings__footer').slideDown()
 			})
 

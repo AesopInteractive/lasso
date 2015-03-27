@@ -265,8 +265,8 @@ function lasso_editor_component_modal() {
 	$custom_classes = apply_filters( 'lasso_modal_settings_classes', '' );
 
 	// this objects categories
-	$categories = lasso_get_post_categories( $post->ID );
-
+	$categories = lasso_get_post_objects( $post->ID, 'category' );
+	$tags = lasso_get_post_objects( $post->ID, 'tag' );
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -294,6 +294,11 @@ function lasso_editor_component_modal() {
 				<div class="lasso--postsettings__option story-categories-option">
 					<label><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 					<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="hidden" name="story_cats" value="<?php echo $categories;?>">
+				</div>
+
+				<div class="lasso--postsettings__option story-tags-option">
+					<label><?php _e( 'Tags', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a tag name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+					<input id="lasso--tag-select" class="lasso--modal__trigger-footer" type="hidden" name="story_tags" value="<?php echo $tags;?>">
 				</div>
 
 				<?php do_action( 'lasso_modal_post_form' ); // action ?>

@@ -124,19 +124,19 @@ function lasso_supported_no_save(){
  *	@since 0.9.1
  *	@return string of comma delimited category slugs
 */
-function lasso_get_post_categories( $postid = '') {
+function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
 
-	$cats = get_the_category( $postid );
+	$objects = 'category' == $taxonomy ? get_the_category( $postid ) : get_the_tags( $postid );
 
-	if ( empty( $cats) )
+	if ( empty( $objects) )
 		return;
 
 	$out = '';
-	foreach( $cats as $cat ) {
-		$out .= $cat->slug.', ';
+	foreach( $objects as $object ) {
+		$out .= $object->slug.', ';
 	}
 
 	return rtrim($out, ', ');
@@ -149,16 +149,16 @@ function lasso_get_post_categories( $postid = '') {
  *	@since 0.9.1
  *	@return array all categoiries
 */
-function lasso_get_categories() {
+function lasso_get_objects( $taxonomy = 'category' ) {
 
-	$cats = get_categories(array('hide_empty' => 0));
+	$objects = 'category' == $taxonomy ? get_categories(array('hide_empty' => 0)) : get_tags(array('hide_empty' => 0));
 
-	if ( empty( $cats) )
+	if ( empty( $objects) )
 		return;
 
 	$out = array();
-	foreach( $cats as $cat ) {
-		$out[] = $cat->slug;
+	foreach( $objects as $object ) {
+		$out[] = $object->slug;
 	}
 
 	return $out;

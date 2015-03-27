@@ -10095,6 +10095,7 @@ jQuery(document).ready(function($){
 
 		    // categories
 		    var cats = $('#lasso--cat-select')
+		    ,	tags = $('#lasso--tag-select')
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
@@ -10103,6 +10104,16 @@ jQuery(document).ready(function($){
 			});
 
 			cats.on('change',function(event){
+				$('.lasso--postsettings__footer').slideDown()
+			})
+
+			tags.tagit({
+				//fieldName:'itemName[fieldName][]',
+				placeholderText: 'Type...',
+				availableTags: lasso_editor.postTags
+			});
+
+			tags.on('change',function(event){
 				$('.lasso--postsettings__footer').slideDown()
 			})
 
@@ -10898,7 +10909,7 @@ jQuery(function( $ ) {
 	});
 
 	// RESTORING LINK SELECTION
-	$('.lasso-link').live('click',function(e){
+	$('.lasso-editing .lasso-link').live('click',function(e){
 
 		e.preventDefault();
 
