@@ -10099,7 +10099,7 @@ jQuery(document).ready(function($){
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'Type...',
+				placeholderText: 'search categories...',
 				availableTags: lasso_editor.postCategories
 			});
 
@@ -10109,7 +10109,7 @@ jQuery(document).ready(function($){
 
 			tags.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'Type...',
+				placeholderText: 'search tags...',
 				availableTags: lasso_editor.postTags
 			});
 
