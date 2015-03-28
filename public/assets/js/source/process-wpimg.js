@@ -36,10 +36,11 @@
 		    // update image on select
 		    ase_edit_frame.on( 'select', function() {
 
-		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON();
+		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON()
+		      	,	imageURL   = undefined === attachment.sizes.large ? attachment.sizes.full.url : attachment.sizes.large.url
 
 		      	$(clicked).parent().next('img').attr({
-		      		'src': attachment.sizes.large.url,
+		      		'src': imageURL,
 		      		'alt': attachment.alt,
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 		      	})
