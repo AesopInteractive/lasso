@@ -47,10 +47,10 @@ class lassoProcessUpdatePost {
 				wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
 
 				// update categories
-				self::set_post_objects( $postid, $cats, 'category' );
+				//self::set_post_objects( $postid, $cats, 'category' );
 
 				// update tags
-				//self::set_post_objects( $postid, $terms, 'post_tag' );
+				self::set_post_objects( $postid, $tags, 'post_tag' );
 
 				die(); // <--temp die
 
@@ -79,7 +79,6 @@ class lassoProcessUpdatePost {
 	 */
 	public function set_post_objects( $postid, $value, $taxonomy ) {
 
-
 		// first check if multiple
 		if ( self::has_multiple_objects( $value ) ) {
 
@@ -97,13 +96,13 @@ class lassoProcessUpdatePost {
 					array( 'slug' => strtolower( str_ireplace( ' ', '-', $value ) ) )
 				);
 
-				$object = wp_insert_term( $args );
+				$value = wp_insert_term( $args );
 
 			}
 		}
 
 		// set the tax
-		wp_set_object_terms( $postid, $object, $taxonomy, true );
+		wp_set_object_terms( $postid, $value, $taxonomy, true );
 
 	}
 
