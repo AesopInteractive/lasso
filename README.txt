@@ -18,6 +18,9 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.1.1 =
+* fixed a js error that happened if an uploaded media item wasn't large enough to be resized to large
+
 = 0.9.1 =
 * added ability to insert standard WordPress images and blockquote. If Aesop Story Engine is activated, it replaces these with Aesop Story Engine's story components.
 * fixed css class names in toolbar components not being namespaced
