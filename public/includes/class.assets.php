@@ -92,6 +92,7 @@ class lassoAssets {
 				'component_options' => lasso_editor_options_blob(),
 				'userCanEdit'		=> current_user_can('edit_post', $postid ),
 				'newPostModal'		=> lasso_editor_newpost_modal(),
+				'allPostModal'		=> lasso_editor_allpost_modal(),
 				'mapFormFooter'		=> lasso_map_form_footer(),
 				'refreshRequired'	=> lasso_editor_refresh_message(),
 				'objectsNoSave'		=> $objectsNoSave,
@@ -102,7 +103,7 @@ class lassoAssets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
-			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
+			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
 				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 		}
 

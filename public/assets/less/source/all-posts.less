@@ -1,0 +1,58 @@
+// modal outer
+.lasso--modal{
+    top:10vh;
+
+    &.lasso--modal__full {
+
+        width:@modal--width__full;
+
+        .lasso--modal__inner {
+            display: block;
+            height:600px;
+            overflow-y:scroll;
+            padding:@modal--padding * 2;
+            .clearfix();
+        }
+    }
+
+}
+
+#lasso--all-posts__modal {
+
+
+}
+
+ul.lasso--post-object-list,
+ul.lasso--post-list {
+    font-size:@modal--font__size;
+    text-align: left;
+
+    li {
+        display: block;
+        width:100%;
+        line-height: @list--item__line-height;
+        list-style-type: none;
+        margin-bottom:@modal--padding / 2;
+    }
+}
+
+// post object list
+ul.lasso--post-object-list {
+    width:@list--sb__width;
+    float:left;
+    border-right:1px solid black;
+    height:100%;
+    .box-shadow(inset -1px 0 1px -1px rgba(255,255,255,0.15));
+}
+
+// list of posts
+ul.lasso--post-list {
+    float:left;
+    padding-left:@modal--padding;
+    width: ~'calc( 100% - @{list--sb__width})';
+
+    li {
+        background: @list--item__bg;
+        padding:@list--item__padding;
+    }
+}

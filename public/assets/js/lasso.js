@@ -11367,8 +11367,6 @@ jQuery(document).ready(function($){
 		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON()
 		      	,	imageURL   = undefined === attachment.sizes.large ? attachment.sizes.full.url : attachment.sizes.large.url
 
-		      	//console.log(attachment.sizes.large)
-
 		      	$(clicked).parent().next('img').attr({
 		      		'src': imageURL,
 		      		'alt': attachment.alt,
@@ -11407,6 +11405,30 @@ jQuery(document).ready(function($){
 		jQuery(window).resize(function(){ modalResizer(); });
 
 	});
+
+})( jQuery );
+(function( $ ) {
+
+
+		// method to destroy the modal
+		var destroyModal = function(){
+			$('body').removeClass('lasso-modal-open');
+			$('#lasso--all-posts__modal, #lasso--modal__overlay').remove();
+		}
+
+		// modal click
+		$('#lasso--post-all').live('click',function(e){
+
+			e.preventDefault();
+
+			// add a body class
+			$('body').toggleClass('lasso-modal-open');
+
+			// append teh modal markup ( lasso_editor_component_modal() )
+			$('body').append(lasso_editor.allPostModal);
+
+		})
+
 
 })( jQuery );
 (function( $ ) {

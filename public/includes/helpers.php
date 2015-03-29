@@ -118,6 +118,25 @@ function lasso_supported_no_save(){
 	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet');
 }
 
+/**
+*	Return the first 10 posts from a specific post type
+*
+*	@since 0.9.2
+*	@return array post array
+*/
+function lasso_get_posts( $type = 'post', $limit = 10 ) {
+
+	$args = array(
+		'post_per_page' => (int) $limit,
+		'post_type'		=> $type
+	);
+
+	$q = get_posts( $args );
+
+	return !empty( $q ) ? $q : false;
+
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////

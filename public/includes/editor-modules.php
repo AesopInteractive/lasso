@@ -51,9 +51,11 @@ function lasso_editor_controls() {
 
 					<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
 						<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-					<?php }
+					<?php } ?>
 
-					if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
+					<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+
+					<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
 						<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 					<?php } ?>
 
@@ -353,6 +355,71 @@ function lasso_editor_newpost_modal() {
 				</div>
 
 			</form>
+
+		</div>
+	</div>
+	<div id="lasso--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
+}
+
+/**
+ * Used to house the all posts pop-up
+ *
+ * @since 1.0
+ */
+function lasso_editor_allpost_modal() {
+
+	global $post;
+
+	ob_start();
+
+	if ( !lasso_user_can() )
+		return;
+
+	$status = get_post_status( get_the_ID() );
+
+
+	// let users add custom css classes
+	$custom_classes = apply_filters( 'lasso_modal_all_post_classes', '' );
+
+	// return the post type
+	$type = get_post_type( get_the_ID() );
+
+?>
+	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
+		<div class="lasso--modal__inner">
+
+			<?php
+
+			$posts = lasso_get_posts();
+
+			?><ul class="lasso--post-object-list">
+
+				<li>Posts</li>
+
+			</ul><?php
+
+			if ( $posts ):
+
+				?><ul class="lasso--post-list"><?php
+
+				foreach( $posts as $post ) {
+
+					echo '<li>'.$post->post_title.'</li>';
+
+				}
+
+				?></ul><?php
+
+			else:
+
+				_e('No posts found.','lasso');
+
+			endif;
+
+			?>
 
 		</div>
 	</div>
