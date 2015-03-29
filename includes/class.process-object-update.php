@@ -15,9 +15,9 @@ class lassoProcessUpdatePost {
 	}
 
 	/**
-	 * Process the post update
+	 *  Process the post update
 	 *
-	 * @since 1.0
+	 *  @since 1.0
 	 */
 	public function process_update_post() {
 
@@ -69,12 +69,13 @@ class lassoProcessUpdatePost {
 	}
 
 	/**
-	 * Appends the specified term or category to the incoming postid object. If term doesn't exist, we create it
+	 *  Appends the specified term or category to the incoming postid object. If term doesn't exist, we create it
 	 *
-	 * @param    int    	$postid       	The current postid
-	 * @param    string     $value       	The term value (or term name)
-	 * @param    string     $taxonomy    	The name of the taxonomy to which the term belongs.
-	 * @since    0.9.1
+	 *  @param    int    	$postid       	The current postid
+	 *  @param    string     $value       	The term value (or term name)
+	 *  @param    string     $taxonomy    	The name of the taxonomy to which the term belongs.
+	 *	@uses    codex      WordPress       https://codex.wordpress.org/Function_Reference/wp_set_object_terms
+	 *  @since    0.9.1
 	 *	@todo 	update existing with id's instead of array
 	 */
 	public function set_post_objects( $postid, $value, $taxonomy ) {
@@ -107,11 +108,11 @@ class lassoProcessUpdatePost {
 	}
 
 	/**
-	 * Determines if the given value has multiple terms by checking to see
-	 * if a comma exists in the value.
+	 *  Determines if the given value has multiple terms by checking to see
+	 *  if a comma exists in the value.
 	 *
-	 * @param    string   $value    The value to evaluate for multiple terms.
-	 * @return   bool               True if there are multiple terms; otherwise, false.
+	 *  @param    string   $value    The value to evaluate for multiple terms.
+	 *  @return   bool               True if there are multiple terms; otherwise, false.
 	 *	@since   0.9.1
 	 */
 	public function has_multiple_objects( $value ) {
@@ -121,12 +122,12 @@ class lassoProcessUpdatePost {
 	}
 
 	/**
-	 * Loops through each of the multiple terms that exist and use the
-	 * set_post_cats function to apply each value to the given postid
+	 *  Loops through each of the multiple terms that exist and use the
+	 *  set_post_cats function to apply each value to the given postid
 	 *
-	 * @param    int 		$postid      current post id
-	 * @param    string     $values      delimited list of terms or ids
-	 * @param    string     $taxonomy    category or tag
+	 *  @param    int 		$postid      current post id
+	 *  @param    string     $values      delimited list of terms or ids
+	 *  @param    string     $taxonomy    category or tag
 	 */
 	public function set_multiple_objects( $postid, $values, $taxonomy ) {
 
