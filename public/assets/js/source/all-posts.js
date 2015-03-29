@@ -32,11 +32,11 @@
 
 		e.preventDefault();
 
-		var target = $(this);
+		var $this = $(this);
 
 		var data = {
 			action: 		'process_delete_post',
-			postid: 		lasso_editor.postid,
+			postid: 		$this.closest('a').data('postid'),
 			nonce: 			lasso_editor.deletePost
 		}
 

@@ -33,7 +33,6 @@ class lassoProcessDeletePost {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_delete_post' ) ) {
 
-
 				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 
 				$args = array(

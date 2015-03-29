@@ -421,7 +421,7 @@ function lasso_editor_allpost_modal() {
 				foreach( $posts as $post ) {
 
 					?><li>
-						<a class="lasso--post-list__item" href="<?php echo get_permalink();?>">
+						<a class="lasso--post-list__item" href="<?php echo get_permalink();?>" data-postid="<?php echo absint( $post->ID );?>" >
 
 							<?php echo esc_html($post->post_title);?>
 
