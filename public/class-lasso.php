@@ -57,6 +57,7 @@ class Lasso {
 		require_once LASSO_DIR.'/includes/class.process-new-object.php';
 		require_once LASSO_DIR.'/includes/class.process-title-update.php';
 		require_once LASSO_DIR.'/includes/class.process-map.php';
+		require_once LASSO_DIR.'/includes/class.process-delete-post.php';
 
 
 		// Activate plugin when new blog is added

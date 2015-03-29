@@ -27,5 +27,28 @@
 
 	})
 
+	// DELETE POST
+	$('#lasso--post__delete').live('click',function(e){
+
+		e.preventDefault();
+
+		var target = $(this);
+
+		var data = {
+			action: 		'process_delete_post',
+			postid: 		lasso_editor.postid,
+			nonce: 			lasso_editor.deletePost
+		}
+
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+
+			if ( true == response.success ) {
+
+				alert('cool')
+			}
+
+		});
+	})
+
 
 })( jQuery );
