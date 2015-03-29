@@ -378,8 +378,8 @@ function lasso_editor_allpost_modal() {
 	if ( !lasso_user_can() )
 		return;
 
+	// post status
 	$status = get_post_status( get_the_ID() );
-
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_all_post_classes', '' );
@@ -393,7 +393,7 @@ function lasso_editor_allpost_modal() {
 
 			<?php
 
-			$posts = lasso_get_posts();
+			$posts = lasso_get_posts( $type );
 
 			?><ul class="lasso--post-object-list">
 
@@ -414,8 +414,8 @@ function lasso_editor_allpost_modal() {
 							<?php echo esc_html($post->post_title);?>
 
 							<div class="lasso--post-list__controls">
-								<span id="lasso--post__edit"></span>
-								<span id="lasso--post__delete"></span>
+								<span title="<?php echo esc_attr_e('Edit Post','lasso');?>" id="lasso--post__edit"></span>
+								<span title="<?php echo esc_attr_e('Delete Post','lasso');?>" id="lasso--post__delete"></span>
 							</div>
 						</a>
 					</li><?php
