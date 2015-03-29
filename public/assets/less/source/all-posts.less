@@ -8,8 +8,6 @@
 
         .lasso--modal__inner {
             display: block;
-            height:600px;
-            overflow-y:scroll;
             padding:@modal--padding * 2;
             .clearfix();
         }
@@ -33,7 +31,7 @@ ul.lasso--post-list {
         position: relative;
         width:100%;
         list-style-type: none;
-        margin-bottom:@modal--padding / 2;
+        margin-bottom:6px;
     }
 }
 
@@ -41,9 +39,9 @@ ul.lasso--post-list {
 ul.lasso--post-object-list {
     width:@list--sb__width;
     float:left;
-    border-right:1px solid black;
+    //border-right:1px solid black;
     height:100%;
-    .box-shadow(inset -1px 0 1px -1px rgba(255,255,255,0.15));
+    //.box-shadow(inset -1px 0 1px -1px rgba(255,255,255,0.15));
 
     li { line-height: @list--item__line-height / 2;}
 }
@@ -51,10 +49,17 @@ ul.lasso--post-object-list {
 // list of posts
 ul.lasso--post-list {
     float:left;
-    padding-left:@modal--padding;
+    padding:0 @modal--padding / 2;
     width: ~'calc( 100% - @{list--sb__width})';
+    overflow-y:scroll;
+    height:520px;
+    .box-shadow(~"inset 0 -10px 10px -9px rgba(0,0,0,0.65), inset 0 10px 10px -9px rgba(0,0,0,0.65)");
 
-    li {line-height: @list--item__line-height;}
+    li {
+        overflow: hidden;
+        line-height: @list--item__line-height;
+        z-index: 0;
+    }
 
     .lasso--post-list__item {
         color:darken(@modal--color,20);
@@ -63,11 +68,16 @@ ul.lasso--post-list {
         background: @list--item__bg;
         border-radius: @editor--radius;
         .transition(all .15s ease);
-        width:~'calc( 100% - @{list--control__width})';
+        width:100%;
 
         &:hover{
             background: fadeout(@modal--bg__accent,50);
             text-decoration: none;
+                    width:~'calc( 100% - @{list--control__width})';
+
+            .lasso--post-list__controls {
+                right:0;
+            }
         }
 
         &:active {
@@ -85,12 +95,14 @@ ul.lasso--post-list {
     top:0;
     width:@list--control__width;
     text-align: right;
-    right:0;
+    right:-@list--control__width;
+    height:@list--item__line-height;
+    .transition(right .15s linear);
 
     span {
         color:darken(@modal--color,50);
         display: inline-block;
-        width:40px;
+        width:@list--item__line-height;
         height:@list--item__line-height;
         background: @list--item__bg;
         border-radius: @editor--radius;
@@ -102,8 +114,8 @@ ul.lasso--post-list {
             font-size:18px;
             position: absolute;
             z-index: 2;
-            top:10px;
-            left:11px;
+            top:16px;
+            left:16px;
         }
 
         &:hover {

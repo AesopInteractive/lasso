@@ -393,7 +393,7 @@ function lasso_editor_allpost_modal() {
 
 			<?php
 
-			$posts = lasso_get_posts( $type );
+			$posts = lasso_get_posts( $type, 10 );
 
 			?><ul class="lasso--post-object-list">
 

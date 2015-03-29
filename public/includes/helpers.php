@@ -124,10 +124,14 @@ function lasso_supported_no_save(){
 *	@since 0.9.2
 *	@return array post array
 */
-function lasso_get_posts( $type = 'post', $limit = 10 ) {
+function lasso_get_posts( $type , $limit ) {
+
+	if ( empty( $limit ) )
+		$limit = 10;
 
 	$args = array(
-		'post_per_page' => (int) $limit,
+		'posts_per_page' => (int) $limit,
+		'post_status'   => 'any',
 		'post_type'		=> $type
 	);
 
