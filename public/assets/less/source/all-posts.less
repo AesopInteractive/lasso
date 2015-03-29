@@ -53,6 +53,23 @@ ul.lasso--post-list {
 
     li {
         background: @list--item__bg;
-        padding:@list--item__padding;
+        border-radius: @editor--radius;
+        .transition(background .15s ease);
+
+        a {
+            color:@modal--color;
+            display: block;
+            padding:@list--item__padding;
+
+        }
+
+        &:hover{
+
+            background: fadeout(@modal--bg__accent,50);
+
+            a {
+                text-decoration: none;
+            }
+        }
     }
 }

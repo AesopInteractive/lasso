@@ -407,7 +407,7 @@ function lasso_editor_allpost_modal() {
 
 				foreach( $posts as $post ) {
 
-					echo '<li>'.$post->post_title.'</li>';
+					echo '<li><a href="'.get_permalink().'">'.esc_html($post->post_title).'</a></li>';
 
 				}
 
