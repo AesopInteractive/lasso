@@ -25,12 +25,13 @@
 ul.lasso--post-object-list,
 ul.lasso--post-list {
     font-size:@modal--font__size;
+    font-family: @editor--font;
     text-align: left;
 
     li {
         display: block;
+        position: relative;
         width:100%;
-        line-height: @list--item__line-height;
         list-style-type: none;
         margin-bottom:@modal--padding / 2;
     }
@@ -43,6 +44,8 @@ ul.lasso--post-object-list {
     border-right:1px solid black;
     height:100%;
     .box-shadow(inset -1px 0 1px -1px rgba(255,255,255,0.15));
+
+    li { line-height: @list--item__line-height / 2;}
 }
 
 // list of posts
@@ -51,25 +54,87 @@ ul.lasso--post-list {
     padding-left:@modal--padding;
     width: ~'calc( 100% - @{list--sb__width})';
 
-    li {
+    li {line-height: @list--item__line-height;}
+
+    .lasso--post-list__item {
+        color:darken(@modal--color,20);
+        display: block;
+        padding:@list--item__padding;
         background: @list--item__bg;
         border-radius: @editor--radius;
-        .transition(background .15s ease);
-
-        a {
-            color:@modal--color;
-            display: block;
-            padding:@list--item__padding;
-
-        }
+        .transition(all .15s ease);
+        width:~'calc( 100% - @{list--control__width})';
 
         &:hover{
-
             background: fadeout(@modal--bg__accent,50);
+            text-decoration: none;
+        }
 
-            a {
-                text-decoration: none;
-            }
+        &:active {
+            background: @list--item__bg;
+            text-decoration: none;
+            .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.5));
+        }
+
+    }
+
+}
+.lasso--post-list__controls {
+    position: absolute;
+    right:0;
+    top:0;
+    width:@list--control__width;
+    text-align: right;
+    right:0;
+
+    a {
+        color:darken(@modal--color,50);
+        display: inline-block;
+        width:40px;
+        height:@list--item__line-height;
+        background: @list--item__bg;
+        border-radius: @editor--radius;
+        position: relative;
+
+        &:after {
+            .editor-icon-font();
+            text-align: center;
+            font-size:18px;
+            position: absolute;
+            z-index: 2;
+            top:10px;
+            left:11px;
+        }
+
+        &:hover {
+            color:darken(@modal--color,50);
+            background: fadeout(@modal--bg__accent,50);
+        }
+        &:active {
+            background: @list--item__bg;
+            text-decoration: none;
+            .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.5));
+        }
+    }
+
+    #lasso--post__edit{
+        margin-right:3px;
+        &:hover {
+            color:@modal--color;
+            background: @editor--color__update;
+        }
+        &:after {
+            content:'\e908';
+        }
+    }
+
+    #lasso--post__delete{
+        &:hover {
+            color:@modal--color;
+            background: @editor--color__error;
+        }
+        &:after {
+            content:'\e9ad';
         }
     }
 }

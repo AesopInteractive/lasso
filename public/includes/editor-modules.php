@@ -398,6 +398,7 @@ function lasso_editor_allpost_modal() {
 			?><ul class="lasso--post-object-list">
 
 				<li>Posts</li>
+				<li>Pages</li>
 
 			</ul><?php
 
@@ -407,7 +408,13 @@ function lasso_editor_allpost_modal() {
 
 				foreach( $posts as $post ) {
 
-					echo '<li><a href="'.get_permalink().'">'.esc_html($post->post_title).'</a></li>';
+					?><li>
+						<a class="lasso--post-list__item" href="<?php echo get_permalink();?>"><?php echo esc_html($post->post_title);?></a>
+						<div class="lasso--post-list__controls">
+							<a href="#" id="lasso--post__edit"></a>
+							<a href="#" id="lasso--post__delete"></a>
+						</div>
+					</li><?php
 
 				}
 
