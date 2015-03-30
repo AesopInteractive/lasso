@@ -11407,42 +11407,16 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
-(function( $ ) {
+(function( $, Backbone, _, WP_API_Settings, undefined ) {
 
+	var contentTemplate = $('#lasso-tmpl--post' )
+	, 	postTemplate = _.template( contentTemplate.html() )
+	, 	posts = new wp.api.collections.Posts()
 
 	// method to destroy the modal
 	var destroyModal = function(){
 		$('body').removeClass('lasso-modal-open');
 		$('#lasso--all-posts__modal, #lasso--modal__overlay').remove();
-	}
-
-	// single list post markup
-	var singlePost = function( post ){
-
-		return '<li>\
-				<a class="lasso--post-list__item" href="" data-postid="'+post.ID+'">\
-				'+post.title+'\
-					<div class="lasso--post-list__controls">\
-						<span title="Edit Post" id="lasso--post__edit"></span>\
-						<span title="Delete Post" id="lasso--post__delete"></span>\
-					</div>\
-				</a>\
-				</li>';
-
-	}
-
-	// get the posts
-	var getPosts = function(){
-
-		var posts = new wp.api.collections.Posts();
-
-		posts.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
-		    posts.each( function( post ) {
-
-		        $('#lasso--post-list').append( singlePost( post.attributes ) )
-
-		    });
-		});
 	}
 
 	// modal click
@@ -11456,13 +11430,21 @@ jQuery(document).ready(function($){
 		// append teh modal markup ( lasso_editor_component_modal() )
 		$('body').append( lasso_editor.allPostModal );
 
-
+		// remove the loader
 		setTimeout(function(){
+
 			$('#lasso--loading').remove()
-		}, 500)
+
+		}, 600)
 
 		// populate the posts
-		getPosts()
+		posts.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
+		    posts.each( function( post ) {
+
+		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
+
+		    });
+		});
 
 		var postList = $('#lasso--post-list')
 
@@ -11470,8 +11452,15 @@ jQuery(document).ready(function($){
 			suppressScrollX: true
 		});
 
-
 	})
+
+	// infinite scroll click
+	$('#lasso--load-more').live('click', function(e){
+
+		e.preventDefault()
+
+	});
+
 
 	// DELETE POST
 	$('#lasso--post__delete').live('click',function(e){
@@ -11510,8 +11499,7 @@ jQuery(document).ready(function($){
 		});
 	})
 
-
-})( jQuery );
+})( jQuery, Backbone, _, WP_API_Settings );
 (function( $ ) {
 
 	$(document).ready(function(){

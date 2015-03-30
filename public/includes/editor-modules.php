@@ -418,27 +418,7 @@ function lasso_editor_allpost_modal() {
 
 			if ( $posts ):
 
-				?><ul id="lasso--post-list" class="lasso--post-list"><?php
-
-				/*
-				foreach( $posts as $post ) {
-
-					?><li>
-						<a class="lasso--post-list__item" href="<?php echo get_permalink();?>" data-postid="<?php echo absint( $post->ID );?>" >
-
-							<?php echo esc_html($post->post_title);?>
-
-							<div class="lasso--post-list__controls">
-								<span title="<?php echo esc_attr_e('Edit Post','lasso');?>" id="lasso--post__edit"></span>
-								<span title="<?php echo esc_attr_e('Delete Post','lasso');?>" id="lasso--post__delete"></span>
-							</div>
-						</a>
-					</li><?php
-
-				}
-				*/
-
-				?></ul><?php
+				?><ul id="lasso--post-list" class="lasso--post-list"></ul><?php
 
 			else:
 
