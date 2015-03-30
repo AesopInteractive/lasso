@@ -11412,6 +11412,7 @@ jQuery(document).ready(function($){
 	var contentTemplate = $('#lasso-tmpl--post' )
 	, 	postTemplate = _.template( contentTemplate.html() )
 	, 	posts = new wp.api.collections.Posts()
+	,	pages = new wp.api.collections.Pages()
 
 	// method to destroy the modal
 	var destroyModal = function(){
@@ -11453,6 +11454,41 @@ jQuery(document).ready(function($){
 		});
 
 	})
+
+	$('#lasso--show-pages').live('click',function(e){
+
+		e.preventDefault();
+
+		$('#lasso--post-list > li').remove();
+
+		// populate the posts
+		pages.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
+		    pages.each( function( post ) {
+
+		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: lasso_editor__wpapi } ) )
+
+		    });
+		});
+
+	});
+
+	$('#lasso--show-posts').live('click',function(e){
+
+		e.preventDefault();
+
+		$('#lasso--post-list > li').remove();
+
+		// populate the posts
+		// populate the posts
+		posts.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
+		    posts.each( function( post ) {
+
+		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: lasso_editor__wpapi } ) )
+
+		    });
+		});
+
+	});
 
 	// infinite scroll click
 	$('#lasso--load-more').live('click', function(e){

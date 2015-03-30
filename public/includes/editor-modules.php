@@ -409,8 +409,8 @@ function lasso_editor_allpost_modal() {
 
 			?><ul class="lasso--post-object-list">
 
-				<li>Posts</li>
-				<li>Pages</li>
+				<li id="lasso--show-posts">Posts</li>
+				<li id="lasso--show-pages">Pages</li>
 
 			</ul>
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
