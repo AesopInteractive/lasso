@@ -26,6 +26,9 @@ class lassoAssets {
 			// media uploader
 			wp_enqueue_media();
 
+			// url for json api
+			$home_url = function_exists('json_get_url_prefix') ? json_get_url_prefix() : false;
+
 			$article_object 	= lasso_editor_get_option('article_class','lasso_editor');
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
@@ -106,14 +109,10 @@ class lassoAssets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
-			if ( ! function_exists( 'json_get_url_prefix' ) ) {
-				return;
-			}
-
-						// wp api client
-				// @todo - namespace this
+			// wp api client
+			// @todo - namespace this
 			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
-				$settings = array( 'root' => home_url( json_get_url_prefix() ), 'nonce' => wp_create_nonce( 'wp_json' ) );
+				$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
 				wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
 
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
