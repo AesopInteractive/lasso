@@ -56,6 +56,8 @@ class lassoAssets {
 				'useSelectedImages' => __('Use Selected Images','lasso'),
 				'publishPost'		=> __('Publish Post?','lasso'),
 				'publishYes'		=> __('Yes, publish it!','lasso'),
+				'deletePost'		=> __('Trash Post?','lasso'),
+				'deleteYes'			=> __('Yes, trash it!','lasso'),
 				'warning'			=> __('Oh snap!','laso'),
 				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso needs this to function correctly.','lasso'),
 				'missingConfirm'	=> __('Update Settings', 'lasso')

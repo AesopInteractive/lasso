@@ -11453,7 +11453,21 @@ jQuery(document).ready(function($){
 
 			if ( true == response.success ) {
 
-				alert('cool')
+				swal({
+					title: lasso_editor.strings.deletePost,
+					type: "error",
+					text: false,
+					showCancelButton: true,
+					confirmButtonColor: "#d9534f",
+					confirmButtonText: lasso_editor.strings.deleteYes,
+					closeOnConfirm: true
+				},
+				function(){
+
+					$this.closest('li').fadeOut().remove()
+
+				});
+
 			}
 
 		});

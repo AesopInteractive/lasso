@@ -24,10 +24,7 @@ class lassoProcessDeletePost {
 		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_delete_post' ) {
 
 			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
-
-			if ( !current_user_can('publish_posts') )
+			if ( !is_user_logged_in() && !current_user_can('delete_posts') )
 				return;
 
 			// ok security passes so let's process some data
@@ -37,12 +34,12 @@ class lassoProcessDeletePost {
 
 				$args = array(
 					'ID'   			=> (int) $postid,
-					'post_status' 	=> 'delete'
+					'post_status' 	=> 'trash'
 				);
 
-				//wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
+				wp_update_post( apply_filters( 'lasso_object_deleted_args', $args ) );
 
-				do_action( 'lasso_post_deleted', $postid, get_current_user_ID() );
+				do_action( 'lasso_object_deleted', $postid, get_current_user_ID() );
 
 				// send back success
 				wp_send_json_success();
