@@ -87,10 +87,10 @@
 
 })( Backbone, _, window );
 
-/* global WP_API_Settings:false */
+/* global lasso_editor__wpapi:false */
 // Suppress warning about parse function's unused "options" argument:
 /* jshint unused:false */
-(function( wp, WP_API_Settings, Backbone, _, window, undefined ) {
+(function( wp, lasso_editor__wpapi, Backbone, _, window, undefined ) {
 
 	'use strict';
 
@@ -214,11 +214,11 @@
 			sync: function( method, model, options ) {
 				options = options || {};
 
-				if ( typeof WP_API_Settings.nonce !== 'undefined' ) {
+				if ( typeof lasso_editor__wpapi.nonce !== 'undefined' ) {
 					var beforeSend = options.beforeSend;
 
 					options.beforeSend = function( xhr ) {
-						xhr.setRequestHeader( 'X-WP-Nonce', WP_API_Settings.nonce );
+						xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor__wpapi.nonce );
 
 						if ( beforeSend ) {
 							return beforeSend.apply( this, arguments );
@@ -239,7 +239,7 @@
 		{
 			idAttribute: 'ID',
 
-			urlRoot: WP_API_Settings.root + '/users',
+			urlRoot: lasso_editor__wpapi.root + '/users',
 
 			defaults: {
 				ID: null,
@@ -278,7 +278,7 @@
 		{
 			idAttribute: 'slug',
 
-			urlRoot: WP_API_Settings.root + '/taxonomies',
+			urlRoot: lasso_editor__wpapi.root + '/taxonomies',
 
 			defaults: {
 				name: '',
@@ -326,7 +326,7 @@
 				var id = this.get( 'ID' );
 				id = id || '';
 
-				return WP_API_Settings.root + '/taxonomies/' + this.taxonomy + '/terms/' + id;
+				return lasso_editor__wpapi.root + '/taxonomies/' + this.taxonomy + '/terms/' + id;
 			},
 
 			defaults: {
@@ -353,7 +353,7 @@
 		{
 			idAttribute: 'ID',
 
-			urlRoot: WP_API_Settings.root + '/posts',
+			urlRoot: lasso_editor__wpapi.root + '/posts',
 
 			defaults: {
 				ID: null,
@@ -396,7 +396,7 @@
 		{
 			idAttribute: 'ID',
 
-			urlRoot: WP_API_Settings.root + '/pages',
+			urlRoot: lasso_editor__wpapi.root + '/pages',
 
 			defaults: {
 				ID: null,
@@ -449,7 +449,7 @@
 				var id = this.get( 'ID' );
 				id = id || '';
 
-				return WP_API_Settings.root + '/posts/' + parent_id + '/revisions/' + id;
+				return lasso_editor__wpapi.root + '/posts/' + parent_id + '/revisions/' + id;
 			},
 
 			/**
@@ -472,7 +472,7 @@
 		{
 			idAttribute: 'ID',
 
-			urlRoot: WP_API_Settings.root + '/media',
+			urlRoot: lasso_editor__wpapi.root + '/media',
 
 			defaults: {
 				ID: null,
@@ -555,7 +555,7 @@
 				var id = this.get( 'ID' );
 				id = id || '';
 
-				return WP_API_Settings.root + '/posts/' + post_id + '/comments/' + id;
+				return lasso_editor__wpapi.root + '/posts/' + post_id + '/comments/' + id;
 			}
 		}, TimeStampedMixin, HierarchicalMixin )
 	);
@@ -568,7 +568,7 @@
 		{
 			idAttribute: 'slug',
 
-			urlRoot: WP_API_Settings.root + '/posts/types',
+			urlRoot: lasso_editor__wpapi.root + '/posts/types',
 
 			defaults: {
 				slug: null,
@@ -612,7 +612,7 @@
 		{
 			idAttribute: 'slug',
 
-			urlRoot: WP_API_Settings.root + '/posts/statuses',
+			urlRoot: lasso_editor__wpapi.root + '/posts/statuses',
 
 			defaults: {
 				slug: null,
@@ -647,10 +647,10 @@
 		}
 	);
 
-})( wp, WP_API_Settings, Backbone, _, window );
+})( wp, lasso_editor__wpapi, Backbone, _, window );
 
-/* global WP_API_Settings:false */
-(function( wp, WP_API_Settings, Backbone, _, window, undefined ) {
+/* global lasso_editor__wpapi:false */
+(function( wp, lasso_editor__wpapi, Backbone, _, window, undefined ) {
 
 	'use strict';
 
@@ -684,9 +684,9 @@
 				options = options || {};
 				var beforeSend = options.beforeSend;
 
-				if ( typeof WP_API_Settings.nonce !== 'undefined' ) {
+				if ( typeof lasso_editor__wpapi.nonce !== 'undefined' ) {
 					options.beforeSend = function( xhr ) {
-						xhr.setRequestHeader( 'X-WP-Nonce', WP_API_Settings.nonce );
+						xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor__wpapi.nonce );
 
 						if ( beforeSend ) {
 							return beforeSend.apply( this, arguments );
@@ -783,7 +783,7 @@
 	wp.api.collections.Posts = BaseCollection.extend(
 		/** @lends Posts.prototype */
 		{
-			url: WP_API_Settings.root + '/posts',
+			url: lasso_editor__wpapi.root + '/posts',
 
 			model: wp.api.models.Post
 		}
@@ -795,7 +795,7 @@
 	wp.api.collections.Pages = BaseCollection.extend(
 		/** @lends Pages.prototype */
 		{
-			url: WP_API_Settings.root + '/pages',
+			url: lasso_editor__wpapi.root + '/pages',
 
 			model: wp.api.models.Page
 		}
@@ -807,7 +807,7 @@
 	wp.api.collections.Users = BaseCollection.extend(
 		/** @lends Users.prototype */
 		{
-			url: WP_API_Settings.root + '/users',
+			url: lasso_editor__wpapi.root + '/users',
 
 			model: wp.api.models.User
 		}
@@ -819,7 +819,7 @@
 	wp.api.collections.PostStatuses = BaseCollection.extend(
 		/** @lends PostStatuses.prototype */
 		{
-			url: WP_API_Settings.root + '/posts/statuses',
+			url: lasso_editor__wpapi.root + '/posts/statuses',
 
 			model: wp.api.models.PostStatus
 
@@ -832,7 +832,7 @@
 	wp.api.collections.MediaLibrary = BaseCollection.extend(
 		/** @lends MediaLibrary.prototype */
 		{
-			url: WP_API_Settings.root + '/media',
+			url: lasso_editor__wpapi.root + '/media',
 
 			model: wp.api.models.Media
 		}
@@ -846,7 +846,7 @@
 		{
 			model: wp.api.models.Taxonomy,
 
-			url: WP_API_Settings.root + '/taxonomies'
+			url: lasso_editor__wpapi.root + '/taxonomies'
 		}
 	);
 
@@ -879,7 +879,7 @@
 			 * @returns {string}
 			 */
 			url: function() {
-				return WP_API_Settings.root + '/posts/' + this.post + '/comments';
+				return lasso_editor__wpapi.root + '/posts/' + this.post + '/comments';
 			}
 		}
 	);
@@ -892,7 +892,7 @@
 		{
 			model: wp.api.models.PostType,
 
-			url: WP_API_Settings.root + '/posts/types'
+			url: lasso_editor__wpapi.root + '/posts/types'
 		}
 	);
 
@@ -945,7 +945,7 @@
 			 * @returns {string}
 			 */
 			url: function() {
-				return WP_API_Settings.root + '/posts/types/' + this.type + '/taxonomies/' + this.taxonomy + '/terms/';
+				return lasso_editor__wpapi.root + '/posts/types/' + this.type + '/taxonomies/' + this.taxonomy + '/terms/';
 			}
 		}
 	);
@@ -979,9 +979,9 @@
 			 * @returns {string}
 			 */
 			url: function() {
-				return WP_API_Settings.root + '/posts/' + this.parent + '/revisions';
+				return lasso_editor__wpapi.root + '/posts/' + this.parent + '/revisions';
 			}
 		}
 	);
 
-})( wp, WP_API_Settings, Backbone, _, window );
+})( wp, lasso_editor__wpapi, Backbone, _, window );
