@@ -80,7 +80,7 @@ class lassoEditorWelcome {
 	public function tour_slides() {
 
 ?>
-		<div id="lasso--tour__loading" class="lasso--tour__loading"><div class="lasso--tour__loader"></div></div>
+		<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
 		<div id="lasso--tour__slides">
 
 			<?php

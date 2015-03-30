@@ -412,12 +412,15 @@ function lasso_editor_allpost_modal() {
 				<li>Posts</li>
 				<li>Pages</li>
 
-			</ul><?php
+			</ul>
+			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
+			<?php
 
 			if ( $posts ):
 
-				?><ul class="lasso--post-list"><?php
+				?><ul id="lasso--post-list" class="lasso--post-list"><?php
 
+				/*
 				foreach( $posts as $post ) {
 
 					?><li>
@@ -433,6 +436,7 @@ function lasso_editor_allpost_modal() {
 					</li><?php
 
 				}
+				*/
 
 				?></ul><?php
 
