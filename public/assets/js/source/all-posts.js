@@ -1,4 +1,4 @@
-(function( $, Backbone, _, lasso_editor__wpapi, undefined ) {
+(function( $, Backbone, _, WP_API_Settings, undefined ) {
 
 	var contentTemplate = $('#lasso-tmpl--post' )
 	, 	postTemplate = _.template( contentTemplate.html() )
@@ -33,7 +33,7 @@
 		posts.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
 		    posts.each( function( post ) {
 
-		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: lasso_editor__wpapi } ) )
+		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
 
 		    });
 		});
@@ -56,7 +56,7 @@
 		pages.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
 		    pages.each( function( post ) {
 
-		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: lasso_editor__wpapi } ) )
+		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
 
 		    });
 		});
@@ -74,7 +74,7 @@
 		posts.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
 		    posts.each( function( post ) {
 
-		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: lasso_editor__wpapi } ) )
+		        $('#lasso--post-list').append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
 
 		    });
 		});
@@ -126,4 +126,4 @@
 		});
 	})
 
-})( jQuery, Backbone, _, lasso_editor__wpapi );
+})( jQuery, Backbone, _, WP_API_Settings );
