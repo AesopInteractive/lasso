@@ -43,7 +43,7 @@ if ( ! version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 
 	$loader->addNamespace('lasso', LASSO_DIR . '/includes' );
 	$loader->addNamespace('lasso\public_facing', LASSO_DIR . 'public/includes' );
-	//$loader->addNamespace('lasso\internal_api', LASSO_DIR . 'public/includes' );
+	$loader->addNamespace('lasso\internal_api', LASSO_DIR . 'internal-api' );
 
 	register_activation_hook( __FILE__, array( 'lasso\public_facing\lasso', 'activate' ) );
 	register_deactivation_hook( __FILE__, array( 'lasso\public_facing\lasso', 'deactivate' ) );
