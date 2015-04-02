@@ -1,11 +1,12 @@
 <?php
-
 /**
  * Process a user uploading an image for the featured image in a post
  *
  * @since 1.0
  */
-class lassoUploadFeatImage {
+namespace lasso;
+
+class process_image_upload {
 
 	public function __construct() {
 

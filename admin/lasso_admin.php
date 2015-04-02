@@ -8,8 +8,9 @@
  * @link      http://aesopinteractive.com
  * @copyright 2015 Aesopinteractive LLC
  */
+namespace lasso\admin;
 
-class Lasso_Admin {
+class load_admin {
 
 	/**
 	 * Instance of this class.

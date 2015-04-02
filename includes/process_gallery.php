@@ -1,11 +1,12 @@
 <?php
-
 /**
  * Process various gallery fucntions like fetching and saving images
  *
  * @since 1.0
  */
-class lassoProcessGallery {
+namespace lasso;
+
+class process_gallery {
 
 	public function __construct() {
 

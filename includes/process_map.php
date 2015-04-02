@@ -1,11 +1,12 @@
 <?php
-
 /**
  * Process saving a maps locations
  *
  * @since 1.0
  */
-class lassoProcessMap {
+namespace lasso;
+
+class process_map {
 
 	public function __construct() {
 

@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Adds a new post object
  *
  * @since 1.0
  */
-class lassoProcessNewObject {
+
+namespace lasso;
+
+class process_new_object {
 
 	public function __construct() {
 

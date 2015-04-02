@@ -41,14 +41,14 @@ if ( ! version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	 *----------------------------------------------------------------------------*/
 	//require_once plugin_dir_path( __FILE__ ) . 'public/class-lasso.php';
 
-	$loader->addNamespace('lasso', LASSO_DIR . 'public/includes' );
-	$loader->addNamespace('lasso\public', LASSO_DIR . 'public/includes' );
+	$loader->addNamespace('lasso', LASSO_DIR . '/includes' );
+	$loader->addNamespace('lasso\public_facing', LASSO_DIR . 'public/includes' );
 	//$loader->addNamespace('lasso\internal_api', LASSO_DIR . 'public/includes' );
 
-	register_activation_hook( __FILE__, array( 'Lasso', 'activate' ) );
-	register_deactivation_hook( __FILE__, array( 'Lasso', 'deactivate' ) );
+	register_activation_hook( __FILE__, array( 'lasso\public_facing\lasso', 'activate' ) );
+	register_deactivation_hook( __FILE__, array( 'lasso\public_facing\lasso', 'deactivate' ) );
 
-	add_action( 'plugins_loaded', array( 'Lasso', 'get_instance' ) );
+	add_action( 'plugins_loaded', array( 'lasso\public_facing\lasso', 'get_instance' ) );
 
 	/*----------------------------------------------------------------------------*
 	 * Dashboard and Administrative Functionality
@@ -57,7 +57,7 @@ if ( ! version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	if ( is_admin() ) {
 		$loader->addNamespace('lasso\admin', LASSO_DIR . '/includes' );
 		//require_once plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php';
-		add_action( 'plugins_loaded', array( 'Lasso_Admin', 'get_instance' ) );
+		add_action( 'plugins_loaded', array( 'lasso\admin\load_admin', 'get_instance' ) );
 
 	}
 
