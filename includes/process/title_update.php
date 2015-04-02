@@ -4,9 +4,9 @@
  *
  * @since 1.0
  */
-namespace lasso;
+namespace lasso\process;
 
-class process_title_update {
+class title_update {
 
 	public function __construct() {
 

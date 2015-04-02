@@ -1,6 +1,8 @@
 <?php
 
-class lassoUpdater {
+namespace lasso\admin\menus;
+
+class license {
 
 	function __construct() {
 

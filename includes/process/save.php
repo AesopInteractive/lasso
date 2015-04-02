@@ -4,9 +4,9 @@
  *
  * @since 1.0
  */
-namespace lasso;
+namespace lasso\process;
 
-class process_save {
+class save {
 
 	public function __construct() {
 

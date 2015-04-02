@@ -4,7 +4,9 @@
  *
  * @since 0.8.2
  */
-class lassoWelcome {
+namespace lasso\admin\menus;
+
+class welcome {
 
 	function __construct() {
 

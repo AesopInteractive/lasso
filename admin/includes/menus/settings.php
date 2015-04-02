@@ -3,8 +3,9 @@
  * Class responsible for adding a settings submenu
  *
  */
+namespace lasso\admin\menus;
 
-class lassoMenuSettings {
+class settings {
 
 	function __construct() {
 
