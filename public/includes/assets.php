@@ -1,11 +1,12 @@
 <?php
-
 /**
 *	Load the assets used for Lasso
 *
 *	@since 1.0
 */
-class lassoAssets {
+namespace lasso\public_facing;
+
+class assets {
 
 	public function __construct(){
 

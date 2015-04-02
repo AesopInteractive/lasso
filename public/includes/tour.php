@@ -1,12 +1,13 @@
 <?php
-
 /**
  * Class responsible for creating the welcome walkthrough on the editor
  *
  * @since 0.6
  */
 
-class lassoEditorWelcome {
+namespace lasso\public_facing;
+
+class tour {
 
 	public function __construct() {
 
