@@ -3,7 +3,7 @@
  * Class responsible for adding a settings submenu
  *
  */
-namespace lasso\admin\menus;
+namespace lasso_admin\menus;
 
 class settings {
 

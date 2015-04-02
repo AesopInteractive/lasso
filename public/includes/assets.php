@@ -4,7 +4,7 @@
 *
 *	@since 1.0
 */
-namespace lasso\public_facing;
+namespace lasso_public_facing;
 
 class assets {
 

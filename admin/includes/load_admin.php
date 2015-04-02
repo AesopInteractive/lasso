@@ -8,9 +8,9 @@
  * @link      http://aesopinteractive.com
  * @copyright 2015 Aesopinteractive LLC
  */
-namespace lasso\admin;
+namespace lasso_admin;
 
-use lasso\public_facing\lasso;
+use lasso_public_facing\lasso;
 
 class load_admin {
 
@@ -50,8 +50,7 @@ class load_admin {
 			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
 		}
 
-		//require_once LASSO_DIR.'/admin/includes/class.menu--welcome.php';
-		//require_once LASSO_DIR.'/admin/includes/class.menu--settings.php';
+
 		new menus\welcome();
 		new menus\settings();
 

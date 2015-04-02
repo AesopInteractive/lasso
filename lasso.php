@@ -31,7 +31,7 @@ if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	/*----------------------------------------------------------------------------*
 	 * Register Autoloader
 	 *----------------------------------------------------------------------------*/
-	include_once( LASSO_DIR . 'includes/lasso_autoloader' );
+	include_once( LASSO_DIR . '/includes/lasso_autoloader.php' );
 	$loader = new lasso_autoloader();
 
 	$loader->register();
@@ -41,23 +41,22 @@ if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	 *----------------------------------------------------------------------------*/
 	//require_once plugin_dir_path( __FILE__ ) . 'public/class-lasso.php';
 
-	$loader->addNamespace('lasso', LASSO_DIR . '/includes' );
-	$loader->addNamespace('lasso\public_facing', LASSO_DIR . 'public/includes' );
-	$loader->addNamespace('lasso\internal_api', LASSO_DIR . 'internal-api' );
+	$loader->addNamespace('lasso', LASSO_DIR . 'includes' );
+	$loader->addNamespace('lasso_public_facing', LASSO_DIR . 'public/includes' );
+	//$loader->addNamespace('lasso\internal_api', LASSO_DIR . 'internal-api' );
 
-	register_activation_hook( __FILE__, array( 'lasso\public_facing\lasso', 'activate' ) );
-	register_deactivation_hook( __FILE__, array( 'lasso\public_facing\lasso', 'deactivate' ) );
+	register_activation_hook( __FILE__, array( 'lasso_public_facing\lasso', 'activate' ) );
+	register_deactivation_hook( __FILE__, array( 'lasso_public_facing\lasso', 'deactivate' ) );
 
-	add_action( 'plugins_loaded', array( 'lasso\public_facing\lasso', 'get_instance' ) );
+	add_action( 'plugins_loaded', array( 'lasso_public_facing\lasso', 'get_instance' ) );
 
 	/*----------------------------------------------------------------------------*
 	 * Dashboard and Administrative Functionality
 	 *----------------------------------------------------------------------------*/
 
 	if ( is_admin() ) {
-		$loader->addNamespace('lasso\admin', LASSO_DIR . '/includes' );
-		//require_once plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php';
-		add_action( 'plugins_loaded', array( 'lasso\admin\load_admin', 'get_instance' ) );
+		$loader->addNamespace('lasso_admin', LASSO_DIR . 'admin/includes' );
+		add_action( 'plugins_loaded', array( 'lasso_admin\load_admin', 'get_instance' ) );
 
 	}
 

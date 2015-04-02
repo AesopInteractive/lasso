@@ -8,7 +8,7 @@
  * @link      http://aesopinteractive.com
  * @copyright 2015 Aesopinteractive LLC
  */
-namespace lasso\public_facing;
+namespace lasso_public_facing;
 /**
  *
  *

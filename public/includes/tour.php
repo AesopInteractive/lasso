@@ -5,7 +5,7 @@
  * @since 0.6
  */
 
-namespace lasso\public_facing;
+namespace lasso_public_facing;
 
 class tour {
 

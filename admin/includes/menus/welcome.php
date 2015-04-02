@@ -4,7 +4,7 @@
  *
  * @since 0.8.2
  */
-namespace lasso\admin\menus;
+namespace lasso_admin\menus;
 
 class welcome {
 

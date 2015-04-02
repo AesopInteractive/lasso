@@ -1,6 +1,6 @@
 <?php
 
-namespace lasso\admin\menus;
+namespace lasso_admin\menus;
 
 class license {
 
@@ -22,7 +22,7 @@ class license {
 		$license_key = trim( get_option( 'lasso_license_key' ) );
 
 		// setup the updater
-		$edd_updater = new EDD_SL_Plugin_Updater( LASSO_STORE_URL , __FILE__, array(
+		$edd_updater = new \EDD_SL_Plugin_Updater( LASSO_STORE_URL , __FILE__, array(
 				'version'  => LASSO_VERSION,
 				'license'  => $license_key,
 				'item_name' => LASSO_STORE_ITEM_NAME,
