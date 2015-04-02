@@ -41,7 +41,10 @@ if ( ! version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	 *----------------------------------------------------------------------------*/
 	//require_once plugin_dir_path( __FILE__ ) . 'public/class-lasso.php';
 
+	$loader->addNamespace('lasso', LASSO_DIR . 'public/includes' );
 	$loader->addNamespace('lasso\public', LASSO_DIR . 'public/includes' );
+	//$loader->addNamespace('lasso\internal_api', LASSO_DIR . 'public/includes' );
+
 	register_activation_hook( __FILE__, array( 'Lasso', 'activate' ) );
 	register_deactivation_hook( __FILE__, array( 'Lasso', 'deactivate' ) );
 
@@ -53,7 +56,7 @@ if ( ! version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 
 	if ( is_admin() ) {
 		$loader->addNamespace('lasso\admin', LASSO_DIR . '/includes' );
-		require_once plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php';
+		//require_once plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php';
 		add_action( 'plugins_loaded', array( 'Lasso_Admin', 'get_instance' ) );
 
 	}

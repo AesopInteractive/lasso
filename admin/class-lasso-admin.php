@@ -47,8 +47,8 @@ class Lasso_Admin {
 			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
 		}
 
-		require_once LASSO_DIR.'/admin/includes/class.menu--welcome.php';
-		require_once LASSO_DIR.'/admin/includes/class.menu--settings.php';
+		//require_once LASSO_DIR.'/admin/includes/class.menu--welcome.php';
+		//require_once LASSO_DIR.'/admin/includes/class.menu--settings.php';
 
 		if ( !defined( 'LASSO_AGENCY_MODE' ) ) {
 			require_once LASSO_DIR.'admin/includes/class.menu--license.php';
