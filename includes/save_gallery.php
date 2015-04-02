@@ -73,4 +73,4 @@ class save_gallery {
 	}
 
 }
-new lassoSaveGallery;
+

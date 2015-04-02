@@ -196,4 +196,4 @@ class settings {
 
 	}
 }
-new lassoMenuSettings;
+

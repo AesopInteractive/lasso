@@ -61,4 +61,4 @@ class map {
 		}
 	}
 }
-new lassoProcessMap;
+

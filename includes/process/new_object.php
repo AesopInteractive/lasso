@@ -55,4 +55,4 @@ class new_object {
 		}
 	}
 }
-new lassoProcessNewObject;
+

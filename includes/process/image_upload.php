@@ -83,4 +83,3 @@ class image_upload {
 		}
 	}
 }
-new lassoUploadFeatImage;

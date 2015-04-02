@@ -195,4 +195,4 @@ class welcome {
 
 	}
 }
-new lassoWelcome;
+

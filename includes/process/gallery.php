@@ -205,4 +205,4 @@ class gallery {
 
 
 }
-new lassoProcessGallery;
+

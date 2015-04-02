@@ -56,4 +56,4 @@ class object_update {
 		}
 	}
 }
-new lassoProcessUpdatePost;
+

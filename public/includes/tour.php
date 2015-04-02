@@ -140,4 +140,4 @@ class tour {
 		}
 	}
 }
-new lassoEditorWelcome;
+

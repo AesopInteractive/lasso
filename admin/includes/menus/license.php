@@ -206,4 +206,4 @@ class license {
 		}
 	}
 }
-new lassoUpdater;
+

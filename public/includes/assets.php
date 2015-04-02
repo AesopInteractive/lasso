@@ -110,4 +110,4 @@ class assets {
 	}
 
 }
-new lassoAssets;
+

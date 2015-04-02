@@ -51,4 +51,4 @@ class title_update {
 		}
 	}
 }
-new lassoProcessTitleUpdate;
+
