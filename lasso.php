@@ -27,7 +27,7 @@ define( 'LASSO_VERSION', '0.9.1.1' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 
-if ( ! version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
+if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	/*----------------------------------------------------------------------------*
 	 * Register Autoloader
 	 *----------------------------------------------------------------------------*/
