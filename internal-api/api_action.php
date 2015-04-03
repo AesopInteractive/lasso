@@ -28,7 +28,7 @@ interface api_action {
 	 *
 	 * @return array
 	 */
-	public static function auth_cbs();
+	public static function auth_callbacks();
 
 
 }
