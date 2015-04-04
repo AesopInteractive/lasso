@@ -173,7 +173,7 @@ jQuery(function( $ ) {
 	});
 
 	// RESTORING LINK SELECTION
-	$('.lasso-link').live('click',function(e){
+	$('.lasso-editing .lasso-link').live('click',function(e){
 
 		e.preventDefault();
 

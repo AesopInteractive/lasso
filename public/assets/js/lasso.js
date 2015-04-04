@@ -10293,7 +10293,7 @@ jQuery(function( $ ) {
 	});
 
 	// RESTORING LINK SELECTION
-	$('.lasso-link').live('click',function(e){
+	$('.lasso-editing .lasso-link').live('click',function(e){
 
 		e.preventDefault();
 
@@ -11366,8 +11366,6 @@ jQuery(document).ready(function($){
 
 		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON()
 		      	,	imageURL   = undefined === attachment.sizes.large ? attachment.sizes.full.url : attachment.sizes.large.url
-
-		      	//console.log(attachment.sizes.large)
 
 		      	$(clicked).parent().next('img').attr({
 		      		'src': imageURL,
