@@ -403,30 +403,15 @@ function lasso_editor_allpost_modal() {
 	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
-			<?php
-
-			$posts = lasso_get_posts( $type, 10 );
-
-			?><ul class="lasso--post-object-list">
+			<ul class="lasso--post-object-list">
 
 				<li class="active" id="lasso--show-posts">Posts</li>
 				<li id="lasso--show-pages">Pages</li>
 
 			</ul>
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
-			<?php
 
-			if ( $posts ):
-
-				?><ul id="lasso--post-list" class="lasso--post-list"></ul><?php
-
-			else:
-
-				_e('No posts found.','lasso');
-
-			endif;
-
-			?>
+			<ul id="lasso--post-list" class="lasso--post-list"></ul>
 
 		</div>
 	</div>
