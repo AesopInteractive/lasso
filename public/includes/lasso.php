@@ -65,6 +65,9 @@ class lasso {
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
+		//enqueue assets
+		new assets();
+
 	}
 
 	/**
