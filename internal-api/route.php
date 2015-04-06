@@ -26,11 +26,11 @@ class route {
 		//get action, and if set, possibly act
 		$action = $wp_query->get( 'action' );
 		if ( $action && strpos( $_SERVER['REQUEST_URI'], 'lasso-internal-api' ) ) {
-			//@todo how to figure out nonce action?
 
 			$response = __( 'Lasso API Error.', 'lasso' );
 			$code = 400;
-			if ( wp_verify_nonce( $_POST( 'nonce' ) ) ) {
+			if ( wp_verify_nonce(  $_POST[ 'nonce' ], 'lasso_editor' ) ) {
+
 				$callback = self::find_callback();
 				$callback_instance = new $callback[ 'class' ];
 				$auth = self::auth( $action, $callback_instance, $callback[ 'method' ] );
@@ -43,9 +43,9 @@ class route {
 						$code = 500;
 					}
 
-				}else{
-					$code = $auth->status_code;
-				}
+					}else{
+						$code = $auth->status_code;
+					}
 
 			}else{
 				$code = 401;
