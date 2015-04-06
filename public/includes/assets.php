@@ -15,7 +15,7 @@ class assets {
 
 	public function scripts(){
 
-		// only run on posts and pages if user is logged in and has teh right capabilities (edit_post) by default
+		// only run on posts and pages if user is logged in and has the right capabilities (edit_post) by default
 		if ( apply_filters('lasso_runs_on', is_singular() ) && lasso_user_can() ) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
@@ -62,9 +62,11 @@ class assets {
 				'missingConfirm'	=> __('Update Settings', 'lasso')
 			);
 
+			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
+
 			// localized objects
 			$objects = array(
-				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
+				'ajaxurl' 			=> esc_url( $api_url ),
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE
 				'article_object'	=> $article_object,
 				'featImgClass'		=> $featImgClass,
@@ -104,7 +106,8 @@ class assets {
 			);
 
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
-				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
+			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
+
 		}
 
 	}
