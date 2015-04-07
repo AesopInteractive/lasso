@@ -61,7 +61,7 @@ class gallery implements api_action {
 
 		}
 
-		$gallery_ids = isset( $_data['gallery_ids'] ) ? $_data['gallery_ids'] : false;
+		$gallery_ids = isset( $data['gallery_ids'] ) ? $data['gallery_ids'] : false;
 
 		// bail if no gallery ids
 		if ( empty( $gallery_ids ) ) {
@@ -212,20 +212,21 @@ class gallery implements api_action {
 	 */
 	public static function params(){
 		$params[ 'process_gallery_swap' ] = array(
-			'gallery_id' => 'absint',
+			'id' => 'absint',
 		);
 
 		$params[ 'process_gallery_create' ] = array(
-			'post_id'   => 'absint',
+			'postid'   => 'absint',
 			'content'   => 'wp_kses_post',
-			'type'      => array(
+			'gallery_type'      => array(
 				'sanitize_text_field',
 				'trim' 
 			),
-			'gallery_type' => 'strip_tags'
+			'gallery_ids'   => 'lasso_sanitize_data',
+
 		);
 
-		$params[ 'process_gallery_options' ] = array(
+		$params[ 'process_gallery_update' ] = array(
 			'options'       => 'lasso_sanitize_data',
 			'id'            => 'absint',
 			'gallery_ids'   => 'lasso_sanitize_data',

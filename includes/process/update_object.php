@@ -8,6 +8,15 @@
 namespace lasso\process;
 
 class update_object {
+
+	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso-update-post-settings';
 	
 	/**
 	 * Process the post update
