@@ -9791,7 +9791,7 @@ jQuery(document).ready(function($){
 				,	gall_id 	= data['id']
 
 				var data      = {
-					action:    	'process_get_images',
+					action:    	'process_gallery_get-images',
 					post_id:   	gall_id,
 					nonce: 		nonce
 				};
@@ -9841,6 +9841,7 @@ jQuery(document).ready(function($){
 });
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){
@@ -11149,7 +11150,7 @@ jQuery(document).ready(function($){
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {
-				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
+				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
 				postid: 		lasso_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
@@ -11186,6 +11187,7 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){

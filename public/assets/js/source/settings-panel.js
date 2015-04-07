@@ -220,7 +220,7 @@
 				,	gall_id 	= data['id']
 
 				var data      = {
-					action:    	'process_get_images',
+					action:    	'process_gallery_get-images',
 					post_id:   	gall_id,
 					nonce: 		nonce
 				};
