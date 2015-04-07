@@ -137,9 +137,18 @@ class auth {
 
 	}
 
+	/**
+	 * Verify that the nonce is valid
+	 *
+	 * @since 0.0.1
+	 *
+	 * @access protected
+	 *
+	 * @return bool
+	 */
 	protected function check_nonce() {
-		if ( isset( $this->callback_instance->nonce ) ) {
-			$nonce = $this->callback_instance->nonce;
+		if ( isset( $this->callback_instance->nonce_action ) ) {
+			$nonce = $this->callback_instance->nonce_action;
 		}else{
 			$nonce = 'lasso_editor';
 		}
