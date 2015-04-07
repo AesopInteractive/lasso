@@ -8,52 +8,75 @@
 namespace lasso\process;
 
 class object_update {
+	
+	/**
+	 * Process the post update
+	 *
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool Always returns true.
+	 */
+	public function post( $data ) {
 
-	public function __construct() {
+		$status = isset( $data['status'] ) ? $data['status'] : false;
+		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
+		$slug   = isset( $data['story_slug'] ) ? $data['story_slug'] : false;
 
-		add_action( 'wp_ajax_process_update_post',     array( $this, 'process_update_post' ) );
+		$args = array(
+			'ID'   			=> (int) $postid,
+			'post_name'  	=> $slug,
+			'post_status' 	=> $status
+		);
+
+		wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
+
+		do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
+
+		return true;
+
 
 	}
 
 	/**
-	 * Process the post update
+	 * The keys required for the actions of this class.
 	 *
-	 * @since 1.0
+	 * @since     0.9.2
+	 *
+	 * @return array Array of keys to pull from $_POST per action and their sanitization callback
 	 */
-	public function process_update_post() {
+	public static function params(){
+		$params[ 'process_update_object_post' ] = array(
+			'postid' => 'absint',
+			'status' => 'strip_tags',
+			'story_slug' => array(
+				'trim',
+				'sanitize_title'
+			)
+		);
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_post' ) {
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
-
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-update-post-settings' ) ) {
-
-				$status = isset( $_POST['status'] ) ? $_POST['status'] : false;
-				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$slug   = isset( $_POST['story_slug'] ) ? $_POST['story_slug'] : false;
-
-				$args = array(
-					'ID'   			=> (int) $postid,
-					'post_name'  	=> sanitize_title( trim( $slug ) ),
-					'post_status' 	=> $status
-				);
-
-				wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
-
-				do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
-
-				// send back success
-				wp_send_json_success();
-
-			} else {
-
-				// send back success
-				wp_send_json_error();
-			}
-		}
+		return $params;
 	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'process_update_object_post' ] = array(
+			'lasso_user_can'
+		);
+
+
+
+		return $params;
+
+	}
+	
 }
 
