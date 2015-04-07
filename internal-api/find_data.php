@@ -30,7 +30,6 @@ class find_data {
 	 * @param string $action The name of the action we are processing for.
 	 */
 	public function __construct( $callback_instance, $action ) {
-		$this->$callback_instance = $callback_instance;
 		if ( is_object( $callback_instance ) ) {
 			$this->get_data( $callback_instance, $action );
 		}
@@ -53,12 +52,22 @@ class find_data {
 	protected function get_data( $callback_instance, $action ) {
 		$data = array();
 		if ( is_array( $_POST ) ) {
-			//@todo replace this!
-			$post_data = pods_sanitize( $_POST );
+			$params = $callback_instance::params();
+			if ( is_array( $params ) && isset( $params[ $action ] ) && is_array( $params[ $action ] ) ) {
+				$params = $params[ $action ];
+				foreach( $params as $key => $cb ) {
+					$_data = null;
+					if ( isset( $post_data[ $key ] ) ) {
+						$__data = $post_data[ $key ];
+						if ( function_exists( $cb ) ) {
+							$_data = call_user_func( $cb, $__data );
 
-			foreach( $callback_instance->params[ $action ] as $key ) {
-				if ( isset( $post_data[ $key ] ) ) {
-					$data[ $key ] = $post_data[ $key ];
+						}
+
+					}
+
+					$data[ $key ] = $_data;
+
 				}
 
 			}
