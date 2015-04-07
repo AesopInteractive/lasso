@@ -31,7 +31,7 @@ class new_object implements api_action {
 	public function post( $data ) {
 
 
-			$title  = $data[ 'title' ];
+			$title  = $data[ 'story_title' ];
 
 			if ( is_null( $data[ 'object'] ) ) {
 				$object = false;
@@ -66,8 +66,8 @@ class new_object implements api_action {
 	 * @return array Array of keys to pull from $_POST per action and their sanitization callback
 	 */
 	public static function params() {
-		$params[ 'post' ] = array(
-			'title' => array( 'wp_strip_all_tags', 'trim' ),
+		$params[ 'process_new_object_post' ] = array(
+			'story_title' => array( 'wp_strip_all_tags', 'trim' ),
 			'object' => 'trim'
 		);
 
@@ -83,7 +83,7 @@ class new_object implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'post' ] = array(
+		$params[ 'process_new_object_post' ] = array(
 		);
 
 		return $params;
