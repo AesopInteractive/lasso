@@ -28,26 +28,28 @@ class map implements api_action {
 	 *
 	 * @return bool Always returns true.
 	 */
-	public function save() {
+	public function save( $data ) {
 
 		$postid     	= isset( $data['postid'] ) ? $data['postid'] : false;
 		$locations    	= isset( $data['ase-map-component-locations'] ) ? $data['ase-map-component-locations'] : false;
 		$start_point    = isset( $data['ase-map-component-start-point'] ) ? $data['ase-map-component-start-point']: false;
 		$zoom       	= isset( $data['ase-map-component-zoom'] ) ? $data['ase-map-component-zoom' ] : false;
 
-		delete_post_meta( $postid, 'ase_map_component_locations' );
+		if ( is_array( $locations ) ) {
+			delete_post_meta( $postid, 'ase_map_component_locations' );
 
-		// update locations if set
-		foreach ( $locations as $location ) {
-			$point = json_decode( urldecode( $location ), true );
-			add_post_meta( $postid, 'ase_map_component_locations', $point );
+			// update locations if set
+			foreach ( $locations as $location ) {
+				$point = json_decode( urldecode( $location ), true );
+				add_post_meta( $postid, 'ase_map_component_locations', $point );
+			}
+
+			// udpate start point
+			update_post_meta( $postid, 'ase_map_component_start_point', $start_point );
+
+			// update zoom
+			update_post_meta( $postid, 'ase_map_component_zoom', $zoom );
 		}
-
-		// udpate start point
-		update_post_meta( $postid, 'ase_map_component_start_point', $start_point );
-
-		// update zoom
-		update_post_meta( $postid, 'ase_map_component_zoom', $zoom );
 
 		return true;
 

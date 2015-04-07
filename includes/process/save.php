@@ -91,7 +91,7 @@ class save implements api_action {
 			'content' => 'wp_kses_post'
 		);
 
-		$params[ 'process_publish_content' ] = array(
+		$params[ 'process_save_publish_content' ] = array(
 			'post_id' => 'absint',
 			'content' => 'wp_kses_post'
 		);
@@ -111,7 +111,7 @@ class save implements api_action {
 			'lasso_user_can'
 		);
 
-		$params[ 'process_publish_content' ] = array();
+		$params[ 'process_save_publish_content' ] = array();
 
 		return $params;
 

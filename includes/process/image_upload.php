@@ -61,12 +61,12 @@ class image_upload implements api_action {
 	 * @return array Array of keys to pull from $data per action and their sanitization callback
 	 */
 	public static function params(){
-		$params[ 'upload' ] = array(
+		$params[ 'process_image_upload' ] = array(
 			'post_id' => 'absint',
 			'image_id' => 'absint'
 		);
 
-		$params[ 'delete' ] = array(
+		$params[ 'process_image_delete' ] = array(
 			'post_id' => 'absint',
 		);
 
@@ -82,7 +82,7 @@ class image_upload implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'delete' ][ 'upload' ] = array(
+		$params[ 'process_image_upload' ][ 'process_image_delete' ] = array(
 			'lasso_user_can'
 		);
 

@@ -53,7 +53,7 @@ class gallery implements api_action {
 	 *
 	 * @return array|bool On success an array containing "message" or on failure false.
 	 */
-	public function create() {
+	public function create( $data ) {
 
 		//@todo adapt auth callbacks to work with args.
 		if (  ! lasso_user_can( 'publish_posts' ) ) {
@@ -211,11 +211,11 @@ class gallery implements api_action {
 	 * @return array Array of keys to pull from $data per action and their sanitization callback
 	 */
 	public static function params(){
-		$params[ 'swap' ] = array(
+		$params[ 'process_gallery_swap' ] = array(
 			'gallery_id' => 'absint',
 		);
 
-		$params[ 'create' ] = array(
+		$params[ 'process_gallery_create' ] = array(
 			'post_id'   => 'absint',
 			'content'   => 'wp_kses_post',
 			'type'      => array(
@@ -225,14 +225,14 @@ class gallery implements api_action {
 			'gallery_type' => 'strip_tags'
 		);
 
-		$params[ 'options' ] = array(
+		$params[ 'process_gallery_options' ] = array(
 			'options'       => 'lasso_sanitize_data',
 			'id'            => 'absint',
 			'gallery_ids'   => 'lasso_sanitize_data',
 
 		);
 
-		$params[ 'get_images' ] = array(
+		$params[ 'process_gallery_get_images' ] = array(
 			'post_id'       => 'absint'
 		);
 
@@ -248,19 +248,19 @@ class gallery implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'swap' ] = array(
+		$params[ 'process_gallery_swap' ] = array(
 			'lasso_user_can'
 		);
 
-		$params[ 'create' ] = array(
+		$params[ 'process_gallery_create' ] = array(
 			'is_user_logged_in'
 		);
 
-		$params[ 'update' ] = array(
+		$params[ 'process_gallery_update' ] = array(
 			'lasso_user_can'
 		);
 
-		$params[ 'get_images' ] = array();
+		$params[ 'process_gallery_get_images' ] = array();
 
 		return $params;
 
