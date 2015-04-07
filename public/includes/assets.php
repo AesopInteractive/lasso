@@ -6,6 +6,8 @@
 */
 namespace lasso_public_facing;
 
+use lasso\process\gallery;
+
 class assets {
 
 	public function __construct(){
@@ -64,6 +66,10 @@ class assets {
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
 
+			$gallery_class = new gallery();
+			$gallery_nonce_action = $gallery_class->nonce_action;
+			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
+
 			// localized objects
 			$objects = array(
 				'ajaxurl' 			=> esc_url( $api_url ),
@@ -86,10 +92,10 @@ class assets {
 				'components'		=> lasso_editor_components(),
 				'wpImgEdit'			=> lasso_editor_wpimg_edit(),
 				'featImgControls'   => lasso_editor_image_controls(),
-				'featImgNonce'		=> wp_create_nonce('lasso_editor_image'),
-				'getGallImgNonce'	=> wp_create_nonce('lasso_get_gallery_images'),
-				'createGallNonce'	=> wp_create_nonce('lasso_create_gallery'),
-				'swapGallNonce'		=> wp_create_nonce('lasso_swap_gallery'),
+				'featImgNonce'		=> $gallery_nonce,
+				'getGallImgNonce'	=> $gallery_nonce,
+				'createGallNonce'	=> $gallery_nonce,
+				'swapGallNonce'		=> $gallery_nonce,
 				'titleNonce'		=> wp_create_nonce('lasso_update_title'),
 				'wpImgNonce'		=> wp_create_nonce('lasso_update_wpimg'),
 				'component_options' => lasso_editor_options_blob(),
