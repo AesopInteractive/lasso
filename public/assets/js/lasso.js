@@ -11195,7 +11195,7 @@ jQuery(document).ready(function($){
 
 		// method to destroy the modal
 		var destroyModal = function(){
-			$('body').removeClass('lasso-modal-open');
+			$('body').removeClass('lasso-modal-open' );
 			$('.lasso--modal, #lasso--modal__overlay').remove();
 		}
 
@@ -11288,6 +11288,7 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){
