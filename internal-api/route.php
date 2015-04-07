@@ -89,10 +89,26 @@ class route {
 	 * @return array
 	 */
 	protected static function find_callback( $action ) {
-		return array(
-			'class' => 'foo',
-			'method' => 'bar'
-		);
+		if ( $action ) {
+			$parts = explode( '_', $action );
+
+			if ( isset( $parts[0] ) && isset( $parts[1] ) && isset( $parts[2] ) ) {
+				$class     = str_replace( '-', '_', $parts[1] );
+
+				$class = "\\lasso_public_facing\\{$parts[0]}\\{$class}";
+				$callback  = str_replace( '-', '_', $parts[1] );
+
+				return array(
+					'class'  => $class,
+					'method' => $callback,
+				);
+			}
+
+
+		}
+
+		return 405;
+
 	}
 
 	/**
