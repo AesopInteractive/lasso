@@ -7,7 +7,9 @@
  */
 namespace lasso\process;
 
-class update_object {
+use lasso\internal_api\api_action;
+
+class update_object implements api_action{
 
 	/**
 	 * The nonce action for this request.
