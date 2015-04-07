@@ -10,5 +10,5 @@
     * If the class or method names have underscores (_) in them, then a single dash (-) should be used instead.
         * For example, if the class is `lasso\hats\foo_bar`, and the callback method is `bar_foo` then the action would `hats_foo-bar_bar-foo`
 * The class used to process the request must implement the `lasso\internal_api\api_action` interface. The inline docs of that interface make clear the requirements.
-* The class used to process may optionally specify a nonce action to be used as the second param of `wp_verify_nonce()`, by decalaring a public property called `nonce_act
+* The class used to process may optionally specify a nonce action to be used as the second param of `wp_verify_nonce()`, by declaring a public property called `nonce_action`. If this property is not set then the nonce action will be assumed to "lasso_editor".
 
