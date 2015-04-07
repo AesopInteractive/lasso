@@ -7,52 +7,87 @@
 
 namespace lasso\process;
 
-class new_object {
+use lasso\internal_api\api_action;
 
-	public function __construct() {
+class new_object implements api_action {
 
-		add_action( 'wp_ajax_process_new_object',     array( $this, 'process_new_object' ) );
+	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso-editor-new-post';
 
-	}
 
 	/**
 	 * Process the post object
 	 *
+	 * @params array $data Sanitized data to use for saving.
+	 *
 	 * @since 1.0
 	 */
-	public function process_new_object() {
+	public function post( $data ) {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_new_object' ) {
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
+			$title  = $data[ 'title' ];
 
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-editor-new-post' ) ) {
-
-				$title  = isset( $_POST['story_title'] ) ? $_POST['story_title'] : false;
-				$object = isset( $_POST['object'] ) ? $_POST['object'] : false;
-
-				// insert a new post
-				$args = array(
-					'post_title'    => wp_strip_all_tags( trim( $title ) ),
-					'post_status'   => 'draft',
-					'post_type'    	=> trim( $object ),
-					'post_content'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') )
-				);
-
-				$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );
-
-				do_action( 'lasso_new_object', $postid, $object, $title, get_current_user_ID() );
-
-				wp_send_json_success( array( 'postlink' => get_permalink( $postid ) ) );
-
-			} else {
-
-				wp_send_json_error();
+			if ( is_null( $data[ 'object'] ) ) {
+				$object = false;
+			}else{
+				$object = $data[ 'object' ];
 			}
-		}
+
+
+			// insert a new post
+			$args = array(
+				'post_title'    => $title,
+				'post_status'   => 'draft',
+				'post_type'    	=> $object,
+				'post_content'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') )
+			);
+
+			$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );
+
+			do_action( 'lasso_new_object', $postid, $object, $title, get_current_user_ID() );
+
+			return array(
+				'postlink' => get_permalink( $postid )
+			);
+
+	}
+
+	/**
+	 * The keys required for the actions of this class.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of keys to pull from $_POST per action and their sanitization callback
+	 */
+	public static function params() {
+		$params[ 'post' ] = array(
+			'title' => array( 'wp_strip_all_tags', 'trim' ),
+			'object' => 'trim'
+		);
+
+		return $params;
+
+	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'post' ] = array(
+		);
+
+		return $params;
+
 	}
 }
 

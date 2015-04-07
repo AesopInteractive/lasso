@@ -346,7 +346,7 @@ function lasso_editor_newpost_modal() {
 
 				<div class="lasso--postsettings__footer" style="display:none;">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
-					<input type="hidden" name="action" value="process_new_object">
+					<input type="hidden" name="action" value="process_new-object_post">
 					<input type="hidden" name="object" value="<?php echo $type;?>">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="<?php esc_attr_e( 'Create', 'lasso' );?>">
