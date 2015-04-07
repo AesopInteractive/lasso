@@ -17,7 +17,7 @@ class save implements api_action {
 	 *
 	 * @param array $data Sanitized data to use for saving.
 	 *
-	 * @return bool
+	 * @return bool Always returns true.
 	 */
 	public function content( $data ) {
 
@@ -51,7 +51,7 @@ class save implements api_action {
 	 *
 	 * @param array $data Sanitized data to use for saving.
 	 *
-	 * @return bool
+	 * @return bool Always returns true.
 	 */
 	public function publish_content( $data ) {
 		$save_to_post_disabled = $this->save_to_post_disables();
