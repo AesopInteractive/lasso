@@ -118,6 +118,20 @@ function lasso_supported_no_save(){
 	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet');
 }
 
+/**
+ * Generic sanitization, useful for sanitization of arrays.
+ *
+ * @since 0.9.2
+ *
+ * @param array|object|string $data Data to sanatize.
+ *
+ * @return array|mixed|object|string|void
+ */
+function lasso_sanitize_data( $data ) {
+	return \lasso\sanatize::do_sanitize( $data );
+
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////
@@ -143,3 +157,4 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 	}
 endif;
+
