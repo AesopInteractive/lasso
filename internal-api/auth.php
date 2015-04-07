@@ -26,9 +26,21 @@ class auth {
 	/**
 	 * Status code set based on auth checks.
 	 *
+	 * @since 0.9.2
+	 *
 	 * @var int
 	 */
 	public $status_code;
+
+
+	/**
+	 * An error message.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $error_message;
 
 	/**
 	 * Constructor for this class
@@ -47,14 +59,15 @@ class auth {
 			$this->callback_instance = $callback_class;
 		}
 
-
 		if ( is_object( $this->callback_instance ) && $this->if_implements() ) {
 				if ( $this->other_auth_checks( $action ) ) {
-					$this->status_code = 401;
-				}else{
 					$this->status_code = 200;
+				}else{
+					$this->error_message = __( 'Unauthorized action', 'lasso' );
+					$this->status_code = 401;
 				}
 		}else{
+			$this->error_message = __( 'All callback classes used for processing the Lasso Internal API must implement the lasso\internal_api\api_action interface.', 'lasso' );
 			$this->status_code = 401;
 		}
 
@@ -75,19 +88,21 @@ class auth {
 		$auth_callbacks = $this->callback_instance->auth_callbacks();
 
 		if ( is_array( $auth_callbacks ) && isset( $auth_callbacks[ $action ] ) && is_array( $auth_callbacks[ $action ] ) ) {
-			$checks = $auth_callbacks[ $this->action ];
-			foreach ( $checks as $check ) {
-				if ( is_array( $check ) ) {
-					$check = call_user_func( array( $this->callback_instance, $check ) );
-				}else{
-					$check = call_user_func( $check );
+			$checks = $auth_callbacks[ $action ];
+			if ( is_array( $checks ) ) {
+				foreach ( $checks as $check ) {
+					if ( is_array( $check ) ) {
+						$check = call_user_func( array( $check[0], $check[1] ) );
+					} else {
+						$check = call_user_func( $check );
+					}
+
+					if ( false === $check ) {
+						return false;
+
+					}
+
 				}
-
-				if ( false === $check ) {
-					return false;
-
-				}
-
 			}
 
 		}

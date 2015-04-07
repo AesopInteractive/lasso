@@ -37,6 +37,7 @@ class route {
 				}elseif( ! class_exists( $callback['class'] ) ) {
 					$code = 415;
 				}else {
+					$action = str_replace( '-', '_', $action );
 					$callback_instance = new $callback['class'];
 					$auth              = self::auth( $action, $callback_instance, $callback['method'] );
 					if ( 200 == $auth->status_code && is_array( $callback ) ) {
@@ -49,8 +50,13 @@ class route {
 						}
 
 					} else {
+						if ( isset( $auth->error_message ) && is_string( $auth->error_message ) ) {
+							$response = $auth->error_message;
+						}
+
 						$code = $auth->status_code;
 					}
+
 				}
 
 			}else{
@@ -78,7 +84,8 @@ class route {
 	 * @return \lasso\internal_api\auth
 	 */
 	protected static function auth( $action, $callback ) {
-		new auth( $action, $callback );
+		return new auth( $action, $callback );
+
 	}
 
 	/**
