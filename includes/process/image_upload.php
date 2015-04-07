@@ -6,80 +6,88 @@
  */
 namespace lasso\process;
 
-class image_upload {
+use lasso\internal_api\api_action;
 
-	public function __construct() {
-
-		add_action( 'wp_ajax_process_featimg_upload',     array( $this, 'process_featimg_upload' ) );
-		add_action( 'wp_ajax_process_featimg_delete',     array( $this, 'process_featimg_delete' ) );
-	}
+class image_upload implements api_action {
 
 	/**
 	 *  Set the post thumbnail when the user sets it on the front end
 	 *
 	 * @since 0.1
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool Always returns true.
 	 */
-	public function process_featimg_upload() {
+	public function upload() {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_upload' ) {
+		$postid  	= isset( $data['postid'] ) ? $data['postid'] : false;
+		$image_id  	= isset( $data['image_id'] ) ? absint( $data['image_id'] ) : false;
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
+		set_post_thumbnail( $postid, $image_id );
 
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_editor_image' ) ) {
+		do_action( 'lasso_featured_image_set', $postid, $image_id, get_current_user_ID() );
 
-				$postid  	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$image_id  	= isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
+		return true;
 
-				set_post_thumbnail( $postid, $image_id );
-
-				do_action( 'lasso_featured_image_set', $postid, $image_id, get_current_user_ID() );
-
-				// send back success
-				wp_send_json_success();
-
-			} else {
-
-				// send back error
-				wp_send_json_error();
-
-			}
-		}
 	}
 
 	/**
 	 *  Delete the post thumbnail when deleted from front end
 	 *
 	 * @since 0.1
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool Always returns true.
 	 */
-	public function process_featimg_delete() {
+	public function delete( $data ) {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_featimg_delete' ) {
+		$postid  = isset( $data['postid'] ) ? $data['postid'] : false;
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
+		delete_post_thumbnail( $postid );
 
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_editor_image' ) ) {
+		do_action( 'lasso_featured_image_deleted', $postid, get_current_user_ID() );
 
-				$postid  = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+		return true;
 
-				delete_post_thumbnail( $postid );
-
-				do_action( 'lasso_featured_image_deleted', $postid, get_current_user_ID() );
-
-				// send back success
-				wp_send_json_success();
-
-			} else {
-
-				// send back error
-				wp_send_json_error();
-
-			}
-		}
 	}
+
+	/**
+	 * The keys required for the actions of this class.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of keys to pull from $data per action and their sanitization callback
+	 */
+	public static function params(){
+		$params[ 'upload' ] = array(
+			'post_id' => 'absint',
+			'image_id' => 'absint'
+		);
+
+		$params[ 'delete' ] = array(
+			'post_id' => 'absint',
+		);
+
+		return $params;
+
+	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'delete' ][ 'upload' ] = array(
+			'lasso_user_can'
+		);
+
+		return $params;
+
+	}
+	
 }

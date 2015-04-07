@@ -8,7 +8,7 @@
 		var $this = $(this);
 
 		var data = {
-			action: 'process_featimg_upload',
+			action: 'process_image-upload_upload',
 			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
 			nonce: 	lasso_editor.featImgNonce
@@ -85,7 +85,7 @@
 		var $this = $(this);
 
 		var data = {
-			action: 'process_featimg_delete',
+			action: 'process_upload-image_delete',
 			postid: lasso_editor.postid,
 			nonce: 	lasso_editor.featImgNonce
 		}
