@@ -92,6 +92,6 @@ class map implements api_action {
 		return $params;
 
 	}
-	
+
 }
 
