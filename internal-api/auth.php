@@ -48,7 +48,7 @@ class auth {
 		}
 
 
-		if ( is_object( $this->callback_instance ) ) {
+		if ( is_object( $this->callback_instance ) && $this->if_implements() ) {
 				if ( $this->other_auth_checks( $action ) ) {
 					$this->status_code = 401;
 				}else{
@@ -106,14 +106,14 @@ class auth {
 	 * @return bool
 	 */
 	protected function if_implements() {
-		if ( class_exists( $this->callback_instance[ 'class' ] ) ){
-			$implements = class_implements( $this->callback_instance[ 'class' ] );
-			if ( is_array( $implements ) && in_array( 'lasso\internal_api\api_action', $implements ) ) {
-				return true;
 
-			}
+		$implements = class_implements( $this->callback_instance );
+		if ( is_array( $implements ) && in_array( 'lasso\internal_api\api_action', $implements ) ) {
+			return true;
 
 		}
+
+
 
 	}
 
