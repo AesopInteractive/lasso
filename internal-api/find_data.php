@@ -57,10 +57,9 @@ class find_data {
 				$params = $params[ $action ];
 				foreach( $params as $key => $cb ) {
 					$_data = null;
-					if ( isset( $post_data[ $key ] ) ) {
-						$__data = $post_data[ $key ];
+					if ( isset( $_POST[ $key ] ) ) {
 						if ( function_exists( $cb ) ) {
-							$_data = call_user_func( $cb, $__data );
+							$_data = call_user_func( $cb, $_POST[ $key ] );
 
 						}
 
