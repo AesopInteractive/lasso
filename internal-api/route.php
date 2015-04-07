@@ -135,11 +135,13 @@ class route {
 	 * @return mixed
 	 */
 	protected static function route( $action, $callback, $method, $data ) {
-		if ( class_exists( $class ) && method_exists( $class, $method ) ) {
-			$response = call_user_func( $class, $method, $data  );
+		if (  method_exists( $callback, $method ) ) {
+			$response = call_user_func( array( $callback, $method ), $data  );
 
 			return $response;
+
 		}
+
 	}
 
 	/**
