@@ -7,7 +7,7 @@
  */
 namespace lasso\process;
 
-class object_update {
+class update_object {
 	
 	/**
 	 * Process the post update
@@ -77,6 +77,6 @@ class object_update {
 		return $params;
 
 	}
-	
+
 }
 
