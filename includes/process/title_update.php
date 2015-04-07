@@ -8,47 +8,74 @@ namespace lasso\process;
 
 class title_update {
 
-	public function __construct() {
-
-		add_action( 'wp_ajax_process_update_title',     array( $this, 'process_update_title' ) );
-
-	}
+	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso_update_title';
 
 	/**
 	 * Process title update
 	 *
-	 * @since 1.0
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool Always returns true.
 	 */
-	public function process_update_title() {
+	public function post() {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_title' ) {
+		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
+		$title  = isset( $data['title'] ) ? $data['title'] : false;
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
+		$args = array(
+			'ID'   => (int) $postid,
+			'post_title'    => wp_strip_all_tags( $title )
+		);
 
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_update_title' ) ) {
+		wp_update_post( apply_filters( 'lasso_title_updated_args', $args ) );
 
-				$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
-				$title  = isset( $_POST['title'] ) ? $_POST['title'] : false;
+		do_action( 'lasso_title_updated', $postid, $title, get_current_user_ID() );
 
-				$args = array(
-					'ID'   => (int) $postid,
-					'post_title'    => wp_strip_all_tags( $title )
-				);
+		return true;
 
-				wp_update_post( apply_filters( 'lasso_title_updated_args', $args ) );
-
-				do_action( 'lasso_title_updated', $postid, $title, get_current_user_ID() );
-
-				wp_send_json_success();
-
-			} else {
-
-				wp_send_json_error();
-			}
-		}
 	}
+
+	/**
+	 * The keys required for the actions of this class.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of keys to pull from $data per action and their sanitization callback
+	 */
+	public static function params(){
+		$params[ 'process_title_update_post' ] = array(
+			'postid' => 'absint',
+			'title' => 'strip_tags'
+		);
+
+		return $params;
+
+	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'process_title_update_post' ] = array(
+			'lasso_user_can'
+		);
+
+		return $params;
+
+	}
+
 }
 
