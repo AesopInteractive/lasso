@@ -6,126 +6,124 @@
  */
 namespace lasso\process;
 
-class gallery {
+use lasso\internal_api\api_action;
 
-	public function __construct() {
+class gallery implements api_action {
 
-		add_action( 'wp_ajax_process_get_images',     	 array( $this, 'process_get_images' ) );
-		add_action( 'wp_ajax_process_create_gallery',    array( $this, 'process_create_gallery' ) );
-		add_action( 'wp_ajax_process_swap_gallery',    	 array( $this, 'process_swap_gallery' ) );
-		add_action( 'wp_ajax_process_update_gallery',    array( $this, 'process_update_gallery' ) );
-
-	}
+	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso_gallery';
 
 	/**
 	 * Swaps a gallery during live editing
 	 *
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return array Key "markup" has the HTML.
 	 */
-	public function process_swap_gallery() {
+	public function swap( $data ) {
 
-		check_ajax_referer( 'lasso_swap_gallery', 'nonce' );
 
-		// only run for logged in users and check caps
-		if ( !lasso_user_can() )
-			return;
-
-		$id = isset( $_POST['gallery_id'] ) ? $_POST['gallery_id'] : false;
+		$id = $data[ 'id' ];
+		if ( is_null( $id ) ) {
+			$id = false;
+		}
 
 		$markup = sprintf( '<div contenteditable="false" class="lasso--empty-component aesop-component aesop-gallery-component" data-component-type="gallery" data-id="%s">%s</div>', $id, __( 'Save and refresh to view gallery.','lasso' ) );
 
-		wp_send_json_success( array( 'gallery' => $markup ) );
+		return array(
+			'gallery' => $markup
+		);
 
 	}
 
 	/**
 	 * Creates a gallery
 	 *
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return array|bool On success an array containing "message" or on failure false.
 	 */
-	public function process_create_gallery() {
+	public function create() {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_create_gallery' ) {
+		//@todo adapt auth callbacks to work with args.
+		if (  ! lasso_user_can( 'publish_posts' ) ) {
+			return false;
 
-			// only run for logged in users and check caps
-			if ( !is_user_logged_in() || !lasso_user_can( 'publish_posts' ) )
-				return;
-
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-generator-settings' ) ) {
-
-				$gallery_ids = isset( $_POST['gallery_ids'] ) ? $_POST['gallery_ids'] : false;
-
-				// bail if no gallery ids
-				if ( empty( $gallery_ids ) )
-					return;
-
-				$curr_post_title = isset( $_POST['curr_title'] ) ? $_POST['curr_title'] : rand();
-				$postid   		 = isset( $_POST['postid'] ) ? (int) $_POST['postid'] : false;
-				$options   		 = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-				$type   		 = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
-
-				// insert a new gallery
-				$args = array(
-					'post_title'    => $postid.'-'.rand(),
-					'post_status'   => 'publish',
-					'post_type'     => 'ai_galleries'
-				);
-
-				$postid = wp_insert_post( apply_filters( 'lasso_insert_gallery_args', $args ) );
-
-				// update gallery ids
-				if ( $gallery_ids ) {
-
-					update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
-
-				}
-
-				// update the gallery type
-				if ( !empty( $type ) ) {
-
-					update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
-
-				}
-
-				do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
-
-				wp_send_json_success( array( 'message' => 'gallery-created' ) );
-
-			} else {
-				wp_send_json_error();
-			}
 		}
+
+		$gallery_ids = isset( $_data['gallery_ids'] ) ? $_data['gallery_ids'] : false;
+
+		// bail if no gallery ids
+		if ( empty( $gallery_ids ) ) {
+			return false;
+		}
+
+		$postid   		 = isset( $data['postid'] ) ? (int) $data['postid'] : false;
+		$type   		 = isset( $data['gallery_type'] ) ? $data['gallery_type'] : false;
+
+		// insert a new gallery
+		$args = array(
+			'post_title'    => $postid.'-'.rand(),
+			'post_status'   => 'publish',
+			'post_type'     => 'ai_galleries'
+		);
+
+		$postid = wp_insert_post( apply_filters( 'lasso_insert_gallery_args', $args ) );
+
+		// update gallery ids
+		if ( $gallery_ids ) {
+
+			update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
+
+		}
+
+		// update the gallery type
+		if ( !empty( $type ) ) {
+
+			update_post_meta( $postid, 'aesop_gallery_type', $type ) ) );
+
+		}
+
+		do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
+
+		return array(
+			'message' => 'gallery-created'
+		);
+
 	}
+
 	/**
 	 * Update an existing gallery
 	 *
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return array "message" key has the message.
 	 */
-	public function process_update_gallery() {
+	public function update( $data ) {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_update_gallery' ) {
+			$options      = isset( $data['fields'] ) ? $data['fields'] : false;
+			$postid   	  = !empty( $options ) ? (int) $options['id'] : false;
+			$gallery_ids  = isset( $data['gallery_ids'] ) ? $data['gallery_ids'] : false;
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
+			// run an action
+			do_action( 'lasso_gallery_saved', $postid, $gallery_ids, $options, get_current_user_ID() );
 
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-generator-settings' ) ) {
+			return array(
+				'message' => 'gallery-updated'
+			);
 
-				$options      = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
-				$postid   	  = !empty( $options ) ? (int) $options['id'] : false;
-				$gallery_ids  = isset( $_POST['gallery_ids'] ) ? $_POST['gallery_ids'] : false;
-
-				// run an action
-				do_action( 'lasso_gallery_saved', $postid, $gallery_ids, $options, get_current_user_ID() );
-
-				// send back success
-				wp_send_json_success( array( 'message' => 'gallery-updated' ) );
-
-			} else {
-
-				// aww snap something went wrong so say something
-				wp_send_json_error( array( 'message' => 'error' ) );
-			}
-		}
 	}
 
 	/**
@@ -133,37 +131,31 @@ class gallery {
 	 * opens the panel, gets the gallery unique, then makes a call to get the gallery images
 	 *
 	 * @since 0.12
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool
 	 */
-	public function process_get_images() {
+	public function get_images( $data ) {
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_get_images' ) {
-
-			// only run for logged in users and check caps
-			if ( !is_user_logged_in() || !current_user_can( 'edit_posts' ) )
-				return;
-
-			// bail if no id specified like on new galleries
-			if ( empty( $_POST['post_id'] ) )
-				return;
-
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso_get_gallery_images' ) ) {
-
-				$postid  = isset( $_POST['post_id'] ) ? $_POST['post_id'] : false;
-
-				// fetch image ids from cache
-				$image_ids  = get_post_meta( $postid, '_ase_gallery_images', true );
-
-				// send ids to return images
-				self::get_images( $image_ids );
-
-			} else {
-
-				echo 'error';
-			}
+		//check caps
+		if ( !current_user_can( 'edit_posts' ) ) {
+			return false;
 		}
 
-		die();
+		// bail if no id specified like on new galleries
+		if ( is_null( $data['post_id'] ) || empty( $data['post_id'] ) ) {
+			return false;
+		}
+
+		$postid  = isset( $data['post_id'] ) ? $data['post_id'] : false;
+
+		// fetch image ids from cache
+		$image_ids  = get_post_meta( $postid, '_ase_gallery_images', true );
+
+		// send ids to return images
+		return self::get_the_images( $image_ids );
+
 	}
 
 	/**
@@ -172,14 +164,14 @@ class gallery {
 	 * @param $image_ids array array of image ids
 	 * @since 0.1
 	 */
-	private function get_images( $image_ids = '' ) {
+	private function get_the_images( $image_ids = '' ) {
 
 		if ( empty( $image_ids ) )
 			return;
 
 		$image_ids  = array_map( 'intval', explode( ',', $image_ids ) );
 
-		echo '<ul id="ase-gallery-images">';
+		$out[] = '<ul id="ase-gallery-images">';
 
 		if ( !empty( $image_ids ) ):
 
@@ -187,19 +179,90 @@ class gallery {
 
 				$image    =  wp_get_attachment_image_src( $image_id, 'thumbnail', false );
 
-				?>
-		        <li id="<?php echo absint( $image_id );?>" class="ase-gallery-image">
-		        	<i class="dashicons dashicons-no-alt" title="<?php _e( 'Delete From Gallery', 'lasso' );?>"></i>
-		        	<i class='dashicons dashicons-edit' title="<?php _e( 'Edit Image Caption', 'lasso' );?>"></i>
-		           	<img src="<?php echo esc_url( $image[0] );?>">
+				$out[] = sprintf( '
+		        <li id="%1s" class="ase-gallery-image">
+		        	<i class="dashicons dashicons-no-alt" title="%2s"></i>
+		        	<i class="dashicons dashicons-edit" title="%3s"></i>
+		           	<img src="%4s">
 		        </li>
-		        <?php
+		       ',
+					absint( $image_id ),
+					__( 'Delete From Gallery', 'lasso' ),
+					__( 'Edit Image Caption', 'lasso' ),
+					esc_url( $image[0] )
+				);
 
 			}
 
 		endif;
 
-		echo '</ul>';
+		$out[] = '</ul>';
+
+		return implode( '', $out );
+
+	}
+
+
+	/**
+	 * The keys required for the actions of this class.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of keys to pull from $data per action and their sanitization callback
+	 */
+	public static function params(){
+		$params[ 'swap' ] = array(
+			'gallery_id' => 'absint',
+		);
+
+		$params[ 'create' ] = array(
+			'post_id'   => 'absint',
+			'content'   => 'wp_kses_post',
+			'type'      => array(
+				'sanitize_text_field',
+				'trim' 
+			),
+			'gallery_type' => 'strip_tags'
+		);
+
+		$params[ 'options' ] = array(
+			'options'       => 'lasso_sanitize_data',
+			'id'            => 'absint',
+			'gallery_ids'   => 'lasso_sanitize_data',
+
+		);
+
+		$params[ 'get_images' ] = array(
+			'post_id'       => 'absint'
+		);
+
+		return $params;
+
+	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'swap' ] = array(
+			'lasso_user_can'
+		);
+
+		$params[ 'create' ] = array(
+			'is_user_logged_in'
+		);
+
+		$params[ 'update' ] = array(
+			'lasso_user_can'
+		);
+
+		$params[ 'get_images' ] = array();
+
+		return $params;
 
 	}
 
