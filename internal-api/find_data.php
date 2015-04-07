@@ -55,14 +55,14 @@ class find_data {
 			$params = $callback_instance::params();
 			if ( is_array( $params ) && isset( $params[ $action ] ) && is_array( $params[ $action ] ) ) {
 				$params = $params[ $action ];
-				foreach( $params as $key => $cb ) {
+				foreach( $params as $key => $callback ) {
 					$_data = null;
-					if ( isset( $_POST[ $key ] ) ) {
-						if ( function_exists( $cb ) ) {
-							$_data = call_user_func( $cb, $_POST[ $key ] );
-
+					if ( is_array( $callback ) ) {
+						foreach( $callback as $cb ) {
+							$_data = $this->sanitize( $key, $cb );
 						}
-
+					}else{
+						$_data = $this->sanitize( $key, $callback );
 					}
 
 					$data[ $key ] = $_data;
@@ -75,6 +75,35 @@ class find_data {
 
 		$this->data = $data;
 
+	}
+
+	/**
+	 * Sanitize a $_POST key
+	 *
+	 * @since 0.9.2
+	 *
+	 * @access protected
+	 *
+	 * @param string $key The key of _$POST to sanitize.
+	 * @param string|array $cb The name of callback functions, or an array fo callback functions to do Sanitization.
+	 *
+	 * @return string|null Sanitized data or null.
+	 */
+	protected function sanitize( $key, $cb ) {
+		$_data = null;
+		if ( isset( $_POST[ $key ] ) ) {
+			if ( function_exists( $cb ) ) {
+				$_data = call_user_func( $cb, $_POST[ $key ] );
+
+				return $_data;
+
+			}
+
+			return $_data;
+
+		}
+
+		return $_data;
 	}
 
 }

@@ -83,7 +83,7 @@ class save implements api_action {
 	 *
 	 * @since     0.9.2
 	 *
-	 * @return array Array of keys to pull from $_POST per action and their sansitization callback
+	 * @return array Array of keys to pull from $_POST per action and their sanitization callback
 	 */
 	public static function params(){
 		$params[ 'process_save_content' ] = array(
