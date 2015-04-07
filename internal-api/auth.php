@@ -59,16 +59,21 @@ class auth {
 			$this->callback_instance = $callback_class;
 		}
 
-		if ( is_object( $this->callback_instance ) && $this->if_implements() ) {
+		if ( $this->check_nonce() ) {
+			if ( is_object( $this->callback_instance ) && $this->if_implements() ) {
 				if ( $this->other_auth_checks( $action ) ) {
 					$this->status_code = 200;
-				}else{
+				} else {
 					$this->error_message = __( 'Unauthorized action', 'lasso' );
-					$this->status_code = 401;
+					$this->status_code   = 401;
 				}
-		}else{
-			$this->error_message = __( 'All callback classes used for processing the Lasso Internal API must implement the lasso\internal_api\api_action interface.', 'lasso' );
-			$this->status_code = 401;
+			} else {
+				$this->error_message = __( 'All callback classes used for processing the Lasso Internal API must implement the lasso\internal_api\api_action interface.', 'lasso' );
+				$this->status_code   = 401;
+			}
+		} else {
+			$this->status_code   = 401;
+			$this->error_message = __( 'Nonce invalid', 'lasso' );
 		}
 
 	}
@@ -129,6 +134,17 @@ class auth {
 		}
 
 
+
+	}
+
+	protected function check_nonce() {
+		if ( isset( $this->callback_instance->nonce ) ) {
+			$nonce = $this->callback_instance->nonce;
+		}else{
+			$nonce = 'lasso_editor';
+		}
+
+		return wp_verify_nonce( $_POST[ 'nonce' ], $nonce );
 
 	}
 

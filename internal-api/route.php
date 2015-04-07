@@ -29,7 +29,9 @@ class route {
 
 			$response = __( 'Lasso API Error.', 'lasso' );
 			$code = 400;
-			if ( true==true || wp_verify_nonce(  $_POST[ 'nonce' ], 'lasso_editor' ) ) {
+
+			//see if have a nonce. Will verify it in auth class.
+			if ( isset( $_POST[ 'nonce' ] ) ) {
 
 				$callback = self::find_callback( strip_tags( $action ) );
 				if ( is_int( $callback )  ) {
@@ -61,7 +63,7 @@ class route {
 
 			}else{
 				$code = 401;
-				$response = __( 'Nonce invalid', 'lasso' );
+				$response = __( 'Nonce not set.', 'lasso' );
 			}
 
 			self::respond( $response, $code );
