@@ -34,6 +34,8 @@ class route {
 				$callback = self::find_callback( strip_tags( $action ) );
 				if ( is_int( $callback )  ) {
 					$code = $callback;
+				}elseif( ! class_exists( $callback['class'] ) ) {
+					$code = 415;
 				}else {
 					$callback_instance = new $callback['class'];
 					$auth              = self::auth( $action, $callback_instance, $callback['method'] );
@@ -95,8 +97,8 @@ class route {
 			if ( isset( $parts[0] ) && isset( $parts[1] ) && isset( $parts[2] ) ) {
 				$class     = str_replace( '-', '_', $parts[1] );
 
-				$class = "\\lasso_public_facing\\{$parts[0]}\\{$class}";
-				$callback  = str_replace( '-', '_', $parts[1] );
+				$class = "\\lasso\\{$parts[0]}\\{$class}";
+				$callback  = str_replace( '-', '_', $parts[2] );
 
 				return array(
 					'class'  => $class,
