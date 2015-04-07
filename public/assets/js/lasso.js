@@ -10443,7 +10443,7 @@ jQuery(document).ready(function($){
 
 		// gather the data
 		var data      = {
-			action:    	$this.hasClass('lasso-publish-post') ? 'process_publish_content' : 'process_save_content',
+			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
 			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
 			post_id:   	postid,
@@ -10580,6 +10580,7 @@ jQuery(document).ready(function($){
 
 	});
 });
+
 (function( $ ) {
 	'use strict';
 
@@ -11366,8 +11367,6 @@ jQuery(document).ready(function($){
 
 		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON()
 		      	,	imageURL   = undefined === attachment.sizes.large ? attachment.sizes.full.url : attachment.sizes.large.url
-
-		      	//console.log(attachment.sizes.large)
 
 		      	$(clicked).parent().next('img').attr({
 		      		'src': imageURL,

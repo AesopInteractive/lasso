@@ -6,7 +6,9 @@
  */
 namespace lasso\process;
 
-class save {
+use lasso\internal_api\api_action;
+
+class save implements api_action {
 
 	public function __construct() {
 
@@ -18,74 +20,127 @@ class save {
 	/**
 	 * Process the post save
 	 *
-	 * @since 1.0
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool
 	 */
-	public function process_save_content() {
+	public function content( $data ) {
 
-		check_ajax_referer( 'lasso_editor', 'nonce' );
+		$save_to_post_disabled = $this->save_to_post_disables();
 
-		if ( isset( $_POST['post_id'] ) ) {
+		$postid = (int) $data[ 'post_id' ];
+		$content = $data[ 'content' ];
 
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
+		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
-			// main variables being passed through include the postid and content
-			$postid  = isset( $_POST['post_id'] ) ? $_POST['post_id'] : null;
-			$content = isset( $_POST['content'] ) ? $_POST['content'] : null;
+			$args = array(
+				'ID'           => (int) $postid,
+				'post_content' => $content
+			);
 
-			$save_to_post_disabled = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
-
-			if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_save_content' ) {
-
-				if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
-
-					$args = array(
-						'ID'           => (int) $postid,
-						'post_content' => $content
-					);
-					wp_update_post( apply_filters( 'lasso_object_save_args', $args ) );
-
-				}
-
-				// run save action
-				do_action( 'lasso_post_saved', $postid, $content, get_current_user_ID() );
-
-				// send back success
-				wp_send_json_success();
-
-			} elseif ( isset( $_POST['action'] ) && $_POST['action'] == 'process_publish_content' ) {
-
-				if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
-
-					// bail out if the user can't publish posts
-					if ( !lasso_user_can( 'publish_posts' ) )
-						return;
-
-					$args = array(
-						'ID'           	=> (int) $postid,
-						'post_content' 	=> $content,
-						'post_status' 	=> 'publish'
-					);
-					wp_update_post( apply_filters( 'lasso_object_publish_args', $args ) );
-
-				}
-
-				do_action( 'lasso_post_published', $postid, $content, get_current_user_ID() );
-
-				// send back success
-				wp_send_json_success();
-
-			} else {
-
-				wp_send_json_error();
-
-			}
-
-		} else {
-
-			wp_send_json_error();
+			wp_update_post( apply_filters( 'lasso_object_save_args', $args ) );
 
 		}
+
+		// run save action
+		do_action( 'lasso_post_saved', $postid, $content, get_current_user_ID() );
+
+		return true;
+
 	}
+
+	/**
+	 * Process the post save
+	 *
+	 * @since 0.9.2
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool
+	 */
+	public function publish_content( $data ) {
+		$save_to_post_disabled = $this->save_to_post_disables();
+
+		$postid = (int) $data[ 'post_id' ];
+		$content = $data[ 'content' ];
+
+		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
+
+
+
+			$args = array (
+				'ID'           	=> $postid,
+				'post_content' 	=> $content,
+				'post_status' 	=> 'publish'
+			);
+			wp_update_post( apply_filters( 'lasso_object_publish_args', $args ) );
+
+		}
+
+		do_action( 'lasso_post_published', $postid, $content, get_current_user_ID() );
+
+		return true;
+
+	}
+
+	/**
+	 * The keys required for the actions of this class.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of keys to pull from $_POST per action and their sansitization callback
+	 */
+	public static function params(){
+		$params[ 'process_save_content' ] = array(
+			'post_id' => 'absint',
+			'content' => 'wp_kses_post'
+		);
+
+		$params[ 'process_publish_content' ] = array(
+			'post_id' => 'absint',
+			'content' => 'wp_kses_post'
+		);
+
+		return $params;
+	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.2
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'process_save_content' ] = array(
+			'lasso_user_can'
+		);
+
+		$params[ 'process_publish_content' ] = array(
+			'post_id' => 'absint',
+			'content' => 'wp_kses_post'
+		);
+
+		return $params;
+
+	}
+
+	/**
+	 * Check if saving post is disabled.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @access protected
+	 *
+	 * @return bool
+	 */
+	protected function save_to_post_disables() {
+		$save_to_post_disabled = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
+
+		return $save_to_post_disabled;
+
+	}
+
 }

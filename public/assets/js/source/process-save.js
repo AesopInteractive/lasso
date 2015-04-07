@@ -87,7 +87,7 @@ jQuery(document).ready(function($){
 
 		// gather the data
 		var data      = {
-			action:    	$this.hasClass('lasso-publish-post') ? 'process_publish_content' : 'process_save_content',
+			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
 			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
 			post_id:   	postid,
