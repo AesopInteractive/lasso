@@ -90,7 +90,7 @@ class gallery implements api_action {
 		// update the gallery type
 		if ( !empty( $type ) ) {
 
-			update_post_meta( $postid, 'aesop_gallery_type', $type ) ) );
+			update_post_meta( $postid, 'aesop_gallery_type', $type );
 
 		}
 
