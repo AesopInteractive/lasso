@@ -9,14 +9,7 @@ namespace lasso\process;
 use lasso\internal_api\api_action;
 
 class save implements api_action {
-
-	public function __construct() {
-
-		add_action( 'wp_ajax_process_save_content',     	array( $this, 'process_save_content' ) );
-		add_action( 'wp_ajax_process_publish_content',      array( $this, 'process_save_content' ) );
-
-	}
-
+	
 	/**
 	 * Process the post save
 	 *
