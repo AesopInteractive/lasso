@@ -11,5 +11,6 @@
         * For example, if the class is `lasso\hats\foo_bar`, and the callback method is `bar_foo` then the action would be `hats_foo-bar_bar-foo`.
 * The class used to process the request must implement the `lasso\internal_api\api_action` interface. The inline docs of that interface make the requirements clear.
 * The class used to process may optionally specify a nonce action to be used as the second param of `wp_verify_nonce()`, by declaring a public property called `nonce_action`. If this property is not set then the nonce action will be assumed to "lasso_editor".
+* All nonces must be transmitted in $_POST[ 'nonce' ]
 * The method used to process the request must return an array or true on success.
 * The method used to process the request must return false or null on failure.
