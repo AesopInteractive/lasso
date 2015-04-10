@@ -31,7 +31,7 @@ class gallery implements api_action {
 	public function swap( $data ) {
 
 
-		$id = $data[ 'id' ];
+		$id = $data[ 'gallery_id' ];
 		if ( is_null( $id ) ) {
 			$id = false;
 		}
@@ -212,7 +212,7 @@ class gallery implements api_action {
 	 */
 	public static function params(){
 		$params[ 'process_gallery_swap' ] = array(
-			'id' => 'absint',
+			'gallery_id' => 'absint',
 		);
 
 		$params[ 'process_gallery_create' ] = array(
@@ -220,17 +220,16 @@ class gallery implements api_action {
 			'content'   => 'wp_kses_post',
 			'gallery_type'      => array(
 				'sanitize_text_field',
-				'trim' 
+				'trim'
 			),
 			'gallery_ids'   => 'lasso_sanitize_data',
 
 		);
 
 		$params[ 'process_gallery_update' ] = array(
-			'options'       => 'lasso_sanitize_data',
-			'id'            => 'absint',
+			'postid'        => 'absint',
 			'gallery_ids'   => 'lasso_sanitize_data',
-
+			'fields'        => 'lasso_sanitize_data'
 		);
 
 		$params[ 'process_gallery_get_images' ] = array(
