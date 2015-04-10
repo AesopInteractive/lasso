@@ -198,7 +198,7 @@ class gallery implements api_action {
 
 		$out[] = '</ul>';
 
-		return implode( '', $out );
+		return array( 'html' => implode( '', $out ) );
 
 	}
 

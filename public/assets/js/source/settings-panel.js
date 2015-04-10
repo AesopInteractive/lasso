@@ -228,7 +228,7 @@
 				// post ajax response with data
 				$.post( ajaxurl, data, function(response) {
 
-					$('#lasso--gallery__images').html( response )
+					$('#lasso--gallery__images').html( response.data.html );
 
 					/////////////
 					// CALL SORTABLE ON RECIEVED IMAGES
