@@ -31,10 +31,17 @@ define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
  * Load plugin if PHP version is 5.4 or later.
  */
 if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
+
 	include_once( LASSO_DIR . '/bootstrap.php' );
 
-}else{
-	//@todo error!
+} else {
+
+	add_action('admin_head', 'lasso_fail_notice');
+	function lasso_fail_notice(){
+
+		printf('<div class="error"><p>Lasso requires PHP 5.4 or higher.</p></div>');
+
+	}
 }
 
 
