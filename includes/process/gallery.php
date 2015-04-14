@@ -125,11 +125,11 @@ class gallery implements api_action {
 			$type = false;
 		}
 
-			save_gallery::save_gallery_options( $postid, $gallery_ids, $options, $type );
+		save_gallery::save_gallery_options( $postid, $gallery_ids, $options, $type );
 
-			return array(
-				'message' => 'gallery-updated'
-			);
+		return array(
+			'message' => 'gallery-updated'
+		);
 
 	}
 
