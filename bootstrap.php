@@ -29,6 +29,14 @@ register_deactivation_hook( __FILE__, array( 'lasso_public_facing\lasso', 'deact
 
 add_action( 'plugins_loaded', array( 'lasso_public_facing\lasso', 'get_instance' ) );
 
+//load tour
+add_action(  'init', function() {
+	if (! is_admin() && is_user_logged_in() ) {
+		new \lasso_public_facing\tour();
+	}
+});
+
+
 /*----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality
  *----------------------------------------------------------------------------*/

@@ -11436,7 +11436,7 @@ jQuery(document).ready(function($){
 			} else {
 
 				var data = {
-					action: 		'process_hide_tour',
+					action: 		'process_tour_hide',
 					nonce: 			$(this).data('nonce')
 				}
 

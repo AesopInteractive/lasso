@@ -12,7 +12,6 @@ class tour {
 	public function __construct() {
 
 		add_action( 'wp_footer',       array( $this, 'draw_tour' ) );
-		add_action( 'wp_ajax_process_hide_tour',   array( $this, 'process_hide_tour' ) );
 
 	}
 
@@ -20,7 +19,7 @@ class tour {
 	*	Draw the modal used to house the walk through
 	*/
 	public function draw_tour() {
-
+	
 		$tour_hidden = get_user_meta( get_current_user_ID(), 'lasso_hide_tour', true );
 
 		if ( apply_filters( 'lasso_runs_on', is_singular() ) && lasso_user_can() && !$tour_hidden ) {
@@ -111,33 +110,5 @@ class tour {
 
 	}
 
-	/*
-	*	When the user decides to not have this show again save user meta
-	*/
-	public function process_hide_tour() {
-
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_hide_tour' ) {
-
-			// only run for logged in users and check caps
-			if ( !lasso_user_can() )
-				return;
-
-			// ok security passes so let's process some data
-			if ( wp_verify_nonce( $_POST['nonce'], 'lasso-editor-tour' ) ) {
-
-				$user_id = get_current_user_ID();
-
-				update_user_meta( $user_id, 'lasso_hide_tour', true );
-
-				do_action( 'lasso_tour_hidden', $user_id );
-
-				wp_send_json_success();
-
-			} else {
-
-				wp_send_json_error();
-			}
-		}
-	}
 }
 
