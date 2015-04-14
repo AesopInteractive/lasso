@@ -8,18 +8,11 @@ namespace lasso;
 
 class save_gallery {
 
-	public function __construct() {
-
-		add_action( 'lasso_gallery_saved',     array( $this, 'save_gallery_options' ), 10, 3 );
-	}
 
 	/**
 	 * Update an existing galleries options
-	 *  @todo this needs to be cleaned up
 	 */
-	public function save_gallery_options( $postid, $gallery_ids, $options ) {
-
-		$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
+	public static function save_gallery_options( $postid, $gallery_ids, $options, $type = false ) {
 
 		// gallery width
 		$gallery_width = isset( $options['width'] ) ? $options['width'] : false;

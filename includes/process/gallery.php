@@ -7,6 +7,7 @@
 namespace lasso\process;
 
 use lasso\internal_api\api_action;
+use lasso\save_gallery;
 
 class gallery implements api_action {
 
@@ -113,12 +114,18 @@ class gallery implements api_action {
 	 */
 	public function update( $data ) {
 
-			$options      = isset( $data['fields'] ) ? $data['fields'] : false;
-			$postid   	  = !empty( $options ) ? (int) $options['id'] : false;
-			$gallery_ids  = isset( $data['gallery_ids'] ) ? $data['gallery_ids'] : false;
+		$options      = isset( $data['fields'] ) ? $data['fields'] : false;
+		$postid   	  = !empty( $options ) ? (int) $options['id'] : false;
+		$gallery_ids  = isset( $data['gallery_ids'] ) ? $data['gallery_ids'] : false;
+		if ( ! empty( $data ) && $data[ 'gallery_type' ] ) {
+			$type = $data[ 'gallery_type' ];
+		}elseif ( ! empty( $options ) && $options[ 'galleryType' ] ) {
+			$type = $options[ 'galleryType' ];
+		}else{
+			$type = false;
+		}
 
-			// run an action
-			do_action( 'lasso_gallery_saved', $postid, $gallery_ids, $options, get_current_user_ID() );
+			save_gallery::save_gallery_options( $postid, $gallery_ids, $options, $type );
 
 			return array(
 				'message' => 'gallery-updated'
@@ -213,12 +220,13 @@ class gallery implements api_action {
 	public static function params(){
 		$params[ 'process_gallery_swap' ] = array(
 			'gallery_id' => 'absint',
+
 		);
 
 		$params[ 'process_gallery_create' ] = array(
 			'postid'   => 'absint',
 			'content'   => 'wp_kses_post',
-			'gallery_type'      => array(
+			'galleryType'      => array(
 				'sanitize_text_field',
 				'trim'
 			),
@@ -229,7 +237,11 @@ class gallery implements api_action {
 		$params[ 'process_gallery_update' ] = array(
 			'postid'        => 'absint',
 			'gallery_ids'   => 'lasso_sanitize_data',
-			'fields'        => 'lasso_sanitize_data'
+			'fields'        => 'lasso_sanitize_data',
+			'gallery_type'      => array(
+				'sanitize_text_field',
+				'trim'
+			)
 		);
 
 		$params[ 'process_gallery_get_images' ] = array(
