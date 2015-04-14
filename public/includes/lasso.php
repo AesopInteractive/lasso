@@ -47,17 +47,6 @@ class lasso {
 		require_once LASSO_DIR.'/public/includes/helpers.php';
 		require_once LASSO_DIR.'/public/includes/editor-modules--gallery.php';
 		require_once LASSO_DIR.'/public/includes/components.php';
-		//require_once LASSO_DIR.'/public/includes/class.tour.php';
-/**
-		require_once LASSO_DIR.'/includes/class.process-save.php';
-		require_once LASSO_DIR.'/includes/class.process-gallery.php';
-		require_once LASSO_DIR.'/includes/class.save-gallery.php';
-		require_once LASSO_DIR.'/includes/class.process-object-update.php';
-		require_once LASSO_DIR.'/includes/class.process-image-upload.php';
-		require_once LASSO_DIR.'/includes/class.process-new-object.php';
-		require_once LASSO_DIR.'/includes/class.process-title-update.php';
-		require_once LASSO_DIR.'/includes/class.process-map.php';
-**/
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
