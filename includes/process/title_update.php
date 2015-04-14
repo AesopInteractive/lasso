@@ -28,7 +28,7 @@ class title_update implements api_action {
 	 *
 	 * @return bool Always returns true.
 	 */
-	public function post() {
+	public function post( $data ) {
 
 		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
 		$title  = isset( $data['title'] ) ? $data['title'] : false;
