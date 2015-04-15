@@ -11513,7 +11513,7 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		var data = {
-			action: 		'process_delete_post',
+			action: 		'process_post_post',
 			postid: 		$this.closest('a').data('postid'),
 			nonce: 			lasso_editor.deletePost
 		}
