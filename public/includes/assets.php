@@ -1,11 +1,14 @@
 <?php
-
 /**
 *	Load the assets used for Lasso
 *
 *	@since 1.0
 */
-class lassoAssets {
+namespace lasso_public_facing;
+
+use lasso\process\gallery;
+
+class assets {
 
 	public function __construct(){
 
@@ -14,8 +17,13 @@ class lassoAssets {
 
 	public function scripts(){
 
+<<<<<<< HEAD:public/includes/class.assets.php
 		// only run on posts and pages if user is logged in and has teh right capabilities (edit_post) by default
 		if ( apply_filters('lasso_runs_on', is_singular() || is_home() ) && lasso_user_can() ) {
+=======
+		// only run on posts and pages if user is logged in and has the right capabilities (edit_post) by default
+		if ( apply_filters('lasso_runs_on', is_singular() ) && lasso_user_can() ) {
+>>>>>>> release/0.9.2:public/includes/assets.php
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
@@ -66,9 +74,15 @@ class lassoAssets {
 				'missingConfirm'	=> __('Update Settings', 'lasso')
 			);
 
+			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
+
+			$gallery_class = new gallery();
+			$gallery_nonce_action = $gallery_class->nonce_action;
+			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
+
 			// localized objects
 			$objects = array(
-				'ajaxurl' 			=> admin_url( 'admin-ajax.php' ),
+				'ajaxurl' 			=> esc_url( $api_url ),
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE
 				'article_object'	=> $article_object,
 				'featImgClass'		=> $featImgClass,
@@ -88,10 +102,10 @@ class lassoAssets {
 				'components'		=> lasso_editor_components(),
 				'wpImgEdit'			=> lasso_editor_wpimg_edit(),
 				'featImgControls'   => lasso_editor_image_controls(),
-				'featImgNonce'		=> wp_create_nonce('lasso_editor_image'),
-				'getGallImgNonce'	=> wp_create_nonce('lasso_get_gallery_images'),
-				'createGallNonce'	=> wp_create_nonce('lasso_create_gallery'),
-				'swapGallNonce'		=> wp_create_nonce('lasso_swap_gallery'),
+				'featImgNonce'		=> $gallery_nonce,
+				'getGallImgNonce'	=> $gallery_nonce,
+				'createGallNonce'	=> $gallery_nonce,
+				'swapGallNonce'		=> $gallery_nonce,
 				'titleNonce'		=> wp_create_nonce('lasso_update_title'),
 				'wpImgNonce'		=> wp_create_nonce('lasso_update_wpimg'),
 				'deletePost'		=> wp_create_nonce('lasso_delete_post'),
@@ -109,6 +123,7 @@ class lassoAssets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
+<<<<<<< HEAD:public/includes/class.assets.php
 			// wp api client
 			// @todo - namespace this
 			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
@@ -118,10 +133,14 @@ class lassoAssets {
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
 				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 
+=======
+			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
+			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
+>>>>>>> release/0.9.2:public/includes/assets.php
 
 		}
 
 	}
 
 }
-new lassoAssets;
+

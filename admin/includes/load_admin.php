@@ -8,8 +8,11 @@
  * @link      http://aesopinteractive.com
  * @copyright 2015 Aesopinteractive LLC
  */
+namespace lasso_admin;
 
-class Lasso_Admin {
+use lasso_public_facing\lasso;
+
+class load_admin {
 
 	/**
 	 * Instance of this class.
@@ -37,7 +40,7 @@ class Lasso_Admin {
 	 */
 	private function __construct() {
 
-		$plugin = Lasso::get_instance();
+		$plugin = lasso::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		add_action( 'admin_head',  array( $this, 'admin_assets' ) );
@@ -47,11 +50,12 @@ class Lasso_Admin {
 			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
 		}
 
-		require_once LASSO_DIR.'/admin/includes/class.menu--welcome.php';
-		require_once LASSO_DIR.'/admin/includes/class.menu--settings.php';
+
+		new menus\welcome();
+		new menus\settings();
 
 		if ( !defined( 'LASSO_AGENCY_MODE' ) ) {
-			require_once LASSO_DIR.'admin/includes/class.menu--license.php';
+			new menus\license();
 		}
 
 	}

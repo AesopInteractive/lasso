@@ -8,14 +8,14 @@
  * @link      http://aesopinteractive.com
  * @copyright 2015 Aesopinteractive LLC
  */
-
+namespace lasso_public_facing;
 /**
  *
  *
  * @package Lasso
  * @author  Nick Haskins <nick@aesopinteractive.com>
  */
-class Lasso {
+class lasso {
 
 	/**
 	 *
@@ -42,12 +42,17 @@ class Lasso {
 	 */
 	private function __construct() {
 
+<<<<<<< HEAD:public/class-lasso.php
 		require_once LASSO_DIR.'/public/includes/class.assets.php';
 		require_once LASSO_DIR.'/public/includes/underscore-templates.php';
+=======
+		//require_once LASSO_DIR.'/public/includes/class.assets.php';
+>>>>>>> release/0.9.2:public/includes/lasso.php
 		require_once LASSO_DIR.'/public/includes/editor-modules.php';
 		require_once LASSO_DIR.'/public/includes/helpers.php';
 		require_once LASSO_DIR.'/public/includes/editor-modules--gallery.php';
 		require_once LASSO_DIR.'/public/includes/components.php';
+<<<<<<< HEAD:public/class-lasso.php
 		require_once LASSO_DIR.'/public/includes/class.tour.php';
 
 		require_once LASSO_DIR.'/includes/class.process-save.php';
@@ -60,12 +65,17 @@ class Lasso {
 		require_once LASSO_DIR.'/includes/class.process-map.php';
 		require_once LASSO_DIR.'/includes/class.process-delete-post.php';
 
+=======
+>>>>>>> release/0.9.2:public/includes/lasso.php
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+
+		//enqueue assets
+		new assets();
 
 	}
 

@@ -119,25 +119,16 @@ function lasso_supported_no_save(){
 }
 
 /**
-*	Return the first 10 posts from a specific post type
-*
-*	@since 0.9.2
-*	@return array post array
-*/
-function lasso_get_posts( $type , $limit ) {
-
-	if ( empty( $limit ) )
-		$limit = 10;
-
-	$args = array(
-		'posts_per_page' => (int) $limit,
-		'post_status'   => 'any',
-		'post_type'		=> $type
-	);
-
-	$q = get_posts( $args );
-
-	return !empty( $q ) ? $q : false;
+ * Generic sanitization, useful for sanitization of arrays.
+ *
+ * @since 0.9.2
+ *
+ * @param array|object|string $data Data to sanatize.
+ *
+ * @return array|mixed|object|string|void
+ */
+function lasso_sanitize_data( $data ) {
+	return \lasso\sanatize::do_sanitize( $data );
 
 }
 
@@ -166,3 +157,4 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 	}
 endif;
+

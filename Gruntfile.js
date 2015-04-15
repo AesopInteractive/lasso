@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         watch: {
         	concat: {
         		files: ['public/assets/js/source/*'],
-        		tasks:['concat:dist']
+        		tasks:['concat:dist', 'uglify' ]
         	},
             less: {
 				files: ['public/assets/less/**/*','admin/assets/less/**/*'],
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             livereload: {
                 options: { livereload: true },
                 files: ['public/assets/**/*','admin/assets/**/*', '**/*.html', '**/*.php', 'public/assets/img/**/*.{png,jpg,jpeg,gif,webp,svg}']
-            }
+            },
         },
         less: {
 		  	coreLess: {

@@ -9791,7 +9791,7 @@ jQuery(document).ready(function($){
 				,	gall_id 	= data['id']
 
 				var data      = {
-					action:    	'process_get_images',
+					action:    	'process_gallery_get-images',
 					post_id:   	gall_id,
 					nonce: 		nonce
 				};
@@ -9799,7 +9799,7 @@ jQuery(document).ready(function($){
 				// post ajax response with data
 				$.post( ajaxurl, data, function(response) {
 
-					$('#lasso--gallery__images').html( response )
+					$('#lasso--gallery__images').html( response.data.html );
 
 					/////////////
 					// CALL SORTABLE ON RECIEVED IMAGES
@@ -9841,6 +9841,7 @@ jQuery(document).ready(function($){
 });
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){
@@ -10293,7 +10294,7 @@ jQuery(function( $ ) {
 	});
 
 	// RESTORING LINK SELECTION
-	$('.lasso-link').live('click',function(e){
+	$('.lasso-editing .lasso-link').live('click',function(e){
 
 		e.preventDefault();
 
@@ -10443,7 +10444,7 @@ jQuery(document).ready(function($){
 
 		// gather the data
 		var data      = {
-			action:    	$this.hasClass('lasso-publish-post') ? 'process_publish_content' : 'process_save_content',
+			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
 			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
 			post_id:   	postid,
@@ -10580,6 +10581,7 @@ jQuery(document).ready(function($){
 
 	});
 });
+
 (function( $ ) {
 	'use strict';
 
@@ -10674,7 +10676,7 @@ jQuery(document).ready(function($){
 	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
 
 		var data = {
-			action: 		'process_swap_gallery',
+			action: 		'process_gallery_swap',
 			gallery_id: 	$(this).val(),
 			nonce: 			lasso_editor.swapGallNonce
 		}
@@ -10837,6 +10839,7 @@ jQuery(document).ready(function($){
 	ase_encode_gallery_items();
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function($){
@@ -10940,7 +10943,7 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		var data = {
-			action: 'process_featimg_upload',
+			action: 'process_image-upload_upload',
 			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
 			nonce: 	lasso_editor.featImgNonce
@@ -11017,7 +11020,7 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		var data = {
-			action: 'process_featimg_delete',
+			action: 'process_upload-image_delete',
 			postid: lasso_editor.postid,
 			nonce: 	lasso_editor.featImgNonce
 		}
@@ -11064,6 +11067,7 @@ jQuery(document).ready(function($){
 
 
 })( jQuery );
+
 (function( $ ) {
 
 	var form;
@@ -11148,7 +11152,7 @@ jQuery(document).ready(function($){
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {
-				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
+				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
 				postid: 		lasso_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
@@ -11185,13 +11189,14 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){
 
 		// method to destroy the modal
 		var destroyModal = function(){
-			$('body').removeClass('lasso-modal-open');
+			$('body').removeClass('lasso-modal-open' );
 			$('.lasso--modal, #lasso--modal__overlay').remove();
 		}
 
@@ -11284,6 +11289,7 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){
@@ -11297,7 +11303,7 @@ jQuery(document).ready(function($){
 			var target = $(this);
 
 			var data = {
-				action: 		'process_update_title',
+				action: 		'process_title-update_post',
 				postid: 		lasso_editor.postid,
 				title:          $.trim( target.text() ),
 				nonce: 			lasso_editor.titleNonce
@@ -11326,6 +11332,7 @@ jQuery(document).ready(function($){
 	});
 
 })( jQuery );
+
 (function( $ ) {
 
 	$(document).ready(function(){
@@ -11558,7 +11565,7 @@ jQuery(document).ready(function($){
 			} else {
 
 				var data = {
-					action: 		'process_hide_tour',
+					action: 		'process_tour_hide',
 					nonce: 			$(this).data('nonce')
 				}
 

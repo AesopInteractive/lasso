@@ -307,7 +307,7 @@ function lasso_editor_component_modal() {
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 					<input type="hidden" name="status" value="">
 					<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
-					<input type="hidden" name="action" value="process_update_post">
+					<input type="hidden" name="action" value="process_update-object_post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<?php do_action( 'lasso_modal_post_form_footer' ); // action ?>
 					<input type="submit" value="<?php esc_attr_e( 'Save', 'lasso' );?>">
@@ -360,7 +360,7 @@ function lasso_editor_newpost_modal() {
 
 				<div class="lasso--postsettings__footer" style="display:none;">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
-					<input type="hidden" name="action" value="process_new_object">
+					<input type="hidden" name="action" value="process_new-object_post">
 					<input type="hidden" name="object" value="<?php echo $type;?>">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="<?php esc_attr_e( 'Create', 'lasso' );?>">
@@ -494,7 +494,7 @@ function lasso_editor_options_blob() {
 	$codes   = function_exists( 'aesop_shortcodes' ) ? aesop_shortcodes() : apply_filters( 'lasso_custom_options', '' );
 	$galleries  = function_exists( 'lasso_editor_galleries_exist' ) && lasso_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
-	$nonce = wp_create_nonce( 'lasso-generator-settings' );
+	$nonce = wp_create_nonce( 'lasso_gallery' );
 
 	$blob = array();
 
