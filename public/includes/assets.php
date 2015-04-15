@@ -17,13 +17,8 @@ class assets {
 
 	public function scripts(){
 
-<<<<<<< HEAD:public/includes/class.assets.php
 		// only run on posts and pages if user is logged in and has teh right capabilities (edit_post) by default
 		if ( apply_filters('lasso_runs_on', is_singular() || is_home() ) && lasso_user_can() ) {
-=======
-		// only run on posts and pages if user is logged in and has the right capabilities (edit_post) by default
-		if ( apply_filters('lasso_runs_on', is_singular() ) && lasso_user_can() ) {
->>>>>>> release/0.9.2:public/includes/assets.php
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
@@ -123,20 +118,16 @@ class assets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
-<<<<<<< HEAD:public/includes/class.assets.php
+
 			// wp api client
 			// @todo - namespace this
 			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
 				$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
 				wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
 
-			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
-				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
-
-=======
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
->>>>>>> release/0.9.2:public/includes/assets.php
+
 
 		}
 
