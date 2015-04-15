@@ -8906,7 +8906,7 @@ jQuery(document).ready(function($){
 
 		});
 
-		$('.lasso-component').each(function(){
+		$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
 
 			var $this = $(this)
 
