@@ -585,6 +585,7 @@ jQuery(document).ready(function($){
 			placeholder:'lasso-drop-zone',
 			handle: '.lasso-drag',
             cursor:'move',
+            tolerance:'pointer',
             refreshPositions: true,
             helper: function( e, ui ) {
 
