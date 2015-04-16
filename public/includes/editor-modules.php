@@ -402,8 +402,8 @@ function lasso_editor_allpost_modal() {
 
 			<ul class="lasso--post-object-list">
 
-				<li class="active lasso--show-objects" data-post-type="posts">Posts</li>
-				<li class="lasso--show-objects" data-post-type="pages">Pages</li>
+				<li class="active lasso--show-objects" data-post-type="<?php esc_attr_e('posts','lasso');?>"><?php _e('Posts','lasso');?></li>
+				<li class="lasso--show-objects" data-post-type="<?php esc_attr_e('pages','lasso');?>"><?php _e('Pages','lasso');?></li>
 
 			</ul>
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>

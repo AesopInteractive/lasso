@@ -13,12 +13,13 @@
 // COLORS
 @base:           #23282D;
 @base--light:    #32373C;
+@base--dark:      darken(@base,5);
 
 // TOOLBAR
 @toolbar--bg:                   @base;
-@toolbar--bg__dark:             darken(@toolbar--bg,5);
+@toolbar--bg__dark:             @base--dark;
 @toolbar--bg__accent:           lighten(@toolbar--bg,8);
-@toolbar--border:               darken(@toolbar--bg,5);
+@toolbar--border:               @base--dark;
 @toolbar--hover:                lighten(@toolbar--bg__accent,2);
 @toolbar--color:                #E2E2E2;
 @toolbar--width:                232px;
@@ -124,7 +125,7 @@
 @insert--height:                70px;
 @admin-bar--height:             32px;
 
-@scrollbar--handle:             lighten(@toolbar--bg,40);
+@scrollbar--handle:             @base--light;
 @scrollbar--rail:               transparent;
 
 // TOOLLTIPS
@@ -133,5 +134,7 @@
 @tooltip--bg:                   fadeout(@editor--color__update,5);
 @tooltip--font__size:           12px;
 
+// LOADER
+@loader--color:                 lighten(@base--light,20);
 
 

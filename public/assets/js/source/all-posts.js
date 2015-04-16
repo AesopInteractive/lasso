@@ -31,7 +31,7 @@
 			type = pages
 		}
 
-		type.fetch( { data: { filter: { posts_per_page: 10 } } } ).done( function() {
+		type.fetch( { data: { filter: { posts_per_page: 20 } } } ).done( function() {
 		    type.each( function( post ) {
 
 		    	destroyLoader()
@@ -68,6 +68,9 @@
 	$('.lasso--show-objects').live('click',function(e){
 
 		e.preventDefault();
+
+		$('.lasso--show-objects').removeClass('active')
+		$(this).addClass('active');
 
 		$('#lasso--post-list > li').remove();
 
