@@ -10,9 +10,12 @@
 @editor--dropzone__bg:          fadeout(black,97);
 @editor--dropzone__border:      fadeout(black,80);
 
+// COLORS
+@base:           #23282D;
+@base--light:    #32373C;
 
 // TOOLBAR
-@toolbar--bg:                   #222;
+@toolbar--bg:                   @base;
 @toolbar--bg__dark:             darken(@toolbar--bg,5);
 @toolbar--bg__accent:           lighten(@toolbar--bg,8);
 @toolbar--border:               darken(@toolbar--bg,5);
@@ -68,8 +71,8 @@
 @modal--overlay__bg:            fadeout(white,15);
 @modal--width:                  381px;
 @modal--width__full:            800px;
-@modal--bg:                     fadeout(#161616,6);
-@modal--bg__accent:             @input--color;
+@modal--bg:                     @base;
+@modal--bg__accent:             @base--light;
 @modal--border:                 darken(@toolbar--border,5);
 @modal--color:                  @toolbar--color;
 @modal--padding:                18px;
@@ -100,7 +103,7 @@
 
 // ALL POSTS
 @list--sb__width:               100px;
-@list--item__bg:                fadeout(@modal--bg__accent,75);
+@list--item__bg:                @modal--bg__accent;
 @list--item__padding:           0 15px;
 @list--item__line-height:       50px;
 @list--control__width:          115px;
