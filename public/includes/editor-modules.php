@@ -396,17 +396,14 @@ function lasso_editor_allpost_modal() {
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_all_post_classes', '' );
 
-	// return the post type
-	$type = get_post_type( get_the_ID() );
-
 ?>
 	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
 			<ul class="lasso--post-object-list">
 
-				<li class="active" id="lasso--show-posts">Posts</li>
-				<li id="lasso--show-pages">Pages</li>
+				<li class="active lasso--show-objects" data-post-type="posts">Posts</li>
+				<li class="lasso--show-objects" data-post-type="pages">Pages</li>
 
 			</ul>
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
