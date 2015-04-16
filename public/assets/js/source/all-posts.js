@@ -92,34 +92,35 @@
 
 		var $this = $(this);
 
-		var data = {
-			action: 		'process_post_post',
-			postid: 		$this.closest('a').data('postid'),
-			nonce: 			lasso_editor.deletePost
-		}
+		swal({
+			title: lasso_editor.strings.deletePost,
+			type: "error",
+			text: false,
+			showCancelButton: true,
+			confirmButtonColor: "#d9534f",
+			confirmButtonText: lasso_editor.strings.deleteYes,
+			closeOnConfirm: true
+		},
+		function(){
 
-		$.post( lasso_editor.ajaxurl, data, function(response) {
+			var data = {
+				action: 		'process_delete_post',
+				postid: 		$this.closest('a').data('postid'),
+				nonce: 			lasso_editor.deletePost
+			}
 
-			if ( true == response.success ) {
+			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				swal({
-					title: lasso_editor.strings.deletePost,
-					type: "error",
-					text: false,
-					showCancelButton: true,
-					confirmButtonColor: "#d9534f",
-					confirmButtonText: lasso_editor.strings.deleteYes,
-					closeOnConfirm: true
-				},
-				function(){
+				if ( true == response.success ) {
 
 					$this.closest('li').fadeOut().remove()
 
-				});
+				}
 
-			}
+			});
 
 		});
+
 	})
 
 })( jQuery, Backbone, _, WP_API_Settings );

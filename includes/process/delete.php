@@ -27,6 +27,10 @@ class delete implements api_action {
 	 */
 	public function post( $data ) {
 
+		// bail out if teh current user can't publish posts
+		if ( !current_user_can('delete_post') )
+			return;
+
 		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
 
 		$args = array(
