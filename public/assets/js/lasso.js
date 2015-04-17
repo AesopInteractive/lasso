@@ -11424,6 +11424,7 @@ jQuery(document).ready(function($){
 	,	postAll         = $('#lasso--post-all')
 	,	postList        = '#lasso--post-list'
 	,	body 			= $('body')
+	,	noPostsMessage  = '<li>No posts found</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 
 
@@ -11458,14 +11459,12 @@ jQuery(document).ready(function($){
 		    		destroyLoader()
 		       		$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
 
-		       	// else only show
-		    	} else {
+		       	// else only show the current logged in users posts
+		    	} else if ( lasso_editor.author == post.attributes.author.id ) {
 
-		    		if ( lasso_editor.author == post.attributes.author.id ) {
+	    			destroyLoader()
+	       			$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
 
-		    			destroyLoader()
-		       			$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
-		       		}
 
 		    	}
 
@@ -11473,7 +11472,6 @@ jQuery(document).ready(function($){
 		    });
 		});
 	}
-
 	//////////////////
 	// OPEN INITIAL POSTS
 	/////////////////

@@ -15,7 +15,7 @@
 add_action( 'wp_footer', 'lasso_editor_controls' );
 function lasso_editor_controls() {
 
-	//if ( apply_filters( 'lasso_runs_on', is_singular() || is_home() ) && lasso_user_can() ) {
+	if ( lasso_user_can('edit_posts') ) {
 
 		$status = get_post_status( get_the_ID() );
 
@@ -27,14 +27,15 @@ function lasso_editor_controls() {
 		$post_settings_disabled = lasso_editor_get_option( 'post_settings_disabled', 'lasso_editor' );
 		$shortcodify_disabled = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 
+
 		// CSS class if adding new post objects is disabled
 		if ( 'on' == $post_new_disabled ) { $post_access_class = 'lasso--post-new-disabled'; }
 
 		// CSS class if adjust settings is disabled
 		if ( 'on' == $post_settings_disabled ) { $post_access_class = 'lasso--post-settings-disabled'; }
 
-		// CSS class if adding new post objects AND settings are disabled OR if the user doesnt have the correct capability
-		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled || !lasso_user_can( 'publish_posts' ) ) { $post_access_class = 'lasso--post-all-disabled'; }
+		// CSS class if adding new post objects AND settings are disabled
+		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled ) { $post_access_class = 'lasso--post-all-disabled'; }
 
 		// CSS class if shortcodify or (Aesop Shortcode Conversion) is disabled
 		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
@@ -57,7 +58,7 @@ function lasso_editor_controls() {
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php if ( is_singular() && ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) ) { ?>
+				<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
@@ -79,7 +80,7 @@ function lasso_editor_controls() {
 
 		</div>
 
-		<?php
+	<?php }
 }
 
 /**
@@ -327,7 +328,7 @@ function lasso_editor_newpost_modal() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
+	if ( !lasso_user_can('edit_posts') )
 		return;
 
 	$status = get_post_status( get_the_ID() );

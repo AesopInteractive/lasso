@@ -112,6 +112,13 @@ ul.lasso--post-list {
             outline: none;
         }
 
+        &.no-delete:hover {
+            @new-width: @list--control__width / 2;
+
+            width:~'calc( 100% - @{new-width})';
+
+        }
+
     }
 
 }
