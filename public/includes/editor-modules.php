@@ -15,7 +15,7 @@
 add_action( 'wp_footer', 'lasso_editor_controls' );
 function lasso_editor_controls() {
 
-	if ( apply_filters( 'lasso_runs_on', is_singular() || is_home() ) && lasso_user_can() ) {
+	//if ( apply_filters( 'lasso_runs_on', is_singular() || is_home() ) && lasso_user_can() ) {
 
 		$status = get_post_status( get_the_ID() );
 
@@ -43,31 +43,24 @@ function lasso_editor_controls() {
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
 
-				<?php do_action( 'lasso_editor_controls_before' );?>
+				<?php do_action( 'lasso_editor_controls_before' );
 
-				<?php if ( !is_home() ) { ?>
+				if ( is_singular() && lasso_user_can('edit_post') ) { ?>
 
 					<li id="lasso--edit" title="<?php esc_attr_e( 'Edit Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
+				<?php }
+
+				if ( is_singular() && lasso_user_can('edit_post') && ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) ) { ?>
+					<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
-				<?php if ( lasso_user_can( 'publish_posts' ) ) { ?>
+				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-					<?php if ( !is_home() ) : ?>
-						<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
-							<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-						<?php } ?>
-					<?php endif; ?>
-
-					<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-
-					<?php if ( !is_home() ) { ?>
-						<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
-							<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-						<?php } ?>
-					<?php } ?>
-
+				<?php if ( is_singular() && ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) ) { ?>
+					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
+
 
 				<?php do_action( 'lasso_editor_controls_after' );?>
 
@@ -86,7 +79,7 @@ function lasso_editor_controls() {
 
 		</div>
 
-	<?php }
+		<?php
 }
 
 /**
@@ -386,9 +379,6 @@ function lasso_editor_allpost_modal() {
 	global $post;
 
 	ob_start();
-
-	if ( !lasso_user_can() )
-		return;
 
 	// post status
 	$status = get_post_status( get_the_ID() );
