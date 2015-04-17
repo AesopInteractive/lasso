@@ -373,7 +373,7 @@ function lasso_editor_newpost_modal() {
 /**
  * Used to house the all posts pop-up
  *
- * @since 1.0
+ * @since 0.9.3
  */
 function lasso_editor_allpost_modal() {
 

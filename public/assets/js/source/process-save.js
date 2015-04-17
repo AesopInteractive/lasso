@@ -107,13 +107,21 @@ jQuery(document).ready(function($){
 			},
 			function(){
 
-				runSavePublish()
+				if ( lasso_editor.userCanEdit ) {
+
+					runSavePublish()
+
+				}
 
 			});
 
 		} else {
 
-			runSavePublish()
+			if ( lasso_editor.userCanEdit ) {
+
+				runSavePublish()
+
+			}
 
 		}
 

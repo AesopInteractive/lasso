@@ -37,6 +37,7 @@
     z-index:999;
     .opacity(0);
     .transition(opacity .3s ease);
+    text-align: right;
 
     a {
         display:inline-block;
@@ -152,6 +153,19 @@
 
 }
 
+// EXIT BUTTON
+#lasso--exit {
+    background: @editor--color__warning;
+    float: left;
+
+    &:before {
+        position: relative;
+        top:3px;
+        content:'\ea0f';
+    }
+
+}
+
 
 // PUBLISH BUTTON (if post is in draft)
 #lasso--publish {
@@ -180,6 +194,7 @@
     .lasso--controls__right {
         .opacity(1);
         right: @toolbar--pos__bottom;
+        left: @toolbar--pos__bottom;
     }
 
     .wp-audio-shortcode {
