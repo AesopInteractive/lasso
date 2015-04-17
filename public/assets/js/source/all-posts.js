@@ -31,11 +31,27 @@
 			type = pages
 		}
 
+		// get the posts
 		type.fetch( { data: { filter: { posts_per_page: 20 } } } ).done( function() {
 		    type.each( function( post ) {
 
-		    	destroyLoader()
-		       	$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
+		    	// if the current user is an admin or super admin show them everytrhing
+		    	if ( lasso_editor.edit_others_posts ) {
+
+		    		destroyLoader()
+		       		$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
+
+		       	// else only show
+		    	} else {
+
+		    		if ( lasso_editor.author == post.attributes.author.id ) {
+
+		    			destroyLoader()
+		       			$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
+		       		}
+
+		    	}
+
 
 		    });
 		});

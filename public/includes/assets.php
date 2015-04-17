@@ -87,6 +87,7 @@ class assets {
 				'post_status'		=> get_post_status( $postid ),
 				'postid'			=> $postid,
 				'permalink'			=> get_permalink(),
+				'edit_others_posts'	=> current_user_can('edit_others_posts'),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'nonce'				=> wp_create_nonce('lasso_editor'),
 				'handle'			=> lasso_editor_settings_toolbar(),
@@ -118,9 +119,7 @@ class assets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
-
 			// wp api client
-			// @todo - namespace this
 			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
 				$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
 				wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
