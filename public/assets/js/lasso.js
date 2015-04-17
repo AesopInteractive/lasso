@@ -9116,6 +9116,18 @@ jQuery(document).ready(function($){
 			exitEditor();
 		})
 
+		// on control s save
+		$(document).keydown(function(e) {
+		    if ((e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey)){
+		        e.preventDefault();
+		        	
+		        $('#lasso--save').trigger('click')
+
+		        return false;
+		    }
+		    return true;
+		});
+
 		///////////
 		// INITIALIZE TIMELINE
 		//////////

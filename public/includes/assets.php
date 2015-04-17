@@ -17,8 +17,7 @@ class assets {
 
 	public function scripts(){
 
-		// only run on posts and pages if user is logged in and has teh right capabilities (edit_post) by default
-		//if ( apply_filters('lasso_runs_on', is_singular() || is_home() ) && lasso_user_can() ) {
+		if ( lasso_user_can('edit_posts') ) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
@@ -129,7 +128,7 @@ class assets {
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 
 
-		//}
+		}
 
 	}
 
