@@ -10410,7 +10410,7 @@ jQuery(document).ready(function($){
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
 	///////////////////////
-	$(save).live('click',function(e) {
+	$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
 
 		var warnNoSave = null;
 

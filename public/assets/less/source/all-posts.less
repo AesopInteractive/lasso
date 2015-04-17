@@ -27,8 +27,6 @@
 
 ul.lasso--post-object-list,
 ul.lasso--post-list {
-    font-size:@modal--font__size;
-    font-family: @editor--font;
     text-align: left;
 
     li {
@@ -37,6 +35,9 @@ ul.lasso--post-list {
         width:100%;
         list-style-type: none;
         margin-bottom:6px;
+        font-size:@modal--font__size;
+        font-family: @editor--font;
+        font-weight:bold;
     }
 }
 
@@ -44,9 +45,7 @@ ul.lasso--post-list {
 ul.lasso--post-object-list {
     width:@list--sb__width;
     float:left;
-    //border-right:1px solid @base--dark;
     height:100%;
-    //.box-shadow(inset -1px 0 1px -1px rgba(255,255,255,0.15));
 
     li {
         line-height: @list--item__line-height / 2;
