@@ -30,31 +30,28 @@ class new_object implements api_action {
 	 */
 	public function post( $data ) {
 
+		if( !lasso_user_can('publish_posts') || !lasso_user_can('publish_pages') )
+			return;
 
-			$title  = $data[ 'story_title' ];
+		$title  = $data[ 'story_title' ];
 
-			if ( is_null( $data[ 'object'] ) ) {
-				$object = false;
-			}else{
-				$object = $data[ 'object' ];
-			}
+		$object = is_null( $data[ 'object'] ) ? false : $data[ 'object' ];
 
+		// insert a new post
+		$args = array(
+			'post_title'    => $title,
+			'post_status'   => 'draft',
+			'post_type'    	=> $object,
+			'post_content'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') )
+		);
 
-			// insert a new post
-			$args = array(
-				'post_title'    => $title,
-				'post_status'   => 'draft',
-				'post_type'    	=> $object,
-				'post_content'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') )
-			);
+		$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );
 
-			$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );
+		do_action( 'lasso_new_object', $postid, $object, $title, get_current_user_ID() );
 
-			do_action( 'lasso_new_object', $postid, $object, $title, get_current_user_ID() );
-
-			return array(
-				'postlink' => get_permalink( $postid )
-			);
+		return array(
+			'postlink' => get_permalink( $postid )
+		);
 
 	}
 

@@ -89,6 +89,8 @@ class assets {
 				'edit_others_pages'	=> current_user_can('edit_others_pages') ? 'true' : 'false',
 				'edit_others_posts'	=> current_user_can('edit_others_posts') ? 'true' : 'false',
 				'userCanEdit'		=> current_user_can('edit_post', $postid ),
+				'can_publish_posts'	=> current_user_can('publish_posts'),
+				'can_publish_pages'	=> current_user_can('publish_pages'),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'nonce'				=> wp_create_nonce('lasso_editor'),
 				'handle'			=> lasso_editor_settings_toolbar(),

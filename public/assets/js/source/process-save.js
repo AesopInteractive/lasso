@@ -107,7 +107,7 @@ jQuery(document).ready(function($){
 			},
 			function(){
 
-				if ( lasso_editor.userCanEdit ) {
+				if ( lasso_editor.can_publish_posts ) {
 
 					runSavePublish()
 
@@ -117,7 +117,7 @@ jQuery(document).ready(function($){
 
 		} else {
 
-			if ( lasso_editor.userCanEdit ) {
+			if ( lasso_editor.can_publish_posts ) {
 
 				runSavePublish()
 
