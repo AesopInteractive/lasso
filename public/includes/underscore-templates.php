@@ -9,10 +9,10 @@ if ( !function_exists( 'lasso_backbone_templates' ) ):
 		$can_delete_class = $can_delete ? false : 'no-delete';
 
 		// only run on posts and pages if user is logged in
-		if ( apply_filters('lasso_runs_on', is_singular() || is_home() ) ) { ?>
+		if ( is_user_logged_in() && lasso_user_can('edit_posts') ) { ?>
 			<script type="text/html" id="lasso-tmpl--post">
 				<li>
-					<a href="<%= post.link %>" class="lasso--post-list__item <?php echo $can_delete_class;?>" data-postid="<%= post.ID %>">
+					<a href="<%= post.link %>" class="lasso--post-list__item <?php echo $can_delete_class;?> <%= post.status %>" data-postid="<%= post.ID %>" >
 						<%= post.title %>
 
 						<div class="lasso--post-list__controls">

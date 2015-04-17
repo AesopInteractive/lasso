@@ -11427,7 +11427,6 @@ jQuery(document).ready(function($){
 	,	noPostsMessage  = '<li>No posts found</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 
-
 	//////////////////
 	// DESTROY LOADER
 	/////////////////
@@ -11444,17 +11443,21 @@ jQuery(document).ready(function($){
 
 			type = posts
 
+			var capable = lasso_editor.edit_others_posts
+
 		} else if ( 'pages' == type ) {
 
 			type = pages
+
+			var capable = lasso_editor.edit_others_pages
 		}
 
 		// get the posts
-		type.fetch( { data: { filter: { posts_per_page: 20 } } } ).done( function() {
+		type.fetch( { data: { filter: { posts_per_page: 20, post_status: ['publish','draft','pending'] } } } ).done( function() {
 		    type.each( function( post ) {
 
 		    	// if the current user is an admin or super admin show them everytrhing
-		    	if ( lasso_editor.edit_others_posts ) {
+		    	if ( 'true' === capable ) {
 
 		    		destroyLoader()
 		       		$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )

@@ -83,13 +83,27 @@ ul.lasso--post-list {
     }
 
     .lasso--post-list__item {
-        color:darken(@modal--color,20);
+        color:darken(@modal--color,10);
         display: block;
         padding:@list--item__padding;
         background: fadeout(@list--item__bg,15);
         border-radius: @editor--radius;
         .transition(all .15s ease);
         width:100%;
+
+        // post status
+        &:before {
+            content:'';
+            height:@status--h;
+            width:@status--w;
+            border-radius: 100%;
+            margin-right: @status--h;
+            display: inline-block;
+        }
+
+        &.draft:before { background:@status--draft; }
+        &.publish:before { background:@status--publish; }
+        &.pending:before { background:@status--pending; }
 
         &:hover{
             background: @list--item__bg;
