@@ -23,6 +23,8 @@
 @toolbar--border:               @base--dark;
 @toolbar--hover:                lighten(@toolbar--bg__accent,2);
 @toolbar--color:                #E2E2E2;
+    @toolbar--color__dark:      @base; // light theme var
+
 @toolbar--width:                232px;
 @toolbar--height:               39px;
 @toolbar--item__padding:        0 8px;
@@ -38,7 +40,7 @@
 @toolbar--htmldrop__fheight:    35px;
 /* CALC-NO-EDIT */ @toolbar--htmldrop__height: @toolbar--htmldrop__theight + @toolbar--htmldrop__fheight + 8;
 @toolbar--htmldrop__padding:    8px;
-@toolbar--htmldrop__color:      #eaeaea;
+@toolbar--htmldrop__color:      @toolbar--color;
 @toolbar--htmldrop__font:       'Courier New';
 @toolbar--htmldrop__font-size:  14px;
 
@@ -98,7 +100,7 @@
 @sidebar--width:                285px;
 @sidebar--bg:                   @toolbar--bg;
 @sidebar--bg__accent:           @toolbar--bg__accent;
-@sidebar--color:                #E2E2E2;
+@sidebar--color:                @toolbar--color;
 @sidebar--padding:              20px;
 @sidebar--font__size:           14px;
 @sidebar--button__bg:           lighten(@toolbar--bg,18);
