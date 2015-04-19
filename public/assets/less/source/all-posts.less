@@ -28,6 +28,9 @@
 ul.lasso--post-object-list,
 ul.lasso--post-list {
     text-align: left;
+    list-style:none;
+    margin:0;
+    padding:0;
 
     li {
         display: block;
@@ -50,9 +53,10 @@ ul.lasso--post-object-list {
     li {
         line-height: @list--item__line-height / 2;
         margin-bottom: 0;
+        .transition(opacity .15s ease);
 
         &:not(.active) {
-            .opacity(0.5);
+            .opacity(0.45);
         }
 
         &:hover {

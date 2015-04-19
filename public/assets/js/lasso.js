@@ -8859,7 +8859,7 @@ jQuery(document).ready(function($){
 		})
 
 		// add an exit editor button
-		$('.lasso--controls__right ').prepend('<a id="lasso--exit" href="#"></a>');
+		$('.lasso--controls__right ').prepend('<a title="Exit Editor" id="lasso--exit" href="#"></a>');
 
 		// append the toolbar to any components that dont have them
 		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
@@ -11466,20 +11466,20 @@ jQuery(document).ready(function($){
 
 			type = posts
 
-			var capable = lasso_editor.edit_others_posts
+			capable = lasso_editor.edit_others_posts
 
 		} else if ( 'pages' == type ) {
 
 			type = pages
 
-			var capable = lasso_editor.edit_others_pages
+			capable = lasso_editor.edit_others_pages
 		}
 
 		// get the posts
 		type.fetch( { data: { filter: { posts_per_page: 20, post_status: ['publish','draft','pending'] } } } ).done( function() {
 		    type.each( function( post ) {
 
-		    	// if the current user is an admin or super admin show them everytrhing
+		    	// if the current use can edit_others_posts or edit_others_pages
 		    	if ( 'true' === capable ) {
 
 		    		destroyLoader()

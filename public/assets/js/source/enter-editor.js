@@ -88,7 +88,7 @@ jQuery(document).ready(function($){
 		})
 
 		// add an exit editor button
-		$('.lasso--controls__right ').prepend('<a id="lasso--exit" href="#"></a>');
+		$('.lasso--controls__right ').prepend('<a title="Exit Editor" id="lasso--exit" href="#"></a>');
 
 		// append the toolbar to any components that dont have them
 		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
