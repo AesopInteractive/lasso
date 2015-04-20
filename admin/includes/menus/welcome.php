@@ -32,7 +32,7 @@ class welcome {
 			return;
 		}
 
-		wp_safe_redirect( add_query_arg( array( 'page' => 'lasso-editor' ), admin_url( 'admin.php' ) ) );
+		wp_safe_redirect( esc_url_raw( add_query_arg( array( 'page' => 'lasso-editor' ), admin_url( 'admin.php' ) ) ) );
 
 	}
 

@@ -36,7 +36,7 @@
 		}
 
 		// get the posts
-		type.fetch( { data: { filter: { posts_per_page: 20, post_status: ['publish','draft','pending'] } } } ).done( function() {
+		type.fetch( { data: { filter: { post_status: ['publish','draft','pending'] } } } ).done( function() {
 		    type.each( function( post ) {
 
 		    	// if the current use can edit_others_posts or edit_others_pages
