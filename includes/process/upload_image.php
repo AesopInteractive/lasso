@@ -8,7 +8,16 @@ namespace lasso\process;
 
 use lasso\internal_api\api_action;
 
-class image_upload implements api_action {
+class upload_image implements api_action {
+
+	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso_gallery';
 
 	/**
 	 *  Set the post thumbnail when the user sets it on the front end
@@ -19,7 +28,7 @@ class image_upload implements api_action {
 	 *
 	 * @return bool Always returns true.
 	 */
-	public function upload() {
+	public function upload( $data ) {
 
 		$postid  	= isset( $data['postid'] ) ? $data['postid'] : false;
 		$image_id  	= isset( $data['image_id'] ) ? absint( $data['image_id'] ) : false;
@@ -61,13 +70,13 @@ class image_upload implements api_action {
 	 * @return array Array of keys to pull from $data per action and their sanitization callback
 	 */
 	public static function params(){
-		$params[ 'process_image_upload' ] = array(
-			'post_id' => 'absint',
+		$params[ 'process_upload_image_upload' ] = array(
+			'postid' => 'absint',
 			'image_id' => 'absint'
 		);
 
-		$params[ 'process_image_delete' ] = array(
-			'post_id' => 'absint',
+		$params[ 'process_upload_image_delete' ] = array(
+			'postid' => 'absint',
 		);
 
 		return $params;
@@ -82,7 +91,7 @@ class image_upload implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'process_image_upload' ][ 'process_image_delete' ] = array(
+		$params['process_upload_image_upload']['process_image_delete'] = array(
 			'lasso_user_can'
 		);
 

@@ -10967,14 +10967,15 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		var data = {
-			action: 'process_image-upload_upload',
+			action: 'process_upload-image_upload',
 			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
 			nonce: 	lasso_editor.featImgNonce
 		}
+
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
-			if ( true == response.success ) {
+			if ( true == response ) {
 				$('#lasso--featImgSave').css('opacity',0);
 			}
 
