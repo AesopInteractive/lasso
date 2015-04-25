@@ -11473,17 +11473,29 @@ jQuery(document).ready(function($){
 	//////////////////
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
-	function fetchPosts(){
+	function fetchPosts( type ){
+
+		if ( 'posts' == type ) {
+
+			type 	= posts
+			capable = lasso_editor.edit_others_posts
+
+		} else if ( 'pages' == type ) {
+
+			type 	= pages
+			capable = lasso_editor.edit_others_pages
+
+		}
 
 		// get the posts
-		posts.fetch( options ).done( function() {
+		type.fetch( options ).done( function() {
 
 			// if we hvae more posts then load them
-			if ( posts.length > 0 ) {
+			if ( type.length > 0 ) {
 
 		    	$(postList).append( moreButton );
 
-		    	loadPosts()
+		    	loadPosts( type )
 
 		    	// trigger a click on the load more to load teh first set?
 		    	$('#lasso--load-more').trigger('click')
@@ -11498,7 +11510,7 @@ jQuery(document).ready(function($){
 	//////////////////
 	// LOAD MORE CLICK EVENT
 	/////////////////
-	function loadPosts(){
+	function loadPosts( type ){
 
 		$(postList).on('click','#lasso--load-more', function(e){
 
@@ -11506,9 +11518,9 @@ jQuery(document).ready(function($){
 
 			$('#lasso--load-more').hide();
 
-			var setContainer = $( '<div data-page-num="' + posts.state.currentPage + '" class="lasso--object-batch"></div>' )
+			var setContainer = $( '<div data-page-num="' + type.state.currentPage + '" class="lasso--object-batch"></div>' )
 
-			posts.each( function( model ) {
+			type.each( function( model ) {
 
 				setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) )
 
@@ -11518,9 +11530,9 @@ jQuery(document).ready(function($){
 			$(postList).append( setContainer );
 
 			// if there are more posts then load them
-			if ( posts.hasMore() ) {
+			if ( type.hasMore() ) {
 
-				posts.more().done( function() {
+				type.more().done( function() {
 
 					// destroy the loader
 					destroyLoader()
@@ -11551,7 +11563,7 @@ jQuery(document).ready(function($){
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts()
+		fetchPosts('posts')
 
 		$(postList).perfectScrollbar({
 			suppressScrollX: true
