@@ -10951,8 +10951,6 @@ jQuery(document).ready(function($){
 
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
-			console.log(response)
-
 			if ( true == response ) {
 				$('#lasso--featImgSave').css('opacity',0);
 			}
