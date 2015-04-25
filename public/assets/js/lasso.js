@@ -11450,6 +11450,18 @@ jQuery(document).ready(function($){
 	,	body 			= $('body')
 	,	noPostsMessage  = '<li>No posts found</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
+	,	moreButton      = '<a href="#" id="lasso--load-more">Load More</a>'
+	,	page 			= 1
+
+	// infinite load options
+	var options = {
+		data: {
+			page: WP_API_Settings.page || 2,
+			filter: {
+				post_status: ['publish','draft','pending'] 
+			}
+		}
+	}
 
 	//////////////////
 	// DESTROY LOADER
@@ -11461,44 +11473,70 @@ jQuery(document).ready(function($){
 	//////////////////
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
-	var fetchPosts = function( type ) {
-
-		if ( 'posts' == type ) {
-
-			type = posts
-
-			capable = lasso_editor.edit_others_posts
-
-		} else if ( 'pages' == type ) {
-
-			type = pages
-
-			capable = lasso_editor.edit_others_pages
-		}
+	function fetchPosts(){
 
 		// get the posts
-		type.fetch( { data: { filter: { post_status: ['publish','draft','pending'] } } } ).done( function() {
-		    type.each( function( post ) {
+		posts.fetch( options ).done( function() {
 
-		    	// if the current use can edit_others_posts or edit_others_pages
-		    	if ( 'true' === capable ) {
+			// if we hvae more posts then load them
+			if ( posts.length > 0 ) {
 
-		    		destroyLoader()
-		       		$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
+		    	$(postList).append( moreButton );
 
-		       	// else only show the current logged in users posts
-		    	} else if ( lasso_editor.author == post.attributes.author.id ) {
+		    	loadPosts()
 
-	    			destroyLoader()
-	       			$(postList).append( postTemplate( { post: post.attributes, settings: WP_API_Settings } ) )
+		    	// trigger a click on the load more to load teh first set?
+		    	$('#lasso--load-more').trigger('click')
+		    }
 
+		    // destroy the spinny loader
+		    destroyLoader()
 
-		    	}
-
-
-		    });
 		});
 	}
+
+	//////////////////
+	// LOAD MORE CLICK EVENT
+	/////////////////
+	function loadPosts(){
+
+		$(postList).on('click','#lasso--load-more', function(e){
+
+			e.preventDefault()
+
+			$('#lasso--load-more').hide();
+
+			var setContainer = $( '<div data-page-num="' + posts.state.currentPage + '" class="lasso--object-batch"></div>' )
+
+			posts.each( function( model ) {
+
+				setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) )
+
+			})
+
+			// append to the post container
+			$(postList).append( setContainer );
+
+			// if there are more posts then load them
+			if ( posts.hasMore() ) {
+
+				posts.more().done( function() {
+
+					// destroy the loader
+					destroyLoader()
+
+					// append the more button then show
+					$(moreButton).appendTo( $(postList) ).show()
+
+				})
+
+			}
+
+		})
+
+	}
+
+
 	//////////////////
 	// OPEN INITIAL POSTS
 	/////////////////
@@ -11512,7 +11550,8 @@ jQuery(document).ready(function($){
 		// append teh modal markup ( lasso_editor_component_modal() )
 		body.append( lasso_editor.allPostModal );
 
-		fetchPosts( 'posts')
+		// get the intial posts
+		fetchPosts()
 
 		$(postList).perfectScrollbar({
 			suppressScrollX: true
@@ -11538,15 +11577,9 @@ jQuery(document).ready(function($){
 
 	});
 
-	// infinite scroll click
-	$('#lasso--load-more').live('click', function(e){
-
-		e.preventDefault()
-
-	});
-
-
+	//////////////////
 	// DELETE POST
+	/////////////////
 	$('#lasso--post__delete').live('click',function(e){
 
 		e.preventDefault();
