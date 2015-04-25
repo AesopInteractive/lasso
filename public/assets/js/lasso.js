@@ -11466,7 +11466,7 @@ jQuery(document).ready(function($){
 	//////////////////
 	// DESTROY LOADER
 	/////////////////
-	var destroyLoader = function(){
+	function destroyLoader(){
 		$('#lasso--loading').remove()
 	}
 
