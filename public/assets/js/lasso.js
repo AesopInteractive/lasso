@@ -10948,9 +10948,10 @@ jQuery(document).ready(function($){
 			image_id: $this.data('featimg-id'),
 			nonce: 	lasso_editor.featImgNonce
 		}
+
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
-			if ( true == response.success ) {
+			if ( true == response ) {
 				$('#lasso--featImgSave').css('opacity',0);
 			}
 
