@@ -40,7 +40,7 @@ function lasso_editor_get_option( $option, $section, $default = '' ) {
  */
 function lasso_editor_galleries_exist() {
 
-	$q = new wp_query( array( 'post_type' => 'ai_galleries', 'posts_per_page' => -1, 'post_status' => 'publish' ) );
+	$q = new wp_query( array( 'post_type' => 'ai_galleries', 'post_status' => 'publish' ) );
 
 	if ( $q->have_posts() )
 		return true;
