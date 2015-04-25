@@ -17,7 +17,7 @@ class image_upload implements api_action {
 	 *
 	 * @var string
 	 */
-	public $nonce_action = 'lasso_update_img';
+	public $nonce_action = 'lasso_gallery';
 
 	/**
 	 *  Set the post thumbnail when the user sets it on the front end
@@ -91,7 +91,7 @@ class image_upload implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'process_image_upload' ] = array(
+		$params['process_image_upload']['process_image_delete'] = array(
 			'lasso_user_can'
 		);
 

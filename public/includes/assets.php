@@ -92,7 +92,7 @@ class assets {
 				'components'		=> lasso_editor_components(),
 				'wpImgEdit'			=> lasso_editor_wpimg_edit(),
 				'featImgControls'   => lasso_editor_image_controls(),
-				'featImgNonce'		=> wp_create_nonce('lasso_update_img'),
+				'featImgNonce'		=> $gallery_nonce,
 				'getGallImgNonce'	=> $gallery_nonce,
 				'createGallNonce'	=> $gallery_nonce,
 				'swapGallNonce'		=> $gallery_nonce,
