@@ -12,7 +12,7 @@
  * Description:       Front-end editor and story builder.
  * Version:           0.9.2
  * Author:            Aesopinteractive LLC
- * Author URI:        http://aesopstoryengine.com
+ * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
  * Domain Path:       /languages
  */
