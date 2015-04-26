@@ -18,7 +18,7 @@ Refer to owners manual
 
 == Changelog ==
 
-= 0.9.2.1 =
+= 0.9.3 =
 * fixed .entry-content being applied as a default Article CSS Class
 * allow escaping the warning modal that warns users if no Article CSS class is present
 * fixed image control setting with images inserted without Aesop Story Engine active
