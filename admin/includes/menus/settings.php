@@ -91,7 +91,7 @@ class settings {
 		if ( !is_user_logged_in() )
 			return;
 
-		$article_object   = lasso_editor_get_option( 'article_class', 'lasso_editor','.entry-content' );
+		$article_object   = lasso_editor_get_option( 'article_class', 'lasso_editor' );
 		$featImgClass    = lasso_editor_get_option( 'featimg_class', 'lasso_editor' );
 		$titleClass    = lasso_editor_get_option( 'title_class', 'lasso_editor' );
 

@@ -8812,7 +8812,8 @@ jQuery(document).ready(function($){
 			title: strings.warning,
 			type: 'info',
 			text: strings.missingClass,
-			showCancelButton: false,
+			showCancelButton: true,
+			cancelButtonText: strings.cancelText,
 			confirmButtonColor: '#007aab',
 			confirmButtonText: strings.missingConfirm,
 			closeOnConfirm: false
@@ -8909,7 +8910,7 @@ jQuery(document).ready(function($){
 
 		});
 
-		$('.lasso-component').each(function(){
+		$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
 
 			var $this = $(this)
 

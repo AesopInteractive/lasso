@@ -10,9 +10,9 @@
  * Plugin Name:       Lasso (beta)
  * Plugin URI:        http://lasso.is
  * Description:       Front-end editor and story builder.
- * Version:           0.9.2
+ * Version:           0.9.3
  * Author:            Aesopinteractive LLC
- * Author URI:        http://aesopstoryengine.com
+ * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
  * Domain Path:       /languages
  */
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '0.9.2' );
+define( 'LASSO_VERSION', '0.9.3' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 

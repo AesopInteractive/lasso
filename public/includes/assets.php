@@ -64,7 +64,8 @@ class assets {
 				'deletePost'		=> __('Trash Post?','lasso'),
 				'deleteYes'			=> __('Yes, trash it!','lasso'),
 				'warning'			=> __('Oh snap!','laso'),
-				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso needs this to function correctly.','lasso'),
+				'cancelText'		=> __('O.K. got it!','lasso'),
+				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
 				'missingConfirm'	=> __('Update Settings', 'lasso')
 			);
 
