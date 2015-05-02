@@ -119,10 +119,23 @@ function lasso_supported_no_save(){
 }
 
 /**
-<<<<<<< HEAD
+ * Generic sanitization, useful for sanitization of arrays.
+ *
+ * @since 0.9.2
+ *
+ * @param array|object|string $data Data to sanatize.
+ *
+ * @return array|mixed|object|string|void
+ */
+function lasso_sanitize_data( $data ) {
+	return \lasso\sanatize::do_sanitize( $data );
+
+}
+
+/**
  *	Return a comma delimited list of categories for a specific post object
  *
- *	@since 0.9.1
+ *	@since 0.9.3
  *	@return string of comma delimited category slugs
 */
 function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
@@ -147,7 +160,7 @@ function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
 /**
  *	Return an array of categories for autocomplete
  *
- *	@since 0.9.1
+ *	@since 0.9.3
  *	@return array all categoiries
 */
 function lasso_get_objects( $taxonomy = 'category' ) {
@@ -163,19 +176,6 @@ function lasso_get_objects( $taxonomy = 'category' ) {
 	}
 
 	return $out;
-=======
- * Generic sanitization, useful for sanitization of arrays.
- *
- * @since 0.9.2
- *
- * @param array|object|string $data Data to sanatize.
- *
- * @return array|mixed|object|string|void
- */
-function lasso_sanitize_data( $data ) {
-	return \lasso\sanatize::do_sanitize( $data );
->>>>>>> release/0.9.3
-
 }
 
 ////////////////////
@@ -203,4 +203,3 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 	}
 endif;
-

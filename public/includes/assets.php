@@ -115,14 +115,10 @@ class assets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
-<<<<<<< HEAD:public/includes/class.assets.php
-			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
-				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
-=======
+
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 
->>>>>>> release/0.9.3:public/includes/assets.php
 		}
 
 	}
