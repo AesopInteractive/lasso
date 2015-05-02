@@ -1,24 +1,18 @@
 <?php
-
 /**
  * Process various gallery fucntions like fetching and saving images
  *
  * @since 1.0
  */
-class lassoSaveGallery {
+namespace lasso;
 
-	public function __construct() {
+class save_gallery {
 
-		add_action( 'lasso_gallery_saved',     array( $this, 'save_gallery_options' ), 10, 3 );
-	}
 
 	/**
 	 * Update an existing galleries options
-	 *  @todo this needs to be cleaned up
 	 */
-	public function save_gallery_options( $postid, $gallery_ids, $options ) {
-
-		$type = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
+	public static function save_gallery_options( $postid, $gallery_ids, $options, $type = false ) {
 
 		// gallery width
 		$gallery_width = isset( $options['width'] ) ? $options['width'] : false;
@@ -72,4 +66,4 @@ class lassoSaveGallery {
 	}
 
 }
-new lassoSaveGallery;
+

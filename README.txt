@@ -1,10 +1,10 @@
 === Lasso ===
 Contributors: nphaskins
 Author URI:  http://nickhaskins.com
-Plugin URI: http://story.am
+Plugin URI: https://lasso.is
 Requires at least: 3.5
-Tested up to: 4.1
-Stable tag: 0.9
+Tested up to: 4.2
+Stable tag: 0.9.2
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,16 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.3 =
+* fixed .entry-content being applied as a default Article CSS Class
+* allow escaping the warning modal that warns users if no Article CSS class is present
+* fixed image control setting with images inserted without Aesop Story Engine active
+* fixed feautred image not being saved
+
+= 0.9.2 =
+* fixed links not working if editor was active but not in use
+* massive internal rewrite to use a custom API for processing requests instead of hitting admin-ajax. This increases the saving speed and ensures compatibility for very large WordPress installations and Enterprise users. Tested and working on WordPress MU, Apache, Nginx , and HHVM.
 
 = 0.9.1.1 =
 * fixed a js error that happened if an uploaded media item wasn't large enough to be resized to large

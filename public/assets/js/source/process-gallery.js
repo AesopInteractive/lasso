@@ -92,7 +92,7 @@
 	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
 
 		var data = {
-			action: 		'process_swap_gallery',
+			action: 		'process_gallery_swap',
 			gallery_id: 	$(this).val(),
 			nonce: 			lasso_editor.swapGallNonce
 		}

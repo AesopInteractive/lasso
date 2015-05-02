@@ -119,6 +119,7 @@ function lasso_supported_no_save(){
 }
 
 /**
+<<<<<<< HEAD
  *	Return a comma delimited list of categories for a specific post object
  *
  *	@since 0.9.1
@@ -162,6 +163,18 @@ function lasso_get_objects( $taxonomy = 'category' ) {
 	}
 
 	return $out;
+=======
+ * Generic sanitization, useful for sanitization of arrays.
+ *
+ * @since 0.9.2
+ *
+ * @param array|object|string $data Data to sanatize.
+ *
+ * @return array|mixed|object|string|void
+ */
+function lasso_sanitize_data( $data ) {
+	return \lasso\sanatize::do_sanitize( $data );
+>>>>>>> release/0.9.3
 
 }
 
@@ -190,3 +203,4 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 	}
 endif;
+

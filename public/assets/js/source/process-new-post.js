@@ -4,7 +4,7 @@
 
 		// method to destroy the modal
 		var destroyModal = function(){
-			$('body').removeClass('lasso-modal-open');
+			$('body').removeClass('lasso-modal-open' );
 			$('.lasso--modal, #lasso--modal__overlay').remove();
 		}
 

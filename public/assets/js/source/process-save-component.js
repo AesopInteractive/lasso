@@ -82,7 +82,7 @@
 		if ( 'gallery' == cdata['componentType'] ) {
 
 			var data = {
-				action: 		form.hasClass('creating-gallery') ? 'process_create_gallery' : 'process_update_gallery',
+				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
 				postid: 		lasso_editor.postid,
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),

@@ -10,9 +10,9 @@
  * Plugin Name:       Lasso (beta)
  * Plugin URI:        http://lasso.is
  * Description:       Front-end editor and story builder.
- * Version:           0.9.1.1
+ * Version:           0.9.3
  * Author:            Aesopinteractive LLC
- * Author URI:        http://aesopstoryengine.com
+ * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
  * Domain Path:       /languages
  */
@@ -23,28 +23,25 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '0.9.1.1' );
+define( 'LASSO_VERSION', '0.9.3' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 
-/*----------------------------------------------------------------------------*
- * Public-Facing Functionality
- *----------------------------------------------------------------------------*/
-require_once plugin_dir_path( __FILE__ ) . 'public/class-lasso.php';
+/**
+ * Load plugin if PHP version is 5.4 or later.
+ */
+if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 
+	include_once( LASSO_DIR . '/bootstrap.php' );
 
-register_activation_hook( __FILE__, array( 'Lasso', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Lasso', 'deactivate' ) );
+} else {
 
-add_action( 'plugins_loaded', array( 'Lasso', 'get_instance' ) );
+	add_action('admin_head', 'lasso_fail_notice');
+	function lasso_fail_notice(){
 
-/*----------------------------------------------------------------------------*
- * Dashboard and Administrative Functionality
- *----------------------------------------------------------------------------*/
+		printf('<div class="error"><p>Lasso requires PHP 5.4 or higher.</p></div>');
 
-if ( is_admin() ) {
-
-	require_once plugin_dir_path( __FILE__ ) . 'admin/class-lasso-admin.php';
-	add_action( 'plugins_loaded', array( 'Lasso_Admin', 'get_instance' ) );
-
+	}
 }
+
+

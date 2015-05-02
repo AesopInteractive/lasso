@@ -4,7 +4,9 @@
  *
  * @since 0.8.2
  */
-class lassoWelcome {
+namespace lasso_admin\menus;
+
+class welcome {
 
 	function __construct() {
 
@@ -193,4 +195,4 @@ class lassoWelcome {
 
 	}
 }
-new lassoWelcome;
+
