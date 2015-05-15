@@ -3,8 +3,8 @@ Contributors: nphaskins
 Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
-Tested up to: 4.2
-Stable tag: 0.9.2
+Tested up to: 4.2.2
+Stable tag: 0.9.3
 
 Front-end editing and creation suite.
 
