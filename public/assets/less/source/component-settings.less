@@ -1,0 +1,223 @@
+#lasso--component__settings {
+
+    form {
+        margin:0;
+        position: relative;
+        padding-bottom:@insert--height; // height of insert
+    }
+
+    label,
+     .lasso-option-desc {
+        display: block;
+        line-height: 1.3;
+    }
+
+    // option label
+    h3,
+    label {
+        font-weight:bold;
+        margin-bottom: 3px;
+        font-size: @sidebar--font__size;
+    }
+
+    .lasso-option-desc {
+        margin-bottom: 5px;
+        font-size: @sidebar--font__size - 2.75;
+    }
+
+
+    // general textarea and input styles
+    input[type="text"],
+    input[type="text_small"],
+    input[type="media_upload"],
+    textarea,
+    select {
+        background:@input--bg;
+        width:100%;
+        height:@input--height;
+        border:1px solid @input--border;
+        border-radius:@editor--radius;
+        line-height:1.8;
+        padding:0 6px;
+        color:@input--color;
+        .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
+        font-size: @sidebar--font__size;
+        &:focus {
+            box-shadow: none;
+            outline:none;
+            border:1px solid @editor--color__update;
+        }
+    }
+
+    // color picker
+    input[type="color"] {
+        border-radius: @editor--radius - 1;
+        border:1px solid @input--border;
+        padding:0 2px;
+        height:@input--height;
+        display: block;
+        &:active,
+        &:focus {
+            box-shadow: none;
+            outline:none;
+            border:1px solid @editor--color__update;
+        }
+    }
+
+    select {
+        height:@input--height;
+        box-shadow: none;
+    }
+
+    textarea {
+        overflow: auto;
+        margin:0;
+        line-height:1.15;
+        padding:6px;
+        height:auto;
+    }
+
+    // media upload treatment
+    input[type="media_upload"] {
+        height:@input--height;
+    }
+
+    input[type="submit"],
+    .lasso-generator-cancel {
+        height:@input--height;
+        font-weight: 400;
+        text-align: center;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: @input--button__padding;
+        line-height: @input--lineheight;
+        color: @input--button__color;
+        font-size: @sidebar--font__size;
+        font-family: @editor--font;
+        border-right: @editor--radius - 2;
+    }
+
+    // option button/media upload
+    .lasso-option-button {
+        position: absolute;
+        bottom:21px;
+        right:21px;
+        background-color: @sidebar--button__bg;
+        border-color: @sidebar--button__border;
+        .transition(background .15s ease);
+        .box-shadow(0 1px 1px rgba(0,0,0,0.25));
+
+        &:hover {
+            text-decoration: none;
+            background:darken(@sidebar--button__bg,6);
+        }
+
+        &:active,
+        &:focus {
+            outline:none;
+            text-decoration: none;
+            border-color:darken(@sidebar--button__border,5);
+            background:darken(@sidebar--button__bg,10);
+            transition:none;
+            .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
+        }
+    }
+
+    #lasso-upload-img {
+        height:28px;
+        padding:8px;
+        border-top-right-radius: @editor--radius - 1;
+        border-bottom-right-radius: @editor--radius - 1;
+        .editor-icon-font();
+
+        &:before {
+            content:'\e9c6';
+            position: relative;
+            color:@input--bg;
+        }
+
+    }
+
+    .lasso-generator-cancel {
+        background:none;
+        color:@editor--color__error;
+        position: relative;
+        top: 2px;
+    }
+}
+
+
+// single option
+.lasso-option {
+    position: relative;
+    border-bottom:1px solid @input--border;
+    margin:0;
+    padding:15px @sidebar--padding @sidebar--padding;
+    .clearfix();
+    .box-shadow(0 1px 1px rgba(255,255,255,0.05));
+    .transition(background .15s ease);
+
+    &:hover {
+        background: fadeout(@sidebar--bg__accent,50);
+    }
+}
+
+// update setting button
+.lasso-buttoninsert-wrap {
+    display: none;
+    margin:0 auto;
+    position: fixed;
+    text-align: right;
+    padding:20px 5px;
+    bottom:0;
+    width:@sidebar--width - 4;
+    height:@insert--height;
+    background:@sidebar--bg__accent;
+    right:-@sidebar--width - 4;
+    z-index: 1; //clears scroll
+    .clearfix();
+    .box-sizing(border-box);
+    .transition(right .25s ease);
+    .box-shadow(0 -10px 10px -10px rgba(0,0,0,1));
+}
+#lasso-generator-insert { // save
+    text-align: center;
+    float: right;
+    display:block;
+    margin:0 15px;
+    padding:6px 10px;
+    border-radius:@editor--radius - 2;
+    background:@sidebar--buttonInsert__bg;
+    border:1px solid @sidebar--buttonInsert__border;
+    color:@sidebar--buttonInsert__color;
+
+    &:hover {
+        text-decoration: none;
+        background:darken(@sidebar--buttonInsert__bg,10);
+    }
+
+    &:active,
+    &:focus {
+        text-decoration: none;
+        outline:none;
+    }
+
+    &:active {
+        background:darken(@sidebar--buttonInsert__bg,15);
+        .box-shadow(inset 1px 1px rgba(0,0,0,0.4));
+    }
+
+    &.saved {
+        background: @editor--color__success;
+    }
+}
+
+// hide the content text option in the content comonent settings
+.lasso-c-comp-text {
+    position: absolute;
+    right:-10000px;
+    .opacity(0);
+    height:0;
+}

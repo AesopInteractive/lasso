@@ -1,0 +1,147 @@
+.lasso--tour__modal {
+
+    .lasso--postsettings__footer {
+        .clearfix();
+    }
+
+    .lasso--modal__inner {
+        position: relative;
+    }
+
+    .lasso--postsettings__option {
+        border-bottom: none;
+        box-shadow:none;
+        padding-bottom:0;
+        margin-bottom: 0;
+        float: left;
+        top:4px;
+        position: relative;
+        .opacity(0.85);
+
+        label {
+            padding-left:23px;
+            font-size:@modal--font__size;
+            font-weight: normal;
+        }
+
+        .control-indicator {
+            width:14px;
+            height:14px;
+            top:0;
+        }
+    }
+    #lasso--tour__slides {
+        position: relative;
+        overflow: auto;
+        display: none;
+    }
+
+    ul {
+        margin:0;
+        padding:0;
+        list-style: none;
+        .clearfix();
+
+        li {
+            float: left;
+        }
+    }
+
+    li {
+        img{
+            background: @modal--border;
+            padding:6px;
+            border-radius:3px;
+            .box-shadow(0 1px 1px rgba(255,255,255,0.1));
+        }
+        p {
+            font-family: @editor--font;
+            font-size:@modal--font__size + 2;
+            line-height: 1.25;
+            margin:15px auto 28px;
+            padding-right:4px;
+            padding-left:4px;
+        }
+    }
+    .dots {
+        position: absolute;
+        left: 0;
+        right:0;
+        right: 0;
+        bottom: -10px;
+        text-align: center;
+        width: 100%;
+        margin:0;
+
+        li {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            line-height: 16px;
+            margin: 0 3px;
+            text-indent: -999em;
+            border: 1px solid @modal--border;
+             background: @modal--bg__accent;
+            border-radius: 100%;
+            cursor: pointer;
+            .opacity(.4);
+            -webkit-transition: background .5s, opacity .5s;
+            -moz-transition: background .5s, opacity .5s;
+            transition: background .5s, opacity .5s;
+            .box-shadow(0 1px 1px rgba(255,255,255,0.1));
+
+            &.active {
+                background: fadeout(@editor--color__update,25);
+                opacity: 1;
+            }
+        }
+
+    }
+}
+
+.lasso--tour__loading {
+    height:auto;
+    //position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    width:100%;
+}
+
+
+.lasso--tour__loader {
+    height:40px;
+    width:40px;
+    margin:10px auto;
+    top:48%;
+    position:relative;
+    -webkit-animation: rotation .6s infinite linear;
+    -moz-animation: rotation .6s infinite linear;
+    -o-animation: rotation .6s infinite linear;
+    animation: rotation .6s infinite linear;
+    border-left:3px solid fadeout(@editor--color__update,80);
+    border-right:3px solid fadeout(@editor--color__update,80);
+    border-bottom:3px solid fadeout(@editor--color__update,80);
+    border-top:3px solid @editor--color__update;
+    border-radius:100%;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(359deg);}
+}
+
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(359deg);}
+}
+
+@-o-keyframes rotation {
+    from {-o-transform: rotate(0deg);}
+    to {-o-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+}

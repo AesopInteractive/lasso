@@ -1,0 +1,195 @@
+// lasso tooltip
+.lasso-util--help {
+    position: relative;
+    cursor: pointer;
+    color: @tooltip--icon__color;
+    display: inline-block;
+    .transition(opacity .15s ease);
+    .opacity(0.75);
+
+    &:hover {
+        text-decoration: none;
+        .opacity(1);
+    }
+
+    // base styles
+    &:before,
+    &:after {
+        position: absolute;
+        visibility: hidden;
+        .opacity(0);
+        -webkit-transition:
+            opacity 0.2s ease-in-out,
+            visibility 0.2s ease-in-out,
+            -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+        -moz-transition:
+            opacity 0.2s ease-in-out,
+            visibility 0.2s ease-in-out,
+            -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+        transition:
+            opacity 0.2s ease-in-out,
+            visibility 0.2s ease-in-out,
+            transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform:    translate3d(0, 0, 0);
+        transform:         translate3d(0, 0, 0);
+        pointer-events: none;
+    }
+
+    // show on hover and focus
+    &:hover:before,
+    &:hover:after,
+    &:focus:before,
+    &:focus:after {
+        visibility: visible;
+        .opacity(1);
+    }
+
+
+    // base style caret
+    &:before {
+        z-index: 1001;
+        border: 6px solid transparent;
+        background: transparent;
+        content: "";
+    }
+
+    // base style for content area
+    &:after {
+        z-index: 1000;
+        padding: 8px;
+        width: 160px;
+        background-color: @tooltip--bg;
+        color: @tooltip--color;
+        font-family: @editor--font;
+        //text-shadow:1px 1px rgba(255,255,255,0.2);
+        content: attr(data-tooltip);
+        font-size: @tooltip--font__size;
+        line-height: 1.2;
+        border-radius:@editor--radius - 2;
+    }
+}
+
+/* Directions */
+
+/* Top (default) */
+.lasso-util--help:before,
+.lasso-util--help:after,
+.lasso-util--help-top:before,
+.lasso-util--help-top:after {
+  bottom: 100%;
+  left: 50%;
+}
+
+.lasso-util--help:before,
+.lasso-util--help-top:before {
+  margin-left: -6px;
+  margin-bottom: -12px;
+  border-top-color: @tooltip--bg;
+}
+
+/* Horizontally align top/bottom.lasso-util--helps */
+
+.lasso-util--help:after,
+.lasso-util--help-top:after {
+  margin-left: -80px;
+}
+
+
+.lasso-util--help:hover:before,
+.lasso-util--help:hover:after,
+.lasso-util--help:focus:before,
+.lasso-util--help:focus:after,
+.lasso-util--help-top:hover:before,
+.lasso-util--help-top:hover:after,
+.lasso-util--help-top:focus:before,
+.lasso-util--help-top:focus:after {
+  -webkit-transform: translateY(-12px);
+  -moz-transform:    translateY(-12px);
+  transform:         translateY(-12px); 
+}
+
+/* Left */
+.lasso-util--help-left:before,
+.lasso-util--help-left:after {
+  right: 100%;
+  bottom: 50%;
+  left: auto;
+}
+
+.lasso-util--help-left:before {
+  margin-left: 0;
+  margin-right: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-left-color: @tooltip--bg;
+}
+
+.lasso-util--help-left:hover:before,
+.lasso-util--help-left:hover:after,
+.lasso-util--help-left:focus:before,
+.lasso-util--help-left:focus:after {
+  -webkit-transform: translateX(-12px);
+  -moz-transform:    translateX(-12px);
+  transform:         translateX(-12px); 
+}
+
+/* Bottom */
+.lasso-util--help-bottom:before,
+.lasso-util--help-bottom:after {
+  top: 100%;
+  bottom: auto;
+  left: 50%;
+}
+
+.lasso-util--help-bottom:before {
+  margin-top: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-bottom-color: @tooltip--bg;
+}
+
+.lasso-util--help-bottom:hover:before,
+.lasso-util--help-bottom:hover:after,
+.lasso-util--help-bottom:focus:before,
+.lasso-util--help-bottom:focus:after {
+  -webkit-transform: translateY(12px);
+  -moz-transform:    translateY(12px);
+  transform:         translateY(12px); 
+}
+
+/* Right */
+.lasso-util--help-right:before,
+.lasso-util--help-right:after {
+  bottom: 50%;
+  left: 100%;
+}
+
+.lasso-util--help-right:before {
+  margin-bottom: 0;
+  margin-left: -12px;
+  border-top-color: transparent;
+  border-right-color: @tooltip--bg;
+}
+
+.lasso-util--help-right:hover:before,
+.lasso-util--help-right:hover:after,
+.lasso-util--help-right:focus:before,
+.lasso-util--help-right:focus:after {
+  -webkit-transform: translateX(12px);
+  -moz-transform:    translateX(12px);
+  transform:         translateX(12px); 
+}
+
+/* Move directional arrows down a bit for left/right.lasso-util--helps */
+.lasso-util--help-left:before,
+.lasso-util--help-right:before {
+  top: 3px;
+}
+
+/* Vertically center.lasso-util--help content for left/right.lasso-util--helps */
+.lasso-util--help-left:after,
+.lasso-util--help-right:after {
+  margin-left: 0;
+  margin-bottom: -16px;
+}

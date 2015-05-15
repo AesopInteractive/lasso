@@ -1,0 +1,203 @@
+// global styles for edit buttons
+#lasso--controls {
+
+
+}
+
+// center controls containing the editor editor, settings, and add new post button
+.lasso--controls__center {
+
+    width:@control--width;
+    left: ~'calc(50% - @{control--width} / 2)';
+
+    li {
+        list-style-type: none;
+        line-height: 0;
+    }
+
+    &.lasso--post-new-disabled {
+
+    }
+    &.lasso--post-settings-disabled {
+
+    }
+    &.lasso--post-all-disabled {
+        @d-width: 34px;
+        width:@d-width;
+        left: ~'calc(50% - @{d-width} / 2)';
+    }
+}
+
+// save and publish controls
+.lasso--controls__right {
+    position: fixed;
+    right: -10000px;
+    bottom: @toolbar--pos__bottom;
+    z-index:999;
+    .opacity(0);
+    .transition(opacity .3s ease);
+
+    a {
+        display:inline-block;
+        vertical-align: bottom;
+        color:@control--color;
+        font-family:@editor--font;
+        font-style:normal;
+        font-size: @control--font__size;
+        padding:@control--padding;
+        border-radius: @editor--radius - 1;
+        height:@toolbar--height;
+        width:@toolbar--height + 4;
+        line-height: @toolbar--height - 1;
+        text-align: center;
+        .transition(opacity .15s ease);
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:focus:before,
+        &:active:before{
+            color:@control--color;
+            text-decoration: none;
+        }
+
+        &:before {
+            color:white;
+            .editor-icon-font();
+        }
+
+        &:focus {
+            outline:none;
+        }
+
+    }
+}
+
+
+#lasso--edit{
+    background: @toolbar--bg__accent;
+    border-top-left-radius: @editor--radius - 1;
+    border-bottom-left-radius: @editor--radius - 1;
+    &:before {
+        content:'\e908';
+    }
+
+    &:hover {
+        background: darken(@toolbar--bg__accent,3);
+    }
+}
+#lasso--post-settings:before {
+    content:'\e992';
+}
+#lasso--post-new:before {
+     content:'\e603';
+}
+
+
+// SAVE BUTTON
+#lasso--save {
+    background:@editor--color__update;
+    font-size: @control--font__size + 2;
+
+    &:before {
+        position: relative;
+        top:4px;
+        left:0;
+        height:auto;
+        content:'\e601';
+    }
+
+    &:hover {
+        background:darken(@editor--color__update,10);
+    }
+
+    &:active {
+        .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.4));
+    }
+
+    // post is being saved
+    &.being-saved:before {
+        content:'\e97f';
+        -webkit-animation: spin 2s infinite linear;
+        animation: spin 2s infinite linear;
+    }
+
+    // post has been saved
+    &.lasso--saved {
+
+        background:@editor--color__success;
+
+        &:before {
+            top:2px;
+            content:'\ea10';
+        }
+
+    }
+    // post has an error saving
+    &.lasso--error {
+
+        background: @editor--color__error;
+
+        &:before {
+            content:'\ea05';
+        }
+    }
+
+}
+
+
+// PUBLISH BUTTON (if post is in draft)
+#lasso--publish {
+    background: @editor--color__success;
+
+    &:before {
+        content:'\e909';
+        position:relative;
+        top:2px;
+    }
+}
+
+
+
+// body class lasso is editing
+.lasso-editing {
+
+    #lasso--controls .lasso-editor-controls,
+    #lasso--post-settings,
+    #lasso--edit {
+        .opacity(0);
+        position: absolute;
+        left:-10000px
+    }
+
+    .lasso--controls__right {
+        .opacity(1);
+        right: @toolbar--pos__bottom;
+    }
+
+    .wp-audio-shortcode {
+        visibility: visible !important;
+    }
+
+}
+
+@-webkit-keyframes spin {
+    0% {
+         -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}

@@ -1,0 +1,262 @@
+
+// gallery thumb images container
+#lasso--gallery__images {
+    min-height: 65px;
+    position: relative;
+
+    .lasso-icon-spinner6 {
+        position: relative;
+        left: 135px;
+        top: 18px;
+        -webkit-animation: spin 2s infinite linear;
+        animation: spin 2s infinite linear;
+        font-size: 16px;
+    }
+}
+
+.editor-btn-secondary {
+    .editor-btn-secondary();
+}
+// gallery images ul
+#ase-gallery-images {
+    margin:0 -7px;
+    border-radius: @editor--radius;
+    padding:2px;
+    .clearfix();
+    .transition(background .15s ease);
+    .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+}
+
+// single gallery image
+.ase-gallery-image {
+    position:relative;
+    float:left;
+    margin:4px;
+    .transition(transform .1s ease);
+    list-style:none;
+    i {
+        top:3px;
+        position: absolute;
+        z-index:1;
+        color:white;
+        font-size:16px;
+        text-shadow:0 1px 1px rgba(0,0,0,0.5);
+        .opacity(0.6);
+        .transition(all .2s ease);
+
+        &:hover {
+            cursor: pointer;
+            .opacity(1.0);
+            .scale(1.1);
+        }
+
+        &:active {
+            .scale(1);
+            box-shadow:none;
+        }
+    }
+
+    .dashicons-edit {
+        left:3px;
+    }
+    .dashicons-no-alt {
+        right:2px;
+    }
+
+    img{
+        max-width:54px;
+        border-radius:2px;
+        .transition(opacity .15s ease);
+    }
+
+    // being dragged
+    &.ui-sortable-helper {
+        -ms-transform: rotate(7deg); /* IE 9 */
+        -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+        transform: rotate(7deg);
+    }
+
+    &:hover {
+        cursor: move;
+
+        img {
+            .opacity(0.66);
+        }
+    }
+}
+.ase-gallery-opts--edit-gallery:hover {
+    // gallery images ul
+    #ase-gallery-images {
+        background:@toolbar--bg__dark;
+        .box-shadow(inset 0 -1px 1px rgba(255,255,255,0.1));
+    }
+}
+
+// add image
+.lasso-editor-tiny-btn {
+    .tiny-circle-btn( @toolbar--bg__dark, fadeout(@toolbar--color,20) );
+}
+#lasso--gallery__create {
+    position: absolute;
+    right:12px;
+}
+#ase-gallery-add-image {
+    position: absolute;
+    right:34px;
+    font-size: 9px;
+}
+
+// dropzone
+.ase-gallery-drop-zone {
+    border: 1px solid @toolbar--bg;
+    background: @toolbar--bg__accent;
+    color: #363636;
+    width:54px;
+    height:54px;
+    float:left;
+    margin:4px;
+    border-radius:2px;
+}
+
+// specificity
+#lasso--component__settings .ase-gallery-layout-label {
+    font-size:12px;
+}
+
+// gallery layout picker
+.ase-gallery-opts--type{
+
+    position: relative;
+
+    h3 {
+        margin:0;
+    }
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .ase-gallery-layout-label {
+        position: relative;
+        float:left;
+        height:68px;
+        width:78px;
+        overflow: hidden;
+        text-align: center;
+        background:@toolbar--bg__accent;
+        padding:5px;
+        box-sizing:border-box;
+        border:1px solid @toolbar--bg__dark;
+        .transition(opacity .15s ease);
+        .opacity(0.3);
+        margin-right:2px;
+        font-weight:normal;
+
+        &:last-of-type {
+            margin-right: 0 !important;
+        }
+
+        &:after {
+            content:'';
+            background-image:url('../img/layout-sprite.png');
+            background-size:84%;
+            position: absolute;
+            height:42px;
+            display: block;
+            left:0;
+            right:0;
+            bottom:0;
+        }
+
+        &:hover {
+            .opacity(1);
+            cursor: pointer;
+        }
+
+        &:active {
+            background:darken(@toolbar--bg__accent,4);
+            .box-shadow(inset 0 0 6px -1px rgba(0,0,0,0.5));
+        }
+    }
+
+    .selected {
+        .box-shadow(inset 0 0 12px -2px rgba(0,0,0,0.5));
+        .opacity(1);
+
+    }
+
+    label:first-of-type:after {
+        background-position: 5px -9px;
+    }
+    label:nth-of-type(2):after {
+        background-position: 5px -52px;
+    }
+    label:nth-of-type(3):after {
+        background-position: 5px -99px;
+    }
+    label:nth-of-type(4):after {
+        background-position: 5px -145px;
+    }
+     label:last-of-type:after {
+        background-position: 5px -428px;
+    }
+}
+.ase-gallery-opts {
+    .transition(opacity .25s ease);
+}
+
+// empty gallery placholder
+.lasso--empty-component {
+    height:0;
+    .opacity(0);
+    text-align: center;
+    color:@input--color;
+    font-family: @editor--font;
+    font-size:@toolbar--font__size;
+    .transition(all .2s linear);
+
+    span {
+        position: relative;
+        top:2px;
+    }
+}
+.lasso-editing {
+
+    .lasso--empty-component + .aesop-map-component,
+    .aesop-gallery-component.empty-gallery {
+        .lasso-component--controls {
+            .opacity(1);
+            left:0;
+        }
+    }
+    .lasso--empty-component {
+        height:150px;
+        padding-top:75px;
+        .opacity(1);
+    }
+}
+#lasso--component__settings.gallery-no-images {
+    .ase-gallery-opts:not(.ase-gallery-opts--create-gallery) {
+        display: none;
+    }
+}
+// no galleries
+#lasso--component-settings-form{
+    &.creating-gallery {
+        .lasso-option.lasso-gallery-id {
+            display: none;
+        }
+    }
+    &.has-galleries {
+        .ase-gallery-opts--create-gallery {
+            display: none;
+        }
+    }
+    &.hide-all-fields .ase-gallery-opts {
+        .opacity(0);
+    }
+}
+
+

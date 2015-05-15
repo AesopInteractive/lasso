@@ -1,0 +1,187 @@
+.aesop-component {
+    position: relative;
+}
+
+// missing wp media modal styles
+.screen-reader-text, .screen-reader-text span, .ui-helper-hidden-accessible {
+    position: absolute;
+    margin: -1px;
+    padding: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+
+// editable title
+*[contenteditable="true"]:focus {
+    outline:none;
+}
+
+// title been edited
+.lasso-title-saved {
+    .transition(all .2s ease);
+    background:fadeout(white,90);
+}
+
+// drop zone
+.lasso-drop-zone {
+    .box-sizing(border-box);
+    height:@editor--dropzone__height;
+    background: @editor--dropzone__bg;
+    border:1px dashed @editor--dropzone__border;
+    list-style-type: none;
+    width:700px;
+    margin:0 auto 25px;
+    border-radius:@editor--radius - 1;
+
+    &:hover {
+        background: darken(@editor--dropzone__bg,15);
+    }
+}
+
+// component being dragged around on the page
+.lasso-drag-holder {
+    height:@editor--dropzone__height !important;
+    background:#d7d7d7;
+    text-align: center;
+    width:60px;
+
+    // each component has a data-component-type data attribute
+    // with the compents slug. That's used to add a class on drag
+    // which we use here to place icons as :before elements
+    //
+    // Custom modules must have this data-component-type so that
+    // you can style the draggable placeholder
+    .editor-icon-font();
+    .editor--icon__list();
+
+    &:before {
+        position: relative;
+        top:25px;
+        font-size:22px;
+    }
+}
+
+.lasso-editor{
+    position: relative;
+    min-height: 10px;
+
+    &:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    p:empty {
+        display: block;
+        height: 1em;
+    }
+    // component item being dragged from toolbar to editor
+    .ui-draggable-dragging {
+        list-style-type: none;
+        height:50px;
+        padding:10px;
+        width:60px !important;
+        background:fadeout(@toolbar--bg,50);
+        text-align: center;
+        font-size:22px;
+        border-radius: @editor--radius;
+        .editor-icon-font();
+        .editor--icon__list();
+        .box-sizing(border-box);
+
+        &:before {
+            color:white;
+            position: relative;
+            top:4px;
+        }
+    }
+
+}
+.lasso-editor-clear{
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.lasso-editor-paste-hook{
+    position: absolute;
+    opacity:0;
+}
+.lasso-editor-placeholder{
+	position: absolute;
+}
+.lasso-editor-placeholder div{
+	.opacity(0.5);
+	position: absolute;
+}
+.lasso-editor-placeholder-rich div{
+	font-style: italic;
+}
+.lasso-editor-inline,
+.lasso-editor-placeholder-inline div,
+.lasso-editor-inlineRich,
+.lasso-editor-placeholder-inlineRich div{
+	overflow: hidden;
+	white-space: nowrap;
+}
+.lasso-editor-drag {
+	position: absolute;
+	cursor: move;
+	margin-left: -5px;
+	margin-top: -20px;
+}
+.lasso-editor-toolbar-hide {
+	overflow: hidden;
+	max-height: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	transition-property: opacity;
+	-moz-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	-webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	-o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	opacity: 0;
+}
+
+.lasso-editor-toolbar-show {
+	transition-property: opacity;
+	-moz-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	-o-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-moz-transition-timing-function: ease-in;
+	-webkit-transition-timing-function: ease-in;
+	-o-transition-timing-function: ease-in;
+	transition-timing-function: ease-in;
+	max-height: 1000px;
+	opacity: 1;
+	width: auto !important;
+}
+
+.lasso-editor-toolbar-fixed {
+	position: fixed;
+}
+.lasso-editor-focused {
+	transition: all 500ms ease-in-out 0s;
+	-moz-box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+#lasso--pagerefresh {
+    padding:15px;
+    background:@editor--color__success;
+    color:white;
+    font-size:@modal--font__size;
+    line-height: @modal--font__size * 1.3;
+    .transition(opacity .15s ease);
+}

@@ -1,0 +1,804 @@
+# Copyright (C) 2015 Aesopinteractive LLC
+# This file is distributed under the same license as the Lasso (beta) package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Lasso (beta) 0.9.1\n"
+"Report-Msgid-Bugs-To: http://lasso.is\n"
+"POT-Creation-Date: 2015-03-26 21:52:07+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: admin/includes/EDD_SL_Plugin_Updater.php:177
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" "
+"class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+
+#: admin/includes/EDD_SL_Plugin_Updater.php:184
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" "
+"class=\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a "
+"href=\"%4$s\">update now</a>."
+msgstr ""
+
+#: admin/includes/EDD_SL_Plugin_Updater.php:324
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: admin/includes/EDD_SL_Plugin_Updater.php:324
+msgid "Error"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Aesopinteractive LLC"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:35
+#: admin/includes/class.menu--license.php:54
+msgid "License Key"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:35
+msgid "License"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:44
+msgid "Lasso License"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:45
+msgid ""
+"Input the license key you recieved with your purchase to ensure your "
+"version of Lasso stays updated."
+msgstr ""
+
+#: admin/includes/class.menu--license.php:63
+#: admin/includes/class.menu--license.php:72
+msgid "Activate License"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:67
+msgid "active"
+msgstr ""
+
+#: admin/includes/class.menu--license.php:69
+msgid "Deactivate License"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:26
+#: admin/includes/class.menu--welcome.php:44
+msgid "Lasso"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:30
+#: public/includes/editor-modules.php:210
+#: public/includes/editor-modules.php:377
+msgid "Settings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:108
+msgid "Lasso Settings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:114
+msgid "Article Class"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:115
+msgid ""
+"Provide the CSS class (including the preceding dot) of container that holds "
+"the post. This should be the first parent container class that holds "
+"the_content."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:122
+msgid "Featured Image Class"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:123
+msgid ""
+"Provide the CSS class that uses a featured image as a background image. "
+"This currently only supports themes that have the featured image set as "
+"background image."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:130
+msgid "Article Title Class"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:131
+msgid ""
+"Provide the CSS class for the post title. This will enable you to update "
+"the title of the post by clicking and typing."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:139
+msgid "Ignored Items to Save"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:140
+msgid ""
+"If your post container holds additional markup, list the css class names "
+"(comma separated, including the dot) of those items. When you enter the "
+"editor, Lasso will remove (NOT delete) these items so that it does not save "
+"them as HTML."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:148
+msgid "Enable Toolbar Headings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:149
+msgid ""
+"By default the H2 and H3 options for headings are in the insert HTML area. "
+"You may prefer those headings to act just like the underline, and "
+"strikethrough, so toggling this will add them to the toolbar."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:157
+msgid "Disable Post Saving"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:158
+msgid ""
+"By default the editor will update the database with the post or page it is "
+"being used on. Check this box to disable this. If you check this box, it is "
+"assumed that you will be using the provided filters to save your own "
+"content."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:166
+msgid "Disable Post Settings"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:167
+msgid ""
+"Check this to disable users from being able to edit post settings from the "
+"front-end."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:174
+msgid "Disable Post Adding"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:175
+msgid ""
+"Check this box to disable users from being able to add new posts from the "
+"front-end."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:182
+msgid "Disable Aesop Component Conversion"
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:183
+msgid ""
+"Check this box to disable the conversion process used on Aesop Story Engine "
+"components."
+msgstr ""
+
+#: admin/includes/class.menu--settings.php:189
+msgid "Save Settings"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:45
+msgid "Welcome"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:45
+#: public/includes/editor-modules.php:273
+msgid "Status"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:79
+msgid "You're Ready to Rock!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:80
+msgid ""
+"Lasso will place a small menu on the bottom of every post and page. Click "
+"the \"pen\" icon to go into edit mode. Press escape to get out of edit mode."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:103
+msgid "Welcome to Lasso"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:104
+msgid "Version"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:109
+msgid "Help"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:110
+msgid "Twitter"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:111
+msgid "Facebook"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:146
+#: admin/includes/class.menu--welcome.php:155
+msgid "Article CSS Class Needed!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:147
+#: admin/includes/class.menu--welcome.php:156
+msgid "Before using Lasso,"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:147
+#: admin/includes/class.menu--welcome.php:156
+msgid "enter and save"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:147
+msgid ""
+"the CSS class of the container that holds your post and page content. We've "
+"automatically detected that you're running "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:147
+msgid "Here's the CSS class that you'll need:"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:156
+msgid ""
+"the CSS class of the container that holds your post and page content. You "
+"can <a "
+"href=\"https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/"
+"using-inspector-lasso.gif\" target=\"_blank\">use a tool like inspector</a> "
+"in Chrome or Firefox to find this CSS class, or "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:156
+msgid "email us."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:156
+msgid "with a link to a public URL with the theme and we'll find it for you."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:165
+msgid "Just a heads up that "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:166
+msgid "Aesop Story Engine"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:166
+msgid ""
+"isn't activated. It's not required to use Lasso, but you won't get the cool "
+"drag and drop components without it activated. It's free!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:172
+msgid "WP Side Comments Compatibility Warning!"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:173
+msgid ""
+"Since Lasso saves the HTML of a post, this may cause undesired issues. "
+"We're working to resolve incompatibilities faster than a jack rabbit in a "
+"hot greasy griddle in the middle of August."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:179
+msgid "License Key Not Activated"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:180
+msgid ""
+"Just a heads up, your license key isnt activated. Enter your license key "
+"into the License tab on the left in order to receive plugin update "
+"notifications."
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:184
+msgid "License Key Invalid"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:185
+msgid "The license key that you entered is "
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:185
+msgid "invalid"
+msgstr ""
+
+#: admin/includes/class.menu--welcome.php:185
+msgid ". It may have been entered incorreclty, or may have expired."
+msgstr ""
+
+#: includes/class.process-gallery.php:33
+msgid "Save and refresh to view gallery."
+msgstr ""
+
+#: includes/class.process-gallery.php:191
+msgid "Delete From Gallery"
+msgstr ""
+
+#: includes/class.process-gallery.php:192
+msgid "Edit Image Caption"
+msgstr ""
+
+#: includes/class.process-new-object.php:40
+msgid "Once upon a time..."
+msgstr ""
+
+#: public/includes/class.assets.php:39
+msgid "Saving..."
+msgstr ""
+
+#: public/includes/class.assets.php:40
+msgid "Saved!"
+msgstr ""
+
+#: public/includes/class.assets.php:41
+msgid "Adding..."
+msgstr ""
+
+#: public/includes/class.assets.php:42
+msgid "Added!"
+msgstr ""
+
+#: public/includes/class.assets.php:43
+msgid "Gallery Created!"
+msgstr ""
+
+#: public/includes/class.assets.php:44
+msgid "Gallery Updated!"
+msgstr ""
+
+#: public/includes/class.assets.php:45
+msgid "Just write..."
+msgstr ""
+
+#: public/includes/class.assets.php:46
+msgid "Choose an image"
+msgstr ""
+
+#: public/includes/class.assets.php:47
+msgid "Update Image"
+msgstr ""
+
+#: public/includes/class.assets.php:48
+msgid "Insert Image"
+msgstr ""
+
+#: public/includes/class.assets.php:49
+msgid "Select Image"
+msgstr ""
+
+#: public/includes/class.assets.php:50
+msgid "Update Selected Image"
+msgstr ""
+
+#: public/includes/class.assets.php:51
+msgid "Choose images"
+msgstr ""
+
+#: public/includes/class.assets.php:52
+msgid "Edit Image"
+msgstr ""
+
+#: public/includes/class.assets.php:53
+#: public/includes/editor-modules--gallery.php:20
+msgid "Add Images"
+msgstr ""
+
+#: public/includes/class.assets.php:54
+msgid "Add New Gallery"
+msgstr ""
+
+#: public/includes/class.assets.php:55
+msgid "Select Lasso Gallery Image"
+msgstr ""
+
+#: public/includes/class.assets.php:56
+msgid "Use Selected Images"
+msgstr ""
+
+#: public/includes/class.assets.php:57
+msgid "Publish Post?"
+msgstr ""
+
+#: public/includes/class.assets.php:58
+msgid "Yes, publish it!"
+msgstr ""
+
+#: public/includes/class.assets.php:59
+msgid "Oh snap!"
+msgstr ""
+
+#: public/includes/class.assets.php:60
+msgid ""
+"It looks like we are missing the Article CSS class. Lasso needs this to "
+"function correctly."
+msgstr ""
+
+#: public/includes/class.assets.php:61
+msgid "Update Settings"
+msgstr ""
+
+#: public/includes/class.tour.php:65
+msgid "Okay, got it!"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:19
+msgid "Manage Images"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:23
+#: public/includes/editor-modules--gallery.php:50
+msgid "Create Gallery"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:27
+msgid "Rearrange or edit the images in this gallery."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:43
+msgid "Create a Gallery"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:44
+msgid "Select images to create a gallery."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:46
+msgid "Select Images"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:61
+msgid "Gallery Type"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:62
+msgid "Select the type of gallery."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:64
+msgid "Grid"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:65
+msgid "Thumbnail"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:67
+msgid "Photoset"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:68
+#: public/includes/editor-modules.php:171
+msgid "Parallax"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:77
+msgid "Grid Item Width"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:78
+msgid ""
+"Adjust the width of the individual grid items, only if using Grid gallery "
+"style. Default is 400."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:88
+msgid "Gallery Transition"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:89
+msgid "Adjust the transition effect for the Thumbnail gallery. Default is slide."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:91
+msgid "Fade"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:92
+msgid "Slide"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:93
+msgid "Dissolve"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:98
+msgid "Gallery Transition Speed"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:99
+msgid "Activate slideshow by setting a speed for the transition.5000 = 5 seconds."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:105
+msgid "Hide Gallery Thumbnails"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:114
+msgid "Gallery Layout"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:115
+msgid ""
+"Let's say you have 4 images in this gallery. If you enter 121 you will have "
+"one image on the top row, two images on the second row, and one image on "
+"the third row."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:121
+msgid "Enable Lightbox"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:130
+msgid "Main Gallery Width"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:131
+msgid ""
+"Adjust the overall width of the grid/thumbnail gallery. Acceptable values "
+"include 500px or 50%."
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:135
+msgid "Gallery Caption"
+msgstr ""
+
+#: public/includes/editor-modules--gallery.php:136
+msgid "Add an optional caption for the gallery."
+msgstr ""
+
+#: public/includes/editor-modules.php:48
+msgid "Edit Post"
+msgstr ""
+
+#: public/includes/editor-modules.php:53
+msgid "Post Settings"
+msgstr ""
+
+#: public/includes/editor-modules.php:57
+msgid "Add Post"
+msgstr ""
+
+#: public/includes/editor-modules.php:67
+msgid "Save Post"
+msgstr ""
+
+#: public/includes/editor-modules.php:69
+msgid "Publish Post"
+msgstr ""
+
+#: public/includes/editor-modules.php:131
+msgid "Bold"
+msgstr ""
+
+#: public/includes/editor-modules.php:132
+msgid "Underline"
+msgstr ""
+
+#: public/includes/editor-modules.php:133
+msgid "Italicize"
+msgstr ""
+
+#: public/includes/editor-modules.php:134
+msgid "Strikethrough"
+msgstr ""
+
+#: public/includes/editor-modules.php:136
+#: public/includes/editor-modules.php:152
+msgid "H2 Heading"
+msgstr ""
+
+#: public/includes/editor-modules.php:137
+#: public/includes/editor-modules.php:153
+msgid "H3 Heading"
+msgstr ""
+
+#: public/includes/editor-modules.php:139
+msgid "Anchor Link"
+msgstr ""
+
+#: public/includes/editor-modules.php:141
+msgid "http://url.com"
+msgstr ""
+
+#: public/includes/editor-modules.php:142
+msgid "Create Link"
+msgstr ""
+
+#: public/includes/editor-modules.php:146
+#: public/includes/editor-modules.php:159
+msgid "Insert HTML"
+msgstr ""
+
+#: public/includes/editor-modules.php:148
+msgid "Enter HTML to insert"
+msgstr ""
+
+#: public/includes/editor-modules.php:155
+msgid "Unordered List"
+msgstr ""
+
+#: public/includes/editor-modules.php:156
+msgid "Ordered List"
+msgstr ""
+
+#: public/includes/editor-modules.php:158
+#: public/includes/editor-modules.php:293
+#: public/includes/editor-modules.php:348
+msgid "Cancel"
+msgstr ""
+
+#: public/includes/editor-modules.php:159
+msgid "Insert"
+msgstr ""
+
+#: public/includes/editor-modules.php:163
+msgid "Insert Component"
+msgstr ""
+
+#: public/includes/editor-modules.php:166
+msgid "Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:167
+msgid "Character"
+msgstr ""
+
+#: public/includes/editor-modules.php:168
+msgid "Quote"
+msgstr ""
+
+#: public/includes/editor-modules.php:169
+#: public/includes/editor-modules.php:527
+msgid "Content"
+msgstr ""
+
+#: public/includes/editor-modules.php:170
+msgid "Chapter"
+msgstr ""
+
+#: public/includes/editor-modules.php:172
+msgid "Audio"
+msgstr ""
+
+#: public/includes/editor-modules.php:173
+msgid "Video"
+msgstr ""
+
+#: public/includes/editor-modules.php:174
+msgid "Map"
+msgstr ""
+
+#: public/includes/editor-modules.php:175
+msgid "Timeline"
+msgstr ""
+
+#: public/includes/editor-modules.php:176
+msgid "Document"
+msgstr ""
+
+#: public/includes/editor-modules.php:177
+msgid "Collection"
+msgstr ""
+
+#: public/includes/editor-modules.php:178
+msgid "Gallery"
+msgstr ""
+
+#: public/includes/editor-modules.php:180
+msgid "WordPress Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:181
+msgid "WordPress Quote"
+msgstr ""
+
+#: public/includes/editor-modules.php:209
+#: public/includes/editor-modules.php:376
+msgid "Move"
+msgstr ""
+
+#: public/includes/editor-modules.php:211
+#: public/includes/editor-modules.php:378
+msgid "Clone"
+msgstr ""
+
+#: public/includes/editor-modules.php:212
+#: public/includes/editor-modules.php:379
+msgid "Delete"
+msgstr ""
+
+#: public/includes/editor-modules.php:236
+msgid "Replace Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:237
+msgid "Delete Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:238
+msgid "save"
+msgstr ""
+
+#: public/includes/editor-modules.php:273
+msgid "Change the status of the post to draft or publish."
+msgstr ""
+
+#: public/includes/editor-modules.php:275
+msgid "Draft"
+msgstr ""
+
+#: public/includes/editor-modules.php:276
+msgid "Publish"
+msgstr ""
+
+#: public/includes/editor-modules.php:285
+msgid "Post URL"
+msgstr ""
+
+#: public/includes/editor-modules.php:285
+msgid "Change the URL (slug) of this post."
+msgstr ""
+
+#: public/includes/editor-modules.php:299
+msgid "Save"
+msgstr ""
+
+#: public/includes/editor-modules.php:343
+msgid "Specify title for new post, then save to edit."
+msgstr ""
+
+#: public/includes/editor-modules.php:344
+msgid "Grump Wizards Make Toxic Brew"
+msgstr ""
+
+#: public/includes/editor-modules.php:352
+msgid "Create"
+msgstr ""
+
+#: public/includes/editor-modules.php:401
+msgid "Save Locations"
+msgstr ""
+
+#: public/includes/editor-modules.php:420
+msgid "Save this post and refesh the page to see these changes."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Lasso (beta)"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://lasso.is"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Front-end editor and story builder."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://aesopstoryengine.com"
+msgstr ""
