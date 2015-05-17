@@ -11457,7 +11457,7 @@ jQuery(document).ready(function($){
 	// infinite load options
 	var options = {
 		data: {
-			page: WP_API_Settings.page || 2,
+			page: page,
 			filter: {
 				post_status: ['publish','draft','pending'] 
 			}
@@ -11517,9 +11517,11 @@ jQuery(document).ready(function($){
 
 			e.preventDefault()
 
-			$('#lasso--load-more').hide();
+			$('#lasso--load-more' ).remove();
+            var pageAttr = type.state.currentPage;
+            pageAttr -= 1;
 
-			var setContainer = $( '<div data-page-num="' + type.state.currentPage + '" class="lasso--object-batch"></div>' )
+			var setContainer = $( '<div data-page-num="' + type.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + pageAttr + '"></div>' )
 
 			type.each( function( model ) {
 
@@ -11539,7 +11541,9 @@ jQuery(document).ready(function($){
 					destroyLoader()
 
 					// append the more button then show
-					$(moreButton).appendTo( $(postList) ).show()
+                    $('#lasso--object-batch-' + pageAttr ).append(moreButton );
+                    $( '#lasso--load-more' ).show();
+
 
 				})
 
@@ -11631,6 +11635,7 @@ jQuery(document).ready(function($){
 	})
 
 })( jQuery, Backbone, _, WP_API_Settings );
+
 (function( $ ) {
 
 	$(document).ready(function(){

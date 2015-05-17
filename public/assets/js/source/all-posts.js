@@ -15,7 +15,7 @@
 	// infinite load options
 	var options = {
 		data: {
-			page: WP_API_Settings.page || 2,
+			page: page,
 			filter: {
 				post_status: ['publish','draft','pending'] 
 			}
@@ -75,9 +75,11 @@
 
 			e.preventDefault()
 
-			$('#lasso--load-more').hide();
+			$('#lasso--load-more' ).remove();
+            var pageAttr = type.state.currentPage;
+            pageAttr -= 1;
 
-			var setContainer = $( '<div data-page-num="' + type.state.currentPage + '" class="lasso--object-batch"></div>' )
+			var setContainer = $( '<div data-page-num="' + type.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + pageAttr + '"></div>' )
 
 			type.each( function( model ) {
 
@@ -97,7 +99,9 @@
 					destroyLoader()
 
 					// append the more button then show
-					$(moreButton).appendTo( $(postList) ).show()
+                    $('#lasso--object-batch-' + pageAttr ).append(moreButton );
+                    $( '#lasso--load-more' ).show();
+
 
 				})
 
