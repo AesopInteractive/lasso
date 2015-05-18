@@ -396,14 +396,16 @@ function lasso_editor_allpost_modal() {
 
 			<ul class="lasso--post-object-list">
 
-				<li class="active lasso--show-objects" data-post-type="<?php esc_attr_e('posts','lasso');?>"><?php _e('Posts','lasso');?></li>
-				<li class="lasso--show-objects" data-post-type="<?php esc_attr_e('pages','lasso');?>"><?php _e('Pages','lasso');?></li>
+				<li class="active lasso--show-objects" data-post-type="<?php esc_attr_e('post','lasso');?>"><?php _e('Posts','lasso');?></li>
+				<li class="lasso--show-objects" data-post-type="<?php esc_attr_e('page','lasso');?>"><?php _e('Pages','lasso');?></li>
+
 				<?php do_action('lasso_modal_post_objects');?>
 
 			</ul>
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
 
 			<ul id="lasso--post-list" class="lasso--post-list"></ul>
+			<a href="#" id="lasso--load-more">Load More</a>
 
 		</div>
 	</div>

@@ -11452,7 +11452,11 @@ jQuery(document).ready(function($){
 	,	noPostsMessage  = '<li>No posts found</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">Load More</a>'
-	,	page 			= 1
+	,	page 			= 1,
+        lastType        = 'post',
+        collection = false,
+        initial = true,
+        totalPages = null
 
 	// infinite load options
 	var options = {
@@ -11476,82 +11480,89 @@ jQuery(document).ready(function($){
 	/////////////////
 	function fetchPosts( type ){
 
-		if ( 'posts' == type ) {
+        //set up collections;
+        options = setOptions( type, page );
+		if ( 'page' == type ) {
+			capable = lasso_editor.edit_others_pages;
+            collection = new wp.api.collections.Pages( options );
+		}else {
+            capable = lasso_editor.edit_others_posts;
+            collection = new wp.api.collections.Posts( options );
+        }
 
-			type 	= posts
-			capable = lasso_editor.edit_others_posts
 
-		} else if ( 'pages' == type ) {
 
-			type 	= pages
-			capable = lasso_editor.edit_others_pages
-
-		}
 
 		// get the posts
-		type.fetch( options ).done( function() {
+		collection.fetch( options ).done( function() {
 
-			// if we hvae more posts then load them
-			if ( type.length > 0 ) {
+            //remove more button
+            $( '#lasso--load-more' ).remove();
+			// if we have more posts then load them
+			if ( collection.length > 0 ) {
+                var pageAttr = collection.state.currentPage;
+                pageAttr -= 1;
+                var setContainer = $( '<div data-page-num="' + collection.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + pageAttr + '"></div>' );
 
-		    	$(postList).append( moreButton );
+                collection.each( function ( model ) {
+                    setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) );
+                } );
 
-		    	loadPosts( type )
+            }
 
-		    	// trigger a click on the load more to load teh first set?
-		    	$('#lasso--load-more').trigger('click')
-		    }
+            // append to the post container
+            $(postList).append( setContainer );
+
+            //put back more button
+            $(postList).append( moreButton );
+            $( '#lasso--load-more' ).attr( 'data-post-type', type );
 
 		    // destroy the spinny loader
-		    destroyLoader()
+		    destroyLoader();
 
 		});
+
+
 	}
 
-	//////////////////
-	// LOAD MORE CLICK EVENT
-	/////////////////
-	function loadPosts( type ){
+    /**
+     * Load more click event
+     */
+    $( body ).on('click', '#lasso--load-more', function(e){
+        e.preventDefault();
 
-		$(postList).on('click','#lasso--load-more', function(e){
+        type = $( this ).attr( 'data-post-type' );
 
-			e.preventDefault()
+        page++;
 
-			$('#lasso--load-more' ).remove();
-            var pageAttr = type.state.currentPage;
-            pageAttr -= 1;
+        console.log( page );
 
-			var setContainer = $( '<div data-page-num="' + type.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + pageAttr + '"></div>' )
+        lastType = type;
 
-			type.each( function( model ) {
+        fetchPosts( type );
 
-				setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) )
+    });
 
-			})
+    /**
+     * Helper function to reset options
+     *
+     * @param type post type
+     * @param page page
+     *
+     * @returns {{data: {page: *, filter: {post_type: *, post_status: string[]}}}}
+     */
+    function setOptions( type, page ) {
 
-			// append to the post container
-			$(postList).append( setContainer );
-
-			// if there are more posts then load them
-			if ( type.hasMore() ) {
-
-				type.more().done( function() {
-
-					// destroy the loader
-					destroyLoader()
-
-					// append the more button then show
-                    $('#lasso--object-batch-' + pageAttr ).append(moreButton );
-                    $( '#lasso--load-more' ).show();
-
-
-				})
-
-			}
-
-		})
-
-	}
+       return options = {
+            data: {
+                page: page,
+                filter: {
+                    post_type: type,
+                    post_status: ['publish','draft','pending']
+                }
+            }
+        }
+    }
 
 
 	//////////////////
@@ -11568,13 +11579,13 @@ jQuery(document).ready(function($){
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts('posts')
+		fetchPosts('post');
 
 		$(postList).perfectScrollbar({
 			suppressScrollX: true
 		});
 
-	})
+	});
 
 	//////////////////
 	// SHOW POST/PAGES
@@ -11586,11 +11597,16 @@ jQuery(document).ready(function($){
 		$('.lasso--show-objects').removeClass('active')
 		$(this).addClass('active');
 
-		$('#lasso--post-list > li').remove();
+		$('#lasso--post-list').empty();
+        type = $(this).data('post-type');
+        page = 1;
+        totalPages = null;
+        $(  '#lasso--load-more' ).attr( 'data-post-type', type);
 
-		$(postList).prepend( loader )
+		$(postList).prepend( loader );
 
-		fetchPosts( $(this).data('post-type') )
+		fetchPosts( type );
+        //$( '#lasso--load-more' ).trigger( 'click' );
 
 	});
 
