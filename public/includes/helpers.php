@@ -132,6 +132,52 @@ function lasso_sanitize_data( $data ) {
 
 }
 
+/**
+ *	Return a comma delimited list of categories for a specific post object
+ *
+ *	@since 0.9.3
+ *	@return string of comma delimited category slugs
+*/
+function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
+
+	if ( empty( $postid ) )
+		$postid = get_the_ID();
+
+	$objects = 'category' == $taxonomy ? get_the_category( $postid ) : get_the_tags( $postid );
+
+	if ( empty( $objects) )
+		return;
+
+	$out = '';
+	foreach( $objects as $object ) {
+		$out .= $object->slug.', ';
+	}
+
+	return rtrim($out, ', ');
+
+}
+
+/**
+ *	Return an array of categories for autocomplete
+ *
+ *	@since 0.9.3
+ *	@return array all categoiries
+*/
+function lasso_get_objects( $taxonomy = 'category' ) {
+
+	$objects = 'category' == $taxonomy ? get_categories(array('hide_empty' => 0)) : get_tags(array('hide_empty' => 0));
+
+	if ( empty( $objects) )
+		return;
+
+	$out = array();
+	foreach( $objects as $object ) {
+		$out[] = $object->slug;
+	}
+
+	return $out;
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////
@@ -157,4 +203,3 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 	}
 endif;
-

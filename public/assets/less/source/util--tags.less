@@ -1,0 +1,154 @@
+.story-tags-option,
+.story-categories-option {
+
+    // the tags
+    .tagit {
+        padding: 4px 0 0;
+        overflow: auto;
+        margin-left: inherit; /* usually we don't want the regular ul margins. */
+        margin-right: inherit;
+        //background:@input--bg;
+        border-radius:3px;
+
+        li {
+            float:left;
+
+            &.tagit-choice {
+                position: relative;
+                margin: 2px;
+                display: inline;
+                padding: 4px 8px 4px 18px;
+                font-family: @editor--font;
+                font-size:@tag--font__size;
+                line-height: @tag--font__size + 4;
+                color: @tag--color;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: baseline;
+                border-radius: 2px;
+                background:@tag--bg;
+            }
+
+            .tagit-close {
+                cursor: pointer;
+                position:absolute;
+                left:7px;
+                color:@tag--color;
+                top:5px;
+
+                &:hover {
+                    text-decoration: none;
+                    color:@tag--color;
+                }
+            }
+
+            &.tagit-new {
+
+            }
+            input[type="text"] {
+                box-shadow: none;
+                border: none;
+                border-radius:0;
+                margin: 0;
+                padding: 0 0 0 4px;
+                width: inherit;
+                background-color: inherit;
+                outline: none;
+                font-size:@tag--font__size;
+                line-height: @tag--font__size + 12;
+                display: inline-block;
+                margin: 2px 5px 2px 0;
+                color:fadeout(@tag--color,50);
+                //border-bottom:1px solid fadeout(@tag--color,90);
+            }
+
+        }
+    }
+
+    input.tagit-hidden-field {
+        display: none;
+    }
+
+    ul.tagit li.tagit-choice a.tagit-label {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+}
+
+.story-categories-option {
+    border-bottom:none;
+    box-shadow:none;
+    margin-bottom: 0;
+}
+
+.story-tags-option {
+    // the tags
+    .tagit li.tagit-choice {
+        position: relative;
+        margin: 2px 2px 2px 15px;
+        padding: 4px 8px 4px 12px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-right: 14px solid @tag--bg;
+            left: -14px;
+            top: 0;
+        }
+
+        .tagit-close {
+            left:0;
+        }
+    }
+
+
+}
+
+.lasso-modal-open {
+        // autocomplete dropdown
+    .ui-autocomplete {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 9999;
+        float: left;
+        display: none;
+        min-width: 160px;
+        padding: 4px;
+        margin: 2px 0 0 0;
+        list-style: none;
+        color:@tag--color;
+        background-color: @modal--bg__accent;
+        border-radius: 3px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+
+        .ui-menu-item {
+            display: block;
+            padding: 1px 2px;
+            clear: both;
+            font-weight: normal;
+            line-height: 18px;
+            color: @tag--color;
+            white-space: nowrap;
+            font-family: @editor--font;
+            font-size:@modal--font__size;
+
+            &:hover,
+            &.ui-state-active {
+                cursor: pointer;
+                background:darken(@modal--bg__accent,7);
+            }
+        }
+    }
+
+}

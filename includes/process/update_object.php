@@ -19,7 +19,7 @@ class update_object implements api_action{
 	 * @var string
 	 */
 	public $nonce_action = 'lasso-update-post-settings';
-	
+
 	/**
 	 * Process the post update
 	 *
@@ -35,6 +35,8 @@ class update_object implements api_action{
 		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
 		$slug   = isset( $data['story_slug'] ) ? $data['story_slug'] : false;
 
+
+
 		$args = array(
 			'ID'   			=> (int) $postid,
 			'post_name'  	=> $slug,
@@ -42,6 +44,17 @@ class update_object implements api_action{
 		);
 
 		wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
+
+
+		// update categories
+		$cats  = isset( $data['story_cats'] ) ? $data['story_cats'] : false;
+		self::set_post_terms( $postid, $cats, 'category' );
+
+
+		// update tags
+		$tags = isset( $data['story_tags'] ) ? $data['story_tags'] : false;
+		self::set_post_terms( $postid, $tags, 'post_tag' );
+
 
 		do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
 
@@ -64,7 +77,16 @@ class update_object implements api_action{
 			'story_slug' => array(
 				'trim',
 				'sanitize_title'
-			)
+			),
+			'story_cats' => array(
+				'trim',
+				'strip_tags',
+			),
+			'story_tags' => array(
+				'trim',
+				'strip_tags',
+			),
+
 		);
 
 
@@ -88,6 +110,58 @@ class update_object implements api_action{
 		return $params;
 
 	}
+
+
+	/**
+	 *  Update terms for post.
+	 *
+	 *  @since    0.9.3
+	 *
+	 *  @param    int    	$postid       	The current postid
+     *  @param    string|bool     $value    The term slug, or a comma separated list of slugs. Or false to remove all terms set for post.
+	 *  @param    string     $taxonomy    	The name of the taxonomy to which the term belongs.
+	 *
+	 *  @return bool True if update was successful, false if not.
+	 */
+	public function set_post_terms( $postid, $value, $taxonomy ) {
+		if( $value ) {
+			// first check if multiple, make array if so.
+			if ( self::has_multiple_objects( $value ) ) {
+				$value = explode( ',', $value );
+			}
+
+
+			$result = wp_set_object_terms( $postid, $value, $taxonomy );
+		}
+		else  {
+			//remove all terms from post
+			$result = wp_set_object_terms( $postid, null, $taxonomy );
+
+		}
+
+		if ( ! is_wp_error( $result ) ) {
+			return true;
+		}else{
+			return false;
+		}
+
+
+	}
+
+	/**
+	 *  Determines if the given value has multiple terms by checking to see
+	 *  if a comma exists in the value.
+	 *
+	 *  @param    string   $value    The value to evaluate for multiple terms.
+	 *  @return   bool               True if there are multiple terms; otherwise, false.
+	 *	@since   0.9.3
+	 */
+	public function has_multiple_objects( $value ) {
+
+		return 0 < strpos( $value, ',' );
+
+	}
+
 
 }
 

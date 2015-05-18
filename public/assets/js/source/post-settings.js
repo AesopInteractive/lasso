@@ -70,6 +70,30 @@
 			  	$('.lasso--postsettings__footer').slideDown()
 			});
 
+		    // categories
+		    var cats = $('#lasso--cat-select')
+		    ,	tags = $('#lasso--tag-select')
+
+			cats.tagit({
+				//fieldName:'itemName[fieldName][]',
+				placeholderText: 'search categories...',
+				availableTags: lasso_editor.postCategories
+			});
+
+			cats.on('change',function(event){
+				$('.lasso--postsettings__footer').slideDown()
+			})
+
+			tags.tagit({
+				//fieldName:'itemName[fieldName][]',
+				placeholderText: 'search tags...',
+				availableTags: lasso_editor.postTags
+			});
+
+			tags.on('change',function(event){
+				$('.lasso--postsettings__footer').slideDown()
+			})
+
 			modalResizer()
 
 		});
@@ -112,7 +136,7 @@
 			/////////////
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
-				//console.log(response);
+				console.log(response)
 
 				if( true == response.success ) {
 
@@ -125,6 +149,8 @@
 				} else {
 
 					alert('error');
+
+					console.log(response)
 
 				}
 
