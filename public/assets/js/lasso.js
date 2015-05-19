@@ -12223,12 +12223,7 @@ jQuery(document).ready(function($){
 		fetchPosts( type );
 
 
-	});
-
-	//////////////////
-	// DELETE POST
-	/////////////////
-	$( body ).on('click', '#lasso--post__delete', function(e){
+	}).on('click', '#lasso--post__delete', function(e){
 
 		e.preventDefault();
 
