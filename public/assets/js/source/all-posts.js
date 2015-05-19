@@ -48,13 +48,12 @@
             collection = new wp.api.collections.Posts( options );
         }
 
-
-
 		// get the posts
 		collection.fetch( options ).done( function() {
 
             //remove more button
             $( '#lasso--load-more' ).remove();
+
 			// if we have more posts then load them
 			if ( collection.length > 0 ) {
                 var pageAttr = collection.state.currentPage;
@@ -125,7 +124,7 @@
 	//////////////////
 	// OPEN INITIAL POSTS
 	/////////////////
-	postAll.live('click',function(e){
+	$( postAll ).on('click',function(e){
 
 		e.preventDefault();
 
@@ -147,30 +146,30 @@
 	//////////////////
 	// SHOW POST/PAGES
 	/////////////////
-	$('.lasso--show-objects').live('click',function(e){
+	$( body ).on('click', '.lasso--show-objects', function(e){
 
 		e.preventDefault();
 
-		$('.lasso--show-objects').removeClass('active')
+		$('.lasso--show-objects').removeClass('active');
 		$(this).addClass('active');
 
 		$('#lasso--post-list').empty();
         type = $(this).data('post-type');
         page = 1;
         totalPages = null;
-        $(  '#lasso--load-more' ).attr( 'data-post-type', type);
+        $( '#lasso--load-more' ).attr( 'data-post-type', type);
 
 		$(postList).prepend( loader );
 
 		fetchPosts( type );
-        //$( '#lasso--load-more' ).trigger( 'click' );
+
 
 	});
 
 	//////////////////
 	// DELETE POST
 	/////////////////
-	$('#lasso--post__delete').live('click',function(e){
+	$( body ).on('click', '#lasso--post__delete', function(e){
 
 		e.preventDefault();
 
