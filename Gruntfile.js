@@ -76,6 +76,10 @@ module.exports = function(grunt) {
         },
    		uglify: {
             scripts: {
+            	options: {
+					sourceMap: 'public/assets/js/lasso.js.map',
+					sourceMappingURL: 'lasso.js.map'
+				},
                 files: {
                     'public/assets/js/lasso.min.js': [
                         'public/assets/js/lasso.js'
