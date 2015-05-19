@@ -10,11 +10,11 @@
 	,	noPostsMessage  = '<li>No posts found</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">Load More</a>'
-	,	page 			= 1,
-        lastType        = 'post',
-        collection = false,
-        initial = true,
-        totalPages = null
+	,	page 			= 1
+    ,   lastType        = 'post'
+    ,   collection      = false
+    ,   initial         = true
+    ,   totalPages      = null
 
 	// infinite load options
 	var options = {
