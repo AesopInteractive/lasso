@@ -429,7 +429,6 @@ function lasso_editor_allpost_modal() {
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
 
 			<ul id="lasso--post-list" class="lasso--post-list"></ul>
-			<a href="#" id="lasso--load-more">Load More</a>
 
 		</div>
 	</div>

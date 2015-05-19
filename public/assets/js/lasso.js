@@ -12127,6 +12127,7 @@ jQuery(document).ready(function($){
 
                 //put back more button
                 $(postList).append( moreButton );
+
                 $( '#lasso--load-more' ).attr( 'data-post-type', type );
 
             }else{
