@@ -30,9 +30,6 @@ class new_object implements api_action {
 	 */
 	public function post( $data ) {
 
-		if( !lasso_user_can('publish_posts') || !lasso_user_can('publish_pages') )
-			return;
-
 		$title  = $data[ 'story_title' ];
 
 		$object = is_null( $data[ 'object'] ) ? false : $data[ 'object' ];

@@ -11097,21 +11097,13 @@ jQuery(document).ready(function($){
 			},
 			function(){
 
-				if ( lasso_editor.can_publish_posts ) {
-
-					runSavePublish()
-
-				}
+				runSavePublish()
 
 			});
 
 		} else {
 
-			if ( lasso_editor.can_publish_posts ) {
-
-				runSavePublish()
-
-			}
+			runSavePublish()
 
 		}
 

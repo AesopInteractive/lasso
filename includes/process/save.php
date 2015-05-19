@@ -61,8 +61,6 @@ class save implements api_action {
 
 		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
-
-
 			$args = array (
 				'ID'           	=> $postid,
 				'post_content' 	=> $content,

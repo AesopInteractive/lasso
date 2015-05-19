@@ -284,6 +284,7 @@ function lasso_editor_component_modal() {
 		<div class="lasso--modal__inner">
 			<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
+				<?php if( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') ): ?>
 				<div class="lasso--postsettings__option story-status-option">
 					<label><?php _e( 'Status', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the status of the post to draft or publish.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 					<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
@@ -294,6 +295,7 @@ function lasso_editor_component_modal() {
 						<div id="lasso--slider"></div>
 					</div>
 				</div>
+				<?php endif; ?>
 
 				<?php if ( 'publish' == $status ): ?>
 				<div class="lasso--postsettings__option story-slug-option">
