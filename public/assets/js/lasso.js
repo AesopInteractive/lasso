@@ -12143,22 +12143,6 @@ jQuery(document).ready(function($){
 	}
 
     /**
-     * Load more click event
-     */
-    $( body ).on('click', '#lasso--load-more', function(e){
-        e.preventDefault();
-
-        type = $( this ).attr( 'data-post-type' );
-
-        page++;
-
-        lastType = type;
-
-        fetchPosts( type );
-
-    });
-
-    /**
      * Helper function to reset options
      *
      * @param type post type
@@ -12178,7 +12162,6 @@ jQuery(document).ready(function($){
             }
         }
     }
-
 
 	//////////////////
 	// OPEN INITIAL POSTS
@@ -12202,10 +12185,21 @@ jQuery(document).ready(function($){
 
 	});
 
-	//////////////////
-	// SHOW POST/PAGES
-	/////////////////
-	$( body ).on('click', '.lasso--show-objects', function(e){
+    /**
+     * Load more click event
+     */
+    $( body ).on('click', '#lasso--load-more', function(e){
+        e.preventDefault();
+
+        type = $( this ).attr( 'data-post-type' );
+
+        page++;
+
+        lastType = type;
+
+        fetchPosts( type );
+
+    }).on('click', '.lasso--show-objects', function(e){
 
 		e.preventDefault();
 
