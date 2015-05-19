@@ -67,6 +67,7 @@ module.exports = function(grunt) {
                     'public/assets/js/source/process-save-title.js',
                     'public/assets/js/source/process-wpimg.js',
                     'public/assets/js/source/modal-sizing.js',
+                    'public/assets/js/source/all-posts.js',
                     'public/assets/js/source/tour.js'
                	],
                 dest: 'public/assets/js/lasso.js'

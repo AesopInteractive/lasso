@@ -11,12 +11,6 @@
     }
 
 }
-.lasso-editing {
-
-    .lasso--toolbar_wrap {
-
-    }
-}
 
 // global styles wrapper for editor and toolbar controls
 .lasso-editor-controls--wrap {
@@ -51,7 +45,7 @@ ul.lasso-editor-controls{
         padding:@toolbar--item__padding;
         border-right:1px solid lighten(@toolbar--border,5);
         text-align: center;
-        text-shadow:0 1px 1px rgba(0,0,0,0.4);
+        text-shadow:0 1px 1px @text-shadow;
         line-height:1;
 
         &:before {
@@ -217,7 +211,7 @@ ul.lasso-editor-controls{
                 display: inline-block;
                 text-decoration: none;
                 color:white;
-                text-shadow:0 1px 1px rgba(0,0,0,0.25);
+                text-shadow:0 1px 1px @text-shadow;
             }
 
             // inset html
@@ -333,7 +327,7 @@ ul.lasso-toolbar--html-snips {
                 text-align: center;
                 position:relative;
                 font-size:20px;
-                text-shadow:0 1px 1px rgba(0,0,0,0.4);
+                text-shadow:0 1px 1px @text-shadow;
                 border-right:none;
                 margin:1px;
                 padding:2px;
@@ -475,7 +469,7 @@ ul.lasso-toolbar--html-snips {
         display: inline-block;
         text-decoration: none;
         color:white;
-        text-shadow:0 1px 1px rgba(0,0,0,0.25);
+        text-shadow:0 1px 1px @text-shadow;
         background: @editor--color__update;
 
         &:before {

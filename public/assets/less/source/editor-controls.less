@@ -1,8 +1,3 @@
-// global styles for edit buttons
-#lasso--controls {
-
-
-}
 
 // center controls containing the editor editor, settings, and add new post button
 .lasso--controls__center {
@@ -28,6 +23,12 @@
     }
 }
 
+.home .lasso--controls__center{
+    @width:66px;
+    width:@width;
+    left: ~'calc(50% - @{width} / 2)';
+}
+
 // save and publish controls
 .lasso--controls__right {
     position: fixed;
@@ -36,6 +37,7 @@
     z-index:999;
     .opacity(0);
     .transition(opacity .3s ease);
+    text-align: right;
 
     a {
         display:inline-block;
@@ -87,10 +89,16 @@
     }
 }
 #lasso--post-settings:before {
-    content:'\e992';
+    content:'\f031';
 }
 #lasso--post-new:before {
-     content:'\e603';
+    content:'\e603';
+
+}
+#lasso--post-all:before {
+    content:'\e9ba';
+    font-size:15px;
+    top:11px;
 }
 
 
@@ -145,6 +153,19 @@
 
 }
 
+// EXIT BUTTON
+#lasso--exit {
+    background: @editor--color__warning;
+    float: left;
+
+    &:before {
+        position: relative;
+        top:3px;
+        content:'\ea0f';
+    }
+
+}
+
 
 // PUBLISH BUTTON (if post is in draft)
 #lasso--publish {
@@ -173,6 +194,7 @@
     .lasso--controls__right {
         .opacity(1);
         right: @toolbar--pos__bottom;
+        left: @toolbar--pos__bottom;
     }
 
     .wp-audio-shortcode {

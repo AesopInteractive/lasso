@@ -3,6 +3,7 @@
 @editor--color__success:        #4DA34D;
 @editor--color__error:          #d9534f;
 @editor--color__update:         #007aab;
+@editor--color__warning:        #f0ad4e;
 @editor--radius:                4px;
 @editor--confirm__pos:          20px;
 @editor--dropzone__height:      75px;
@@ -10,14 +11,22 @@
 @editor--dropzone__bg:          fadeout(black,97);
 @editor--dropzone__border:      fadeout(black,80);
 
+// COLORS
+@base:                           #23282D;
+@base--light:                   #32373C;// lighten(@base,6);
+@base--dark:                    darken(@base,5);
+
+@text-shadow:                   rgba(0,0,0,0.4);
 
 // TOOLBAR
-@toolbar--bg:                   #222;
-@toolbar--bg__dark:             darken(@toolbar--bg,5);
+@toolbar--bg:                   @base;
+@toolbar--bg__dark:             @base--dark;
 @toolbar--bg__accent:           lighten(@toolbar--bg,8);
-@toolbar--border:               darken(@toolbar--bg,5);
+@toolbar--border:               @base--dark;
 @toolbar--hover:                lighten(@toolbar--bg__accent,2);
 @toolbar--color:                #E2E2E2;
+    @toolbar--color__dark:      @base; // light theme var
+
 @toolbar--width:                232px;
 @toolbar--height:               39px;
 @toolbar--item__padding:        0 8px;
@@ -33,11 +42,11 @@
 @toolbar--htmldrop__fheight:    35px;
 /* CALC-NO-EDIT */ @toolbar--htmldrop__height: @toolbar--htmldrop__theight + @toolbar--htmldrop__fheight + 8;
 @toolbar--htmldrop__padding:    8px;
-@toolbar--htmldrop__color:      #eaeaea;
+@toolbar--htmldrop__color:      @toolbar--color;
 @toolbar--htmldrop__font:       'Courier New';
 @toolbar--htmldrop__font-size:  14px;
 
-@toolbar--htmldrop__bg:         #282828;
+@toolbar--htmldrop__bg:         @base;
 
 @toolbar--linkdrop__height:    40px;
 @toolbar--linkdrop__width:     300px;
@@ -47,7 +56,7 @@
 @control--color:                @toolbar--color;
 @control--padding:              @toolbar--item__padding;
 @control--font__size:           @toolbar--font__size;
-@control--width:                100px;
+@control--width:                133px;
 
 // Z INDEX
 @z-index--toolbar:              999;
@@ -67,8 +76,9 @@
 // MODAL
 @modal--overlay__bg:            fadeout(white,15);
 @modal--width:                  381px;
-@modal--bg:                     fadeout(#161616,6);
-@modal--bg__accent:             @input--color;
+@modal--width__full:            800px;
+@modal--bg:                     @base;
+@modal--bg__accent:             @base--light;
 @modal--border:                 darken(@toolbar--border,5);
 @modal--color:                  @toolbar--color;
 @modal--padding:                18px;
@@ -81,11 +91,18 @@
 @rail--handle__w:               22px;
 @rail--handle__h:               22px;
 
+// STATUS
+@status--w:                     8px;
+@status--h:                     @status--w;
+@status--publish:               @editor--color__success;
+@status--draft:                 @editor--color__warning;
+@status--pending:               @editor--color__update;
+
 // SIDEBAR
 @sidebar--width:                285px;
 @sidebar--bg:                   @toolbar--bg;
 @sidebar--bg__accent:           @toolbar--bg__accent;
-@sidebar--color:                #E2E2E2;
+@sidebar--color:                @toolbar--color;
 @sidebar--padding:              20px;
 @sidebar--font__size:           14px;
 @sidebar--button__bg:           lighten(@toolbar--bg,18);
@@ -96,6 +113,13 @@
 @sidebar--buttonInsert__bg:     @editor--color__update;
 @sidebar--buttonInsert__border: darken(@sidebar--buttonInsert__bg,5);
 
+
+// ALL POSTS
+@list--sb__width:               100px;
+@list--item__bg:                @modal--bg__accent;
+@list--item__padding:           0 15px;
+@list--item__line-height:       50px;
+@list--control__width:          115px;
 
 // COMPONENT SETTINGS
 @input--bg:                     #f8f8f8;
@@ -113,7 +137,7 @@
 @insert--height:                70px;
 @admin-bar--height:             32px;
 
-@scrollbar--handle:             lighten(@toolbar--bg,40);
+@scrollbar--handle:             @base--light;
 @scrollbar--rail:               transparent;
 
 // TOOLLTIPS
@@ -122,5 +146,7 @@
 @tooltip--bg:                   fadeout(@editor--color__update,5);
 @tooltip--font__size:           12px;
 
+// LOADER
+@loader--color:                 lighten(@base--light,20);
 
 

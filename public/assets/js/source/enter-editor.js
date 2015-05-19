@@ -88,6 +88,9 @@ jQuery(document).ready(function($){
 			$(this).children().unwrap();
 		})
 
+		// add an exit editor button
+		$('.lasso--controls__right ').prepend('<a title="Exit Editor" id="lasso--exit" href="#"></a>');
+
 		// append the toolbar to any components that dont have them
 		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
 		$('.aesop-component').each(function(){
@@ -306,7 +309,7 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit').fadeOut().remove();
+			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit, #lasso--exit').fadeOut().remove();
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);
@@ -345,6 +348,18 @@ jQuery(document).ready(function($){
 			e.preventDefault();
 			exitEditor();
 		})
+
+		// on control s save
+		$(document).keydown(function(e) {
+		    if ((e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey)){
+		        e.preventDefault();
+		        	
+		        $('.lasso-editing #lasso--save').trigger('click')
+
+		        return false;
+		    }
+		    return true;
+		});
 
 		///////////
 		// INITIALIZE TIMELINE
@@ -586,6 +601,7 @@ jQuery(document).ready(function($){
 			placeholder:'lasso-drop-zone',
 			handle: '.lasso-drag',
             cursor:'move',
+            tolerance:'pointer',
             refreshPositions: true,
             helper: function( e, ui ) {
 

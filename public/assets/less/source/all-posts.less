@@ -1,0 +1,202 @@
+// modal outer
+.lasso--modal{
+    top:10vh;
+
+    &.lasso--modal__full {
+
+        width:@modal--width__full;
+
+        .lasso--modal__inner {
+            display: block;
+            padding:@modal--padding * 2;
+            .clearfix();
+        }
+    }
+
+}
+
+#lasso--all-posts__modal {
+
+    #lasso--loading {
+        position: absolute;
+        padding-left:@list--sb__width;
+        height:90%;
+    }
+
+}
+
+ul.lasso--post-object-list,
+ul.lasso--post-list {
+    text-align: left;
+    list-style:none;
+    margin:0;
+    padding:0;
+
+    li {
+        display: block;
+        position: relative;
+        width:100%;
+        list-style-type: none;
+        margin-bottom:6px;
+        font-size:@modal--font__size;
+        font-family: @editor--font;
+        font-weight:bold;
+    }
+}
+
+// post object list
+ul.lasso--post-object-list {
+    width:@list--sb__width;
+    float:left;
+    height:100%;
+
+    li {
+        line-height: @list--item__line-height / 2;
+        margin-bottom: 0;
+        .transition(opacity .15s ease);
+
+        &:not(.active) {
+            .opacity(0.45);
+        }
+
+        &:hover {
+            cursor: pointer;
+            .opacity(1);
+        }
+
+    }
+
+}
+
+
+// list of posts
+ul.lasso--post-list {
+    float:left;
+    padding:0 @modal--padding;
+    width: ~'calc( 100% - @{list--sb__width})';
+    overflow:hidden;
+    position: relative;
+    height:520px;
+    border-left:1px solid @base--dark;
+    .box-shadow(inset 1px 0 1px -1px rgba(255,255,255,0.15));
+
+    li {
+        overflow: hidden;
+        line-height: @list--item__line-height;
+    }
+
+    .lasso--post-list__item {
+        color:darken(@modal--color,10);
+        display: block;
+        padding:@list--item__padding;
+        background: fadeout(@list--item__bg,15);
+        border-radius: @editor--radius;
+        .transition(all .15s ease);
+        width:100%;
+
+        // post status
+        &:before {
+            content:'';
+            height:@status--h;
+            width:@status--w;
+            border-radius: 100%;
+            margin-right: @status--h;
+            display: inline-block;
+        }
+
+        &.draft:before { background:@status--draft; }
+        &.publish:before { background:@status--publish; }
+        &.pending:before { background:@status--pending; }
+
+        &:hover{
+            background: @list--item__bg;
+            text-decoration: none;
+            width:~'calc( 100% - @{list--control__width})';
+
+            .lasso--post-list__controls {
+                right:0;
+            }
+        }
+
+        &:active {
+            outline: none;
+            background: @list--item__bg;
+            text-decoration: none;
+            .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.5));
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &.no-delete:hover {
+            @new-width: @list--control__width / 2;
+
+            width:~'calc( 100% - @{new-width})';
+
+        }
+
+    }
+
+}
+.lasso--post-list__controls {
+    position: absolute;
+    right:0;
+    top:0;
+    width:@list--control__width;
+    text-align: right;
+    right:-@list--control__width;
+    height:@list--item__line-height;
+    .transition(right .15s ease);
+
+    span {
+        color:darken(@modal--color,50);
+        display: inline-block;
+        width:@list--item__line-height;
+        height:@list--item__line-height;
+        background: @list--item__bg;
+        border-radius: @editor--radius;
+        position: relative;
+
+        &:after {
+            .editor-icon-font();
+            text-align: center;
+            font-size:18px;
+            position: absolute;
+            z-index: 2;
+            top:16px;
+            left:16px;
+        }
+
+        &:hover {
+            color:darken(@modal--color,50);
+            background: fadeout(@modal--bg__accent,50);
+        }
+        &:active {
+            background: @list--item__bg;
+            text-decoration: none;
+            .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.5));
+        }
+    }
+
+    #lasso--post__edit{
+        margin-right:3px;
+        &:hover {
+            color:@modal--color;
+            background: @editor--color__update;
+        }
+        &:after {
+            content:'\e908';
+        }
+    }
+
+    #lasso--post__delete{
+        &:hover {
+            color:@modal--color;
+            background: @editor--color__error;
+        }
+        &:after {
+            content:'\e9ad';
+        }
+    }
+}

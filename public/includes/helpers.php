@@ -40,7 +40,7 @@ function lasso_editor_get_option( $option, $section, $default = '' ) {
  */
 function lasso_editor_galleries_exist() {
 
-	$q = new wp_query( array( 'post_type' => 'ai_galleries', 'posts_per_page' => -1, 'post_status' => 'publish' ) );
+	$q = new wp_query( array( 'post_type' => 'ai_galleries', 'post_status' => 'publish' ) );
 
 	if ( $q->have_posts() )
 		return true;
@@ -140,12 +140,19 @@ function lasso_sanitize_data( $data ) {
  * Check if the user is logged in and has the correctly passed capability
  *
  * @param unknown $action string a capability such as edit_posts or publish_posts
+ * @param unknown $postid int the id of the post object to check against
  * @since 1.0
  */
 if ( !function_exists( 'lasso_user_can' ) ):
-	function lasso_user_can( $action = 'edit_post' ) {
+	function lasso_user_can( $action = '', $postid = 0 ) {
 
-		if ( is_user_logged_in() && current_user_can( trim( $action ), absint( get_the_ID() ) ) ) {
+		if ( empty( $action ) )
+			$action = 'edit_post';
+
+		if ( empty( $postid ) )
+			$postid = get_the_ID();
+
+		if ( is_user_logged_in() && current_user_can( $action, $postid ) ) {
 
 			return true;
 

@@ -17,8 +17,7 @@ class assets {
 
 	public function scripts(){
 
-		// only run on posts and pages if user is logged in and has the right capabilities (edit_post) by default
-		if ( apply_filters('lasso_runs_on', is_singular() ) && lasso_user_can() ) {
+		if ( lasso_user_can('edit_posts') ) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
@@ -28,6 +27,9 @@ class assets {
 
 			// media uploader
 			wp_enqueue_media();
+
+			// url for json api
+			$home_url = function_exists('json_get_url_prefix') ? json_get_url_prefix() : false;
 
 			$article_object 	= lasso_editor_get_option('article_class','lasso_editor');
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
@@ -59,6 +61,8 @@ class assets {
 				'useSelectedImages' => __('Use Selected Images','lasso'),
 				'publishPost'		=> __('Publish Post?','lasso'),
 				'publishYes'		=> __('Yes, publish it!','lasso'),
+				'deletePost'		=> __('Trash Post?','lasso'),
+				'deleteYes'			=> __('Yes, trash it!','lasso'),
 				'warning'			=> __('Oh snap!','laso'),
 				'cancelText'		=> __('O.K. got it!','lasso'),
 				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
@@ -83,6 +87,11 @@ class assets {
 				'post_status'		=> get_post_status( $postid ),
 				'postid'			=> $postid,
 				'permalink'			=> get_permalink(),
+				'edit_others_pages'	=> current_user_can('edit_others_pages') ? 'true' : 'false',
+				'edit_others_posts'	=> current_user_can('edit_others_posts') ? 'true' : 'false',
+				'userCanEdit'		=> current_user_can('edit_post', $postid ),
+				'can_publish_posts'	=> current_user_can('publish_posts'),
+				'can_publish_pages'	=> current_user_can('publish_pages'),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
 				'nonce'				=> wp_create_nonce('lasso_editor'),
 				'handle'			=> lasso_editor_settings_toolbar(),
@@ -99,9 +108,10 @@ class assets {
 				'swapGallNonce'		=> $gallery_nonce,
 				'titleNonce'		=> wp_create_nonce('lasso_update_title'),
 				'wpImgNonce'		=> wp_create_nonce('lasso_update_wpimg'),
+				'deletePost'		=> wp_create_nonce('lasso_delete_post'),
 				'component_options' => lasso_editor_options_blob(),
-				'userCanEdit'		=> current_user_can('edit_post', $postid ),
 				'newPostModal'		=> lasso_editor_newpost_modal(),
+				'allPostModal'		=> lasso_editor_allpost_modal(),
 				'mapFormFooter'		=> lasso_map_form_footer(),
 				'refreshRequired'	=> lasso_editor_refresh_message(),
 				'objectsNoSave'		=> $objectsNoSave,
@@ -112,8 +122,14 @@ class assets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
+			// wp api client
+			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
+				$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
+				wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
+
 			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
+
 
 		}
 

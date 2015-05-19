@@ -110,6 +110,8 @@ class settings {
 
 			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
 
+				<?php do_action('lasso_settings_before');?>
+
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<label><?php _e( 'Article Class', 'lasso' );?></label>
@@ -184,6 +186,8 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable the conversion process used on Aesop Story Engine components.', 'lasso' );?></span>
 					</div>
 				</div>
+
+				<?php do_action('lasso_settings_after');?>
 
 				<div class="lasso-editor-settings--submit">
 				    <input type="hidden" name="action" value="lasso-editor-settings" />
