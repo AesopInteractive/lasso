@@ -12099,13 +12099,20 @@ jQuery(document).ready(function($){
 	/////////////////
 	function fetchPosts( type ){
 
-        //set up collections;
-        options = setOptions( type, page );
 		if ( 'page' == type ) {
+
 			capable = lasso_editor.edit_others_pages;
+
+        	options = capable ? setOptions( type, page, lasso_editor.author ) : setOptions( type, page );
+
             collection = new wp.api.collections.Pages( options );
+
 		} else {
+
             capable = lasso_editor.edit_others_posts;
+
+        	options = capable ? setOptions( type, page, lasso_editor.author ) : setOptions( type, page );
+
             collection = new wp.api.collections.Posts( options );
         }
 
@@ -12122,7 +12129,9 @@ jQuery(document).ready(function($){
                 var setContainer = $( '<div data-page-num="' + collection.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + pageAttr + '"></div>' );
 
                 collection.each( function ( model ) {
+
                     setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) );
+
                 } );
 
                 // append to the post container
@@ -12153,7 +12162,7 @@ jQuery(document).ready(function($){
      *
      * @returns {{data: {page: *, filter: {post_type: *, post_status: string[]}}}}
      */
-    function setOptions( type, page ) {
+    function setOptions( type, page, author ) {
 
        return options = {
             data: {
@@ -12161,7 +12170,8 @@ jQuery(document).ready(function($){
                 type: type,
                 filter: {
                     post_status: ['publish','draft','pending'],
-                    posts_per_page: 8
+                    posts_per_page: 8,
+                    author: author
                 }
             }
         }
