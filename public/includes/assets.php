@@ -127,7 +127,7 @@ class assets {
 				$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
 				wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
 
-			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.js', array('jquery'), LASSO_VERSION, true);
+			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 
 
