@@ -11554,8 +11554,8 @@ jQuery(document).ready(function($){
        return options = {
             data: {
                 page: page,
+                type: type,
                 filter: {
-                    post_type: type,
                     post_status: ['publish','draft','pending']
                 }
             }
