@@ -99,7 +99,7 @@
     }
 }
 
-.lasso--tour__loading {
+.lasso--loading {
     height:auto;
     //position: absolute;
     left:0;
@@ -109,7 +109,7 @@
 }
 
 
-.lasso--tour__loader {
+.lasso--loader {
     height:40px;
     width:40px;
     margin:10px auto;
@@ -119,10 +119,10 @@
     -moz-animation: rotation .6s infinite linear;
     -o-animation: rotation .6s infinite linear;
     animation: rotation .6s infinite linear;
-    border-left:3px solid fadeout(@editor--color__update,80);
-    border-right:3px solid fadeout(@editor--color__update,80);
-    border-bottom:3px solid fadeout(@editor--color__update,80);
-    border-top:3px solid @editor--color__update;
+    border-left:3px solid fadeout(@loader--color,80);
+    border-right:3px solid fadeout(@loader--color,80);
+    border-bottom:3px solid fadeout(@loader--color,80);
+    border-top:3px solid @loader--color;
     border-radius:100%;
 }
 

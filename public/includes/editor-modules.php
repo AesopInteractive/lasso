@@ -15,7 +15,7 @@
 add_action( 'wp_footer', 'lasso_editor_controls' );
 function lasso_editor_controls() {
 
-	if ( apply_filters( 'lasso_runs_on', is_singular() ) && lasso_user_can() ) {
+	if ( lasso_user_can('edit_posts') ) {
 
 		$status = get_post_status( get_the_ID() );
 
@@ -27,14 +27,15 @@ function lasso_editor_controls() {
 		$post_settings_disabled = lasso_editor_get_option( 'post_settings_disabled', 'lasso_editor' );
 		$shortcodify_disabled = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 
+
 		// CSS class if adding new post objects is disabled
 		if ( 'on' == $post_new_disabled ) { $post_access_class = 'lasso--post-new-disabled'; }
 
 		// CSS class if adjust settings is disabled
 		if ( 'on' == $post_settings_disabled ) { $post_access_class = 'lasso--post-settings-disabled'; }
 
-		// CSS class if adding new post objects AND settings are disabled OR if the user doesnt have the correct capability
-		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled || !lasso_user_can( 'publish_posts' ) ) { $post_access_class = 'lasso--post-all-disabled'; }
+		// CSS class if adding new post objects AND settings are disabled
+		if ( 'on' == $post_new_disabled && 'on' == $post_settings_disabled ) { $post_access_class = 'lasso--post-all-disabled'; }
 
 		// CSS class if shortcodify or (Aesop Shortcode Conversion) is disabled
 		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
@@ -43,32 +44,42 @@ function lasso_editor_controls() {
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
 
-				<?php do_action( 'lasso_editor_controls_before' );?>
+				<?php do_action( 'lasso_editor_controls_before' );
 
-				<li id="lasso--edit" title="<?php esc_attr_e( 'Edit Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+				if ( is_singular() && lasso_user_can() ) { ?>
 
-				<?php if ( lasso_user_can( 'publish_posts' ) ) : ?>
+					<li id="lasso--edit" title="<?php esc_attr_e( 'Edit Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-					<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
-						<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-					<?php }
+				<?php }
 
-					if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
-						<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-					<?php } ?>
+				if ( is_singular() && lasso_user_can() && ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) ) { ?>
+					<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+				<?php } ?>
 
-				<?php endif; ?>
+				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+
+				<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
+					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+				<?php } ?>
+
 
 				<?php do_action( 'lasso_editor_controls_after' );?>
 
 			</ul>
 
-			<div class="lasso--controls__right">
-				<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
-				<?php if ( 'draft' == $status && lasso_user_can('publish_posts') ) { ?>
-					<a href="#" title="<?php esc_attr_e( 'Publish Post', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
-				<?php } ?>
-			</div>
+			<?php if ( is_singular() ) { ?>
+
+				<div class="lasso--controls__right">
+
+					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+
+					<?php if ( 'draft' == $status && ( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') )  ) { ?>
+						<a href="#" title="<?php esc_attr_e( 'Publish Post', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<?php } ?>
+
+				</div>
+
+			<?php } ?>
 
 		</div>
 
@@ -335,7 +346,7 @@ function lasso_editor_newpost_modal() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
+	if ( !lasso_user_can('edit_posts') )
 		return;
 
 	$status = get_post_status( get_the_ID() );
@@ -368,6 +379,57 @@ function lasso_editor_newpost_modal() {
 				</div>
 
 			</form>
+
+		</div>
+	</div>
+	<div id="lasso--modal__overlay"></div>
+	<?php
+
+	return ob_get_clean();
+}
+
+/**
+ * Used to house the all posts pop-up
+ *
+ * @since 0.9.3
+ */
+function lasso_editor_allpost_modal() {
+
+	global $post;
+
+	ob_start();
+
+	// post status
+	$status = get_post_status( get_the_ID() );
+
+	// let users add custom css classes
+	$custom_classes = apply_filters( 'lasso_modal_all_post_classes', '' );
+
+?>
+	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
+		<div class="lasso--modal__inner">
+
+			<ul class="lasso--post-object-list">
+				<?php
+				$post_types = lasso_post_types();
+
+				if ( ! empty( $post_types ) ) {
+					$first = 'active';
+					foreach( $post_types as $name => $label ) {
+						printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $name ), esc_attr( $label ) );
+						$first = '';
+					}
+
+				}
+?>
+
+				<?php do_action('lasso_modal_post_objects');?>
+
+			</ul>
+			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
+
+			<ul id="lasso--post-list" class="lasso--post-list"></ul>
+			<a href="#" id="lasso--load-more">Load More</a>
 
 		</div>
 	</div>
@@ -552,4 +614,36 @@ function lasso_editor_options_blob() {
 	}
 
 	return $blob;
+}
+
+/**
+ * Get allowed post types for the post chooser modal.
+ *
+ *
+ * @since 0.9.3
+ */
+function lasso_post_types() {
+	$post_types = get_post_types( array(
+		'public' => true,
+	), 'objects' );
+	$post_types = array_combine( array_keys( $post_types ), wp_list_pluck( $post_types, 'label' ) );
+    unset( $post_types[ 'attachment' ] );
+
+	/**
+	 * Set which post types are allowed
+	 *
+	 * @since 0.9.3
+	 *
+	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
+	 */
+	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page' ) );
+	foreach( $post_types as $name => $label ) {
+		if ( ! in_array( $name, $allowed_post_types ) ) {
+			unset( $post_types[ $name ] );
+		}
+
+	}
+
+	return $post_types;
+	
 }

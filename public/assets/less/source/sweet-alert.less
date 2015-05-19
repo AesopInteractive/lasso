@@ -10,7 +10,7 @@
 }
 
 .sweet-alert {
-    background-color: @toolbar--bg;
+    background-color: darken(@base,2);
     font-family: @editor--font;
     width: 478px;
     padding: 17px;
@@ -24,6 +24,7 @@
     overflow: hidden;
     display: none;
     z-index: 2000;
+    .box-shadow(0 0 10px 1px rgba(0,0,0,0.5) );
 
     @media all and (max-width: 540px) {
 

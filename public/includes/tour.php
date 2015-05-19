@@ -19,10 +19,10 @@ class tour {
 	*	Draw the modal used to house the walk through
 	*/
 	public function draw_tour() {
-	
+
 		$tour_hidden = get_user_meta( get_current_user_ID(), 'lasso_hide_tour', true );
 
-		if ( apply_filters( 'lasso_runs_on', is_singular() ) && lasso_user_can() && !$tour_hidden ) {
+		if ( lasso_user_can() && !$tour_hidden ) {
 
 			global $post;
 
@@ -38,7 +38,7 @@ class tour {
 
 						$('body').addClass('lasso-modal-open');
 
-		    			$('.lasso--tour__loading').remove();
+		    			$('.lasso--loading').remove();
 						$('#lasso--tour__slides').hide().fadeIn()
 
 						$('#lasso--tour__slides').unslider({
@@ -80,7 +80,7 @@ class tour {
 	public function tour_slides() {
 
 ?>
-		<div id="lasso--tour__loading" class="lasso--tour__loading"><div class="lasso--tour__loader"></div></div>
+		<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
 		<div id="lasso--tour__slides">
 
 			<?php

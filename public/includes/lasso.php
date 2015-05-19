@@ -42,7 +42,8 @@ class lasso {
 	 */
 	private function __construct() {
 
-		//require_once LASSO_DIR.'/public/includes/class.assets.php';
+		require_once LASSO_DIR.'/public/includes/underscore-templates.php';
+
 		require_once LASSO_DIR.'/public/includes/editor-modules.php';
 		require_once LASSO_DIR.'/public/includes/helpers.php';
 		require_once LASSO_DIR.'/public/includes/editor-modules--gallery.php';

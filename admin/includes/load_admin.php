@@ -50,6 +50,9 @@ class load_admin {
 			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
 		}
 
+		if ( !class_exists( 'TGM_Plugin_Activation' ) ) {
+			include LASSO_DIR.'admin/includes/class-tgm-plugin-activation.php';
+		}
 
 		new menus\welcome();
 		new menus\settings();

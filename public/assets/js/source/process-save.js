@@ -37,7 +37,7 @@ jQuery(document).ready(function($){
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
 	///////////////////////
-	$(save).live('click',function(e) {
+	$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
 
 		var warnNoSave = null;
 
@@ -107,13 +107,21 @@ jQuery(document).ready(function($){
 			},
 			function(){
 
-				runSavePublish()
+				if ( lasso_editor.can_publish_posts ) {
+
+					runSavePublish()
+
+				}
 
 			});
 
 		} else {
 
-			runSavePublish()
+			if ( lasso_editor.can_publish_posts ) {
+
+				runSavePublish()
+
+			}
 
 		}
 
