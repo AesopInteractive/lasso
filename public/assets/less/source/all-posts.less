@@ -53,6 +53,8 @@ ul.lasso--post-object-list {
     li {
         line-height: @list--item__line-height / 2;
         margin-bottom: 0;
+        font-family: @editor--font;
+        font-weight: normal;
         .transition(opacity .15s ease);
 
         &:not(.active) {
@@ -89,9 +91,12 @@ ul.lasso--post-list {
         color:darken(@modal--color,10);
         display: block;
         padding:@list--item__padding;
-        background: fadeout(@list--item__bg,15);
+        background: fadeout(@list--item__bg,12);
+        text-decoration: none;
         border-radius: @editor--radius;
         .transition(all .15s ease);
+        font-family: @editor--font;
+        font-weight: normal;
         width:100%;
 
         // post status
@@ -199,4 +204,14 @@ ul.lasso--post-list {
             content:'\e9ad';
         }
     }
+}
+
+// load more 
+#lasso--load-more {
+    .editor-btn-secondary();
+    font-size:@input--font__size;
+    text-transform: uppercase;
+    line-height:2;
+    margin-top:@editor--padding;
+    .opacity(0.66);
 }

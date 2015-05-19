@@ -12064,10 +12064,13 @@ jQuery(document).ready(function($){
 	,	pages 			= new wp.api.collections.Pages()
 	,	postAll         = $('#lasso--post-all')
 	,	postList        = '#lasso--post-list'
+	,	loadingText     = lasso_editor.strings.loading
+	,	loadMoreText    = lasso_editor.strings.loadMore
+	,	noPostsText     = lasso_editor.strings.noPostsFound
 	,	body 			= $('body')
-	,	noPostsMessage  = '<li>No posts found</li>'
+	,	noPostsMessage  = '<li>'+noPostsText+'</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
-	,	moreButton      = '<a href="#" id="lasso--load-more">Load More</a>'
+	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
 	,	page 			= 1
     ,   lastType        = 'post'
     ,   collection      = false
@@ -12128,7 +12131,7 @@ jQuery(document).ready(function($){
                 //put back more button
                 $(postList).append( moreButton );
 
-                $( '#lasso--load-more' ).attr( 'data-post-type', type );
+                $( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
 
             }else{
                 $( postList ).append( noPostsMessage );
@@ -12157,7 +12160,8 @@ jQuery(document).ready(function($){
                 page: page,
                 type: type,
                 filter: {
-                    post_status: ['publish','draft','pending']
+                    post_status: ['publish','draft','pending'],
+                    posts_per_page: 8
                 }
             }
         }
@@ -12193,6 +12197,8 @@ jQuery(document).ready(function($){
 
         type = $( this ).attr( 'data-post-type' );
 
+        $(this).addClass('lasso--btn-loading').text( loadingText );
+
         page++;
 
         lastType = type;
@@ -12215,7 +12221,6 @@ jQuery(document).ready(function($){
 		$(postList).prepend( loader );
 
 		fetchPosts( type );
-
 
 	}).on('click', '#lasso--post__delete', function(e){
 
