@@ -11485,11 +11485,10 @@ jQuery(document).ready(function($){
 		if ( 'page' == type ) {
 			capable = lasso_editor.edit_others_pages;
             collection = new wp.api.collections.Pages( options );
-		}else {
+		} else {
             capable = lasso_editor.edit_others_posts;
             collection = new wp.api.collections.Posts( options );
         }
-
 
 
 
@@ -11508,14 +11507,16 @@ jQuery(document).ready(function($){
                     setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) );
                 } );
 
+                // append to the post container
+                $(postList).append( setContainer );
+
+                //put back more button
+                $(postList).append( moreButton );
+                $( '#lasso--load-more' ).attr( 'data-post-type', type );
+
+            }else{
+                $( postList ).append( noPostsMessage );
             }
-
-            // append to the post container
-            $(postList).append( setContainer );
-
-            //put back more button
-            $(postList).append( moreButton );
-            $( '#lasso--load-more' ).attr( 'data-post-type', type );
 
 		    // destroy the spinny loader
 		    destroyLoader();
@@ -11534,8 +11535,6 @@ jQuery(document).ready(function($){
         type = $( this ).attr( 'data-post-type' );
 
         page++;
-
-        console.log( page );
 
         lastType = type;
 
