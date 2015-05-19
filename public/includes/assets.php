@@ -115,8 +115,8 @@ class assets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
 			);
 
-
-			wp_enqueue_script('lasso', LASSO_URL.'/public/assets/js/lasso.min.js', array('jquery'), LASSO_VERSION, true);
+			$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
+			wp_enqueue_script('lasso', LASSO_URL. "/public/assets/js/lasso{$postfix}.js", array('jquery'), LASSO_VERSION, true);
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 
 		}
