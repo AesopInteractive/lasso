@@ -174,7 +174,7 @@ class welcome {
 		if ( !class_exists( 'Aesop_Core' ) ) {
 			$notices[] = '<li class="info"><h3>Aesop Story Engine not Activated!</h3>
 							<p>'.__( 'Just a heads up that ', 'lasso' ).'<a href="https://wordpress.org/plugins/aesop-story-engine/" target="_blank
-							">'.__( 'Aesop Story Engine', 'lasso' ).'</a> '.__( 'isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!', 'lasso' ).'</p>
+							">'.__( 'Aesop Story Engine', 'lasso' ).'</a> '.__( 'isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. Plus, it\'s free!', 'lasso' ).'</p>
 							</li>';
 		}
 
@@ -216,13 +216,14 @@ class welcome {
 	        array(
 	            'name'      => __('WP REST API','lasso'),
 	            'slug'      => 'json-rest-api',
-	            'required'  => true
+	            'required'  => true,
 	        ),
+
 	        array(
 	            'name'      => __('Aesop Story Engine','lasso'),
 	            'slug'      => 'aesop-story-engine',
-	            'required'  => false
-	        )
+	            'required'  => false,
+	        ),
 
 	    );
 
@@ -239,13 +240,13 @@ class welcome {
 	            'menu_title'                      => __( 'Install Plugins', 'lasso' ),
 	            'installing'                      => __( 'Installing Plugin: %s', 'lasso' ), // %s = plugin name.
 	            'oops'                            => __( 'Something went wrong with the plugin API.', 'lasso' ),
-	            'notice_can_install_required'     => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.' ), // %1$s = plugin name(s).
-	            'notice_can_install_recommended'  => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.' ), // %1$s = plugin name(s).
+	            'notice_can_install_required'     => _n_noop( 'This plugin requires the following plugin: %1$s.', 'This plugin requires the following plugins: %1$s.' ), // %1$s = plugin name(s).
+	            'notice_can_install_recommended'  => _n_noop( 'This plugin recommends the following plugin: %1$s.', 'This plugin recommends the following plugins: %1$s.' ), // %1$s = plugin name(s).
 	            'notice_cannot_install'           => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.' ), // %1$s = plugin name(s).
 	            'notice_can_activate_required'    => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.' ), // %1$s = plugin name(s).
 	            'notice_can_activate_recommended' => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.' ), // %1$s = plugin name(s).
 	            'notice_cannot_activate'          => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.' ), // %1$s = plugin name(s).
-	            'notice_ask_to_update'            => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.' ), // %1$s = plugin name(s).
+	            'notice_ask_to_update'            => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this plugin: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this plugin: %1$s.' ), // %1$s = plugin name(s).
 	            'notice_cannot_update'            => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.' ), // %1$s = plugin name(s).
 	            'install_link'                    => _n_noop( 'Begin installing plugin', 'Begin installing plugins' ),
 	            'activate_link'                   => _n_noop( 'Begin activating plugin', 'Begin activating plugins' ),
