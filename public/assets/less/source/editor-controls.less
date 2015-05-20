@@ -2,8 +2,9 @@
 // center controls containing the editor editor, settings, and add new post button
 .lasso--controls__center {
 
-    width:@control--width;
-    left: ~'calc(50% - @{control--width} / 2)';
+    width: auto;
+    left: 50%;
+    .translate(-50%, 0);
 
     li {
         list-style-type: none;
@@ -17,16 +18,14 @@
 
     }
     &.lasso--post-all-disabled {
-        @d-width: 34px;
-        width:@d-width;
-        left: ~'calc(50% - @{d-width} / 2)';
+
     }
 }
 
 .home .lasso--controls__center{
-    @width:66px;
-    width:@width;
-    left: ~'calc(50% - @{width} / 2)';
+    width: auto;
+    left: 50%;
+    .translate(-50%, 0);
 }
 
 // save and publish controls
