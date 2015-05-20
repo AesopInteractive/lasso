@@ -1,13 +1,12 @@
 // main toolbar layout
 .lasso--toolbar_wrap {
 
-    width:@toolbar--width;
-    left: ~'calc(50% - @{toolbar--width} / 2)';
+    width: auto;
+    left: 50%;
+    .translate(-50%, 0);
 
     &.toolbar-extended {
-        @width: 313px;
-        width:@width;
-        left: ~'calc(50% - @{width} / 2)';
+
     }
 
 }
