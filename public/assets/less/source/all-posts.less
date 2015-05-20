@@ -4,7 +4,8 @@
 
     &.lasso--modal__full {
 
-        width:@modal--width__full;
+        width:100%;
+        max-width:@modal--width__full;
 
         .lasso--modal__inner {
             display: block;
@@ -98,6 +99,9 @@ ul.lasso--post-list {
         font-family: @editor--font;
         font-weight: normal;
         width:100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         // post status
         &:before {

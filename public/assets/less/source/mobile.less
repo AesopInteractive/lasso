@@ -89,4 +89,47 @@
         }
 
     }
+
+    // all posts modal @since 0.9.4
+    #lasso--all-posts__modal {
+
+        ul.lasso--post-list,
+        ul.lasso--post-object-list {
+            float:none;
+            width:100%;
+            display:block;
+        }
+
+        ul.lasso--post-object-list {
+            margin-bottom:@editor--padding * 2;
+            padding-bottom:@editor--padding;
+            border-bottom:1px solid @base--dark;
+            .box-shadow(0 1px 1px -1px rgba(255,255,255,0.15));
+
+            li {
+                display:inline-block;
+                width:auto;
+                margin-right:@editor--padding * 2;
+                font-size:90%;
+            }
+        }
+
+        ul.lasso--post-list {
+            padding-left:0;
+            border:none;
+            box-shadow:none;
+        }
+    }
+
+    // global modal
+    .lasso--modal {
+        display: block;
+
+        .lasso--modal__inner,
+        &.lasso--modal__full .lasso--modal__inner {
+            border-radius:0;
+            padding:@editor--padding;
+        }
+    }
+
 }
