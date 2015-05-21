@@ -302,7 +302,27 @@
 }
 // wide form to fit new feature image - 0.9.4
 #lasso--post-settings__modal {
-    max-width:@modal--width__full;
+    max-width:@modal--width__med;
+}
+// settings columns
+.lasso--postsettings__2col {
+
+}
+.lasso--postsettings__2col {
+    .clearfix();
+
+    .lasso--postsettings__left,
+    .lasso--postsettings__right {
+        float:left;
+    }
+
+    .lasso--postsettings__left {
+        width:42%;
+    }
+    .lasso--postsettings__right {
+        width:55%;
+        margin-left:3%;
+    }
 }
 
 
