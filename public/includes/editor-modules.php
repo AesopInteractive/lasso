@@ -275,12 +275,17 @@ function lasso_editor_component_modal() {
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_settings_classes', '' );
 
-	// this objects categories
-	$categories = lasso_get_post_objects( $post->ID, 'category' );
-	$tags = lasso_get_post_objects( $post->ID, 'tag' );
+	// objects categories
+	$categories 		= lasso_get_post_objects( $post->ID, 'category' );
+	$tags 				= lasso_get_post_objects( $post->ID, 'tag' );
 
-	$tabs  = lasso_modal_addons('tab');
-	$content = lasso_modal_addons('content');
+	// modal tabs
+	$tabs  				= lasso_modal_addons('tab');
+	$content 			= lasso_modal_addons('content');
+
+	// are we singular
+	$is_singular 		= is_singular();
+	$is_singular_class 	= $is_singular ? 'lasso--postsettings__2col' : 'lasso--postsettings__1col';
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -289,10 +294,11 @@ function lasso_editor_component_modal() {
 			<?php if( $tabs ) { echo $tabs; } ?>
 
 			<div class="lasso--modal__content modal__content--core visible" data-addon-content="core">
-				<form id="lasso--postsettings__form" enctype="multipart/form-data" >
+				<form id="lasso--postsettings__form" enctype="multipart/form-data" class="<?php echo $is_singular_class;?>" >
 
-					<?php if ( is_singular() ) : ?>
-					<div class="lasso--postsettings__option featured-image-option">
+
+					<?php if ( $is_singular ) : ?>
+					<div class="lasso--postsettings__left">
 						<div class="lasso--post-thumb">
 
 							<div id="lasso--post-thumb__controls" class="lasso--post-thumb__controls">
@@ -305,36 +311,44 @@ function lasso_editor_component_modal() {
 						</div>
 						<div id="lasso--featImgSave"><a href="#" class="not-visible">Save</a></div>
 					</div>
-					<?php endif;
+					<?php endif; ?>
 
-					if( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') ): ?>
-					<div class="lasso--postsettings__option story-status-option">
-						<label><?php _e( 'Status', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the status of the post to draft or publish.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
-						<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
-							<li id="lasso--status-draft"><?php _e( 'Draft', 'lasso' );?></li>
-							<li id="lasso--status-publish"><?php _e( 'Publish', 'lasso' );?></li>
-						</ul>
-						<div class="lasso--slider_wrap">
-							<div id="lasso--slider"></div>
+					<div class="lasso--postsettings__right">
+
+						<?php if( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') ): ?>
+						<div class="lasso--postsettings__option story-status-option">
+							<label><?php _e( 'Status', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the status of the post to draft or publish.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
+								<li id="lasso--status-draft"><?php _e( 'Draft', 'lasso' );?></li>
+								<li id="lasso--status-publish"><?php _e( 'Publish', 'lasso' );?></li>
+							</ul>
+							<div class="lasso--slider_wrap">
+								<div id="lasso--slider"></div>
+							</div>
 						</div>
-					</div>
-					<?php endif; ?>
+						<?php endif; ?>
 
-					<?php if ( 'publish' == $status ): ?>
-					<div class="lasso--postsettings__option story-slug-option">
-						<label><?php _e( 'Post URL', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the URL (slug) of this post.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
-						<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
-					</div>
-					<?php endif; ?>
+						<?php if ( 'publish' == $status ): ?>
+						<div class="lasso--postsettings__option story-slug-option">
+							<label><?php _e( 'Post URL', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the URL (slug) of this post.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">
+						</div>
+						<?php endif; ?>
 
-					<div class="lasso--postsettings__option story-categories-option">
-						<label><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
-						<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="hidden" name="story_cats" value="<?php echo $categories;?>">
 					</div>
 
-					<div class="lasso--postsettings__option story-tags-option">
-						<label><?php _e( 'Tags', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a tag name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
-						<input id="lasso--tag-select" class="lasso--modal__trigger-footer" type="hidden" name="story_tags" value="<?php echo $tags;?>">
+					<div class="lasso--postsettings__middle">
+
+						<div class="lasso--postsettings__option story-categories-option">
+							<label><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="hidden" name="story_cats" value="<?php echo $categories;?>">
+						</div>
+
+						<div class="lasso--postsettings__option story-tags-option">
+							<label><?php _e( 'Tags', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a tag name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<input id="lasso--tag-select" class="lasso--modal__trigger-footer" type="hidden" name="story_tags" value="<?php echo $tags;?>">
+						</div>
+
 					</div>
 
 					<?php do_action( 'lasso_modal_post_form' ); // action ?>
