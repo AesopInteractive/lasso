@@ -178,6 +178,89 @@ function lasso_get_objects( $taxonomy = 'category' ) {
 	return $out;
 }
 
+
+/**
+ * Get allowed post types for the post chooser modal.
+ *
+ *
+ * @since 0.9.4
+ */
+function lasso_post_types() {
+
+	$post_types = get_post_types( array(
+		'public' => true,
+	), 'objects' );
+	$post_types = array_combine( array_keys( $post_types ), wp_list_pluck( $post_types, 'label' ) );
+    unset( $post_types[ 'attachment' ] );
+
+	/**
+	 * Set which post types are allowed
+	 *
+	 * @since 0.9.4
+	 *
+	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
+	 */
+	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page' ) );
+	foreach( $post_types as $name => $label ) {
+		if ( ! in_array( $name, $allowed_post_types ) ) {
+			unset( $post_types[ $name ] );
+		}
+
+	}
+
+	return $post_types;
+
+}
+
+/**
+*	Build a side tabs to fit alongside the post settings modal
+*	so that add-ons can add cool stuff
+*
+*	@uses lasso_get_modal_tabs()
+*	@since 0.9.4
+*/
+function lasso_build_modal_tabs(){
+
+	$tabs = lasso_get_modal_tabs();
+
+	if ( $tabs ):
+
+		$out = '<ul class="lasso--modal__tabs">';
+
+			foreach ( $tabs as $tab ) {
+
+				if ( isset( $tab ) ) {
+					$out .= sprintf( '<li>%s</li>', $tab );
+				}
+			}
+
+		$out .= '</ul>';
+
+	endif;
+
+	return !empty( $out ) ? $out : false;
+}
+
+/**
+*	Get an array of tabs for the settings modal
+*
+*	Example:
+*	add_filter('lasso_modal_tabs', 'try_tabs');
+*	function try_tabs( $tabs ){
+*		$tabs[] = 'Tab';
+*		return $tabs;
+*	}
+*
+*	@since 0.9.4
+*/
+function lasso_get_modal_tabs(){
+
+	$tabs = array();
+
+	return apply_filters('lasso_modal_tabs', $tabs);
+
+}
+
 ////////////////////
 // PLUGGABLE
 ////////////////////

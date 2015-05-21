@@ -279,6 +279,8 @@ function lasso_editor_component_modal() {
 	$categories = lasso_get_post_objects( $post->ID, 'category' );
 	$tags = lasso_get_post_objects( $post->ID, 'tag' );
 
+	$tabs  = lasso_build_modal_tabs();
+
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
@@ -330,6 +332,13 @@ function lasso_editor_component_modal() {
 			</form>
 
 		</div>
+
+		<?php if( $tabs ) {
+
+			echo $tabs;
+
+		} ?>
+
 	</div>
 	<div id="lasso--modal__overlay"></div>
 	<?php
@@ -615,36 +624,4 @@ function lasso_editor_options_blob() {
 	}
 
 	return $blob;
-}
-
-/**
- * Get allowed post types for the post chooser modal.
- *
- *
- * @since 0.9.3
- */
-function lasso_post_types() {
-	$post_types = get_post_types( array(
-		'public' => true,
-	), 'objects' );
-	$post_types = array_combine( array_keys( $post_types ), wp_list_pluck( $post_types, 'label' ) );
-    unset( $post_types[ 'attachment' ] );
-
-	/**
-	 * Set which post types are allowed
-	 *
-	 * @since 0.9.3
-	 *
-	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
-	 */
-	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page' ) );
-	foreach( $post_types as $name => $label ) {
-		if ( ! in_array( $name, $allowed_post_types ) ) {
-			unset( $post_types[ $name ] );
-		}
-
-	}
-
-	return $post_types;
-	
 }
