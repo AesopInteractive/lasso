@@ -42,6 +42,7 @@
     .box-shadow(0 0 10px 1px rgba(0,0,0,0.5) );
     color:@modal--color;
     .clearfix();
+    position: relative; // @since 0.9.4
 }
 
 // modal close
@@ -261,6 +262,38 @@
         &:hover, &:focus, &:active { cursor: move; }
     }
 
+}
+
+// Modal Addon - 0.9.4
+.modal__content--inner {
+
+}
+.lasso--modal__tabs {
+    width:@modal--tab__width;
+    position:absolute;
+    right:-@modal--tab__width + 1;
+    top:-1px;
+    z-index: -1;
+
+    li {
+        background:@modal--bg__accent;
+        font-size:@input--font__size;
+        border-top-right-radius: @editor--radius;
+        border-bottom-right-radius: @editor--radius;
+        padding:0 @editor--padding;
+        height:@modal--tab__width;
+        line-height:@modal--tab__width;
+        .transition(background .15s ease);
+
+        + li {
+            margin-bottom: 1px;
+        }
+
+        &:hover {
+            cursor:pointer;
+            background:@modal--bg;
+        }
+    }
 }
 
 

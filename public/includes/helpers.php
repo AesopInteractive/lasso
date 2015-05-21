@@ -299,11 +299,11 @@ function lasso_modal_addons_content( $tab = '', $type ){
 
 	if ( 'tab' == $type ) {
 
-		$out = sprintf( '<li data-tab-name="%s">%s</li>', $name, $tab['name'] );
+		$out = sprintf( '<li data-addon-name="%s">%s</li>', $name, $tab['name'] );
 
 	} else if ( 'content' == $type ){
 
-		$out = $tab['callback'];
+		$out = sprintf( '<div data-addon-content="%s" class="modal__content--inner not-visible">%s</div>', $name, $tab['callback'] );
 
 	}
 
