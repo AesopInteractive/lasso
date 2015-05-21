@@ -279,7 +279,8 @@ function lasso_editor_component_modal() {
 	$categories = lasso_get_post_objects( $post->ID, 'category' );
 	$tags = lasso_get_post_objects( $post->ID, 'tag' );
 
-	$tabs  = lasso_build_modal_tabs();
+	$tabs  = lasso_modal_addons('tab');
+	$content = lasso_modal_addons('content');
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -331,13 +332,11 @@ function lasso_editor_component_modal() {
 
 			</form>
 
+			<?php if( $tabs ) { echo $content; } ?>
+
 		</div>
 
-		<?php if( $tabs ) {
-
-			echo $tabs;
-
-		} ?>
+		<?php if( $tabs ) { echo $tabs; } ?>
 
 	</div>
 	<div id="lasso--modal__overlay"></div>

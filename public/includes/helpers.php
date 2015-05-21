@@ -213,47 +213,19 @@ function lasso_post_types() {
 }
 
 /**
-*	Build a side tabs to fit alongside the post settings modal
-*	so that add-ons can add cool stuff
-*
-*	@uses lasso_get_modal_tabs()
-*	@since 0.9.4
-*/
-function lasso_build_modal_tabs(){
-
-	$tabs = lasso_get_modal_tabs();
-
-	if ( $tabs ):
-
-		$out = '<ul class="lasso--modal__tabs">';
-
-			foreach ( $tabs as $tab ) {
-
-				if ( isset( $tab ) ) {
-
-					$name = sanitize_text_field( strtolower( $tab ) );
-
-					$out .= sprintf( '<li data-tab-name="%s">%s</li>', $name, $tab );
-				}
-			}
-
-		$out .= '</ul>';
-
-	endif;
-
-	return !empty( $out ) ? $out : false;
-}
-
-/**
-*	Get an array of tabs for the settings modal
+*	Get an array of addon data for the settings modal
+*	This is used by addons to add cool stuff to the settings modal as an additional tab
 *
 *	Example:
 *	add_filter('lasso_modal_tabs', 'try_tabs');
 *	function try_tabs( $tabs ){
-*		$tabs[] = 'Tab';
+*		$tabs[] = array(
+*		  'name' => 'Tab',
+*		  'callback' => 'yo'
+*		);
+*
 *		return $tabs;
 *	}
-*
 *	@since 0.9.4
 */
 function lasso_get_modal_tabs(){
@@ -263,6 +235,81 @@ function lasso_get_modal_tabs(){
 	return apply_filters('lasso_modal_tabs', $tabs);
 
 }
+
+/**
+*	Build a side tabs to fit alongside the post settings modal
+*	This is used by addons to add cool stuff to the settings modal as an additional tab
+*
+*	@param $type string tab or content
+*	@uses lasso_get_modal_tabs()
+*	@uses lasso_modal_addons_content()
+*	@since 0.9.4
+*/
+function lasso_modal_addons( $type = 'tab' ){
+
+	$tabs = lasso_get_modal_tabs();
+
+	if ( $tabs ):
+
+		if ( 'tab' == $type ) {
+
+			$out = '<ul class="lasso--modal__tabs">';
+
+				foreach ( $tabs as $tab ) {
+
+					if ( isset( $tab ) ) {
+
+						$out .= lasso_modal_addons_content( $tab, $type );
+					}
+				}
+
+			$out .= '</ul>';
+
+		} elseif ( 'content' == $type ) {
+
+			$out = '<div class="lasso--modal__content">';
+
+				foreach ( $tabs as $tab ) {
+
+					if ( isset( $tab ) ) {
+						$out .= lasso_modal_addons_content( $tab , $type );
+					}
+				}
+
+			$out .= '</div>';
+
+		}
+
+	endif;
+
+	return !empty( $out ) ? $out : false;
+}
+
+/**
+*	Used internally as a callback to build a tab or content area for modal addons
+*
+*	@param $tab object
+*	@param $type string tab or content
+*	@uses lasso_modal_addons()
+*	@since 0.9.4
+*/
+function lasso_modal_addons_content( $tab = '', $type ){
+
+	$name = sanitize_text_field( strtolower( $tab['name'] ) );
+
+	if ( 'tab' == $type ) {
+
+		$out = sprintf( '<li data-tab-name="%s">%s</li>', $name, $tab['name'] );
+
+	} else if ( 'content' == $type ){
+
+		$out = $tab['callback'];
+
+	}
+
+	return $out;
+}
+
 
 ////////////////////
 // PLUGGABLE
