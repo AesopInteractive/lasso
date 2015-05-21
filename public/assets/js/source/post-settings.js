@@ -159,6 +159,24 @@
 
 		});
 
+		/////////////
+		// ADDON TABS
+		//////////////
+		$(document).on('click', '.lasso--modal__tabs li', function(e){
+
+			e.preventDefault()
+
+			var $this	= $(this)
+			,	name  	= $this.data('addon-name')
+			,	rem 	= 'not-visible'
+			,	add    	= 'visible'
+
+			$('.lasso--modal__content').removeClass( add ).addClass( rem )
+
+			$this.closest('.lasso--modal__inner').find('div[data-addon-content="'+name+'"]').removeClass( rem ).addClass( add )
+
+		})
+
 	});
 
 })( jQuery );

@@ -248,6 +248,7 @@ function lasso_get_modal_tabs(){
 function lasso_modal_addons( $type = 'tab' ){
 
 	$tabs = lasso_get_modal_tabs();
+	$out = '';
 
 	if ( $tabs ):
 
@@ -267,16 +268,13 @@ function lasso_modal_addons( $type = 'tab' ){
 
 		} elseif ( 'content' == $type ) {
 
-			$out = '<div class="lasso--modal__content">';
 
-				foreach ( $tabs as $tab ) {
+			foreach ( $tabs as $tab ) {
 
-					if ( isset( $tab ) ) {
-						$out .= lasso_modal_addons_content( $tab , $type );
-					}
+				if ( isset( $tab ) ) {
+					$out .= lasso_modal_addons_content( $tab , $type );
 				}
-
-			$out .= '</div>';
+			}
 
 		}
 
@@ -303,7 +301,7 @@ function lasso_modal_addons_content( $tab = '', $type ){
 
 	} else if ( 'content' == $type ){
 
-		$out = sprintf( '<div data-addon-content="%s" class="modal__content--inner not-visible">%s</div>', $name, $tab['callback'] );
+		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">%s</div>', $name, $tab['callback'] );
 
 	}
 
