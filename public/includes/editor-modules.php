@@ -288,7 +288,7 @@ function lasso_editor_component_modal() {
 
 			<?php if( $tabs ) { echo $tabs; } ?>
 
-			<div class="lasso--modal__content modal__content--core visible">
+			<div class="lasso--modal__content modal__content--core visible" data-addon-content="core">
 				<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
 					<?php if( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') ): ?>

@@ -281,14 +281,12 @@
         border-top-right-radius: @editor--radius;
         border-bottom-right-radius: @editor--radius;
         padding:0 @editor--padding;
+        margin-bottom:1px;
         height:@modal--tab__width;
         line-height:@modal--tab__width;
         .transition(background .15s ease);
 
-        + li {
-            margin-bottom: 1px;
-        }
-
+        &.active-tab,
         &:hover {
             cursor:pointer;
             background:@modal--bg;

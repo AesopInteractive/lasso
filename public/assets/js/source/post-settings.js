@@ -171,6 +171,10 @@
 			,	rem 	= 'not-visible'
 			,	add    	= 'visible'
 
+			$('.lasso--modal__tabs li').removeClass('active-tab')
+
+			$this.addClass('active-tab')
+
 			$('.lasso--modal__content').removeClass( add ).addClass( rem )
 
 			$this.closest('.lasso--modal__inner').find('div[data-addon-content="'+name+'"]').removeClass( rem ).addClass( add )
