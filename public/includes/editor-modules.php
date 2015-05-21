@@ -291,7 +291,23 @@ function lasso_editor_component_modal() {
 			<div class="lasso--modal__content modal__content--core visible" data-addon-content="core">
 				<form id="lasso--postsettings__form" enctype="multipart/form-data" >
 
-					<?php if( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') ): ?>
+					<?php if ( is_singular() ) : ?>
+					<div class="lasso--postsettings__option featured-image-option">
+						<div class="lasso--post-thumb">
+
+							<div id="lasso--post-thumb__controls" class="lasso--post-thumb__controls">
+								<i id="lasso--post-thumb__delete" title='Delete Image' class='dashicons dashicons-no-alt'></i>
+								<i id="lasso--post-thumb__add" title='Swap Image' class='dashicons dashicons-edit'></i>
+							</div>
+
+							<?php echo has_post_thumbnail() ? get_the_post_thumbnail( $post->ID, 'medium' ) : '<img src="">'; ?>
+
+						</div>
+						<div id="lasso--featImgSave"><a href="#" class="not-visible">Save</a></div>
+					</div>
+					<?php endif;
+
+					if( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') ): ?>
 					<div class="lasso--postsettings__option story-status-option">
 						<label><?php _e( 'Status', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the status of the post to draft or publish.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 						<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">

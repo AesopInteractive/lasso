@@ -11627,6 +11627,8 @@ jQuery(document).ready(function($){
 
 	    className = e.currentTarget.parentElement.className;
 
+	  	var save  = $('#lasso--featImgSave a')
+
 	    // If the media frame already exists, reopen it.
 	    if ( file_frame ) {
 	      	file_frame.open();
@@ -11651,13 +11653,11 @@ jQuery(document).ready(function($){
 
 	      	$('article').removeClass('no-post-thumbnail').addClass('has-post-thumbnail');
 
-	      	$('#lasso--featImgSave a').attr('data-featimg-id',attachment.id);
-
 	      	$(lasso_editor.featImgClass).css({
 	      		'background-image': 'url('+attachment.url+')'
 	      	});
 
-	      	$('#lasso--featImgSave a').trigger('click');
+	      	save.attr('data-featimg-id',attachment.id).trigger('click');
 
 	      	$('.no-post-cover-note').remove();
 
@@ -11722,6 +11722,47 @@ jQuery(document).ready(function($){
 
 	});
 
+	////////////
+	// FEAT IMAGE FROM SETTINGS - @since 0.9.4
+	////////////
+	var featimg_frame;
+	$(document).on('click', '#lasso--post-thumb__add', function( e ){
+
+	    e.preventDefault();
+
+	    var $this = $(this)
+	    ,	save  = $('#lasso--featImgSave a')
+
+	    // If the media frame already exists, reopen it.
+	    if ( featimg_frame ) {
+	      	featimg_frame.open();
+	      	return;
+	    }
+
+	    // Create the media frame.
+	    featimg_frame = wp.media.frames.featimg_frame = wp.media({
+	      	title: lasso_editor.strings.chooseImage,
+	      	button: {
+	        	text: lasso_editor.strings.updateImage,
+	      	},
+	      	multiple: false  // Set to true to allow multiple files to be selected
+	    });
+
+	    // When an image is selected, run a callback.
+	    featimg_frame.on( 'select', function() {
+
+	      	var attachment = featimg_frame.state().get('selection').first().toJSON();
+
+	      	$this.closest('.lasso--post-thumb').find('img').attr('src', attachment.url )
+
+	      	save.attr('data-featimg-id',attachment.id).trigger('click')
+	    });
+
+	    // Finally, open the modal
+	    featimg_frame.open();
+
+
+	});
 
 })( jQuery );
 
