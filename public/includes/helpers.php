@@ -221,7 +221,7 @@ function lasso_post_types() {
 *	function try_tabs( $tabs ){
 *		$tabs[] = array(
 *		  'name' => 'Tab',
-*		  'callback' => 'yo'
+*		  'callback' => 'mycallbackfunction'
 *		);
 *
 *		return $tabs;
@@ -303,7 +303,9 @@ function lasso_modal_addons_content( $tab = '', $type ){
 
 	} else if ( 'content' == $type ){
 
-		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">%s</div>', $name, $tab['callback'] );
+		$content = is_callable( $tab['callback'] ) ? call_user_func($tab['callback']) : $tab['callback'];
+
+		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">%s</div>', $name, $content );
 
 	}
 
