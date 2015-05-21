@@ -256,7 +256,7 @@ function lasso_modal_addons( $type = 'tab' ){
 
 			$out = '<ul class="lasso--modal__tabs">';
 
-				$out .= '<li data-addon-name="core">core</li>';
+				$out .= '<li class="active-tab" data-addon-name="core">core</li>';
 
 				foreach ( $tabs as $tab ) {
 
