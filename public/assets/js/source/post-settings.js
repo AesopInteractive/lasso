@@ -175,6 +175,7 @@
 
 			$this.closest('.lasso--modal__inner').find('div[data-addon-content="'+name+'"]').removeClass( rem ).addClass( add )
 
+			modalResizer()
 		})
 
 	});

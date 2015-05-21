@@ -293,7 +293,7 @@ function lasso_modal_addons( $type = 'tab' ){
 */
 function lasso_modal_addons_content( $tab = '', $type ){
 
-	$name = sanitize_text_field( strtolower( $tab['name'] ) );
+	$name = lasso_clean_string( $tab['name'] );
 
 	if ( 'tab' == $type ) {
 
@@ -306,6 +306,20 @@ function lasso_modal_addons_content( $tab = '', $type ){
 	}
 
 	return $out;
+}
+
+/**
+*	Helper function to clean a sttring and replace spaces with dash
+*
+*	@param $string string content
+*	@since 0.9.4
+*/
+function lasso_clean_string( $string = '' ) {
+
+	if ( empty( $string ) )
+		return;
+
+	return sanitize_text_field( strtolower( preg_replace('/[\s_]/', '-', $string ) ) );
 }
 
 
