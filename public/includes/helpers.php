@@ -230,7 +230,10 @@ function lasso_build_modal_tabs(){
 			foreach ( $tabs as $tab ) {
 
 				if ( isset( $tab ) ) {
-					$out .= sprintf( '<li>%s</li>', $tab );
+
+					$name = sanitize_text_field( strtolower( $tab ) );
+
+					$out .= sprintf( '<li data-tab-name="%s">%s</li>', $name, $tab );
 				}
 			}
 
