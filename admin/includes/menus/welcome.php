@@ -133,9 +133,8 @@ class welcome {
 
 		$article_object = lasso_editor_get_option( 'article_class', 'lasso_editor' );
 
-		$g_theme_name  	= wp_get_theme()->get('Name');
-		$theme_name  	= lasso_clean_string( $g_theme_name );
-		$theme_class  	= $theme_name ? lasso_supported_themes( $theme_name ) : false;
+		$theme_name  	= wp_get_theme()->get('Name');
+		$theme_class  	= lasso_get_supported_themes( $theme_name );
 
 		$license   		= get_option( 'lasso_license_key' );
 		$status   		= get_option( 'lasso_license_status' );
@@ -150,7 +149,7 @@ class welcome {
 										<h3>'.__( 'Article CSS Class Needed!', 'lasso' ).'</h3>
 										<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. We\'ve automatically detected that you\'re running ', 'lasso' ).' <strong>%s</strong>. '.__( 'Here\'s the CSS class that you\'ll need:', 'lasso' ).'</p>
 										<code style="display:inline-block;margin-top:15px;">%s</code>
-									</li>', admin_url( 'admin.php?page=lasso-editor-settings' ), $g_theme_name, $theme_class );
+									</li>', admin_url( 'admin.php?page=lasso-editor-settings' ), $theme_name, $theme_class );
 
 				// we dont automatically support this theme so show them otherwise
 			} else {

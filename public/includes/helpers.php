@@ -49,16 +49,15 @@ function lasso_editor_galleries_exist() {
 }
 
 /**
- * Get a list of themes automatically supported by Lasso and return their contents CSS class
+ * Return a CSS class of an automatically supported theme
  *
- * @param unknown $slug string the slug of the current theme based off of theme name
  * @since 0.8.6
  * @return a css class if the theme is supported, false if nothing
  */
-function lasso_supported_themes( $slug = '' ) {
+function lasso_get_supported_themes() {
 
-	if ( empty( $slug ) )
-		return;
+	$name  	= wp_get_theme()->get('Name');
+	$slug  	= lasso_clean_string( $name );
 
 	switch ( $slug ) {
 
