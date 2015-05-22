@@ -7,7 +7,6 @@
         overflow: auto;
         margin-left: inherit; /* usually we don't want the regular ul margins. */
         margin-right: inherit;
-        //background:@input--bg;
         border-radius:3px;
 
         li {
@@ -43,7 +42,8 @@
             }
 
             &.tagit-new {
-
+                position: relative;
+                top:-6px;
             }
             input[type="text"] {
                 box-shadow: none;
@@ -59,7 +59,6 @@
                 display: inline-block;
                 margin: 2px 5px 2px 0;
                 color:fadeout(@tag--color,50);
-                //border-bottom:1px solid fadeout(@tag--color,90);
             }
 
         }
