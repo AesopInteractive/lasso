@@ -266,9 +266,6 @@
 }
 
 // Modal Addon - 0.9.4
-.modal__content--inner {
-
-}
 .lasso--modal__tabs {
     width:@modal--tab__width;
     position:absolute;
@@ -305,7 +302,7 @@
     max-width:@modal--width__med;
 }
 // settings columns
-.lasso--postsettings__2col {
+.lasso--postsettings__1col {
 
 }
 .lasso--postsettings__2col {
@@ -317,14 +314,59 @@
     }
 
     .lasso--postsettings__left {
-        width:42%;
+        width:43%;
     }
     .lasso--postsettings__right {
-        width:55%;
+        width:54%;
         margin-left:3%;
     }
 }
+.story-tags-option,
+.story-slug-option {
+    border-bottom:none;
+    box-shadow:none;
+    padding-bottom:0;
+}
+.lasso--postsettings__middle {
+    clear:left;
+    padding-top:@editor--padding__lg;
+    border-top:1px solid @modal--border;
+    .box-shadow(inset 0 1px 1px rgba(255,255,255,0.05));
+}
 
+// post thumb
+.lasso--post-thumb {
+    position: relative;
+
+    .lasso--post-thumb__controls {
+        position: absolute;
+        top:@editor--padding;
+        left:@editor--padding;
+        z-index: 1;
+
+        i {
+            text-shadow:0 1px 1px rgba(0,0,0,0.5);
+            .opacity(0.6);
+            .transition(all .2s ease);
+
+            &:hover {
+                cursor: pointer;
+                .opacity(1.0);
+                .scale(1.1);
+            }
+
+            &:active {
+                .scale(1);
+                box-shadow:none;
+            }
+        }
+    }
+
+    // image
+    img{
+        border:5px solid @modal--bg__accent;
+    }
+}
 
 // custom form #
 .lasso--modal__checkbox,
