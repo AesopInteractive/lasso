@@ -77,7 +77,7 @@ function lasso_get_supported_themes() {
 			$out = '.aesop-entry-content';
 			break;
 		case 'jorgen': // aesop
-			$out = '.aesop-entry-content';
+			$out = '.jorgen-entry-content';
 			break;
 		case 'novella': // aesop
 			$out = '.novella-entry-content';
