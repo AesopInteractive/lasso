@@ -97,8 +97,6 @@ function lasso_get_supported_themes() {
 		case 'camera': // array.is
 			$out = '.entry-content';
 			break;
-		default:
-			$out = '.entry-content';
 
 	}
 
