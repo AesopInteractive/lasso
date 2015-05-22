@@ -92,7 +92,7 @@ class tour {
 		$out .= '</li>';
 		$out .= '<li>';
 		$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-highlight.gif' );
-		$out .= '<p>Highlight a piece of text, and click on a formatting option to style it. Click the Disc icon to save. Press escape to exit the editor.</p>';
+		$out .= '<p>Highlight a piece of text, and click on a formatting option to style it. Click the Disk icon to save. Press escape to exit the editor.</p>';
 		$out .= '</li>';
 		$out .= '<li>';
 		$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-component.gif' );
