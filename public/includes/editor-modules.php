@@ -305,8 +305,8 @@ function lasso_editor_component_modal() {
 						<div class="lasso--post-thumb">
 
 							<div id="lasso--post-thumb__controls" class="lasso--post-thumb__controls">
-								<i id="lasso--post-thumb__delete" title='Delete Image' class="dashicons dashicons-no-alt"></i>
-								<i id="lasso--post-thumb__add" title='Swap Image' class="dashicons dashicons-edit"></i>
+								<i id="lasso--post-thumb__add" title="<?php _e('Change Featured Image','lasso');?>" class="dashicons dashicons-edit"></i>
+								<i id="lasso--post-thumb__delete" title="<?php _e('Delete Featured Image','lasso');?>" class="dashicons dashicons-no-alt"></i>
 								<i id="lasso--save-status" class="lasso-icon lasso-icon-spinner6 not-visible"></i>
 							</div>
 
