@@ -33,6 +33,9 @@ class assets {
 			$home_url = function_exists('json_get_url_prefix') ? json_get_url_prefix() : false;
 
 			$article_object 	= lasso_editor_get_option('article_class','lasso_editor');
+
+			$article_object 	= empty( $article_object ) && lasso_get_supported_theme_class() ? lasso_get_supported_theme_class() : $article_object;
+
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');

@@ -54,7 +54,7 @@ function lasso_editor_galleries_exist() {
  * @since 0.8.6
  * @return a css class if the theme is supported, false if nothing
  */
-function lasso_get_supported_themes() {
+function lasso_get_supported_theme_class() {
 
 	$name  	= wp_get_theme()->get('Name');
 	$slug  	= lasso_clean_string( $name );
