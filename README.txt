@@ -18,6 +18,21 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.4 =
+* added ability to access and delete posts and pages (and custom post types with a filter) from the front-end (requires WP REST API plugin). If the user is an Author or Contributor they will only be shown their posts or pages.
+* added ability to add a post from anywhere on the site
+* added ability to set featured image within settings modal if current theme supports post thumbnails
+* added ability to add categories and tags within settings modal
+* added CMD + S hot key to save post while in editor
+* added a close button exit the editor
+* added a new API to allow third-party addons to add new settings modals (beta). They appear as a tab and works with only a filter. This is in preparation for releasing ACF, CMB2, and Ninja Forms integration addons.
+* fixed bug with tour hide not calculating correctly
+* fixed bug with Author or Contributor roles not being able to put a post in draft
+* improved user interface colors to better match WordPress design patterns
+* improved drag and drop detection between paragraphs
+* improved toolbar width logic - props @peiche
+* improved CSS selector performance
+
 = 0.9.3 =
 * fixed .entry-content being applied as a default Article CSS Class
 * allow escaping the warning modal that warns users if no Article CSS class is present
