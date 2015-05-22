@@ -5,7 +5,8 @@
 
 		e.preventDefault();
 
-		var $this = $(this);
+		var $this 		= $(this)
+		,	saveStatus = $('#lasso--save-status')
 
 		var data = {
 			action: 'process_upload-image_upload',
@@ -14,10 +15,19 @@
 			nonce: 	lasso_editor.featImgNonce
 		}
 
+		saveStatus.removeClass('not-visible').addClass('visible lasso--animate__spin');
+
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
-			if ( true == response ) {
+			if ( response ) {
+				console.log('response')
 				$('#lasso--featImgSave').css('opacity',0);
+
+				saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
+
+				setTimeout(function(){
+					saveStatus.removeClass('lasso--animate__spin lasso-icon-check').addClass('lasso-icon-spinner6 not-visible')
+				},500);
 			}
 
 		});

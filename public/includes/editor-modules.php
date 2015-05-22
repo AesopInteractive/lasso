@@ -305,8 +305,9 @@ function lasso_editor_component_modal() {
 						<div class="lasso--post-thumb">
 
 							<div id="lasso--post-thumb__controls" class="lasso--post-thumb__controls">
-								<i id="lasso--post-thumb__delete" title='Delete Image' class='dashicons dashicons-no-alt'></i>
-								<i id="lasso--post-thumb__add" title='Swap Image' class='dashicons dashicons-edit'></i>
+								<i id="lasso--post-thumb__delete" title='Delete Image' class="dashicons dashicons-no-alt"></i>
+								<i id="lasso--post-thumb__add" title='Swap Image' class="dashicons dashicons-edit"></i>
+								<i id="lasso--save-status" class="lasso-icon lasso-icon-spinner6 not-visible"></i>
 							</div>
 
 							<?php echo has_post_thumbnail() ? get_the_post_thumbnail( $post->ID, 'medium' ) : '<img src="'.$default_image.'">'; ?>

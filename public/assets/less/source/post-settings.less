@@ -343,6 +343,7 @@
         position: absolute;
         top:@editor--padding;
         left:@editor--padding;
+        right:@editor--padding;
         z-index: 1;
 
         i {
@@ -361,17 +362,20 @@
                 box-shadow:none;
             }
         }
+
+        #lasso--save-status {
+            float: right;
+            font-size:@input--font__size + 1;
+            position: relative;
+            top: 3px;
+            right: 3px;
+        }
+
     }
 
     // image
     img{
         border:5px solid @modal--bg__accent;
-    }
-}
-
-#lasso--postsettings__form.no-thumbnail {
-    .lasso--postsettings__left {
-        min-width:100px;
     }
 }
 
