@@ -134,7 +134,7 @@ class welcome {
 		$article_object = lasso_editor_get_option( 'article_class', 'lasso_editor' );
 
 		$theme_name  	= wp_get_theme()->get('Name');
-		$theme_class  	= lasso_get_supported_themes( $theme_name );
+		$theme_class  	= lasso_get_supported_themes();
 
 		$license   		= get_option( 'lasso_license_key' );
 		$status   		= get_option( 'lasso_license_status' );
