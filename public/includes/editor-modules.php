@@ -286,6 +286,9 @@ function lasso_editor_component_modal() {
 	// are we singular
 	$is_singular 		= is_singular();
 	$is_singular_class 	= $is_singular ? 'lasso--postsettings__2col' : 'lasso--postsettings__1col';
+	$has_thumb_class    = has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail';
+	$theme_supports     = current_theme_supports('post-thumbnails');
+	$default_image 		= 'http://placekitten.com/g/600/400';
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -294,11 +297,11 @@ function lasso_editor_component_modal() {
 			<?php if( $tabs ) { echo $tabs; } ?>
 
 			<div class="lasso--modal__content modal__content--core visible" data-addon-content="core">
-				<form id="lasso--postsettings__form" enctype="multipart/form-data" class="<?php echo $is_singular_class;?>" >
+				<form id="lasso--postsettings__form" enctype="multipart/form-data" class="<?php echo $is_singular_class.' '.$has_thumb_class;?>" >
 
-
-					<?php if ( $is_singular ) : ?>
+					<?php if ( $is_singular && $theme_supports ) : ?>
 					<div class="lasso--postsettings__left">
+
 						<div class="lasso--post-thumb">
 
 							<div id="lasso--post-thumb__controls" class="lasso--post-thumb__controls">
@@ -306,10 +309,11 @@ function lasso_editor_component_modal() {
 								<i id="lasso--post-thumb__add" title='Swap Image' class='dashicons dashicons-edit'></i>
 							</div>
 
-							<?php echo has_post_thumbnail() ? get_the_post_thumbnail( $post->ID, 'medium' ) : '<img src="">'; ?>
+							<?php echo has_post_thumbnail() ? get_the_post_thumbnail( $post->ID, 'medium' ) : '<img src="'.$default_image.'">'; ?>
 
 						</div>
 						<div id="lasso--featImgSave"><a href="#" class="not-visible">Save</a></div>
+
 					</div>
 					<?php endif; ?>
 

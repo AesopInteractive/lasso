@@ -171,6 +171,43 @@
 	    featimg_frame.open();
 
 
+	}).on('click', '#lasso--post-thumb__delete', function( e ){
+
+		e.preventDefault();
+
+		var $this = $(this);
+
+		var data = {
+			action: 'process_upload-image_delete',
+			postid: lasso_editor.postid,
+			nonce: 	lasso_editor.featImgNonce
+		}
+
+		swal({
+			title: "Delete image?",
+			type: "warning",
+			text: false,
+			showCancelButton: true,
+			confirmButtonColor: "#d9534f",
+			confirmButtonText: "Yes, delete it!",
+			closeOnConfirm: true
+		},
+		function(){
+
+			$.post( lasso_editor.ajaxurl, data, function(response) {
+
+				if ( true == response.success ) {
+
+					// remove teh attr src - just a real-time update
+			      	$this.closest('.lasso--postsettings__left').find('img').attr('src','')
+
+
+				}
+
+			});
+
+		});
+
 	});
 
 })( jQuery );
