@@ -188,7 +188,7 @@ class welcome {
 		// if the license key isnt activated
 		if ( empty( $license ) ) {
 			$notices[] = '<li class="info"><h3>'.__( 'License Key Not Activated', 'lasso' ).'</h3>
-							<p>'.__( 'Just a heads up, your license key isnt activated. Enter your license key into the License tab on the left in order to receive plugin update notifications.', 'lasso' ).'</p>
+							<p>'.__( 'Just a heads up, your license key isn\'t activated. Enter your license key into the License tab on the left in order to receive plugin update notifications.', 'lasso' ).'</p>
 							</li>';
 		}
 		if ( !empty( $license ) && 'invalid' == $status ) {
