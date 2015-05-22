@@ -15,8 +15,9 @@
 			})
 
 		}
-
-		modalResizer();
+		$('.lasso--modal').imagesLoaded( function() {
+			modalResizer();
+		})
 
 		jQuery(window).resize(function(){ modalResizer(); });
 

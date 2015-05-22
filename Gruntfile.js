@@ -50,6 +50,7 @@ module.exports = function(grunt) {
                     'public/assets/js/source/util--scrollbar.js',
                     'public/assets/js/source/util--sweet-alert.js',
                     'public/assets/js/source/util--geo-complete.js',
+                    'public/assets/js/source/util--imagesloaded.js',
                     'public/assets/js/source/util--slider.js',
                     'public/assets/js/source/util--touch-punch.js',
                     'public/assets/js/source/util--tagit.js',
