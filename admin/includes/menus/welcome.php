@@ -172,10 +172,10 @@ class welcome {
 
 		// aesop story engine isnt active
 		if ( !class_exists( 'Aesop_Core' ) ) {
-			$notices[] = '<li class="info"><h3>Aesop Story Engine not Activated!</h3>
-							<p>'.__( 'Just a heads up that ', 'lasso' ).'<a href="https://wordpress.org/plugins/aesop-story-engine/" target="_blank
-							">'.__( 'Aesop Story Engine', 'lasso' ).'</a> '.__( 'isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. Plus, it\'s free!', 'lasso' ).'</p>
-							</li>';
+			$notices[] = sprintf( '<li class="info"><h3>Aesop Story Engine not Activated!</h3>
+							<p>'.__( 'Just a heads up that ', 'lasso' ).'<a href="%s" target="_blank
+							">'.__( 'Aesop Story Engine', 'lasso' ).'</a> '.__( 'isn\'t activated. It\'s not required to use Lasso, but you won\'t get the cool drag and drop components without it activated. It\'s free!', 'lasso' ).'</p>
+							</li>', admin_url('plugin-install.php?tab=search&s=aesop+story+engine') );
 		}
 
 		// we dont really get along with wp side comments because of the section ids that get applied dynamically. since we save our html, it'll get saved along with the post as HTML
