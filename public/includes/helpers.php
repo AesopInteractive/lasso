@@ -51,16 +51,16 @@ function lasso_editor_galleries_exist() {
 /**
  * Get a list of themes automatically supported by Lasso and return their contents CSS class
  *
- * @param unknown $textdomain string the textdomain of the WordPress theme. We're using the textdomain because it's automatically slugified by the author and its easy.
+ * @param unknown $slug string the slug of the current theme based off of theme name
  * @since 0.8.6
  * @return a css class if the theme is supported, false if nothing
  */
-function lasso_supported_themes( $textdomain = '' ) {
+function lasso_supported_themes( $slug = '' ) {
 
-	if ( empty( $textdomain ) )
+	if ( empty( $slug ) )
 		return;
 
-	switch ( $textdomain ) {
+	switch ( $slug ) {
 
 		case 'twentytwelve': // automattic
 			$out = '.entry-content';

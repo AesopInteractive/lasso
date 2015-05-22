@@ -129,18 +129,18 @@ class welcome {
 	 */
 	function lasso_preflight_check() {
 
-		$notices = array();
+		$notices 		= array();
 
 		$article_object = lasso_editor_get_option( 'article_class', 'lasso_editor' );
 
-		$theme    = wp_get_theme();
-		$theme_domain  = $theme->get( 'TextDomain' );
-		$theme_class  = $theme_domain ? lasso_supported_themes( $theme_domain ) : false;
+		$g_theme_name  	= wp_get_theme()->get('Name');
+		$theme_name  	= lasso_clean_string( $g_theme_name );
+		$theme_class  	= $theme_name ? lasso_supported_themes( $theme_name ) : false;
 
-		$license   = get_option( 'lasso_license_key' );
-		$status   = get_option( 'lasso_license_status' );
+		$license   		= get_option( 'lasso_license_key' );
+		$status   		= get_option( 'lasso_license_status' );
 
-		// if1 the required CSS class has not been saved
+		// if the required CSS class has not been saved
 		if ( empty( $article_object ) ) :
 
 			// if we have a theme that we automatically support
@@ -148,9 +148,9 @@ class welcome {
 
 				$notices[] = sprintf( '<li class="error">
 										<h3>'.__( 'Article CSS Class Needed!', 'lasso' ).'</h3>
-										<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. We\'ve automatically detected that you\'re running ', 'lasso' ).' %s. '.__( 'Here\'s the CSS class that you\'ll need:', 'lasso' ).'</p>
+										<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. We\'ve automatically detected that you\'re running ', 'lasso' ).' <strong>%s</strong>. '.__( 'Here\'s the CSS class that you\'ll need:', 'lasso' ).'</p>
 										<code style="display:inline-block;margin-top:15px;">%s</code>
-									</li>', admin_url( 'admin.php?page=lasso-editor-settings' ), $theme->get( 'Name' ), $theme_class );
+									</li>', admin_url( 'admin.php?page=lasso-editor-settings' ), $g_theme_name, $theme_class );
 
 				// we dont automatically support this theme so show them otherwise
 			} else {
