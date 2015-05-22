@@ -56,6 +56,7 @@ class assets {
 				'updateImage'		=> __('Update Image','lasso'),
 				'insertImage'		=> __('Insert Image','lasso'),
 				'selectImage'		=> __('Select Image','lasso'),
+				'removeFeatImg'     => __('Remove featured image?','lasso'),
 				'updateSelectedImg' => __('Update Selected Image','lasso'),
 				'chooseImages'		=> __('Choose images','lasso'),
 				'editImage'			=> __('Edit Image','lasso'),

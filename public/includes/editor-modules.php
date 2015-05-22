@@ -288,7 +288,7 @@ function lasso_editor_component_modal() {
 	$is_singular_class 	= $is_singular ? 'lasso--postsettings__2col' : 'lasso--postsettings__1col';
 	$has_thumb_class    = has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail';
 	$theme_supports     = current_theme_supports('post-thumbnails');
-	$default_image 		= 'http://placekitten.com/g/600/400';
+	$default_image 		= LASSO_URL.'/admin/assets/img/empty-img.png';
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -301,8 +301,8 @@ function lasso_editor_component_modal() {
 
 					<?php if ( $is_singular && $theme_supports ) : ?>
 					<div class="lasso--postsettings__left">
-
-						<div class="lasso--post-thumb">
+						<label><?php _e( 'Featured Image', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the featured image for this post.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+						<div class="lasso--post-thumb" data-default-thumb="<?php echo esc_url( $default_image );?>">
 
 							<div id="lasso--post-thumb__controls" class="lasso--post-thumb__controls">
 								<i id="lasso--post-thumb__add" title="<?php _e('Change Featured Image','lasso');?>" class="dashicons dashicons-edit"></i>

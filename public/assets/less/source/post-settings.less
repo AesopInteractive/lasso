@@ -314,10 +314,22 @@
     }
 
     .lasso--postsettings__left {
-        width:44%;
+        width:35%;
+
+        label {
+            font-size:14px;
+            line-height:1;
+            display:block;
+            margin-bottom: 15px;
+        }
+
+        .lasso-util--help {
+            left:6px;
+            top:2px;
+        }
     }
     .lasso--postsettings__right {
-        width:53%;
+        width:62%;
         margin-left:3%;
     }
 }
@@ -386,6 +398,12 @@
     img{
         border:5px solid @modal--bg__accent;
         border-radius: @editor--radius;
+    }
+}
+
+#lasso--postsettings__form.no-thumbnail {
+    #lasso--post-thumb__delete {
+        .not-visible();
     }
 }
 

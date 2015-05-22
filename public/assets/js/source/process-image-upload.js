@@ -102,12 +102,12 @@
 		}
 
 		swal({
-			title: "Delete image?",
+			title: lasso_editor.strings.removeFeatImg,
 			type: "warning",
 			text: false,
 			showCancelButton: true,
 			confirmButtonColor: "#d9534f",
-			confirmButtonText: "Yes, delete it!",
+			confirmButtonText: lasso_editor.strings.deleteYes,
 			closeOnConfirm: true
 		},
 		function(){
@@ -175,6 +175,9 @@
 	      	$this.closest('.lasso--post-thumb').find('img').attr('src', attachment.url )
 
 	      	save.attr('data-featimg-id',attachment.id).trigger('click')
+
+	      	$('#lasso--postsettings__form').removeClass('no-thumbnail').addClass('has-thumbnail')
+
 	    });
 
 	    // Finally, open the modal
@@ -194,12 +197,12 @@
 		}
 
 		swal({
-			title: "Delete image?",
+			title: lasso_editor.strings.removeFeatImg,
 			type: "warning",
 			text: false,
 			showCancelButton: true,
 			confirmButtonColor: "#d9534f",
-			confirmButtonText: "Yes, delete it!",
+			confirmButtonText: lasso_editor.strings.deleteYes,
 			closeOnConfirm: true
 		},
 		function(){
@@ -208,9 +211,10 @@
 
 				if ( true == response.success ) {
 
-					// remove teh attr src - just a real-time update
-			      	$this.closest('.lasso--postsettings__left').find('img').attr('src','')
+					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb')
+			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg )
 
+			      	$('#lasso--postsettings__form').removeClass('has-thumbnail').addClass('no-thumbnail')
 
 				}
 
