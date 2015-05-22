@@ -77,7 +77,7 @@ class welcome {
 
 						else:
 
-							// pre-flight is go for flight
+							// Pre-flight is go for flight
 						?>
 						<li class="success">
 							<h3><?php _e( 'You\'re Ready to Rock!', 'lasso' );?></h3>
@@ -140,10 +140,10 @@ class welcome {
 		$license   = get_option( 'lasso_license_key' );
 		$status   = get_option( 'lasso_license_status' );
 
-		// if1 the required CSS class has not been saved
+		// If the required CSS class has not been saved
 		if ( empty( $article_object ) ) :
 
-			// if we have a theme that we automatically support
+			// If we have a theme that we automatically support
 			if ( false !== $theme_class ) {
 
 				$notices[] = sprintf( '<li class="error">
@@ -152,12 +152,12 @@ class welcome {
 										<code style="display:inline-block;margin-top:15px;">%s</code>
 									</li>', admin_url( 'admin.php?page=lasso-editor-settings' ), $theme->get( 'Name' ), $theme_class );
 
-				// we dont automatically support this theme so show them otherwise
+				// We don't automatically support this theme, so show them otherwise
 			} else {
 
 				$notices[] = sprintf('<li class="error">
 								<h3>'.__( 'Article CSS Class Needed!', 'lasso' ).'</h3>
-								<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. You can <a href="https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/using-inspector-lasso.gif" target="_blank">use a tool like inspector</a> in Chrome or Firefox to find this CSS class, or ', 'lasso' ).' <a href="mailto:help@lasso.is">'.__( 'email us.', 'lasso' ).'</a> '.__( 'with a link to a public URL with the theme and we\'ll find it for you.', 'lasso' ).'</p>
+								<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. You can <a href="https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/using-inspector-lasso.gif" target="_blank">use a tool like inspector</a> in Chrome or Firefox to find this CSS class, or ', 'lasso' ).' <a href="mailto:help@lasso.is?subject=Lasso CSS class">'.__( 'email us.', 'lasso' ).'</a> '.__( 'with a link to a public URL with the theme and we\'ll find it for you.', 'lasso' ).'</p>
 								</li>', admin_url( 'admin.php?page=lasso-editor-settings' ) );
 		}
 
@@ -170,7 +170,7 @@ class welcome {
 							</li>';
 		}
 
-		// aesop story engine isnt active
+		// Aesop Story Engine isn't active
 		if ( !class_exists( 'Aesop_Core' ) ) {
 			$notices[] = sprintf( '<li class="info"><h3>Aesop Story Engine not Activated!</h3>
 							<p>'.__( 'Just a heads up that ', 'lasso' ).'<a href="%s" target="_blank
@@ -178,14 +178,14 @@ class welcome {
 							</li>', admin_url('plugin-install.php?tab=search&s=aesop+story+engine') );
 		}
 
-		// we dont really get along with wp side comments because of the section ids that get applied dynamically. since we save our html, it'll get saved along with the post as HTML
+		// We don't really get along with WP Side Comments because of the section IDs that get applied dynamically. since we save our html, it'll get saved along with the post as HTML
 		if ( class_exists( 'WP_Side_Comments' ) ) {
 			$notices[] = '<li class="error"><h3>'.__( 'WP Side Comments Compatibility Warning!', 'lasso' ).'</h3>
 							<p>'.__( 'Since Lasso saves the HTML of a post, this may cause undesired issues. We\'re working to resolve incompatibilities faster than a jack rabbit in a hot greasy griddle in the middle of August.', 'lasso' ).'</p>
 							</li>';
 		}
 
-		// if the license key isnt activated
+		// If the license key isn't activated
 		if ( empty( $license ) ) {
 			$notices[] = '<li class="info"><h3>'.__( 'License Key Not Activated', 'lasso' ).'</h3>
 							<p>'.__( 'Just a heads up, your license key isn\'t activated. Enter your license key into the License tab on the left in order to receive plugin update notifications.', 'lasso' ).'</p>
@@ -193,11 +193,11 @@ class welcome {
 		}
 		if ( !empty( $license ) && 'invalid' == $status ) {
 			$notices[] = '<li class="error"><h3>'.__( 'License Key Invalid', 'lasso' ).'</h3>
-							<p>'.__( 'The license key that you entered is ', 'lasso' ).'<strong>'.__( 'invalid', 'lasso' ).'</strong>'.__( '. It may have been entered incorreclty, or may have expired.', 'lasso' ).'</p>
+							<p>'.__( 'The license key that you entered is ', 'lasso' ).'<strong>'.__( 'invalid', 'lasso' ).'</strong>'.__( '. It may have been entered incorreclty or may have expired.', 'lasso' ).'</p>
 							</li>';
 		}
 
-		// if their license key is invalid
+		// If their license key is invalid
 
 
 		return apply_filters( 'lasso_preflight_notices', $notices );
@@ -261,4 +261,3 @@ class welcome {
 
 	}
 }
-
