@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Lasso (beta) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Lasso (beta) 0.9.1\n"
+"Project-Id-Version: Lasso (beta) 0.9.3\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-03-26 21:52:07+00:00\n"
+"POT-Creation-Date: 2015-05-22 19:35:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,94 +45,374 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#: admin/includes/class-tgm-plugin-activation.php:161
+#: admin/includes/menus/welcome.php:239
+msgid "Install Required Plugins"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:162
+#: admin/includes/menus/welcome.php:240
+msgid "Install Plugins"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:163
+#: admin/includes/menus/welcome.php:241
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:164
+msgid "Something went wrong."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:165
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:166
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:167
+#: admin/includes/menus/welcome.php:245
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin installed."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:168
+#: admin/includes/menus/welcome.php:246
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:169
+#: admin/includes/menus/welcome.php:247
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:170
+#: admin/includes/menus/welcome.php:248
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:171
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:172
+#: admin/includes/menus/welcome.php:250
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"updated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:173
+#: admin/includes/menus/welcome.php:251
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:174
+#: admin/includes/menus/welcome.php:252
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:175
+#: admin/includes/menus/welcome.php:253
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:176
+msgid "Return to the dashboard"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:177
+#: admin/includes/class-tgm-plugin-activation.php:1939
+#: admin/includes/menus/welcome.php:254
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:178
+#: admin/includes/class-tgm-plugin-activation.php:1630
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:179
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:180
+msgid "Dismiss this notice"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:531
+#: admin/includes/class-tgm-plugin-activation.php:2156
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1166
+msgid "Private Repository"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1169
+msgid "Pre-Packaged"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1174
+msgid "WordPress Repository"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1177
+msgid "Required"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1177
+msgid "Recommended"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1180
+msgid "Not Installed"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1182
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1287
+#: admin/includes/class-tgm-plugin-activation.php:1395
+msgid "Install"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1309
+#: admin/includes/class-tgm-plugin-activation.php:1396
+msgid "Activate"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1358
+msgid ""
+"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
+"Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1374
+msgid "Plugin"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1375
+msgid "Source"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1376
+msgid "Type"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1377
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:325
+msgid "Status"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1922
+msgid "Install package not available."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1923
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1924
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1925
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1926
+msgid "Plugin install failed."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1927
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:1938
+msgid "Plugin activation failed."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2052
+msgid ""
+"The installation and activation process is starting. This process may take "
+"a while on some hosts, so please be patient."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2053
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2053
+#: admin/includes/class-tgm-plugin-activation.php:2062
+msgid "Show Details"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2053
+#: admin/includes/class-tgm-plugin-activation.php:2062
+msgid "Hide Details"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2054
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2055
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2059
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2060
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2061
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2062
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2063
+msgid "All installations have been completed."
+msgstr ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2064
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
 #. Author of the plugin/theme
 msgid "Aesopinteractive LLC"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:35
-#: admin/includes/class.menu--license.php:54
+#: admin/includes/menus/license.php:37 admin/includes/menus/license.php:56
 msgid "License Key"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:35
+#: admin/includes/menus/license.php:37
 msgid "License"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:44
+#: admin/includes/menus/license.php:46
 msgid "Lasso License"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:45
+#: admin/includes/menus/license.php:47
 msgid ""
 "Input the license key you recieved with your purchase to ensure your "
 "version of Lasso stays updated."
 msgstr ""
 
-#: admin/includes/class.menu--license.php:63
-#: admin/includes/class.menu--license.php:72
+#: admin/includes/menus/license.php:65 admin/includes/menus/license.php:74
 msgid "Activate License"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:67
+#: admin/includes/menus/license.php:69
 msgid "active"
 msgstr ""
 
-#: admin/includes/class.menu--license.php:69
+#: admin/includes/menus/license.php:71
 msgid "Deactivate License"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:26
-#: admin/includes/class.menu--welcome.php:44
+#: admin/includes/menus/settings.php:27 admin/includes/menus/welcome.php:48
 msgid "Lasso"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:30
-#: public/includes/editor-modules.php:210
-#: public/includes/editor-modules.php:377
+#: admin/includes/menus/settings.php:31 public/includes/editor-modules.php:221
+#: public/includes/editor-modules.php:501
 msgid "Settings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:108
+#: admin/includes/menus/settings.php:109
 msgid "Lasso Settings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:114
+#: admin/includes/menus/settings.php:117
 msgid "Article Class"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:115
+#: admin/includes/menus/settings.php:118
 msgid ""
 "Provide the CSS class (including the preceding dot) of container that holds "
 "the post. This should be the first parent container class that holds "
 "the_content."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:122
+#: admin/includes/menus/settings.php:125
 msgid "Featured Image Class"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:123
+#: admin/includes/menus/settings.php:126
 msgid ""
 "Provide the CSS class that uses a featured image as a background image. "
 "This currently only supports themes that have the featured image set as "
 "background image."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:130
+#: admin/includes/menus/settings.php:133
 msgid "Article Title Class"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:131
+#: admin/includes/menus/settings.php:134
 msgid ""
 "Provide the CSS class for the post title. This will enable you to update "
 "the title of the post by clicking and typing."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:139
+#: admin/includes/menus/settings.php:142
 msgid "Ignored Items to Save"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:140
+#: admin/includes/menus/settings.php:143
 msgid ""
 "If your post container holds additional markup, list the css class names "
 "(comma separated, including the dot) of those items. When you enter the "
@@ -140,22 +420,22 @@ msgid ""
 "them as HTML."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:148
+#: admin/includes/menus/settings.php:151
 msgid "Enable Toolbar Headings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:149
+#: admin/includes/menus/settings.php:152
 msgid ""
 "By default the H2 and H3 options for headings are in the insert HTML area. "
 "You may prefer those headings to act just like the underline, and "
 "strikethrough, so toggling this will add them to the toolbar."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:157
+#: admin/includes/menus/settings.php:160
 msgid "Disable Post Saving"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:158
+#: admin/includes/menus/settings.php:161
 msgid ""
 "By default the editor will update the database with the post or page it is "
 "being used on. Check this box to disable this. If you check this box, it is "
@@ -163,105 +443,97 @@ msgid ""
 "content."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:166
+#: admin/includes/menus/settings.php:169
 msgid "Disable Post Settings"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:167
+#: admin/includes/menus/settings.php:170
 msgid ""
 "Check this to disable users from being able to edit post settings from the "
 "front-end."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:174
+#: admin/includes/menus/settings.php:177
 msgid "Disable Post Adding"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:175
+#: admin/includes/menus/settings.php:178
 msgid ""
 "Check this box to disable users from being able to add new posts from the "
 "front-end."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:182
+#: admin/includes/menus/settings.php:185
 msgid "Disable Aesop Component Conversion"
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:183
+#: admin/includes/menus/settings.php:186
 msgid ""
 "Check this box to disable the conversion process used on Aesop Story Engine "
 "components."
 msgstr ""
 
-#: admin/includes/class.menu--settings.php:189
+#: admin/includes/menus/settings.php:194
 msgid "Save Settings"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:45
+#: admin/includes/menus/welcome.php:49
 msgid "Welcome"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:45
-#: public/includes/editor-modules.php:273
-msgid "Status"
-msgstr ""
-
-#: admin/includes/class.menu--welcome.php:79
+#: admin/includes/menus/welcome.php:83
 msgid "You're Ready to Rock!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:80
+#: admin/includes/menus/welcome.php:84
 msgid ""
 "Lasso will place a small menu on the bottom of every post and page. Click "
 "the \"pen\" icon to go into edit mode. Press escape to get out of edit mode."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:103
+#: admin/includes/menus/welcome.php:107
 msgid "Welcome to Lasso"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:104
+#: admin/includes/menus/welcome.php:108
 msgid "Version"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:109
+#: admin/includes/menus/welcome.php:113
 msgid "Help"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:110
+#: admin/includes/menus/welcome.php:114
 msgid "Twitter"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:111
+#: admin/includes/menus/welcome.php:115
 msgid "Facebook"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:146
-#: admin/includes/class.menu--welcome.php:155
+#: admin/includes/menus/welcome.php:150 admin/includes/menus/welcome.php:159
 msgid "Article CSS Class Needed!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:147
-#: admin/includes/class.menu--welcome.php:156
+#: admin/includes/menus/welcome.php:151 admin/includes/menus/welcome.php:160
 msgid "Before using Lasso,"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:147
-#: admin/includes/class.menu--welcome.php:156
+#: admin/includes/menus/welcome.php:151 admin/includes/menus/welcome.php:160
 msgid "enter and save"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:147
+#: admin/includes/menus/welcome.php:151
 msgid ""
 "the CSS class of the container that holds your post and page content. We've "
 "automatically detected that you're running "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:147
+#: admin/includes/menus/welcome.php:151
 msgid "Here's the CSS class that you'll need:"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:156
+#: admin/includes/menus/welcome.php:160
 msgid ""
 "the CSS class of the container that holds your post and page content. You "
 "can <a "
@@ -270,179 +542,265 @@ msgid ""
 "in Chrome or Firefox to find this CSS class, or "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:156
+#: admin/includes/menus/welcome.php:160
 msgid "email us."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:156
+#: admin/includes/menus/welcome.php:160
 msgid "with a link to a public URL with the theme and we'll find it for you."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:165
+#: admin/includes/menus/welcome.php:169
+msgid ""
+"Just a heads up that the WP REST API isn't activated. This is used to list "
+"the posts and pages on the front-end. It is required until WordPress "
+"officially merges the REST API into core sometime during 2015."
+msgstr ""
+
+#: admin/includes/menus/welcome.php:176
 msgid "Just a heads up that "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:166
+#: admin/includes/menus/welcome.php:177 admin/includes/menus/welcome.php:223
 msgid "Aesop Story Engine"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:166
+#: admin/includes/menus/welcome.php:177
 msgid ""
 "isn't activated. It's not required to use Lasso, but you won't get the cool "
 "drag and drop components without it activated. It's free!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:172
+#: admin/includes/menus/welcome.php:183
 msgid "WP Side Comments Compatibility Warning!"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:173
+#: admin/includes/menus/welcome.php:184
 msgid ""
 "Since Lasso saves the HTML of a post, this may cause undesired issues. "
 "We're working to resolve incompatibilities faster than a jack rabbit in a "
 "hot greasy griddle in the middle of August."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:179
+#: admin/includes/menus/welcome.php:190
 msgid "License Key Not Activated"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:180
+#: admin/includes/menus/welcome.php:191
 msgid ""
-"Just a heads up, your license key isnt activated. Enter your license key "
+"Just a heads up, your license key isn't activated. Enter your license key "
 "into the License tab on the left in order to receive plugin update "
 "notifications."
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:184
+#: admin/includes/menus/welcome.php:195
 msgid "License Key Invalid"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:185
+#: admin/includes/menus/welcome.php:196
 msgid "The license key that you entered is "
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:185
+#: admin/includes/menus/welcome.php:196
 msgid "invalid"
 msgstr ""
 
-#: admin/includes/class.menu--welcome.php:185
+#: admin/includes/menus/welcome.php:196
 msgid ". It may have been entered incorreclty, or may have expired."
 msgstr ""
 
-#: includes/class.process-gallery.php:33
+#: admin/includes/menus/welcome.php:217
+msgid "WP REST API"
+msgstr ""
+
+#: admin/includes/menus/welcome.php:242
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: admin/includes/menus/welcome.php:243
+msgid "This plugin requires the following plugin: %1$s."
+msgid_plural "This plugin requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/menus/welcome.php:244
+msgid "This plugin recommends the following plugin: %1$s."
+msgid_plural "This plugin recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/menus/welcome.php:249
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this plugin: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this plugin: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/includes/menus/welcome.php:255
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: includes/process/gallery.php:40
 msgid "Save and refresh to view gallery."
 msgstr ""
 
-#: includes/class.process-gallery.php:191
+#: includes/process/gallery.php:197
 msgid "Delete From Gallery"
 msgstr ""
 
-#: includes/class.process-gallery.php:192
+#: includes/process/gallery.php:198
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/class.process-new-object.php:40
+#: includes/process/new_object.php:42
 msgid "Once upon a time..."
 msgstr ""
 
-#: public/includes/class.assets.php:39
+#: internal-api/auth.php:67
+msgid "Unauthorized action"
+msgstr ""
+
+#: internal-api/auth.php:71
+msgid ""
+"All callback classes used for processing the Lasso Internal API must "
+"implement the lasso\\internal_api\\api_action interface."
+msgstr ""
+
+#: internal-api/auth.php:76
+msgid "Nonce invalid"
+msgstr ""
+
+#: internal-api/route.php:30
+msgid "Lasso API Error."
+msgstr ""
+
+#: internal-api/route.php:66
+msgid "Nonce not set."
+msgstr ""
+
+#: public/includes/assets.php:45
 msgid "Saving..."
 msgstr ""
 
-#: public/includes/class.assets.php:40
+#: public/includes/assets.php:46
 msgid "Saved!"
 msgstr ""
 
-#: public/includes/class.assets.php:41
+#: public/includes/assets.php:47
 msgid "Adding..."
 msgstr ""
 
-#: public/includes/class.assets.php:42
+#: public/includes/assets.php:48
 msgid "Added!"
 msgstr ""
 
-#: public/includes/class.assets.php:43
+#: public/includes/assets.php:49
+msgid "Loading..."
+msgstr ""
+
+#: public/includes/assets.php:50
+msgid "Load More"
+msgstr ""
+
+#: public/includes/assets.php:51
+msgid "No more posts found"
+msgstr ""
+
+#: public/includes/assets.php:52
 msgid "Gallery Created!"
 msgstr ""
 
-#: public/includes/class.assets.php:44
+#: public/includes/assets.php:53
 msgid "Gallery Updated!"
 msgstr ""
 
-#: public/includes/class.assets.php:45
+#: public/includes/assets.php:54
 msgid "Just write..."
 msgstr ""
 
-#: public/includes/class.assets.php:46
+#: public/includes/assets.php:55
 msgid "Choose an image"
 msgstr ""
 
-#: public/includes/class.assets.php:47
+#: public/includes/assets.php:56
 msgid "Update Image"
 msgstr ""
 
-#: public/includes/class.assets.php:48
+#: public/includes/assets.php:57
 msgid "Insert Image"
 msgstr ""
 
-#: public/includes/class.assets.php:49
+#: public/includes/assets.php:58
 msgid "Select Image"
 msgstr ""
 
-#: public/includes/class.assets.php:50
+#: public/includes/assets.php:59
+msgid "Remove featured image?"
+msgstr ""
+
+#: public/includes/assets.php:60
 msgid "Update Selected Image"
 msgstr ""
 
-#: public/includes/class.assets.php:51
+#: public/includes/assets.php:61
 msgid "Choose images"
 msgstr ""
 
-#: public/includes/class.assets.php:52
+#: public/includes/assets.php:62
 msgid "Edit Image"
 msgstr ""
 
-#: public/includes/class.assets.php:53
-#: public/includes/editor-modules--gallery.php:20
+#: public/includes/assets.php:63 public/includes/editor-modules--gallery.php:20
 msgid "Add Images"
 msgstr ""
 
-#: public/includes/class.assets.php:54
+#: public/includes/assets.php:64
 msgid "Add New Gallery"
 msgstr ""
 
-#: public/includes/class.assets.php:55
+#: public/includes/assets.php:65
 msgid "Select Lasso Gallery Image"
 msgstr ""
 
-#: public/includes/class.assets.php:56
+#: public/includes/assets.php:66
 msgid "Use Selected Images"
 msgstr ""
 
-#: public/includes/class.assets.php:57
+#: public/includes/assets.php:67
 msgid "Publish Post?"
 msgstr ""
 
-#: public/includes/class.assets.php:58
+#: public/includes/assets.php:68
 msgid "Yes, publish it!"
 msgstr ""
 
-#: public/includes/class.assets.php:59
+#: public/includes/assets.php:69
+msgid "Trash Post?"
+msgstr ""
+
+#: public/includes/assets.php:70
+msgid "Yes, trash it!"
+msgstr ""
+
+#: public/includes/assets.php:71
 msgid "Oh snap!"
 msgstr ""
 
-#: public/includes/class.assets.php:60
+#: public/includes/assets.php:72
+msgid "O.K. got it!"
+msgstr ""
+
+#: public/includes/assets.php:73
 msgid ""
-"It looks like we are missing the Article CSS class. Lasso needs this to "
-"function correctly."
+"It looks like we are missing the Article CSS class. Lasso will not function "
+"correctly without this CSS class."
 msgstr ""
 
-#: public/includes/class.assets.php:61
+#: public/includes/assets.php:74
 msgid "Update Settings"
-msgstr ""
-
-#: public/includes/class.tour.php:65
-msgid "Okay, got it!"
 msgstr ""
 
 #: public/includes/editor-modules--gallery.php:19
@@ -491,7 +849,7 @@ msgid "Photoset"
 msgstr ""
 
 #: public/includes/editor-modules--gallery.php:68
-#: public/includes/editor-modules.php:171
+#: public/includes/editor-modules.php:182
 msgid "Parallax"
 msgstr ""
 
@@ -570,221 +928,266 @@ msgstr ""
 msgid "Add an optional caption for the gallery."
 msgstr ""
 
-#: public/includes/editor-modules.php:48
+#: public/includes/editor-modules.php:51
+#: public/includes/underscore-templates.php:19
 msgid "Edit Post"
 msgstr ""
 
-#: public/includes/editor-modules.php:53
+#: public/includes/editor-modules.php:56
 msgid "Post Settings"
 msgstr ""
 
-#: public/includes/editor-modules.php:57
+#: public/includes/editor-modules.php:59
+msgid "All Posts"
+msgstr ""
+
+#: public/includes/editor-modules.php:62
 msgid "Add Post"
 msgstr ""
 
-#: public/includes/editor-modules.php:67
+#: public/includes/editor-modules.php:74
 msgid "Save Post"
 msgstr ""
 
-#: public/includes/editor-modules.php:69
+#: public/includes/editor-modules.php:77
 msgid "Publish Post"
 msgstr ""
 
-#: public/includes/editor-modules.php:131
+#: public/includes/editor-modules.php:142
 msgid "Bold"
 msgstr ""
 
-#: public/includes/editor-modules.php:132
+#: public/includes/editor-modules.php:143
 msgid "Underline"
 msgstr ""
 
-#: public/includes/editor-modules.php:133
+#: public/includes/editor-modules.php:144
 msgid "Italicize"
 msgstr ""
 
-#: public/includes/editor-modules.php:134
+#: public/includes/editor-modules.php:145
 msgid "Strikethrough"
 msgstr ""
 
-#: public/includes/editor-modules.php:136
-#: public/includes/editor-modules.php:152
+#: public/includes/editor-modules.php:147
+#: public/includes/editor-modules.php:163
 msgid "H2 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:137
-#: public/includes/editor-modules.php:153
+#: public/includes/editor-modules.php:148
+#: public/includes/editor-modules.php:164
 msgid "H3 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:139
+#: public/includes/editor-modules.php:150
 msgid "Anchor Link"
 msgstr ""
 
-#: public/includes/editor-modules.php:141
+#: public/includes/editor-modules.php:152
 msgid "http://url.com"
 msgstr ""
 
-#: public/includes/editor-modules.php:142
+#: public/includes/editor-modules.php:153
 msgid "Create Link"
 msgstr ""
 
-#: public/includes/editor-modules.php:146
-#: public/includes/editor-modules.php:159
+#: public/includes/editor-modules.php:157
+#: public/includes/editor-modules.php:170
 msgid "Insert HTML"
 msgstr ""
 
-#: public/includes/editor-modules.php:148
+#: public/includes/editor-modules.php:159
 msgid "Enter HTML to insert"
 msgstr ""
 
-#: public/includes/editor-modules.php:155
+#: public/includes/editor-modules.php:166
 msgid "Unordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:156
+#: public/includes/editor-modules.php:167
 msgid "Ordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:158
-#: public/includes/editor-modules.php:293
-#: public/includes/editor-modules.php:348
+#: public/includes/editor-modules.php:169
+#: public/includes/editor-modules.php:362
+#: public/includes/editor-modules.php:422
 msgid "Cancel"
 msgstr ""
 
-#: public/includes/editor-modules.php:159
+#: public/includes/editor-modules.php:170
 msgid "Insert"
 msgstr ""
 
-#: public/includes/editor-modules.php:163
+#: public/includes/editor-modules.php:174
 msgid "Insert Component"
 msgstr ""
 
-#: public/includes/editor-modules.php:166
+#: public/includes/editor-modules.php:177
 msgid "Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:167
+#: public/includes/editor-modules.php:178
 msgid "Character"
 msgstr ""
 
-#: public/includes/editor-modules.php:168
+#: public/includes/editor-modules.php:179
 msgid "Quote"
 msgstr ""
 
-#: public/includes/editor-modules.php:169
-#: public/includes/editor-modules.php:527
+#: public/includes/editor-modules.php:180
+#: public/includes/editor-modules.php:651
 msgid "Content"
 msgstr ""
 
-#: public/includes/editor-modules.php:170
+#: public/includes/editor-modules.php:181
 msgid "Chapter"
 msgstr ""
 
-#: public/includes/editor-modules.php:172
+#: public/includes/editor-modules.php:183
 msgid "Audio"
 msgstr ""
 
-#: public/includes/editor-modules.php:173
+#: public/includes/editor-modules.php:184
 msgid "Video"
 msgstr ""
 
-#: public/includes/editor-modules.php:174
+#: public/includes/editor-modules.php:185
 msgid "Map"
 msgstr ""
 
-#: public/includes/editor-modules.php:175
+#: public/includes/editor-modules.php:186
 msgid "Timeline"
 msgstr ""
 
-#: public/includes/editor-modules.php:176
+#: public/includes/editor-modules.php:187
 msgid "Document"
 msgstr ""
 
-#: public/includes/editor-modules.php:177
+#: public/includes/editor-modules.php:188
 msgid "Collection"
 msgstr ""
 
-#: public/includes/editor-modules.php:178
+#: public/includes/editor-modules.php:189
 msgid "Gallery"
 msgstr ""
 
-#: public/includes/editor-modules.php:180
+#: public/includes/editor-modules.php:191
 msgid "WordPress Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:181
+#: public/includes/editor-modules.php:192
 msgid "WordPress Quote"
 msgstr ""
 
-#: public/includes/editor-modules.php:209
-#: public/includes/editor-modules.php:376
+#: public/includes/editor-modules.php:220
+#: public/includes/editor-modules.php:500
 msgid "Move"
 msgstr ""
 
-#: public/includes/editor-modules.php:211
-#: public/includes/editor-modules.php:378
+#: public/includes/editor-modules.php:222
+#: public/includes/editor-modules.php:502
 msgid "Clone"
 msgstr ""
 
-#: public/includes/editor-modules.php:212
-#: public/includes/editor-modules.php:379
+#: public/includes/editor-modules.php:223
+#: public/includes/editor-modules.php:503
 msgid "Delete"
 msgstr ""
 
-#: public/includes/editor-modules.php:236
+#: public/includes/editor-modules.php:247
 msgid "Replace Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:237
+#: public/includes/editor-modules.php:248
 msgid "Delete Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:238
+#: public/includes/editor-modules.php:249
 msgid "save"
 msgstr ""
 
-#: public/includes/editor-modules.php:273
+#: public/includes/editor-modules.php:304
+msgid "Featured Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:304
+msgid "Change the featured image for this post."
+msgstr ""
+
+#: public/includes/editor-modules.php:308
+msgid "Change Featured Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:309
+msgid "Delete Featured Image"
+msgstr ""
+
+#: public/includes/editor-modules.php:325
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
-#: public/includes/editor-modules.php:275
+#: public/includes/editor-modules.php:327
 msgid "Draft"
 msgstr ""
 
-#: public/includes/editor-modules.php:276
+#: public/includes/editor-modules.php:328
 msgid "Publish"
 msgstr ""
 
-#: public/includes/editor-modules.php:285
+#: public/includes/editor-modules.php:338
 msgid "Post URL"
 msgstr ""
 
-#: public/includes/editor-modules.php:285
+#: public/includes/editor-modules.php:338
 msgid "Change the URL (slug) of this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:299
+#: public/includes/editor-modules.php:348
+msgid "Categories"
+msgstr ""
+
+#: public/includes/editor-modules.php:348
+msgid "Type a category name and press enter."
+msgstr ""
+
+#: public/includes/editor-modules.php:353
+msgid "Tags"
+msgstr ""
+
+#: public/includes/editor-modules.php:353
+msgid "Type a tag name and press enter."
+msgstr ""
+
+#: public/includes/editor-modules.php:369
 msgid "Save"
 msgstr ""
 
-#: public/includes/editor-modules.php:343
+#: public/includes/editor-modules.php:417
 msgid "Specify title for new post, then save to edit."
 msgstr ""
 
-#: public/includes/editor-modules.php:344
+#: public/includes/editor-modules.php:418
 msgid "Grump Wizards Make Toxic Brew"
 msgstr ""
 
-#: public/includes/editor-modules.php:352
+#: public/includes/editor-modules.php:426
 msgid "Create"
 msgstr ""
 
-#: public/includes/editor-modules.php:401
+#: public/includes/editor-modules.php:525
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:420
+#: public/includes/editor-modules.php:544
 msgid "Save this post and refesh the page to see these changes."
+msgstr ""
+
+#: public/includes/tour.php:65
+msgid "Okay, got it!"
+msgstr ""
+
+#: public/includes/underscore-templates.php:21
+msgid "Delete Post"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -800,5 +1203,5 @@ msgid "Front-end editor and story builder."
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://aesopstoryengine.com"
+msgid "http://aesopinteractive.com"
 msgstr ""
