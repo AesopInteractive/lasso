@@ -26,7 +26,8 @@ Refer to owners manual
 * added CMD + S hot key to save post while in editor
 * added a close button exit the editor
 * added a new API to allow third-party addons to add new settings modals (beta). They appear as a tab and works with only a filter. This is in preparation for releasing ACF, CMB2, and Ninja Forms integration addons.
-* added full automatic support for a wide variety of themes enabling Lasso works out of the box with zero setup
+* improved automatic theme support means these themes work out of the box with no setup
+* Canvas added to automatic theme support
 * fixed bug with tour hide not calculating correctly
 * fixed bug with Author or Contributor roles not being able to put a post in draft
 * improved supported theme detection
