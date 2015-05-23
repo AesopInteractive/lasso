@@ -97,6 +97,9 @@ function lasso_get_supported_theme_class() {
 		case 'camera': // array.is
 			$out = '.entry-content';
 			break;
+		case 'canvas': // wootheme..err...Automattic
+			$out = '.entry';
+			break;
 
 	}
 
