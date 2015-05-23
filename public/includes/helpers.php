@@ -88,6 +88,9 @@ function lasso_get_supported_theme_class() {
 		case 'kerouac': // aesop
 			$out = '.kerouac-entry-content';
 			break;
+		case 'zealot': // aesop
+			$out = '.zealot-entry-content';
+			break;
 		case 'worldview': // upthemes
 			$out = '.entry-content';
 			break;
