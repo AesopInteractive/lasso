@@ -2,7 +2,11 @@
    "name": "aesop/lasso",
    "type": "wordpress-plugin",
    "description": "Lasso Front-end Creator",
+   "homepage": "http://lasso.is",
+   "license": "GPL-2.0+",
    "keywords": ["plugin","wordpress","lasso","editor","hosted"],
+   "support": {
+   	"issues": "https://github.com/AesopInteractive/lasso/issues",
    "require": {
      "composer/installers": "~1.0.6"
    }
