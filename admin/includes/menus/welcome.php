@@ -81,7 +81,10 @@ class welcome {
 						?>
 						<li class="success">
 							<h3><?php _e( 'You\'re Ready to Rock!', 'lasso' );?></h3>
-			  				<p><?php _e( 'Lasso will place a small menu on the bottom of every post and page. Click the "pen" icon to go into edit mode. Press escape to get out of edit mode.', 'lasso' );?></p>
+							<?php if ( lasso_get_supported_theme_class() ) { ?>
+							<p><?php _e( 'Your theme is automatically supported. No additional setup is needed.', 'lasso' );?></p>
+							<?php } ?>
+			  				<p><?php _e( 'Lasso will place a small menu on the bottom of your site. While on a single post or page, click the "pen" icon to go into edit mode. Press escape to get out of edit mode.', 'lasso' );?></p>
 			  			</li>
 			  			<?php
 
@@ -139,27 +142,15 @@ class welcome {
 		$license   		= get_option( 'lasso_license_key' );
 		$status   		= get_option( 'lasso_license_status' );
 
-		// if the required CSS class has not been saved
-		if ( empty( $article_object ) ) :
+		// if the required CSS class has not been saved and we're not a supported theme
+		if ( empty( $article_object ) && false == $theme_class ) {
 
-			// if we have a theme that we automatically support
-			if ( false !== $theme_class ) {
-
-				$notices[] = sprintf( '<li class="info">
-										<h3>'.__( 'Supported Theme Detected!', 'lasso' ).'</h3>
-										<p>'.__( 'We\'ve detected that you\'re running ', 'lasso' ).' <strong>%s</strong>. No additional setup is needed. Have fun!</p>
-									</li>', $theme_name );
-
-				// we dont automatically support this theme so show them otherwise
-			} else {
-
-				$notices[] = sprintf('<li class="error">
-								<h3>'.__( 'Article CSS Class Needed!', 'lasso' ).'</h3>
-								<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. You can <a href="https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/using-inspector-lasso.gif" target="_blank">use a tool like inspector</a> in Chrome or Firefox to find this CSS class, or ', 'lasso' ).' <a href="mailto:help@lasso.is">'.__( 'email us.', 'lasso' ).'</a> '.__( 'with a link to a public URL with the theme and we\'ll find it for you.', 'lasso' ).'</p>
-								</li>', admin_url( 'admin.php?page=lasso-editor-settings' ) );
+			// we dont automatically support this theme so show them otherwise
+			$notices[] = sprintf('<li class="error">
+							<h3>'.__( 'Article CSS Class Needed!', 'lasso' ).'</h3>
+							<p>'.__( 'Before using Lasso,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. You can <a href="https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/using-inspector-lasso.gif" target="_blank">use a tool like inspector</a> in Chrome or Firefox to find this CSS class, or ', 'lasso' ).' <a href="mailto:help@lasso.is">'.__( 'email us.', 'lasso' ).'</a> '.__( 'with a link to a public URL with the theme and we\'ll find it for you.', 'lasso' ).'</p>
+							</li>', admin_url( 'admin.php?page=lasso-editor-settings' ) );
 		}
-
-		endif;
 
 		// WP REST API not active
 		if ( !function_exists( 'json_get_url_prefix' ) ) {
@@ -194,9 +185,6 @@ class welcome {
 							<p>'.__( 'The license key that you entered is ', 'lasso' ).'<strong>'.__( 'invalid', 'lasso' ).'</strong>'.__( '. It may have been entered incorreclty, or may have expired.', 'lasso' ).'</p>
 							</li>';
 		}
-
-		// if their license key is invalid
-
 
 		return apply_filters( 'lasso_preflight_notices', $notices );
 
