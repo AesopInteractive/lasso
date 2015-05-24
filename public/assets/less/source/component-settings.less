@@ -84,19 +84,8 @@
 
     input[type="submit"],
     .lasso-generator-cancel {
-        height:@input--height;
-        font-weight: 400;
-        text-align: center;
-        cursor: pointer;
-        background-image: none;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        padding: @input--button__padding;
-        line-height: @input--lineheight;
-        color: @input--button__color;
-        font-size: @sidebar--font__size;
-        font-family: @editor--font;
-        border-right: @editor--radius - 2;
+        .editor-btn-primary();
+        font-size:15px;
     }
 
     // option button/media upload
@@ -144,7 +133,18 @@
         background:none;
         color:@editor--color__error;
         position: relative;
-        top: 2px;
+        top: -1px;
+
+        &:hover {
+            color:lighten(@editor--color__error,2);
+            background:transparent;
+            text-decoration: none;
+        }
+
+        &:active {
+            color:darken(@editor--color__error,2);
+            box-shadow:none;
+        }
     }
 }
 
@@ -170,7 +170,7 @@
     margin:0 auto;
     position: fixed;
     text-align: right;
-    padding:20px 5px;
+    padding:@editor--padding__lg;
     bottom:0;
     width:@sidebar--width - 4;
     height:@insert--height;
