@@ -13184,6 +13184,8 @@ jQuery(document).ready(function($){
 			suppressScrollX: true
 		});
 
+		modalResizer();
+
 	});
 
     /**

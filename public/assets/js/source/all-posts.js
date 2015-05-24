@@ -139,6 +139,8 @@
 			suppressScrollX: true
 		});
 
+		modalResizer();
+
 	});
 
     /**
