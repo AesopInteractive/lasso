@@ -13081,6 +13081,16 @@ jQuery(document).ready(function($){
 		$('#lasso--loading').remove()
 	}
 
+	/////////////////
+	// INITIALIZE SCROLL
+	/////////////////
+	function initScroll() {
+
+        $(postList).perfectScrollbar({
+			suppressScrollX: true
+		});
+    }
+
 	//////////////////
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
@@ -13128,6 +13138,9 @@ jQuery(document).ready(function($){
                 $(postList).append( moreButton );
 
                 $( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
+
+                // re-init scroll
+                initScroll()
 
             }else{
 
@@ -13184,10 +13197,6 @@ jQuery(document).ready(function($){
 
 		// get the intial posts
 		fetchPosts('post');
-
-		$(postList).perfectScrollbar({
-			suppressScrollX: true
-		});
 
 		modalResizer();
 

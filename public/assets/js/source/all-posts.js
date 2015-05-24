@@ -36,6 +36,16 @@
 		$('#lasso--loading').remove()
 	}
 
+	/////////////////
+	// INITIALIZE SCROLL
+	/////////////////
+	function initScroll() {
+
+        $(postList).perfectScrollbar({
+			suppressScrollX: true
+		});
+    }
+
 	//////////////////
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
@@ -83,6 +93,9 @@
                 $(postList).append( moreButton );
 
                 $( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
+
+                // re-init scroll
+                initScroll()
 
             }else{
 
@@ -139,10 +152,6 @@
 
 		// get the intial posts
 		fetchPosts('post');
-
-		$(postList).perfectScrollbar({
-			suppressScrollX: true
-		});
 
 		modalResizer();
 
