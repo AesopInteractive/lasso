@@ -269,15 +269,17 @@ function lasso_editor_component_modal() {
 
 	global $post;
 
-	$status = get_post_status( get_the_ID() );
+	$postid = get_the_ID();
+
+	$status = get_post_status( $postid );
 	$nonce = wp_create_nonce( 'lasso-update-post-settings' );
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_settings_classes', '' );
 
 	// objects categories
-	$categories 		= lasso_get_post_objects( $post->ID, 'category' );
-	$tags 				= lasso_get_post_objects( $post->ID, 'tag' );
+	$categories 		= lasso_get_post_objects( $postid, 'category' );
+	$tags 				= lasso_get_post_objects( $postid, 'tag' );
 
 	// modal tabs
 	$tabs  				= lasso_modal_addons('tab');
