@@ -13055,7 +13055,7 @@ jQuery(document).ready(function($){
 	,	loadMoreText    = lasso_editor.strings.loadMore
 	,	noPostsText     = lasso_editor.strings.noPostsFound
 	,	body 			= $('body')
-	,	noPostsMessage  = '<li>'+noPostsText+'</li>'
+	,	noPostsMessage  = '<li id="lasso--end-posts">'+noPostsText+'</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
 	,	page 			= 1
@@ -13130,7 +13130,12 @@ jQuery(document).ready(function($){
                 $( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
 
             }else{
+
                 $( postList ).append( noPostsMessage );
+
+                setTimeout(function(){
+                	$('#lasso--end-posts').fadeOut('slow')
+                }, 1000)
             }
 
 		    // destroy the spinny loader
