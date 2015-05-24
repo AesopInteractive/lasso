@@ -103,6 +103,9 @@ function lasso_get_supported_theme_class() {
 		case 'canvas': // wootheme..err...Automattic
 			$out = '.entry';
 			break;
+		case 'exposure': // flagshipwp
+			$out = '.entry-content';
+			break;
 
 	}
 
