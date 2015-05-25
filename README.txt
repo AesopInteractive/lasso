@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.3
+Stable tag: 0.9.4
 
 Front-end editing and creation suite.
 
@@ -26,15 +26,16 @@ Refer to owners manual
 * added CMD + S hot key to save post while in editor
 * added a close button exit the editor
 * added a new API to allow third-party addons to add new settings modals (beta). They appear as a tab and works with only a filter. This is in preparation for releasing ACF, CMB2, and Ninja Forms integration addons.
-* improved automatic theme support means these themes work out of the box with no setup
-* Canvas added to automatic theme support
+* added Canvas and Exposure themes to automatic theme support
 * fixed bug with tour hide not calculating correctly
 * fixed bug with Author or Contributor roles not being able to put a post in draft
-* improved supported theme detection
+* fixed options not being cleaned up on uninstall
+* improved automatic theme support means supported themes work out of the box with no setup
 * improved user interface colors to better match WordPress design patterns
 * improved drag and drop detection between paragraphs
 * improved toolbar width logic - props @peiche
 * improved CSS selector performance
+* replaced tour GIFS with images
 
 = 0.9.3 =
 * fixed .entry-content being applied as a default Article CSS Class
