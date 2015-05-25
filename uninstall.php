@@ -14,4 +14,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// @TODO: Define uninstall functionality here
+delete_option('lasso_license_status');
+delete_option('lasso_editor');
+delete_option('lasso_updated_from');
+delete_option('lasso_version');
