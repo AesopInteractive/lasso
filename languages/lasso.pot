@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso (beta) 0.9.3\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-05-25 00:34:18+00:00\n"
+"POT-Creation-Date: 2015-05-25 00:45:12+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1194,14 +1194,15 @@ msgstr ""
 
 #: public/includes/tour.php:94
 msgid ""
-"Edit a post by clicking the Pen icon. Access post settings with the "
-"settings icon."
+"While on a single post, edit by clicking the Pen icon. Access post settings "
+"with the settings icon. Press escape to exit any modal."
 msgstr ""
 
 #: public/includes/tour.php:97
 msgid ""
 "Highlight a piece of text, and click on a formatting option to style it. "
-"Click the Disk icon to save. Press escape to exit the editor."
+"Click the Disk icon or CMD-S to save. Click the orange \"X\" button to exit "
+"the editor."
 msgstr ""
 
 #: public/includes/tour.php:100

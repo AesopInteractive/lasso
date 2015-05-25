@@ -44,7 +44,7 @@ class tour {
 
 						$('#lasso--tour__slides').unslider({
 							dots: true,
-							delay:100000
+							delay:7000
 						});
 
 					});
@@ -91,10 +91,10 @@ class tour {
 			$out .= '<p>'.__('Access posts by clicking the list icon. Create a new post by clicking the new post icon.','lasso').'</p>';
 			$out .= '</li><li>';
 			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/enter-editor.gif' );
-			$out .= '<p>'.__('Edit a post by clicking the Pen icon. Access post settings with the settings icon.','lasso').'</p>';
+			$out .= '<p>'.__('While on a single post, edit by clicking the Pen icon. Access post settings with the settings icon. Press escape to exit any modal.','lasso').'</p>';
 			$out .= '</li><li>';
 			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-highlight.gif' );
-			$out .= '<p>'.__('Highlight a piece of text, and click on a formatting option to style it. Click the Disk icon to save. Press escape to exit the editor.','lasso').'</p>';
+			$out .= '<p>'.__('Highlight a piece of text, and click on a formatting option to style it. Click the Disk icon or CMD-S to save. Click the orange "X" button to exit the editor.','lasso').'</p>';
 			$out .= '</li><li>';
 			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-component.gif' );
 			$out .= '<p>'.__('Story components can be added by clicking the plus icon, and dragging any component from the component tray into the story.','lasso').'</p>';
