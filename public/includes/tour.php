@@ -15,8 +15,9 @@ class tour {
 
 	}
 
-	/*
+	/**
 	*	Draw the modal used to house the walk through
+	*	@since 0.6
 	*/
 	public function draw_tour() {
 
@@ -31,7 +32,7 @@ class tour {
 			// let users add custom css classes
 			$custom_classes = apply_filters( 'lasso_modal_tour_classes', '' );
 
-?>
+			?>
 			<div id="lasso--tour__modal" class="lasso--modal lasso--tour__modal lasso--modal__checkbox <?php echo sanitize_html_class( $custom_classes );?>">
 				<script>
 					jQuery(window).ready(function($){
@@ -56,9 +57,9 @@ class tour {
 
 						<div class="lasso--postsettings__option">
 							<label for="hide_tour" class="checkbox-control checkbox">
-					        	<input type="checkbox" id="hide_tour" name="hide_tour"/ <?php checked( $tour_hidden, 1 ); ?>>
+					        	<input type="checkbox" id="hide_tour" name="hide_tour" <?php checked( $tour_hidden, 1 ); ?>>
 					        	<span class="control-indicator"></span>
-								Don't show this again
+								<?php _e('Don\'t show this again','lasso');?>
 					        </label>
 						</div>
 
@@ -74,41 +75,35 @@ class tour {
 		}
 	}
 
-	/*
+	/**
 	*	Draw the inner slides for the welcome walkthrough
+	*	@since 0.6
 	*/
-	public function tour_slides() {
+	public function tour_slides() { ?>
 
-?>
 		<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
 		<div id="lasso--tour__slides">
 
 			<?php
 
-		$out = '<ul>';
-		$out .= '<li>';
-		$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/enter-editor.gif' );
-		$out .= '<p>Edit by clicking the Pen icon. Access post settings with the settings icon, and add a new post with the plus icon.</p>';
-		$out .= '</li>';
-		$out .= '<li>';
-		$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-highlight.gif' );
-		$out .= '<p>Highlight a piece of text, and click on a formatting option to style it. Click the Disk icon to save. Press escape to exit the editor.</p>';
-		$out .= '</li>';
-		$out .= '<li>';
-		$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-component.gif' );
-		$out .= '<p>Story components can be added by clicking the plus icon, and dragging any component from the component tray into the story.</p>';
-		$out .= '</li>';
-		$out .= '</ul>';
+			$out = '<ul><li>';
+			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/enter-editor.gif' );
+			$out .= '<p>'.__('Access posts by clicking the list icon. Create a new post by clicking the new post icon.','lasso').'</p>';
+			$out .= '</li><li>';
+			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/enter-editor.gif' );
+			$out .= '<p>'.__('Edit a post by clicking the Pen icon. Access post settings with the settings icon.','lasso').'</p>';
+			$out .= '</li><li>';
+			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-highlight.gif' );
+			$out .= '<p>'.__('Highlight a piece of text, and click on a formatting option to style it. Click the Disk icon to save. Press escape to exit the editor.','lasso').'</p>';
+			$out .= '</li><li>';
+			$out .= sprintf( '<img src="%s">', LASSO_URL.'/public/assets/img/editor-component.gif' );
+			$out .= '<p>'.__('Story components can be added by clicking the plus icon, and dragging any component from the component tray into the story.','lasso').'</p>';
+			$out .= '</li></ul>';
 
-		echo apply_filters( 'lasso_tour_slides', $out );
+			echo apply_filters( 'lasso_tour_slides', $out );
 
-?>
-
-		</div>
-
-		<?php
+		?></div><?php
 
 	}
 
 }
-

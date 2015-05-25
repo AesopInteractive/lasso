@@ -16,63 +16,63 @@ function lasso_editor_components() {
 
 	$array = array(
 		'quote' => array(
-			'name'    => 'Quote',
+			'name'    => __('Quote','lasso'),
 			'content' => lasso_quote_component(),
 		),
 		'image' => array(
-			'name'    => 'Image',
+			'name'    => __('Image','lasso'),
 			'content' => lasso_image_component(),
 		),
 		'parallax' => array(
-			'name'    => 'Parallax',
+			'name'    => __('Parallax','lasso'),
 			'content' => lasso_parallax_component(),
 		),
 		'audio' => array(
-			'name'    => 'Audio',
+			'name'    => __('Audio','lasso'),
 			'content' => lasso_audio_component(),
 		),
 		'content' => array(
-			'name'    => 'Content',
+			'name'    => __('Content','lasso'),
 			'content' => lasso_content_component(),
 		),
 		'character' => array(
-			'name'    => 'Character',
+			'name'    => __('Character','lasso'),
 			'content' => lasso_character_component(),
 		),
 		'collection' => array(
-			'name'    => 'Collection',
+			'name'    => __('Collection','lasso'),
 			'content' => lasso_collections_component(),
 		),
 		'document' => array(
-			'name'    => 'Document',
+			'name'    => __('Document','lasso'),
 			'content' => lasso_document_component(),
 		),
 		'gallery' => array(
-			'name'    => 'Gallery',
+			'name'    => __('Gallery','lasso'),
 			'content' => lasso_gallery_component(),
 		),
 		'chapter' => array(
-			'name'    => 'Chapter',
+			'name'    => __('Chapter','lasso'),
 			'content' => lasso_heading_component(),
 		),
 		'map' => array(
-			'name'    => 'Map',
+			'name'    => __('Map','lasso'),
 			'content' => lasso_map_component(),
 		),
 		'timeline_stop' => array(
-			'name'    => 'Timeline',
+			'name'    => __('Timeline','lasso'),
 			'content' => lasso_timeline_component(),
 		),
 		'video' => array(
-			'name'    => 'Video',
+			'name'    => __('Video','lasso'),
 			'content' => lasso_video_component(),
 		),
 		'wpimg' => array(
-			'name'    => 'WordPress Image',
+			'name'    => __('WordPress Image','lasso'),
 			'content' => lasso_wp_image(),
 		),
 		'wpquote' => array(
-			'name'    => 'WordPress Quote',
+			'name'    => __('WordPress Quote','lasso'),
 			'content' => lasso_wp_quote(),
 		)
 	);

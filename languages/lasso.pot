@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso (beta) 0.9.3\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2015-05-23 00:14:10+00:00\n"
+"POT-Creation-Date: 2015-05-25 00:34:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -243,7 +243,7 @@ msgid "Type"
 msgstr ""
 
 #: admin/includes/class-tgm-plugin-activation.php:1377
-#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:325
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:330
 msgid "Status"
 msgstr ""
 
@@ -367,8 +367,8 @@ msgstr ""
 msgid "Lasso"
 msgstr ""
 
-#: admin/includes/menus/settings.php:31 public/includes/editor-modules.php:221
-#: public/includes/editor-modules.php:501
+#: admin/includes/menus/settings.php:31 public/includes/editor-modules.php:223
+#: public/includes/editor-modules.php:504
 msgid "Settings"
 msgstr ""
 
@@ -547,8 +547,8 @@ msgstr ""
 
 #: admin/includes/menus/welcome.php:158
 msgid ""
-"Just a heads up that the WP REST API isn't activated. This is used to list "
-"the posts and pages on the front-end. It is required until WordPress "
+"Just a heads up that the WP REST API isn't activated. This is required to "
+"list the posts and pages on the front-end. It is required until WordPress "
 "officially merges the REST API into core sometime during 2015."
 msgstr ""
 
@@ -798,6 +798,69 @@ msgstr ""
 msgid "Update Settings"
 msgstr ""
 
+#: public/includes/components.php:19 public/includes/editor-modules.php:179
+msgid "Quote"
+msgstr ""
+
+#: public/includes/components.php:23 public/includes/editor-modules.php:177
+msgid "Image"
+msgstr ""
+
+#: public/includes/components.php:27
+#: public/includes/editor-modules--gallery.php:68
+#: public/includes/editor-modules.php:182
+msgid "Parallax"
+msgstr ""
+
+#: public/includes/components.php:31 public/includes/editor-modules.php:183
+msgid "Audio"
+msgstr ""
+
+#: public/includes/components.php:35 public/includes/editor-modules.php:180
+#: public/includes/editor-modules.php:652
+msgid "Content"
+msgstr ""
+
+#: public/includes/components.php:39 public/includes/editor-modules.php:178
+msgid "Character"
+msgstr ""
+
+#: public/includes/components.php:43 public/includes/editor-modules.php:188
+msgid "Collection"
+msgstr ""
+
+#: public/includes/components.php:47 public/includes/editor-modules.php:187
+msgid "Document"
+msgstr ""
+
+#: public/includes/components.php:51 public/includes/editor-modules.php:189
+msgid "Gallery"
+msgstr ""
+
+#: public/includes/components.php:55 public/includes/editor-modules.php:181
+msgid "Chapter"
+msgstr ""
+
+#: public/includes/components.php:59 public/includes/editor-modules.php:185
+msgid "Map"
+msgstr ""
+
+#: public/includes/components.php:63 public/includes/editor-modules.php:186
+msgid "Timeline"
+msgstr ""
+
+#: public/includes/components.php:67 public/includes/editor-modules.php:184
+msgid "Video"
+msgstr ""
+
+#: public/includes/components.php:71 public/includes/editor-modules.php:191
+msgid "WordPress Image"
+msgstr ""
+
+#: public/includes/components.php:75 public/includes/editor-modules.php:192
+msgid "WordPress Quote"
+msgstr ""
+
 #: public/includes/editor-modules--gallery.php:19
 msgid "Manage Images"
 msgstr ""
@@ -841,11 +904,6 @@ msgstr ""
 
 #: public/includes/editor-modules--gallery.php:67
 msgid "Photoset"
-msgstr ""
-
-#: public/includes/editor-modules--gallery.php:68
-#: public/includes/editor-modules.php:182
-msgid "Parallax"
 msgstr ""
 
 #: public/includes/editor-modules--gallery.php:77
@@ -1004,8 +1062,8 @@ msgid "Ordered List"
 msgstr ""
 
 #: public/includes/editor-modules.php:169
-#: public/includes/editor-modules.php:362
-#: public/includes/editor-modules.php:422
+#: public/includes/editor-modules.php:367
+#: public/includes/editor-modules.php:426
 msgid "Cancel"
 msgstr ""
 
@@ -1017,168 +1075,139 @@ msgstr ""
 msgid "Insert Component"
 msgstr ""
 
-#: public/includes/editor-modules.php:177
-msgid "Image"
-msgstr ""
-
-#: public/includes/editor-modules.php:178
-msgid "Character"
-msgstr ""
-
-#: public/includes/editor-modules.php:179
-msgid "Quote"
-msgstr ""
-
-#: public/includes/editor-modules.php:180
-#: public/includes/editor-modules.php:651
-msgid "Content"
-msgstr ""
-
-#: public/includes/editor-modules.php:181
-msgid "Chapter"
-msgstr ""
-
-#: public/includes/editor-modules.php:183
-msgid "Audio"
-msgstr ""
-
-#: public/includes/editor-modules.php:184
-msgid "Video"
-msgstr ""
-
-#: public/includes/editor-modules.php:185
-msgid "Map"
-msgstr ""
-
-#: public/includes/editor-modules.php:186
-msgid "Timeline"
-msgstr ""
-
-#: public/includes/editor-modules.php:187
-msgid "Document"
-msgstr ""
-
-#: public/includes/editor-modules.php:188
-msgid "Collection"
-msgstr ""
-
-#: public/includes/editor-modules.php:189
-msgid "Gallery"
-msgstr ""
-
-#: public/includes/editor-modules.php:191
-msgid "WordPress Image"
-msgstr ""
-
-#: public/includes/editor-modules.php:192
-msgid "WordPress Quote"
-msgstr ""
-
-#: public/includes/editor-modules.php:220
-#: public/includes/editor-modules.php:500
+#: public/includes/editor-modules.php:222
+#: public/includes/editor-modules.php:503
 msgid "Move"
 msgstr ""
 
-#: public/includes/editor-modules.php:222
-#: public/includes/editor-modules.php:502
+#: public/includes/editor-modules.php:224
+#: public/includes/editor-modules.php:505
 msgid "Clone"
 msgstr ""
 
-#: public/includes/editor-modules.php:223
-#: public/includes/editor-modules.php:503
+#: public/includes/editor-modules.php:225
+#: public/includes/editor-modules.php:506
 msgid "Delete"
 msgstr ""
 
-#: public/includes/editor-modules.php:247
+#: public/includes/editor-modules.php:249
 msgid "Replace Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:248
+#: public/includes/editor-modules.php:250
 msgid "Delete Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:249
+#: public/includes/editor-modules.php:251
 msgid "save"
 msgstr ""
 
-#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:309
 msgid "Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:309
 msgid "Change the featured image for this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:308
+#: public/includes/editor-modules.php:313
 msgid "Change Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:309
+#: public/includes/editor-modules.php:314
 msgid "Delete Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:325
+#: public/includes/editor-modules.php:330
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
-#: public/includes/editor-modules.php:327
+#: public/includes/editor-modules.php:332
 msgid "Draft"
 msgstr ""
 
-#: public/includes/editor-modules.php:328
+#: public/includes/editor-modules.php:333
 msgid "Publish"
 msgstr ""
 
-#: public/includes/editor-modules.php:338
+#: public/includes/editor-modules.php:343
 msgid "Post URL"
 msgstr ""
 
-#: public/includes/editor-modules.php:338
+#: public/includes/editor-modules.php:343
 msgid "Change the URL (slug) of this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:348
+#: public/includes/editor-modules.php:353
 msgid "Categories"
 msgstr ""
 
-#: public/includes/editor-modules.php:348
+#: public/includes/editor-modules.php:353
 msgid "Type a category name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:353
+#: public/includes/editor-modules.php:358
 msgid "Tags"
 msgstr ""
 
-#: public/includes/editor-modules.php:353
+#: public/includes/editor-modules.php:358
 msgid "Type a tag name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:369
+#: public/includes/editor-modules.php:374
 msgid "Save"
 msgstr ""
 
-#: public/includes/editor-modules.php:417
+#: public/includes/editor-modules.php:421
 msgid "Specify title for new post, then save to edit."
 msgstr ""
 
-#: public/includes/editor-modules.php:418
+#: public/includes/editor-modules.php:422
 msgid "Grump Wizards Make Toxic Brew"
 msgstr ""
 
-#: public/includes/editor-modules.php:426
+#: public/includes/editor-modules.php:430
 msgid "Create"
 msgstr ""
 
-#: public/includes/editor-modules.php:525
+#: public/includes/editor-modules.php:528
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:544
+#: public/includes/editor-modules.php:546
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 
-#: public/includes/tour.php:65
+#: public/includes/tour.php:62
+msgid "Don't show this again"
+msgstr ""
+
+#: public/includes/tour.php:66
 msgid "Okay, got it!"
+msgstr ""
+
+#: public/includes/tour.php:91
+msgid ""
+"Access posts by clicking the list icon. Create a new post by clicking the "
+"new post icon."
+msgstr ""
+
+#: public/includes/tour.php:94
+msgid ""
+"Edit a post by clicking the Pen icon. Access post settings with the "
+"settings icon."
+msgstr ""
+
+#: public/includes/tour.php:97
+msgid ""
+"Highlight a piece of text, and click on a formatting option to style it. "
+"Click the Disk icon to save. Press escape to exit the editor."
+msgstr ""
+
+#: public/includes/tour.php:100
+msgid ""
+"Story components can be added by clicking the plus icon, and dragging any "
+"component from the component tray into the story."
 msgstr ""
 
 #: public/includes/underscore-templates.php:21

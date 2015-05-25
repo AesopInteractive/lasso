@@ -102,14 +102,14 @@ function lasso_editor_component_sidebar() {
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_sidebar_classes', '' );
-?>
+	?>
 	<div id="lasso--sidebar" class="<?php echo sanitize_html_class( $custom_classes );?>" >
 		<div class="lasso--sidebar__inner">
 			<div id="lasso--component__settings"></div>
 		</div>
 	</div>
-	<?php
-	return ob_get_clean();
+
+	<?php return ob_get_clean();
 }
 
 /**
@@ -135,7 +135,7 @@ function lasso_editor_text_toolbar() {
 
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
 
-?>
+	?>
 	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>">
 		<ul class="lasso--toolbar__inner lasso-editor-controls">
 			<?php do_action( 'lasso_toolbar_components_before' );?>
@@ -196,6 +196,7 @@ function lasso_editor_text_toolbar() {
 			</li>
 		</ul>
 	</div>
+
 	<?php return ob_get_clean();
 }
 
@@ -216,7 +217,8 @@ function lasso_editor_settings_toolbar() {
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_component_classes', '' );
 
-	?><ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+	?>
+	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
 		<li id="lasso-component--settings__trigger" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
@@ -242,12 +244,13 @@ function lasso_editor_image_controls() {
 	// has post thumbnail
 	$has_thumbnail = has_post_thumbnail( get_the_ID() ) ? 'class="lasso--featImg--has-thumb"' : false;
 
-?>
+	?>
 	<ul id="lasso--featImgControls" <?php echo $has_thumbnail;?>>
 		<li id="lasso--featImgUpload"><a title="<?php esc_attr_e( 'Replace Image', 'lasso' );?>" href="#"><i class="lasso-icon-image"></i></a></li>
 		<li id="lasso--featImgDelete"><a title="<?php esc_attr_e( 'Delete Image', 'lasso' );?>" href="#"><i class="lasso-icon-bin2"></i></a></li>
 		<li id="lasso--featImgSave"><a href="#"><?php esc_attr_e( 'save', 'lasso' );?></a></li>
 	</ul>
+
 	<?php return ob_get_clean();
 }
 
@@ -380,9 +383,8 @@ function lasso_editor_component_modal() {
 
 	</div>
 	<div id="lasso--modal__overlay"></div>
-	<?php
 
-	return ob_get_clean();
+	<?php return ob_get_clean();
 }
 
 /**
@@ -409,7 +411,7 @@ function lasso_editor_newpost_modal() {
 	// return the post type
 	$type = get_post_type( get_the_ID() );
 
-?>
+	?>
 	<div id="lasso--post-new__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
@@ -433,9 +435,8 @@ function lasso_editor_newpost_modal() {
 		</div>
 	</div>
 	<div id="lasso--modal__overlay"></div>
-	<?php
 
-	return ob_get_clean();
+	<?php return ob_get_clean();
 }
 
 /**
@@ -455,12 +456,13 @@ function lasso_editor_allpost_modal() {
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_all_post_classes', '' );
 
-?>
+	?>
 	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
 			<ul class="lasso--post-object-list">
 				<?php
+
 				$post_types = lasso_post_types();
 
 				if ( ! empty( $post_types ) ) {
@@ -471,9 +473,8 @@ function lasso_editor_allpost_modal() {
 					}
 
 				}
-?>
 
-				<?php do_action('lasso_modal_post_objects');?>
+				do_action('lasso_modal_post_objects');?>
 
 			</ul>
 			<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
@@ -483,9 +484,8 @@ function lasso_editor_allpost_modal() {
 		</div>
 	</div>
 	<div id="lasso--modal__overlay"></div>
-	<?php
 
-	return ob_get_clean();
+	<?php return ob_get_clean();
 }
 
 function lasso_editor_wpimg_edit() {
@@ -498,7 +498,8 @@ function lasso_editor_wpimg_edit() {
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_wpimg_classes', '' );
 
-	?><ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+	?>
+	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
 		<li id="lasso--wpimg-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
@@ -519,16 +520,15 @@ function lasso_map_form_footer() {
 
 	ob_start();
 
-?>
-		<div class="lasso--map-form__footer">
-			<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
-			<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
-			<input type="hidden" name="action" value="process_map_save">
-			<input type="submit" class="lasso--map-form__submit" value="<?php esc_attr_e( 'Save Locations', 'lasso' );?>">
-		</div>
-		<?php
+	?>
+	<div class="lasso--map-form__footer">
+		<input type="hidden" name="postid" value="<?php echo get_the_ID();?>">
+		<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
+		<input type="hidden" name="action" value="process_map_save">
+		<input type="submit" class="lasso--map-form__submit" value="<?php esc_attr_e( 'Save Locations', 'lasso' );?>">
+	</div>
 
-	return ob_get_clean();
+	<?php return ob_get_clean();
 
 }
 
@@ -541,13 +541,12 @@ function lasso_editor_refresh_message() {
 
 	ob_start();
 
-?>
+	?>
 	<div id="lasso--pagerefresh" class="visible">
 		<?php _e( 'Save this post and refesh the page to see these changes.', 'lasso' );?>
 	</div>
-	<?php
 
-	return ob_get_clean();
+	<?php return ob_get_clean();
 }
 
 /**
