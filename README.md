@@ -11,3 +11,7 @@ We do ask, however, that if you are using the plugin on a live site that you ple
 Developer documentation can be found here: https://github.com/AesopInteractive/lasso-documentation.
 
 Pull requests for our documentation are welcome: https://github.com/AesopInteractive/lasso-documentation/pulls. 
+
+## Requirements
+
+Lasso requries PHP 5.4 or above.
