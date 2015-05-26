@@ -14,4 +14,4 @@ Pull requests for our documentation are welcome: https://github.com/AesopInterac
 
 ## Requirements
 
-Lasso requries PHP 5.4 or above.
+Lasso requires PHP 5.4 or above.
