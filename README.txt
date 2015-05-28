@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.4
+Stable tag: 0.9.4.1
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,10 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.4.1 =
+* fixed bug with automatic updates - props @pippinsplugins
+* fixed bug with admins not seeing all posts in addition to their own
 
 = 0.9.4 =
 * added ability to access and delete posts and pages (and custom post types with a filter) from the front-end (requires the WP REST API plugin). If the user is an Author or Contributor they will only be shown their posts or pages.
