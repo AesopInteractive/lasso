@@ -26,6 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'LASSO_VERSION', '0.9.4' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
+define( 'LASSO_FILE', __FILE__ );
 
 /**
  * Load plugin if PHP version is 5.4 or later.

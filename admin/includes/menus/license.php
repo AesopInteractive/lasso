@@ -22,7 +22,7 @@ class license {
 		$license_key = trim( get_option( 'lasso_license_key' ) );
 
 		// setup the updater
-		$edd_updater = new \EDD_SL_Plugin_Updater( LASSO_STORE_URL , __FILE__, array(
+		$edd_updater = new \EDD_SL_Plugin_Updater( LASSO_STORE_URL , LASSO_FILE, array(
 				'version'  => LASSO_VERSION,
 				'license'  => $license_key,
 				'item_name' => LASSO_STORE_ITEM_NAME,
@@ -121,7 +121,7 @@ class license {
 			);
 
 			// Call the custom API.
-			$response = wp_remote_get( add_query_arg( $api_params, LASSO_STORE_URL ), array( 'timeout' => 15, 'sslverify' => false ) );
+			$response = wp_remote_post( LASSO_STORE_URL, array( 'body' => $api_params, 'timeout' => 15, 'sslverify' => false ) );
 
 			// make sure the response came back okay
 			if ( is_wp_error( $response ) )
@@ -159,7 +159,7 @@ class license {
 			);
 
 			// Call the custom API.
-			$response = wp_remote_get( add_query_arg( $api_params, LASSO_STORE_URL ), array( 'timeout' => 15, 'sslverify' => false ) );
+			$response = wp_remote_post( LASSO_STORE_URL, array( 'body' => $api_params, 'timeout' => 15, 'sslverify' => false ) );
 
 			// make sure the response came back okay
 			if ( is_wp_error( $response ) )
@@ -190,7 +190,7 @@ class license {
 		);
 
 		// Call the custom API.
-		$response = wp_remote_get( add_query_arg( $api_params, LASSO_STORE_URL ), array( 'timeout' => 15, 'sslverify' => false ) );
+		$response = wp_remote_post( LASSO_STORE_URL, array( 'body' => $api_params, 'timeout' => 15, 'sslverify' => false ) );
 
 		if ( is_wp_error( $response ) )
 			return false;
@@ -206,4 +206,3 @@ class license {
 		}
 	}
 }
-
