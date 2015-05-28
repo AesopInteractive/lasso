@@ -13100,7 +13100,7 @@ jQuery(document).ready(function($){
 
 			capable = lasso_editor.edit_others_pages;
 
-        	options = capable ? setOptions( type, page, lasso_editor.author ) : setOptions( type, page );
+        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 
             collection = new wp.api.collections.Pages( options );
 
@@ -13108,7 +13108,7 @@ jQuery(document).ready(function($){
 
             capable = lasso_editor.edit_others_posts;
 
-        	options = capable ? setOptions( type, page, lasso_editor.author ) : setOptions( type, page );
+        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 
             collection = new wp.api.collections.Posts( options );
         }
