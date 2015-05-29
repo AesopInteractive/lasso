@@ -291,6 +291,9 @@ function lasso_modal_addons( $type = 'tab' ){
 	return !empty( $out ) ? $out : false;
 }
 
+////////////////////
+// INTERNAL
+////////////////////
 /**
 *	Used internally as a callback to build a tab or content area for modal addons
 *
@@ -309,9 +312,12 @@ function lasso_modal_addons_content( $tab = '', $type ){
 
 	} else if ( 'content' == $type ){
 
-		$content = is_callable( $tab['callback'] ) ? call_user_func($tab['callback']) : $tab['callback'];
+		$content = isset( $tab['content'] ) && is_callable( $tab['content'] ) ? call_user_func( $tab['content'] ) : false;
+		$options = isset( $tab['options'] ) && is_callable( $tab['options'] ) ? call_user_func( $tab['options'] ) : false;
 
-		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">%s</div>', $name, $content );
+		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">
+			%s%s
+			</div>', $name, $content, lasso_option_form( $name, $options ) );
 
 	}
 
