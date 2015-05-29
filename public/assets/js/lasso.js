@@ -13054,10 +13054,9 @@ jQuery(document).ready(function($){
 	,	loadingText     = lasso_editor.strings.loading
 	,	loadMoreText    = lasso_editor.strings.loadMore
 	,	noPostsText     = lasso_editor.strings.noPostsFound
-	,	noResultsText   = lasso_editor.strings.noResultsFound
 	,	body 			= $('body')
 	,	noPostsMessage  = '<li id="lasso--end-posts">'+noPostsText+'</li>'
-	,	noResultsMessage  = '<li id="lasso--end-posts">'+noResultsText+'</li>'
+	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
 	,	page 			= 1
@@ -13139,6 +13138,9 @@ jQuery(document).ready(function($){
 
                 //put back more button
                 $(postList).append( moreButton );
+
+                // show search filtering
+                $('.lasso--post-filtering').removeClass('not-visible').addClass('visible')
 
                 $( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
 
@@ -13277,6 +13279,7 @@ jQuery(document).ready(function($){
 
 		var val 		= $(this).val()
 		,	url 		= api+'/posts?filter[s]='+val
+		,	results     = $('#lasso--results-found')
 
 		// 800ms delay so we dont exectute excessively
 		setTimeout(function(){
@@ -13290,14 +13293,29 @@ jQuery(document).ready(function($){
 				// make the api request
 				$.getJSON( url, function( response ) {
 
+					// remove current list of posts
 					$(postList).children().remove()
 
+					// show results
+					results.parent().css('opacity',1)
+
+					// count results and show
 					if ( response.length == 0 ) {
 
-						$(postList).prepend( noResultsMessage )
+						// results are empty int
+						results.text('0')
+
+						// results are empty placeholder
+						if ( !$('#lasso--empty-results').length ) {
+							$(postList).prepend( noResultsDiv )
+						}
 
 					} else {
 
+						// show how many results we have
+						results.text( response.length )
+
+						// loop through each object
 		                $.each( response, function ( i ) {
 
 		                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
@@ -13309,15 +13327,21 @@ jQuery(document).ready(function($){
 
 			}
 
-			// if there's no value then reset
-			if ( val == '' ) {
-
-				$(postList).children().remove()
-
-				fetchPosts('post')
-			}
-
 		}, 800 );
+
+		// if there's no value then reset
+		if ( val == '' ) {
+
+			// remove teh children
+			$(postList).children().remove()
+
+			// fetch initial posts
+			fetchPosts('post')
+
+			// hide searh results
+			results.parent().css('opacity',0)
+
+		}
 
 	})
 

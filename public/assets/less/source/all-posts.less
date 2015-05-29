@@ -76,11 +76,29 @@ ul.lasso--post-object-list {
     width: ~'calc( 100% - @{list--sb__width})';
     height:@list--filter-height;
     float:right;
+    .clearfix();
 
+    .lasso--search__results,
     .lasso--search {
-        float:right;
+        float:left;
+    }
+
+    .lasso--search__results {
+        opacity:0;
+        .transition(opacity .2s ease);
+        width:66.666%;
+        font-size:@input--font__size;
+
+        span {
+            font-weight:bold;
+            margin-right:4px;
+        }
+    }
+    .lasso--search {
+        width:33.333%;
 
         input {
+            float:right;
             max-width:150px;
             .editor--input();
         }

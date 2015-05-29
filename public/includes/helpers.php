@@ -365,3 +365,14 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 	}
 endif;
+
+if ( !function_exists('lasso_editor_empty_results') ):
+
+	function lasso_editor_empty_results(){
+
+		$out = '<div id="lasso--empty-results">YO</div>';
+
+		return $out;
+	}
+
+endif;
