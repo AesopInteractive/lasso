@@ -5,18 +5,19 @@
 		e.preventDefault();
 
 		var $this 	= $(this)
-		,	submit 	= $(this).find('input[type="submit"]')
+		,	submit 	= $this.find('input[type="submit"]')
 		,	strings = lasso_editor.strings
+		,	data	= $this.serialize();
 
 		submit.val( strings.saving );
-
-		var data = $this.serialize();
 
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
 			if( true == response.success ) {
 
 				submit.val( strings.saved ).addClass('saved');
+
+				console.log(response)
 
 				setTimeout(function(){
 

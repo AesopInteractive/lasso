@@ -30,7 +30,9 @@ class meta implements api_action {
 	 */
 	public function update( $data ) {
 
-		//var_dump($data);
+		$post_id = isset( $data['post_id'] ) ? $data['post_id'] : false;
+
+		update_post_meta( $post_id , '_testing_save', $data );
 
 		return true;
 
@@ -45,7 +47,7 @@ class meta implements api_action {
 	 */
 	public static function params(){
 		$params[ 'process_meta_update' ] = array(
-			'action'
+			'post_id' => 'absint'
 		);
 
 		return $params;

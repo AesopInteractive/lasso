@@ -27,6 +27,7 @@ function lasso_option_form( $name = '', $options = array() ){
 		$out .= lasso_option_fields( $options );
 		$out .='<div class="form--bottom">';
 		$out .='<input type="submit" value="Save">';
+		$out .='<input type="hidden" name="post_id" value="'.get_the_ID().'">';
 		$out .='<input type="hidden" name="nonce" value="'.$nonce.'">';
 		$out .='<input type="hidden" name="action" value="process_meta_update">';
 		$out .='</div>';
