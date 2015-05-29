@@ -131,7 +131,7 @@
                 type: type,
                 filter: {
                     post_status: ['publish','draft','pending'],
-                    posts_per_page: 8,
+                    posts_per_page: 7,
                     author: author
                 }
             }
@@ -232,6 +232,8 @@
 		,	url 		= api+'/posts?filter[s]='+val
 
 		if ( val.length >= 4 ) {
+
+			$(postList).prepend( loader );
 
 			$.getJSON( url, function( response ) {
 
