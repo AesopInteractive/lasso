@@ -13308,28 +13308,39 @@ jQuery(document).ready(function($){
 
 		});
 
-	}).on('keyup','.lasso--search input',function(){ // live search - @since 0.9.5
+	}).on('keyup','.lasso--search input',function(e){ // live search - @since 0.9.5
 
 		var val 		= $(this).val()
 		,	url 		= api+'/posts?filter[s]='+val
 
-		if ( val.length >= 4 ) {
+		setTimeout(function(){
 
-			$(postList).prepend( loader );
+			if ( val.length >= 3 ) {
 
-			$.getJSON( url, function( response ) {
+				$(postList).prepend( loader );
+
+				$.getJSON( url, function( response ) {
+
+					$(postList).children().remove()
+
+	                $.each( response, function ( i ) {
+
+	                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+
+	                } );
+
+				});
+
+			}
+
+			if ( val == '' ) {
 
 				$(postList).children().remove()
 
-                $.each( response, function ( i ) {
+				fetchPosts('post')
+			}
 
-                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
-
-                } );
-
-			});
-
-		}
+		}, 500 );
 
 	})
 
