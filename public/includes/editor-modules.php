@@ -460,6 +460,12 @@ function lasso_editor_allpost_modal() {
 	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
+			<div class="lasso--post-filtering">
+				<div class="lasso--search">
+					<input type="text" placeholder="Search">
+				</div>
+			</div>
+
 			<ul class="lasso--post-object-list">
 				<?php
 

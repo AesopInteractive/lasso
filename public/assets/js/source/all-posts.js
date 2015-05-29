@@ -225,6 +225,30 @@
 
 		});
 
+	}).on('keyup','.lasso--search input',function(){ // live search - @since 0.9.5
+
+		if ( $(this).val().length >= 3 ) {
+
+			// do a search
+			var data = {
+				action: 		'process_search_posts',
+				term: 			$(this).val(),
+				nonce: 			lasso_editor.searchPosts
+			}
+
+			$.post( lasso_editor.ajaxurl, data, function(response) {
+
+				console.log(response)
+
+				if ( true == response.success ) {
+
+					console.log(response)
+
+				}
+
+			});
+		}
+
 	})
 
 })( jQuery, Backbone, _, WP_API_Settings );
