@@ -11,6 +11,15 @@ use lasso\internal_api\api_action;
 class meta implements api_action {
 
 	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.2
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso-process-post-meta';
+
+	/**
 	 * Process storing meta
 	 *
 	 * @since 0.9.5

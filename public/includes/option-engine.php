@@ -20,11 +20,14 @@ function lasso_option_form( $name = '', $options = array() ){
 	if ( empty( $name ) || empty( $options ) || !is_array( $options ) )
 		return;
 
+	$nonce = wp_create_nonce('lasso-process-post-meta');
+
 	$out = sprintf('<form id="lasso--post-form-%s" class="lasso--post-form">', $name );
 
 		$out .= lasso_option_fields( $options );
 		$out .='<div class="form--bottom">';
 		$out .='<input type="submit" value="Save">';
+		$out .='<input type="hidden" name="nonce" value="'.$nonce.'">';
 		$out .='<input type="hidden" name="action" value="process_meta_update">';
 		$out .='</div>';
 
