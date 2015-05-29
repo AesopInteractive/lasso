@@ -53,6 +53,7 @@ class assets {
 				'loading' 			=> __('Loading...','lasso'),
 				'loadMore'			=> __('Load More','lasso'),
 				'noPostsFound'		=> __('No more posts found','lasso'),
+				'noResultsFound'	=> __('Your search came up empty.','lasso'),
 				'galleryCreated' 	=> __('Gallery Created!','lasso'),
 				'galleryUpdated' 	=> __('Gallery Updated!','lasso'),
 				'justWrite'			=> __('Just write...','lasso'),
