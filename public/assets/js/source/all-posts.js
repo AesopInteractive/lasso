@@ -9,8 +9,10 @@
 	,	loadingText     = lasso_editor.strings.loading
 	,	loadMoreText    = lasso_editor.strings.loadMore
 	,	noPostsText     = lasso_editor.strings.noPostsFound
+	,	noResultsText   = lasso_editor.strings.noResultsFound
 	,	body 			= $('body')
 	,	noPostsMessage  = '<li id="lasso--end-posts">'+noPostsText+'</li>'
+	,	noResultsMessage  = '<li id="lasso--end-posts">'+noResultsText+'</li>'
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
 	,	page 			= 1
@@ -231,26 +233,38 @@
 		var val 		= $(this).val()
 		,	url 		= api+'/posts?filter[s]='+val
 
+		// 800ms delay so we dont exectute excessively
 		setTimeout(function(){
 
+			// if we have more than 3 characters
 			if ( val.length >= 3 ) {
 
+				// append loading indicator
 				$(postList).prepend( loader );
 
+				// make the api request
 				$.getJSON( url, function( response ) {
 
 					$(postList).children().remove()
 
-	                $.each( response, function ( i ) {
+					if ( response.length == 0 ) {
 
-	                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+						$(postList).prepend( noResultsMessage )
 
-	                } );
+					} else {
+
+		                $.each( response, function ( i ) {
+
+		                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+
+		                } );
+		            }
 
 				});
 
 			}
 
+			// if there's no value then reset
 			if ( val == '' ) {
 
 				$(postList).children().remove()
@@ -258,7 +272,7 @@
 				fetchPosts('post')
 			}
 
-		}, 500 );
+		}, 800 );
 
 	})
 
