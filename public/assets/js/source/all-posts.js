@@ -231,9 +231,9 @@
 
 		});
 
-	}).on('keyup','.lasso--search input',function(e){ // live search - @since 0.9.5
+	}).on('keyup','.lasso--search input',function( e ){ // live search - @since 0.9.5
 
-		// clear the previous timer 
+		// clear the previous timer
 		clearTimeout(timer)
 
 		var that        = this
@@ -303,6 +303,14 @@
 
 		}
 
+	}).on('click','#lasso--search__toggle', function( e ) {
+
+		e.preventDefault()
+
+		var $this = $(this)
+		,	elem  = 'lasso--search__visible'
+
+		$this.closest('.lasso--search').toggleClass( elem )
 	})
 
 })( jQuery, Backbone, _, WP_API_Settings );
