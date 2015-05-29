@@ -13283,7 +13283,8 @@ jQuery(document).ready(function($){
 
 		var that        = this
 		,	val 		= $(this).val()
-		,	url 		= api+'/posts?filter[s]='+val
+		,	type        = $('.active.lasso--show-objects').data('post-type')
+		,	url 		= api+'/'+type+'s?filter[s]='+val
 		,	results     = $('#lasso--results-found')
 
 		// 800ms delay so we dont exectute excessively
@@ -13341,7 +13342,7 @@ jQuery(document).ready(function($){
 			$(postList).children().remove()
 
 			// fetch initial posts
-			fetchPosts('post')
+			fetchPosts( type )
 
 			// hide searh results
 			results.parent().css('opacity',0)
@@ -13352,14 +13353,11 @@ jQuery(document).ready(function($){
 
 		e.preventDefault()
 
-		var $this = $(this)
-		,	elem  = 'lasso--search__visible'
+		$(this).closest('.lasso--search').toggleClass( 'lasso--search__visible' )
 
-		$this.closest('.lasso--search').toggleClass( elem )
 	})
 
 })( jQuery, Backbone, _, WP_API_Settings );
-
 (function( $ ) {
 
 	$(document).ready(function(){
