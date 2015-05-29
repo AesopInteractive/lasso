@@ -465,7 +465,8 @@ function lasso_editor_allpost_modal() {
 					<span id="lasso--results-found"></span><?php _e('results found','lasso');?>
 				</div>
 				<div class="lasso--search">
-					<input type="text" placeholder="Search">
+					<i id="lasso--search__toggle" class="dashicons dashicons-search"></i>
+					<input type="text" placeholder="search...">
 				</div>
 			</div>
 
