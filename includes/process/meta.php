@@ -1,0 +1,61 @@
+<?php
+/**
+ * Class responsible for processing optoins from lasso post meta api
+ *
+ * @since 1.0
+ */
+namespace lasso\process;
+
+use lasso\internal_api\api_action;
+
+class meta implements api_action {
+
+	/**
+	 * Process storing meta
+	 *
+	 * @since 0.9.5
+	 *
+	 * @param array $data Sanitized data to use for saving.
+	 *
+	 * @return bool Always returns true.
+	 */
+	public function meta( $data ) {
+
+		var_dump($data);
+
+		return true;
+
+	}
+
+	/**
+	 * The keys required for the actions of this class.
+	 *
+	 * @since     0.9.5
+	 *
+	 * @return array Array of keys to pull from $data per action and their sanitization callback
+	 */
+	public static function params(){
+		$params[ 'process_post_meta' ] = array();
+
+		return $params;
+
+	}
+
+	/**
+	 * Additional auth callbacks to check.
+	 *
+	 * @since     0.9.5
+	 *
+	 * @return array Array of additional functions to use to authorize action.
+	 */
+	public static function auth_callbacks() {
+		$params[ 'process_post_meta' ] = array(
+			'lasso_user_can'
+		);
+
+		return $params;
+
+	}
+
+}
+
