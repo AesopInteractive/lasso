@@ -13023,19 +13023,26 @@ jQuery(document).ready(function($){
 
 		e.preventDefault();
 
-		var $this = $(this);
+		var $this 	= $(this)
+		,	submit 	= $(this).find('input[type="submit"]')
+		,	strings = lasso_editor.strings
 
-		$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
+		submit.val( strings.saving );
 
 		var data = $this.serialize();
 
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
-			console.log(response)
-
 			if( true == response.success ) {
 
-				console.log(response)
+				submit.val( strings.saved ).addClass('saved');
+
+				setTimeout(function(){
+
+					submit.removeClass('saved');
+					submit.val( strings.save );
+
+				},1000);
 
 			}
 
