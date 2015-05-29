@@ -70,6 +70,23 @@ ul.lasso--post-object-list {
 
 }
 
+// post filtering
+.lasso--post-filtering {
+    padding:0 @modal--padding;
+    width: ~'calc( 100% - @{list--sb__width})';
+    height:@list--filter-height;
+    float:right;
+
+    .lasso--search {
+        float:right;
+
+        input {
+            max-width:150px;
+            .editor--input();
+        }
+    }
+}
+
 
 // list of posts
 ul.lasso--post-list {

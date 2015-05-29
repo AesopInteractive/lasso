@@ -118,6 +118,7 @@ class assets {
 				'titleNonce'		=> wp_create_nonce('lasso_update_title'),
 				'wpImgNonce'		=> wp_create_nonce('lasso_update_wpimg'),
 				'deletePost'		=> wp_create_nonce('lasso_delete_post'),
+				'searchPosts'		=> wp_create_nonce('lasso_search_posts'),
 				'component_options' => lasso_editor_options_blob(),
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'allPostModal'		=> lasso_editor_allpost_modal(),
