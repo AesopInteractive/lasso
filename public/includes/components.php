@@ -81,19 +81,19 @@ function lasso_editor_components() {
 }
 
 /**
- * Here each of the components content is being registered and retrieved above
+ * Here each of the component's content is being registered and retrieved above
  *
  * Notes:  - these functions are pluggable
  *     - custom modules must have data-component-type="whatever"
- *   - custom modules must have all options as data-attributes if utilizing settings panel
+ *   - custom modules must have all options as data-attributes if utilizing the settings panel
  *
- * 1.  Quote
- * 2.  Image
+ * 1. Quote
+ * 2. Image
  * 3. Parallax
  * 4. Audio
  * 5. Content
  * 6. Character
- * 7. Collections
+ * 7. Collection
  * 8. Document
  * 9. Gallery
  * 10. Heading
@@ -233,7 +233,3 @@ if ( !function_exists('lasso_wp_quote') ):
 	}
 
 endif;
-
-
-
-
