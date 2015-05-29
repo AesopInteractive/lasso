@@ -35,7 +35,9 @@ class meta implements api_action {
 	 * @return array Array of keys to pull from $data per action and their sanitization callback
 	 */
 	public static function params(){
-		$params[ 'process_meta_update' ] = array();
+		$params[ 'process_meta_update' ] = array(
+			'action'
+		);
 
 		return $params;
 

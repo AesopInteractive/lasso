@@ -19,8 +19,6 @@ class title_update implements api_action {
 	 */
 	public $nonce_action = 'lasso_update_title';
 
-	wp_die()
-
 	/**
 	 * Process title update
 	 *
