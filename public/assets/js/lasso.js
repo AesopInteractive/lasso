@@ -13065,6 +13065,7 @@ jQuery(document).ready(function($){
     ,   initial         = true
     ,   totalPages      = null
     ,	api             = WP_API_Settings.root
+    ,	timer
 
 	// infinite load options
 	var options = {
@@ -13277,15 +13278,19 @@ jQuery(document).ready(function($){
 
 	}).on('keyup','.lasso--search input',function(e){ // live search - @since 0.9.5
 
-		var val 		= $(this).val()
+		// clear the previous timer 
+		clearTimeout(timer)
+
+		var that        = this
+		,	val 		= $(this).val()
 		,	url 		= api+'/posts?filter[s]='+val
 		,	results     = $('#lasso--results-found')
 
 		// 800ms delay so we dont exectute excessively
-		setTimeout(function(){
+		timer = setTimeout(function() {
 
-			// if we have more than 3 characters
-			if ( val.length >= 3 ) {
+			// if we have more than 3 characters and if value is teh same
+			if ( val.length >= 3 && val == $(that).val() ) {
 
 				// append loading indicator
 				$(postList).prepend( loader );
@@ -13327,7 +13332,7 @@ jQuery(document).ready(function($){
 
 			}
 
-		}, 800 );
+		}, 800);
 
 		// if there's no value then reset
 		if ( val == '' ) {
