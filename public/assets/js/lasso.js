@@ -13100,6 +13100,7 @@ jQuery(document).ready(function($){
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
+    ,	api             = WP_API_Settings.root
 
 	// infinite load options
 	var options = {
@@ -13309,26 +13310,23 @@ jQuery(document).ready(function($){
 
 	}).on('keyup','.lasso--search input',function(){ // live search - @since 0.9.5
 
-		if ( $(this).val().length >= 3 ) {
+		var val 		= $(this).val()
+		,	url 		= api+'/posts?filter[s]='+val
 
-			// do a search
-			var data = {
-				action: 		'process_search_posts',
-				term: 			$(this).val(),
-				nonce: 			lasso_editor.searchPosts
-			}
+		if ( val.length >= 4 ) {
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.getJSON( url, function( response ) {
 
-				console.log(response)
+				$(postList).children().remove()
 
-				if ( true == response.success ) {
+                $.each( response, function ( i ) {
 
-					console.log(response)
+                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
 
-				}
+                } );
 
 			});
+
 		}
 
 	})
