@@ -147,6 +147,27 @@ ul.lasso--post-object-list {
     }
 }
 
+// empty state
+.lasso--empty-state {
+    max-width:200px;
+    text-align:center;
+    color:@gray;
+    margin: 0 auto;
+    top: 40%;
+    position: relative;
+
+    .lasso--empty-state-icon {
+        font-size:@icon--size__large;
+    }
+
+    p {
+        margin-bottom:0;
+        font-family:@editor--font;
+        font-size:90%;
+        font-weight:bold;
+    }
+}
+
 
 // list of posts
 ul.lasso--post-list {
@@ -224,6 +245,8 @@ ul.lasso--post-list {
     }
 
 }
+
+// post controls within a list
 .lasso--post-list__controls {
     position: absolute;
     right:0;
@@ -286,7 +309,7 @@ ul.lasso--post-list {
     }
 }
 
-// load more 
+// load more
 #lasso--load-more {
     .editor-btn-secondary();
     font-size:@input--font__size;

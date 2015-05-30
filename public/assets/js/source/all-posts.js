@@ -288,9 +288,9 @@
 
 			}
 
-		}, 800);
+		}, 600);
 
-		// if there's no value then reset
+		// if there's no value then destroy the search
 		if ( val == '' ) {
 
 			destroySearch( type )
@@ -301,9 +301,16 @@
 
 		e.preventDefault()
 
-		$('.lasso--search').toggleClass( 'lasso--search__visible' ).find('input').focus()
+		var input = $('.lasso--search input')
 
-		if ( !$(this).parent().hasClass('lasso--search__visible') ) {
+		// toggle visible class
+		$('.lasso--search').toggleClass( 'lasso--search__visible' )
+
+		// focus on input
+		input.focus()
+
+		// if the search isnt visible and not empty then destroy the search
+		if ( !$(this).parent().hasClass('lasso--search__visible') && input.val() !== '' ) {
 			destroySearch('post')
 		}
 
