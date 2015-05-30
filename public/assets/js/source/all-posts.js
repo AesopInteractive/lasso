@@ -293,23 +293,40 @@
 		// if there's no value then reset
 		if ( val == '' ) {
 
-			// remove teh children
-			$(postList).children().remove()
-
-			// fetch initial posts
-			fetchPosts( type )
-
-			// hide searh results
-			results.parent().css('opacity',0)
+			destroySearch( type )
 
 		}
 
-	}).on('click','#lasso--search__toggle', function( e ) {
+	}).on('click','#lasso--search__toggle', function( e ) { // open close search
 
 		e.preventDefault()
 
-		$(this).closest('.lasso--search').toggleClass( 'lasso--search__visible' )
+		$('.lasso--search').toggleClass( 'lasso--search__visible' ).find('input').focus()
+
+		if ( !$(this).parent().hasClass('lasso--search__visible') ) {
+			destroySearch('post')
+		}
 
 	})
+
+	/**
+	*	Helper fucntion to destroy the search
+	*	@param type string the type of post to fetch (post or page)
+	*	@since 0.9.5
+	*/
+	function destroySearch( type ){
+
+		// remove teh children
+		$(postList).children().remove()
+
+		// fetch initial posts
+		fetchPosts( type )
+
+		// clear previous seach term
+		$('.lasso--search input').val('').focusout() // weird bug with focusout not wokring
+
+		// hide searh results
+		$('#lasso--results-found').parent().css('opacity',0)
+	}
 
 })( jQuery, Backbone, _, WP_API_Settings );
