@@ -366,11 +366,17 @@ if ( !function_exists( 'lasso_user_can' ) ):
 	}
 endif;
 
+/**
+*	Empty state message thats shown when no data available
+*
+*	@since 0.9.5
+*/
 if ( !function_exists('lasso_editor_empty_results') ):
 
 	function lasso_editor_empty_results(){
 
-		$out = '<div id="lasso--empty-results">YO</div>';
+		$string = apply_filters('lasso_empty_state_message', __('No posts to show', 'lasso') );
+		$out = sprintf('<div id="lasso--empty-state" class="lasso--empty-state"><i class="lasso--empty-state-icon lasso-icon lasso-icon-file-text2"></i><p>%s</p></div>', $string );
 
 		return $out;
 	}
