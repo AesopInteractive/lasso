@@ -25,7 +25,7 @@ function lasso_option_form( $name = '', $options = array() ){
 
 	$out = sprintf('<form id="lasso--post-form-%s" class="lasso--post-form">', $name );
 
-		$out .= lasso_option_fields( $options );
+		$out .= lasso_option_fields( $name, $options );
 		$out .='<div class="form--bottom">';
 			$out .='<input type="submit" value="Save">';
 			$out .='<input type="hidden" name="tab_name" value="'.$key.'">';
@@ -48,7 +48,7 @@ function lasso_option_form( $name = '', $options = array() ){
 *	@since 0.9.5
 *	@subpackage lasso_modal_addons_content
 */
-function lasso_option_fields( $options = array() ){
+function lasso_option_fields( $name = '', $options = array() ){
 
 	$out = '';
 	foreach ( (array) $options as $option ) {
@@ -57,10 +57,10 @@ function lasso_option_fields( $options = array() ){
 
 		switch ( $type ) {
 			case 'text':
-				$out .= lasso_option_engine_option__text( $option );
+				$out .= lasso_option_engine_option__text( $name, $option );
 				break;
 			case 'textarea':
-				$out .= lasso_option_engine_option__textarea( $option );
+				$out .= lasso_option_engine_option__textarea( $name, $option );
 				break;
 		}
 
@@ -75,7 +75,7 @@ function lasso_option_fields( $options = array() ){
 *	@param $option mixed object
 *	@since 5.0
 */
-function lasso_option_engine_option__text( $option = '' ) {
+function lasso_option_engine_option__text( $name = '', $option = '' ) {
 
 	if ( empty( $option ) )
 		return;
@@ -83,7 +83,9 @@ function lasso_option_engine_option__text( $option = '' ) {
 	$id = isset( $option['id'] ) ? $option['id'] : false;
 	$id = $id ? lasso_clean_string( $id ) : false;
 
-	$out = sprintf('<input id="lasso--post-option-%s" name="text" type="text">', $id );
+	$value = lasso_option_engine_get_option( get_the_ID(), $name, 'text' );
+
+	$out = sprintf('<input id="lasso--post-option-%s" name="text" type="text" value="%s">', $id, $value );
 
 	return $out;
 }
@@ -94,7 +96,7 @@ function lasso_option_engine_option__text( $option = '' ) {
 *	@param $option mixed object
 *	@since 5.0
 */
-function lasso_option_engine_option__textarea( $option = '' ) {
+function lasso_option_engine_option__textarea( $name = '', $option = '' ) {
 
 	if ( empty( $option ) )
 		return;
@@ -102,7 +104,31 @@ function lasso_option_engine_option__textarea( $option = '' ) {
 	$id = isset( $option['id'] ) ? $option['id'] : false;
 	$id = $id ? lasso_clean_string( $id ) : false;
 
-	$out = sprintf('<textarea id="lasso--post-option-%s" name="textarea"></textarea>', $id );
+	$value = lasso_option_engine_get_option( get_the_ID(), $name, 'textarea' );
+
+	$out = sprintf('<textarea id="lasso--post-option-%s" name="textarea">%s</textarea>', $id, $value );
 
 	return $out;
+}
+
+function lasso_option_engine_get_option( $post_id = 0, $name = '', $type = 'text' ) {
+
+	if ( empty( $post_id ) )
+		$post_id = get_the_ID();
+
+	if ( empty( $name ) )
+		return;
+
+	$val = get_post_meta( $post_id, '_lasso_'.$name.'_settings', true );
+
+	switch ( $type ) {
+		case 'text':
+			$out = isset( $val['text'] ) ? $val['text'] : false;
+			break;
+		case 'textarea':
+			$out = isset( $val['textarea'] ) ? $val['textarea'] : false;
+			break;
+	}
+
+	return !empty( $out ) ? $out : false;
 }
