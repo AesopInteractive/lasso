@@ -32,7 +32,10 @@ class meta implements api_action {
 
 		$post_id = isset( $data['post_id'] ) ? $data['post_id'] : false;
 
-		update_post_meta( $post_id , '_testing_save', $data );
+		if ( $data['text'] )     { $info['text'] = $data['text']; }
+		if ( $data['textarea'] ) { $info['textarea'] = $data['textarea']; }
+
+		update_post_meta( $post_id , '_testing_save', $info );
 
 		return true;
 
@@ -47,7 +50,9 @@ class meta implements api_action {
 	 */
 	public static function params(){
 		$params[ 'process_meta_update' ] = array(
-			'post_id' => 'absint'
+			'post_id' 	=> 'absint',
+			'text'		=> array('trim','sanitize_text_field'),
+			'textarea'	=> array('trim','sanitize_text_field')
 		);
 
 		return $params;

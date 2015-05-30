@@ -81,7 +81,7 @@ function lasso_option_engine_option__text( $option = '' ) {
 	$id = isset( $option['id'] ) ? $option['id'] : false;
 	$id = $id ? lasso_clean_string( $id ) : false;
 
-	$out = sprintf('<input id="lasso--post-option-%s" name="%s" type="text">', $id, $id );
+	$out = sprintf('<input id="lasso--post-option-%s" name="text" type="text">', $id );
 
 	return $out;
 }
@@ -100,7 +100,7 @@ function lasso_option_engine_option__textarea( $option = '' ) {
 	$id = isset( $option['id'] ) ? $option['id'] : false;
 	$id = $id ? lasso_clean_string( $id ) : false;
 
-	$out = sprintf('<textarea id="lasso--post-option-%s" name="%s"></textarea>', $id, $id );
+	$out = sprintf('<textarea id="lasso--post-option-%s" name="textarea"></textarea>', $id );
 
 	return $out;
 }
