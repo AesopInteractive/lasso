@@ -21,15 +21,17 @@ function lasso_option_form( $name = '', $options = array() ){
 		return;
 
 	$nonce = wp_create_nonce('lasso-process-post-meta');
+	$key   = sprintf('_lasso_%s_settings', $name );
 
 	$out = sprintf('<form id="lasso--post-form-%s" class="lasso--post-form">', $name );
 
 		$out .= lasso_option_fields( $options );
 		$out .='<div class="form--bottom">';
-		$out .='<input type="submit" value="Save">';
-		$out .='<input type="hidden" name="post_id" value="'.get_the_ID().'">';
-		$out .='<input type="hidden" name="nonce" value="'.$nonce.'">';
-		$out .='<input type="hidden" name="action" value="process_meta_update">';
+			$out .='<input type="submit" value="Save">';
+			$out .='<input type="hidden" name="tab_name" value="'.$key.'">';
+			$out .='<input type="hidden" name="post_id" value="'.get_the_ID().'">';
+			$out .='<input type="hidden" name="nonce" value="'.$nonce.'">';
+			$out .='<input type="hidden" name="action" value="process_meta_update">';
 		$out .='</div>';
 
 	$out .= '</form>';

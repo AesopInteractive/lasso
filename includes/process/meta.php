@@ -31,11 +31,14 @@ class meta implements api_action {
 	public function update( $data ) {
 
 		$post_id = isset( $data['post_id'] ) ? $data['post_id'] : false;
+		$key_name = isset( $data['tab_name'] ) ? $data['tab_name'] : false;
 
 		if ( $data['text'] )     { $info['text'] = $data['text']; }
 		if ( $data['textarea'] ) { $info['textarea'] = $data['textarea']; }
 
-		update_post_meta( $post_id , '_testing_save', $info );
+		update_post_meta( $post_id, $key_name, $info );
+
+		do_action('lasso_post_meta_saved', $post_id, $data, $key_name );
 
 		return true;
 
@@ -51,6 +54,7 @@ class meta implements api_action {
 	public static function params(){
 		$params[ 'process_meta_update' ] = array(
 			'post_id' 	=> 'absint',
+			'tab_name'	=> 'trim',
 			'text'		=> array('trim','sanitize_text_field'),
 			'textarea'	=> array('trim','sanitize_text_field')
 		);
