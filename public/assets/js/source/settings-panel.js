@@ -202,7 +202,7 @@
 			    // Finally, open the modal
 				lasso_file_frame.open();
 			});
-	
+
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
@@ -257,6 +257,13 @@
 
 			}
 
+			////////////
+			// SMOOTH SLIDE TO COMPONENT
+			///////////
+			$('html, body').animate({
+		        scrollTop: $( '#'+component.attr('id') ).offset().top - 50
+		    }, 400);
+
 		});
 
 		// destroy panel if clicking close or overlay
@@ -266,7 +273,6 @@
 			$('#lasso--component__settings').perfectScrollbar('destroy');
 		});
 
-		
 });
 
 })( jQuery );

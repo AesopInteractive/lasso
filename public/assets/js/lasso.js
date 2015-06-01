@@ -11308,7 +11308,7 @@ jQuery(document).ready(function($){
 			    // Finally, open the modal
 				lasso_file_frame.open();
 			});
-	
+
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
@@ -11363,6 +11363,13 @@ jQuery(document).ready(function($){
 
 			}
 
+			////////////
+			// SMOOTH SLIDE TO COMPONENT
+			///////////
+			$('html, body').animate({
+		        scrollTop: $( '#'+component.attr('id') ).offset().top - 50
+		    }, 400);
+
 		});
 
 		// destroy panel if clicking close or overlay
@@ -11372,7 +11379,6 @@ jQuery(document).ready(function($){
 			$('#lasso--component__settings').perfectScrollbar('destroy');
 		});
 
-		
 });
 
 })( jQuery );
