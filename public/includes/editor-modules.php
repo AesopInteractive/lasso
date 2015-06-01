@@ -460,6 +460,16 @@ function lasso_editor_allpost_modal() {
 	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
+			<div class="lasso--post-filtering not-visible">
+				<div class="lasso--search__results">
+					<span id="lasso--results-found"></span><?php _e('results found','lasso');?>
+				</div>
+				<div class="lasso--search">
+					<i id="lasso--search__toggle" class="dashicons dashicons-search"></i>
+					<input type="text" placeholder="search...">
+				</div>
+			</div>
+
 			<ul class="lasso--post-object-list">
 				<?php
 
