@@ -37,10 +37,16 @@
     font-size: @sidebar--font__size;
     z-index: 0;
     position: relative;
-    padding-left: 6px;
+    padding: @input--padding;
     height:@input--height__lg;
     border-radius: @editor--radius @editor--radius;
     .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
+
+    &:focus {
+        outline:none;
+        border:1px solid @editor--color__update;
+        border-radius:@editor--radius - 2;
+    }
 }
 
 .editor--tool__bg() {
