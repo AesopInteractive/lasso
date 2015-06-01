@@ -88,16 +88,7 @@
 
     // general input
     input[type="text"] {
-        background: @input--bg;
-        border:1px solid @input--border;
-        color:@input--color;
-        font-size: @sidebar--font__size;
-        z-index: 0;
-        position: relative;
-        padding-left: 6px;
-        height:@input--height__lg;
-        border-radius: @editor--radius @editor--radius;
-        .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
+        .editor--input();
     }
 
     &.lasso--last-option {

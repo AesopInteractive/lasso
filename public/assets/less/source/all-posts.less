@@ -70,6 +70,104 @@ ul.lasso--post-object-list {
 
 }
 
+// post filtering
+.lasso--post-filtering {
+    padding:0 @search--padding;
+    width: ~'calc( 100% - @{list--sb__width})';
+    height:@search--height;
+    float:right;
+    .clearfix();
+
+    .lasso--search__results,
+    .lasso--search {
+        float:left;
+    }
+
+    // search results div
+    .lasso--search__results {
+        opacity:0;
+        .transition(opacity .2s ease);
+        width:66.666%;
+        font-size:@input--font__size;
+
+        span {
+            font-weight:bold;
+            margin-right:4px;
+        }
+    }
+
+    // teh search input contianer
+    .lasso--search {
+        width:33.333%;
+        overflow: hidden;
+
+        #lasso--search__toggle,
+        input {
+            .transition(right .15s linear);
+        }
+
+        // icon
+        #lasso--search__toggle {
+            position: relative;
+            top: @search--icon__offset / 2;
+            right: -@search--input__size - @search--icon__offset;
+
+            &:before {
+                .opacity(0.5);
+                .transition(opacity .15s ease);
+            }
+
+            &:hover {
+                cursor: pointer;
+                &:before { .opacity(0.9); }
+            }
+        }
+
+        // the input
+        input {
+            float:right;
+            width:@search--input__size;
+            right:-@search--input__size;
+            .editor--input();
+            height:@input--height + 2;
+        }
+
+        // when visible
+        &.lasso--search__visible {
+
+            #lasso--search__toggle {
+                right:-@search--icon__offset;
+
+                &:before { .opacity(0.9); }
+                &:hover:before { .opacity(0.5); }
+            }
+
+            input { right:0; }
+        }
+    }
+}
+
+// empty state
+.lasso--empty-state {
+    max-width:200px;
+    text-align:center;
+    color:@gray;
+    margin: 0 auto;
+    top: 40%;
+    position: relative;
+
+    .lasso--empty-state-icon {
+        font-size:@icon--size__large;
+    }
+
+    p {
+        margin-bottom:0;
+        font-family:@editor--font;
+        font-size:90%;
+        font-weight:bold;
+    }
+}
+
 
 // list of posts
 ul.lasso--post-list {
@@ -147,6 +245,8 @@ ul.lasso--post-list {
     }
 
 }
+
+// post controls within a list
 .lasso--post-list__controls {
     position: absolute;
     right:0;
@@ -209,7 +309,7 @@ ul.lasso--post-list {
     }
 }
 
-// load more 
+// load more
 #lasso--load-more {
     .editor-btn-secondary();
     font-size:@input--font__size;
