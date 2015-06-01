@@ -18,6 +18,11 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.5 =
+* added ability to search through posts or pages within all posts modal
+* added ability to switch different post types when adding a new page
+* added a subtle scroll-to-element to when a component settings button is clicked
+
 = 0.9.4.1 =
 * fixed bug with automatic updates - props @pippinsplugins
 * fixed bug with admins not seeing all posts in addition to their own
