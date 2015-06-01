@@ -133,6 +133,22 @@
 
     // post slug option
     &.story-slug-option {
+
+        input[type="text"] {
+            padding-left:84px;
+        }
+
+        .lasso--select-wrap {
+            position: absolute;
+            top:24px;
+            left:1px;
+
+            select {
+                font-size:@modal--font__size - 1;
+                border-radius:1px 0 0 1px;
+            }
+        }
+
         + .lasso--postsettings__footer {
             margin-top:inherit;
             padding-top:inherit;
@@ -460,6 +476,92 @@
         letter-spacing: 0.05em;
     }
 }
+
+// select cuistomizer
+.lasso--select-wrap {
+    position: relative;
+    display: inline-block;
+    color: @input--color;
+
+    // the select item
+    select {
+        display: inline-block;
+        width: 100%;
+        margin: 0;
+        //padding: .5rem 2.25rem .5rem 1rem;
+        line-height: @input--height;
+        color: @toolbar--color;
+        background-color: @modal--bg__accent;
+        border: 0;
+        padding-right:28px;
+        border-radius: @editor--radius;
+        cursor: pointer;
+        outline: 0;
+        font-size:@input--font__size;
+        -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+    }
+
+    // Undo the Firefox inner focus ring
+    select:focus:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+
+    // Dropdown arrow
+    &:after {
+        position: absolute;
+        top: 50%;
+        right: 1.25rem;
+        display: inline-block;
+        content: "";
+        width: 0;
+        height: 0;
+        margin-top: -.15rem;
+        pointer-events: none;
+        border-top: 4px solid @toolbar--color;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 4px solid transparent;
+    }
+
+    /* Hover state */
+    /* Uncomment if you need it, but be aware of the sticky iOS states.
+    .select select:hover {
+      background-color: #ddd;
+    }
+    */
+
+    // open
+    select:active {
+        color: @input--color;
+        background-color: @modal--bg__accent;
+    }
+
+    // Hide the arrow in IE10 and up
+    select::-ms-expand {
+        display: none;
+    }
+
+    // Media query to target Firefox only
+    @-moz-document url-prefix() {
+        /* Firefox hack to hide the arrow */
+        select {
+            text-indent: 0.01px;
+            text-overflow: '';
+            padding-right: 1rem;
+        }
+
+        /* <option> elements inherit styles from <select>, so reset them. */
+        option {
+            background-color: white;
+        } 
+    }
+
+
+}
+
 #story-schedule {
     font-size: @modal--font__size;
 }
