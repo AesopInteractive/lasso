@@ -175,30 +175,35 @@
 
 // Modal Addon - 0.9.4
 .lasso--modal__tabs {
-    width:@modal--tab__width;
     position:absolute;
-    right:-@modal--tab__width + 1;
-    top:-1px;
+    right:0;
+    top:-@modal--tab__height;
     z-index: -1;
     padding:0;
     margin:0;
+    height:@modal--tab__height;
     list-style:none;
 
     li {
+        display:inline-block;
         background:@modal--bg__accent;
         font-size:@input--font__size;
+        border-top-left-radius: @editor--radius;
         border-top-right-radius: @editor--radius;
-        border-bottom-right-radius: @editor--radius;
         padding:0 @editor--padding;
-        margin-bottom:1px;
-        height:@modal--tab__width;
-        line-height:@modal--tab__width;
+        margin:0 1px 0;
+        height:@modal--tab__height;
+        line-height:@modal--tab__height;
         .transition(background .15s ease);
 
         &.active-tab,
         &:hover {
             cursor:pointer;
             background:@modal--bg;
+        }
+
+        &:last-child {
+            margin-right:0;
         }
     }
 }
