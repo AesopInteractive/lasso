@@ -302,7 +302,7 @@ function lasso_editor_component_modal() {
 			<?php if( $tabs ) { echo $tabs; } ?>
 
 			<div class="lasso--modal__content modal__content--core visible" data-addon-content="core">
-				<form id="lasso--postsettings__form" enctype="multipart/form-data" class="lasso--postform <?php echo $is_singular_class.' '.$has_thumb_class;?>" >
+				<form id="lasso--postsettings__form" enctype="multipart/form-data" class="lasso--post-form <?php echo $is_singular_class.' '.$has_thumb_class;?>" >
 
 					<?php if ( $is_singular && $theme_supports ) : ?>
 					<div class="lasso--postsettings__left">
@@ -412,7 +412,7 @@ function lasso_editor_newpost_modal() {
 	<div id="lasso--post-new__modal" class="lasso--modal lasso--modal__med lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
-			<form id="lasso--postnew__form" enctype="multipart/form-data" class="lasso--postform">
+			<form id="lasso--postnew__form" enctype="multipart/form-data" class="lasso--post-form">
 
 				<div class="lasso--postsettings__option story-slug-option">
 					<label><?php esc_attr_e( 'New <span>post</span> title', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Specify title for new post, then save to edit.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
