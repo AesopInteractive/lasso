@@ -63,7 +63,7 @@
     height:18px;
 }
 
-// post status indicator
+// GLOBAL INPUT SETTINGS
 .lasso--postsettings__option {
     padding-bottom:20px;
     margin-bottom:20px;
@@ -72,6 +72,7 @@
     border-bottom:1px solid @modal--border;
     .box-shadow(0 1px 1px rgba(255,255,255,0.05));
 
+<<<<<<< HEAD
     label {
         font-size: @modal--font__size;
         line-height: 1;
@@ -100,6 +101,8 @@
         .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
     }
 
+=======
+>>>>>>> de6e41f... global form styles
     &.lasso--last-option {
         border-bottom:none;
         margin-bottom: 0;
@@ -175,72 +178,8 @@
         display: inline-block;
     }
 
-
-    // cancel button
-    .lasso--postsettings-cancel {
-        background: 0 0;
-        color: @editor--color__error;
-        position: relative;
-        top: 3px;
-
-        &:hover {
-            color:darken(@editor--color__error,5);
-            text-decoration: none;
-        }
-    }
-
-    // save button
-    input[type="submit"] {
-        .editor-btn-primary();
-        float:right;
-    }
 }
 
-
-
-// post status slider
-#lasso--slider {
-    position: relative;
-    text-align: left;
-    background: @rail--track__color;
-    top:5px;
-    height:@rail__height;
-    border-radius:4px;
-    .box-shadow(inset 1px 1px 1px rgba(0,0,0,0.2));
-
-    // slider handle
-    .ui-slider-handle {
-        position: absolute;
-        z-index: 2;
-        width: @rail--handle__w;
-        height: @rail--handle__h;
-        cursor: default;
-        -ms-touch-action: none;
-        touch-action: none;
-        background:@rail--handle__color;
-        top:-6px;
-        margin-left:-@rail--handle__w / 2;
-        border-radius: 100%;
-        .box-shadow(0 0 7px -1px rgba(0,0,0,0.75));
-
-        &:focus,
-        &:active {
-            outline:none;
-        }
-
-        &:hover,
-        &:active {
-            .box-shadow(inset 0 0 6px rgba(0,0,0,0.5));
-        }
-
-        &:hover { border:4px solid @rail--handle__color; }
-
-        &:active { border:4px solid darken(@rail--handle__color,3); }
-
-        &:hover, &:focus, &:active { cursor: move; }
-    }
-
-}
 
 // Modal Addon - 0.9.4
 .lasso--modal__tabs {
@@ -388,35 +327,8 @@
 .lasso--modal__checkbox,
 #lasso--post-settings__modal {
 
-    .checkbox_label {
-        display: inline-block;
-    }
 
-    .checkbox-control {
-        position: relative;
-        display: inline-block;
-        padding-left: 28px;
-        cursor: pointer;
-        //color:#444;
-        top:2px;
-
-        input {
-            position: absolute;
-            opacity: 0;
-            z-index: -1; /* Put the input behind the label so it doesn't overlay text */
-        }
-
-        input:checked ~ .control-indicator {
-          color: @input--bg;
-          background-color: @editor--color__update;
-        }
-
-        input:active ~ .control-indicator {
-          color:@input--bg;
-          background-color: @editor--color__update;
-        }
-    }
-
+<<<<<<< HEAD
     .control-indicator {
         position: absolute;
         top: -1px;
@@ -574,7 +486,6 @@
     padding: .2em .6em .3em .6em;
     width: auto;
     overflow: visible;
-}
-.story-schedule-calendar .ui-datepicker-buttonpane button.ui-datepicker-current {
-    float: left;
+=======
+>>>>>>> de6e41f... global form styles
 }
