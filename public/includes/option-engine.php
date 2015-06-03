@@ -98,14 +98,16 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 	$id = isset( $option['id'] ) ? $option['id'] : false;
 	$id = $id ? lasso_clean_string( $id ) : false;
 
+	$desc = isset( $option['desc'] ) ? $option['desc'] : false;
+
 	$value = lasso_option_engine_get_option( get_the_ID(), $name, 'text' );
 
 	switch ( $type ) {
 		case 'text':
-			$out = sprintf('<label>mylabel</label><input id="lasso--post-option-%s" name="text" type="text" value="%s">', $id, $value );
+			$out = sprintf('<label>%s</label><input id="lasso--post-option-%s" name="text" type="text" value="%s">', esc_html( $desc ), $id, $value );
 			break;
 		case 'textarea':
-			$out = sprintf('<label>mylabel</label><textarea id="lasso--post-option-%s" name="textarea">%s</textarea>', $id, $value );
+			$out = sprintf('<label>%s</label><textarea id="lasso--post-option-%s" name="textarea">%s</textarea>', esc_html( $desc ), $id, $value );
 	}
 
 	return $out;
