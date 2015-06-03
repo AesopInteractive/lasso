@@ -1,19 +1,46 @@
 <?php
-
 /**
-*	Get an array of addon data for the settings modal
 *	This is used by addons to add cool stuff to the settings modal as an additional tab
 *
 *	Example:
 *	add_filter('lasso_modal_tabs', 'try_tabs');
 *	function try_tabs( $tabs ){
 *		$tabs[] = array(
-*		  'name' => 'Tab',
-*		  'callback' => 'mycallbackfunction'
+*	  		'name' 	=> 'Tab',
+*	  		'content' => 'mytestcallback',
+*	  		'options'	=> 'myOptionsCallback'
 *		);
 *
 *		return $tabs;
 *	}
+*	function myOptionsCallback(){
+*
+*		$options = array(
+*			array(
+*				'id'		=> 'title',
+*				'name' 		=> 'Title',
+*				'type'		=> 'text',
+*				'default'	=> 'default',
+*				'desc'		=> 'Cool'
+*			),
+*			array(
+*				'id'		=> 'another',
+*				'name' 		=> 'Another',
+*				'type'		=> 'textarea',
+*				'default'	=> 'default',
+*				'desc'		=> 'Awesome'
+*			)
+*		);
+*
+*		return $options;
+*
+*	}
+*
+*	@since 0.9.4
+*/
+
+/**
+*	Get an array of addon data for the settings modal
 *	@since 0.9.4
 */
 function lasso_get_modal_tabs(){
