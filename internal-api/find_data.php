@@ -62,7 +62,7 @@ class find_data {
 			 * @param array $params Array of parameters in form of $_POST key => sanitization callback function name. Example 'id' => 'absint'
 			 * @param string $action Name of current action.
 			 */
-			$params = apply_fiters( 'lasso_api_params', $params, $action );
+			$params = apply_filters( 'lasso_api_params', $params, $action );
 			if ( is_array( $params ) && isset( $params[ $action ] ) && is_array( $params[ $action ] ) ) {
 				$params = $params[ $action ];
 				foreach( $params as $key => $callback ) {
