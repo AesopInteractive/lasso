@@ -74,6 +74,9 @@ function lasso_option_fields( $name = '', $options = array() ){
 			case 'textarea':
 				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'textarea' ), $after );
 				break;
+			case 'checkbox':
+				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'checkbox' ), $after );
+				break;
 		}
 
 	}
@@ -104,13 +107,18 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 
 	switch ( $type ) {
 		case 'text':
-			$out = sprintf('<label>%s</label><input id="lasso--post-option-%s" name="text" type="text" value="%s">', esc_html( $desc ), $id, $value );
+			$out = sprintf('<label for="lasso--post-option-%s">%s</label><input id="lasso--post-option-%s" name="%s" type="text" value="%s">',$id, esc_html( $desc ), $id, $id, $value );
 			break;
 		case 'textarea':
-			$out = sprintf('<label>%s</label><textarea id="lasso--post-option-%s" name="textarea">%s</textarea>', esc_html( $desc ), $id, $value );
+			$out = sprintf('<label for="lasso--post-option-%s">%s</label><textarea id="lasso--post-option-%s" name="%s">%s</textarea>',$id, esc_html( $desc ), $id, $id, $value );
+			break;
+		case 'checkbox':
+			$out = sprintf('<label for="lasso--post-option-%s" class="checkbox-control checkbox"><input id="lasso--post-option-%s" type="checkbox" name="%s" class="checkbox"><span class="control-indicator"></span>%s',$id, $id, $id ,esc_html( $desc ) );
+			break;
 	}
 
 	return $out;
+
 }
 
 
