@@ -3,12 +3,16 @@
 /**
 *	Build a post meta options form
 *
-*	@param $name string the name of this tab being logge
+*	@param $name string the name of this tab being logged
 *	@param $options array an array of option fields in the format below
 *
-*
-*
-*
+*					array(
+*						'id'		=> 'title',
+*						'name' 		=> 'Title',
+*						'type'		=> 'text',
+*						'default'	=> 'default',
+*						'desc'		=> 'My description'
+*					)
 *
 *	@since 0.9.5
 *	@subpackage lasso_modal_addons_content
@@ -43,24 +47,32 @@ function lasso_option_form( $name = '', $options = array() ){
 }
 
 /**
-*	Build post meta options fields for lasso_option_form
+*	Build settings fields for lasso_option_form
 *
+*	@param $name string the name of this tab being logged
+*	@param $options array an array of option fields in the format above
 *	@since 0.9.5
 *	@subpackage lasso_modal_addons_content
 */
 function lasso_option_fields( $name = '', $options = array() ){
 
-	$out = '';
+	$out 	= '';
+	$before = '<div class="lasso--postsettings__option">';
+	$after 	= '</div>';
+
+	if ( empty( $name ) || empty( $options ) )
+		return;
+
 	foreach ( (array) $options as $option ) {
 
 		$type = isset( $option['type'] ) ? $option['type'] : 'text';
 
 		switch ( $type ) {
 			case 'text':
-				$out .= lasso_option_engine_option__text( $name, $option );
+				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'text' ), $after );
 				break;
 			case 'textarea':
-				$out .= lasso_option_engine_option__textarea( $name, $option );
+				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'textarea' ), $after );
 				break;
 		}
 
@@ -69,15 +81,18 @@ function lasso_option_fields( $name = '', $options = array() ){
 	return $out;
 }
 
+
 /**
-*	Return an input style option
+*	Build settings inputs for settings fields
 *
+*	@param $name
 *	@param $option mixed object
+*	@param $type string text, textarea, checkbox, color
 *	@since 5.0
 */
-function lasso_option_engine_option__text( $name = '', $option = '' ) {
+function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 
-	if ( empty( $option ) )
+	if ( empty( $type ) || empty( $option ) )
 		return;
 
 	$id = isset( $option['id'] ) ? $option['id'] : false;
@@ -85,31 +100,17 @@ function lasso_option_engine_option__text( $name = '', $option = '' ) {
 
 	$value = lasso_option_engine_get_option( get_the_ID(), $name, 'text' );
 
-	$out = sprintf('<input id="lasso--post-option-%s" name="text" type="text" value="%s">', $id, $value );
+	switch ( $type ) {
+		case 'text':
+			$out = sprintf('<label>mylabel</label><input id="lasso--post-option-%s" name="text" type="text" value="%s">', $id, $value );
+			break;
+		case 'textarea':
+			$out = sprintf('<label>mylabel</label><textarea id="lasso--post-option-%s" name="textarea">%s</textarea>', $id, $value );
+	}
 
 	return $out;
 }
 
-/**
-*	Return an input style option
-*
-*	@param $option mixed object
-*	@since 5.0
-*/
-function lasso_option_engine_option__textarea( $name = '', $option = '' ) {
-
-	if ( empty( $option ) )
-		return;
-
-	$id = isset( $option['id'] ) ? $option['id'] : false;
-	$id = $id ? lasso_clean_string( $id ) : false;
-
-	$value = lasso_option_engine_get_option( get_the_ID(), $name, 'textarea' );
-
-	$out = sprintf('<textarea id="lasso--post-option-%s" name="textarea">%s</textarea>', $id, $value );
-
-	return $out;
-}
 
 ////////////////////////////
 // HELPERs
@@ -124,7 +125,7 @@ function lasso_option_engine_option__textarea( $name = '', $option = '' ) {
 *	@return string
 *	@since 5.0
 */
-function lasso_option_engine_get_option( $post_id = 0, $name = '', $type = 'text' ) {
+function lasso_option_engine_get_option( $post_id = 0, $name = '' ) {
 
 	if ( empty( $post_id ) )
 		$post_id = get_the_ID();
@@ -133,15 +134,6 @@ function lasso_option_engine_get_option( $post_id = 0, $name = '', $type = 'text
 		return;
 
 	$val = get_post_meta( $post_id, '_lasso_'.$name.'_settings', true );
-
-	switch ( $type ) {
-		case 'text':
-			$out = isset( $val['text'] ) ? $val['text'] : false;
-			break;
-		case 'textarea':
-			$out = isset( $val['textarea'] ) ? $val['textarea'] : false;
-			break;
-	}
 
 	return !empty( $out ) ? $out : false;
 }
