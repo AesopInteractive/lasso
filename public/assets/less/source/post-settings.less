@@ -72,37 +72,6 @@
     border-bottom:1px solid @modal--border;
     .box-shadow(0 1px 1px rgba(255,255,255,0.05));
 
-<<<<<<< HEAD
-    label {
-        font-size: @modal--font__size;
-        line-height: 1;
-        margin-bottom: 8px;
-        display: block;
-        font-family: @editor--font;
-
-        .lasso-icon-help {
-            margin-left: 5px;
-            position: relative;
-            top:2px;
-        }
-    }
-
-    // general input
-    input[type="text"] {
-        background: @input--bg;
-        border:1px solid @input--border;
-        color:@input--color;
-        font-size: @sidebar--font__size;
-        z-index: 0;
-        position: relative;
-        padding-left: 6px;
-        height:@input--height__lg;
-        border-radius: @editor--radius @editor--radius;
-        .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
-    }
-
-=======
->>>>>>> de6e41f... global form styles
     &.lasso--last-option {
         border-bottom:none;
         margin-bottom: 0;
@@ -186,17 +155,10 @@
     position:absolute;
     right:0;
     top:-@modal--tab__height;
-<<<<<<< HEAD
-    z-index: -1;
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9378f92... better blending of tabs into modal
     padding:0;
     margin:0;
     height:@modal--tab__height;
     list-style:none;
->>>>>>> 1b6e85b... shift tabs to top
 
     li {
         display:inline-block;
@@ -341,165 +303,4 @@
 .lasso--modal__checkbox,
 #lasso--post-settings__modal {
 
-
-<<<<<<< HEAD
-    .control-indicator {
-        position: absolute;
-        top: -1px;
-        left: 0;
-        display: block;
-        width:  18px;
-        height: 18px;
-        line-height: 1rem;
-        font-size: 65%;
-        color: @input--bg;
-        text-align: center;
-        background-color: @input--bg;
-        background-size: 50% 50%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    /* Checkbox modifiers */
-    .checkbox .control-indicator {
-      border-radius: .25rem;
-    }
-    .checkbox input:checked ~ .control-indicator {
-      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=);
-    }
-
-    /* Radio modifiers */
-    .radio .control-indicator {
-      border-radius: 50%;
-    }
-    .radio input:checked ~ .control-indicator {
-      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQsMUMyLjMsMSwxLDIuMywxLDRzMS4zLDMsMywzczMtMS4zLDMtM1M1LjcsMSw0LDF6Ii8+DQo8L3N2Zz4NCg==);
-    }
-
-    /* Alternately, use another character */
-    .control-x input:checked ~ .control-indicator {
-      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOHB4IiBoZWlnaHQ9IjhweCIgdmlld0JveD0iMCAwIDggOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOCA4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xLjQsMEwwLDEuNGwwLjcsMC43bDEuOCwxLjhMMC43LDUuN0wwLDYuNGwxLjQsMS40bDAuNy0wLjdsMS44LTEuOGwxLjgsMS44bDAuNywwLjdsMS40LTEuNEw3LjEsNS43DQoJTDUuMywzLjlsMS44LTEuOGwwLjctMC43TDYuNCwwTDUuNywwLjdMMy45LDIuNUwyLjEsMC43QzIuMSwwLjcsMS40LDAsMS40LDB6Ii8+DQo8L3N2Zz4NCg==);
-    }
-    .control-dash input:checked ~ .control-indicator {
-      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOHB4IiBoZWlnaHQ9IjhweCIgdmlld0JveD0iMCAwIDggOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOCA4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0wLDN2Mmg4VjNIMHoiLz4NCjwvc3ZnPg0K)
-    }
-    .lasso--option__note {
-        font-size: @modal--font__size - 2;
-        display: block;
-        margin-top:5px;
-        font-style: italic;
-        letter-spacing: 0.05em;
-    }
-}
-#story-schedule {
-    font-size: @modal--font__size;
-}
-// date picker (removed for now)
-.story-schedule-calendar {
-    padding: 4px;
-    display: none;
-    width:@modal--width - 30;
-    background: @modal--bg;
-    font-size: @modal--font__size;
-    color:@modal--color;
-    font-family: @editor--font;
-    border-radius: @editor--radius;
-
-    a {
-        color: inherit;
-    }
-}
-.story-schedule-calendar .ui-datepicker-header {
-    position: relative;
-    padding: .2em 0;
-}
-.story-schedule-calendar .ui-datepicker-prev,
-.story-schedule-calendar .ui-datepicker-next {
-    position: absolute;
-    top: 2px;
-    width: 1.8em;
-    height: 1.8em;
-}
-.story-schedule-calendar .ui-datepicker-prev-hover,
-.story-schedule-calendar.ui-datepicker-next-hover {
-    top: 1px;
-}
-.story-schedule-calendar .ui-datepicker-prev {
-    left: 2px;
-}
-.story-schedule-calendar .ui-datepicker-next {
-    right: 2px;
-}
-.story-schedule-calendar.ui-datepicker-prev-hover {
-    left: 1px;
-}
-.story-schedule-calendar .ui-datepicker-next-hover {
-    right: 1px;
-}
-.story-schedule-calendar .ui-datepicker-prev span,
-.story-schedule-calendar .ui-datepicker-next span {
-    display: block;
-    position: absolute;
-    left: 50%;
-    margin-left: -8px;
-    top: 50%;
-    margin-top: -8px;
-}
-.story-schedule-calendar .ui-datepicker-title {
-    margin: 0 2.3em;
-    line-height: 1.8em;
-    text-align: center;
-}
-.story-schedule-calendar .ui-datepicker-title select {
-    font-size: 1em;
-    margin: 1px 0;
-}
-.story-schedule-calendar select.ui-datepicker-month,
-.story-schedule-calendar select.ui-datepicker-year {
-    width: 45%;
-}
-.story-schedule-calendar table {
-    width: 100%;
-    font-size: .9em;
-    border-collapse: collapse;
-    margin: 0 0 .4em;
-}
-.story-schedule-calendar th {
-    padding: .7em .3em;
-    text-align: center;
-    font-weight: bold;
-    border: 0;
-}
-.story-schedule-calendar td {
-    border: 0;
-    padding: 1px;
-}
-.story-schedule-calendar td span,
-.story-schedule-calendar td a {
-    display: block;
-    padding: .2em;
-    text-align: center;
-    text-decoration: none;
-}
-.story-schedule-calendar .ui-datepicker-buttonpane {
-    background-image: none;
-    margin: .7em 0 0 0;
-    padding: 0 .2em;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-}
-.story-schedule-calendar .ui-datepicker-buttonpane button {
-    float: right;
-    margin: .5em .2em .4em;
-    cursor: pointer;
-    padding: .2em .6em .3em .6em;
-    width: auto;
-    overflow: visible;
-=======
->>>>>>> de6e41f... global form styles
 }
