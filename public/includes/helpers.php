@@ -92,7 +92,7 @@ function lasso_get_supported_theme_class() {
 			$out = '.zealot-entry-content';
 			break;
 		case 'fable': // aesop
-			$out = '.fable-entry-content';
+			$out = '.fable--entry-content';
 			break;
 		case 'worldview': // upthemes
 			$out = '.entry-content';
