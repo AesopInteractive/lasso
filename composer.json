@@ -6,7 +6,8 @@
    "license": "GPL-2.0+",
    "keywords": ["plugin","wordpress","lasso","editor","hosted"],
    "support": {
-   	"issues": "https://github.com/AesopInteractive/lasso/issues",
+   	"issues": "https://github.com/AesopInteractive/lasso/issues"
+   },
    "require": {
      "composer/installers": "~1.0.6"
    }
