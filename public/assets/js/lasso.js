@@ -12839,16 +12839,6 @@ jQuery(document).ready(function($){
 			// append teh modal markup ( lasso_editor_component_modal() )
 			$('body').append(lasso_editor.newPostModal);
 
-			////////////
-			// RESIZE THE URL HELPER FIELD
-			////////////
-			var mask 		= $('.url-helper')
-			,	mWidth 		= mask.outerWidth()
-			,	field  		= $('input[name="story_title"]')
-			,	maxLength   = 342
-
-			field.css({'width':maxLength - mWidth});
-
 		    // if any changes happen then show the footer
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
@@ -12914,6 +12904,18 @@ jQuery(document).ready(function($){
 
 		});
 
+	});
+
+	/////////////
+	// POST OBJECT CHANGE - since 0.9.5
+	/////////////
+	$('#lasso--select-type').live('change',function() {
+
+		var val = $(this).val()
+
+		$('input[name="object"]').val( val )
+
+		$(this).closest('.story-slug-option').find('label span:not(.lasso-util--help)').text( val )
 	});
 
 })( jQuery );

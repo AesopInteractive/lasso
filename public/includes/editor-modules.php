@@ -412,20 +412,40 @@ function lasso_editor_newpost_modal() {
 	$type = get_post_type( get_the_ID() );
 
 	?>
-	<div id="lasso--post-new__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
+	<div id="lasso--post-new__modal" class="lasso--modal lasso--modal__med lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
 		<div class="lasso--modal__inner">
 
 			<form id="lasso--postnew__form" enctype="multipart/form-data" class="lasso--post-form">
 
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
-					<label><?php esc_attr_e( 'New '.ucfirst( $type ).' Title', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Specify title for new post, then save to edit.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+					<label><?php esc_attr_e( 'New <span>post</span> title', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Specify title for new post, then save to edit.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 					<input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="" placeholder="<?php esc_attr_e( 'Grump Wizards Make Toxic Brew', 'lasso' );?>">
+						<div class="lasso--select-wrap">
+						<select id="lasso--select-type" name="story_type">
+
+							<?php
+								$types = lasso_post_types();
+
+								if ( !empty( $types ) ) {
+
+									foreach( $types as $type ) {
+
+										$type = preg_replace( '/s\b/','', $type );
+
+										printf( '<option value="%s">%s</option>', lcfirst( esc_attr( $type ) ) , ucfirst( esc_attr( $type ) ) );
+									}
+
+								}
+							?>
+
+						</select>
+					</div>
 				</div>
 
 				<div class="lasso--postsettings__footer" style="display:none;">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 					<input type="hidden" name="action" value="process_new-object_post">
-					<input type="hidden" name="object" value="<?php echo $type;?>">
+					<input type="hidden" name="object" value="post">
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="<?php esc_attr_e( 'Create', 'lasso' );?>">
 				</div>
