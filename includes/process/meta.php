@@ -31,25 +31,25 @@ class meta implements api_action {
 	public function update( $data ) {
 
 		$post_id = isset( $data['post_id'] ) ? $data['post_id'] : false;
-		if ( is_array( $data[ 'fields' ] ) ) {
+
 			
-			/**
-			 * Fields to allow for saving meta from.
-			 *
-			 * @since 0.9.5
-			 *
-			 * @param array $allowed_fields The fields
-			 */
-			$allowed_fields = apply_filters( 'lasso_meta_fields', array() );
-			if ( ! empty( $allowed_fields ) ) {
-				foreach( $allowed_fields as $field ) {
-					if ( isset( $data[ 'fields' ][ $field ] ) ) {
-						update_post_meta( $post_id, $field, $data[ 'fields' ][ $field ]  );
-					}
+		/**
+		 * Fields to allow for saving meta from.
+		 *
+		 * @since 0.9.5
+		 *
+		 * @param array $allowed_fields The fields
+		 */
+		$allowed_fields = apply_filters( 'lasso_meta_fields', array() );
+		if ( ! empty( $allowed_fields ) ) {
+			foreach( $allowed_fields as $field ) {
+				if ( isset( $data[ $field ] ) ) {
+					update_post_meta( $post_id, $field, $data[ $field ]  );
 				}
 			}
-
 		}
+
+
 
 		return true;
 
@@ -65,8 +65,7 @@ class meta implements api_action {
 	public static function params(){
 		$params[ 'process_meta_update' ] = array(
 			'post_id' 	=> 'absint',
-			'tab_name'	=> 'trim',
-			'fields'    => 'strip_slashes'
+			'tab_name'	=> 'trim'
 		);
 
 		return $params;
