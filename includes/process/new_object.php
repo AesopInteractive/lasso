@@ -34,6 +34,9 @@ class new_object implements api_action {
 
 		$object = is_null( $data[ 'object'] ) ? false : $data[ 'object' ];
 
+		if ( !lasso_user_can('edit_posts') || !lasso_user_can('edit_pages') )
+			return;
+
 		// insert a new post
 		$args = array(
 			'post_title'    => $title,

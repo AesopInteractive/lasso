@@ -72,6 +72,7 @@
     border-bottom:1px solid @modal--border;
     .box-shadow(0 1px 1px rgba(255,255,255,0.05));
 
+
     &.lasso--last-option {
         border-bottom:none;
         margin-bottom: 0;
@@ -114,6 +115,17 @@
 
     // post slug option
     &.story-slug-option {
+
+        .lasso--select-wrap {
+            position: absolute;
+            top:24px;
+            left:1px;
+
+            select {
+                font-size:@modal--font__size - 1;
+                border-radius:1px 0 0 1px;
+            }
+        }
         + .lasso--postsettings__footer {
             margin-top:inherit;
             padding-top:inherit;
@@ -145,6 +157,17 @@
 
     a,input {
         display: inline-block;
+    }
+
+}
+
+#lasso--postnew__form {
+    // post slug option
+    .story-slug-option {
+        margin-bottom: 0;
+        input[type="text"] {
+            padding-left:78px;
+        }
     }
 
 }
