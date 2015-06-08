@@ -83,7 +83,7 @@
 
 			var data = {
 				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
-				postid: 		lasso_editor.postid,
+				postid: 		cdata['id'],
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
 				gallery_type:   $('#ase_gallery_type').val(),
@@ -95,11 +95,11 @@
 
 				if ( 'gallery-created' == response.data.message ) {
 
-					saveSequence( false, 4000, true );
+					saveSequence( false, 3000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
-					saveSequence( false, 4000 );
+					saveSequence( false, 3000 );
 					form.before(lasso_editor.refreshRequired);
 
 				} else {
