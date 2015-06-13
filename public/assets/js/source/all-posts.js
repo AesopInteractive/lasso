@@ -18,6 +18,7 @@
 	,	clearItem   	= '#lasso--clear-search'
 	,	hideClass       = 'lasso--hide'
 	,	showClass       = 'lasso--show'
+	,	helper      	= '#lasso--helper'
 	,	page 			= 1
     ,   lastType        = 'post'
     ,   collection      = false
@@ -249,7 +250,6 @@
 		,	url 		= api+'/'+type+'s?filter[s]='+val+'&filter[posts_per_page]=50'
 		,	input       = '#lasso--search-field'
 		,	results     = $('#lasso--results-found')
-		,	helper      = '#lasso--helper'
 		,	helperText  = lasso_editor.strings.helperText
 		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
 
@@ -273,6 +273,9 @@
 				// append loading indicator
 				$(postList).prepend( loader );
 
+				// remove any helpers
+				$( helper ).fadeOut().remove();
+
 				// remove the cose
 				destroyClose();
 
@@ -284,12 +287,6 @@
 
 					// show results
 					results.parent().css('opacity',1)
-
-					// append close button
-					if ( !$( clearItem ).length ) {
-
-						$(input).after( clear )
-					}
 
 					// count results and show
 					if ( response.length == 0 ) {
@@ -306,6 +303,12 @@
 						destroyClose();
 
 					} else {
+
+						// append close button
+						if ( !$( clearItem ).length ) {
+
+							$(input).after( clear )
+						}
 
 						// show how many results we have
 						results.text( response.length )
@@ -348,7 +351,12 @@
 			destroySearch('post')
 		}
 
-	})
+	}).on('click', clearItem, function(e){
+
+		e.preventDefault();
+		destroySearch('post');
+
+	});
 
 	/**
 	* 	Utility function destroy search close
