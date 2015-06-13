@@ -14,6 +14,10 @@
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
+	,	clear     		= '<i id="lasso--clear-search" class="dashicons dashicons-dismiss"></i>'
+	,	clearItem   	= '#lasso--clear-search'
+	,	hideClass       = 'lasso--hide'
+	,	showClass       = 'lasso--show'
 	,	page 			= 1
     ,   lastType        = 'post'
     ,   collection      = false
@@ -236,20 +240,41 @@
 		// clear the previous timer
 		clearTimeout(timer)
 
-		var that        = this
-		,	val 		= $(this).val()
+		var key 		= e.which
+		,	that        = this
+		,	val 		= $.trim( $(this).val() )
+		,	valEqual    = val == $(that).val()
+		,	notEmpty    = '' !== val
 		,	type        = $('.active.lasso--show-objects').data('post-type')
-		,	url 		= api+'/'+type+'s?filter[s]='+val
+		,	url 		= api+'/'+type+'s?filter[s]='+val+'&filter[posts_per_page]=50'
+		,	input       = '#lasso--search-field'
 		,	results     = $('#lasso--results-found')
+		,	helper      = '#lasso--helper'
+		,	helperText  = lasso_editor.strings.helperText
+		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
 
 		// 800ms delay so we dont exectute excessively
 		timer = setTimeout(function() {
 
+			// don't proceed if the value is empty or not equal to itself
+			if ( !valEqual && !notEmpty )
+				return false;
+
+			// what if the user only types two characters?
+			if ( val.length == 2 && !$(helper).length ) {
+
+				$(input).after( helperSpan )
+
+			}
+
 			// if we have more than 3 characters and if value is teh same
-			if ( val.length >= 3 && val == $(that).val() ) {
+			if ( val.length >= 3 || val.length >= 3 && 13 == key ) {
 
 				// append loading indicator
 				$(postList).prepend( loader );
+
+				// remove the cose
+				destroyClose();
 
 				// make the api request
 				$.getJSON( url, function( response ) {
@@ -259,6 +284,12 @@
 
 					// show results
 					results.parent().css('opacity',1)
+
+					// append close button
+					if ( !$( clearItem ).length ) {
+
+						$(input).after( clear )
+					}
 
 					// count results and show
 					if ( response.length == 0 ) {
@@ -270,6 +301,9 @@
 						if ( !$('#lasso--empty-results').length ) {
 							$(postList).prepend( noResultsDiv )
 						}
+
+						// clear any close buttons
+						destroyClose();
 
 					} else {
 
@@ -317,6 +351,15 @@
 	})
 
 	/**
+	* 	Utility function destroy search close
+	*/
+	function destroyClose(){
+
+		$( clearItem ).remove();
+
+	}
+
+	/**
 	*	Helper fucntion to destroy the search
 	*	@param type string the type of post to fetch (post or page)
 	*	@since 0.9.5
@@ -334,6 +377,12 @@
 
 		// hide searh results
 		$('#lasso--results-found').parent().css('opacity',0)
+
+		// remove helper if any
+		$( helper ).remove();
+
+		// remove close
+		destroyClose()
 	}
 
 })( jQuery, Backbone, _, WP_API_Settings );

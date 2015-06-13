@@ -486,7 +486,7 @@ function lasso_editor_allpost_modal() {
 				</div>
 				<div class="lasso--search">
 					<i id="lasso--search__toggle" class="dashicons dashicons-search"></i>
-					<input type="text" placeholder="search...">
+					<input id="lasso--search-field" type="text" placeholder="search...">
 				</div>
 			</div>
 
