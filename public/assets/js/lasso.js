@@ -13414,13 +13414,6 @@ jQuery(document).ready(function($){
 
 		}, 600);
 
-		// if there's no value then destroy the search
-		if ( val == '' ) {
-
-			//destroySearch( type )
-
-		}
-
 	}).on('click','#lasso--search__toggle', function( e ) { // open close search
 
 		e.preventDefault()
