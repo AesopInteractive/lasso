@@ -13320,7 +13320,7 @@ jQuery(document).ready(function($){
 
 		});
 
-	}).on('keyup','.lasso--search input',function( e ){ // live search - @since 0.9.5
+	}).on('keyup','#lasso--search-field',function( e ){ // live search - @since 0.9.5
 
 		// clear the previous timer
 		clearTimeout(timer)
@@ -13336,6 +13336,9 @@ jQuery(document).ready(function($){
 		,	results     = $('#lasso--results-found')
 		,	helperText  = lasso_editor.strings.helperText
 		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
+
+		// strip spaces on input
+		$(that).val( $(that).val().replace(/ +?/g, '') );
 
 		// 800ms delay so we dont exectute excessively
 		timer = setTimeout(function() {
@@ -13403,6 +13406,8 @@ jQuery(document).ready(function($){
 		                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
 
 		                } );
+
+		                initScroll()
 		            }
 
 				});
@@ -13422,7 +13427,8 @@ jQuery(document).ready(function($){
 
 		e.preventDefault()
 
-		var input = $('.lasso--search input')
+		var input = $('#lasso--search-field')
+
 
 		// toggle visible class
 		$('.lasso--search').toggleClass( 'lasso--search__visible' )
@@ -13465,7 +13471,7 @@ jQuery(document).ready(function($){
 		fetchPosts( type )
 
 		// clear previous seach term
-		$('.lasso--search input').val('').focusout() // weird bug with focusout not wokring
+		$( '#lasso--search-field' ).val('').focusout() // weird bug with focusout not wokring
 
 		// hide searh results
 		$('#lasso--results-found').parent().css('opacity',0)

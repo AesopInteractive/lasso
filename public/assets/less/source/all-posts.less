@@ -87,7 +87,7 @@ ul.lasso--post-object-list {
     .lasso--search__results {
         opacity:0;
         .transition(opacity .2s ease);
-        width:66.666%;
+        width:60%;
         font-size:@input--font__size;
 
         span {
@@ -98,8 +98,9 @@ ul.lasso--post-object-list {
 
     // teh search input contianer
     .lasso--search {
-        width:33.333%;
+        width:40%;
         overflow: hidden;
+        position: relative;
 
         #lasso--search__toggle,
         input {
@@ -130,6 +131,10 @@ ul.lasso--post-object-list {
             right:-@search--input__size;
             .editor--input();
             height:@input--height + 2;
+
+            &:focus {
+                box-shadow:none;
+            }
         }
 
         // when visible
@@ -146,6 +151,35 @@ ul.lasso--post-object-list {
         }
     }
 }
+
+// Character helper
+#lasso--helper {
+    position:absolute;
+    right:4px;
+    top:4px;
+    font-size:@modal--font__size - 2;
+    padding:2px 6px;
+    background:@modal--bg__accent;
+    color:white;
+    border-radius:2px;
+    font-family:Arial;
+}
+
+
+// Clear Search Icon
+#lasso--clear-search {
+    position:absolute;
+    right:7px;
+    top:7px;
+    color:@modal--color-dark;
+    z-index:1;
+
+    &:hover {
+        color:darken(@modal--color-dark,5);
+        cursor:pointer;
+    }
+}
+
 
 // empty state
 .lasso--empty-state {
@@ -186,7 +220,7 @@ ul.lasso--post-list {
     }
 
     .lasso--post-list__item {
-        color:darken(@modal--color,10);
+        color:@modal--color-dark;
         display: block;
         padding:@list--item__padding;
         background: fadeout(@list--item__bg,12);
