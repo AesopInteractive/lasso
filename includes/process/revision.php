@@ -52,9 +52,10 @@ class revision implements api_action {
 				self::$revisions[ $i ] = array(
 					'post_content' => $post->post_content,
 					'post_title' => $post->post_title,
+					'modified' => $post->post_modified
 				);
 			} );
-			
+
 		}
 	}
 
