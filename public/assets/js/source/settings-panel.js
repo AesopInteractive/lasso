@@ -31,7 +31,7 @@
 		/////////////
 		// OPEN COMPONENT SETTINGS
 		////////////
-		$('#lasso-component--settings__trigger').live('click',function(){
+		$(document).on('click','#lasso-component--settings__trigger',function(){
 
 			var settings 	= $('#lasso--component__settings')
 			var click       = $(this)
@@ -129,80 +129,27 @@
 
 			});
 
-			/// live editing moved to settings-live-editing.js
-
-			/////////////
-			// FILE UPLOAD
 			////////////
+			// SMOOTH SLIDE TO COMPONENT - @since 0.9.5
+			///////////
 
-			$(document).on('click', '#lasso-upload-img', function( e ){
+			// if its a content component
+			if ( component.hasClass('aesop-content-component') ) {
 
-			    e.preventDefault();
+				var target = component.find('.aesop-content-comp-wrap').attr('id')
+				, 	offset = $('#'+target).offset().top - 50
 
-			    className = e.currentTarget.parentElement.className;
+			} else {
 
-			    var type   = $('input[name="component_type"]').val()
+				var offset = $( '#'+component.attr('id') ).offset().top - 50
+			}
 
-			    // If the media frame already exists, reopen it.
-				if ( typeof lasso_file_frame != 'undefined' ) {
-					lasso_file_frame.close();
-				}
+			$('html, body').animate({
 
-			    // Create the media frame.
-			    lasso_file_frame = wp.media.frames.file_frame = wp.media({
-			      	title: 'Select Image',
-			      	button: {
-			        	text: 'Insert Image',
-			      	},
-			      	multiple: false  // Set to true to allow multiple files to be selected
-			    });
+		        scrollTop: offset
 
-			    // When an image is selected, run a callback.
-			    lasso_file_frame.on( 'select', function() {
+		    }, 400);
 
-			      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
-
-			      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
-
-					/////////////
-					// START LIVE IMAGE EDITING COMPONENTS
-					// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
-					////////////
-			      	if ( 'parallax' == type ) {
-
-					  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
-
-			      	} else if ( 'quote' == type ) {
-
-					  	component.css({
-					  		'background-image': 'url('+ attachment.url +')'
-					  	});
-
-			      	} else if ( 'image' == type ) {
-
-					  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
-
-			      	} else if ( 'character' == type ) {
-
-					  	component.find('.aesop-character-avatar').attr('src', attachment.url)
-
-			      	} else if ( 'chapter' == type ) {
-
-			      		component.find('.aesop-article-chapter').css({
-					  		'background-image': 'url('+ attachment.url +')'
-					  	});
-
-			      	}
-					/////////////
-					// EDN LIVE IMAGE EDITING COMPONENTS
-					////////////
-
-			    });
-
-			    // Finally, open the modal
-				lasso_file_frame.open();
-			});
-	
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
@@ -257,6 +204,72 @@
 
 			}
 
+		}).on('click', '#lasso-upload-img', function( e ){
+
+		    e.preventDefault();
+
+		    className = e.currentTarget.parentElement.className;
+
+		    var type   = $('input[name="component_type"]').val()
+
+		    // If the media frame already exists, reopen it.
+			if ( typeof lasso_file_frame != 'undefined' ) {
+				lasso_file_frame.close();
+			}
+
+		    // Create the media frame.
+		    lasso_file_frame = wp.media.frames.file_frame = wp.media({
+		      	title: 'Select Image',
+		      	button: {
+		        	text: 'Insert Image',
+		      	},
+		      	multiple: false  // Set to true to allow multiple files to be selected
+		    });
+
+		    // When an image is selected, run a callback.
+		    lasso_file_frame.on( 'select', function() {
+
+		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
+
+		      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
+
+				/////////////
+				// START LIVE IMAGE EDITING COMPONENTS
+				// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
+				////////////
+		      	if ( 'parallax' == type ) {
+
+				  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
+
+		      	} else if ( 'quote' == type ) {
+
+				  	component.css({
+				  		'background-image': 'url('+ attachment.url +')'
+				  	});
+
+		      	} else if ( 'image' == type ) {
+
+				  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
+
+		      	} else if ( 'character' == type ) {
+
+				  	component.find('.aesop-character-avatar').attr('src', attachment.url)
+
+		      	} else if ( 'chapter' == type ) {
+
+		      		component.find('.aesop-article-chapter').css({
+				  		'background-image': 'url('+ attachment.url +')'
+				  	});
+
+		      	}
+				/////////////
+				// EDN LIVE IMAGE EDITING COMPONENTS
+				////////////
+
+		    });
+
+		    // Finally, open the modal
+			lasso_file_frame.open();
 		});
 
 		// destroy panel if clicking close or overlay
@@ -266,7 +279,6 @@
 			$('#lasso--component__settings').perfectScrollbar('destroy');
 		});
 
-		
 });
 
 })( jQuery );
