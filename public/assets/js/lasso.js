@@ -13337,9 +13337,6 @@ jQuery(document).ready(function($){
 		,	helperText  = lasso_editor.strings.helperText
 		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
 
-		// strip spaces on input
-		$(that).val( $(that).val().replace(/ +?/g, '') );
-
 		// 800ms delay so we dont exectute excessively
 		timer = setTimeout(function() {
 
@@ -13350,6 +13347,7 @@ jQuery(document).ready(function($){
 			// what if the user only types two characters?
 			if ( val.length == 2 && !$(helper).length ) {
 
+				destroyClose()
 				$(input).after( helperSpan )
 
 			}
@@ -13419,7 +13417,7 @@ jQuery(document).ready(function($){
 		// if there's no value then destroy the search
 		if ( val == '' ) {
 
-			destroySearch( type )
+			//destroySearch( type )
 
 		}
 
