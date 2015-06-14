@@ -11387,7 +11387,7 @@ jQuery(document).ready(function($){
 		// @todo - move this mess to it's own file
 		////////////
 
-		$('#lasso-component--settings__trigger').live('click', function(){
+		$(document).on('click', '#lasso-component--settings__trigger', function(){
 
 			var settings 	= $('#lasso--component__settings')
 
@@ -11601,15 +11601,14 @@ jQuery(document).ready(function($){
 			})
 
 			// VIDEO LIVE EDITOR /////////////////////
-			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('change blur',function(){
+			settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
 
-				src = $(this).val()
-				iSrc = component.find('.aesop-video-container')
+				val = $(this).val()
 
-				if ( iSrc.hasClass('vimeo') ) {
-					component.find('iframe').attr('src', '//player.vimeo.com/video/'+src+' ')
-				} else if ( iSrc.hasClass('youtube') ) {
-					component.find('iframe').attr('src', '//www.youtube.com/embed/'+src+'?rel=0&wmode=transparent')
+				if ( 'vimeo' == val ) {
+					component.find('iframe').attr('src', '//player.vimeo.com/video/'+val+' ')
+				} else if ( 'youtube' == val ) {
+					component.find('iframe').attr('src', '//www.youtube.com/embed/'+val+'?rel=0&wmode=transparent')
 				}
 
 			})
