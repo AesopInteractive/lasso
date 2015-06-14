@@ -137,18 +137,14 @@
 			if ( component.hasClass('aesop-content-component') ) {
 
 				var target = component.find('.aesop-content-comp-wrap').attr('id')
-				, 	offset = $('#'+target).offset().top - 50
+				, 	item = $('#'+target)
 
 			} else {
 
-				var offset = $( '#'+component.attr('id') ).offset().top - 50
+				var item = $('#'+component.attr('id') )
 			}
 
-			$('html, body').animate({
-
-		        scrollTop: offset
-
-		    }, 400);
+			$('html, body').animate({ scrollTop: item.length ? item.offset().top - 50 : false }, 400);
 
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY

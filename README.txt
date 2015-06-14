@@ -18,6 +18,15 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.5 =
+* added ability to search posts and pages within the all posts modal introduced with 0.9.4
+* added abilty to choose post type to create within new post creation modal
+* component now slides into view on settings click
+* fixed bug with video component not switching providers
+* fixed bug with galleries not saving gallery images properly
+* improved Meta API for developers wishing to integrate within Lasso's post settings
+* mobile style improvement - props @peiche
+
 = 0.9.4.1 =
 * fixed bug with automatic updates - props @pippinsplugins
 * fixed bug with admins not seeing all posts in addition to their own
