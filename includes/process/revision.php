@@ -49,7 +49,7 @@ class revision implements api_action {
 		$_revisions = wp_get_post_revisions( $id  );
 		if ( is_array( $_revisions )  && ! empty( $_revisions )  ) {
 			array_walk( $_revisions, function ( $post, $i ) {
-				self::$revisions[ $i ] = array(
+				self::$revisions[] = array(
 					'post_content' => $post->post_content,
 					'post_title' => $post->post_title,
 					'modified' => $post->post_modified
