@@ -58,6 +58,10 @@ function lasso_editor_controls() {
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
+
+				<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary">R</a></li>
+
+
 				<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
@@ -652,7 +656,8 @@ function lasso_editor_options_blob() {
 			$return .= '<p data-option="content" class="lasso-option lasso-c-comp-text"><label>' . __( 'Content', 'lasso' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
 		}
 
-		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
+		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel
+</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
 		$return .= '<input class="component_type" type="hidden" name="component_type" value="">';
 		$return .= '<input type="hidden" name="unique" value="">';
 		$return .= '<input type="hidden" name="nonce" id="lasso-generator-nonce" value="'.$nonce.'" />';
@@ -662,4 +667,26 @@ function lasso_editor_options_blob() {
 	}
 
 	return $blob;
+}
+
+/**
+ * Revisions modal
+ *
+ * @since 0.9.5
+ *
+ * @return string
+ */
+function lasso_editor_revision_modal() {
+	ob_start();
+	?>
+		<div id="lasso--post-new__modal" class="lasso--modal lassoShowAnimate">
+			<div class="lasso--modal__inner">
+				<div id="lasso--modal__close">
+					<a href="#">Close</a>
+				</div>
+				<ul id="lasso-revisions-list"></ul>
+			</div>
+		</div>
+	<?php
+	return ob_get_clean();
 }

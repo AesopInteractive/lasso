@@ -129,7 +129,8 @@ class assets {
 				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
-				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
+				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true ),
+				'revisionModal' => lasso_editor_revision_modal()
 			);
 
 

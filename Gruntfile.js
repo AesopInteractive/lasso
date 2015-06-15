@@ -70,7 +70,8 @@ module.exports = function(grunt) {
                     'public/assets/js/source/process-wpimg.js',
                     'public/assets/js/source/modal-sizing.js',
                     'public/assets/js/source/all-posts.js',
-                    'public/assets/js/source/tour.js'
+                    'public/assets/js/source/tour.js',
+                    'public/assets/js/source/revisions.js'
                	],
                 dest: 'public/assets/js/lasso.js'
             }

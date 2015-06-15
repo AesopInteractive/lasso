@@ -210,6 +210,8 @@
 				return;
 			}
 
+            wp.revisions
+
 			wp.media.frames.ase_edit_frame = wp.media({
 				title: lasso_editor.strings.editImage,
 				multiple: false,
