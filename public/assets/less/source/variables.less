@@ -18,6 +18,7 @@
 @base--light:                   #32373C;// lighten(@base,6);
 @base--dark:                    darken(@base,5);
 
+@gray:                          #737679;
 @text-shadow:                   rgba(0,0,0,0.4);
 
 // TOOLBAR
@@ -84,9 +85,10 @@
 @modal--bg__accent:             @base--light;
 @modal--border:                 darken(@toolbar--border,5);
 @modal--color:                  @toolbar--color;
+@modal--color-dark:            darken(@modal--color,10);
 @modal--padding:                18px;
 @modal--font__size:             14px;
-@modal--tab__width:             46px;
+@modal--tab__height:            @input--height__lg;
 
 // RAIL
 @rail__height:                  10px;
@@ -125,6 +127,21 @@
 @list--item__line-height:       50px;
 @list--control__width:          115px;
 
+// SEARCH
+@search--height:                42px;
+@search--padding:               @modal--padding;
+@search--input__size:           194px;
+@search--icon__offset:          15px;
+
+// iCONS
+@icon--size__large:             50px;
+
+@list--filter-height:           42px;
+
+
+// iCONS
+@icon--size__large:             50px;
+
 // COMPONENT SETTINGS
 @input--bg:                     #f8f8f8;
 @input--color:                  #444;
@@ -137,6 +154,7 @@
 @input--button__color:          white;
 @input--button__padding:        2px 8px;
 @input--lineheight:             1.8;
+@input--padding:               @input--button__padding;
 
 // MISFITS
 @insert--height:                70px;
@@ -158,5 +176,4 @@
 
 // LOADER
 @loader--color:                 lighten(@base--light,20);
-
 

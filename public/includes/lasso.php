@@ -48,6 +48,7 @@ class lasso {
 		require_once LASSO_DIR.'/public/includes/helpers.php';
 		require_once LASSO_DIR.'/public/includes/editor-modules--gallery.php';
 		require_once LASSO_DIR.'/public/includes/components.php';
+		require_once LASSO_DIR.'/public/includes/option-engine.php';
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );

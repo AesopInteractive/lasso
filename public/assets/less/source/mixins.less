@@ -1,3 +1,23 @@
+.editor--input(){
+    background: @input--bg;
+    border:1px solid @input--border;
+    color:@input--color;
+    font-size: @sidebar--font__size;
+    z-index: 0;
+    position: relative;
+    padding-left: 6px;
+    padding: @input--padding;
+    height:@input--height__lg;
+    border-radius: @editor--radius @editor--radius;
+    .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
+
+    &:focus {
+        outline:none;
+        border:1px solid @editor--color__update;
+        border-radius:@editor--radius - 2;
+    }
+}
+
 .lasso--animate__spin {
     -webkit-animation: spin 2s infinite linear;
     animation: spin 2s infinite linear;
@@ -28,6 +48,19 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.editor--input(){
+    background: @input--bg;
+    border:1px solid @input--border;
+    color:@input--color;
+    font-size: @sidebar--font__size;
+    z-index: 0;
+    position: relative;
+    padding-left: 6px;
+    height:@input--height__lg;
+    border-radius: @editor--radius @editor--radius;
+    .box-shadow(inset 1px 1px 1px rgba(0,0,0,.4));
 }
 
 .editor--tool__bg() {

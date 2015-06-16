@@ -45,6 +45,7 @@ class assets {
 			$postid 			= get_the_ID();
 
 			$strings = array(
+				'save' 				=> __('Save','lasso'),
 				'saving' 			=> __('Saving...','lasso'),
 				'saved'				=> __('Saved!','lasso'),
 				'adding' 			=> __('Adding...','lasso'),
@@ -74,7 +75,8 @@ class assets {
 				'warning'			=> __('Oh snap!','laso'),
 				'cancelText'		=> __('O.K. got it!','lasso'),
 				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
-				'missingConfirm'	=> __('Update Settings', 'lasso')
+				'missingConfirm'	=> __('Update Settings', 'lasso'),
+				'helperText'		=> __('one more letter','lasso')
 			);
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
@@ -117,6 +119,7 @@ class assets {
 				'titleNonce'		=> wp_create_nonce('lasso_update_title'),
 				'wpImgNonce'		=> wp_create_nonce('lasso_update_wpimg'),
 				'deletePost'		=> wp_create_nonce('lasso_delete_post'),
+				'searchPosts'		=> wp_create_nonce('lasso_search_posts'),
 				'component_options' => lasso_editor_options_blob(),
 				'newPostModal'		=> lasso_editor_newpost_modal(),
 				'allPostModal'		=> lasso_editor_allpost_modal(),
@@ -126,6 +129,7 @@ class assets {
 				'supportedNoSave'	=> lasso_supported_no_save(),
 				'postCategories'    => lasso_get_objects('category'),
 				'postTags'    		=> lasso_get_objects('tag'),
+				'noResultsDiv'		=> lasso_editor_empty_results(),
 				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
