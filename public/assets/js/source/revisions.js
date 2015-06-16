@@ -74,7 +74,7 @@
 
             data = {
                 action : 'process_revision_get',
-                postid : 46,
+                postid : lasso_editor.postid,
                 nonce : lasso_editor.nonce
             };
 

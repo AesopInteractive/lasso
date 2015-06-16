@@ -13603,7 +13603,7 @@ jQuery(document).ready(function($){
 
             data = {
                 action : 'process_revision_get',
-                postid : 46,
+                postid : lasso_editor.postid,
                 nonce : lasso_editor.nonce
             };
 
@@ -13633,14 +13633,12 @@ jQuery(document).ready(function($){
                             setNext();
                             setPrevious();
                         });
-                        
+
                         $( '.lasso--revision-nav' ).on( 'click', function(e) {
                             e.preventDefault();
                             restoreRevision( $( this ).attr( 'data-lasso-revision' ) );
                         });
-
-
-
+                        
 
                     }else{
                         //none found message??
