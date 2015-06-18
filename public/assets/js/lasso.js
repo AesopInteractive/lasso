@@ -13408,7 +13408,7 @@ jQuery(document).ready(function($){
 						// loop through each object
 		                $.each( response, function ( i ) {
 
-		                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+		                    $(postList).append( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
 
 		                } );
 
