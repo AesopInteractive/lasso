@@ -58,7 +58,7 @@ function lasso_editor_controls() {
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
+				<?php if ( ( 'off' == $post_new_disabled || empty( $post_new_disabled ) && lasso_user_can('publish_posts') ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 

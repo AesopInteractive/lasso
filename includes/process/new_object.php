@@ -34,9 +34,6 @@ class new_object implements api_action {
 
 		$object = is_null( $data[ 'object'] ) ? false : $data[ 'object' ];
 
-		if ( !lasso_user_can('edit_posts') || !lasso_user_can('edit_pages') )
-			return;
-
 		// insert a new post
 		$args = array(
 			'post_title'    => $title,
@@ -81,6 +78,7 @@ class new_object implements api_action {
 	 */
 	public static function auth_callbacks() {
 		$params[ 'process_new_object_post' ] = array(
+			'publish_posts'
 		);
 
 		return $params;
