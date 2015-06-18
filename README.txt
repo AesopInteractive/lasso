@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.4.1
+Stable tag: 0.9.5
 
 Front-end editing and creation suite.
 
