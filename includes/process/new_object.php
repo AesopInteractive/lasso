@@ -34,7 +34,6 @@ class new_object implements api_action {
 
 		$object = is_null( $data[ 'object'] ) ? false : $data[ 'object' ];
 
-		// do not create a new page or post if the user doesn't have that capabilitiy
 		if ( !lasso_user_can('edit_posts') || !lasso_user_can('edit_pages') )
 			return;
 
@@ -65,8 +64,8 @@ class new_object implements api_action {
 	 */
 	public static function params() {
 		$params[ 'process_new_object_post' ] = array(
-			'story_title' 	=> array( 'wp_strip_all_tags', 'trim' ),
-			'object' 		=> 'trim'
+			'story_title' => array( 'wp_strip_all_tags', 'trim' ),
+			'object' => 'trim'
 		);
 
 		return $params;
@@ -81,7 +80,8 @@ class new_object implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'process_new_object_post' ] = array();
+		$params[ 'process_new_object_post' ] = array(
+		);
 
 		return $params;
 

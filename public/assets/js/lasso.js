@@ -11137,7 +11137,7 @@ jQuery(document).ready(function($){
 		/////////////
 		// OPEN COMPONENT SETTINGS
 		////////////
-		$('#lasso-component--settings__trigger').live('click',function(){
+		$(document).on('click','#lasso-component--settings__trigger',function(){
 
 			var settings 	= $('#lasso--component__settings')
 			var click       = $(this)
@@ -11235,79 +11235,22 @@ jQuery(document).ready(function($){
 
 			});
 
-			/// live editing moved to settings-live-editing.js
-
-			/////////////
-			// FILE UPLOAD
 			////////////
+			// SMOOTH SLIDE TO COMPONENT - @since 0.9.5
+			///////////
 
-			$(document).on('click', '#lasso-upload-img', function( e ){
+			// if its a content component
+			if ( component.hasClass('aesop-content-component') ) {
 
-			    e.preventDefault();
+				var target = component.find('.aesop-content-comp-wrap').attr('id')
+				, 	item = $('#'+target)
 
-			    className = e.currentTarget.parentElement.className;
+			} else {
 
-			    var type   = $('input[name="component_type"]').val()
+				var item = $('#'+component.attr('id') )
+			}
 
-			    // If the media frame already exists, reopen it.
-				if ( typeof lasso_file_frame != 'undefined' ) {
-					lasso_file_frame.close();
-				}
-
-			    // Create the media frame.
-			    lasso_file_frame = wp.media.frames.file_frame = wp.media({
-			      	title: 'Select Image',
-			      	button: {
-			        	text: 'Insert Image',
-			      	},
-			      	multiple: false  // Set to true to allow multiple files to be selected
-			    });
-
-			    // When an image is selected, run a callback.
-			    lasso_file_frame.on( 'select', function() {
-
-			      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
-
-			      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
-
-					/////////////
-					// START LIVE IMAGE EDITING COMPONENTS
-					// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
-					////////////
-			      	if ( 'parallax' == type ) {
-
-					  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
-
-			      	} else if ( 'quote' == type ) {
-
-					  	component.css({
-					  		'background-image': 'url('+ attachment.url +')'
-					  	});
-
-			      	} else if ( 'image' == type ) {
-
-					  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
-
-			      	} else if ( 'character' == type ) {
-
-					  	component.find('.aesop-character-avatar').attr('src', attachment.url)
-
-			      	} else if ( 'chapter' == type ) {
-
-			      		component.find('.aesop-article-chapter').css({
-					  		'background-image': 'url('+ attachment.url +')'
-					  	});
-
-			      	}
-					/////////////
-					// EDN LIVE IMAGE EDITING COMPONENTS
-					////////////
-
-			    });
-
-			    // Finally, open the modal
-				lasso_file_frame.open();
-			});
+			$('html, body').animate({ scrollTop: item.length ? item.offset().top - 50 : false }, 400);
 
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY
@@ -11363,13 +11306,72 @@ jQuery(document).ready(function($){
 
 			}
 
-			////////////
-			// SMOOTH SLIDE TO COMPONENT
-			///////////
-			$('html, body').animate({
-		        scrollTop: $( '#'+component.attr('id') ).offset().top - 50
-		    }, 400);
+		}).on('click', '#lasso-upload-img', function( e ){
 
+		    e.preventDefault();
+
+		    className = e.currentTarget.parentElement.className;
+
+		    var type   = $('input[name="component_type"]').val()
+
+		    // If the media frame already exists, reopen it.
+			if ( typeof lasso_file_frame != 'undefined' ) {
+				lasso_file_frame.close();
+			}
+
+		    // Create the media frame.
+		    lasso_file_frame = wp.media.frames.file_frame = wp.media({
+		      	title: 'Select Image',
+		      	button: {
+		        	text: 'Insert Image',
+		      	},
+		      	multiple: false  // Set to true to allow multiple files to be selected
+		    });
+
+		    // When an image is selected, run a callback.
+		    lasso_file_frame.on( 'select', function() {
+
+		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
+
+		      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
+
+				/////////////
+				// START LIVE IMAGE EDITING COMPONENTS
+				// @todo - this was going to be taken care of in above but it seems we have to bind this to the file upload here?
+				////////////
+		      	if ( 'parallax' == type ) {
+
+				  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
+
+		      	} else if ( 'quote' == type ) {
+
+				  	component.css({
+				  		'background-image': 'url('+ attachment.url +')'
+				  	});
+
+		      	} else if ( 'image' == type ) {
+
+				  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
+
+		      	} else if ( 'character' == type ) {
+
+				  	component.find('.aesop-character-avatar').attr('src', attachment.url)
+
+		      	} else if ( 'chapter' == type ) {
+
+		      		component.find('.aesop-article-chapter').css({
+				  		'background-image': 'url('+ attachment.url +')'
+				  	});
+
+		      	}
+				/////////////
+				// EDN LIVE IMAGE EDITING COMPONENTS
+				////////////
+
+		    });
+
+		    // Finally, open the modal
+			lasso_file_frame.open();
 		});
 
 		// destroy panel if clicking close or overlay
@@ -11393,7 +11395,7 @@ jQuery(document).ready(function($){
 		// @todo - move this mess to it's own file
 		////////////
 
-		$('#lasso-component--settings__trigger').live('click', function(){
+		$(document).on('click', '#lasso-component--settings__trigger', function(){
 
 			var settings 	= $('#lasso--component__settings')
 
@@ -11607,15 +11609,14 @@ jQuery(document).ready(function($){
 			})
 
 			// VIDEO LIVE EDITOR /////////////////////
-			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('change blur',function(){
+			settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
 
-				src = $(this).val()
-				iSrc = component.find('.aesop-video-container')
+				val = $(this).val()
 
-				if ( iSrc.hasClass('vimeo') ) {
-					component.find('iframe').attr('src', '//player.vimeo.com/video/'+src+' ')
-				} else if ( iSrc.hasClass('youtube') ) {
-					component.find('iframe').attr('src', '//www.youtube.com/embed/'+src+'?rel=0&wmode=transparent')
+				if ( 'vimeo' == val ) {
+					component.find('iframe').attr('src', '//player.vimeo.com/video/'+val+' ')
+				} else if ( 'youtube' == val ) {
+					component.find('iframe').attr('src', '//www.youtube.com/embed/'+val+'?rel=0&wmode=transparent')
 				}
 
 			})
@@ -12787,7 +12788,7 @@ jQuery(document).ready(function($){
 
 			var data = {
 				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
-				postid: 		lasso_editor.postid,
+				postid: 		cdata['id'],
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
 				gallery_type:   $('#ase_gallery_type').val(),
@@ -12799,11 +12800,11 @@ jQuery(document).ready(function($){
 
 				if ( 'gallery-created' == response.data.message ) {
 
-					saveSequence( false, 4000, true );
+					saveSequence( false, 3000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
-					saveSequence( false, 4000 );
+					saveSequence( false, 3000 );
 					form.before(lasso_editor.refreshRequired);
 
 				} else {
@@ -12910,18 +12911,18 @@ jQuery(document).ready(function($){
 
 		});
 
-		/////////////
-		// POST OBJECT CHANGE - since 0.9.5
-		/////////////
-		$('#lasso--select-type').live('change',function() {
+	});
 
-			var val = $(this).val()
+	/////////////
+	// POST OBJECT CHANGE - since 0.9.5
+	/////////////
+	$('#lasso--select-type').live('change',function() {
 
-			$('input[name="object"]').val( val )
+		var val = $(this).val()
 
-			$(this).closest('.story-slug-option').find('label span:not(.lasso-util--help)').text( val )
-		});
+		$('input[name="object"]').val( val )
 
+		$(this).closest('.story-slug-option').find('label span:not(.lasso-util--help)').text( val )
 	});
 
 })( jQuery );
@@ -13027,6 +13028,43 @@ jQuery(document).ready(function($){
 })( jQuery );
 (function( $ ) {
 
+	$(document).on('submit', '.lasso--post-form', function(e) {
+
+		e.preventDefault();
+
+		var $this 	= $(this)
+		,	submit 	= $this.find('input[type="submit"]')
+		,	strings = lasso_editor.strings
+		,	data	= $this.serialize();
+
+		submit.val( strings.saving );
+
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+
+			if( true == response.success ) {
+
+				submit.val( strings.saved ).addClass('saved');
+
+				console.log(response)
+
+				setTimeout(function(){
+
+					submit.removeClass('saved');
+					submit.val( strings.save );
+
+				},1000);
+
+			}
+
+		});
+
+	});
+
+
+})( jQuery );
+
+(function( $ ) {
+
 	// dyanmically center modals vertically based on size of modal
 	jQuery(document).ready(function($){
 
@@ -13067,6 +13105,11 @@ jQuery(document).ready(function($){
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
+	,	clear     		= '<i id="lasso--clear-search" class="dashicons dashicons-dismiss"></i>'
+	,	clearItem   	= '#lasso--clear-search'
+	,	hideClass       = 'lasso--hide'
+	,	showClass       = 'lasso--show'
+	,	helper      	= '#lasso--helper'
 	,	page 			= 1
     ,   lastType        = 'post'
     ,   collection      = false
@@ -13284,25 +13327,49 @@ jQuery(document).ready(function($){
 
 		});
 
-	}).on('keyup','.lasso--search input',function( e ){ // live search - @since 0.9.5
+	}).on('keyup','#lasso--search-field',function( e ){ // live search - @since 0.9.5
 
 		// clear the previous timer
 		clearTimeout(timer)
 
-		var that        = this
-		,	val 		= $(this).val()
+		var key 		= e.which
+		,	that        = this
+		,	val 		= $.trim( $(this).val() )
+		,	valEqual    = val == $(that).val()
+		,	notEmpty    = '' !== val
 		,	type        = $('.active.lasso--show-objects').data('post-type')
-		,	url 		= api+'/'+type+'s?filter[s]='+val
+		,	url 		= api+'/'+type+'s?filter[s]='+val+'&filter[posts_per_page]=50'
+		,	input       = '#lasso--search-field'
 		,	results     = $('#lasso--results-found')
+		,	helperText  = lasso_editor.strings.helperText
+		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
 
 		// 800ms delay so we dont exectute excessively
 		timer = setTimeout(function() {
 
+			// don't proceed if the value is empty or not equal to itself
+			if ( !valEqual && !notEmpty )
+				return false;
+
+			// what if the user only types two characters?
+			if ( val.length == 2 && !$(helper).length ) {
+
+				destroyClose()
+				$(input).after( helperSpan )
+
+			}
+
 			// if we have more than 3 characters and if value is teh same
-			if ( val.length >= 3 && val == $(that).val() ) {
+			if ( val.length >= 3 || val.length >= 3 && 13 == key ) {
 
 				// append loading indicator
 				$(postList).prepend( loader );
+
+				// remove any helpers
+				$( helper ).fadeOut().remove();
+
+				// remove the cose
+				destroyClose();
 
 				// make the api request
 				$.getJSON( url, function( response ) {
@@ -13324,7 +13391,16 @@ jQuery(document).ready(function($){
 							$(postList).prepend( noResultsDiv )
 						}
 
+						// clear any close buttons
+						destroyClose();
+
 					} else {
+
+						// append close button
+						if ( !$( clearItem ).length ) {
+
+							$(input).after( clear )
+						}
 
 						// show how many results we have
 						results.text( response.length )
@@ -13332,9 +13408,11 @@ jQuery(document).ready(function($){
 						// loop through each object
 		                $.each( response, function ( i ) {
 
-		                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+		                    $(postList).append( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
 
 		                } );
+
+		                initScroll()
 		            }
 
 				});
@@ -13343,18 +13421,12 @@ jQuery(document).ready(function($){
 
 		}, 600);
 
-		// if there's no value then destroy the search
-		if ( val == '' ) {
-
-			destroySearch( type )
-
-		}
-
 	}).on('click','#lasso--search__toggle', function( e ) { // open close search
 
 		e.preventDefault()
 
-		var input = $('.lasso--search input')
+		var input = $('#lasso--search-field')
+
 
 		// toggle visible class
 		$('.lasso--search').toggleClass( 'lasso--search__visible' )
@@ -13367,7 +13439,21 @@ jQuery(document).ready(function($){
 			destroySearch('post')
 		}
 
-	})
+	}).on('click', clearItem, function(e){
+
+		e.preventDefault();
+		destroySearch('post');
+
+	});
+
+	/**
+	* 	Utility function destroy search close
+	*/
+	function destroyClose(){
+
+		$( clearItem ).remove();
+
+	}
 
 	/**
 	*	Helper fucntion to destroy the search
@@ -13383,10 +13469,16 @@ jQuery(document).ready(function($){
 		fetchPosts( type )
 
 		// clear previous seach term
-		$('.lasso--search input').val('').focusout() // weird bug with focusout not wokring
+		$( '#lasso--search-field' ).val('').focusout() // weird bug with focusout not wokring
 
 		// hide searh results
 		$('#lasso--results-found').parent().css('opacity',0)
+
+		// remove helper if any
+		$( helper ).remove();
+
+		// remove close
+		destroyClose()
 	}
 
 })( jQuery, Backbone, _, WP_API_Settings );

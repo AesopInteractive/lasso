@@ -91,6 +91,9 @@ function lasso_get_supported_theme_class() {
 		case 'zealot': // aesop
 			$out = '.zealot-entry-content';
 			break;
+		case 'fable': // aesop
+			$out = '.fable--entry-content';
+			break;
 		case 'worldview': // upthemes
 			$out = '.entry-content';
 			break;
@@ -218,79 +221,9 @@ function lasso_post_types() {
 
 }
 
-/**
-*	Get an array of addon data for the settings modal
-*	This is used by addons to add cool stuff to the settings modal as an additional tab
-*
-*	Example:
-*	add_filter('lasso_modal_tabs', 'try_tabs');
-*	function try_tabs( $tabs ){
-*		$tabs[] = array(
-*		  'name' => 'Tab',
-*		  'callback' => 'mycallbackfunction'
-*		);
-*
-*		return $tabs;
-*	}
-*	@since 0.9.4
-*/
-function lasso_get_modal_tabs(){
-
-	$tabs = array();
-
-	return apply_filters('lasso_modal_tabs', $tabs);
-
-}
-
-/**
-*	Build a side tabs to fit alongside the post settings modal
-*	This is used by addons to add cool stuff to the settings modal as an additional tab
-*
-*	@param $type string tab or content
-*	@uses lasso_get_modal_tabs()
-*	@uses lasso_modal_addons_content()
-*	@since 0.9.4
-*/
-function lasso_modal_addons( $type = 'tab' ){
-
-	$tabs = lasso_get_modal_tabs();
-	$out = '';
-
-	if ( $tabs ):
-
-		if ( 'tab' == $type ) {
-
-			$out = '<ul class="lasso--modal__tabs">';
-
-				$out .= '<li class="active-tab" data-addon-name="core">core</li>';
-
-				foreach ( $tabs as $tab ) {
-
-					if ( isset( $tab ) ) {
-
-						$out .= lasso_modal_addons_content( $tab, $type );
-					}
-				}
-
-			$out .= '</ul>';
-
-		} elseif ( 'content' == $type ) {
-
-
-			foreach ( $tabs as $tab ) {
-
-				if ( isset( $tab ) ) {
-					$out .= lasso_modal_addons_content( $tab , $type );
-				}
-			}
-
-		}
-
-	endif;
-
-	return !empty( $out ) ? $out : false;
-}
-
+////////////////////
+// INTERNAL
+////////////////////
 /**
 *	Used internally as a callback to build a tab or content area for modal addons
 *
@@ -309,9 +242,12 @@ function lasso_modal_addons_content( $tab = '', $type ){
 
 	} else if ( 'content' == $type ){
 
-		$content = is_callable( $tab['callback'] ) ? call_user_func($tab['callback']) : $tab['callback'];
+		$content = isset( $tab['content'] ) && is_callable( $tab['content'] ) ? call_user_func( $tab['content'] ) : false;
+		$options = isset( $tab['options'] ) && is_callable( $tab['options'] ) ? call_user_func( $tab['options'] ) : false;
 
-		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">%s</div>', $name, $content );
+		$out = sprintf( '<div class="lasso--modal__content not-visible" data-addon-content="%s">
+			%s%s
+			</div>', $name, $content, lasso_option_form( $name, $options ) );
 
 	}
 

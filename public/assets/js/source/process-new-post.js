@@ -84,18 +84,18 @@
 
 		});
 
-		/////////////
-		// POST OBJECT CHANGE - since 0.9.5
-		/////////////
-		$('#lasso--select-type').live('change',function() {
+	});
 
-			var val = $(this).val()
+	/////////////
+	// POST OBJECT CHANGE - since 0.9.5
+	/////////////
+	$('#lasso--select-type').live('change',function() {
 
-			$('input[name="object"]').val( val )
+		var val = $(this).val()
 
-			$(this).closest('.story-slug-option').find('label span:not(.lasso-util--help)').text( val )
-		});
+		$('input[name="object"]').val( val )
 
+		$(this).closest('.story-slug-option').find('label span:not(.lasso-util--help)').text( val )
 	});
 
 })( jQuery );

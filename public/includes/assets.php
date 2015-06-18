@@ -45,6 +45,7 @@ class assets {
 			$postid 			= get_the_ID();
 
 			$strings = array(
+				'save' 				=> __('Save','lasso'),
 				'saving' 			=> __('Saving...','lasso'),
 				'saved'				=> __('Saved!','lasso'),
 				'adding' 			=> __('Adding...','lasso'),
@@ -74,7 +75,8 @@ class assets {
 				'warning'			=> __('Oh snap!','laso'),
 				'cancelText'		=> __('O.K. got it!','lasso'),
 				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
-				'missingConfirm'	=> __('Update Settings', 'lasso')
+				'missingConfirm'	=> __('Update Settings', 'lasso'),
+				'helperText'		=> __('one more letter','lasso')
 			);
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';

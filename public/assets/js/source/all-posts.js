@@ -14,6 +14,11 @@
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
+	,	clear     		= '<i id="lasso--clear-search" class="dashicons dashicons-dismiss"></i>'
+	,	clearItem   	= '#lasso--clear-search'
+	,	hideClass       = 'lasso--hide'
+	,	showClass       = 'lasso--show'
+	,	helper      	= '#lasso--helper'
 	,	page 			= 1
     ,   lastType        = 'post'
     ,   collection      = false
@@ -231,25 +236,49 @@
 
 		});
 
-	}).on('keyup','.lasso--search input',function( e ){ // live search - @since 0.9.5
+	}).on('keyup','#lasso--search-field',function( e ){ // live search - @since 0.9.5
 
 		// clear the previous timer
 		clearTimeout(timer)
 
-		var that        = this
-		,	val 		= $(this).val()
+		var key 		= e.which
+		,	that        = this
+		,	val 		= $.trim( $(this).val() )
+		,	valEqual    = val == $(that).val()
+		,	notEmpty    = '' !== val
 		,	type        = $('.active.lasso--show-objects').data('post-type')
-		,	url 		= api+'/'+type+'s?filter[s]='+val
+		,	url 		= api+'/'+type+'s?filter[s]='+val+'&filter[posts_per_page]=50'
+		,	input       = '#lasso--search-field'
 		,	results     = $('#lasso--results-found')
+		,	helperText  = lasso_editor.strings.helperText
+		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
 
 		// 800ms delay so we dont exectute excessively
 		timer = setTimeout(function() {
 
+			// don't proceed if the value is empty or not equal to itself
+			if ( !valEqual && !notEmpty )
+				return false;
+
+			// what if the user only types two characters?
+			if ( val.length == 2 && !$(helper).length ) {
+
+				destroyClose()
+				$(input).after( helperSpan )
+
+			}
+
 			// if we have more than 3 characters and if value is teh same
-			if ( val.length >= 3 && val == $(that).val() ) {
+			if ( val.length >= 3 || val.length >= 3 && 13 == key ) {
 
 				// append loading indicator
 				$(postList).prepend( loader );
+
+				// remove any helpers
+				$( helper ).fadeOut().remove();
+
+				// remove the cose
+				destroyClose();
 
 				// make the api request
 				$.getJSON( url, function( response ) {
@@ -271,7 +300,16 @@
 							$(postList).prepend( noResultsDiv )
 						}
 
+						// clear any close buttons
+						destroyClose();
+
 					} else {
+
+						// append close button
+						if ( !$( clearItem ).length ) {
+
+							$(input).after( clear )
+						}
 
 						// show how many results we have
 						results.text( response.length )
@@ -279,9 +317,11 @@
 						// loop through each object
 		                $.each( response, function ( i ) {
 
-		                    $(postList).prepend( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+		                    $(postList).append( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
 
 		                } );
+
+		                initScroll()
 		            }
 
 				});
@@ -290,18 +330,12 @@
 
 		}, 600);
 
-		// if there's no value then destroy the search
-		if ( val == '' ) {
-
-			destroySearch( type )
-
-		}
-
 	}).on('click','#lasso--search__toggle', function( e ) { // open close search
 
 		e.preventDefault()
 
-		var input = $('.lasso--search input')
+		var input = $('#lasso--search-field')
+
 
 		// toggle visible class
 		$('.lasso--search').toggleClass( 'lasso--search__visible' )
@@ -314,7 +348,21 @@
 			destroySearch('post')
 		}
 
-	})
+	}).on('click', clearItem, function(e){
+
+		e.preventDefault();
+		destroySearch('post');
+
+	});
+
+	/**
+	* 	Utility function destroy search close
+	*/
+	function destroyClose(){
+
+		$( clearItem ).remove();
+
+	}
 
 	/**
 	*	Helper fucntion to destroy the search
@@ -330,10 +378,16 @@
 		fetchPosts( type )
 
 		// clear previous seach term
-		$('.lasso--search input').val('').focusout() // weird bug with focusout not wokring
+		$( '#lasso--search-field' ).val('').focusout() // weird bug with focusout not wokring
 
 		// hide searh results
 		$('#lasso--results-found').parent().css('opacity',0)
+
+		// remove helper if any
+		$( helper ).remove();
+
+		// remove close
+		destroyClose()
 	}
 
 })( jQuery, Backbone, _, WP_API_Settings );
