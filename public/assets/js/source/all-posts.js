@@ -11,13 +11,21 @@
 	,	noPostsText     = lasso_editor.strings.noPostsFound
 	,	body 			= $('body')
 	,	noPostsMessage  = '<li id="lasso--end-posts">'+noPostsText+'</li>'
+	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
+	,	clear     		= '<i id="lasso--clear-search" class="dashicons dashicons-dismiss"></i>'
+	,	clearItem   	= '#lasso--clear-search'
+	,	hideClass       = 'lasso--hide'
+	,	showClass       = 'lasso--show'
+	,	helper      	= '#lasso--helper'
 	,	page 			= 1
     ,   lastType        = 'post'
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
+    ,	api             = WP_API_Settings.root
+    ,	timer
 
 	// infinite load options
 	var options = {
@@ -92,6 +100,9 @@
                 //put back more button
                 $(postList).append( moreButton );
 
+                // show search filtering
+                $('.lasso--post-filtering').removeClass('not-visible').addClass('visible')
+
                 $( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
 
                 // re-init scroll
@@ -130,7 +141,7 @@
                 type: type,
                 filter: {
                     post_status: ['publish','draft','pending'],
-                    posts_per_page: 8,
+                    posts_per_page: 7,
                     author: author
                 }
             }
@@ -225,6 +236,158 @@
 
 		});
 
-	})
+	}).on('keyup','#lasso--search-field',function( e ){ // live search - @since 0.9.5
+
+		// clear the previous timer
+		clearTimeout(timer)
+
+		var key 		= e.which
+		,	that        = this
+		,	val 		= $.trim( $(this).val() )
+		,	valEqual    = val == $(that).val()
+		,	notEmpty    = '' !== val
+		,	type        = $('.active.lasso--show-objects').data('post-type')
+		,	url 		= api+'/'+type+'s?filter[s]='+val+'&filter[posts_per_page]=50'
+		,	input       = '#lasso--search-field'
+		,	results     = $('#lasso--results-found')
+		,	helperText  = lasso_editor.strings.helperText
+		,	helperSpan  = '<span id="lasso--helper">'+helperText+'</span>'
+
+		// 800ms delay so we dont exectute excessively
+		timer = setTimeout(function() {
+
+			// don't proceed if the value is empty or not equal to itself
+			if ( !valEqual && !notEmpty )
+				return false;
+
+			// what if the user only types two characters?
+			if ( val.length == 2 && !$(helper).length ) {
+
+				destroyClose()
+				$(input).after( helperSpan )
+
+			}
+
+			// if we have more than 3 characters and if value is teh same
+			if ( val.length >= 3 || val.length >= 3 && 13 == key ) {
+
+				// append loading indicator
+				$(postList).prepend( loader );
+
+				// remove any helpers
+				$( helper ).fadeOut().remove();
+
+				// remove the cose
+				destroyClose();
+
+				// make the api request
+				$.getJSON( url, function( response ) {
+
+					// remove current list of posts
+					$(postList).children().remove()
+
+					// show results
+					results.parent().css('opacity',1)
+
+					// count results and show
+					if ( response.length == 0 ) {
+
+						// results are empty int
+						results.text('0')
+
+						// results are empty placeholder
+						if ( !$('#lasso--empty-results').length ) {
+							$(postList).prepend( noResultsDiv )
+						}
+
+						// clear any close buttons
+						destroyClose();
+
+					} else {
+
+						// append close button
+						if ( !$( clearItem ).length ) {
+
+							$(input).after( clear )
+						}
+
+						// show how many results we have
+						results.text( response.length )
+
+						// loop through each object
+		                $.each( response, function ( i ) {
+
+		                    $(postList).append( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
+
+		                } );
+
+		                initScroll()
+		            }
+
+				});
+
+			}
+
+		}, 600);
+
+	}).on('click','#lasso--search__toggle', function( e ) { // open close search
+
+		e.preventDefault()
+
+		var input = $('#lasso--search-field')
+
+
+		// toggle visible class
+		$('.lasso--search').toggleClass( 'lasso--search__visible' )
+
+		// focus on input
+		input.focus()
+
+		// if the search isnt visible and not empty then destroy the search
+		if ( !$(this).parent().hasClass('lasso--search__visible') && input.val() !== '' ) {
+			destroySearch('post')
+		}
+
+	}).on('click', clearItem, function(e){
+
+		e.preventDefault();
+		destroySearch('post');
+
+	});
+
+	/**
+	* 	Utility function destroy search close
+	*/
+	function destroyClose(){
+
+		$( clearItem ).remove();
+
+	}
+
+	/**
+	*	Helper fucntion to destroy the search
+	*	@param type string the type of post to fetch (post or page)
+	*	@since 0.9.5
+	*/
+	function destroySearch( type ){
+
+		// remove teh children
+		$(postList).children().remove()
+
+		// fetch initial posts
+		fetchPosts( type )
+
+		// clear previous seach term
+		$( '#lasso--search-field' ).val('').focusout() // weird bug with focusout not wokring
+
+		// hide searh results
+		$('#lasso--results-found').parent().css('opacity',0)
+
+		// remove helper if any
+		$( helper ).remove();
+
+		// remove close
+		destroyClose()
+	}
 
 })( jQuery, Backbone, _, WP_API_Settings );

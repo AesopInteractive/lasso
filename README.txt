@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.4.1
+Stable tag: 0.9.5
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,15 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.5 =
+* added ability to search posts and pages within the all posts modal introduced with 0.9.4
+* added abilty to choose post type to create within new post creation modal
+* component now slides into view on settings click
+* fixed bug with video component not switching providers
+* fixed bug with galleries not saving gallery images properly
+* improved Meta API for developers wishing to integrate within Lasso's post settings
+* mobile style improvement - props @peiche
 
 = 0.9.4.1 =
 * fixed bug with automatic updates - props @pippinsplugins

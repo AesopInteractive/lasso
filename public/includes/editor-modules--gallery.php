@@ -58,7 +58,7 @@ function lasso_gallery_editor_module() {
 	<!-- Gallery Layout/Type Chooser -->
 	<div class="ase-gallery-opts ase-gallery-opts--type" >
 		<div data-option="gallery-type" class="ase-gallery-opts--single lasso-option">
-			<h3><?php _e( 'Gallery Type', 'lasso' );?></h3>
+			<label><?php _e( 'Gallery Type', 'lasso' );?></label>
 			<small class="lasso-option-desc"><?php _e( 'Select the type of gallery.', 'lasso' );?></small>
 			<fieldset>
 	      		<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="grid"><?php _e( 'Grid', 'lasso' );?></label>

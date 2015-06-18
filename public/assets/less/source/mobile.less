@@ -20,10 +20,13 @@
             width:100%;
             left:0;
             right:0;
+            .translate(0, 0); // This combined with left:0 removes centering. Without it, the toolbar has a negative margin.
+            height:auto; // Allow toolbar natural height and icon wrapping for extra small screens
+            bottom:auto; // Allow toolbar natural height and icon wrapping for extra small screens
         }
         .lasso--controls__right {
             z-index: 1000; // clears toolbar wrap
-            top:0;
+            top:auto; // keep on bottom so as to not overlap controls, which are now on the top. Change if toolbar is given enough left and right margin
             right:0;
 
             a {
