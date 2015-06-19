@@ -29,9 +29,9 @@ class revision implements api_action {
 	 */
 	public static function get( $data ) {
 		if ( isset( $data[ 'limit' ] ) ) {
-			$args[ 'post_per_page' ] = $data[ 'limit' ];
+			$args[ 'posts_per_page' ] = $data[ 'limit' ];
 		}else{
-			$args[ 'post_per_page' ] = 10;
+			$args[ 'posts_per_page' ] = 10;
 		}
 
 		$revisions = wp_get_post_revisions( $data[ 'postid' ], $args  );
