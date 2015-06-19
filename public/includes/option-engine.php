@@ -127,7 +127,7 @@ function lasso_option_form( $name = '', $options = array() ){
 	$nonce = wp_create_nonce('lasso-process-post-meta');
 	$key   = sprintf('_lasso_%s_settings', $name );
 
-	$out = sprintf('<form id="lasso--post-form-%s" class="lasso--post-form">', $name );
+	$out = sprintf('<form id="lasso--post-form" class="lasso--post-form">' );
 
 		$out .= lasso_option_fields( $name, $options );
 		$out .='<div class="form--bottom">';

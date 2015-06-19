@@ -13028,7 +13028,7 @@ jQuery(document).ready(function($){
 })( jQuery );
 (function( $ ) {
 
-	$(document).on('submit', '.lasso--post-form', function(e) {
+	$(document).on('submit', '#lasso--post-form', function(e) {
 
 		e.preventDefault();
 

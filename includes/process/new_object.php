@@ -77,9 +77,7 @@ class new_object implements api_action {
 	 * @return array Array of additional functions to use to authorize action.
 	 */
 	public static function auth_callbacks() {
-		$params[ 'process_new_object_post' ] = array(
-			'publish_posts'
-		);
+		$params[ 'process_new_object_post' ] = array();
 
 		return $params;
 
