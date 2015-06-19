@@ -58,7 +58,7 @@ class revision implements api_action {
 				self::$revisions[] = array(
 					'post_content' => $post->post_content,
 					'post_title' => $post->post_title,
-					'modified' => human_time_diff( $post->post_modified )
+					'modified' => human_time_diff( strtotime( $post->post_modified ) )
 				);
 			} );
 
