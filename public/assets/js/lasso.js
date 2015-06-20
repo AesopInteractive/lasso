@@ -13598,10 +13598,12 @@ jQuery(document).ready(function($){
 
                         });
 
+                        var total = revisions.length == 1 ? 1 : revisions.length -1;
+
 						// init slider
 					    $('#lasso--slider').slider({
 					      	min: 0,
-					      	max: 5,
+					      	max: total,
 					      	animate:'fast',
 					      	value: 0,
 						    slide: function( event, ui ) {
