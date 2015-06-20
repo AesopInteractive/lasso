@@ -13537,6 +13537,8 @@ jQuery(document).ready(function($){
         , 	previous
        	, 	total
 
+       	revisionList = $('#lasso--revision-list')
+
         // method to destroy the modal
         var destroyModal = function(){
             $('body').removeClass('lasso-modal-open');
@@ -13587,6 +13589,8 @@ jQuery(document).ready(function($){
                 	// show the button and slider
                 	$('#lasso--hide').show()
 
+                	revisionList = $('#lasso--revision-list')
+
                 	// if we have revisions
                     if ( 'object' == typeof response.data ) {
 
@@ -13594,7 +13598,7 @@ jQuery(document).ready(function($){
 
                         $.each( revisions, function( i, post )  {
 
-                            $('#lasso--revision-list').append( '<li>' + post.modified + '</li>' )
+                            revisionList.append( '<li>' + post.modified + '</li>' )
 
                         });
 
@@ -13611,6 +13615,8 @@ jQuery(document).ready(function($){
 						    }
 
 					    });
+
+					    revisionList.attr('data-count', total )
 
                         modalResizer();
 
