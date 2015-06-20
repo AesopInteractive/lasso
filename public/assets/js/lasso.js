@@ -13537,7 +13537,7 @@ jQuery(document).ready(function($){
         , 	previous
        	, 	total
 
-       	revisionList = $('#lasso--revision-list')
+       	revisionList = $('#lasso--revision-list');
 
         // method to destroy the modal
         var destroyModal = function(){
@@ -13548,7 +13548,7 @@ jQuery(document).ready(function($){
 
         // destroy loader
 		function destroyLoader(){
-			$('#lasso--loading').remove()
+			$('#lasso--loading').remove();
 		}
 
         //Update title/post content for a revision
@@ -13588,8 +13588,9 @@ jQuery(document).ready(function($){
             	// do we have a response
                 if ( true == response.success ) {
 
-                	revisionList = $('#lasso--revision-list')
-                	slider       = $('#lasso--slider')
+                	revisionList = $('#lasso--revision-list');
+                	slider       = $('#lasso--slider');
+                	lassoHide    = $('#lasso--hide');
 
                 	// remove any count classes
                 	$('body').removeClass (function (index, css) {
@@ -13597,10 +13598,10 @@ jQuery(document).ready(function($){
 					});
 
                 	// desroy the loader
-                	destroyLoader()
+                	destroyLoader();
 
                 	// show the button and slider
-                	$('#lasso--hide').show()
+                	lassoHide.show();
 
                 	// if we have revisions
                     if ( 'object' == typeof response.data && response.data.length ) {
@@ -13646,17 +13647,17 @@ jQuery(document).ready(function($){
 
 						} else {
 
-                        	$('#lasso--hide').hide()
-                        	innerModal.append( lasso_editor.noRevisionsDiv )
+                        	lassoHide.hide();
+                        	innerModal.append( lasso_editor.noRevisionsDiv );
 						}
 
-					    $('body').addClass('lasso--revision-count-'+revisions.length )
+					    $('body').addClass('lasso--revision-count-'+revisions.length );
 
                         modalResizer();
 
                     }else{
                     	$('#lasso--hide').hide()
-                       	innerModal.append( lasso_editor.noRevisionsDiv )
+                       	innerModal.append( lasso_editor.noRevisionsDiv );
                        	modalResizer();
                     }
 

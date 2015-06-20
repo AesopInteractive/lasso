@@ -8,7 +8,7 @@
         , 	previous
        	, 	total
 
-       	revisionList = $('#lasso--revision-list')
+       	revisionList = $('#lasso--revision-list');
 
         // method to destroy the modal
         var destroyModal = function(){
@@ -19,7 +19,7 @@
 
         // destroy loader
 		function destroyLoader(){
-			$('#lasso--loading').remove()
+			$('#lasso--loading').remove();
 		}
 
         //Update title/post content for a revision
@@ -59,8 +59,9 @@
             	// do we have a response
                 if ( true == response.success ) {
 
-                	revisionList = $('#lasso--revision-list')
-                	slider       = $('#lasso--slider')
+                	revisionList = $('#lasso--revision-list');
+                	slider       = $('#lasso--slider');
+                	lassoHide    = $('#lasso--hide');
 
                 	// remove any count classes
                 	$('body').removeClass (function (index, css) {
@@ -68,10 +69,10 @@
 					});
 
                 	// desroy the loader
-                	destroyLoader()
+                	destroyLoader();
 
                 	// show the button and slider
-                	$('#lasso--hide').show()
+                	lassoHide.show();
 
                 	// if we have revisions
                     if ( 'object' == typeof response.data && response.data.length ) {
@@ -117,17 +118,17 @@
 
 						} else {
 
-                        	$('#lasso--hide').hide()
-                        	innerModal.append( lasso_editor.noRevisionsDiv )
+                        	lassoHide.hide();
+                        	innerModal.append( lasso_editor.noRevisionsDiv );
 						}
 
-					    $('body').addClass('lasso--revision-count-'+revisions.length )
+					    $('body').addClass('lasso--revision-count-'+revisions.length );
 
                         modalResizer();
 
                     }else{
                     	$('#lasso--hide').hide()
-                       	innerModal.append( lasso_editor.noRevisionsDiv )
+                       	innerModal.append( lasso_editor.noRevisionsDiv );
                        	modalResizer();
                     }
 
