@@ -13600,7 +13600,9 @@ jQuery(document).ready(function($){
                 	$('#lasso--hide').show()
 
                 	// if we have revisions
-                    if ( 'object' == typeof response.data ) {
+                    if ( 'object' == typeof response.data && response.data.length ) {
+
+                    	console.log(response.data)
 
                         revisions = response.data;
 
@@ -13651,7 +13653,9 @@ jQuery(document).ready(function($){
                         modalResizer();
 
                     }else{
-                        //none found message??
+                    	$('#lasso--hide').hide()
+                       	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noResultsDiv )
+                       	modalResizer();
                     }
 
                 } else {
