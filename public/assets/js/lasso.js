@@ -13545,7 +13545,7 @@ jQuery(document).ready(function($){
         // method to destroy the modal
         var destroyModal = function(){
             $('body').removeClass('lasso-modal-open');
-            $('#lasso--post-settings__modal, #lasso--modal__overlay').remove();
+            $('#lasso--revision__modal').remove();
         };
 
         //Update title/post content for a revision
@@ -13622,11 +13622,16 @@ jQuery(document).ready(function($){
 
         });
 
-        // destroy modal if clicking close or overlay
-        $('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
-            e.preventDefault();
-            destroyModal();
-        });
+		// select a revision and start editing
+		$(document).on('click', '#lasso--select-revision', function(e){
+
+			e.preventDefault();
+
+			destroyModal();
+
+			$('#lasso--edit').trigger('click');
+
+		});
 
         /////////////////
         /// EXIT SETTINGS

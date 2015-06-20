@@ -709,13 +709,13 @@ function lasso_editor_options_blob() {
 function lasso_editor_revision_modal() {
 	ob_start();
 	?>
-		<div id="lasso--post-new__modal" class="lasso--modal lassoShowAnimate">
+		<div id="lasso--revision__modal" class="lasso--modal lassoShowAnimate">
 			<div class="lasso--modal__inner">
 				<div class="lasso--slider_wrap">
 					<div id="lasso--slider"></div>
 				</div>
 				<ul id="lasso--revision-list"></ul>
-				<a href="#" style="display:block;clear:left;" id="lasso--modal__close">select</a>
+				<a href="#" style="display:block;clear:left;" id="lasso--select-revision">select</a>
 			</div>
 		</div>
 	<?php
