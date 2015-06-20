@@ -711,11 +711,20 @@ function lasso_editor_revision_modal() {
 	?>
 		<div id="lasso--revision__modal" class="lasso--modal lassoShowAnimate">
 			<div class="lasso--modal__inner">
-				<div class="lasso--slider_wrap">
-					<div id="lasso--slider"></div>
+				<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
+
+				<div id="lasso--hide" style="display:none;" class="lasso--post-form">
+					<label><?php _e( 'Revisions', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Use the slider to view the revision live on the page.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+					<div class="lasso--slider_wrap">
+						<div id="lasso--slider"></div>
+					</div>
+					<ul id="lasso--revision-list"></ul>
+					<div class="lasso--btn-group">
+						<a href="#" class="lasso--btn-secondary" id="lasso--close-modal">Cancel</a>
+						<a href="#" class="lasso--btn-primary" id="lasso--select-revision">Select</a>
+					</div>
 				</div>
-				<ul id="lasso--revision-list"></ul>
-				<a href="#" style="display:block;clear:left;" id="lasso--select-revision">select</a>
+
 			</div>
 		</div>
 	<?php

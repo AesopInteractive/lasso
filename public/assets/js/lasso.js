@@ -13537,16 +13537,16 @@ jQuery(document).ready(function($){
         , 	previous
        	, 	total
 
-
-        /////////////////
-        /// MODAL LOGIC
-        ///////////////////
-
         // method to destroy the modal
         var destroyModal = function(){
             $('body').removeClass('lasso-modal-open');
             $('#lasso--revision__modal').remove();
         };
+
+        // destroy loader
+		function destroyLoader(){
+			$('#lasso--loading').remove()
+		}
 
         //Update title/post content for a revision
         var restoreRevision = function( revision_id ) {
@@ -13578,8 +13578,16 @@ jQuery(document).ready(function($){
 
             $.post( lasso_editor.ajaxurl, data, function(response) {
 
+            	// do we have a response
                 if ( true == response.success ) {
 
+                	// desroy the loader
+                	destroyLoader()
+
+                	// show the button and slider
+                	$('#lasso--hide').show()
+
+                	// if we have revisions
                     if ( 'object' == typeof response.data ) {
 
                         revisions = response.data;
@@ -13622,6 +13630,7 @@ jQuery(document).ready(function($){
 
         });
 
+
 		// select a revision and start editing
 		$(document).on('click', '#lasso--select-revision', function(e){
 
@@ -13630,6 +13639,11 @@ jQuery(document).ready(function($){
 			destroyModal();
 
 			$('#lasso--edit').trigger('click');
+
+		}).on('click','#lasso--close-modal',function(e){
+
+			e.preventDefault();
+			destroyModal();
 
 		});
 
