@@ -13573,7 +13573,9 @@ jQuery(document).ready(function($){
             // append revision modal
             $('body').append(lasso_editor.revisionModal);
 
-            $('#lasso--revision__modal .lasso--modal__inner').draggable({ cursor:'move', opacity:0.8 });
+            innerModal = $('#lasso--revision__modal .lasso--modal__inner');
+
+            innerModal.draggable({ cursor:'move', opacity:0.8 });
 
             data = {
                 action : 'process_revision_get',
@@ -13645,7 +13647,7 @@ jQuery(document).ready(function($){
 						} else {
 
                         	$('#lasso--hide').hide()
-                        	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noRevisionsDiv )
+                        	innerModal.append( lasso_editor.noRevisionsDiv )
 						}
 
 					    $('body').addClass('lasso--revision-count-'+revisions.length )
@@ -13654,7 +13656,7 @@ jQuery(document).ready(function($){
 
                     }else{
                     	$('#lasso--hide').hide()
-                       	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noRevisionsDiv )
+                       	innerModal.append( lasso_editor.noRevisionsDiv )
                        	modalResizer();
                     }
 
