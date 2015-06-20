@@ -28,6 +28,7 @@ class revision implements api_action {
 	 * @return array
 	 */
 	public static function get( $data ) {
+		$args = array();
 		if ( isset( $data[ 'limit' ] ) ) {
 			$args[ 'posts_per_page' ] = $data[ 'limit' ];
 		}else{
@@ -36,7 +37,7 @@ class revision implements api_action {
 
 		$revisions = wp_get_post_revisions( $data[ 'postid' ], $args  );
 		if ( is_array( $revisions )  && ! empty( $revisions )  ) {
-			self::set_revisions( $data[ 'postid' ] );
+			self::set_revisions( $data[ 'postid' ], $revisions );
 		}
 
 		return self::$revisions;
@@ -50,11 +51,12 @@ class revision implements api_action {
 	 * @since 0.9.5
 	 *
 	 * @param int $id The post ID to get the revisions for
+	 * @param obj $revisiosn The revisions for this post
 	 */
-	protected static function set_revisions( $id ) {
-		$_revisions = wp_get_post_revisions( $id  );
-		if ( is_array( $_revisions )  && ! empty( $_revisions )  ) {
-			array_walk( $_revisions, function ( $post, $i ) {
+	protected static function set_revisions( $id, $revisions ) {
+
+		if ( is_array( $revisions )  && ! empty( $revisions )  ) {
+			array_walk( $revisions, function ( $post, $i ) {
 				self::$revisions[] = array(
 					'post_content' => $post->post_content,
 					'post_title' => $post->post_title,
