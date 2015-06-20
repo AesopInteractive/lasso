@@ -59,7 +59,8 @@ class revision implements api_action {
 			self::$revisions[] = array(
 				'post_content' => $post->post_content,
 				'post_title' => $post->post_title,
-				'modified' => mysql2date('g:i a', $post->post_modified)
+				'modified_time' => mysql2date('g:i a', $post->post_modified),
+				'modified_date' => mysql2date('F j, Y', $post->post_modified)
 			);
 		} );
 

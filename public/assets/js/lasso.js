@@ -13600,7 +13600,7 @@ jQuery(document).ready(function($){
 
                         $.each( revisions, function( i, post )  {
 
-                            revisionList.append( '<li>' + post.modified + '</li>' )
+                            revisionList.append( '<li class="lasso--jump-revision" data-revision="'+i+'"><span class="lasso-util--help lasso-util--help-bottom" data-tooltip="'+post.modified_date+'">' + post.modified_time + '</span></li>' )
 
                         });
 
@@ -13617,6 +13617,16 @@ jQuery(document).ready(function($){
 						    }
 
 					    });
+
+					    // jump slider on marker click
+					    $('.lasso--jump-revision').on('click',function(e){
+
+					    	e.preventDefault();
+
+					    	$('#lasso--slider').slider( "value", $(this).data('revision') );
+
+					    	restoreRevision( $(this).data('revision') )
+					    })
 
 					    revisionList.attr('data-count', total )
 
