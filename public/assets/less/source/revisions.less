@@ -17,18 +17,19 @@
     left:-5%;
     position: relative;
     top:-2px;
+    .clearfix();
 
     li {
         padding:10px 0 0 0;
-        margin:0 10px;
         display:inline-block;
         font-family:@editor--font;
         font-size:@modal--font__size - 3;
         color:@modal--color-dark;
         position: relative;
         text-transform: uppercase;
-        width:42px;
         line-height:13px;
+        margin:0 auto;
+        position: relative;
 
         span {color:@modal--color-dark;}
 
@@ -54,13 +55,62 @@
         }
     }
 }
-#lasso--revision-list[data-count="4"] { li { margin:0 26px; } }
-#lasso--revision-list[data-count="3"] { li { margin:0 36px; } }
-#lasso--revision-list[data-count="2"] { li { margin:0 46px; } }
-#lasso--revision-list[data-count="1"] {
-    li {
-        float:right;
-    }
+
+#lasso--revision-list[data-count="6"]{
+    li { width:16.666666%; }
+    li[data-revision="0"] { left:2px; }
+    li[data-revision="1"] { left:2px; }
+    li[data-revision="2"] {  }
+    li[data-revision="3"] {  }
+    li[data-revision="4"] {  }
+    li[data-revision="5"] { right:-1px; }
+    li[data-revision="6"] { right:6px; }
+}
+
+// 5 revisions
+#lasso--revision-list[data-count="5"] {
+
+    li { width:20%; }
+
+    li[data-revision="0"] { left:-4px; }
+    li[data-revision="1"] { left:-2px; }
+    li[data-revision="2"] { left:0; }
+    li[data-revision="3"] { right:-2px; }
+    li[data-revision="4"] { right:-4px; }
+}
+
+// 4 revisions
+#lasso--revision-list[data-count="4"] {
+
+    li { width:25%; }
+
+    li[data-revision="0"] { left:-15px; }
+    li[data-revision="1"] { left:-4px; }
+    li[data-revision="2"] { right:-4px; }
+    li[data-revision="3"] { right:-15px; }
+}
+
+// 3 revisions
+#lasso--revision-list[data-count="3"] {
+
+    li { width:33.333%; }
+
+    li[data-revision="0"] { left:-29px; }
+    li[data-revision="1"] { left:0; }
+    li[data-revision="2"] { right:-29px; }
+}
+// 2 revisions
+#lasso--revision-list[data-count="2"] {
+
+    li { width:50%; }
+
+    li[data-revision="0"] { left:-60px; }
+    li[data-revision="1"] { right:-60px; }
+}
+
+// no revisions
+.lasso--revision-count-1 {
+
 }
 
 

@@ -59,6 +59,11 @@
                 	revisionList = $('#lasso--revision-list')
                 	slider       = $('#lasso--slider')
 
+                	// remove any count classes
+                	$('body').removeClass (function (index, css) {
+					    return (css.match (/(^|\s)lasso--revision-count-\S+/g) || []).join(' ');
+					});
+
                 	// desroy the loader
                 	destroyLoader()
 
@@ -70,39 +75,49 @@
 
                         revisions = response.data;
 
-                        $.each( revisions, function( i, post )  {
-
-                            revisionList.append( '<li class="lasso--jump-revision" data-revision="'+i+'"><span class="lasso-util--help lasso-util--help-bottom" data-tooltip="'+post.modified_date+'">' + post.modified_time + '</span></li>' )
-
-                        });
-
                         var total = revisions.length == 1 ? 1 : revisions.length -1;
 
-						// init slider and restore on slide
-					    slider.slider({
-					      	min: 0,
-					      	max: total,
-					      	animate:'fast',
-					      	value: 0,
-						    slide: function( event, ui ) {
-						        restoreRevision( ui.value )
-						    }
+                        if ( revisions.length !== 1 ) {
 
-					    });
+	                        $.each( revisions, function( i, post )  {
 
-					    // restore revision and sync slider on click
-					    $('.lasso--jump-revision').on('click',function(e){
+	                            revisionList.append( '<li class="lasso--jump-revision" data-revision="'+i+'"><span class="lasso-util--help lasso-util--help-bottom" data-tooltip="'+post.modified_date+'">' + post.modified_time + '</span></li>' )
 
-					    	e.preventDefault();
+	                        });
 
-					    	var val = $(this).data('revision');
+							// init slider and restore on slide
+						    slider.slider({
+						      	min: 0,
+						      	max: total,
+						      	animate:'fast',
+						      	value: 0,
+							    slide: function( event, ui ) {
+							        restoreRevision( ui.value )
+							    }
 
-					    	slider.slider( 'value', val );
+						    });
 
-					    	restoreRevision( val );
-					    })
+						    // restore revision and sync slider on click
+						    $('.lasso--jump-revision').on('click',function(e){
 
-					    revisionList.attr('data-count', total )
+						    	e.preventDefault();
+
+						    	var val = $(this).data('revision');
+
+						    	slider.slider( 'value', val );
+
+						    	restoreRevision( val );
+						    })
+
+						    revisionList.attr('data-count', total + 1 ) // because we start at 0
+
+						} else {
+
+                        	$('#lasso--hide').hide()
+                        	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noResultsDiv )
+						}
+
+					    $('body').addClass('lasso--revision-count-'+revisions.length )
 
                         modalResizer();
 
