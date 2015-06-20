@@ -1,5 +1,8 @@
 #lasso--revision__modal {
 
+    .lasso--slider_wrap {
+        padding:0 16px;
+    }
 }
 
 // revision list
@@ -9,20 +12,35 @@
     list-style:none;
     text-align: center;
     margin-bottom: @editor--padding;
+    width:110%;
+    left:-5%;
+    position: relative;
+    top:-2px;
 
     li {
-        padding:5px 0 0 0;
-        margin:0 12px 0 0;
+        padding:10px 0 0 0;
+        margin:0 12px;
         display:inline-block;
         font-family:@editor--font;
-        font-size:@modal--font__size - 2;
+        font-size:@modal--font__size - 3;
         color:@modal--color-dark;
         position: relative;
+        text-transform: uppercase;
+        width:38px;
+        line-height:13px;
+
+        &:first-child {
+            margin-left:0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
 
         &:before {
             content:'';
             height:5px;
-            border-right:1px solid @modal--color-dark;
+            border-right:1px solid darken(@modal--color-dark,33);
             width:1px;
             position: absolute;
             top:0;
