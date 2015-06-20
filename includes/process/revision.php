@@ -51,7 +51,7 @@ class revision implements api_action {
 	 * @since 0.9.5
 	 *
 	 * @param int $id The post ID to get the revisions for
-	 * @param obj $revisiosn The revisions for this post
+	 * @param obj $revisions The revisions for this post
 	 */
 	protected static function set_revisions( $id, $revisions ) {
 
