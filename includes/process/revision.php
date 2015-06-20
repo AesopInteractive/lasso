@@ -32,7 +32,7 @@ class revision implements api_action {
 		if ( isset( $data[ 'limit' ] ) ) {
 			$args[ 'posts_per_page' ] = $data[ 'limit' ];
 		}else{
-			$args[ 'posts_per_page' ] = 10;
+			$args[ 'posts_per_page' ] = 6; // we start at revision 0
 		}
 
 		$revisions = wp_get_post_revisions( $data[ 'postid' ], $args  );

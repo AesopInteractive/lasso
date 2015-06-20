@@ -58,9 +58,9 @@ function lasso_editor_controls() {
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-
-				<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary">R</a></li>
-
+				<?php if ( is_singular() && lasso_user_can() ) { ?>
+					<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+				<?php } ?>
 
 				<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
@@ -702,7 +702,7 @@ function lasso_editor_options_blob() {
 /**
  * Revisions modal
  *
- * @since 0.9.5
+ * @since 0.9.8
  *
  * @return string
  */
@@ -711,10 +711,11 @@ function lasso_editor_revision_modal() {
 	?>
 		<div id="lasso--post-new__modal" class="lasso--modal lassoShowAnimate">
 			<div class="lasso--modal__inner">
-				<div id="lasso--modal__close">
-					<a href="#">Close</a>
+				<div class="lasso--slider_wrap">
+					<div id="lasso--slider"></div>
 				</div>
-				<ul id="lasso-revisions-list"></ul>
+				<ul id="lasso--revision-list"></ul>
+				<a href="#" style="display:block;clear:left;" id="lasso--modal__close">select</a>
 			</div>
 		</div>
 	<?php
