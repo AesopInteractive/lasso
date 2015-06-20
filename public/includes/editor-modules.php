@@ -714,7 +714,8 @@ function lasso_editor_options_blob() {
 function lasso_editor_revision_modal() {
 	ob_start();
 	?>
-		<div id="lasso--revision__modal" class="lasso--modal lassoShowAnimate">
+		<div id="lasso--revision__modal" class="lasso--modal lassoShowAnimate ">
+
 			<div class="lasso--modal__inner">
 				<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
 

@@ -43,6 +43,8 @@
             // append revision modal
             $('body').append(lasso_editor.revisionModal);
 
+            $('#lasso--revision__modal .lasso--modal__inner').draggable({ cursor:'move', opacity:0.8});
+
             data = {
                 action : 'process_revision_get',
                 postid : lasso_editor.postid,
