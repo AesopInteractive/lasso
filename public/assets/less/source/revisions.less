@@ -1,0 +1,35 @@
+#lasso--revision__modal {
+
+}
+
+// revision list
+#lasso--revision-list {
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-align: center;
+    margin-bottom: @editor--padding;
+
+    li {
+        padding:5px 0 0 0;
+        margin:0 12px 0 0;
+        display:inline-block;
+        font-family:@editor--font;
+        font-size:@modal--font__size - 2;
+        color:@modal--color-dark;
+        position: relative;
+
+        &:before {
+            content:'';
+            height:5px;
+            border-right:1px solid @modal--color-dark;
+            width:1px;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            text-align: center;
+            margin:0 auto;
+        }
+    }
+}

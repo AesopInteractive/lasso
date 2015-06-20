@@ -13594,7 +13594,7 @@ jQuery(document).ready(function($){
 
                         $.each( revisions, function( i, post )  {
 
-                            $('#lasso--revision-list').append( '<li><a href="#" data-revision="'+i+'">' + post.modified + '</a></li>' )
+                            $('#lasso--revision-list').append( '<li>' + post.modified + '</li>' )
 
                         });
 
@@ -13602,7 +13602,6 @@ jQuery(document).ready(function($){
 					    $('#lasso--slider').slider({
 					      	min: 0,
 					      	max: 5,
-					      	step: 1,
 					      	animate:'fast',
 					      	value: 0,
 						    slide: function( event, ui ) {
