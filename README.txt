@@ -18,6 +18,10 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.6 =
+* fixed a bug introduced on the last update with new posts/pages being duplicated when created
+* fixed authors not being able to publish posts
+
 = 0.9.5 =
 * added ability to search posts and pages within the all posts modal introduced with 0.9.4
 * added abilty to choose post type to create within new post creation modal

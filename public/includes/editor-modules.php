@@ -67,10 +67,9 @@ function lasso_editor_controls() {
 					<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
-				<?php if ( 'off' == $post_new_disabled || empty( $post_new_disabled ) ) { ?>
+				<?php if ( ( 'off' == $post_new_disabled || empty( $post_new_disabled ) && lasso_user_can('publish_posts') ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
-
 
 				<?php do_action( 'lasso_editor_controls_after' );?>
 
