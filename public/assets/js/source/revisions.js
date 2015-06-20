@@ -56,13 +56,14 @@
             	// do we have a response
                 if ( true == response.success ) {
 
+                	revisionList = $('#lasso--revision-list')
+                	slider       = $('#lasso--slider')
+
                 	// desroy the loader
                 	destroyLoader()
 
                 	// show the button and slider
                 	$('#lasso--hide').show()
-
-                	revisionList = $('#lasso--revision-list')
 
                 	// if we have revisions
                     if ( 'object' == typeof response.data ) {
@@ -77,8 +78,8 @@
 
                         var total = revisions.length == 1 ? 1 : revisions.length -1;
 
-						// init slider
-					    $('#lasso--slider').slider({
+						// init slider and restore on slide
+					    slider.slider({
 					      	min: 0,
 					      	max: total,
 					      	animate:'fast',
@@ -89,14 +90,16 @@
 
 					    });
 
-					    // jump slider on marker click
+					    // restore revision and sync slider on click
 					    $('.lasso--jump-revision').on('click',function(e){
 
 					    	e.preventDefault();
 
-					    	$('#lasso--slider').slider( "value", $(this).data('revision') );
+					    	var val = $(this).data('revision');
 
-					    	restoreRevision( $(this).data('revision') )
+					    	slider.slider( 'value', val );
+
+					    	restoreRevision( val );
 					    })
 
 					    revisionList.attr('data-count', total )
@@ -119,7 +122,6 @@
             modalResizer();
 
         });
-
 
 		// select a revision and start editing
 		$(document).on('click', '#lasso--select-revision', function(e){
