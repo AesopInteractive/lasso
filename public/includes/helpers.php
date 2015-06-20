@@ -309,12 +309,37 @@ endif;
 */
 if ( !function_exists('lasso_editor_empty_results') ):
 
-	function lasso_editor_empty_results(){
+	function lasso_editor_empty_results( $type = 'posts' ){
 
-		$string = apply_filters('lasso_empty_state_message', __('No posts to show', 'lasso') );
-		$out = sprintf('<div id="lasso--empty-state" class="lasso--empty-state"><i class="lasso--empty-state-icon lasso-icon lasso-icon-file-text2"></i><p>%s</p></div>', $string );
+		if ( 'posts' == $type ) {
 
-		return $out;
+			$string = apply_filters('lasso_empty_state_message', __('No posts to show', 'lasso') );
+			$icon = 'lasso-icon-file-text2';
+			$button = false;
+
+		} elseif ( 'revision' == $type ) {
+
+			$string = apply_filters('lasso_empty_state_message', __('No revisions found', 'lasso') );
+			$icon = 'lasso-icon-history';
+			$button = sprintf('<a href="#" class="lasso--btn-secondary" id="lasso--close-modal">%s</a>', __('Close','lasso') );
+
+		}
+
+		return sprintf('<div id="lasso--empty-state" class="lasso--empty-state"><i class="lasso--empty-state-icon lasso-icon %s"></i><p>%s</p>%s</div>', $icon, $string, $button );
 	}
 
 endif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

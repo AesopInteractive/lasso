@@ -116,7 +116,7 @@
 						} else {
 
                         	$('#lasso--hide').hide()
-                        	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noResultsDiv )
+                        	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noRevisionsDiv )
 						}
 
 					    $('body').addClass('lasso--revision-count-'+revisions.length )
@@ -125,7 +125,7 @@
 
                     }else{
                     	$('#lasso--hide').hide()
-                       	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noResultsDiv )
+                       	$('#lasso--revision__modal .lasso--modal__inner').append( lasso_editor.noRevisionsDiv )
                        	modalResizer();
                     }
 
