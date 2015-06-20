@@ -42,25 +42,28 @@ function lasso_editor_controls() {
 		// CSS class if shortcodify or (Aesop Shortcode Conversion) is disabled
 		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
+		// user is capable
+		$is_capable = is_singular() && lasso_user_can();
+
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
 
 				<?php do_action( 'lasso_editor_controls_before' );
 
-				if ( is_singular() && lasso_user_can() ) { ?>
+				if ( $is_capable ) { ?>
 
 					<li id="lasso--edit" title="<?php esc_attr_e( 'Edit Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php }
+					<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
+						<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+					<?php }
 
-				if ( is_singular() && lasso_user_can() && ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) ) { ?>
-					<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-				<?php } ?>
+				} ?>
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php if ( is_singular() && lasso_user_can() && wp_revisions_enabled( $post ) ) { ?>
+				<?php if ( $is_capable && wp_revisions_enabled( $post ) ) { ?>
 					<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
