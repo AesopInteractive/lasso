@@ -55,16 +55,14 @@ class revision implements api_action {
 	 */
 	protected static function set_revisions( $id, $revisions ) {
 
-		if ( is_array( $revisions )  && ! empty( $revisions )  ) {
-			array_walk( $revisions, function ( $post, $i ) {
-				self::$revisions[] = array(
-					'post_content' => $post->post_content,
-					'post_title' => $post->post_title,
-					'modified' => human_time_diff( strtotime( $post->post_modified ) )
-				);
-			} );
+		array_walk( $revisions, function ( $post, $i ) {
+			self::$revisions[] = array(
+				'post_content' => $post->post_content,
+				'post_title' => $post->post_title,
+				'modified' => human_time_diff( strtotime( $post->post_modified ) )
+			);
+		} );
 
-		}
 	}
 
 	/**
