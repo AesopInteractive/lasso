@@ -15,6 +15,8 @@
 add_action( 'wp_footer', 'lasso_editor_controls' );
 function lasso_editor_controls() {
 
+	global $post;
+
 	if ( lasso_user_can('edit_posts') ) {
 
 		$status = get_post_status( get_the_ID() );
@@ -58,7 +60,7 @@ function lasso_editor_controls() {
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php if ( is_singular() && lasso_user_can() ) { ?>
+				<?php if ( is_singular() && lasso_user_can() && wp_revisions_enabled( $post ) ) { ?>
 					<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
