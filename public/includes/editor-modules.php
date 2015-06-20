@@ -711,6 +711,7 @@ function lasso_editor_options_blob() {
  * @return string
  */
 function lasso_editor_revision_modal() {
+
 	ob_start();
 	?>
 		<div id="lasso--revision__modal" class="lasso--modal lassoShowAnimate ">

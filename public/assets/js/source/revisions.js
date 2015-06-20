@@ -73,8 +73,6 @@
                 	// if we have revisions
                     if ( 'object' == typeof response.data && response.data.length ) {
 
-                    	console.log(response.data)
-
                         revisions = response.data;
 
                         var total = revisions.length == 1 ? 1 : revisions.length -1;
