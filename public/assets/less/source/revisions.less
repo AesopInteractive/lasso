@@ -2,8 +2,33 @@
 
     .lasso--slider_wrap {
         padding:0 16px;
+        margin-top:@editor--padding + 8;
     }
     .transition(opacity .15s ease);
+
+    .lasso--btn-group {
+        .lasso--btn-secondary {
+            .opacity(0.7);
+            .transition(opacity .15s ease);
+
+            &:hover {
+                .opacity(1);
+            }
+        }
+    }
+
+    .lasso-icon-move {
+        position: absolute;
+        top:@editor--padding + 5;
+        right:@editor--padding + 5;
+        color:darken(@modal--color-dark, 33);
+        font-size:@modal--font__size;
+
+        &:hover {
+            cursor:move;
+        }
+    }
+
 }
 
 // revision list
@@ -16,11 +41,11 @@
     width:110%;
     left:-5%;
     position: relative;
-    top:-2px;
+    top:-3px;
     .clearfix();
 
     li {
-        padding:10px 0 0 0;
+        padding:12px 0 0 0;
         display:inline-block;
         font-family:@editor--font;
         font-size:@modal--font__size - 3;

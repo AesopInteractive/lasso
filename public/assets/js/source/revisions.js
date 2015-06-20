@@ -29,9 +29,6 @@
                 $( lasso_editor.titleClass ).html( revision.post_title );
                 $( lasso_editor.article_object ).html( revision.post_content );
 
-                console.log('restored '+revision_id )
-            }else{
-                console.log( 'failed '+revision_id );
             }
         };
 
@@ -39,6 +36,9 @@
         $('#lasso--post-revisions').on('click',function(e){
 
             e.preventDefault();
+
+            // preent double clicking and opening
+            $(this).remove();
 
             // append revision modal
             $('body').append(lasso_editor.revisionModal);
@@ -81,7 +81,7 @@
 
 	                        $.each( revisions, function( i, post )  {
 
-	                            revisionList.append( '<li class="lasso--jump-revision" data-revision="'+i+'"><span class="lasso-util--help lasso-util--help-bottom" data-tooltip="'+post.modified_date+'">' + post.modified_time + '</span></li>' )
+	                            revisionList.append( '<li class="lasso--jump-revision" data-revision="'+i+'"><span class="lasso-util--help lasso-util--help-top" data-tooltip="'+post.modified_date+'">' + post.modified_time + '</span></li>' )
 
 	                        });
 
@@ -91,6 +91,7 @@
 						      	max: total,
 						      	animate:'fast',
 						      	value: 0,
+						      	zindex:999,
 							    slide: function( event, ui ) {
 							        restoreRevision( ui.value )
 							    }
