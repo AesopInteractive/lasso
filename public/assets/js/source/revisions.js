@@ -14,6 +14,7 @@
         var destroyModal = function(){
             $('body').removeClass('lasso-modal-open');
             $('#lasso--revision__modal').remove();
+            $('#lasso--post-revisions').show();
         };
 
         // destroy loader
@@ -38,7 +39,7 @@
             e.preventDefault();
 
             // preent double clicking and opening
-            $(this).remove();
+            $(this).hide();
 
             // append revision modal
             $('body').append(lasso_editor.revisionModal);
