@@ -154,6 +154,8 @@
 
 			$('#lasso--edit').trigger('click');
 
+			$(lasso_editor.article_object).before('<div id="lasso--notice" class="lasso--notice lasso--notice-warning">'+lasso_editor.strings.editingBackup+'</div>');
+
 		}).on('click','#lasso--close-modal',function(e){
 
 			e.preventDefault();

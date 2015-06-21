@@ -11977,6 +11977,9 @@ jQuery(document).ready(function($){
 			$(this).children().unwrap();
 		})
 
+		// remoe any notices
+		$('#lasso--notice').remove();
+
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
@@ -13682,6 +13685,8 @@ jQuery(document).ready(function($){
 			destroyModal();
 
 			$('#lasso--edit').trigger('click');
+
+			$(lasso_editor.article_object).before('<div id="lasso--notice" class="lasso--notice lasso--notice-warning">'+lasso_editor.strings.editingBackup+'</div>');
 
 		}).on('click','#lasso--close-modal',function(e){
 

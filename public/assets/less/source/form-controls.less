@@ -136,6 +136,30 @@
     }
 }
 
+// Notice
+.lasso--notice {
+    text-align: center;
+    max-width:@notice--width;
+    padding:@editor--padding;
+    color:white;
+    font-family: @editor--font;
+    font-size:@editor--font__size;
+    margin:@editor--padding auto;
+
+    &.lasso--notice-warning {
+        background:@editor--color__warning;
+    }
+    &.lasso--notice-info {
+        background:@editor--color__update;
+    }
+    &.lasso--notice-error {
+        background:@editor--color__error;
+    }
+    &.lasso--notice-success {
+        background:@editor--color__success;
+    }
+}
+
 
 // post status slider
 #lasso--slider {

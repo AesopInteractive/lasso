@@ -76,7 +76,8 @@ class assets {
 				'cancelText'		=> __('O.K. got it!','lasso'),
 				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
 				'missingConfirm'	=> __('Update Settings', 'lasso'),
-				'helperText'		=> __('one more letter','lasso')
+				'helperText'		=> __('one more letter','lasso'),
+				'editingBackup'  	=> __('You are currently editing a backup copy of this post.')
 			);
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
