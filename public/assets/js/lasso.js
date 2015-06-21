@@ -13534,7 +13534,8 @@ jQuery(document).ready(function($){
 
     $(document).ready(function(){
 
-        var revisions
+        var vars 		= lasso_editor
+        ,	revisions
         , 	revision_id = 0
         , 	next
         , 	previous
@@ -13559,8 +13560,9 @@ jQuery(document).ready(function($){
 
             if( revision_id in revisions ){
                 revision = revisions[ revision_id ];
-                $( lasso_editor.titleClass ).html( revision.post_title );
-                $( lasso_editor.article_object ).html( revision.post_content );
+                $( vars.titleClass ).html( revision.post_title );
+                $( vars.article_object ).html( revision.post_content );
+                $('body').attr('data-revision', revision_id );
 
             }
         };
@@ -13574,19 +13576,20 @@ jQuery(document).ready(function($){
             $(this).hide();
 
             // append revision modal
-            $('body').append(lasso_editor.revisionModal);
+            $('body').append(vars.revisionModal);
 
             innerModal = $('#lasso--revision__modal .lasso--modal__inner');
 
+            // make the modal draggable
             innerModal.draggable({ cursor:'move', opacity:0.8 });
 
             data = {
                 action : 'process_revision_get',
-                postid : lasso_editor.postid,
-                nonce : lasso_editor.nonce
+                postid : vars.postid,
+                nonce : vars.nonce
             };
 
-            $.post( lasso_editor.ajaxurl, data, function(response) {
+            $.post( vars.ajaxurl, data, function(response) {
 
             	// do we have a response
                 if ( true == response.success ) {
@@ -13596,9 +13599,7 @@ jQuery(document).ready(function($){
                 	lassoHide    = $('#lasso--hide');
 
                 	// remove any count classes
-                	$('body').removeClass (function (index, css) {
-					    return (css.match (/(^|\s)lasso--revision-count-\S+/g) || []).join(' ');
-					});
+                	removeRevisionCount();
 
                 	// desroy the loader
                 	destroyLoader();
@@ -13651,16 +13652,18 @@ jQuery(document).ready(function($){
 						} else {
 
                         	lassoHide.hide();
-                        	innerModal.append( lasso_editor.noRevisionsDiv );
+                        	innerModal.append( vars.noRevisionsDiv );
 						}
 
 					    $('body').addClass('lasso--revision-count-'+revisions.length );
+
+					    maybeRestoreCurrent();
 
                         modalResizer();
 
                     }else{
                     	$('#lasso--hide').hide()
-                       	innerModal.append( lasso_editor.noRevisionsDiv );
+                       	innerModal.append( vars.noRevisionsDiv );
                        	modalResizer();
                     }
 
@@ -13686,7 +13689,7 @@ jQuery(document).ready(function($){
 
 			$('#lasso--edit').trigger('click');
 
-			$(lasso_editor.article_object).before('<div id="lasso--notice" class="lasso--notice lasso--notice-warning">'+lasso_editor.strings.editingBackup+'</div>');
+			addBackupNotice();
 
 		}).on('click','#lasso--close-modal',function(e){
 
@@ -13706,6 +13709,33 @@ jQuery(document).ready(function($){
             }
 
         });
+
+        // restore teh current revision but only if a user is editing one
+        function maybeRestoreCurrent(){
+
+        	if( $('body').data('revision') ) {
+
+        		slider.slider('value', $('body').data('revision') )
+
+        	}
+        }
+
+        // add a backup notice if we're editing a backukp
+        function addBackupNotice(){
+
+        	if ( !$('#lasso--notice').length ) {
+
+				$(vars.article_object).before('<div id="lasso--notice" class="lasso--notice lasso--notice-warning">'+vars.strings.editingBackup+'</div>');
+			}
+        }
+
+        // remove/reset revisino count
+        function removeRevisionCount(){
+
+	        $('body').removeClass (function (index, css) {
+			    return (css.match (/(^|\s)lasso--revision-count-\S+/g) || []).join(' ');
+			});
+        }
 
     });
 
