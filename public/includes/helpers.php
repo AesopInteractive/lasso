@@ -255,10 +255,12 @@ function lasso_modal_addons_content( $tab = '', $type ){
 }
 
 /**
-*	Helper function to clean a sttring and replace spaces with dash
+*	Helper function to clean a string and replace spaces with dash
 *
 *	@param $string string content
 *	@since 0.9.4
+*
+* @return void|string
 */
 function lasso_clean_string( $string = '' ) {
 
@@ -266,6 +268,25 @@ function lasso_clean_string( $string = '' ) {
 		return;
 
 	return sanitize_text_field( strtolower( preg_replace('/[\s_]/', '-', $string ) ) );
+}
+
+/**
+ *	Helper function to switch - to _ after having.
+ *
+ * This is the evil twin of lasso_clean_string() and may or may not make your data forever unclean.
+ *
+ *	@param $string string content
+ *	@since 0.9.5
+ *
+ * @return void|string
+ */
+function lasso_unclean_string( $string = '' ) {
+
+	if ( empty( $string ) ) {
+		return;
+	}
+
+	return sanitize_text_field( strtolower( str_replace( '-', '_', $string ) ) );
 }
 
 
