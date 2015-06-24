@@ -19,8 +19,10 @@ Refer to owners manual
 == Changelog ==
 
 = 0.9.6 =
+* added the ability to access and restore post and page revisions
 * fixed a bug introduced on the last update with new posts/pages being duplicated when created
 * fixed authors not being able to publish posts
+* fixed a bug with Lasso Meta API not saving
 
 = 0.9.5 =
 * added ability to search posts and pages within the all posts modal introduced with 0.9.4
