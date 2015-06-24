@@ -15,6 +15,8 @@
 add_action( 'wp_footer', 'lasso_editor_controls' );
 function lasso_editor_controls() {
 
+	global $post;
+
 	if ( lasso_user_can('edit_posts') ) {
 
 		$status = get_post_status( get_the_ID() );
@@ -40,28 +42,34 @@ function lasso_editor_controls() {
 		// CSS class if shortcodify or (Aesop Shortcode Conversion) is disabled
 		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
+		// user is capable
+		$is_capable = is_singular() && lasso_user_can();
+
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
 
 				<?php do_action( 'lasso_editor_controls_before' );
 
-				if ( is_singular() && lasso_user_can() ) { ?>
+				if ( $is_capable ) { ?>
 
 					<li id="lasso--edit" title="<?php esc_attr_e( 'Edit Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 
-				<?php }
+					<?php if ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) { ?>
+						<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+					<?php }
 
-				if ( is_singular() && lasso_user_can() && ( 'off' == $post_settings_disabled || empty( $post_settings_disabled ) ) ) { ?>
-					<li id="lasso--post-settings" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
-				<?php } ?>
+				} ?>
 
 				<li id="lasso--post-all" title="<?php esc_attr_e( 'All Posts', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+
+				<?php if ( $is_capable && wp_revisions_enabled( $post ) ) { ?>
+					<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
+				<?php } ?>
 
 				<?php if ( ( 'off' == $post_new_disabled || empty( $post_new_disabled ) && lasso_user_can('publish_posts') ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
-
 
 				<?php do_action( 'lasso_editor_controls_after' );?>
 
@@ -682,7 +690,8 @@ function lasso_editor_options_blob() {
 			$return .= '<p data-option="content" class="lasso-option lasso-c-comp-text"><label>' . __( 'Content', 'lasso' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
 		}
 
-		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
+		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel
+</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
 		$return .= '<input class="component_type" type="hidden" name="component_type" value="">';
 		$return .= '<input type="hidden" name="unique" value="">';
 		$return .= '<input type="hidden" name="nonce" id="lasso-generator-nonce" value="'.$nonce.'" />';
@@ -692,4 +701,38 @@ function lasso_editor_options_blob() {
 	}
 
 	return $blob;
+}
+
+/**
+ * Revisions modal
+ *
+ * @since 0.9.8
+ *
+ * @return string
+ */
+function lasso_editor_revision_modal() {
+
+	ob_start();
+	?>
+		<div id="lasso--revision__modal" class="lasso--modal lassoShowAnimate ">
+
+			<div class="lasso--modal__inner">
+				<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>
+				<div id="lasso--hide" style="display:none;" class="lasso--post-form">
+					<i class="lasso-icon lasso-icon-move"></i>
+					<label><?php _e( 'Revisions', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Use the slider to view the revision live on the page.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+					<div class="lasso--slider_wrap">
+						<div id="lasso--slider"></div>
+					</div>
+					<ul id="lasso--revision-list"></ul>
+					<div class="lasso--btn-group lasso--btn-group-small">
+						<a href="#" class="lasso--btn-secondary" id="lasso--close-modal">Cancel</a>
+						<a href="#" class="lasso--btn-primary" id="lasso--select-revision">Select</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	<?php
+	return ob_get_clean();
 }

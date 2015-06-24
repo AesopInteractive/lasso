@@ -1,3 +1,10 @@
+.lasso--btn-primary {
+    .editor-btn-primary();
+}
+.lasso--btn-secondary {
+    .editor-btn-secondary();
+}
+
 .lasso--post-form {
 
     label {
@@ -110,6 +117,46 @@
     input[type="submit"] {
         .editor-btn-primary();
         float:right;
+    }
+}
+
+// button group
+.lasso--btn-group {
+    text-align: center;
+
+    a {
+        margin:0;
+        display: inline-block;
+    }
+
+    &.lasso--btn-group-small {
+        a{
+            font-size:14px;
+        }
+    }
+}
+
+// Notice
+.lasso--notice {
+    text-align: center;
+    max-width:@notice--width;
+    padding:@editor--padding;
+    color:white;
+    font-family: @editor--font;
+    font-size:@editor--font__size;
+    margin:@editor--padding auto;
+
+    &.lasso--notice-warning {
+        background:@editor--color__warning;
+    }
+    &.lasso--notice-info {
+        background:@editor--color__update;
+    }
+    &.lasso--notice-error {
+        background:@editor--color__error;
+    }
+    &.lasso--notice-success {
+        background:@editor--color__success;
     }
 }
 

@@ -1,0 +1,144 @@
+#lasso--revision__modal {
+
+    .lasso--slider_wrap {
+        padding:0 16px;
+        margin-top:@editor--padding + 8;
+    }
+    .transition(opacity .15s ease);
+
+    .lasso--btn-group {
+        .lasso--btn-secondary {
+            .opacity(0.7);
+            .transition(opacity .15s ease);
+
+            &:hover {
+                .opacity(1);
+            }
+        }
+    }
+
+    .lasso-icon-move {
+        position: absolute;
+        top:@editor--padding + 5;
+        right:@editor--padding + 5;
+        color:darken(@modal--color-dark, 33);
+        font-size:@modal--font__size;
+
+        &:hover {
+            cursor:move;
+        }
+    }
+
+}
+
+// revision list
+#lasso--revision-list {
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-align: center;
+    margin-bottom: @editor--padding;
+    width:110%;
+    left:-5%;
+    position: relative;
+    top:-3px;
+    .clearfix();
+
+    li {
+        padding:12px 0 0 0;
+        display:inline-block;
+        font-family:@editor--font;
+        font-size:@modal--font__size - 3;
+        color:@modal--color-dark;
+        position: relative;
+        text-transform: uppercase;
+        line-height:13px;
+        margin:0 auto;
+        position: relative;
+
+        span {color:@modal--color-dark;}
+
+        &:first-child {
+            margin-left:0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:before {
+            content:'';
+            height:5px;
+            border-right:1px solid darken(@modal--color-dark,33);
+            width:1px;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            text-align: center;
+            margin:0 auto;
+        }
+    }
+}
+
+#lasso--revision-list[data-count="6"]{
+    li { width:16.666666%; }
+    li[data-revision="0"] { left:2px; }
+    li[data-revision="1"] { left:2px; }
+    li[data-revision="2"] {  }
+    li[data-revision="3"] {  }
+    li[data-revision="4"] {  }
+    li[data-revision="5"] { right:-1px; }
+    li[data-revision="6"] { right:6px; }
+}
+
+// 5 revisions
+#lasso--revision-list[data-count="5"] {
+
+    li { width:20%; }
+
+    li[data-revision="0"] { left:-4px; }
+    li[data-revision="1"] { left:-2px; }
+    li[data-revision="2"] { left:0; }
+    li[data-revision="3"] { right:-2px; }
+    li[data-revision="4"] { right:-4px; }
+}
+
+// 4 revisions
+#lasso--revision-list[data-count="4"] {
+
+    li { width:25%; }
+
+    li[data-revision="0"] { left:-15px; }
+    li[data-revision="1"] { left:-4px; }
+    li[data-revision="2"] { right:-4px; }
+    li[data-revision="3"] { right:-15px; }
+}
+
+// 3 revisions
+#lasso--revision-list[data-count="3"] {
+
+    li { width:33.333%; }
+
+    li[data-revision="0"] { left:-29px; }
+    li[data-revision="1"] { left:0; }
+    li[data-revision="2"] { right:-29px; }
+}
+// 2 revisions
+#lasso--revision-list[data-count="2"] {
+
+    li { width:50%; }
+
+    li[data-revision="0"] { left:-60px; }
+    li[data-revision="1"] { right:-60px; }
+}
+
+// no revisions
+.lasso--revision-count-1 {
+
+}
+
+
+
+
+
