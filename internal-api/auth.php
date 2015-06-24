@@ -150,10 +150,11 @@ class auth {
 
 		if ( isset( $_POST[ 'gallery_id' ] ) ) {
 			$action = $_POST[ 'gallery_id' ];
-		}elseif( isset( $_POST[ 'process_tour_hide' ] ) && isset( $_POST[ 'user_id' ] ) ) {
-			$action = $_POST[ 'user_id' ];
-		}
-		elseif ( isset( $_POST[ 'post_id' ] ) ) {
+		}elseif( isset( $_POST[ 'action' ] ) && 'process_tour_hide' == $_POST[ 'action'] ) {
+			$action = get_current_user_id();
+		}elseif( iiset( $_POST[ 'action' ] ) && 'process_new-object_post' == $_POST[ 'action' ] ) {
+			$action = 'lasso-editor-new-post';
+		}elseif ( isset( $_POST[ 'post_id' ] ) ) {
 			$action = $_POST[ 'post_id' ];
 		}elseif( isset( $_POST[ 'postid' ] ) ) {
 			$action = $_POST[ 'postid' ];

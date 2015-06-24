@@ -207,7 +207,7 @@ function lasso_editor_text_toolbar() {
  */
 function lasso_editor_settings_toolbar() {
 
-	$delete_nonce = wp_create_nonce( 'lasso-delete-nonce' );
+	$delete_nonce = wp_create_nonce( get_the_ID() );
 
 	ob_start();
 
@@ -275,7 +275,7 @@ function lasso_editor_component_modal() {
 	$postid = get_the_ID();
 
 	$status = get_post_status( $postid );
-	$nonce = wp_create_nonce( 'lasso-update-post-settings' );
+	$nonce = wp_create_nonce( $postid );
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_modal_settings_classes', '' );
@@ -546,7 +546,7 @@ function lasso_editor_wpimg_edit() {
  */
 function lasso_map_form_footer() {
 
-	$nonce = wp_create_nonce( 'lasso-process-map' );
+	$nonce = wp_create_nonce( get_the_ID() );
 
 	ob_start();
 

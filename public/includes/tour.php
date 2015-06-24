@@ -27,7 +27,7 @@ class tour {
 
 			global $post;
 
-			$nonce = wp_create_nonce( 'lasso-editor-tour' );
+			$nonce = wp_create_nonce( get_current_user_ID() );
 
 			// let users add custom css classes
 			$custom_classes = apply_filters( 'lasso_modal_tour_classes', '' );

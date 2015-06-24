@@ -268,7 +268,6 @@ function lasso_clean_string( $string = '' ) {
 	return sanitize_text_field( strtolower( preg_replace('/[\s_]/', '-', $string ) ) );
 }
 
-
 ////////////////////
 // PLUGGABLE
 ////////////////////

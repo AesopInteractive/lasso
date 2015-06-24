@@ -124,7 +124,7 @@ function lasso_option_form( $name = '', $options = array() ){
 	if ( empty( $name ) || empty( $options ) || !is_array( $options ) )
 		return;
 
-	$nonce = wp_create_nonce('lasso-process-post-meta');
+	$nonce = wp_create_nonce(get_the_ID());
 	$key   = sprintf('_lasso_%s_settings', $name );
 
 	$out = sprintf('<form id="lasso--post-form-%s" class="lasso--post-form">', $name );
