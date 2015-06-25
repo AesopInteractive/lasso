@@ -13312,7 +13312,7 @@ jQuery(document).ready(function($){
 			var data = {
 				action: 		'process_delete_post',
 				postid: 		$this.closest('a').data('postid'),
-				nonce: 			lasso_editor.nonce
+				nonce: 			lasso_editor.deletePost
 			}
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
