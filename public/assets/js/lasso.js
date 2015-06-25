@@ -12943,7 +12943,7 @@ jQuery(document).ready(function($){
 				action: 		'process_title-update_post',
 				postid: 		lasso_editor.postid,
 				title:          $.trim( target.text() ),
-				nonce: 			lasso_editor.titleNonce
+				nonce: 			lasso_editor.nonce
 			}
 
 			/////////////
@@ -13312,7 +13312,7 @@ jQuery(document).ready(function($){
 			var data = {
 				action: 		'process_delete_post',
 				postid: 		$this.closest('a').data('postid'),
-				nonce: 			lasso_editor.deletePost
+				nonce: 			lasso_editor.nonce
 			}
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
@@ -13482,6 +13482,7 @@ jQuery(document).ready(function($){
 	}
 
 })( jQuery, Backbone, _, WP_API_Settings );
+
 (function( $ ) {
 
 	$(document).ready(function(){

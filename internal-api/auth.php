@@ -147,13 +147,25 @@ class auth {
 	 * @return bool
 	 */
 	protected function check_nonce() {
-		if ( isset( $this->callback_instance->nonce_action ) ) {
-			$nonce = $this->callback_instance->nonce_action;
+		if( in_array( $_POST[ 'action' ], array(
+			'process-save-title',
+			'process_save_content',
+			'process_save_publish-content',
+			'process_delete_post'
+		) ) && ( isset( $_POST[ 'postid' ] ) || isset( $_POST[ 'post_id' ] ) ) )  {
+			if ( isset( $_POST[ 'postid' ] ) ) {
+				$action = $_POST[ 'postid' ];
+			}else{
+				$action = $_POST[ 'post_id' ];
+			}
+		}
+		elseif ( isset( $this->callback_instance->nonce_action ) ) {
+			$action = $this->callback_instance->nonce_action;
 		}else{
-			$nonce = 'lasso_editor';
+			$action = 'lasso_editor';
 		}
 
-		return wp_verify_nonce( $_POST[ 'nonce' ], $nonce );
+		return wp_verify_nonce( $_POST[ 'nonce' ], $action );
 
 	}
 

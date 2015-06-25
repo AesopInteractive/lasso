@@ -85,6 +85,7 @@ class assets {
 			$gallery_nonce_action = $gallery_class->nonce_action;
 			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
 
+			$main_lasso_nonce = wp_create_nonce( $postid );
 			// localized objects
 			$objects = array(
 				'ajaxurl' 			=> esc_url( $api_url ),
@@ -103,7 +104,7 @@ class assets {
 				'can_publish_posts'	=> current_user_can('publish_posts'),
 				'can_publish_pages'	=> current_user_can('publish_pages'),
 				'author'			=> is_user_logged_in() ? get_current_user_ID() : false,
-				'nonce'				=> wp_create_nonce('lasso_editor'),
+				'nonce'				=> $main_lasso_nonce,
 				'handle'			=> lasso_editor_settings_toolbar(),
 				'toolbar'			=> lasso_editor_text_toolbar(),
 				'toolbarHeadings'   => $toolbar_headings,

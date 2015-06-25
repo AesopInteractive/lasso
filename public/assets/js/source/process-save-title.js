@@ -14,7 +14,7 @@
 				action: 		'process_title-update_post',
 				postid: 		lasso_editor.postid,
 				title:          $.trim( target.text() ),
-				nonce: 			lasso_editor.titleNonce
+				nonce: 			lasso_editor.nonce
 			}
 
 			/////////////
