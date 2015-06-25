@@ -11,6 +11,16 @@ use lasso\internal_api\api_action;
 class delete implements api_action {
 
 	/**
+	 * The nonce action for this request.
+	 *
+	 * @since 0.9.3
+	 *
+	 * @var string
+	 */
+	public $nonce_action = 'lasso_delete_post';
+
+
+	/**
 	 * Process the post delete
 	 *
 	 * @since 1.0

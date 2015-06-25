@@ -150,8 +150,7 @@ class auth {
 		if( in_array( $_POST[ 'action' ], array(
 			'process-save-title',
 			'process_save_content',
-			'process_save_publish-content',
-			'process_delete_post'
+			'process_save_publish-content'
 		) ) && ( isset( $_POST[ 'postid' ] ) || isset( $_POST[ 'post_id' ] ) ) )  {
 			if ( isset( $_POST[ 'postid' ] ) ) {
 				$action = $_POST[ 'postid' ];
