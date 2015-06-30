@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.5
+Stable tag: 0.9.6
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,12 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.6 =
+* added the ability to access and restore post and page revisions
+* fixed a bug introduced on the last update with new posts/pages being duplicated when created
+* fixed authors not being able to publish posts
+* fixed a bug with Lasso Meta API not saving
 
 = 0.9.5 =
 * added ability to search posts and pages within the all posts modal introduced with 0.9.4

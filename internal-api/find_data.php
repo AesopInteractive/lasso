@@ -53,6 +53,15 @@ class find_data {
 		$data = array();
 		if ( is_array( $_POST ) ) {
 			$params = $callback_instance::params();
+
+			/**
+			 * Add fields that can be saved.
+			 *
+			 * @since 0.9.5
+			 *
+			 * @param array $params Array of params in form of $params[ 'action_name' ][ 'POST_field' ] = 'callback_function_for_sanatizing' ]
+			 */
+			$params = apply_filters( 'lasso_api_params', $params );
 			if ( is_array( $params ) && isset( $params[ $action ] ) && is_array( $params[ $action ] ) ) {
 				$params = $params[ $action ];
 				foreach( $params as $key => $callback ) {

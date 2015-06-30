@@ -255,10 +255,12 @@ function lasso_modal_addons_content( $tab = '', $type ){
 }
 
 /**
-*	Helper function to clean a sttring and replace spaces with dash
+*	Helper function to clean a string and replace spaces with dash
 *
 *	@param $string string content
 *	@since 0.9.4
+*
+* @return void|string
 */
 function lasso_clean_string( $string = '' ) {
 
@@ -266,6 +268,25 @@ function lasso_clean_string( $string = '' ) {
 		return;
 
 	return sanitize_text_field( strtolower( preg_replace('/[\s_]/', '-', $string ) ) );
+}
+
+/**
+ *	Helper function to switch - to _ after having.
+ *
+ * This is the evil twin of lasso_clean_string() and may or may not make your data forever unclean.
+ *
+ *	@param $string string content
+ *	@since 0.9.5
+ *
+ * @return void|string
+ */
+function lasso_unclean_string( $string = '' ) {
+
+	if ( empty( $string ) ) {
+		return;
+	}
+
+	return sanitize_text_field( strtolower( str_replace( '-', '_', $string ) ) );
 }
 
 
@@ -309,12 +330,37 @@ endif;
 */
 if ( !function_exists('lasso_editor_empty_results') ):
 
-	function lasso_editor_empty_results(){
+	function lasso_editor_empty_results( $type = 'posts' ){
 
-		$string = apply_filters('lasso_empty_state_message', __('No posts to show', 'lasso') );
-		$out = sprintf('<div id="lasso--empty-state" class="lasso--empty-state"><i class="lasso--empty-state-icon lasso-icon lasso-icon-file-text2"></i><p>%s</p></div>', $string );
+		if ( 'posts' == $type ) {
 
-		return $out;
+			$string = apply_filters('lasso_empty_state_message', __('No posts to show', 'lasso') );
+			$icon = 'lasso-icon-file-text2';
+			$button = false;
+
+		} elseif ( 'revision' == $type ) {
+
+			$string = apply_filters('lasso_empty_state_message', __('No revisions found', 'lasso') );
+			$icon = 'lasso-icon-history';
+			$button = sprintf('<a href="#" class="lasso--btn-secondary" id="lasso--close-modal">%s</a>', __('Close','lasso') );
+
+		}
+
+		return sprintf('<div id="lasso--empty-state" class="lasso--empty-state"><i class="lasso--empty-state-icon lasso-icon %s"></i><p>%s</p>%s</div>', $icon, $string, $button );
 	}
 
 endif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

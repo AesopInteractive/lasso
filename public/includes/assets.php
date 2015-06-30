@@ -76,7 +76,8 @@ class assets {
 				'cancelText'		=> __('O.K. got it!','lasso'),
 				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
 				'missingConfirm'	=> __('Update Settings', 'lasso'),
-				'helperText'		=> __('one more letter','lasso')
+				'helperText'		=> __('one more letter','lasso'),
+				'editingBackup'  	=> __('You are currently editing a backup copy of this post.')
 			);
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
@@ -130,10 +131,12 @@ class assets {
 				'postCategories'    => lasso_get_objects('category'),
 				'postTags'    		=> lasso_get_objects('tag'),
 				'noResultsDiv'		=> lasso_editor_empty_results(),
+				'noRevisionsDiv'	=> lasso_editor_empty_results('revision'),
 				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
-				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true )
+				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true ),
+				'revisionModal' 	=> lasso_editor_revision_modal()
 			);
 
 

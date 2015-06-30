@@ -127,7 +127,7 @@ function lasso_option_form( $name = '', $options = array() ){
 	$nonce = wp_create_nonce('lasso-process-post-meta');
 	$key   = sprintf('_lasso_%s_settings', $name );
 
-	$out = sprintf('<form id="lasso--post-form-%s" class="lasso--post-form">', $name );
+	$out = sprintf('<form id="lasso--post-form" class="lasso--post-form">' );
 
 		$out .= lasso_option_fields( $name, $options );
 		$out .='<div class="form--bottom">';
@@ -203,7 +203,7 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 
 	$desc = isset( $option['desc'] ) ? $option['desc'] : false;
 
-	$value = lasso_option_engine_get_option( get_the_ID(), $name, 'text' );
+	$value = get_post_meta( get_the_id(), $option[ 'id' ], true );
 
 	switch ( $type ) {
 		case 'text':
@@ -221,29 +221,3 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 
 }
 
-
-////////////////////////////
-// HELPERs
-////////////////////////////
-
-/**
-*	Get a specific field option from post meta
-*
-*	@param $post_id int id of the post
-*	@param $name string the name of the tab registered
-*	@param $type string the type of field to get (text, textarea)
-*	@return string
-*	@since 5.0
-*/
-function lasso_option_engine_get_option( $post_id = 0, $name = '' ) {
-
-	if ( empty( $post_id ) )
-		$post_id = get_the_ID();
-
-	if ( empty( $name ) )
-		return;
-
-	$val = get_post_meta( $post_id, '_lasso_'.$name.'_settings', true );
-
-	return !empty( $out ) ? $out : false;
-}

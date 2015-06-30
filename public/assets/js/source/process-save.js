@@ -78,6 +78,9 @@ jQuery(document).ready(function($){
 			$(this).children().unwrap();
 		})
 
+		// remoe any notices
+		$('#lasso--notice').remove();
+
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
