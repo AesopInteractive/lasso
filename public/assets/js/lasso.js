@@ -11614,9 +11614,16 @@ jQuery(document).ready(function($){
 				val = $(this).val()
 
 				if ( 'vimeo' == val ) {
+
 					component.find('iframe').attr('src', '//player.vimeo.com/video/'+val+' ')
+
+					initVideoProvider( settings, component, 'vimeo' );
+
 				} else if ( 'youtube' == val ) {
+
 					component.find('iframe').attr('src', '//www.youtube.com/embed/'+val+'?rel=0&wmode=transparent')
+
+					initVideoProvider( settings, component, 'youtube' );
 				}
 
 			})
@@ -11655,6 +11662,29 @@ jQuery(document).ready(function($){
 
 				});
 		});
+
+		/**
+		*
+		*	Swap the video player with the correct id
+		*	@param object the global settings for this component
+		*	@param object the component we're editing
+		*	@param type string the type of video (vimeo, youtube)
+		*	@since 0.9.7
+		*/
+		function initVideoProvider( settings, component, type ){
+
+			settings.find('.lasso-video-id > #lasso-generator-attr-id').live('change',function(){
+
+				video_id = $(this).val()
+
+				if ( 'vimeo' == type ) {
+					component.find('iframe').attr('src', '//player.vimeo.com/video/'+video_id+' ')
+				} else if ( 'youtube' == type ) {
+					component.find('iframe').attr('src', '//www.youtube.com/embed/'+video_id+'?rel=0&wmode=transparent')
+				}
+
+			})
+		}
 
 
 	});
