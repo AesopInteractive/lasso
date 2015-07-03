@@ -45,6 +45,7 @@ class load_admin {
 
 		add_action( 'admin_head',  			array( $this, 'admin_assets' ) );
 		add_action( 'admin_notices', 		array( $this, 'license_nag' ) );
+		add_action( 'admin_head', 			array( $this, 'dismiss_nag' ) );
 		add_filter( 'plugin_row_meta',    	array( $this, 'plugin_meta' ), 10, 2 );
 
 		if ( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
@@ -143,24 +144,38 @@ class load_admin {
 		$message_inactive  = apply_filters('lasso_inactive_license_message','It looks like your license key has not yet been activated.');
 
 		$license_link 	  = sprintf('<a href="%s">Update License</a>', esc_url( add_query_arg( array( 'page' => 'lasso-license' ), admin_url('admin.php') ) ) );
-		$dismiss_link     = sprintf('<a href="%s" id="lasso-dismiss-notice" class="notice-dismiss"><span class="screen-reader-text">%s</span></a>', esc_url( add_query_arg( 'lasso-notice', 'dismiss' ) ), __('Dismiss this notice.','lasso') );
+		$dismiss_link     = sprintf('<a style="text-decoration:none;" href="%s" id="lasso-dismiss-notice" class="notice-dismiss"><span class="screen-reader-text">%s</span></a>', esc_url( add_query_arg( 'lasso-notice', 'dismiss' ) ), __('Dismiss this notice.','lasso') );
 
-		if ( current_user_can('manage_options') && !$welcome && !defined( 'LASSO_AGENCY_MODE') ) {
+		$not_hidden       = get_user_meta( get_current_user_ID(), 'lasso_license_nag_dismissed', true );
+
+		if ( current_user_can('manage_options') && !$welcome && !defined( 'LASSO_AGENCY_MODE') && !$not_hidden ) {
 
 			if ( empty( $license ) ) {
 
-        		printf('<div class="error"><p>%s %s</p>%s</div>', $message_empty, $license_link, $dismiss_link );
+        		printf('<div class="lasso-notice error" style="position:relative;"><p>%s %s</p>%s</div>', $message_empty, $license_link, $dismiss_link );
 
         	} else if ( 'invalid' == $status ){ // license key entered wrong or something
 
-				printf('<div class="error"><p>%s %s</p>%s</div>', $message_invalid, $license_link , $dismiss_link );
+				printf('<div class="lasso-notice error" style="position:relative;"><p>%s %s</p>%s</div>', $message_invalid, $license_link , $dismiss_link );
 
         	} else if ( empty( $status ) ){ // license key saved but not activated
 
-				printf('<div class="error"><p>%s %s</p>%s</div>', $message_inactive, $license_link, $dismiss_link );
+				printf('<div class="lasso-notice error" style="position:relative;"><p>%s %s</p>%s</div>', $message_inactive, $license_link, $dismiss_link );
 
         	}
 		}
 
+	}
+
+	/**
+	*  Process hiding the dimiss
+	*
+	* @since 0.9.7
+	*/
+	public function dismiss_nag() {
+
+		if ( isset( $_GET['lasso-notice'] ) && 'dismiss' == $_GET['lasso-notice'] && current_user_can('manage_options') ) {
+			update_user_meta( get_current_user_id(), 'lasso_license_nag_dismissed', 1 );
+		}
 	}
 }
