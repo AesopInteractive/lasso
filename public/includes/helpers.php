@@ -305,11 +305,10 @@ if ( !function_exists( 'lasso_user_can' ) ):
 	function lasso_user_can( $action = '', $postid = 0 ) {
 
 		if ( empty( $action ) )
-			$action = 'edit_post';
+			$action = 'edit_posts';
 
 		if ( empty( $postid ) )
 			$postid = get_the_ID();
-
 		if ( is_user_logged_in() && current_user_can( $action, $postid ) ) {
 
 			return true;
