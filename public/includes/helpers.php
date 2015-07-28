@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Grab an optoin from our settings
+ * Grab an option from our settings
  *
  * If we're on multsite we'll grab the site option which is stored in the main blogs site option tables, otherwise
  * we'll grab the option which is stored on the single blogs option tables
@@ -305,7 +305,7 @@ if ( !function_exists( 'lasso_user_can' ) ):
 	function lasso_user_can( $action = '', $postid = 0 ) {
 
 		if ( empty( $action ) )
-			$action = 'edit_post';
+			$action = 'edit_posts';
 
 		if ( empty( $postid ) )
 			$postid = get_the_ID();
