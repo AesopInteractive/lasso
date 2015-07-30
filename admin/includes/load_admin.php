@@ -43,8 +43,10 @@ class load_admin {
 		$plugin = lasso::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
-		add_action( 'admin_head',  array( $this, 'admin_assets' ) );
-		add_filter( 'plugin_row_meta',    array( $this, 'plugin_meta' ), 10, 2 );
+		add_action( 'admin_head',  			array( $this, 'admin_assets' ) );
+		add_action( 'admin_notices', 		array( $this, 'license_nag' ) );
+		add_action( 'admin_head', 			array( $this, 'dismiss_nag' ) );
+		add_filter( 'plugin_row_meta',    	array( $this, 'plugin_meta' ), 10, 2 );
 
 		if ( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
 			include LASSO_DIR.'admin/includes/EDD_SL_Plugin_Updater.php';
@@ -122,5 +124,58 @@ class load_admin {
 		}
 
 		return $links;
+	}
+
+	/**
+	*	Adds an admin notice reminding the user if their license key has not been saved
+	*
+	*	@since 0.9.7
+	*	@todo make dismissible
+	*/
+	public function license_nag(){
+
+		$screen 	= get_current_screen();
+		$welcome    = 'toplevel_page_lasso-editor' == $screen->id;
+		$license  	= get_option( 'lasso_license_key' );
+		$status   	= get_option( 'lasso_license_status' );
+
+		$message_empty    = apply_filters('lasso_empty_license_message','Your license key for support and automatic updates for Lasso is missing!');
+		$message_invalid  = apply_filters('lasso_invalid_license_message','Oh snap! It looks like your Lasso license key is invalid. Might check here to see if its been added correctly.');
+		$message_inactive  = apply_filters('lasso_inactive_license_message','It looks like your license key has not yet been activated.');
+
+		$license_link 	  = sprintf('<a href="%s">Update License</a>', esc_url( add_query_arg( array( 'page' => 'lasso-license' ), admin_url('admin.php') ) ) );
+		$dismiss_link     = sprintf('<a style="text-decoration:none;" href="%s" id="lasso-dismiss-notice" class="notice-dismiss"><span class="screen-reader-text">%s</span></a>', esc_url( add_query_arg( 'lasso-notice', 'dismiss' ) ), __('Dismiss this notice.','lasso') );
+
+		$not_hidden       = get_user_meta( get_current_user_ID(), 'lasso_license_nag_dismissed', true );
+
+		if ( current_user_can('manage_options') && !$welcome && !defined( 'LASSO_AGENCY_MODE') && !$not_hidden ) {
+
+			if ( empty( $license ) ) {
+
+        		printf('<div class="lasso-notice error" style="position:relative;"><p>%s %s</p>%s</div>', $message_empty, $license_link, $dismiss_link );
+
+        	} else if ( 'invalid' == $status ){ // license key entered wrong or something
+
+				printf('<div class="lasso-notice error" style="position:relative;"><p>%s %s</p>%s</div>', $message_invalid, $license_link , $dismiss_link );
+
+        	} else if ( empty( $status ) ){ // license key saved but not activated
+
+				printf('<div class="lasso-notice error" style="position:relative;"><p>%s %s</p>%s</div>', $message_inactive, $license_link, $dismiss_link );
+
+        	}
+		}
+
+	}
+
+	/**
+	*  Process hiding the dimiss
+	*
+	* @since 0.9.7
+	*/
+	public function dismiss_nag() {
+
+		if ( isset( $_GET['lasso-notice'] ) && 'dismiss' == $_GET['lasso-notice'] && current_user_can('manage_options') ) {
+			update_user_meta( get_current_user_id(), 'lasso_license_nag_dismissed', 1 );
+		}
 	}
 }

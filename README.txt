@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.6
+Stable tag: 0.9.7
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,12 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.7 =
+* updated TGM Plugin Activation to latest (props Ahmad Awais)
+* improved live editing video source switching in Video Component
+* added dismissable license notices if license is not supplied, expired, or invalid
+* fixed a capability issue with saving that was introduced with WordPress 4.2.3
 
 = 0.9.6 =
 * added the ability to access and restore post and page revisions
