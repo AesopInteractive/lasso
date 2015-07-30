@@ -18,6 +18,12 @@ Refer to owners manual
 
 == Changelog ==
 
+= 0.9.7 =
+* updated TGM Plugin Activation to latest (props Ahmad Awais)
+* improved live editing video source switching in Video Component
+* added dismissable license notices if license is not supplied, expired, or invalid
+* fixed a capability issue with saving that was introduced with WordPress 4.2.3
+
 = 0.9.6 =
 * added the ability to access and restore post and page revisions
 * fixed a bug introduced on the last update with new posts/pages being duplicated when created
