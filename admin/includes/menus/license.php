@@ -7,7 +7,7 @@ class license {
 	function __construct() {
 
 		define( 'LASSO_STORE_ITEM_NAME', 'lasso' );
-		define( 'LASSO_STORE_URL', 'https://lasso.is' );
+		define( 'LASSO_STORE_URL', 'https://edituswp.com' );
 
 		add_action( 'admin_init',  array( $this, 'plugin_updater' ), 0 );
 		add_action( 'admin_menu',  array( $this, 'license_menu' ) );
@@ -43,8 +43,8 @@ class license {
 
 ?>
 		<div class="wrap">
-			<h2><?php _e( 'Lasso License', 'lasso' ); ?></h2>
-			<p><?php _e( 'Input the license key you recieved with your purchase to ensure your version of Lasso stays updated.', 'lasso' );?></p>
+			<h2><?php _e( 'Editus License', 'lasso' ); ?></h2>
+			<p><?php _e( 'Input the license key you recieved with your purchase to ensure your version of Editus stays updated.', 'lasso' );?></p>
 			<form class="lasso--form-settings" method="post" action="options.php">
 
 				<?php settings_fields( 'lasso_license' ); ?>

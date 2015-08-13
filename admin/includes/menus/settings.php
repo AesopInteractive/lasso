@@ -24,7 +24,7 @@ class settings {
 
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 
-			add_submenu_page( 'settings.php', __( 'Lasso', 'lasso' ), __( 'Lasso', 'lasso' ), 'manage_network', 'lasso-editor', array( $this, 'settings' ) );
+			add_submenu_page( 'settings.php', __( 'Editus', 'lasso' ), __( 'Editus', 'lasso' ), 'manage_network', 'lasso-editor', array( $this, 'settings' ) );
 
 		} else {
 
@@ -106,7 +106,7 @@ class settings {
 ?>
 		<div class="wrap">
 
-	    	<h2><?php _e( 'Lasso Settings', 'lasso' );?></h2>
+	    	<h2><?php _e( 'Editus Settings', 'lasso' );?></h2>
 
 			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
 
@@ -140,7 +140,7 @@ class settings {
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<label><?php _e( 'Ignored Items to Save', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'If your post container holds additional markup, list the css class names (comma separated, including the dot) of those items. When you enter the editor, Lasso will remove (NOT delete) these items so that it does not save them as HTML.', 'lasso' );?></span>
+						<span class="lasso--setting-description"><?php _e( 'If your post container holds additional markup, list the css class names (comma separated, including the dot) of those items. When you enter the editor, Editus will remove (NOT delete) these items so that it does not save them as HTML.', 'lasso' );?></span>
 						<textarea name="lasso_editor[dont_save]" id="lasso_editor[dont_save]" placeholder=".classname, .another-class"><?php echo esc_attr( $objectsNoSave );?></textarea>
 					</div>
 				</div>
