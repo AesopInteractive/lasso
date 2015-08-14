@@ -2,7 +2,7 @@
 /**
  * AH Stripe
  *
- * @package   Lasso_Admin
+ * @package   Editus_Admin
  * @author    Nick Haskins <nick@aesopinteractive.com>
  * @license   GPL-2.0+
  * @link      http://aesopinteractive.com
@@ -139,8 +139,8 @@ class load_admin {
 		$license  	= get_option( 'lasso_license_key' );
 		$status   	= get_option( 'lasso_license_status' );
 
-		$message_empty    = apply_filters('lasso_empty_license_message','Your license key for support and automatic updates for Lasso is missing!');
-		$message_invalid  = apply_filters('lasso_invalid_license_message','Oh snap! It looks like your Lasso license key is invalid. Might check here to see if its been added correctly.');
+		$message_empty    = apply_filters('lasso_empty_license_message','Your license key for support and automatic updates for Editus is missing!');
+		$message_invalid  = apply_filters('lasso_invalid_license_message','Oh snap! It looks like your Editus license key is invalid. Might check here to see if its been added correctly.');
 		$message_inactive  = apply_filters('lasso_inactive_license_message','It looks like your license key has not yet been activated.');
 
 		$license_link 	  = sprintf('<a href="%s">Update License</a>', esc_url( add_query_arg( array( 'page' => 'lasso-license' ), admin_url('admin.php') ) ) );
