@@ -106,7 +106,7 @@ class welcome {
 
 	  		<div class="lasso--welcome__top">
 
-	  			<img src="<?php echo LASSO_URL.'/admin/assets/img/logo.svg';?>">
+	  			<img style="width:125px;" src="<?php echo LASSO_URL.'/admin/assets/img/logo.png';?>">
 	    		<h1><?php _e( 'Welcome to Editus', 'lasso' );?></h1>
 	    		<p><?php _e( 'Version', 'lasso' );echo '<span> '.LASSO_VERSION.'</span>';?></p>
 
