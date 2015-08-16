@@ -1,7 +1,7 @@
  <table width="100%">
 	<tr>
 		<td align="left" width="70%">
-			<strong><a href="https://lasso.is">Lasso</a></strong><br />
+			<strong><a href="https://edituswp.com">Editus</a></strong><br />
 			Content creation and editing made simple
 		</td>
 		<td align="right" width="20%">
@@ -12,7 +12,7 @@
 	</tr>
 </table>
 
-Lasso is a commercial plugin available from https://lasso.is. The plugin is hosted here on a public GitHub repository in order to better faciliate community contributions from developers and users alike. If you have a suggestion, a bug report, or a patch for an issue, feel free to submit it [here](https://github.com/AesopInteractive/lasso/issues). When submitting a pull request, test Lasso with [Aesop Story Theme](https://github.com/AesopInteractive/aesop-story-theme), and make any pull requests against our latest release branch.
+Editus is a commercial plugin available from https://edituswp.com. The plugin is hosted here on a public GitHub repository in order to better faciliate community contributions from developers and users alike. If you have a suggestion, a bug report, or a patch for an issue, feel free to submit it [here](https://github.com/AesopInteractive/lasso/issues). When submitting a pull request, test Editus with [Aesop Story Theme](https://github.com/AesopInteractive/aesop-story-theme), and make any pull requests against our latest release branch.
 
 We do ask, however, that if you are using the plugin on a live site that you please purchase a valid license from the website. We cannot provide support to anyone who does not hold a valid license key.
 
@@ -22,4 +22,4 @@ Pull requests for our documentation are welcome: https://github.com/AesopInterac
 
 ## Requirements
 
-Lasso requires PHP 5.4 or above.
+Editus requires PHP 5.4 or above.
