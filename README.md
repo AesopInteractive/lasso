@@ -16,9 +16,9 @@ Editus is a commercial plugin available from https://edituswp.com. The plugin is
 
 We do ask, however, that if you are using the plugin on a live site that you please purchase a valid license from the website. We cannot provide support to anyone who does not hold a valid license key.
 
-Developer documentation can be found here: https://github.com/AesopInteractive/lasso-documentation.
+Developer documentation can be found [here](https://github.com/AesopInteractive/lasso-documentation).
 
-Pull requests for our documentation are welcome: https://github.com/AesopInteractive/lasso-documentation/pulls. 
+Pull requests for our documentation are [welcome](https://github.com/AesopInteractive/lasso-documentation/pulls). 
 
 ## Requirements
 
