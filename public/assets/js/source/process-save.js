@@ -144,6 +144,8 @@ jQuery(document).ready(function($){
 	    			if ( component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;
+	    			} else if ( component.context.nodeType == 8 ) {
+	    				processed += '<!--' + j[i].data + '-->';
 	    			} else {
 	    				// DOM object
 	    				processed += j[i].outerHTML;
