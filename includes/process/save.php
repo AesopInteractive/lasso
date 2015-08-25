@@ -24,7 +24,7 @@ class save implements api_action {
 		$save_to_post_disabled = $this->save_to_post_disables();
 
 		$postid = (int) $data[ 'post_id' ];
-		$content = $data[ 'content' ];
+		$content = $this->replace_rendered_shortcodes( $data[ 'content' ] );
 
 		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
@@ -57,7 +57,7 @@ class save implements api_action {
 		$save_to_post_disabled = $this->save_to_post_disables();
 
 		$postid = (int) $data[ 'post_id' ];
-		$content = $data[ 'content' ];
+		$content = $this->replace_rendered_shortcodes( $data[ 'content' ] );
 
 		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
@@ -129,6 +129,31 @@ class save implements api_action {
 
 		return $save_to_post_disabled;
 
+	}
+
+	/**
+	 * Replace shortcodes from other plugins with shortcode tags.
+	 *
+	 * @since 0.9.9
+	 *
+	 * @access protected
+	 *
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	protected function replace_rendered_shortcodes( $content ) {
+		if ( false === strpos( $content, '<!--EDITUS_OTHER_SHORTCODE_START|' ) ) {
+			return $content;
+		}
+
+		$content = preg_replace(
+			'/<!--EDITUS_OTHER_SHORTCODE_START\|\[(.*?)\]-->(.*?)<!--EDITUS_OTHER_SHORTCODE_END-->/s',
+			'$1',
+			$content
+		);
+
+		return $content;
 	}
 
 }
