@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://lasso.is
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.9.7
+Stable tag: 0.8.1
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,12 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.8.1 =
+* fixed a capability issue that was allowing contributors to edit others posts
+
+= 0.9.8 =
+* renamed Lasso to Editus
 
 = 0.9.7 =
 * updated TGM Plugin Activation to latest (props Ahmad Awais)
