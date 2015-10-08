@@ -43,7 +43,7 @@ function lasso_editor_controls() {
 		$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
 		// user is capable
-		$is_capable = is_singular() && lasso_user_can();
+		$is_capable = is_singular() && lasso_user_can('edit_post');
 
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
