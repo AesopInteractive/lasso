@@ -1,7 +1,7 @@
 === Lasso ===
 Contributors: nphaskins
 Author URI:  http://nickhaskins.com
-Plugin URI: https://lasso.is
+Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.2.2
 Stable tag: 0.8.1
@@ -17,6 +17,9 @@ Front-end editing and creation suite.
 Refer to owners manual
 
 == Changelog ==
+
+= 0.9.8.2 =
+* fixed references to lasso.is
 
 = 0.9.8.1 =
 * fixed a capability issue that was allowing contributors to edit others posts

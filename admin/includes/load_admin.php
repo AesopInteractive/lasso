@@ -117,7 +117,7 @@ class load_admin {
 		if ( strpos( $file, 'lasso.php' ) !== false && !defined( 'LASSO_AGENCY_MODE' ) ) {
 
 			$new_links = array(
-				'<a href="https://lasso.is/help" target="_blank">Help</a>'
+				'<a href="http://edituswp.com/help" target="_blank">Help</a>'
 			);
 
 			$links = array_merge( $links, $new_links );

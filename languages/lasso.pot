@@ -1220,7 +1220,7 @@ msgid "Lasso (beta)"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://lasso.is"
+msgid "http://edituswp.com"
 msgstr ""
 
 #. Description of the plugin/theme

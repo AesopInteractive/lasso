@@ -113,7 +113,7 @@ class welcome {
 	    		<?php if ( !defined( 'LASSO_AGENCY_MODE' ) ): ?>
 
 			    	<ul class="lasso--welcome__social">
-			    		<li><a href="https://lasso.is/help" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e( 'Help', 'lasso' );?></a></li>
+			    		<li><a href="http://edituswp.com/help" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e( 'Help', 'lasso' );?></a></li>
 			    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e( 'Twitter', 'lasso' );?></a></li>
 			    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e( 'Facebook', 'lasso' );?></a></li>
 			    	</ul>
