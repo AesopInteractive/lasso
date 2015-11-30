@@ -2,4 +2,8 @@
 .gitignore export-ignore
 .travis.yml export-ignore
 composer.json export-ignore
+CONTRIBUTING.md export-ignore
+Gruntfile.js export-ignore
+package.json export-ignore
+README.md export-ignore
 tests/ export-ignore
