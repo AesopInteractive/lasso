@@ -1,5 +1,5 @@
 === Editus ===
-Contributors: nphaskins 
+Contributors: nphaskins, hyunster, michaelbeil
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
