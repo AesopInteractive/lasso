@@ -14,7 +14,7 @@ Front-end editing and creation suite.
 
 == Installation ==
 
-Refer to owners manual
+Refer to owner's manual
 
 == Changelog ==
 
