@@ -1,4 +1,4 @@
-=== Lasso ===
+=== Editus ===
 Contributors: nphaskins 
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
