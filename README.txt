@@ -1,10 +1,10 @@
 === Lasso ===
-Contributors: nphaskins
+Contributors: nphaskins 
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: 0.8.1
+Tested up to: 4.4
+Stable tag: 0.9.8.2
 
 Front-end editing and creation suite.
 
