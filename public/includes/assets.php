@@ -74,7 +74,7 @@ class assets {
 				'deleteYes'			=> __('Yes, trash it!','lasso'),
 				'warning'			=> __('Oh snap!','laso'),
 				'cancelText'		=> __('O.K. got it!','lasso'),
-				'missingClass'		=> __('It looks like we are missing the Article CSS class. Lasso will not function correctly without this CSS class.','lasso'),
+				'missingClass'		=> __('It looks like we are missing the Article CSS class. Editus will not function correctly without this CSS class.','lasso'),
 				'missingConfirm'	=> __('Update Settings', 'lasso'),
 				'helperText'		=> __('one more letter','lasso'),
 				'editingBackup'  	=> __('You are currently editing a backup copy of this post.')

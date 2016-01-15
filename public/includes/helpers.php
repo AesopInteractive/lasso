@@ -64,6 +64,9 @@ function lasso_get_supported_theme_class() {
 		case 'twentytwelve': // automattic
 			$out = '.entry-content';
 			break;
+		case 'twenty-sixteen': // automattic
+			$out = '.entry-content';
+			break;
 		case 'twentythirteen': // automattic
 			$out = '.entry-content';
 			break;
@@ -106,8 +109,13 @@ function lasso_get_supported_theme_class() {
 		case 'canvas': // wootheme..err...Automattic
 			$out = '.entry';
 			break;
-		case 'exposure': // flagshipwp
+		case 'exposure': // 
 			$out = '.entry-content';
+			break;
+		case 'lore': // 
+			$out = '.entry-content';
+		case 'kleo': // 
+			$out = '.article-content';
 			break;
 
 	}
