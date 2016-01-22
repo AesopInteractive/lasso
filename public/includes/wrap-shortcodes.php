@@ -37,7 +37,7 @@ function lasso_wrap_shortcodes( $content ) {
 		return $content;
 	}
 
-	$content = do_shortcodes_in_html_tags( $content, true );
+	$content = do_shortcodes_in_html_tags( $content, true ,$tagnames);
 
 	$pattern = get_shortcode_regex();
 	$content = preg_replace_callback( "/$pattern/s", 'lasso_wrap_shortcode_tag', $content );
