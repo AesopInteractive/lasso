@@ -60,22 +60,6 @@ function lasso_get_supported_theme_class() {
 	$slug  	= lasso_clean_string( $name );
 
 	switch ( $slug ) {
-
-		case 'twentytwelve': // automattic
-			$out = '.entry-content';
-			break;
-		case 'twenty-sixteen': // automattic
-			$out = '.entry-content';
-			break;
-		case 'twentythirteen': // automattic
-			$out = '.entry-content';
-			break;
-		case 'twentyfourteen': // automattic
-			$out = '.entry-content';
-			break;
-		case 'twentyfifteen': // automattic
-			$out = '.entry-content';
-			break;
 		case 'aesop-story-theme': // aesop
 			$out = '.aesop-entry-content';
 			break;
@@ -97,27 +81,67 @@ function lasso_get_supported_theme_class() {
 		case 'fable': // aesop
 			$out = '.fable--entry-content';
 			break;
-		case 'worldview': // upthemes
-			$out = '.entry-content';
-			break;
-		case 'genesis': // genesis
-			$out = '.entry-content';
-			break;
-		case 'camera': // array.is
-			$out = '.entry-content';
-			break;
 		case 'canvas': // wootheme..err...Automattic
 			$out = '.entry';
 			break;
-		case 'exposure': // 
-			$out = '.entry-content';
-			break;
-		case 'lore': // 
-			$out = '.entry-content';
 		case 'kleo': // 
 			$out = '.article-content';
 			break;
+		//case 'exposure': // 
+		//	$out = '.entry-content';
+		//	break;
+		//case 'lore': // 
+		//	$out = '.entry-content';
+		//	break;
+		//case 'worldview': // upthemes
+		//	$out = '.entry-content';
+		//	break;
+		//case 'genesis': // genesis
+		//	$out = '.entry-content';
+		//	break;
+		//case 'camera': // array.is
+		//	$out = '.entry-content';
+		//	break;
+		//case 'longform': // 
+		//	$out = '.entry-content';
+		//	break;
 
+	}
+
+	return !empty( $out ) ? $out : false;
+}
+
+function lasso_get_supported_theme_title_class() {
+
+	$name  	= wp_get_theme()->get('Name');
+	$slug  	= lasso_clean_string( $name );
+
+	switch ( $slug ) {
+
+		case 'aesop-story-theme': // aesop
+			$out = '.aesop-entry-title';
+			break;
+		case 'jorgen': // aesop
+			$out = '.jorgen-entry-title';
+			break;
+		case 'novella': // aesop
+			$out = '.novella-entry-title';
+			break;
+		case 'genji': // aesop
+			$out = '.genji-entry-title';
+			break;
+		case 'kerouac': // aesop
+			$out = '.kerouac-entry-title';
+			break;
+		case 'zealot': // aesop
+			$out = '.zealot-entry-title';
+			break;
+		case 'fable': // aesop
+			$out = '.fable--entry-title';
+			break;
+		case 'kleo': // 
+			$out = '.page-title';
+			break;
 	}
 
 	return !empty( $out ) ? $out : false;

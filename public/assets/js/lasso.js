@@ -10275,29 +10275,35 @@ jQuery(document).ready(function($){
 	    }
 	}
 
-	// if the hasn't saved teh article class to use Lasso, warn them
-	if ( post_container.length == false ) {
-		swal({
-			title: strings.warning,
-			type: 'info',
-			text: strings.missingClass,
-			showCancelButton: true,
-			cancelButtonText: strings.cancelText,
-			confirmButtonColor: '#007aab',
-			confirmButtonText: strings.missingConfirm,
-			closeOnConfirm: false
-		},
-		function(){
-			location.replace(settingsLink);
-		});
-	}
 
 	$('#lasso--edit').click(function(e){
+		
+		if ($(post_container).length ==0 ){
+			// try one more time
+			post_container = '.entry-content';
+			if ($(post_container).length ==0 ){
+				// if we can't find the article class, warn them and exit
+				swal({
+					title: strings.warning,
+					type: 'info',
+					text: strings.missingClass,
+					showCancelButton: true,
+					cancelButtonText: strings.cancelText,
+					confirmButtonColor: '#007aab',
+					confirmButtonText: strings.missingConfirm,
+					closeOnConfirm: false
+				},
+				function(){
+					location.replace(settingsLink);
+				});
+				return;
+			}
+		}
+		
+		
 		e.preventDefault();
-
 		// add body class editing
 		$('body').toggleClass('lasso-editing');
-
 		//append editor id to post container
 		$(post_container).attr('id', editor);
 
@@ -10321,6 +10327,12 @@ jQuery(document).ready(function($){
 		// append contenteditable to title if set
 		if ( $(titleClass).length > 0 ) {
 			$(titleClass).attr('contenteditable', true);
+		} else {
+			// try one more time with .entry-header
+			titleClass = '.entry-header';
+			if ( $(titleClass).length > 0 ) {
+				$(titleClass).attr('contenteditable', true);
+			}
 		}
 
 		// if tehre are any scrollnav sections we need to break them open so that we can drag compnents around in them

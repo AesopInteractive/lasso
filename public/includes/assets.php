@@ -38,6 +38,9 @@ class assets {
 
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
+			if (empty( $titleClass )) {
+				$titleClass = lasso_get_supported_theme_title_class();
+			}
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 
