@@ -11041,7 +11041,6 @@ jQuery(document).ready(function($){
 		$(document).keyup(function(e) {
 
 			if ( 27 == e.keyCode ) {
-
 				destroyModal();
 			}
 
@@ -11054,6 +11053,7 @@ jQuery(document).ready(function($){
 
 		$('#lasso--postsettings__form').live('submit', function(e) {
 
+		alert("here1");
 			e.preventDefault();
 
 			var $this = $(this);
@@ -11947,6 +11947,8 @@ jQuery(document).ready(function($){
 		postid 		=  lasso_editor.postid,
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
+		
+	noWarningReload = false;
 
 	///////////////////////
 	// 1. IF UNSAVED CHANGES STORE IN LOCAL STORAGE
@@ -11969,7 +11971,9 @@ jQuery(document).ready(function($){
 	///////////////////////
 	window.onbeforeunload = function () {
 
-		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
+	    if (noWarningReload) {
+		    noWarningReload = false;
+		} else if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
         	return warnNoSave;
         	$('#lasso--save').css('opacity',1);
         }
@@ -12695,15 +12699,15 @@ jQuery(document).ready(function($){
 
 	    // When an image is selected, run a callback.
 	    featimg_frame.on( 'select', function() {
-
 	      	var attachment = featimg_frame.state().get('selection').first().toJSON();
-
-	      	$this.closest('.lasso--post-thumb').find('img').attr('src', attachment.url )
-
-	      	save.attr('data-featimg-id',attachment.id).trigger('click')
-
-	      	$('#lasso--postsettings__form').removeClass('no-thumbnail').addClass('has-thumbnail')
-
+			
+			var pic = $this.closest('.lasso--post-thumb').find('img');
+			pic.attr('src', attachment.url );
+			
+	      	save.attr('data-featimg-id',attachment.id).trigger('click');
+	      	$('#lasso--postsettings__form').removeClass('no-thumbnail').addClass('has-thumbnail');
+			pic.removeAttr("srcset");
+			noWarningReload = true;
 	    });
 
 	    // Finally, open the modal
@@ -12736,11 +12740,12 @@ jQuery(document).ready(function($){
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( true == response.success ) {
-
-					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb')
-			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg )
+					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb');
+			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg );
+					$this.closest('.lasso--postsettings__left').find('img').removeAttr("srcset");
 
 			      	$('#lasso--postsettings__form').removeClass('has-thumbnail').addClass('no-thumbnail')
+					noWarningReload = true;
 
 				}
 
@@ -12882,6 +12887,9 @@ jQuery(document).ready(function($){
 		var destroyModal = function(){
 			$('body').removeClass('lasso-modal-open' );
 			$('.lasso--modal, #lasso--modal__overlay').remove();
+			if (noWarningReload) {
+				location.reload();
+			}
 		}
 
 		// modal click

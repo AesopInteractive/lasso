@@ -169,15 +169,15 @@
 
 	    // When an image is selected, run a callback.
 	    featimg_frame.on( 'select', function() {
-
 	      	var attachment = featimg_frame.state().get('selection').first().toJSON();
-
-	      	$this.closest('.lasso--post-thumb').find('img').attr('src', attachment.url )
-
-	      	save.attr('data-featimg-id',attachment.id).trigger('click')
-
-	      	$('#lasso--postsettings__form').removeClass('no-thumbnail').addClass('has-thumbnail')
-
+			
+			var pic = $this.closest('.lasso--post-thumb').find('img');
+			pic.attr('src', attachment.url );
+			
+	      	save.attr('data-featimg-id',attachment.id).trigger('click');
+	      	$('#lasso--postsettings__form').removeClass('no-thumbnail').addClass('has-thumbnail');
+			pic.removeAttr("srcset");
+			noWarningReload = true;
 	    });
 
 	    // Finally, open the modal
@@ -210,11 +210,12 @@
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( true == response.success ) {
-
-					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb')
-			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg )
+					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb');
+			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg );
+					$this.closest('.lasso--postsettings__left').find('img').removeAttr("srcset");
 
 			      	$('#lasso--postsettings__form').removeClass('has-thumbnail').addClass('no-thumbnail')
+					noWarningReload = true;
 
 				}
 

@@ -6,6 +6,9 @@
 		var destroyModal = function(){
 			$('body').removeClass('lasso-modal-open' );
 			$('.lasso--modal, #lasso--modal__overlay').remove();
+			if (noWarningReload) {
+				location.reload();
+			}
 		}
 
 		// modal click

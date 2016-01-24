@@ -6,6 +6,9 @@ jQuery(document).ready(function($){
 		postid 		=  lasso_editor.postid,
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
+		
+	// Set to true when we want to reload the current page without a warning message
+	noWarningReload = false;
 
 	///////////////////////
 	// 1. IF UNSAVED CHANGES STORE IN LOCAL STORAGE
