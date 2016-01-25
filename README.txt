@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.4
-Stable tag: 0.9.9
+Stable tag: 0.9.9.1
 
 Front-end editing and creation suite.
 
@@ -18,7 +18,7 @@ Refer to owner's manual
 
 == Changelog ==
 
-= 0.9.9 =
+= 0.9.9.1 =
 * fixed some styling issues where edit boxes and some buttons were not readable under certain themes
 * fixed the issue where featured images were not updated in the post settings dialog box
 * Editus now auto-detects article class if it's .entry-content
