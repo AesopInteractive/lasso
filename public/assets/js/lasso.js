@@ -10275,9 +10275,10 @@ jQuery(document).ready(function($){
 	    }
 	}
 
+	
 
 	$('#lasso--edit').click(function(e){
-		
+	
 		if ($(post_container).length ==0 ){
 			// try one more time
 			post_container = '.entry-content';
@@ -10299,11 +10300,12 @@ jQuery(document).ready(function($){
 				return;
 			}
 		}
-		
-		
+	
 		e.preventDefault();
+
 		// add body class editing
 		$('body').toggleClass('lasso-editing');
+
 		//append editor id to post container
 		$(post_container).attr('id', editor);
 
@@ -11041,6 +11043,7 @@ jQuery(document).ready(function($){
 		$(document).keyup(function(e) {
 
 			if ( 27 == e.keyCode ) {
+
 				destroyModal();
 			}
 
@@ -11053,7 +11056,6 @@ jQuery(document).ready(function($){
 
 		$('#lasso--postsettings__form').live('submit', function(e) {
 
-		alert("here1");
 			e.preventDefault();
 
 			var $this = $(this);
@@ -11948,6 +11950,7 @@ jQuery(document).ready(function($){
 		oldHtml 	=  $('#'+editor).html(),
 		warnNoSave 	=  'You have unsaved changes!';
 		
+	// Set to true when we want to reload the current page without a warning message
 	noWarningReload = false;
 
 	///////////////////////
@@ -11971,9 +11974,7 @@ jQuery(document).ready(function($){
 	///////////////////////
 	window.onbeforeunload = function () {
 
-	    if (noWarningReload) {
-		    noWarningReload = false;
-		} else if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
+		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
         	return warnNoSave;
         	$('#lasso--save').css('opacity',1);
         }
