@@ -96,11 +96,11 @@
 
 				if ( 'gallery-created' == response.data.message ) {
 
-					saveSequence( false, 3000, true );
+					saveSequence( false, 1000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
-					saveSequence( false, 3000 );
+					saveSequence( false, 1000 );
 					form.before(lasso_editor.refreshRequired);
 
 				} else {

@@ -12288,9 +12288,42 @@ jQuery(document).ready(function($){
 			if( true == response.success ) {
 
 				$('.aesop-gallery-component').replaceWith( response.data.gallery );
-
 			}
+		});
+		
+		var data2      = {
+			action:    	'process_gallery_get-images',
+			post_id:   	$(this).val(),
+			nonce: 		lasso_editor.getGallImgNonce
+		};
 
+		// post ajax response with data
+		$.post( lasso_editor.ajaxurl, data2, function(response) {
+			$('#lasso--gallery__images').html( response.data.html );
+
+			/////////////
+			// CALL SORTABLE ON RECIEVED IMAGES
+			/////////////
+			var	gallery = $('#ase-gallery-images');
+
+			gallery.ready(function(){
+
+				gallery.sortable({
+					containment: 'parent',
+					cursor: 'move',
+					opacity: 0.8,
+					placeholder: 'ase-gallery-drop-zone',
+					forcePlaceholderSize:true,
+					update: function(){
+						var imageArray = $(this).sortable('toArray');
+						$('#ase_gallery_ids').val( imageArray );
+					},
+					create: function(){
+						var imageArray = $(this).sortable('toArray');
+						$('#ase_gallery_ids').val( imageArray );
+					}
+				});
+			});
 		});
 	});
 
@@ -12864,11 +12897,11 @@ jQuery(document).ready(function($){
 
 				if ( 'gallery-created' == response.data.message ) {
 
-					saveSequence( false, 3000, true );
+					saveSequence( false, 1000, true );
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
-					saveSequence( false, 3000 );
+					saveSequence( false, 1000 );
 					form.before(lasso_editor.refreshRequired);
 
 				} else {

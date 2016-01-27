@@ -101,11 +101,43 @@
 		$.post( lasso_editor.ajaxurl, data, function(response) {
 
 			if( true == response.success ) {
-
 				$('.aesop-gallery-component').replaceWith( response.data.gallery );
-
 			}
+		});
+		
+		var data2      = {
+			action:    	'process_gallery_get-images',
+			post_id:   	$(this).val(),
+			nonce: 		lasso_editor.getGallImgNonce
+		};
 
+		// post ajax response with data
+		$.post( lasso_editor.ajaxurl, data2, function(response) {
+			$('#lasso--gallery__images').html( response.data.html );
+
+			/////////////
+			// CALL SORTABLE ON RECIEVED IMAGES
+			/////////////
+			var	gallery = $('#ase-gallery-images');
+
+			gallery.ready(function(){
+
+				gallery.sortable({
+					containment: 'parent',
+					cursor: 'move',
+					opacity: 0.8,
+					placeholder: 'ase-gallery-drop-zone',
+					forcePlaceholderSize:true,
+					update: function(){
+						var imageArray = $(this).sortable('toArray');
+						$('#ase_gallery_ids').val( imageArray );
+					},
+					create: function(){
+						var imageArray = $(this).sortable('toArray');
+						$('#ase_gallery_ids').val( imageArray );
+					}
+				});
+			});
 		});
 	});
 
