@@ -76,6 +76,7 @@
 	    	}
 
 			setTimeout( function(){ $('body').removeClass('lasso-sidebar-open'); }, timeout );
+			lasso_editor.dirtyByComponent = true;
 
 	    }
 
