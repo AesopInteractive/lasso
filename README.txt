@@ -3,8 +3,8 @@ Contributors: nphaskins, hyunster, michaelbeil
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.4
-Stable tag: 0.9.9.1
+Tested up to: 4.4.1
+Stable tag: 0.9.9.3
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,11 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+
+= 0.9.9.3 =
+* fixed unsaved data check
+* swapping gallery updates the images in the gallery sidebar
+* added button to create gallery to the gallery sidebar.
 
 = 0.9.9.1 =
 * fixed some styling issues where edit boxes and some buttons were not readable under certain themes
