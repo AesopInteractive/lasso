@@ -11979,6 +11979,13 @@ jQuery(document).ready(function($){
         	$('#lasso--save').css('opacity',1);
         }
     }
+	
+	// but also clear the unsaved changes if the user does navigate away
+	window.onunload = function () {
+		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
+        	localStorage.clear();
+        }
+    }
 
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
@@ -12192,6 +12199,7 @@ jQuery(document).ready(function($){
 		$('.ase-gallery-opts--edit-gallery').fadeOut(1);
 
 		$('#ase-gallery-images li').remove();
+		$('#lasso--gallery__create').remove();
 
 		$('.ase-gallery-opts--edit-gallery').text(lasso_editor.strings.addNewGallery);
 		$('.ase-gallery-opts--edit-gallery .lasso-option-desc').text('Select new images to create a gallery with.');
@@ -12781,10 +12789,11 @@ jQuery(document).ready(function($){
 
 	      	var optionName = $(this).closest('.lasso-option').data('option');
 
-	      	if ( '' !== $(this).val() ) {
-	      		$component.attr( 'data-' + optionName, $(this).val() );
-	      		$component.data(optionName, $(this).val() );
-			}
+	      	// save even if the entry is blank
+	      	//if ( '' !== $(this).val() ) {
+	      	$component.attr( 'data-' + optionName, $(this).val() );
+	      	$component.data(optionName, $(this).val() );
+			//}
 
 	    });
 

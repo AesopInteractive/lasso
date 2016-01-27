@@ -12,16 +12,20 @@ function lasso_gallery_editor_module() {
 	ob_start();
 
 	if ( $galleries ) { ?>
+	
+		<?php if ( lasso_user_can( 'publish_posts' ) ): ?>
+			<div class="ase-gallery-opts ase-gallery-opts--create-gallery" style="display:inline !important; postion:relative !important;left:12px !important">
+				<div class="ase-gallery-opts--single lasso-option">
+				<a href="#" class="editor-btn-secondary" id="lasso--gallery__create"><?php _e( 'Create gallery', 'lasso' );?></a>
+				</div>
+			</div>
+		<?php endif; ?>
 
 		<div class="ase-gallery-opts ase-gallery-opts--edit-gallery" >
 			<div class="ase-gallery-opts--single lasso-option">
 
 				<label><?php _e( 'Manage Images', 'lasso' );?>
 					<a href="#" id="ase-gallery-add-image" class="lasso-editor-tiny-btn" title="<?php esc_attr_e( 'Add Images', 'lasso' );?>"><i class="lasso-icon-pencil"></i></a>
-
-					<?php if ( lasso_user_can( 'publish_posts' ) ): ?>
-						<a href="#" id="lasso--gallery__create" class="lasso-editor-tiny-btn" title="<?php esc_attr_e( 'Create Gallery', 'lasso' );?>"><i class="lasso-icon-plus"></i></a>
-					<?php endif; ?>
 
 				</label>
 				<small class="lasso-option-desc"><?php _e( 'Rearrange or edit the images in this gallery.', 'lasso' );?></small>

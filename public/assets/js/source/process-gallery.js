@@ -14,6 +14,7 @@
 		$('.ase-gallery-opts--edit-gallery').fadeOut(1);
 
 		$('#ase-gallery-images li').remove();
+		$('#lasso--gallery__create').remove();
 
 		$('.ase-gallery-opts--edit-gallery').text(lasso_editor.strings.addNewGallery);
 		$('.ase-gallery-opts--edit-gallery .lasso-option-desc').text('Select new images to create a gallery with.');

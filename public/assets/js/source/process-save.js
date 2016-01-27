@@ -36,6 +36,13 @@ jQuery(document).ready(function($){
         	$('#lasso--save').css('opacity',1);
         }
     }
+	
+	// but also clear the unsaved changes if the user does navigate away
+	window.onunload = function () {
+		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
+        	localStorage.clear();
+        }
+    }
 
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT

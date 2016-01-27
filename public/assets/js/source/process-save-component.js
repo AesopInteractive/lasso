@@ -21,10 +21,11 @@
 
 	      	var optionName = $(this).closest('.lasso-option').data('option');
 
-	      	if ( '' !== $(this).val() ) {
-	      		$component.attr( 'data-' + optionName, $(this).val() );
-	      		$component.data(optionName, $(this).val() );
-			}
+	      	// save even if the entry is blank
+	      	//if ( '' !== $(this).val() ) {
+	      	$component.attr( 'data-' + optionName, $(this).val() );
+	      	$component.data(optionName, $(this).val() );
+			//}
 
 	    });
 
