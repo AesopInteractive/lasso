@@ -10560,6 +10560,12 @@ jQuery(document).ready(function($){
 		/// EXIT EDITOR
 		///////////////////
 		function exitEditor(){
+			if ($('body').hasClass('lasso-sidebar-open')) {
+				//e.preventDefault();
+				$('body').removeClass('lasso-sidebar-open');
+				$('#lasso--component__settings').perfectScrollbar('destroy');
+				return;
+			}
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
@@ -11952,7 +11958,6 @@ jQuery(document).ready(function($){
 		
 	// Set to true when we want to reload the current page without a warning message
 	noWarningReload = false;
-	lasso_editor.dirtyByComponent = false;
 
 	///////////////////////
 	// 1. IF UNSAVED CHANGES STORE IN LOCAL STORAGE
@@ -11975,7 +11980,7 @@ jQuery(document).ready(function($){
 	///////////////////////
 	window.onbeforeunload = function () {
 
-		if ( (localStorage.getItem( 'lasso_backup_'+postid ) || lasso_editor.dirtyByComponent) && lasso_editor.userCanEdit ) {
+		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
         	return warnNoSave;
         	$('#lasso--save').css('opacity',1);
         }
@@ -11985,7 +11990,6 @@ jQuery(document).ready(function($){
 	window.onunload = function () {
 		if ( localStorage.getItem( 'lasso_backup_'+postid ) && lasso_editor.userCanEdit ) {
         	localStorage.clear();
-			lasso_editor.dirtyByComponent = false;
         }
     }
 

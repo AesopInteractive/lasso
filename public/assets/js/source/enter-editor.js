@@ -320,6 +320,12 @@ jQuery(document).ready(function($){
 		/// EXIT EDITOR
 		///////////////////
 		function exitEditor(){
+			if ($('body').hasClass('lasso-sidebar-open')) {
+				//e.preventDefault();
+				$('body').removeClass('lasso-sidebar-open');
+				$('#lasso--component__settings').perfectScrollbar('destroy');
+				return;
+			}
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
