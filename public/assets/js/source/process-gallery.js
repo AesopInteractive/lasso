@@ -92,18 +92,7 @@
 	//////////
 	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
 
-		var data = {
-			action: 		'process_gallery_swap',
-			gallery_id: 	$(this).val(),
-			nonce: 			lasso_editor.swapGallNonce
-		}
-
-		$.post( lasso_editor.ajaxurl, data, function(response) {
-
-			if( true == response.success ) {
-				$('.aesop-gallery-component').replaceWith( response.data.gallery );
-			}
-		});
+		editus_gallery_swap($(this).val());
 		
 		var data2      = {
 			action:    	'process_gallery_get-images',
@@ -140,6 +129,21 @@
 			});
 		});
 	});
+	
+	function editus_gallery_swap(galleryID){
+		var data = {
+			action: 		'process_gallery_swap',
+			gallery_id: 	galleryID,
+			nonce: 			lasso_editor.swapGallNonce
+		}
+
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+			if( true == response.success ) {
+				// window.component is the current component being edited
+				window.component.replaceWith( response.data.gallery );
+			}
+		});
+	}
 
 	///////////
 	// EDIT GALLERY

@@ -92,12 +92,16 @@
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
+			if (form.hasClass('creating-gallery')) {
+				data['edgallerytitle'] = document.getElementById("lasso--gallery__galleryname").value;
+			}
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( 'gallery-created' == response.data.message ) {
 
 					saveSequence( false, 1000, true );
+					editus_gallery_swap(response.data.id);
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 

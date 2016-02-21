@@ -45,8 +45,10 @@ function lasso_gallery_editor_module() {
 			<div class="ase-gallery-opts--single lasso-option">
 
 				<label><?php _e( 'Create a Gallery', 'lasso' );?></label>
+				<small class="lasso-option-desc">Gallery Name:</small>
+                <input type="text" id="lasso--gallery__galleryname" value="New Gallery"><br>
+				
 				<small class="lasso-option-desc"><?php _e( 'Select images to create a gallery.', 'lasso' );?></small>
-
 				<a href="#" class="editor-btn-secondary" id="lasso--gallery__selectImages"><?php _e( 'Select Images', 'lasso' );?></a>
 
 				<div id="ase-gallery-images"></div>

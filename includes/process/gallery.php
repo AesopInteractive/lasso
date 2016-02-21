@@ -71,10 +71,11 @@ class gallery implements api_action {
 
 		$postid   		 = isset( $data['postid'] ) ? (int) $data['postid'] : false;
 		$type   		 = isset( $data['gallery_type'] ) ? $data['gallery_type'] : false;
+		$edgallerytitle	 = isset( $data['edgallerytitle'] ) ? $data['edgallerytitle'] : $postid.'-'.rand();
 
 		// insert a new gallery
 		$args = array(
-			'post_title'    => $postid.'-'.rand(),
+			'post_title'    => $edgallerytitle ,
 			'post_status'   => 'publish',
 			'post_type'     => 'ai_galleries'
 		);
@@ -98,7 +99,8 @@ class gallery implements api_action {
 		do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
 
 		return array(
-			'message' => 'gallery-created'
+			'message' => 'gallery-created',
+			'id' => $postid
 		);
 
 	}
@@ -226,6 +228,7 @@ class gallery implements api_action {
 		$params[ 'process_gallery_create' ] = array(
 			'postid'   => 'absint',
 			'content'   => 'wp_kses_post',
+			'edgallerytitle' =>'sanitize_text_field',
 			'galleryType'      => array(
 				'sanitize_text_field',
 				'trim'

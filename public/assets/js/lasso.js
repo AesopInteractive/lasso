@@ -5843,6 +5843,45 @@ Undo.Command.extend = function(protoProps) {
 							utils.triggerEvent(medium.settings.element, "change");
 						}
 					};
+					
+				function insertTextAtCursor(text, offset) {
+					var sel, range, html;
+					if (window.getSelection) {
+						sel = window.getSelection();
+						if (sel.getRangeAt && sel.rangeCount) {
+							range = sel.getRangeAt(0);
+							var range2 = document.createRange();
+							range2.setStart(sel.anchorNode, range.startOffset);
+							range2.collapse();
+							range2.insertNode( document.createTextNode(text) );
+						}
+					} else if (document.selection && document.selection.createRange) {
+						document.selection.createRange().text = text;
+					}
+				}
+				
+				function getCaretPosition(editableDiv) {
+				    var caretPos = 0,
+					sel, range;
+					if (window.getSelection) {
+						sel = window.getSelection();
+						if (sel.rangeCount) {
+						  range = sel.getRangeAt(0);
+						  caretPos = range.endOffset;
+						}
+					} else if (document.selection && document.selection.createRange) {
+						range = document.selection.createRange();
+						if (range.parentElement() == editableDiv) {
+						  var tempEl = document.createElement("span");
+						  editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+						  var tempRange = range.duplicate();
+						  tempRange.moveToElementText(tempEl);
+						  tempRange.setEndPoint("EndToEnd", range);
+						  caretPos = tempRange.text.length;
+						}
+					}
+					return caretPos;
+				}
 
 				this.medium = medium;
 				this.timer = timer;
@@ -5856,6 +5895,11 @@ Undo.Command.extend = function(protoProps) {
 						utils.preventDefaultEvent(e);
 						return;
 					}
+					utils.preventDefaultEvent(e);
+					var p = getCaretPosition(medium.settings.element);
+					if (p>2) {
+					   insertTextAtCursor("", 1);
+					} 
 
 					// a way too simple algorithm in place of single-character undo
 					clearTimeout(timer);
@@ -12284,18 +12328,7 @@ jQuery(document).ready(function($){
 	//////////
 	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
 
-		var data = {
-			action: 		'process_gallery_swap',
-			gallery_id: 	$(this).val(),
-			nonce: 			lasso_editor.swapGallNonce
-		}
-
-		$.post( lasso_editor.ajaxurl, data, function(response) {
-
-			if( true == response.success ) {
-				$('.aesop-gallery-component').replaceWith( response.data.gallery );
-			}
-		});
+		editus_gallery_swap($(this).val());
 		
 		var data2      = {
 			action:    	'process_gallery_get-images',
@@ -12332,6 +12365,21 @@ jQuery(document).ready(function($){
 			});
 		});
 	});
+	
+	function editus_gallery_swap(galleryID){
+		var data = {
+			action: 		'process_gallery_swap',
+			gallery_id: 	galleryID,
+			nonce: 			lasso_editor.swapGallNonce
+		}
+
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+			if( true == response.success ) {
+				// window.component is the current component being edited
+				window.component.replaceWith( response.data.gallery );
+			}
+		});
+	}
 
 	///////////
 	// EDIT GALLERY
@@ -12899,12 +12947,16 @@ jQuery(document).ready(function($){
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
+			if (form.hasClass('creating-gallery')) {
+				data['edgallerytitle'] = document.getElementById("lasso--gallery__galleryname").value;
+			}
 
 			$.post( lasso_editor.ajaxurl, data, function(response) {
 
 				if ( 'gallery-created' == response.data.message ) {
 
 					saveSequence( false, 1000, true );
+					editus_gallery_swap(response.data.id);
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
