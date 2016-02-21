@@ -11,6 +11,7 @@ class license {
 
 		add_action( 'admin_init',  array( $this, 'plugin_updater' ), 0 );
 		add_action( 'admin_menu',  array( $this, 'license_menu' ) );
+		add_action( 'network_admin_menu',  array( $this, 'license_menu' ) ); // CHANGED Added hook.
 		add_action( 'admin_init',  array( $this, 'register_option' ) );
 		add_action( 'admin_init',  array( $this, 'activate_license' ) );
 		add_action( 'admin_init',  array( $this, 'deactivate_license' ) );
@@ -33,9 +34,9 @@ class license {
 	}
 	function license_menu() {
 
-		if ( function_exists( 'is_multisite' ) && !is_multisite() ) {
-			add_submenu_page( 'lasso-editor', __( 'License Key', 'lasso' ), __( 'License', 'lasso' ), 'manage_options', 'lasso-license', array( $this, 'license_page' ) );
-		}
+		// CHANGED Removed condition.
+		add_submenu_page( 'lasso-editor', __( 'License Key', 'lasso' ), __( 'License', 'lasso' ), 'manage_options', 'lasso-license', array( $this, 'license_page' ) );
+
 	}
 	function license_page() {
 		$license  = get_option( 'lasso_license_key' );

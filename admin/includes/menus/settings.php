@@ -22,15 +22,9 @@ class settings {
 	 */
 	function menu() {
 
-		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+		// CHANGED Removed condition.
+		add_submenu_page( 'lasso-editor', __( 'Settings', 'lasso' ), __( 'Settings', 'lasso' ), 'manage_options', 'lasso-editor-settings', array( $this, 'settings' ) );
 
-			add_submenu_page( 'settings.php', __( 'Editus', 'lasso' ), __( 'Editus', 'lasso' ), 'manage_network', 'lasso-editor', array( $this, 'settings' ) );
-
-		} else {
-
-			add_submenu_page( 'lasso-editor', __( 'Settings', 'lasso' ), __( 'Settings', 'lasso' ), 'manage_options', 'lasso-editor-settings', array( $this, 'settings' ) );
-
-		}
 	}
 
 	/**
@@ -116,7 +110,7 @@ class settings {
 					<div class="lasso-editor-settings--option-inner">
 						<label><?php _e( 'Article Class', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Provide the CSS class (including the preceding dot) of container that holds the post. This should be the first parent container class that holds the_content.', 'lasso' );?></span>
-						<input type="text" name="lasso_editor[article_class]" id="lasso_editor[article_class]" value="<?php echo esc_attr( $article_object );?>" placeholder=".entry-content">
+						<input required type="text" name="lasso_editor[article_class]" id="lasso_editor[article_class]" value="<?php echo esc_attr( $article_object );?>" placeholder=".entry-content">
 					</div>
 				</div>
 

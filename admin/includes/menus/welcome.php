@@ -12,6 +12,7 @@ class welcome {
 
 		add_action( 'admin_init',   array( $this, 'redirect' ) );
 		add_action( 'admin_menu',   array( $this, 'lasso_welcome' ) );
+		add_action( 'network_admin_menu',   array( $this, 'lasso_welcome' ) );  // CHANGED Added hook.
 
 		add_action( 'tgmpa_register',  array( $this,'required_plugins' ));
 
@@ -43,11 +44,9 @@ class welcome {
 	 */
 	function lasso_welcome() {
 
-		if ( function_exists( 'is_multisite' ) && !is_multisite() ) {
-
-			add_menu_page( __( 'Editus', 'lasso' ), __( 'Editus', 'lasso' ), 'manage_options', 'lasso-editor', '', LASSO_URL.'/admin/assets/img/menu-icon.png' );
-			add_submenu_page( 'lasso-editor', __( 'Welcome', 'lasso' ), __( 'Status', 'lasso' ), 'manage_options', 'lasso-editor', array( $this, 'welcome' ) );
-		}
+		// CHANGED Removed condition.
+		add_menu_page( __( 'Editus', 'lasso' ), __( 'Editus', 'lasso' ), 'manage_options', 'lasso-editor', '', LASSO_URL.'/admin/assets/img/menu-icon.png' );
+		add_submenu_page( 'lasso-editor', __( 'Welcome', 'lasso' ), __( 'Status', 'lasso' ), 'manage_options', 'lasso-editor', array( $this, 'welcome' ) );
 
 	}
 
@@ -65,7 +64,15 @@ class welcome {
 
 		  		<ul class="lasso--welcome__steps">
 
-			  		<?php
+		  		<?php // CHANGED Added the is_network_admin condition. ?>
+			  		<?php if ( is_network_admin() ) : ?>
+
+			  			<li>
+			  				<p><?php _e( 'We will check the current theme on every site in your network and give you a quick status feedback here. You can see the status by visiting the Editus menu on each site.', 'lasso' );?></p>
+			  			</li>
+
+			  		<?php else :
+
 					$checks = self::lasso_preflight_check();
 
 					if ( $checks && !defined( 'LASSO_AGENCY_MODE' ) ):
@@ -87,7 +94,7 @@ class welcome {
 			  				<p><?php _e( 'Editus will place a small menu on the bottom of your site. While on a single post or page, click the "pen" icon to go into edit mode. Press escape to get out of edit mode.', 'lasso' );?></p>
 			  			</li>
 			  			<?php
-
+			  			endif;
 					endif; ?>
 
 			  	</ul>
@@ -113,7 +120,7 @@ class welcome {
 	    		<?php if ( !defined( 'LASSO_AGENCY_MODE' ) ): ?>
 
 			    	<ul class="lasso--welcome__social">
-			    		<li><a href="http://edituswp.com/help" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e( 'Help', 'lasso' );?></a></li>
+			    		<li><a href="https://edituswp.com/help" target="_blank"><i class="dashicons dashicons-sos"></i> <?php _e( 'Help', 'lasso' );?></a></li>
 			    		<li><a href="http://twitter.com/aesopinteractiv" target="_blank"><i class="dashicons dashicons-twitter"></i> <?php _e( 'Twitter', 'lasso' );?></a></li>
 			    		<li><a href="http://facebook.com/aesopinteractive" target="_blank"><i class="dashicons dashicons-facebook"></i> <?php _e( 'Facebook', 'lasso' );?></a></li>
 			    	</ul>
