@@ -156,7 +156,7 @@ function lasso_get_supported_theme_title_class() {
 */
 function lasso_supported_no_save(){
 
-	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet');
+	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet, .meta');
 }
 
 /**
