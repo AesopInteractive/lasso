@@ -35,19 +35,21 @@ class tour {
 			?>
 			<div id="lasso--tour__modal" class="lasso--modal lasso--tour__modal lasso--modal__checkbox <?php echo sanitize_html_class( $custom_classes );?>">
 				<script>
-					jQuery(window).ready(function($){
+					(function( $ ) {
+						jQuery(document).ready(function($){
 
-						$('body').addClass('lasso-modal-open');
+							$('body').addClass('lasso-modal-open');
 
-		    			$('.lasso--loading').remove();
-						$('#lasso--tour__slides').hide().fadeIn()
+							$('.lasso--loading').remove();
+							$('#lasso--tour__slides').hide().fadeIn()
 
-						$('#lasso--tour__slides').unslider({
-							dots: true,
-							delay:7000
+							$('#lasso--tour__slides').unslider({
+								dots: true,
+								delay:7000
+							});
+
 						});
-
-					});
+					})( jQuery );
 				</script>
 				<div class="lasso--modal__inner">
 

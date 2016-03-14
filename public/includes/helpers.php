@@ -102,13 +102,14 @@ function lasso_get_supported_theme_class() {
 		//case 'camera': // array.is
 		//	$out = '.entry-content';
 		//	break;
-		//case 'longform': // 
-		//	$out = '.entry-content';
-		//	break;
+		case 'longform': 
+			$out = '.entry-content-wrapper';
+			break;
 
 	}
 
-	return !empty( $out ) ? $out : false;
+	return apply_filters('lasso_content_class', !empty( $out ) ? $out : false);
+	//return !empty( $out ) ? $out : false;
 }
 
 function lasso_get_supported_theme_title_class() {
@@ -142,10 +143,23 @@ function lasso_get_supported_theme_title_class() {
 		case 'kleo': // 
 			$out = '.page-title';
 			break;
+		case 'longform': // 
+			$out = '.entry-title';
+			break;
 	}
 
-	return !empty( $out ) ? $out : false;
+	return apply_filters('lasso_title_class', !empty( $out ) ? $out : false);
 }
+
+//since 0.9.9.6
+function lasso_get_supported_theme_featured_image_class() {
+
+	$name  	= wp_get_theme()->get('Name');
+	$slug  	= lasso_clean_string( $name );
+
+	return apply_filters('lasso_featured_image_class', !empty( $out ) ? $out : false);
+}
+
 
 /**
 *	Return a string of classes with items that Lasso will remove when entering the editor

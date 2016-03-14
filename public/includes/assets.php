@@ -17,6 +17,7 @@ class assets {
 
 	public function scripts(){
 
+	
 		if ( lasso_user_can('edit_posts') ) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
@@ -37,6 +38,9 @@ class assets {
 			$article_object 	= empty( $article_object ) && lasso_get_supported_theme_class() ? lasso_get_supported_theme_class() : $article_object;
 
 			$featImgClass 		= lasso_editor_get_option('featimg_class','lasso_editor');
+			if (empty( $featImgClass )) {
+				$featImgClass = lasso_get_supported_theme_featured_image_class();
+			}
 			$titleClass 		= lasso_editor_get_option('title_class','lasso_editor');
 			if (empty( $titleClass )) {
 				$titleClass = lasso_get_supported_theme_title_class();
