@@ -155,7 +155,6 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
 			<?php endif; ?>
-			<li id="lasso-toolbar--color" style="color:red;" title="<?php esc_attr_e( 'Color', 'lasso' );?>">C</li>
 		    <li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
 		    	<div id="lasso-toolbar--link__wrap">
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
