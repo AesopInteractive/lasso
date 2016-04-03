@@ -155,10 +155,13 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
 			<?php endif; ?>
+			<li id="lasso-toolbar--color" style="color:red;" title="<?php esc_attr_e( 'Color', 'lasso' );?>">C</li>
 		    <li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
 		    	<div id="lasso-toolbar--link__wrap">
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
 		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
+					<input type="checkbox" />
+                    <label>Styled Check Box</label>
 		    	</div>
 		    </li>
 		    <?php do_action( 'lasso_toolbar_components_after' );?>
@@ -501,7 +504,7 @@ function lasso_editor_allpost_modal() {
 			<ul class="lasso--post-object-list">
 				<?php
 
-				$post_types = lasso_post_types();
+				$post_types = lasso_post_types_names();
 
 				if ( ! empty( $post_types ) ) {
 					$first = 'active';

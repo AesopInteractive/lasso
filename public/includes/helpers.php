@@ -170,7 +170,7 @@ function lasso_get_supported_theme_featured_image_class() {
 */
 function lasso_supported_no_save(){
 
-	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet, .meta');
+	return apply_filters('lasso_dont_save', '.lasso--ignore, .sharedaddy, .us_wrapper, .twitter-tweet, .meta, .edit-link');
 }
 
 /**
@@ -240,8 +240,7 @@ function lasso_get_objects( $taxonomy = 'category' ) {
  *
  * @since 0.9.4
  */
-function lasso_post_types() {
-
+function lasso_post_types_names() {
 	$post_types = get_post_types( array(
 		'public' => true,
 	), 'objects' );
@@ -255,17 +254,40 @@ function lasso_post_types() {
 	 *
 	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
 	 */
-	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page' ) );
+	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page') );
 	foreach( $post_types as $name => $label ) {
 		if ( ! in_array( $name, $allowed_post_types ) ) {
 			unset( $post_types[ $name ] );
 		}
-
 	}
-
 	return $post_types;
-
 }
+
+
+function lasso_post_types() {
+	$post_types = get_post_types( array(
+		'public' => true,
+	), 'names' );
+	//$post_types = array_combine( array_keys( $post_types ), wp_list_pluck( $post_types, 'label' ) );
+    unset( $post_types[ 'attachment' ] );
+
+	/**
+	 * Set which post types are allowed
+	 *
+	 * @since 0.9.4
+	 *
+	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
+	 */
+	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page') );
+	foreach( $post_types as $name => $label ) {
+		if ( ! in_array( $name, $allowed_post_types ) ) {
+			unset( $post_types[ $name ] );
+		}
+	}
+	return $post_types;
+}
+
+
 
 ////////////////////
 // INTERNAL
@@ -345,11 +367,11 @@ function lasso_unclean_string( $string = '' ) {
  *
  * @param unknown $action string a capability such as edit_posts or publish_posts
  * @param unknown $postid int the id of the post object to check against
- * @since 1.0
+ * @since 0.9.9.7 added filter 'lasso_user_can_filter'
  */
 if ( !function_exists( 'lasso_user_can' ) ):
 	function lasso_user_can( $action = '', $postid = 0 ) {
-
+        $result = false;
 		if ( empty( $action ) )
 			$action = 'edit_posts';
 
@@ -357,15 +379,12 @@ if ( !function_exists( 'lasso_user_can' ) ):
 			$postid = get_the_ID();
 
 		if ( is_user_logged_in() && current_user_can( $action, $postid ) ) {
-
-			return true;
-
+			$result =  true;
 		} else {
-
-			return false;
-
+			$result = false;
 		}
-
+		
+		return apply_filters( 'lasso_user_can_filter', $result,  $action, $postid);
 	}
 endif;
 

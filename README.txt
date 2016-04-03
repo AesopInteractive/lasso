@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.4.1
-Stable tag: 0.9.9.6
+Stable tag: 0.9.9.7
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,11 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+
+= 0.9.9.7 =
+* added the following filter:
+   lasso_user_can_filter
+* fixed a bug in adding a custom type post 
 
 = 0.9.9.6 =
 * added the following hooks:
