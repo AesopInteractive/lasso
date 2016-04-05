@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.4.1
-Stable tag: 0.9.9.7
+Stable tag: 0.9.9.8
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,10 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+
+= 0.9.9.8 =
+* fixed a bug in the shortcode saving codes
+* some form style and color adjustments
 
 = 0.9.9.7 =
 * added the following filter:
