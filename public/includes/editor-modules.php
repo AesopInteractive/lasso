@@ -430,7 +430,7 @@ function lasso_editor_newpost_modal() {
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
 					<label><?php esc_attr_e( 'New <span>post</span> title', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Specify title for new post, then save to edit.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 					<input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="" placeholder="<?php esc_attr_e( 'Grump Wizards Make Toxic Brew', 'lasso' );?>">
-						<div class="lasso--select-wrap">
+						<div class="lasso--select-wrap" style="width:90px">
 						<select id="lasso--select-type" name="story_type">
 
 							<?php
