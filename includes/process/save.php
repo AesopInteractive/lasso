@@ -143,9 +143,10 @@ class save implements api_action {
 	 * @return string
 	 */
 	protected function replace_rendered_shortcodes( $content ) {
-		if ( false === strpos( $content, '<!--EDITUS_OTHER_SHORTCODE_START|' ) ) {
+		if ( false === strpos( $content, '--EDITUS_OTHER_SHORTCODE_START|' ) ) {
 			return $content;
 		}
+		$content = htmlspecialchars_decode ($content);
 
 		$content = preg_replace(
 			'/<!--EDITUS_OTHER_SHORTCODE_START\|\[(.*?)\]-->(.*?)<!--EDITUS_OTHER_SHORTCODE_END-->/s',
