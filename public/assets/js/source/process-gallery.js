@@ -4,7 +4,8 @@
 	/////////////
 	// NEW GALLERY CREATE
 	////////////
-	$('#lasso--gallery__create').live('click',function(e){
+	//$('#lasso--gallery__create').live('click',function(e){
+	jQuery(document).on('click','#lasso--gallery__create',function(e){
 
 		e.preventDefault();
 
@@ -29,7 +30,8 @@
 	var file_frame;
 	var	gallery = $('#ase-gallery-images');
 
-	$(document).on('click', '#lasso--gallery__selectImages', function( e ){
+	//$(document).on('click', '#lasso--gallery__selectImages', function( e ){
+	jQuery(document).on('click','#lasso--gallery__selectImages',function( e ){
 
 	    e.preventDefault();
 
@@ -90,7 +92,8 @@
 	//////////
 	// NEW GALLERY SWAP
 	//////////
-	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
+	//$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
+	jQuery(document).on('change','.lasso-gallery-id #lasso-generator-attr-id',function(){
 
 		editus_gallery_swap($(this).val());
 		

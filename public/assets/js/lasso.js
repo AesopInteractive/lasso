@@ -5843,45 +5843,6 @@ Undo.Command.extend = function(protoProps) {
 							utils.triggerEvent(medium.settings.element, "change");
 						}
 					};
-					
-				function insertTextAtCursor(text, offset) {
-					var sel, range, html;
-					if (window.getSelection) {
-						sel = window.getSelection();
-						if (sel.getRangeAt && sel.rangeCount) {
-							range = sel.getRangeAt(0);
-							var range2 = document.createRange();
-							range2.setStart(sel.anchorNode, range.startOffset);
-							range2.collapse();
-							range2.insertNode( document.createTextNode(text) );
-						}
-					} else if (document.selection && document.selection.createRange) {
-						document.selection.createRange().text = text;
-					}
-				}
-				
-				function getCaretPosition(editableDiv) {
-				    var caretPos = 0,
-					sel, range;
-					if (window.getSelection) {
-						sel = window.getSelection();
-						if (sel.rangeCount) {
-						  range = sel.getRangeAt(0);
-						  caretPos = range.endOffset;
-						}
-					} else if (document.selection && document.selection.createRange) {
-						range = document.selection.createRange();
-						if (range.parentElement() == editableDiv) {
-						  var tempEl = document.createElement("span");
-						  editableDiv.insertBefore(tempEl, editableDiv.firstChild);
-						  var tempRange = range.duplicate();
-						  tempRange.moveToElementText(tempEl);
-						  tempRange.setEndPoint("EndToEnd", range);
-						  caretPos = tempRange.text.length;
-						}
-					}
-					return caretPos;
-				}
 
 				this.medium = medium;
 				this.timer = timer;
@@ -5895,11 +5856,6 @@ Undo.Command.extend = function(protoProps) {
 						utils.preventDefaultEvent(e);
 						return;
 					}
-					utils.preventDefaultEvent(e);
-					var p = getCaretPosition(medium.settings.element);
-					if (p>2) {
-					   insertTextAtCursor("", 1);
-					} 
 
 					// a way too simple algorithm in place of single-character undo
 					clearTimeout(timer);
@@ -10500,6 +10456,62 @@ jQuery(document).ready(function($){
 		    articleMedium.invokeElement('b');
 			return false;
 		};
+		
+		/*
+		// Todo: code for future integration
+		document.getElementById('lasso-toolbar--color').onmousedown = function() {
+			article.highlight();
+		    //articleMedium.invokeElement('b');
+			//handleClick: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            //this.selectionState = this.base.exportSelection();
+
+            // If no text selected, stop here.
+            //if(this.selectionState && (this.selectionState.end - this.selectionState.start === 0) ) {
+            //  return;
+            //}
+
+            // colors for picker
+            var pickerColors = [ 
+              "#1abc9c",
+              "#2ecc71",
+              "#3498db",
+              "#9b59b6",
+              "#34495e",
+			  
+              "#16a085",
+              "#27ae60",
+              "#2980b9",
+              "#8e44ad",
+              "#2c3e50",
+			  
+              "#f1c40f",
+              "#e67e22",
+              "#e74c3c",
+              "#bdc3c7",
+              "#95a5a6",
+			  
+              "#f39c12"
+            ];
+
+            //var picker = vanillaColorPicker(this.document.querySelector(".medium-editor-toolbar-active .editor-color-picker"));
+			var picker = vanillaColorPicker(document.getElementById('lasso-toolbar--color'));
+            picker.set("customColors", pickerColors);
+            picker.set("positionOnTop");
+            picker.openPicker();
+            picker.on("colorChosen", function(color) {
+				debugger;
+              //this.base.importSelection(this.selectionState);
+              document.execCommand("styleWithCSS", false, true);
+              document.execCommand("foreColor", false, color);
+			  //var container = window.selRange.startContainer.parentNode;
+			  //container.style.color = color;
+            }.bind(this));
+        //}
+			return false;
+		};*/
 
 		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
 			article.highlight();
@@ -10648,7 +10660,8 @@ jQuery(document).ready(function($){
 
 		});
 		// on utility class exit
-		$('#lasso--exit').live('click',function(e){
+		//$('#lasso--exit').live('click',function(e){
+		jQuery(document).on('click','#lasso--exit', function(e){
 			e.preventDefault();
 			exitEditor();
 		})
@@ -10996,7 +11009,8 @@ jQuery(document).ready(function($){
 		}
 
 		// modal click
-		$('#lasso--post-settings').live('click',function(e){
+		//$('#lasso--post-settings').live('click',function(e){
+		jQuery(document).on('click','#lasso--post-settings',function(e){
 
 			e.preventDefault();
 
@@ -11082,7 +11096,8 @@ jQuery(document).ready(function($){
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		//$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		jQuery(document).on('click', '#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel', function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -11104,7 +11119,8 @@ jQuery(document).ready(function($){
 		//////////////
 		var form;
 
-		$('#lasso--postsettings__form').live('submit', function(e) {
+		//$('#lasso--postsettings__form').live('submit', function(e) {
+		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
 
@@ -11439,7 +11455,8 @@ jQuery(document).ready(function($){
 		});
 
 		// destroy panel if clicking close or overlay
-		$('#lasso--sidebar__close').live('click',function(e){
+		//$('#lasso--sidebar__close').live('click',function(e){
+		jQuery(document).on('click','#lasso--sidebar__close',function(e){
 			e.preventDefault();
 			destroySidebar();
 			$('#lasso--component__settings').perfectScrollbar('destroy');
@@ -11464,10 +11481,12 @@ jQuery(document).ready(function($){
 			var settings 	= $('#lasso--component__settings')
 
 			// QUOTE LIVE EDIT ///////////////////
-			settings.find('#lasso-generator-attr-background').live('change',function(){
+			//settings.find('#lasso-generator-attr-background').live('change',function(){
+			settings.find('#lasso-generator-attr-background').on('change',function(){
 			  	component.css({'background-color': $(this).val()});
 			});
-			settings.find('#lasso-generator-attr-text').live('change',function(){
+			//settings.find('#lasso-generator-attr-text').live('change',function(){
+			settings.find('#lasso-generator-attr-text').on('change',function(){
 			  	component.css({'color': $(this).val()});
 			});
 			settings.find('#lasso-generator-attr-quote').on('keyup',function(){
@@ -11673,7 +11692,8 @@ jQuery(document).ready(function($){
 			})
 
 			// VIDEO LIVE EDITOR /////////////////////
-			settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
+			//settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
+			settings.find('.lasso-video-src > #lasso-generator-attr-src').on('change blur',function(){
 
 				val = $(this).val()
 
@@ -11696,20 +11716,24 @@ jQuery(document).ready(function($){
 				})
 
 			// CONTENT COMPONENT LIVE EDIT /////
-			settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
+			//settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
+			settings.find('.lasso-content-background > #lasso-generator-attr-background').on('change',function(){
 			  	component.find('.aesop-content-comp-wrap').css({'background-color': $(this).val()});
 			});
-				settings.find('.lasso-content-color > #lasso-generator-attr-color').live('change',function(){
+				//settings.find('.lasso-content-color > #lasso-generator-attr-color').live('change',function(){
+				settings.find('.lasso-content-color > #lasso-generator-attr-color').on('change',function(){
 				  	component.find('.aesop-content-comp-wrap').css({'color': $(this).val()});
 				});
-				settings.find('.lasso-content-height > #lasso-generator-attr-height').live('keyup',function(){
+				//settings.find('.lasso-content-height > #lasso-generator-attr-height').live('keyup',function(){
+				settings.find('.lasso-content-height > #lasso-generator-attr-height').on('keyup',function(){
 
 					val = $(this).val()
 
 					component.find('.aesop-content-comp-wrap').css({'min-height': $(this).val()});
 
 				});
-				settings.find('.lasso-content-columns > #lasso-generator-attr-columns').live('change',function(){
+				//settings.find('.lasso-content-columns > #lasso-generator-attr-columns').live('change',function(){
+				settings.find('.lasso-content-columns > #lasso-generator-attr-columns').on('change',function(){
 
 					val = $(this).val()
 
@@ -11737,7 +11761,8 @@ jQuery(document).ready(function($){
 		*/
 		function initVideoProvider( settings, component, type ){
 
-			settings.find('.lasso-video-id > #lasso-generator-attr-id').live('change',function(){
+			//settings.find('.lasso-video-id > #lasso-generator-attr-id').live('change',function(){
+			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('change',function(){
 
 				video_id = $(this).val()
 
@@ -11823,7 +11848,8 @@ jQuery(function( $ ) {
 	/// HTML DROP UP
 	/////////////
 
-	$('#lasso-toolbar--html').live('mousedown',function(){
+	//$('#lasso-toolbar--html').live('mousedown',function(){
+	jQuery(document).on('mousedown', '#lasso-toolbar--html', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
@@ -11834,11 +11860,13 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#lasso-toolbar--html__inner').live('focusout',function(){
+	//$('#lasso-toolbar--html__inner').live('focusout',function(){
+	jQuery(document).on('focusout', '#lasso-toolbar--html__inner', function(){
 		restoreSelection(window.selRange);
 	});
 
-	$('#lasso-toolbar--html__inner').live('focus',function(){
+	//$('#lasso-toolbar--html__inner').live('focus',function(){
+	jQuery(document).on('focus', '#lasso-toolbar--html__inner', function(){
 		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
@@ -11851,7 +11879,8 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 
 		// prevent dropup from closing
-		$('#lasso-toolbar--html__wrap').live('click',function(){
+		//$('#lasso-toolbar--html__wrap').live('click',function(){
+		jQuery(document).on('click', '#lasso-toolbar--html__wrap', function(){
 			return false;
 		});
 
@@ -11859,7 +11888,8 @@ jQuery(function( $ ) {
 
 	});
 
-	$('.lasso-toolbar--html__cancel').live('click',function(){
+	//$('.lasso-toolbar--html__cancel').live('click',function(){
+	jQuery(document).on('click', '.lasso-toolbar--html__cancel', function(){
 
 		$(this).closest('li').removeClass('html--drop-'+dropClass() );
 
@@ -11873,19 +11903,23 @@ jQuery(function( $ ) {
 		return $('#lasso-toolbar--html__inner').text(markup);
 
 	}
-	$('#lasso-html--h2').live('click',function(e){
+	//$('#lasso-html--h2').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--h2', function(e){
 		e.preventDefault();
 		htmlItemInsert('<h2>H2 Heading</h2>');
 	});
-	$('#lasso-html--h3').live('click',function(e){
+	//$('#lasso-html--h3').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--h3', function(e){
 		e.preventDefault();
 		htmlItemInsert('<h3>H3 Heading</h3>');
 	});
-	$('#lasso-html--ul').live('click',function(e){
+	//$('#lasso-html--ul').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--ul', function(e){
 		e.preventDefault();
 		htmlItemInsert('<ul><li>Item</li></ul>');
 	});
-	$('#lasso-html--ol').live('click',function(e){
+	//$('#lasso-html--ol').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--ol', function(e){
 		e.preventDefault();
 		htmlItemInsert('<ol><li>Item</li></ol>');
 	});
@@ -11893,7 +11927,8 @@ jQuery(function( $ ) {
 	////////////
 	/// LINK DROP UIP
 	////////////
-	$('#lasso-toolbar--link').live('mousedown',function(){
+	//$('#lasso-toolbar--link').live('mousedown',function(){
+	jQuery(document).on('mousedown', '#lasso-toolbar--link', function(){
 		if( ! $(this).hasClass('link--drop-up') ) {
 			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
@@ -11904,11 +11939,13 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#lasso-toolbar--link__inner').live('focusout',function(){
+	//$('#lasso-toolbar--link__inner').live('focusout',function(){
+	jQuery(document).on('focusout', '#lasso-toolbar--link__inner', function(){
 		restoreSelection(window.selRange);
 	});
 
-	$('#lasso-toolbar--link__inner').live('focus',function(){
+	//$('#lasso-toolbar--link__inner').live('focus',function(){
+	jQuery(document).on('focus', '#lasso-toolbar--link__inner', function(){
 		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
@@ -11921,7 +11958,8 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 
 		// prevent dropup from closing
-		$('#lasso-toolbar--link__wrap').live('click',function(){
+		//$('#lasso-toolbar--link__wrap').live('click',function(){
+		jQuery(document).on('click', '#lasso-toolbar--link__wrap', function(){
 			return false;
 		});
 
@@ -11930,12 +11968,14 @@ jQuery(function( $ ) {
 	});
 
 	// RESTORING LINK SELECTION
-	$('.lasso-editing .lasso-link').live('click',function(e){
+	//$('.lasso-editing .lasso-link').live('click',function(e){
+	jQuery(document).on('click', '.lasso-editing .lasso-link', function(){
 
 		e.preventDefault();
 
 		// prevent dropup from closing
-		$('#lasso-toolbar--link__wrap').live('click',function(){
+		//$('#lasso-toolbar--link__wrap').live('click',function(){
+		jQuery(document).on('click', '#lasso-toolbar--link__wrap', function(){
 			return false;
 		});
 
@@ -11948,7 +11988,8 @@ jQuery(function( $ ) {
 	/////////////
 	/// DELETING
 	/////////////
-	$('.lasso-delete').live('click',function(e) {
+	//$('.lasso-delete').live('click',function(e) {
+	jQuery(document).on('click', '.lasso-delete', function(e){
 
 		e.preventDefault();
 
@@ -11978,7 +12019,8 @@ jQuery(function( $ ) {
 	/////////////
 	/// CLONING
 	/////////////
-	$('.lasso-clone').live('click',function(e) {
+	//$('.lasso-clone').live('click',function(e) {
+	jQuery(document).on('click', '.lasso-clone', function(e){
 
 		// sore reference to this
 		var $this = $(this);
@@ -12007,7 +12049,8 @@ jQuery(document).ready(function($){
 	// 1. IF UNSAVED CHANGES STORE IN LOCAL STORAGE
 	// @todo - need to account for component on the page this only accounts for text
 	///////////////////////
-	$('#'+editor).live('change',function(){
+	//$('#'+editor).live('change',function(){
+	jQuery(document).on('change', '#'+editor, function(){
 
 		var $this = $(this),
 			newHtml = $this.html();
@@ -12040,7 +12083,8 @@ jQuery(document).ready(function($){
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
 	///////////////////////
-	$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
+	//$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
+	jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
 
 		var warnNoSave = null;
 
@@ -12240,7 +12284,8 @@ jQuery(document).ready(function($){
 	/////////////
 	// NEW GALLERY CREATE
 	////////////
-	$('#lasso--gallery__create').live('click',function(e){
+	//$('#lasso--gallery__create').live('click',function(e){
+	jQuery(document).on('click','#lasso--gallery__create',function(e){
 
 		e.preventDefault();
 
@@ -12265,7 +12310,8 @@ jQuery(document).ready(function($){
 	var file_frame;
 	var	gallery = $('#ase-gallery-images');
 
-	$(document).on('click', '#lasso--gallery__selectImages', function( e ){
+	//$(document).on('click', '#lasso--gallery__selectImages', function( e ){
+	jQuery(document).on('click','#lasso--gallery__selectImages',function( e ){
 
 	    e.preventDefault();
 
@@ -12326,7 +12372,8 @@ jQuery(document).ready(function($){
 	//////////
 	// NEW GALLERY SWAP
 	//////////
-	$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
+	//$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
+	jQuery(document).on('change','.lasso-gallery-id #lasso-generator-attr-id',function(){
 
 		editus_gallery_swap($(this).val());
 		
@@ -12574,7 +12621,8 @@ jQuery(document).ready(function($){
 
 		});
 
-		$('.ase-gallery-layout-label').live('click',function(){
+		//$('.ase-gallery-layout-label').live('click',function(){
+		jQuery(document).on('click','.ase-gallery-layout-label', function(){
 			$('.ase-gallery-layout-label').removeClass('selected');
 			$(this).addClass('selected');
 			var value = $(this).find('input').val();
@@ -12590,7 +12638,8 @@ jQuery(document).ready(function($){
 
 	var form;
 
-	$('#lasso--map-form').live('submit', function(e) {
+	//$('#lasso--map-form').live('submit', function(e) {
+	jQuery(document).on('submit','#lasso--map-form',function(e) {
 
 		e.preventDefault();
 
@@ -12627,8 +12676,8 @@ jQuery(document).ready(function($){
 (function( $ ) {
 	'use strict';
 
-	$( '#lasso--featImgSave a' ).live('click', function(e) {
-
+	//$( '#lasso--featImgSave a' ).live('click', function(e) {
+	jQuery(document).on('click', '#lasso--featImgSave a', function(e){
 		e.preventDefault();
 
 		var $this 		= $(this)
@@ -12857,7 +12906,8 @@ jQuery(document).ready(function($){
 
 	var form;
 
-	$('#lasso--component-settings-form').live('submit', function(e) {
+	//$('#lasso--component-settings-form').live('submit', function(e) {
+	jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
 
 		e.preventDefault();
 
@@ -12995,7 +13045,8 @@ jQuery(document).ready(function($){
 		}
 
 		// modal click
-		$('#lasso--post-new').live('click',function(e){
+		//$('#lasso--post-new').live('click',function(e){
+		jQuery(document).on('click','#lasso--post-new',function(e){
 
 			e.preventDefault();
 
@@ -13015,7 +13066,8 @@ jQuery(document).ready(function($){
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		//$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		jQuery(document).on('click','#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel',function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -13037,7 +13089,8 @@ jQuery(document).ready(function($){
 		//////////////
 		var form;
 
-		$('#lasso--postnew__form').live('submit', function(e) {
+		//$('#lasso--postnew__form').live('submit', function(e) {
+		jQuery(document).on('submit', '#lasso--postnew__form', function(e){
 
 			e.preventDefault();
 
@@ -13075,7 +13128,8 @@ jQuery(document).ready(function($){
 	/////////////
 	// POST OBJECT CHANGE - since 0.9.5
 	/////////////
-	$('#lasso--select-type').live('change',function() {
+	//$('#lasso--select-type').live('change',function() {
+	jQuery(document).on('change', '#lasso--select-type', function(){
 
 		var val = $(this).val()
 
@@ -13650,7 +13704,8 @@ jQuery(document).ready(function($){
 			$('#lasso--tour__modal,#lasso--tour__modal ~ #lasso--modal__overlay').remove();
 		}
 
-		$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
+		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
+		jQuery(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
 
 			e.preventDefault();
 

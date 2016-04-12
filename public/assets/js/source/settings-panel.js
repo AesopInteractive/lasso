@@ -269,7 +269,8 @@
 		});
 
 		// destroy panel if clicking close or overlay
-		$('#lasso--sidebar__close').live('click',function(e){
+		//$('#lasso--sidebar__close').live('click',function(e){
+		jQuery(document).on('click','#lasso--sidebar__close',function(e){
 			e.preventDefault();
 			destroySidebar();
 			$('#lasso--component__settings').perfectScrollbar('destroy');

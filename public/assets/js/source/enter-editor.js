@@ -420,7 +420,8 @@ jQuery(document).ready(function($){
 
 		});
 		// on utility class exit
-		$('#lasso--exit').live('click',function(e){
+		//$('#lasso--exit').live('click',function(e){
+		jQuery(document).on('click','#lasso--exit', function(e){
 			e.preventDefault();
 			exitEditor();
 		})

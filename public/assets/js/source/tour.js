@@ -7,7 +7,8 @@
 			$('#lasso--tour__modal,#lasso--tour__modal ~ #lasso--modal__overlay').remove();
 		}
 
-		$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
+		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
+		jQuery(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
 
 			e.preventDefault();
 

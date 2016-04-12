@@ -13,7 +13,8 @@
 		}
 
 		// modal click
-		$('#lasso--post-settings').live('click',function(e){
+		//$('#lasso--post-settings').live('click',function(e){
+		jQuery(document).on('click','#lasso--post-settings',function(e){
 
 			e.preventDefault();
 
@@ -99,7 +100,8 @@
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		//$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		jQuery(document).on('click', '#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel', function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -121,7 +123,8 @@
 		//////////////
 		var form;
 
-		$('#lasso--postsettings__form').live('submit', function(e) {
+		//$('#lasso--postsettings__form').live('submit', function(e) {
+		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
 

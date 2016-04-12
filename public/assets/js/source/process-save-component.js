@@ -2,7 +2,8 @@
 
 	var form;
 
-	$('#lasso--component-settings-form').live('submit', function(e) {
+	//$('#lasso--component-settings-form').live('submit', function(e) {
+	jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
 
 		e.preventDefault();
 

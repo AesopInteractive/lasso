@@ -14,7 +14,8 @@ jQuery(document).ready(function($){
 	// 1. IF UNSAVED CHANGES STORE IN LOCAL STORAGE
 	// @todo - need to account for component on the page this only accounts for text
 	///////////////////////
-	$('#'+editor).live('change',function(){
+	//$('#'+editor).live('change',function(){
+	jQuery(document).on('change', '#'+editor, function(){
 
 		var $this = $(this),
 			newHtml = $this.html();
@@ -47,7 +48,8 @@ jQuery(document).ready(function($){
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
 	///////////////////////
-	$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
+	//$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
+	jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
 
 		var warnNoSave = null;
 

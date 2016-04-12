@@ -1,8 +1,8 @@
 (function( $ ) {
 	'use strict';
 
-	$( '#lasso--featImgSave a' ).live('click', function(e) {
-
+	//$( '#lasso--featImgSave a' ).live('click', function(e) {
+	jQuery(document).on('click', '#lasso--featImgSave a', function(e){
 		e.preventDefault();
 
 		var $this 		= $(this)

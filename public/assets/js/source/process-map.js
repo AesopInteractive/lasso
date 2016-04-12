@@ -2,7 +2,8 @@
 
 	var form;
 
-	$('#lasso--map-form').live('submit', function(e) {
+	//$('#lasso--map-form').live('submit', function(e) {
+	jQuery(document).on('submit','#lasso--map-form',function(e) {
 
 		e.preventDefault();
 

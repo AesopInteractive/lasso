@@ -13,10 +13,12 @@
 			var settings 	= $('#lasso--component__settings')
 
 			// QUOTE LIVE EDIT ///////////////////
-			settings.find('#lasso-generator-attr-background').live('change',function(){
+			//settings.find('#lasso-generator-attr-background').live('change',function(){
+			settings.find('#lasso-generator-attr-background').on('change',function(){
 			  	component.css({'background-color': $(this).val()});
 			});
-			settings.find('#lasso-generator-attr-text').live('change',function(){
+			//settings.find('#lasso-generator-attr-text').live('change',function(){
+			settings.find('#lasso-generator-attr-text').on('change',function(){
 			  	component.css({'color': $(this).val()});
 			});
 			settings.find('#lasso-generator-attr-quote').on('keyup',function(){
@@ -222,7 +224,8 @@
 			})
 
 			// VIDEO LIVE EDITOR /////////////////////
-			settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
+			//settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
+			settings.find('.lasso-video-src > #lasso-generator-attr-src').on('change blur',function(){
 
 				val = $(this).val()
 
@@ -245,20 +248,24 @@
 				})
 
 			// CONTENT COMPONENT LIVE EDIT /////
-			settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
+			//settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
+			settings.find('.lasso-content-background > #lasso-generator-attr-background').on('change',function(){
 			  	component.find('.aesop-content-comp-wrap').css({'background-color': $(this).val()});
 			});
-				settings.find('.lasso-content-color > #lasso-generator-attr-color').live('change',function(){
+				//settings.find('.lasso-content-color > #lasso-generator-attr-color').live('change',function(){
+				settings.find('.lasso-content-color > #lasso-generator-attr-color').on('change',function(){
 				  	component.find('.aesop-content-comp-wrap').css({'color': $(this).val()});
 				});
-				settings.find('.lasso-content-height > #lasso-generator-attr-height').live('keyup',function(){
+				//settings.find('.lasso-content-height > #lasso-generator-attr-height').live('keyup',function(){
+				settings.find('.lasso-content-height > #lasso-generator-attr-height').on('keyup',function(){
 
 					val = $(this).val()
 
 					component.find('.aesop-content-comp-wrap').css({'min-height': $(this).val()});
 
 				});
-				settings.find('.lasso-content-columns > #lasso-generator-attr-columns').live('change',function(){
+				//settings.find('.lasso-content-columns > #lasso-generator-attr-columns').live('change',function(){
+				settings.find('.lasso-content-columns > #lasso-generator-attr-columns').on('change',function(){
 
 					val = $(this).val()
 
@@ -286,7 +293,8 @@
 		*/
 		function initVideoProvider( settings, component, type ){
 
-			settings.find('.lasso-video-id > #lasso-generator-attr-id').live('change',function(){
+			//settings.find('.lasso-video-id > #lasso-generator-attr-id').live('change',function(){
+			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('change',function(){
 
 				video_id = $(this).val()
 

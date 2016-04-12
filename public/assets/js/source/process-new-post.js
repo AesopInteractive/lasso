@@ -12,7 +12,8 @@
 		}
 
 		// modal click
-		$('#lasso--post-new').live('click',function(e){
+		//$('#lasso--post-new').live('click',function(e){
+		jQuery(document).on('click','#lasso--post-new',function(e){
 
 			e.preventDefault();
 
@@ -32,7 +33,8 @@
 		});
 
 		// destroy modal if clicking close or overlay
-		$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		//$('#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel').live('click',function(e){
+		jQuery(document).on('click','#lasso--modal__close, #lasso--modal__overlay, .lasso--postsettings-cancel',function(e){
 			e.preventDefault();
 			destroyModal();
 		});
@@ -54,7 +56,8 @@
 		//////////////
 		var form;
 
-		$('#lasso--postnew__form').live('submit', function(e) {
+		//$('#lasso--postnew__form').live('submit', function(e) {
+		jQuery(document).on('submit', '#lasso--postnew__form', function(e){
 
 			e.preventDefault();
 
@@ -92,7 +95,8 @@
 	/////////////
 	// POST OBJECT CHANGE - since 0.9.5
 	/////////////
-	$('#lasso--select-type').live('change',function() {
+	//$('#lasso--select-type').live('change',function() {
+	jQuery(document).on('change', '#lasso--select-type', function(){
 
 		var val = $(this).val()
 

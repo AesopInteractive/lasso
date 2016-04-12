@@ -66,7 +66,8 @@ jQuery(function( $ ) {
 	/// HTML DROP UP
 	/////////////
 
-	$('#lasso-toolbar--html').live('mousedown',function(){
+	//$('#lasso-toolbar--html').live('mousedown',function(){
+	jQuery(document).on('mousedown', '#lasso-toolbar--html', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
@@ -77,11 +78,13 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#lasso-toolbar--html__inner').live('focusout',function(){
+	//$('#lasso-toolbar--html__inner').live('focusout',function(){
+	jQuery(document).on('focusout', '#lasso-toolbar--html__inner', function(){
 		restoreSelection(window.selRange);
 	});
 
-	$('#lasso-toolbar--html__inner').live('focus',function(){
+	//$('#lasso-toolbar--html__inner').live('focus',function(){
+	jQuery(document).on('focus', '#lasso-toolbar--html__inner', function(){
 		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
@@ -94,7 +97,8 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 
 		// prevent dropup from closing
-		$('#lasso-toolbar--html__wrap').live('click',function(){
+		//$('#lasso-toolbar--html__wrap').live('click',function(){
+		jQuery(document).on('click', '#lasso-toolbar--html__wrap', function(){
 			return false;
 		});
 
@@ -102,7 +106,8 @@ jQuery(function( $ ) {
 
 	});
 
-	$('.lasso-toolbar--html__cancel').live('click',function(){
+	//$('.lasso-toolbar--html__cancel').live('click',function(){
+	jQuery(document).on('click', '.lasso-toolbar--html__cancel', function(){
 
 		$(this).closest('li').removeClass('html--drop-'+dropClass() );
 
@@ -116,19 +121,23 @@ jQuery(function( $ ) {
 		return $('#lasso-toolbar--html__inner').text(markup);
 
 	}
-	$('#lasso-html--h2').live('click',function(e){
+	//$('#lasso-html--h2').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--h2', function(e){
 		e.preventDefault();
 		htmlItemInsert('<h2>H2 Heading</h2>');
 	});
-	$('#lasso-html--h3').live('click',function(e){
+	//$('#lasso-html--h3').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--h3', function(e){
 		e.preventDefault();
 		htmlItemInsert('<h3>H3 Heading</h3>');
 	});
-	$('#lasso-html--ul').live('click',function(e){
+	//$('#lasso-html--ul').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--ul', function(e){
 		e.preventDefault();
 		htmlItemInsert('<ul><li>Item</li></ul>');
 	});
-	$('#lasso-html--ol').live('click',function(e){
+	//$('#lasso-html--ol').live('click',function(e){
+	jQuery(document).on('click', '#lasso-html--ol', function(e){
 		e.preventDefault();
 		htmlItemInsert('<ol><li>Item</li></ol>');
 	});
@@ -136,7 +145,8 @@ jQuery(function( $ ) {
 	////////////
 	/// LINK DROP UIP
 	////////////
-	$('#lasso-toolbar--link').live('mousedown',function(){
+	//$('#lasso-toolbar--link').live('mousedown',function(){
+	jQuery(document).on('mousedown', '#lasso-toolbar--link', function(){
 		if( ! $(this).hasClass('link--drop-up') ) {
 			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
@@ -147,11 +157,13 @@ jQuery(function( $ ) {
 		}
 	});
 
-	$('#lasso-toolbar--link__inner').live('focusout',function(){
+	//$('#lasso-toolbar--link__inner').live('focusout',function(){
+	jQuery(document).on('focusout', '#lasso-toolbar--link__inner', function(){
 		restoreSelection(window.selRange);
 	});
 
-	$('#lasso-toolbar--link__inner').live('focus',function(){
+	//$('#lasso-toolbar--link__inner').live('focus',function(){
+	jQuery(document).on('focus', '#lasso-toolbar--link__inner', function(){
 		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
@@ -164,7 +176,8 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 
 		// prevent dropup from closing
-		$('#lasso-toolbar--link__wrap').live('click',function(){
+		//$('#lasso-toolbar--link__wrap').live('click',function(){
+		jQuery(document).on('click', '#lasso-toolbar--link__wrap', function(){
 			return false;
 		});
 
@@ -173,12 +186,14 @@ jQuery(function( $ ) {
 	});
 
 	// RESTORING LINK SELECTION
-	$('.lasso-editing .lasso-link').live('click',function(e){
+	//$('.lasso-editing .lasso-link').live('click',function(e){
+	jQuery(document).on('click', '.lasso-editing .lasso-link', function(){
 
 		e.preventDefault();
 
 		// prevent dropup from closing
-		$('#lasso-toolbar--link__wrap').live('click',function(){
+		//$('#lasso-toolbar--link__wrap').live('click',function(){
+		jQuery(document).on('click', '#lasso-toolbar--link__wrap', function(){
 			return false;
 		});
 
@@ -191,7 +206,8 @@ jQuery(function( $ ) {
 	/////////////
 	/// DELETING
 	/////////////
-	$('.lasso-delete').live('click',function(e) {
+	//$('.lasso-delete').live('click',function(e) {
+	jQuery(document).on('click', '.lasso-delete', function(e){
 
 		e.preventDefault();
 
@@ -221,7 +237,8 @@ jQuery(function( $ ) {
 	/////////////
 	/// CLONING
 	/////////////
-	$('.lasso-clone').live('click',function(e) {
+	//$('.lasso-clone').live('click',function(e) {
+	jQuery(document).on('click', '.lasso-clone', function(e){
 
 		// sore reference to this
 		var $this = $(this);

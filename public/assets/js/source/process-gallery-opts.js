@@ -41,7 +41,8 @@
 
 		});
 
-		$('.ase-gallery-layout-label').live('click',function(){
+		//$('.ase-gallery-layout-label').live('click',function(){
+		jQuery(document).on('click','.ase-gallery-layout-label', function(){
 			$('.ase-gallery-layout-label').removeClass('selected');
 			$(this).addClass('selected');
 			var value = $(this).find('input').val();
