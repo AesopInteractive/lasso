@@ -11154,6 +11154,9 @@ jQuery(document).ready(function($){
 				}
 
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
 
 		});
@@ -11382,7 +11385,10 @@ jQuery(document).ready(function($){
 							}
 						});
 					});
-				});
+				}).fail(function(xhr, err) { 
+					var responseTitle= $(xhr.responseText).filter('title').get(0);
+					alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+				});;
 
 			}
 
@@ -12272,11 +12278,33 @@ jQuery(document).ready(function($){
 					$(save).removeClass('being-saved').addClass('lasso--error');
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+				$(save).removeClass('being-saved').addClass('lasso--error');				
 			});
 		}
 
 	});
 });
+
+function EditusFormatAJAXErrorMessage(jqXHR, exception) {
+	if (jqXHR.status === 0) {
+		return ('AJAX Error: Not connected.\nPlease verify your network connection.');
+	} else if (jqXHR.status == 404) {
+		return ('AJAX Error: The requested page not found. [404]');
+	} else if (jqXHR.status == 500) {
+		return ('AJAX Error: Internal Server Error [500].');
+	} else if (exception === 'parsererror') {
+		return ('AJAX Error: Requested JSON parse failed.');
+	} else if (exception === 'timeout') {
+		return ('AJAX Error: Time out error.');
+	} else if (exception === 'abort') {
+		return ('AJAX Error: Ajax request aborted.');
+	} else {
+		return ('AJAX Error: Uncaught Error.\n' + jqXHR.responseText);
+	}
+}
 
 (function( $ ) {
 	'use strict';
@@ -12410,6 +12438,9 @@ jQuery(document).ready(function($){
 					}
 				});
 			});
+		}).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 	});
 	
@@ -12425,6 +12456,9 @@ jQuery(document).ready(function($){
 				// window.component is the current component being edited
 				window.component.replaceWith( response.data.gallery );
 			}
+		}).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 	}
 
@@ -12705,6 +12739,9 @@ jQuery(document).ready(function($){
 				},500);
 			}
 
+		}).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 
 	});
@@ -13019,6 +13056,9 @@ jQuery(document).ready(function($){
 
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
 
 		} else {
@@ -13028,6 +13068,20 @@ jQuery(document).ready(function($){
 		}
 
 	});
+	function editus_gallery_swap(galleryID){
+		var data = {
+			action: 		'process_gallery_swap',
+			gallery_id: 	galleryID,
+			nonce: 			lasso_editor.swapGallNonce
+		}
+
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+			if( true == response.success ) {
+				// window.component is the current component being edited
+				window.component.replaceWith( response.data.gallery );
+			}
+		});
+	}
 
 })( jQuery );
 
@@ -13175,6 +13229,9 @@ jQuery(document).ready(function($){
 					},500);
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
 
 		});
@@ -13269,6 +13326,9 @@ jQuery(document).ready(function($){
 
 			}
 
+		}).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 
 	});
@@ -13313,8 +13373,10 @@ jQuery(document).ready(function($){
 	,	loadingText     = lasso_editor.strings.loading
 	,	loadMoreText    = lasso_editor.strings.loadMore
 	,	noPostsText     = lasso_editor.strings.noPostsFound
+	,   fetchFailText   = lasso_editor.strings.fetchFail
 	,	body 			= $('body')
 	,	noPostsMessage  = '<li id="lasso--end-posts">'+noPostsText+'</li>'
+	,	fetchFailMessage  = '<li id="lasso--end-posts">'+fetchFailText+'</li>'
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
@@ -13330,7 +13392,6 @@ jQuery(document).ready(function($){
     ,   totalPages      = null
     ,	api             = WP_API_Settings.root
     ,	timer
-
 	// infinite load options
 	var options = {
 		data: {
@@ -13424,6 +13485,9 @@ jQuery(document).ready(function($){
 		    // destroy the spinny loader
 		    destroyLoader();
 
+		}).fail( function() {
+			$( '#lasso--loading' ).remove();
+			$( postList ).append( fetchFailMessage );
 		});
 
 
@@ -13536,6 +13600,9 @@ jQuery(document).ready(function($){
 
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
 
 		});
@@ -13730,6 +13797,9 @@ jQuery(document).ready(function($){
 
 					}
 
+				}).fail(function(xhr, err) { 
+					var responseTitle= $(xhr.responseText).filter('title').get(0);
+					alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 				});
 			}
 
@@ -13883,7 +13953,10 @@ jQuery(document).ready(function($){
                 }
 
 
-            });
+            }).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+			});
 
             modalResizer();
 

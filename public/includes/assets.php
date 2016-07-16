@@ -60,6 +60,7 @@ class assets {
 				'loading' 			=> __('Loading...','lasso'),
 				'loadMore'			=> __('Load More','lasso'),
 				'noPostsFound'		=> __('No more posts found','lasso'),
+				'fetchFail'	    	=> __('Fetching failed. REST API plugin may not have been installed or configured correctly.','lasso'),
 				'galleryCreated' 	=> __('Gallery Created!','lasso'),
 				'galleryUpdated' 	=> __('Gallery Updated!','lasso'),
 				'justWrite'			=> __('Just write...','lasso'),

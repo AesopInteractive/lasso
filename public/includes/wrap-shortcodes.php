@@ -62,10 +62,23 @@ function lasso_wrap_shortcode_tag( $m ) {
 	if ( $m[1] == '[' && $m[6] == ']' ) {
 		return substr( $m[0], 1, - 1 );
 	}
+	//array('aesop_quote','aesop_gallery','aesop_chapter','aesop_timeline_stop','aesop_video','aesop_collection','aesop_character','aesop_document','aesop_audio','aesop_content','aesop_map')
 
-	if ( strpos( $m[2], 'aesop_' ) === 0 ) {
-		return $m[0];
+	if ( strpos( $m[2],'aesop_'  ) === 0 ) {
+		// check against the exceptions
+		if (strpos_arr($m[2],array('aesop_gallery_pop','aesop_character_carousel'))===false) {
+		    return $m[0];
+		}
 	}
 
 	return '<!--EDITUS_OTHER_SHORTCODE_START|[' . $m[0] . ']-->' . $m[0] . '<!--EDITUS_OTHER_SHORTCODE_END-->';
+}
+
+/* a helper function */
+function strpos_arr($haystack, $needle) {
+    if(!is_array($needle)) $needle = array($needle);
+    foreach($needle as $what) {
+        if(($pos = strpos($haystack, $what))!==false) return $pos;
+    }
+    return false;
 }

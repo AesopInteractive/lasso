@@ -237,8 +237,30 @@ jQuery(document).ready(function($){
 					$(save).removeClass('being-saved').addClass('lasso--error');
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+				$(save).removeClass('being-saved').addClass('lasso--error');				
 			});
 		}
 
 	});
 });
+
+function EditusFormatAJAXErrorMessage(jqXHR, exception) {
+	if (jqXHR.status === 0) {
+		return ('AJAX Error: Not connected.\nPlease verify your network connection.');
+	} else if (jqXHR.status == 404) {
+		return ('AJAX Error: The requested page not found. [404]');
+	} else if (jqXHR.status == 500) {
+		return ('AJAX Error: Internal Server Error [500].');
+	} else if (exception === 'parsererror') {
+		return ('AJAX Error: Requested JSON parse failed.');
+	} else if (exception === 'timeout') {
+		return ('AJAX Error: Time out error.');
+	} else if (exception === 'abort') {
+		return ('AJAX Error: Ajax request aborted.');
+	} else {
+		return ('AJAX Error: Uncaught Error.\n' + jqXHR.responseText);
+	}
+}

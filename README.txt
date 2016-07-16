@@ -3,8 +3,8 @@ Contributors: nphaskins, hyunster, michaelbeil
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.4.1
-Stable tag: 0.9.9.8
+Tested up to: 4.5.3
+Stable tag: 0.9.9.10
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,13 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+= 0.9.9.10 =
+* Fixed the error reporting for AJAX calls
+* Fixed the short code wrapping for non core Aesop components
+* Fixed a bug with creating gallery
+
+= 0.9.9.9 =
+* replaced the deprecated JQuery calls to live()
 
 = 0.9.9.8 =
 * fixed a bug in the shortcode saving codes

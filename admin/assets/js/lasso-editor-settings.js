@@ -29,7 +29,11 @@ jQuery(document).ready(function($){
 	  			$this.find('.lasso-editor-settings--submit').append('<div class="lasso-editor-settings--confirm error">Something went wrong! :(</div>');
 
 	  		}
-	    });
+	    }).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+			$this.find('.lasso-editor-settings--submit').append('<div class="lasso-editor-settings--confirm error">Something went wrong! :(</div>');		
+		});
 
     });
 

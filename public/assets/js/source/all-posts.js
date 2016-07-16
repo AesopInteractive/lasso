@@ -9,8 +9,10 @@
 	,	loadingText     = lasso_editor.strings.loading
 	,	loadMoreText    = lasso_editor.strings.loadMore
 	,	noPostsText     = lasso_editor.strings.noPostsFound
+	,   fetchFailText   = lasso_editor.strings.fetchFail
 	,	body 			= $('body')
 	,	noPostsMessage  = '<li id="lasso--end-posts">'+noPostsText+'</li>'
+	,	fetchFailMessage  = '<li id="lasso--end-posts">'+fetchFailText+'</li>'
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
@@ -26,7 +28,6 @@
     ,   totalPages      = null
     ,	api             = WP_API_Settings.root
     ,	timer
-
 	// infinite load options
 	var options = {
 		data: {
@@ -120,6 +121,9 @@
 		    // destroy the spinny loader
 		    destroyLoader();
 
+		}).fail( function() {
+			$( '#lasso--loading' ).remove();
+			$( postList ).append( fetchFailMessage );
 		});
 
 
@@ -232,6 +236,9 @@
 
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
 
 		});

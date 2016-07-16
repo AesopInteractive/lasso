@@ -142,7 +142,10 @@
                 }
 
 
-            });
+            }).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+			});
 
             modalResizer();
 

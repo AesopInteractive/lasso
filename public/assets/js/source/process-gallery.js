@@ -130,6 +130,9 @@
 					}
 				});
 			});
+		}).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 	});
 	
@@ -145,6 +148,9 @@
 				// window.component is the current component being edited
 				window.component.replaceWith( response.data.gallery );
 			}
+		}).fail(function(xhr, err) { 
+			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 	}
 

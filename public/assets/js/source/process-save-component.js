@@ -115,6 +115,9 @@
 
 				}
 
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
 
 		} else {
@@ -124,5 +127,19 @@
 		}
 
 	});
+	function editus_gallery_swap(galleryID){
+		var data = {
+			action: 		'process_gallery_swap',
+			gallery_id: 	galleryID,
+			nonce: 			lasso_editor.swapGallNonce
+		}
+
+		$.post( lasso_editor.ajaxurl, data, function(response) {
+			if( true == response.success ) {
+				// window.component is the current component being edited
+				window.component.replaceWith( response.data.gallery );
+			}
+		});
+	}
 
 })( jQuery );
