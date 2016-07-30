@@ -34,6 +34,11 @@
 
             }
         };
+		
+		// if we are running on a mobile device, move the editor controls to the top
+		if (lasso_editor.isMobile) {
+			$('.lasso-editor-controls').css("top", "50px");
+		}
 
         // modal click
         $('#lasso--post-revisions').on('click',function(e){

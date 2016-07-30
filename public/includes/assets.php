@@ -144,7 +144,8 @@ class assets {
 				'mapLocations'		=> get_post_meta( $postid, 'ase_map_component_locations' ),
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true ),
-				'revisionModal' 	=> lasso_editor_revision_modal()
+				'revisionModal' 	=> lasso_editor_revision_modal(),
+				'isMobile'          => wp_is_mobile()
 			);
 
 

@@ -10521,7 +10521,10 @@ jQuery(document).ready(function($){
 
 		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
 			article.highlight();
-			articleMedium.invokeElement('i');
+			articleMedium.invokeElement('i',{
+		    title: "I'm bold!",
+		    style: "color: #66d9ef"
+	    });
 			return false;
 		};
 
@@ -10530,7 +10533,7 @@ jQuery(document).ready(function($){
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
 				article.highlight();
 
-				articleMedium.invokeElement('h2');
+				articleMedium.invokeElement(' h2');
 
 				return false;
 			};
@@ -10941,6 +10944,7 @@ jQuery(document).ready(function($){
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
+				debugger;
 					// if a stock wordpress image is dragged in
 					if ( 'wpimg' == type ) {
 
@@ -11020,6 +11024,7 @@ jQuery(document).ready(function($){
 			// append teh modal markup ( lasso_editor_component_modal() )
 			$('body').append(lasso_editor.component_modal);
 
+			
 			/////////////////
 			/// UI SLIDER INIT AND METHODS
 			///////////////////
@@ -11222,6 +11227,7 @@ jQuery(document).ready(function($){
 		////////////
 		$(document).on('click','#lasso-component--settings__trigger',function(){
 
+		debugger;
 			var settings 	= $('#lasso--component__settings')
 			var click       = $(this)
 
@@ -12184,6 +12190,7 @@ jQuery(document).ready(function($){
 			// Convert the html into a series of jQuery objects
 			var j = $(content);
 			var processed = '';
+			debugger;
 
 			// Iterate through the array of dom objects
 			for (var i = 0; i < j.length; i++) {
@@ -13845,6 +13852,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
             }
         };
+		
+
+		if (lasso_editor.isMobile) {
+			$('.lasso-editor-controls').css("top", "50px");
+		}
 
         // modal click
         $('#lasso--post-revisions').on('click',function(e){
