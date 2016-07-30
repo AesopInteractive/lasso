@@ -10521,10 +10521,7 @@ jQuery(document).ready(function($){
 
 		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
 			article.highlight();
-			articleMedium.invokeElement('i',{
-		    title: "I'm bold!",
-		    style: "color: #66d9ef"
-	    });
+			articleMedium.invokeElement('i');
 			return false;
 		};
 
@@ -10533,7 +10530,7 @@ jQuery(document).ready(function($){
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
 				article.highlight();
 
-				articleMedium.invokeElement(' h2');
+				articleMedium.invokeElement('h2');
 
 				return false;
 			};
@@ -10944,7 +10941,6 @@ jQuery(document).ready(function($){
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
 
-				debugger;
 					// if a stock wordpress image is dragged in
 					if ( 'wpimg' == type ) {
 
@@ -11024,7 +11020,6 @@ jQuery(document).ready(function($){
 			// append teh modal markup ( lasso_editor_component_modal() )
 			$('body').append(lasso_editor.component_modal);
 
-			
 			/////////////////
 			/// UI SLIDER INIT AND METHODS
 			///////////////////
@@ -11227,7 +11222,6 @@ jQuery(document).ready(function($){
 		////////////
 		$(document).on('click','#lasso-component--settings__trigger',function(){
 
-		debugger;
 			var settings 	= $('#lasso--component__settings')
 			var click       = $(this)
 
@@ -11838,19 +11832,27 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 
-		// get the height of the list of components
-		var dropUp 			= $(this).find('ul'),
-			dropUpHeight 	= $(dropUp).height(),
-			caretSpacing  	= 15; // this is the height of the caret
+		var dropUp 			= $(this).find('ul');
+		if( !lasso_editor.isMobile) {
+			// get the height of the list of components
+			
+			var	dropUpHeight 	= $(dropUp).height(),
+				caretSpacing  	= 15; // this is the height of the caret
 
-		// and adjust the drop up position as necessary
-		if ( true == ifSmallWidth() ) {
+			// and adjust the drop up position as necessary
+			if ( true == ifSmallWidth() ) {
 
+				$(dropUp).css({
+					dropUp: dropUpHeight,
+					top: -(dropUpHeight + caretSpacing)
+				});
+
+			}
+		} else {
 			$(dropUp).css({
-				dropUp: dropUpHeight,
-				top: -(dropUpHeight + caretSpacing)
-			});
-
+					dropUp: dropUpHeight,
+					top: 40
+				});
 		}
 
 
@@ -12190,7 +12192,6 @@ jQuery(document).ready(function($){
 			// Convert the html into a series of jQuery objects
 			var j = $(content);
 			var processed = '';
-			debugger;
 
 			// Iterate through the array of dom objects
 			for (var i = 0; i < j.length; i++) {
@@ -13853,10 +13854,6 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
             }
         };
 		
-
-		if (lasso_editor.isMobile) {
-			$('.lasso-editor-controls').css("top", "50px");
-		}
 
         // modal click
         $('#lasso--post-revisions').on('click',function(e){

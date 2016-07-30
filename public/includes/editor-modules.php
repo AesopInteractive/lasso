@@ -44,10 +44,12 @@ function lasso_editor_controls() {
 
 		// user is capable
 		$is_capable = is_singular() && lasso_user_can('edit_post');
+		
+		$mobile_style = wp_is_mobile() ? 'style="top:40px;"' : null;
 
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
-			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> ">
+			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> "  <?php echo $mobile_style ?> >
 
 				<?php do_action( 'lasso_editor_controls_before' );
 
@@ -142,9 +144,12 @@ function lasso_editor_text_toolbar() {
 	$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
+	
+	$mobile_style = wp_is_mobile() ? 'style="top:40px;"' : null;
+
 
 	?>
-	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>">
+	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style ?>>
 		<ul class="lasso--toolbar__inner lasso-editor-controls">
 			<?php do_action( 'lasso_toolbar_components_before' );?>
 		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>
@@ -156,7 +161,7 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
 			<?php endif; ?>
 		    <li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
-		    	<div id="lasso-toolbar--link__wrap">
+		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
 		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
 					<input type="checkbox" />
@@ -165,7 +170,7 @@ function lasso_editor_text_toolbar() {
 		    </li>
 		    <?php do_action( 'lasso_toolbar_components_after' );?>
 		    <li id="lasso-toolbar--html" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>">
-		    	<div id="lasso-toolbar--html__wrap">
+		    	<div id="lasso-toolbar--html__wrap" <?php echo $mobile_style ?>>
 		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?>"></div>
 		    		<div id="lasso-toolbar--html__footer">
 		    			<ul class="lasso-toolbar--html-snips">
@@ -182,7 +187,7 @@ function lasso_editor_text_toolbar() {
 		    	</div>
 		    </li>
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
-			    <ul id="lasso-toolbar--components__list">
+			    <ul id="lasso-toolbar--components__list" top=50px >
 			    	<?php if ( 'ase-active' == $ase_status ): ?>
 						<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="lasso-toolbar--component__image"></li>
 						<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="lasso-toolbar--component__character"></li>
