@@ -164,8 +164,8 @@ function lasso_editor_text_toolbar() {
 		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
 		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
-					<input type="checkbox" />
-                    <label>Styled Check Box</label>
+					<!--input class="styled-checkbox" type="checkbox" /-->
+                    <!--label>Styled Check Box</label-->
 		    	</div>
 		    </li>
 		    <?php do_action( 'lasso_toolbar_components_after' );?>
@@ -187,7 +187,7 @@ function lasso_editor_text_toolbar() {
 		    	</div>
 		    </li>
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
-			    <ul id="lasso-toolbar--components__list" top=50px >
+			    <ul id="lasso-toolbar--components__list" style="display:none;">
 			    	<?php if ( 'ase-active' == $ase_status ): ?>
 						<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="lasso-toolbar--component__image"></li>
 						<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="lasso-toolbar--component__character"></li>
@@ -202,9 +202,13 @@ function lasso_editor_text_toolbar() {
 						<li data-type="document" title="<?php esc_attr_e( 'Document', 'lasso' );?>"  class="lasso-toolbar--component__document"></li>
 						<li data-type="collection" title="<?php esc_attr_e( 'Collection', 'lasso' );?>"  class="lasso-toolbar--component__collection"></li>
 						<li data-type="gallery" title="<?php esc_attr_e( 'Gallery', 'lasso' );?>"  class="lasso-toolbar--component__gallery"></li>
+						<?php if ( class_exists ('Aesop_GalleryPop') ) { ?>
+						     <li data-type="gallery" title="<?php esc_attr_e( 'Gallery Pop', 'lasso' );?>"  class="lasso-toolbar--component__gallerypop"></li>
+						<?php }?>
 					<?php else: ?>
 						<li data-type="wpimg" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
 						<li data-type="wpquote" title="<?php esc_attr_e( 'WordPress Quote', 'lasso' );?>" class="quote lasso-toolbar--component__quote"></li>
+						<!--li data-type="wpvideo" title="<?php esc_attr_e( 'WordPress Video', 'lasso' );?>" class="video lasso-toolbar--component__video"></li-->
 					<?php endif; ?>
 					<?php do_action( 'lasso_toolbar_components' );?>
 			    </ul>
@@ -547,6 +551,27 @@ function lasso_editor_wpimg_edit() {
 	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
 		<li id="lasso--wpimg-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
+		<li class="lasso-delete" title="<?php esc_attr_e( 'Delete', 'lasso' );?>"></li>
+	</ul>
+
+	<?php return ob_get_clean();
+}
+
+function lasso_editor_wpvideo_edit() {
+
+	ob_start();
+
+	if ( !lasso_user_can() )
+		return;
+
+	// let users add custom css classes
+	$custom_classes = apply_filters( 'lasso_wpimg_classes', '' );
+
+	?>
+	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
+		<li id="lasso--wpvideo-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
 		<li class="lasso-delete" title="<?php esc_attr_e( 'Delete', 'lasso' );?>"></li>
 	</ul>

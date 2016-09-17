@@ -41,10 +41,15 @@ jQuery(function( $ ) {
 	$(document).on('click', '#lasso-toolbar--components', function(e){
 
 		$(this).toggleClass('toolbar--drop-'+dropClass() );
+        // show and hide the component list 
+		var dropUp 			= $(this).find('ul');
+		if ($(this).hasClass( 'toolbar--drop-'+dropClass() )) {
+			$(dropUp).show();
+		} else {
+			$(dropUp).hide();
+		}
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
-
-		var dropUp 			= $(this).find('ul');
 		if( !lasso_editor.isMobile) {
 			// get the height of the list of components
 			

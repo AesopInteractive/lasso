@@ -74,7 +74,15 @@ function lasso_editor_components() {
 		'wpquote' => array(
 			'name'    => __('WordPress Quote','lasso'),
 			'content' => lasso_wp_quote(),
-		)
+		),
+		'gallery_pop' => array(
+			'name'    => __('Gallery Pop','lasso'),
+			'content' => lasso_gallery_pop_component(),
+		),
+		'wpvideo' => array(
+			'name'    => __('WordPress Image','lasso'),
+			'content' => lasso_wp_video(),
+		),
 	);
 
 	return apply_filters( 'lasso_components', $array );
@@ -234,6 +242,21 @@ if ( !function_exists('lasso_wp_quote') ):
 
 endif;
 
+// 16 gallery pop added but not fully supported as of 0.9.9.11 
 
+if ( !function_exists( 'lasso_gallery_pop_component' ) ):
+	function lasso_gallery_pop_component() {
+		return do_shortcode( '[aesop_gallery_pop]' );
+	}
+endif;
+
+// 17 - work in progress
+if ( !function_exists('lasso_wp_video') ):
+
+	function lasso_wp_video(){
+		return '<div data-component-type="wpvideo" class="lasso--wpvideo__wrap lasso-component"><video class="wp-video-0"></video>';
+	}
+
+endif;
 
 

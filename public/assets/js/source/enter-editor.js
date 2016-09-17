@@ -308,7 +308,7 @@ jQuery(document).ready(function($){
 			return false;
 		};
 		document.getElementById('lasso-toolbar--link__create').onmousedown = function() {
-
+		    article.highlight();
 		    restoreSelection(window.selRange);
 
 			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
@@ -372,6 +372,17 @@ jQuery(document).ready(function($){
 		    return false;
 		};
 
+		if (lasso_editor.enableAutoSave) {
+			lasso_editor.intervalID = window.setInterval(autoSave, 60000);
+		}
+		
+		function autoSave() {
+			if (localStorage.getItem( 'lasso_backup_'+postid ) || lasso_editor.dirtyByComponent) 
+			{
+				$('.lasso--controls__right a:not(#lasso--exit)').trigger('click');
+			}
+		}
+		
 		/////////////////
 		/// EXIT EDITOR
 		///////////////////
@@ -673,6 +684,7 @@ jQuery(document).ready(function($){
 		/////////////////
 		/// DRAG DROP
 		///////////////////
+		// recent change: when a new component is dropped, the setting window is opened automatically
 		$('#'+editor).sortable({
 			opacity: 0.65,
 			placeholder:'lasso-drop-zone',
@@ -691,12 +703,15 @@ jQuery(document).ready(function($){
         	beforeStop: function (event, ui) { draggedItem = ui.item },
             receive: function () {
 
+
             	// close modal drag
             	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
             	// get the item and type
 				var item = draggedItem['context'],
 					type = $(item).attr('data-type');
+				// item2 will be the content tthat gets inserted. It also has edit controls
+                var item2;
 
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
@@ -704,17 +719,18 @@ jQuery(document).ready(function($){
 					// if a stock wordpress image is dragged in
 					if ( 'wpimg' == type ) {
 
-						$(item).replaceWith( $(components[type]['content']).prepend( wpImgEdit ) )
+						item2 = $(components[type]['content']).prepend( wpImgEdit );
+						$(item).replaceWith( item2 );
 
 					// else it's likely an aesop component
 					} else {
 
-						$(item).replaceWith( $(components[type]['content'])
+						item2 = $(components[type]['content'])
 							.prepend( lassoDragHandle )
 							.attr({
 								'data-component-type': type
-							})
-						)
+							});
+						$(item).replaceWith( item2);
 					}
 
 					if ( 'map' == type ) { mapsGoTime() }
@@ -722,6 +738,8 @@ jQuery(document).ready(function($){
 					if ('timeline_stop' == type ) { timelineGoTime() }
 
 					if ('video' == type ) { videoGoTime() }
+					
+					$(item2).find('.lasso-settings').trigger('click');
 				}
 
 		    }

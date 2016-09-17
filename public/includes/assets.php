@@ -18,7 +18,8 @@ class assets {
 	public function scripts(){
 
 	
-		if ( lasso_user_can('edit_posts') ) {
+        // for now editus is disabled for mobile. it will be reenabled when mobile platforms are better supported
+		if ( lasso_user_can('edit_posts') && !wp_is_mobile()) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
@@ -106,8 +107,8 @@ class assets {
 				'post_status'		=> get_post_status( $postid ),
 				'postid'			=> $postid,
 				'permalink'			=> get_permalink(),
-				'edit_others_pages'	=> current_user_can('edit_others_pages') ? 'true' : 'false',
-				'edit_others_posts'	=> current_user_can('edit_others_posts') ? 'true' : 'false',
+				'edit_others_pages'	=> current_user_can('edit_others_pages') ? true : false,
+				'edit_others_posts'	=> current_user_can('edit_others_posts') ? true : false,
 				'userCanEdit'		=> current_user_can('edit_post', $postid ),
 				'can_publish_posts'	=> current_user_can('publish_posts'),
 				'can_publish_pages'	=> current_user_can('publish_pages'),
@@ -120,6 +121,7 @@ class assets {
 				'component_sidebar'	=> lasso_editor_component_sidebar(),
 				'components'		=> lasso_editor_components(),
 				'wpImgEdit'			=> lasso_editor_wpimg_edit(),
+				'wpVideoEdit'		=> lasso_editor_wpvideo_edit(),
 				'featImgControls'   => lasso_editor_image_controls(),
 				'featImgNonce'		=> $gallery_nonce,
 				'getGallImgNonce'	=> $gallery_nonce,
@@ -145,7 +147,8 @@ class assets {
 				'mapStart'			=> get_post_meta( $postid, 'ase_map_component_start_point', true ),
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true ),
 				'revisionModal' 	=> lasso_editor_revision_modal(),
-				'isMobile'          => wp_is_mobile()
+				'isMobile'          => wp_is_mobile(),
+				'enableAutoSave'    => lasso_editor_get_option( 'enable_autosave', 'lasso_editor' )
 			);
 
 

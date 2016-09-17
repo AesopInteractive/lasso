@@ -93,6 +93,7 @@ class settings {
 		$save_to_post_disabled  = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
 		$post_settings_disabled = lasso_editor_get_option( 'post_settings_disabled', 'lasso_editor' );
 		$shortcodify_disabled  = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
+		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
 
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 		$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
@@ -173,11 +174,19 @@ class settings {
 					</div>
 				</div>
 
-				<div class="lasso-editor-settings--option-wrap last">
+				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[shortcodify_disabled]" id="lasso_editor[shortcodify_disabled]" <?php echo checked( $shortcodify_disabled, 'on' );?> >
 						<label for="lasso_editor[shortcodify_disabled]"><?php _e( 'Disable Aesop Component Conversion', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable the conversion process used on Aesop Story Engine components.', 'lasso' );?></span>
+					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap last">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[enable_autosave]" id="lasso_editor[enable_autosave]" <?php echo checked( $enable_autosave, 'on' );?> >
+						<label for="lasso_editor[enable_autosave]"><?php _e( 'Enable Auto Save', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Check this box to enable auto save.', 'lasso' );?></span>
 					</div>
 				</div>
 

@@ -141,7 +141,7 @@ jQuery(document).ready(function($){
 		function shortcodify(content,selector){
 
 			// Convert the html into a series of jQuery objects
-			var j = $(content);
+			var j = $.parseHTML(content);
 			var processed = '';
 
 			// Iterate through the array of dom objects
