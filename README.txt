@@ -17,6 +17,16 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+= 0.9.10.0 =
+* Fixed a FireFox bug where links could not be inserted
+* Fixed a bug involving texts without any tags, resulting in the first lines disappearing
+* Further style fixes
+* New components shows setting dialogs when inserted for more intuitive user interface
+* Added Auto Save option
+* Disabled for mobile devices for now.
+* Added Aesop Gallery Pop support
+
+
 = 0.9.9.10 =
 * Fixed the error reporting for AJAX calls
 * Fixed the short code wrapping for non core Aesop components

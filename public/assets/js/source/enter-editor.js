@@ -35,6 +35,10 @@ jQuery(document).ready(function($){
 	    }
 	}
 
+	// for now disable Editus for mobile (0.9.10.0)
+	if (lasso_editor.isMobile) {
+		return;
+	}
 	
 
 	$('#lasso--edit').click(function(e){
@@ -425,8 +429,13 @@ jQuery(document).ready(function($){
 		$(document).keyup(function(e) {
 
 			if ( 27 == e.keyCode ) {
-
-				exitEditor()
+				if ($('#lasso-toolbar--link').hasClass('link--drop-up')) {
+					$('#lasso-toolbar--link').removeClass('link--drop-up');
+                } else if ($('#lasso-toolbar--html').hasClass('html--drop-up')) {
+					$('#lasso-toolbar--html').removeClass('html--drop-up');
+				} else {
+				   exitEditor()
+				}
 			}
 
 		});
