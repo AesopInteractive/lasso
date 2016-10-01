@@ -35,10 +35,6 @@ jQuery(document).ready(function($){
 	    }
 	}
 
-	// for now disable Editus for mobile (0.9.10.0)
-	if (lasso_editor.isMobile) {
-		return;
-	}
 	
 
 	$('#lasso--edit').click(function(e){

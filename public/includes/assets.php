@@ -19,7 +19,7 @@ class assets {
 
 	
         // for now editus is disabled for mobile. it will be reenabled when mobile platforms are better supported
-		if ( lasso_user_can('edit_posts') && !wp_is_mobile()) {
+		if ( lasso_user_can('edit_posts')) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 

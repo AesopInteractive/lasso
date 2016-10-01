@@ -7,7 +7,7 @@
 }
 
 // small screens
-@media(max-width:600px){
+@media(max-width:600px) {
 
     // editor controls
     .lasso-editing {
@@ -52,7 +52,7 @@
                 right:0;
                 top:44px;
                 bottom:auto;
-                width:100%;
+                width:90%;
 
                 &:after {
                     margin:0;
@@ -135,4 +135,31 @@
         }
     }
 
+}
+
+
+// for tablet
+@media (min-width: 601px) {
+	.lasso-mobile{
+			// drop up menu
+			.toolbar--drop-up{
+				ul {
+					&:after {
+						margin:0;
+						top:-9px;
+						border-top: none;
+						border-bottom: 6px solid @toolbar--hover;
+					}
+				}
+			}
+			#lasso-toolbar--html__wrap,
+			#lasso-toolbar--link__wrap{
+			    &:after {
+					 margin:0;
+                    top:-9px;
+                    border-top: none;
+                    border-bottom: 6px solid @toolbar--hover;
+				}
+			}
+	}
 }

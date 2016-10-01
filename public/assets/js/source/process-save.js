@@ -49,7 +49,8 @@ jQuery(document).ready(function($){
 	// 3. SAVE OR PUBLISH OBJECT
 	///////////////////////
 	//$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
-	jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
+	//jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
+	jQuery('.lasso--controls__right a:not(#lasso--exit)').on('click', function(e){
 
 		var warnNoSave = null;
 

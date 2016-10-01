@@ -133,6 +133,8 @@ function lasso_editor_text_toolbar() {
 
 	if ( !lasso_user_can() )
 		return;
+	
+	$is_mobile = wp_is_mobile();
 
 	// check for lasso story engine and add a class doniting this
 	$ase_status = class_exists( 'Aesop_Core' ) || defined( 'LASSO_CUSTOM' ) ? 'ase-active' : 'ase-not-active';
@@ -144,12 +146,13 @@ function lasso_editor_text_toolbar() {
 	$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
+    $mobile_class = $is_mobile ? 'lasso-mobile' : false;
 	
-	$mobile_style = wp_is_mobile() ? 'style="top:40px;"' : null;
+	$mobile_style =$is_mobile ? 'style="top:40px;"' : null;
 
 
 	?>
-	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style ?>>
+	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$mobile_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style ?>>
 		<ul class="lasso--toolbar__inner lasso-editor-controls">
 			<?php do_action( 'lasso_toolbar_components_before' );?>
 		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>
