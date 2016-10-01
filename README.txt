@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.5.3
-Stable tag: 0.9.9.10
+Stable tag: 0.9.10.1
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,10 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+= 0.9.10.1 =
+* Restored mobile support, for both phones and tablets
+* A few more style fixes
+
 = 0.9.10.0 =
 * Fixed a FireFox bug where links could not be inserted
 * Fixed a bug involving texts without any tags, resulting in the first lines disappearing
