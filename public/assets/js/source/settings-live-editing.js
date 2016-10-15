@@ -38,7 +38,7 @@
 			});
 			settings.find('.lasso-quote-width > #lasso-generator-attr-width').on('keyup',function(){
 				component.css('width', $(this).val() );
-			})
+			});
 			settings.find('.lasso-quote-type #lasso-generator-attr-type').on('change',function(){
 
 				var value = $(this).val()
@@ -242,10 +242,19 @@
 					initVideoProvider( settings, component, 'youtube' );
 				}
 
-			})
-				settings.find('.lasso-video-width > #lasso-generator-attr-width').on('keyup',function(){
-					component.find('.aesop-video-container').css('max-width', $(this).val() );
-				})
+			});
+			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('keyup',function(){
+				t = $('.lasso-video-src > #lasso-generator-attr-src').val();
+				val = $(this).val();
+				if ( 'vimeo' == t ) {
+					component.find('iframe').attr('src', '//player.vimeo.com/video/'+val+' ')
+				} else if ( 'youtube' == t ) {
+					component.find('iframe').attr('src', '//www.youtube.com/embed/'+val+'?rel=0&wmode=transparent')
+				}
+			});
+			settings.find('.lasso-video-width > #lasso-generator-attr-width').on('keyup',function(){
+				component.find('.aesop-video-container').css('max-width', $(this).val() );
+			});
 
 			// CONTENT COMPONENT LIVE EDIT /////
 			//settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
