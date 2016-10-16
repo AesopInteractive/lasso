@@ -48,6 +48,7 @@ class assets {
 			}
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
+			$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 
 			// post id reference
 			$postid 			= get_the_ID();
@@ -137,6 +138,7 @@ class assets {
 				'mapFormFooter'		=> lasso_map_form_footer(),
 				'refreshRequired'	=> lasso_editor_refresh_message(),
 				'objectsNoSave'		=> $objectsNoSave,
+				'objectsNonEditable' => $objectsNonEditable,
 				'supportedNoSave'	=> lasso_supported_no_save(),
 				'postCategories'    => lasso_get_objects('category'),
 				'postTags'    		=> lasso_get_objects('tag'),

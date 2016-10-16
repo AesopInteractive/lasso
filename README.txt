@@ -17,6 +17,10 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+= 0.9.10.2 =
+* Added a new option to set non-editable elements that are parts of the post.
+* Live update improvement for Video Component.
+
 = 0.9.10.1 =
 * Restored mobile support, for both phones and tablets
 * A few more style fixes

@@ -5105,6 +5105,35 @@ Undo.Command.extend = function(protoProps) {
 									break;
 								case key['backspace']:
 								case key['delete']:
+								    // we do this to prevent non editable elments being deleted
+									if (lasso_editor.objectsNonEditable) {
+										var sel = w.getSelection();
+										if (sel.rangeCount) {
+											var selRange = sel.getRangeAt(0);
+											if (window.getSelection().isCollapsed) {
+												var container = selRange.endContainer;
+												while (container && container.parentNode !== articleMedium.element) {
+													container = container.parentNode;
+												} 												
+												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
+													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false") {
+														e.preventDefault();
+													}
+												} else if (e.keyCode == key['delete'] && (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined)) {
+													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false") {
+														e.preventDefault();
+													}
+												}
+											} else {
+												// check if the selection contains noneditable element
+												var nodes = selRange.cloneContents().querySelectorAll("[contenteditable='false']");
+												if (nodes.length >0) {
+													e.preventDefault();
+												}
+												
+											}
+										}
+									}
 									intercept.backspaceOrDeleteKey(e);
 									break;
 							}
@@ -5383,7 +5412,16 @@ Undo.Command.extend = function(protoProps) {
 				// Extend Settings
 				el = settings.element;
 
-				// Editable
+				// Editable, 
+				//set all editable elements to explicitly editable
+				var y = el.children;
+				var i;
+				for (i = 0; i < y.length; i++) {
+					if (y[i].contentEditable != false) {
+					   y[i].contentEditable = true;
+					} 
+				}
+				
 				el.contentEditable = true;
 				el.className
 					+= (' ' + settings.cssClasses.editor)
@@ -10261,6 +10299,7 @@ jQuery(document).ready(function($){
 		mapZoom    		= lasso_editor.mapZoom,
 		mapStart        = lasso_editor.mapStart,
 		objectsNoSave   = lasso_editor.objectsNoSave,
+		objectsNonEditable = lasso_editor.objectsNonEditable,
 		supportedNoSave = lasso_editor.supportedNoSave
 
 	function restoreSelection(range) {
@@ -10275,6 +10314,21 @@ jQuery(document).ready(function($){
 	    }
 	}
 
+	/*
+	function to disable selection. Not used for now
+	jQuery.fn.extend({
+		disableSelection : function() {
+			return this.each(function() {
+				this.onselectstart = function() { return false; };
+				this.unselectable = "on";
+				jQuery(this).css('user-select', 'none');
+				jQuery(this).css('-o-user-select', 'none');
+				jQuery(this).css('-moz-user-select', 'none');
+				jQuery(this).css('-khtml-user-select', 'none');
+				jQuery(this).css('-webkit-user-select', 'none');
+			});
+		}
+	});*/
 	
 
 	$('#lasso--edit').click(function(e){
@@ -10407,6 +10461,7 @@ jQuery(document).ready(function($){
 		// remove any additional markup so we dont save it as HTML
 		$(objectsNoSave).remove();
 		$(supportedNoSave).remove();
+		
 
 		/////////////////
 		///
@@ -10433,6 +10488,10 @@ jQuery(document).ready(function($){
 				clear: 'lasso-editor-clear'
 			}
 	    });
+		
+		$(objectsNonEditable).attr('contenteditable',false);
+		$(objectsNonEditable).attr('readonly',true);
+		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if
 	    // it has no previous element to depart from 
@@ -10443,7 +10502,8 @@ jQuery(document).ready(function($){
 		article.highlight = function() {
 			if (document.activeElement !== article) {
 
-				articleMedium.select();
+				//articleMedium.select();
+				article.focus();
 
 			} else {
 
@@ -10452,6 +10512,7 @@ jQuery(document).ready(function($){
 		};
 
 		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
+			articleMedium.element.contentEditable = true;
 			article.highlight();
 		    articleMedium.invokeElement('b');
 			return false;
@@ -10502,7 +10563,6 @@ jQuery(document).ready(function($){
             picker.set("positionOnTop");
             picker.openPicker();
             picker.on("colorChosen", function(color) {
-				debugger;
               //this.base.importSelection(this.selectionState);
               document.execCommand("styleWithCSS", false, true);
               document.execCommand("foreColor", false, color);
@@ -10514,12 +10574,14 @@ jQuery(document).ready(function($){
 		};*/
 
 		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
+			articleMedium.element.contentEditable = true;
 			article.highlight();
 			articleMedium.invokeElement('u');
 			return false;
 		};
 
 		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
+			articleMedium.element.contentEditable = true;
 			article.highlight();
 			articleMedium.invokeElement('i');
 			return false;
@@ -10528,6 +10590,7 @@ jQuery(document).ready(function($){
 		if ( toolbarHeading ) {
 
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
+				articleMedium.element.contentEditable = true;
 				article.highlight();
 
 				articleMedium.invokeElement('h2');
@@ -10536,6 +10599,7 @@ jQuery(document).ready(function($){
 			};
 
 			document.getElementById('lasso-toolbar--h3').onmousedown = function() {
+				articleMedium.element.contentEditable = true;
 				article.highlight();
 				articleMedium.invokeElement('h3');
 				return false;
@@ -10543,11 +10607,13 @@ jQuery(document).ready(function($){
 		}
 
 		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
+			articleMedium.element.contentEditable = true;
 			article.highlight();
 			articleMedium.invokeElement('strike');
 			return false;
 		};
 		document.getElementById('lasso-toolbar--link__create').onmousedown = function() {
+			articleMedium.element.contentEditable = true;
 		    article.highlight();
 		    restoreSelection(window.selRange);
 
@@ -10569,22 +10635,23 @@ jQuery(document).ready(function($){
 		    return false;
 		};
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
-
+		    articleMedium.element.contentEditable = true;
 		    restoreSelection(window.selRange);
 
 			var container = window.selRange.startContainer,
 				containerTag;
 
 			containerTag = container.localName;
+			var containerObject = $(container),
+					htmlContent = $('#lasso-toolbar--html__inner').text();
+
+			htmlContent = $(htmlContent);
+			htmlContent.attr('contenteditable','true');
 
 			// handle 3 specific scenarios dealing with <p>'s
 			// note: might need climb up dom tree depending on nesting use case
 			if (containerTag == 'p') {
 				// empty p tag
-				var containerObject = $(container),
-					htmlContent = $('#lasso-toolbar--html__inner').text();
-
-				htmlContent = $(htmlContent);
 				htmlContent.insertAfter( containerObject );
 				containerObject.remove();
 			} else {
@@ -10593,14 +10660,10 @@ jQuery(document).ready(function($){
 				containerTag = container.localName;
 
 				if( containerTag == 'p') {
-					var containerObject = $(container),
-						htmlContent = $('#lasso-toolbar--html__inner').text();
-
-					htmlContent = $(htmlContent);
 					htmlContent.insertAfter( containerObject );
 				} else {
 					// let's just go ahead and paste it on location
-					articleMedium.insertHtml( $('#lasso-toolbar--html__inner').text() );
+					articleMedium.insertHtml( htmlContent.text() );
 				}
 			}
 

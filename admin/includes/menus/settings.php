@@ -97,6 +97,7 @@ class settings {
 
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 		$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
+		$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 
 ?>
 		<div class="wrap">
@@ -137,6 +138,14 @@ class settings {
 						<label><?php _e( 'Ignored Items to Save', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'If your post container holds additional markup, list the css class names (comma separated, including the dot) of those items. When you enter the editor, Editus will remove (NOT delete) these items so that it does not save them as HTML.', 'lasso' );?></span>
 						<textarea name="lasso_editor[dont_save]" id="lasso_editor[dont_save]" placeholder=".classname, .another-class"><?php echo esc_attr( $objectsNoSave );?></textarea>
+					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<label><?php _e( 'Read Only Items', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'If your post has items that should not be editable, list the css class names (comma separated, including the dot) of those items.', 'lasso' );?></span>
+						<textarea name="lasso_editor[non_editable]" id="lasso_editor[non_editable]" placeholder=".classname, .another-class"><?php echo esc_attr( $objectsNonEditable );?></textarea>
 					</div>
 				</div>
 

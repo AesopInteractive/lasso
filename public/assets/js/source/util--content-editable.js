@@ -223,6 +223,35 @@
 									break;
 								case key['backspace']:
 								case key['delete']:
+								    // we do this to prevent non editable elments being deleted
+									if (lasso_editor.objectsNonEditable) {
+										var sel = w.getSelection();
+										if (sel.rangeCount) {
+											var selRange = sel.getRangeAt(0);
+											if (window.getSelection().isCollapsed) {
+												var container = selRange.endContainer;
+												while (container && container.parentNode !== articleMedium.element) {
+													container = container.parentNode;
+												} 												
+												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
+													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false") {
+														e.preventDefault();
+													}
+												} else if (e.keyCode == key['delete'] && (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined)) {
+													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false") {
+														e.preventDefault();
+													}
+												}
+											} else {
+												// check if the selection contains noneditable element
+												var nodes = selRange.cloneContents().querySelectorAll("[contenteditable='false']");
+												if (nodes.length >0) {
+													e.preventDefault();
+												}
+												
+											}
+										}
+									}
 									intercept.backspaceOrDeleteKey(e);
 									break;
 							}
@@ -501,7 +530,16 @@
 				// Extend Settings
 				el = settings.element;
 
-				// Editable
+				// Editable, 
+				//set all editable elements to explicitly editable
+				var y = el.children;
+				var i;
+				for (i = 0; i < y.length; i++) {
+					if (y[i].contentEditable != false) {
+					   y[i].contentEditable = true;
+					} 
+				}
+				
 				el.contentEditable = true;
 				el.className
 					+= (' ' + settings.cssClasses.editor)
