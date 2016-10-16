@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.5.3
-Stable tag: 0.9.10.1
+Stable tag: 0.9.10.2
 
 Front-end editing and creation suite.
 
