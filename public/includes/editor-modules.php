@@ -146,9 +146,16 @@ function lasso_editor_text_toolbar() {
 	$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
-    $mobile_class = $is_mobile ? 'lasso-mobile' : false;
 	
+	// mobile styles
+    $mobile_class = $is_mobile ? 'lasso-mobile' : false;
 	$mobile_style =$is_mobile ? 'style="top:40px;"' : null;
+	
+	//show color
+	$show_color = true;
+	
+	//show alignment
+	$show_align = true;
 
 
 	?>
@@ -163,6 +170,12 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
 			<?php endif; ?>
+			
+			<?php if ( $show_color ): ?>
+		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Text Color', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
 		    <li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
 		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
@@ -189,6 +202,13 @@ function lasso_editor_text_toolbar() {
 		    		</div>
 		    	</div>
 		    </li>
+			
+			<?php if ( $show_align ): ?>
+		    <li id="lasso-toolbar--left-align" title="<?php esc_attr_e( 'Text Left Align', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--center-align" title="<?php esc_attr_e( 'Text Center Align', 'lasso' );?>"></li>
+			<li id="lasso-toolbar--right-align" title="<?php esc_attr_e( 'Text Right Align', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
 			    <ul id="lasso-toolbar--components__list" style="display:none;">
 			    	<?php if ( 'ase-active' == $ase_status ): ?>

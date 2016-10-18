@@ -1790,18 +1790,55 @@
 
 				return null;
 			},
+			getTopLevel: function (container) {
+				while (container && container.parentNode !== this.element) {
+					container = container.parentNode;
+				}
+				return container;
+			},
 			atCaret: function () {
 				var container = this.baseAtCaret() || {},
 					el = this.element;
 
 				if (container === false) return null;
 
-				while (container && container.parentNode !== el) {
-					container = container.parentNode;
-				}
+				container = this.getTopLevel(container);
+				//while (container && container.parentNode !== el) {
+				//	container = container.parentNode;
+				//}
 
 				if (container && container.nodeType == 1) {
 					return container;
+				}
+
+				return null;
+			},
+			textElementsAtCaret: function () {
+				if (!this.medium.isActive()) return null;
+
+				var sel = w.getSelection ? w.getSelection() : document.selection;
+
+				if (sel.rangeCount) {
+					var selRange = sel.getRangeAt(0),
+						//container = selRange.endContainer;
+						containerStart = this.getTopLevel(selRange.startContainer),
+						containerEnd = this.getTopLevel(selRange.endContainer);
+
+					var arr = [];
+					while (true) {
+						if (containerStart.nodeType ==1) { 
+						    arr.push(containerStart);
+						}
+						if (containerStart === containerEnd || !containerStart.nextElementSibling) break;
+                        containerStart = containerStart.nextElementSibling;					
+					};
+					
+					//while (containerStart && containerStart.parentNode !== this.element) {
+					//	containerStart = containerStart.parentNode;
+					//}
+					
+
+					return arr;
 				}
 
 				return null;

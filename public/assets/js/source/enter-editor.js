@@ -294,7 +294,101 @@ jQuery(document).ready(function($){
         //}
 			return false;
 		};*/
+		
+		//color
+		if (lasso_editor.showColor) {
+			// red is the default color
+			$( '#lasso-toolbar--color-pick' ).iris();
+			$( '#lasso-toolbar--color-pick' ).iris('color', '#f00');
+			$("#lasso-toolbar--color-pick").css( 'color', '#f00');
+			$("#lasso-toolbar--color-set").css( 'color', '#f00');
+			
+			$(window).mousedown(function() {
+			    //Hide the color picker if visible
+				$("#lasso-toolbar--color-pick").iris('hide');
+			});
+			/*$(".iris-picker").click(function(e) {
+			   
+			});*/
+			
+			function rgb2hex(rgb) {
+				rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+				function hex(x) {
+					return ("0" + parseInt(x).toString(16)).slice(-2);
+				}
+				return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+			}
+			if (!lasso_editor.isMobile) {
+			    $(".iris-picker").css({position:'absolute', top:-180});
+			}
+			$("#lasso-toolbar--color-pick").iris({
+				palettes: true,
+				change: function(event, ui) {
+					// event = standard jQuery event, produced by whichever control was changed.
+					// ui = standard jQuery UI object, with a color member containing a Color.js object
 
+					// change the color
+					$("#lasso-toolbar--color-pick").css( 'color', ui.color.toString());
+					$("#lasso-toolbar--color-set").css( 'color', ui.color.toString());
+				}
+			});
+				
+			$('#lasso-toolbar--color-pick').mousedown(function(event) {
+				
+				if (event.target.id == 'lasso-toolbar--color-pick') {
+				   $("#lasso-toolbar--color-pick").iris('toggle');
+				}
+                event.stopPropagation();				
+			});
+			
+			$('#lasso-toolbar--color-set').mousedown(function() {
+				$("#lasso-toolbar--color-pick").iris('hide');
+				articleMedium.element.contentEditable = true;
+				//article.highlight();
+				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
+				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
+				return false;
+			});
+		}
+
+		
+		// color end
+		
+		//alignement
+		if (lasso_editor.showAlignment) {
+			$('#lasso-toolbar--right-align').mousedown(function() {
+				var focusedElements = articleMedium.html.textElementsAtCaret();
+				if (focusedElements) {
+					for (i = 0; i < focusedElements.length; i++) {
+					  focusedElements[i].style.textAlign = "right";
+					}			
+				}
+				return false;
+			});
+			
+			$('#lasso-toolbar--left-align').mousedown(function() {
+				var focusedElements = articleMedium.html.textElementsAtCaret();
+				if (focusedElements) {
+					for (i = 0; i < focusedElements.length; i++) {
+					  focusedElements[i].style.textAlign = "left";
+					}			
+				}
+				return false;
+			});
+			
+			$('#lasso-toolbar--center-align').mousedown(function() {
+				var focusedElements = articleMedium.html.textElementsAtCaret();
+				if (focusedElements) {
+					for (i = 0; i < focusedElements.length; i++) {
+					  focusedElements[i].style.textAlign = "center";
+					}			
+				}
+				return false;
+			});
+		}
+		
+		//end alignment
+		
 		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
 			articleMedium.element.contentEditable = true;
 			article.highlight();

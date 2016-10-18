@@ -152,7 +152,7 @@ class settings {
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
-						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable Toolbar Headings', 'lasso' );?></label>
+						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable H2 and H3 Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'By default the H2 and H3 options for headings are in the insert HTML area. You may prefer those headings to act just like the underline, and strikethrough, so toggling this will add them to the toolbar.', 'lasso' );?></span>
 
 					</div>

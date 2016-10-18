@@ -27,7 +27,7 @@ class assets {
 			wp_enqueue_script('jquery-ui-draggable');
 			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('jquery-ui-slider');
-
+			
 			// media uploader
 			wp_enqueue_media();
 
@@ -49,6 +49,22 @@ class assets {
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 			$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
+
+			
+			//text alignement
+			$show_align = true;
+			
+			//color 
+			$show_color = true;
+			
+			if ($show_color) {
+				//color picker
+				wp_enqueue_style( 'wp-color-picker' );
+				wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
+				//wp_enqueue_script( 'wp-color-picker', admin_url('/js/color-picker.min.js', __FILE__), array('iris'), '', true );
+			}
+
+
 
 			// post id reference
 			$postid 			= get_the_ID();
@@ -150,18 +166,24 @@ class assets {
 				'mapZoom'			=> get_post_meta( $postid, 'ase_map_component_zoom', true ),
 				'revisionModal' 	=> lasso_editor_revision_modal(),
 				'isMobile'          => wp_is_mobile(),
-				'enableAutoSave'    => lasso_editor_get_option( 'enable_autosave', 'lasso_editor' )
+				'enableAutoSave'    => lasso_editor_get_option( 'enable_autosave', 'lasso_editor' ),
+				'showColor'         => $show_color,
+				'showAlignment'  => $show_align
 			);
 
 
 			// wp api client
 			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
-				$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
-				wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
+			$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
+			wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
 
-				$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
-				wp_enqueue_script('lasso', LASSO_URL. "/public/assets/js/lasso{$postfix}.js", array('jquery'), LASSO_VERSION, true);
-				wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
+			$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
+			if ($show_color) {
+				wp_enqueue_script('lasso', LASSO_URL. "/public/assets/js/lasso{$postfix}.js", array('jquery', 'iris'), LASSO_VERSION, true);
+			} else {
+			    wp_enqueue_script('lasso', LASSO_URL. "/public/assets/js/lasso{$postfix}.js", array('jquery'), LASSO_VERSION, true);
+			}
+			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
 
 
 		}
