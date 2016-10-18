@@ -96,6 +96,9 @@ class settings {
 		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
 
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
+		$toolbar_show_color      = lasso_editor_get_option( 'toolbar_show_color', 'lasso_editor' );
+		$toolbar_show_alignment  = lasso_editor_get_option( 'toolbar_show_alignment', 'lasso_editor' );
+		
 		$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 		$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 
@@ -153,7 +156,25 @@ class settings {
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
 						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable H2 and H3 Buttons', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'By default the H2 and H3 options for headings are in the insert HTML area. You may prefer those headings to act just like the underline, and strikethrough, so toggling this will add them to the toolbar.', 'lasso' );?></span>
+						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set H2 and H3 settings.', 'lasso' );?></span>
+
+					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_color]" id="lasso_editor[toolbar_show_color]" <?php echo checked( $toolbar_show_color, 'on' );?> >
+						<label for="lasso_editor[toolbar_show_color]"><?php _e( 'Enable Text Color Buttons', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text colors.', 'lasso' );?></span>
+
+					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_alignment]" id="lasso_editor[toolbar_show_alignment]" <?php echo checked( $toolbar_show_alignment, 'on' );?> >
+						<label for="lasso_editor[toolbar_show_alignment]"><?php _e( 'Enable Text Align Buttons', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text alignment.', 'lasso' );?></span>
 
 					</div>
 				</div>

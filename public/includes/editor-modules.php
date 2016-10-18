@@ -152,10 +152,10 @@ function lasso_editor_text_toolbar() {
 	$mobile_style =$is_mobile ? 'style="top:40px;"' : null;
 	
 	//show color
-	$show_color = true;
+	$show_color = lasso_editor_get_option('toolbar_show_color', 'lasso_editor');
 	
 	//show alignment
-	$show_align = true;
+	$show_align = lasso_editor_get_option('toolbar_show_alignment', 'lasso_editor');
 
 
 	?>

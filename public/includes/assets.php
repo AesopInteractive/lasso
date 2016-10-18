@@ -52,16 +52,15 @@ class assets {
 
 			
 			//text alignement
-			$show_align = true;
+			$show_align = lasso_editor_get_option('toolbar_show_alignment', 'lasso_editor');
 			
 			//color 
-			$show_color = true;
+			$show_color = lasso_editor_get_option('toolbar_show_color', 'lasso_editor');
 			
 			if ($show_color) {
 				//color picker
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
-				//wp_enqueue_script( 'wp-color-picker', admin_url('/js/color-picker.min.js', __FILE__), array('iris'), '', true );
 			}
 
 

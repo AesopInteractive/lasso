@@ -3,8 +3,8 @@ Contributors: nphaskins, hyunster, michaelbeil
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.5.3
-Stable tag: 0.9.10.2
+Tested up to: 4.6.0
+Stable tag: 0.9.10.5
 
 Front-end editing and creation suite.
 
@@ -17,6 +17,11 @@ Front-end editing and creation suite.
 Refer to owner's manual
 
 == Changelog ==
+= 0.9.10.5 =
+* Major new features in Beta:
+* Added Color Text Button Options.
+* Added Text Alignment Button Options.
+
 = 0.9.10.2 =
 * Added a new option to set non-editable elements that are parts of the post.
 * Live update improvement for Video Component.
