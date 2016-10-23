@@ -287,6 +287,16 @@ class lasso {
 		    echo aesop_parallax_shortcode($atts);
 		}
 		
+		if ($code == "aesop_character") {
+		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-character.php');
+		    echo aesop_character_shortcode($atts);
+		}
+		
+		if ($code == "aesop_chapter") {
+		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-heading.php');
+		    echo aesop_chapter_shortcode($atts);
+		}
+		
 		if ($code == "aesop_gallery") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-gallery.php');
 		    echo do_shortcode( '[aesop_gallery id="'.$atts["id"]."]");

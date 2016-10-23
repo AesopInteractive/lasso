@@ -173,6 +173,11 @@
 			saveSequence( true, 1200 );
 
 		}
+		
+		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] ||
+		      'character' == cdata['componentType']) {
+			get_aesop_component_ajax(cdata);
+		}
 
 	});
 	function editus_gallery_swap(galleryID){
