@@ -219,7 +219,7 @@ endif;
 if ( !function_exists( 'lasso_video_component' ) ):
 	function lasso_video_component() {
 
-		return do_shortcode( '[aesop_video id="59940289" width="100%" align="center"]' );
+		return do_shortcode( '[aesop_video src="vimeo" id="59940289" width="100%" align="center"]' );
 
 	}
 endif;

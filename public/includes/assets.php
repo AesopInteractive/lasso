@@ -114,6 +114,7 @@ class assets {
 			// localized objects
 			$objects = array(
 				'ajaxurl' 			=> esc_url( $api_url ),
+				'ajaxurl2' 			=> esc_url( admin_url( 'admin-ajax.php' )),
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE
 				'article_object'	=> $article_object,
 				'featImgClass'		=> $featImgClass,

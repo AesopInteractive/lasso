@@ -35,6 +35,54 @@
 	    	delete cdata['sortableItem'];
 	    	return cdata;
 	    }
+		
+		
+		// get updated aesop componets through ajax calls
+		var get_aesop_component_ajax = function(cdata)
+		{
+			var data = {
+				action: 'get_aesop_component',
+				code: 'aesop_'+cdata['componentType']
+			};
+			for ( var index in cdata ) {
+				// Don't accept componentType as a param
+				if ( !cdata.hasOwnProperty(index) || index == 'componentType'  || index =='sortableItem') {
+					continue;
+				}
+				data[index] = cdata[index];
+			}
+						
+			jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+				if( response ){
+					debugger;
+					$component.replaceWith(response);
+					$('.aesop-component').each(function(){
+
+						// if there's no toolbar present
+						if ( !$('.lasso-component--toolbar').length > 0 ) {
+
+							// if this is a map then we need to first wrap it so that we can drag the  map around
+							if ( $(this).hasClass('aesop-map-component') ) {
+
+								var $this = $(this)
+
+								// so wrap it with a aesop-compoentn aesop-map-component div
+								// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
+								// to
+								//$this.wrap('<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle ).after( lassoMapForm );
+								$this.wrap('<div id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle );
+
+							} else {
+
+								$(this).append( lasso_editor.handle );
+							}
+						}
+					});
+				} else {
+					alert("error");
+				}
+			});
+		}
 
 	    /**
 	    *
