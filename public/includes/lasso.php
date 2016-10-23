@@ -292,6 +292,11 @@ class lasso {
 		    echo aesop_character_shortcode($atts);
 		}
 		
+		if ($code == "aesop_collection") {
+		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-collections.php');
+		    echo aesop_collection_shortcode($atts);
+		}
+		
 		if ($code == "aesop_chapter") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-heading.php');
 		    echo aesop_chapter_shortcode($atts);
@@ -299,7 +304,7 @@ class lasso {
 		
 		if ($code == "aesop_gallery") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-gallery.php');
-		    echo do_shortcode( '[aesop_gallery id="'.$atts["id"]."]");
+		    echo do_shortcode( '[aesop_gallery id="'.$atts["id"].'"]');
 		}
 		
 		exit; 

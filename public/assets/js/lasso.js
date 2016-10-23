@@ -12685,21 +12685,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	});
 	
 	function editus_gallery_swap(galleryID){
-		var data = {
-			action: 		'process_gallery_swap',
-			gallery_id: 	galleryID,
-			nonce: 			lasso_editor.swapGallNonce
-		}
-
-		$.post( lasso_editor.ajaxurl, data, function(response) {
-			if( true == response.success ) {
-				// window.component is the current component being edited
-				window.component.replaceWith( response.data.gallery );
-			}
-		}).fail(function(xhr, err) { 
-			var responseTitle= $(xhr.responseText).filter('title').get(0);
-			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
-		});
+		var data3      = {
+			componentType: 'gallery',
+			id:   	galleryID
+		};
+		window.get_aesop_component_ajax(data3);
 	}
 
 	///////////
@@ -12723,8 +12713,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	}
 
 	function ase_encode_gallery_items(){
-		var imageArray = gallery.sortable('toArray');
-	  	$('#ase_gallery_ids').val( imageArray );
+		gallery = $('#lasso--gallery__images #ase-gallery-images');
+		if (gallery.length) {
+		   var imageArray = gallery.sortable('toArray');
+	  	   $('#ase_gallery_ids').val( imageArray );
+		}
 	}
 
 	// inserting gallery items
@@ -13182,6 +13175,53 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 (function( $ ) {
 
 	var form;
+    // get updated aesop componets through ajax calls (global function)
+	window.get_aesop_component_ajax = function(cdata)
+	{
+		var data = {
+				action: 'get_aesop_component',
+				code: 'aesop_'+cdata['componentType']
+		};
+		for ( var index in cdata ) {
+				// Don't accept componentType as a param
+				if ( !cdata.hasOwnProperty(index) || index == 'componentType'  || index =='sortableItem') {
+					continue;
+				}
+				data[index] = cdata[index];
+		}
+						
+		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+				if( response ){
+					var $a = $(response);
+					window.component.replaceWith($a);
+					window.component = $a;
+					$('.aesop-component').each(function(){
+
+						// if there's no toolbar present
+						if ( !$('.lasso-component--toolbar').length > 0 ) {
+
+							// if this is a map then we need to first wrap it so that we can drag the  map around
+							if ( $(this).hasClass('aesop-map-component') ) {
+
+								var $this = $(this)
+
+								// so wrap it with a aesop-compoentn aesop-map-component div
+								// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
+								// to
+								//$this.wrap('<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle ).after( lassoMapForm );
+								$this.wrap('<div id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle );
+
+							} else {
+
+								$(this).append( lasso_editor.handle );
+							}
+						}
+					});
+				} else {
+					alert("error");
+			}
+		});
+	}
 
 	//$('#lasso--component-settings-form').live('submit', function(e) {
 	jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
@@ -13216,6 +13256,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	    	delete cdata['sortableItem'];
 	    	return cdata;
 	    }
+		
 
 	    /**
 	    *
@@ -13283,7 +13324,8 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				if ( 'gallery-created' == response.data.message ) {
 
 					saveSequence( false, 1000, true );
-					editus_gallery_swap(response.data.id);
+					// load the new gallery
+					cdata['id'] = response.data.id;
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
@@ -13295,6 +13337,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					alert( 'error' );
 
 				}
+				window.get_aesop_component_ajax(cdata);
 
 			}).fail(function(xhr, err) { 
 				var responseTitle= $(xhr.responseText).filter('title').get(0);
@@ -13306,22 +13349,13 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 			saveSequence( true, 1200 );
 
 		}
-
-	});
-	function editus_gallery_swap(galleryID){
-		var data = {
-			action: 		'process_gallery_swap',
-			gallery_id: 	galleryID,
-			nonce: 			lasso_editor.swapGallNonce
+		
+		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] ||
+		      'character' == cdata['componentType'] || 'collection' == cdata['componentType']) {
+			window.get_aesop_component_ajax(cdata);
 		}
 
-		$.post( lasso_editor.ajaxurl, data, function(response) {
-			if( true == response.success ) {
-				// window.component is the current component being edited
-				window.component.replaceWith( response.data.gallery );
-			}
-		});
-	}
+	});
 
 })( jQuery );
 

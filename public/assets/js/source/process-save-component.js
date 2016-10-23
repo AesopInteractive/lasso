@@ -1,6 +1,53 @@
 (function( $ ) {
 
 	var form;
+    // get updated aesop componets through ajax calls (global function)
+	window.get_aesop_component_ajax = function(cdata)
+	{
+		var data = {
+				action: 'get_aesop_component',
+				code: 'aesop_'+cdata['componentType']
+		};
+		for ( var index in cdata ) {
+				// Don't accept componentType as a param
+				if ( !cdata.hasOwnProperty(index) || index == 'componentType'  || index =='sortableItem') {
+					continue;
+				}
+				data[index] = cdata[index];
+		}
+						
+		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+				if( response ){
+					var $a = $(response);
+					window.component.replaceWith($a);
+					window.component = $a;
+					$('.aesop-component').each(function(){
+
+						// if there's no toolbar present
+						if ( !$('.lasso-component--toolbar').length > 0 ) {
+
+							// if this is a map then we need to first wrap it so that we can drag the  map around
+							if ( $(this).hasClass('aesop-map-component') ) {
+
+								var $this = $(this)
+
+								// so wrap it with a aesop-compoentn aesop-map-component div
+								// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
+								// to
+								//$this.wrap('<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle ).after( lassoMapForm );
+								$this.wrap('<div id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle );
+
+							} else {
+
+								$(this).append( lasso_editor.handle );
+							}
+						}
+					});
+				} else {
+					alert("error");
+			}
+		});
+	}
 
 	//$('#lasso--component-settings-form').live('submit', function(e) {
 	jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
@@ -36,53 +83,6 @@
 	    	return cdata;
 	    }
 		
-		
-		// get updated aesop componets through ajax calls
-		var get_aesop_component_ajax = function(cdata)
-		{
-			var data = {
-				action: 'get_aesop_component',
-				code: 'aesop_'+cdata['componentType']
-			};
-			for ( var index in cdata ) {
-				// Don't accept componentType as a param
-				if ( !cdata.hasOwnProperty(index) || index == 'componentType'  || index =='sortableItem') {
-					continue;
-				}
-				data[index] = cdata[index];
-			}
-						
-			jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
-				if( response ){
-					debugger;
-					$component.replaceWith(response);
-					$('.aesop-component').each(function(){
-
-						// if there's no toolbar present
-						if ( !$('.lasso-component--toolbar').length > 0 ) {
-
-							// if this is a map then we need to first wrap it so that we can drag the  map around
-							if ( $(this).hasClass('aesop-map-component') ) {
-
-								var $this = $(this)
-
-								// so wrap it with a aesop-compoentn aesop-map-component div
-								// @todo - note once a map is inserted it can't be edited after saving again. a user has to delete the existin map and add a new map
-								// to
-								//$this.wrap('<form id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle ).after( lassoMapForm );
-								$this.wrap('<div id="lasso--map-form" class="aesop-component aesop-map-component lasso--map-drag-holder" data-component-type="map" >').before( lassoDragHandle );
-
-							} else {
-
-								$(this).append( lasso_editor.handle );
-							}
-						}
-					});
-				} else {
-					alert("error");
-				}
-			});
-		}
 
 	    /**
 	    *
@@ -150,7 +150,8 @@
 				if ( 'gallery-created' == response.data.message ) {
 
 					saveSequence( false, 1000, true );
-					editus_gallery_swap(response.data.id);
+					// load the new gallery
+					cdata['id'] = response.data.id;
 
 				} else if ( 'gallery-updated' == response.data.message ) {
 
@@ -162,6 +163,7 @@
 					alert( 'error' );
 
 				}
+				window.get_aesop_component_ajax(cdata);
 
 			}).fail(function(xhr, err) { 
 				var responseTitle= $(xhr.responseText).filter('title').get(0);
@@ -175,24 +177,10 @@
 		}
 		
 		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] ||
-		      'character' == cdata['componentType']) {
-			get_aesop_component_ajax(cdata);
+		      'character' == cdata['componentType'] || 'collection' == cdata['componentType']) {
+			window.get_aesop_component_ajax(cdata);
 		}
 
 	});
-	function editus_gallery_swap(galleryID){
-		var data = {
-			action: 		'process_gallery_swap',
-			gallery_id: 	galleryID,
-			nonce: 			lasso_editor.swapGallNonce
-		}
-
-		$.post( lasso_editor.ajaxurl, data, function(response) {
-			if( true == response.success ) {
-				// window.component is the current component being edited
-				window.component.replaceWith( response.data.gallery );
-			}
-		});
-	}
 
 })( jQuery );

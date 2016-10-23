@@ -137,21 +137,11 @@
 	});
 	
 	function editus_gallery_swap(galleryID){
-		var data = {
-			action: 		'process_gallery_swap',
-			gallery_id: 	galleryID,
-			nonce: 			lasso_editor.swapGallNonce
-		}
-
-		$.post( lasso_editor.ajaxurl, data, function(response) {
-			if( true == response.success ) {
-				// window.component is the current component being edited
-				window.component.replaceWith( response.data.gallery );
-			}
-		}).fail(function(xhr, err) { 
-			var responseTitle= $(xhr.responseText).filter('title').get(0);
-			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
-		});
+		var data      = {
+			componentType: 'gallery',
+			id:   	galleryID
+		};
+		window.get_aesop_component_ajax(data);
 	}
 
 	///////////
@@ -175,8 +165,11 @@
 	}
 
 	function ase_encode_gallery_items(){
-		var imageArray = gallery.sortable('toArray');
-	  	$('#ase_gallery_ids').val( imageArray );
+		gallery = $('#lasso--gallery__images #ase-gallery-images');
+		if (gallery.length) {
+		   var imageArray = gallery.sortable('toArray');
+	  	   $('#ase_gallery_ids').val( imageArray );
+		}
 	}
 
 	// inserting gallery items
