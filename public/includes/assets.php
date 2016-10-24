@@ -184,7 +184,12 @@ class assets {
 			    wp_enqueue_script('lasso', LASSO_URL. "/public/assets/js/lasso{$postfix}.js", array('jquery'), LASSO_VERSION, true);
 			}
 			wp_localize_script('lasso', 'lasso_editor', apply_filters('lasso_localized_objects', $objects ) );
-
+			
+			//enqueue js if tour is not hidden 
+            		$tour_hidden = get_user_meta( get_current_user_ID(), 'lasso_hide_tour', true );
+    			if ( lasso_user_can() && !$tour_hidden ){
+                		wp_enqueue_script('lasso', LASSO_URL. "/public/assets/js/tour.js", array('jquery', 'lasso'), LASSO_VERSION, true);
+    			}
 
 		}
 
