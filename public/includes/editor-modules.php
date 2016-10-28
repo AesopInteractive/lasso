@@ -176,38 +176,9 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
 			<?php endif; ?>
 			
-		    <li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
-		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
-		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
-		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
-					<input class="styled-checkbox" type="checkbox" id="aesop-toolbar--link_newtab" checked/>
-                    <label for="aesop-toolbar--link_newtab">Open in Another Tab</label>
-		    	</div>
-		    </li>
-		    <?php do_action( 'lasso_toolbar_components_after' );?>
-		    <li id="lasso-toolbar--html" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>">
-		    	<div id="lasso-toolbar--html__wrap" <?php echo $mobile_style ?>>
-		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?>"></div>
-		    		<div id="lasso-toolbar--html__footer">
-		    			<ul class="lasso-toolbar--html-snips">
-		    				<?php if ( !$toolbar_headings ): ?>
-		    				<li id="lasso-html--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>">
-		    				<li id="lasso-html--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>">
-		    				<?php endif; ?>
-		    				<li id="lasso-html--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>">
-		    				<li id="lasso-html--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>">
-		    			</ul>
-		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e( 'Cancel', 'lasso' );?></a>
-		    			<a href="#" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e( 'Insert', 'lasso' );?></a>
-		    		</div>
-		    	</div>
-		    </li>
+		    
 			
-			<?php if ( $show_align ): ?>
-		    <li id="lasso-toolbar--left-align" title="<?php esc_attr_e( 'Text Left Align', 'lasso' );?>"></li>
-		    <li id="lasso-toolbar--center-align" title="<?php esc_attr_e( 'Text Center Align', 'lasso' );?>"></li>
-			<li id="lasso-toolbar--right-align" title="<?php esc_attr_e( 'Text Right Align', 'lasso' );?>"></li>
-			<?php endif; ?>
+			
 			
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
 			    <ul id="lasso-toolbar--components__list" style="display:none;">
@@ -236,6 +207,37 @@ function lasso_editor_text_toolbar() {
 					<?php do_action( 'lasso_toolbar_components' );?>
 			    </ul>
 			</li>
+			<li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
+		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
+		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
+		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
+					<input class="styled-checkbox" type="checkbox" id="aesop-toolbar--link_newtab" checked/>
+                    <label for="aesop-toolbar--link_newtab">Open in Another Tab</label>
+		    	</div>
+		    </li>
+		    <?php do_action( 'lasso_toolbar_components_after' );?>
+		    <li id="lasso-toolbar--html" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>">
+		    	<div id="lasso-toolbar--html__wrap" <?php echo $mobile_style ?>>
+		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?>"></div>
+		    		<div id="lasso-toolbar--html__footer">
+		    			<ul class="lasso-toolbar--html-snips">
+		    				<?php if ( !$toolbar_headings ): ?>
+		    				<li id="lasso-html--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>">
+		    				<li id="lasso-html--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>">
+		    				<?php endif; ?>
+		    				<li id="lasso-html--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>">
+		    				<li id="lasso-html--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>">
+		    			</ul>
+		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e( 'Cancel', 'lasso' );?></a>
+		    			<a href="#" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e( 'Insert', 'lasso' );?></a>
+		    		</div>
+		    	</div>
+		    </li>
+			<?php if ( $show_align ): ?>
+		    <li id="lasso-toolbar--left-align" title="<?php esc_attr_e( 'Text Left Align', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--center-align" title="<?php esc_attr_e( 'Text Center Align', 'lasso' );?>"></li>
+			<li id="lasso-toolbar--right-align" title="<?php esc_attr_e( 'Text Right Align', 'lasso' );?>"></li>
+			<?php endif; ?>
 		</ul>
 	</div>
 
