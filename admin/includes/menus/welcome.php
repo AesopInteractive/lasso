@@ -162,7 +162,7 @@ class welcome {
 		// WP REST API not active
 		if ( !function_exists( 'json_get_url_prefix' ) ) {
 			$notices[] = '<li class="info"><h3>WP REST API not Activated!</h3>
-							<p>'.__( 'Just a heads up that the WP REST API isn\'t activated. This is required to list the posts and pages on the front-end. It is required until WordPress officially merges the REST API into core sometime during 2015.', 'lasso' ).'</p>
+							<p>'.__( 'Just a heads up that the WP REST API isn\'t activated. This is required to list the posts and pages on the front-end. It is required until WordPress officially merges the REST API into core sometime during 2016.', 'lasso' ).'</p>
 							</li>';
 		}
 

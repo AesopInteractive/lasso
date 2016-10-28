@@ -180,8 +180,8 @@ function lasso_editor_text_toolbar() {
 		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
 		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
-					<!--input class="styled-checkbox" type="checkbox" /-->
-                    <!--label>Styled Check Box</label-->
+					<input class="styled-checkbox" type="checkbox" id="aesop-toolbar--link_newtab" checked/>
+                    <label for="aesop-toolbar--link_newtab">Open in Another Tab</label>
 		    	</div>
 		    </li>
 		    <?php do_action( 'lasso_toolbar_components_after' );?>

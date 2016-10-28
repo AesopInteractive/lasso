@@ -18,7 +18,6 @@ class assets {
 	public function scripts(){
 
 	
-        // for now editus is disabled for mobile. it will be reenabled when mobile platforms are better supported
 		if ( lasso_user_can('edit_posts')) {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
@@ -67,6 +66,9 @@ class assets {
 
 			// post id reference
 			$postid 			= get_the_ID();
+			
+			$post_date = get_the_time('U');
+            $delta = time() - $post_date;
 
 			$strings = array(
 				'save' 				=> __('Save','lasso'),
@@ -77,7 +79,7 @@ class assets {
 				'loading' 			=> __('Loading...','lasso'),
 				'loadMore'			=> __('Load More','lasso'),
 				'noPostsFound'		=> __('No more posts found','lasso'),
-				'fetchFail'	    	=> __('Fetching failed. REST API plugin may not have been installed or configured correctly.','lasso'),
+				'fetchFail'	    	=> __('Fetching failed. REST API 1.2.5 plugin may not have been installed or configured correctly. (This requirement will be removed after WordPress adds built-in REST API support.)','lasso'),
 				'galleryCreated' 	=> __('Gallery Created!','lasso'),
 				'galleryUpdated' 	=> __('Gallery Updated!','lasso'),
 				'justWrite'			=> __('Just write...','lasso'),
@@ -102,7 +104,7 @@ class assets {
 				'missingClass'		=> __('It looks like we are either missing the Article CSS class, or it is configured incorrectly. Editus will not function correctly without this CSS class.','lasso'),
 				'missingConfirm'	=> __('Update Settings', 'lasso'),
 				'helperText'		=> __('one more letter','lasso'),
-				'editingBackup'  	=> __('You are currently editing a backup copy of this post.')
+				'editingBackup'  	=> __('You are currently editing a backup copy of this post.'),
 			);
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';
@@ -168,7 +170,8 @@ class assets {
 				'isMobile'          => wp_is_mobile(),
 				'enableAutoSave'    => lasso_editor_get_option( 'enable_autosave', 'lasso_editor' ),
 				'showColor'         => $show_color,
-				'showAlignment'  => $show_align
+				'showAlignment'     => $show_align,
+				'skipToEdit'        => ( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 
 

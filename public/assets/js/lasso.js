@@ -10662,6 +10662,16 @@ jQuery(document).ready(function($){
 				//article.highlight();
 				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
 				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
+				//unselect
+				if (window.getSelection) {
+				  if (window.getSelection().empty) {  // Chrome
+					window.getSelection().empty();
+				  } else if (window.getSelection().removeAllRanges) {  // Firefox
+					window.getSelection().removeAllRanges();
+				  }
+				} else if (document.selection) {  // IE?
+				  document.selection.empty();
+				}
 				return false;
 			});
 		}
@@ -10748,8 +10758,11 @@ jQuery(document).ready(function($){
 		    article.highlight();
 		    restoreSelection(window.selRange);
 
-			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
-
+			if ($('#aesop-toolbar--link_newtab').is(':checked')) {
+				 articleMedium.insertHtml('<a class="lasso-link" target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			} else {
+			    articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			}
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;
 
@@ -10853,6 +10866,7 @@ jQuery(document).ready(function($){
 
 			$(titleClass).attr('contenteditable', false);
 
+			$(articleMedium.element).find("*").removeAttr('contenteditable');
 			articleMedium.destroy();
 		}
 		// on escape key exit
@@ -11203,7 +11217,11 @@ jQuery(document).ready(function($){
 		});
 
 	});
-
+	if (lasso_editor.skipToEdit)
+	{
+		$('#lasso--edit').trigger('click');
+		lasso_editor.skipToEdit = false;
+	}
 });
 
 
@@ -11453,6 +11471,10 @@ jQuery(document).ready(function($){
 			window.component = component;
 
 			data = component.data();
+			// special case for hero gallery
+			if ( $(this).parent().parent().hasClass('aesop-hero-gallery-wrapper') ) {
+			    jQuery.extend(data, $(component).find(".fotorama").data());
+			}
 
 			// add a body class
 			$('body').toggleClass('lasso-sidebar-open');
@@ -11489,6 +11511,7 @@ jQuery(document).ready(function($){
 						if ( 'grid' == value ) {
 							$('.ase-gallery-opts--thumb').fadeOut();
 							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
 							$('.ase-gallery-opts--grid').fadeIn();
 						} else {
 							$('.ase-gallery-opts--grid').fadeOut();
@@ -11497,6 +11520,7 @@ jQuery(document).ready(function($){
 						if ( 'thumbnail' == value ) {
 							$('.ase-gallery-opts--grid').fadeOut();
 							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
 							$('.ase-gallery-opts--thumb').fadeIn();
 						} else {
 							$('.ase-gallery-opts--thumb').fadeOut();
@@ -11505,9 +11529,19 @@ jQuery(document).ready(function($){
 						if ( 'photoset' == value ) {
 							$('.ase-gallery-opts--grid').fadeOut();
 							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
 							$('.ase-gallery-opts--photoset').fadeIn();
 						} else {
 							$('.ase-gallery-opts--photoset').fadeOut();
+						}
+						
+						if ( 'hero' == value ) {
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeIn();
+						} else {
+							$('.ase-gallery-opts--hero').fadeOut();
 						}
 					}
 
@@ -12202,8 +12236,12 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 
+		$('#aesop-toolbar--link_newtab').unbind('mousedown').mousedown(function() {
+			$(this).prop("checked", !$(this).prop("checked"));
+			return;
+		});
+
 		// prevent dropup from closing
-		//$('#lasso-toolbar--link__wrap').live('click',function(){
 		jQuery(document).on('click', '#lasso-toolbar--link__wrap', function(){
 			return false;
 		});
@@ -12685,11 +12723,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	});
 	
 	function editus_gallery_swap(galleryID){
-		var data3      = {
+		var data      = {
 			componentType: 'gallery',
 			id:   	galleryID
 		};
-		window.get_aesop_component_ajax(data3);
+		window.get_aesop_component_ajax(data);
 	}
 
 	///////////
@@ -12853,27 +12891,39 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		var value_check = function( value ){
 
 			if ( 'grid' == value ) {
-				$('.ase-gallery-opts--thumb').fadeOut();
-				$('.ase-gallery-opts--photoset').fadeOut();
-				$('.ase-gallery-opts--grid').fadeIn();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
+							$('.ase-gallery-opts--grid').fadeIn();
 			} else {
-				$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--grid').fadeOut();
 			}
 
 			if ( 'thumbnail' == value ) {
-				$('.ase-gallery-opts--grid').fadeOut();
-				$('.ase-gallery-opts--photoset').fadeOut();
-				$('.ase-gallery-opts--thumb').fadeIn();
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeIn();
 			} else {
-				$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
 			}
 
 			if ( 'photoset' == value ) {
-				$('.ase-gallery-opts--grid').fadeOut();
-				$('.ase-gallery-opts--thumb').fadeOut();
-				$('.ase-gallery-opts--photoset').fadeIn();
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeIn();
 			} else {
-				$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+			}
+						
+			if ( 'hero' == value ) {
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeIn();
+			} else {
+							$('.ase-gallery-opts--hero').fadeOut();
 			}
 		}
 
@@ -13195,6 +13245,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					var $a = $(response);
 					window.component.replaceWith($a);
 					window.component = $a;
+					if ($a.find('.fotorama')){
+						$('.fotorama').fotorama();
+					}
+					if ($a.find('.aesop-gallery-photoset')){
+						$(window).trigger( 'load' ); 
+					}
 					$('.aesop-component').each(function(){
 
 						// if there's no toolbar present

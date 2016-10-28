@@ -32,11 +32,14 @@ class save_gallery {
 		// gallery hide thumbs
 		$hideThumbs = isset( $options['hideThumbs'] ) ? $options['hideThumbs'] : false;
 
-		// photoset layout
+		// photoset layout hardwired to on for now
 		$psLayout = isset( $options['pslayout'] ) ? $options['pslayout'] : false;
 
 		// photoset layout
-		$psLightbox = isset( $options['pslightbox'] ) ? $options['pslightbox'] : false;
+		$psLightbox = 'on';//isset( $options['pslightbox'] ) ? $options['pslightbox'] : false;
+		
+		// hero gallery height
+		$gallery_height = isset( $options['height'] ) ? $options['height'] : false;
 
 		// update gallery ids
 		if ( !empty( $gallery_ids ) ) {
@@ -62,6 +65,12 @@ class save_gallery {
 		update_post_meta( $postid, 'aesop_photoset_gallery_layout', sanitize_text_field( trim( $psLayout ) ) );
 
 		update_post_meta( $postid, 'aesop_photoset_gallery_lightbox', sanitize_text_field( trim( $psLightbox ) ) );
+		
+		update_post_meta( $postid, 'aesop_hero_gallery_height', sanitize_text_field( trim( $gallery_height ) ) );
+		
+		//hardwired for now
+		
+		update_post_meta( $postid, 'aesop_hero_gallery_transition_speed', 300 );
 
 	}
 

@@ -72,6 +72,7 @@ function lasso_gallery_editor_module() {
 				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="sequence">Sequence</label>
 				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="photoset"><?php _e( 'Photoset', 'lasso' );?></label>
 				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="stacked"><?php _e( 'Parallax', 'lasso' );?></label>
+				<label for="lasso_gallery_type" class="ase-gallery-layout-label"><input class="lasso-generator-attr ase-gallery-type-radio" type="radio" name="lasso_gallery_type" value="hero">Hero</label>
 			</fieldset>
 		</div>
 	</div>
@@ -122,9 +123,20 @@ function lasso_gallery_editor_module() {
 			<input type="text" class="lasso-generator-attr" name="lasso_photoset_gallery_layout" value="">
 		</div>
 
-		<div data-option="pslightbox" class="ase-gallery-opts--single lasso-option">
+		<!--div data-option="pslightbox" class="ase-gallery-opts--single lasso-option">
 			<input type="checkbox" class="lasso-generator-attr" name="lasso_photoset_gallery_lightbox">
-			<label for="lasso_photoset_gallery_lightbox"><?php _e( 'Enable Lightbox', 'lasso' );?></label>
+			<label for="lasso_photoset_gallery_lightbox"><!--?php _e( 'Enable Lightbox', 'lasso' );?--><!--/label-->
+		<!--/div-->
+
+	</div>
+	
+	<!-- Conditionally Loaded Gallery Option - Hero Options -->
+	<div class="ase-gallery-opts ase-gallery-opts--hero" style="display:none;">
+
+		<div data-option="height" class="ase-gallery-opts--single lasso-option">
+			<label for="lasso_gallery_height"><?php _e( 'Main Gallery Height', 'lasso' );?></label>
+			<small class="lasso-option-desc"><?php _e( 'Adjust the overall height of the gallery. Acceptable values include 500px or 50% etc.', 'lasso' );?></small>
+			<input type="text_small" class="lasso-generator-attr" name="lasso_gallery_height" value="">
 		</div>
 
 	</div>
@@ -134,7 +146,7 @@ function lasso_gallery_editor_module() {
 
 		<div data-option="width" class="ase-gallery-opts--single lasso-option">
 			<label for="lasso_gallery_width"><?php _e( 'Main Gallery Width', 'lasso' );?></label>
-			<small class="lasso-option-desc"><?php _e( 'Adjust the overall width of the grid/thumbnail gallery. Acceptable values include 500px or 50%.', 'lasso' );?></small>
+			<small class="lasso-option-desc"><?php _e( 'Adjust the overall width of the gallery. Acceptable values include 500px or 50% etc.', 'lasso' );?></small>
 			<input type="text_small" class="lasso-generator-attr" name="lasso_gallery_width" value="">
 		</div>
 		<div data-option="caption" class="ase-gallery-opts--single lasso-option">

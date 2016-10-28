@@ -347,6 +347,16 @@ jQuery(document).ready(function($){
 				//article.highlight();
 				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
 				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
+				//unselect
+				if (window.getSelection) {
+				  if (window.getSelection().empty) {  // Chrome
+					window.getSelection().empty();
+				  } else if (window.getSelection().removeAllRanges) {  // Firefox
+					window.getSelection().removeAllRanges();
+				  }
+				} else if (document.selection) {  // IE?
+				  document.selection.empty();
+				}
 				return false;
 			});
 		}
@@ -433,8 +443,11 @@ jQuery(document).ready(function($){
 		    article.highlight();
 		    restoreSelection(window.selRange);
 
-			articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
-
+			if ($('#aesop-toolbar--link_newtab').is(':checked')) {
+				 articleMedium.insertHtml('<a class="lasso-link" target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			} else {
+			    articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			}
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;
 
@@ -538,6 +551,7 @@ jQuery(document).ready(function($){
 
 			$(titleClass).attr('contenteditable', false);
 
+			$(articleMedium.element).find("*").removeAttr('contenteditable');
 			articleMedium.destroy();
 		}
 		// on escape key exit
@@ -888,7 +902,11 @@ jQuery(document).ready(function($){
 		});
 
 	});
-
+	if (lasso_editor.skipToEdit)
+	{
+		$('#lasso--edit').trigger('click');
+		lasso_editor.skipToEdit = false;
+	}
 });
 
 

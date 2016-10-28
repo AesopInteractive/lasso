@@ -6,27 +6,39 @@
 		var value_check = function( value ){
 
 			if ( 'grid' == value ) {
-				$('.ase-gallery-opts--thumb').fadeOut();
-				$('.ase-gallery-opts--photoset').fadeOut();
-				$('.ase-gallery-opts--grid').fadeIn();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
+							$('.ase-gallery-opts--grid').fadeIn();
 			} else {
-				$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--grid').fadeOut();
 			}
 
 			if ( 'thumbnail' == value ) {
-				$('.ase-gallery-opts--grid').fadeOut();
-				$('.ase-gallery-opts--photoset').fadeOut();
-				$('.ase-gallery-opts--thumb').fadeIn();
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeIn();
 			} else {
-				$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
 			}
 
 			if ( 'photoset' == value ) {
-				$('.ase-gallery-opts--grid').fadeOut();
-				$('.ase-gallery-opts--thumb').fadeOut();
-				$('.ase-gallery-opts--photoset').fadeIn();
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--hero').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeIn();
 			} else {
-				$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+			}
+						
+			if ( 'hero' == value ) {
+							$('.ase-gallery-opts--grid').fadeOut();
+							$('.ase-gallery-opts--thumb').fadeOut();
+							$('.ase-gallery-opts--photoset').fadeOut();
+							$('.ase-gallery-opts--hero').fadeIn();
+			} else {
+							$('.ase-gallery-opts--hero').fadeOut();
 			}
 		}
 

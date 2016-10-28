@@ -188,8 +188,12 @@ jQuery(function( $ ) {
 		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 
+		$('#aesop-toolbar--link_newtab').unbind('mousedown').mousedown(function() {
+			$(this).prop("checked", !$(this).prop("checked"));
+			return;
+		});
+
 		// prevent dropup from closing
-		//$('#lasso-toolbar--link__wrap').live('click',function(){
 		jQuery(document).on('click', '#lasso-toolbar--link__wrap', function(){
 			return false;
 		});

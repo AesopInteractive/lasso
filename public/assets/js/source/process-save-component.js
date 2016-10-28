@@ -21,6 +21,12 @@
 					var $a = $(response);
 					window.component.replaceWith($a);
 					window.component = $a;
+					if ($a.find('.fotorama')){
+						$('.fotorama').fotorama();
+					}
+					if ($a.find('.aesop-gallery-photoset')){
+						$(window).trigger( 'load' ); 
+					}
 					$('.aesop-component').each(function(){
 
 						// if there's no toolbar present
