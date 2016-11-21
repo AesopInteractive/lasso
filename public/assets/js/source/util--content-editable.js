@@ -224,15 +224,22 @@
 								case key['backspace']:
 								case key['delete']:
 								    // we do this to prevent non editable elments being deleted
-									if (lasso_editor.objectsNonEditable) {
+									if (lasso_editor.readOnlyExists) {
 										var sel = w.getSelection();
 										if (sel.rangeCount) {
 											var selRange = sel.getRangeAt(0);
 											if (window.getSelection().isCollapsed) {
 												var container = selRange.endContainer;
 												while (container && container.parentNode !== articleMedium.element) {
+													var nodes = container.parentNode.querySelectorAll("[contenteditable='false']");
+													if (nodes.length >0) {
+														break;
+													}
 													container = container.parentNode;
-												} 												
+												} 	
+												if (container.contentEditable == "false") {
+													e.preventDefault();
+												}											
 												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
 													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false") {
 														e.preventDefault();

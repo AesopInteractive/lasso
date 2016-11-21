@@ -5106,15 +5106,22 @@ Undo.Command.extend = function(protoProps) {
 								case key['backspace']:
 								case key['delete']:
 								    // we do this to prevent non editable elments being deleted
-									if (lasso_editor.objectsNonEditable) {
+									if (lasso_editor.readOnlyExists) {
 										var sel = w.getSelection();
 										if (sel.rangeCount) {
 											var selRange = sel.getRangeAt(0);
 											if (window.getSelection().isCollapsed) {
 												var container = selRange.endContainer;
 												while (container && container.parentNode !== articleMedium.element) {
+													var nodes = container.parentNode.querySelectorAll("[contenteditable='false']");
+													if (nodes.length >0) {
+														break;
+													}
 													container = container.parentNode;
-												} 												
+												} 	
+												if (container.contentEditable == "false") {
+													e.preventDefault();
+												}											
 												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
 													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false") {
 														e.preventDefault();
@@ -10528,10 +10535,23 @@ jQuery(document).ready(function($){
 		$(objectsNonEditable).attr('readonly',true);
 		
 		// remove any additional markup so we dont save it as HTML
+		if (objectsNoSave.length) {
+		    objectsNoSave = objectsNoSave+","+supportedNoSave;
+		} else {
+			objectsNoSave = supportedNoSave;
+		}
 		$(objectsNoSave).attr('contenteditable',false);
 		$(objectsNoSave).attr('readonly',true);
+		lasso_editor.objectsNoSave = objectsNoSave;
+		
+		if ($(objectsNonEditable).length || $(objectsNoSave).length) {
+			lasso_editor.readOnlyExists = true;
+		} else {
+			lasso_editor.readOnlyExists = false;
+		}
+		
 		//$(objectsNoSave).remove();
-		$(supportedNoSave).remove();
+		//$(supportedNoSave).remove();
 		
 		//$(objectsNonEditable).disableSelection();
 
@@ -12425,6 +12445,7 @@ jQuery(document).ready(function($){
 		if (lasso_editor.objectsNoSave) {
 			var $temp = $('<div></div>').html( html );
 			$temp.find(lasso_editor.objectsNoSave).remove();
+			$temp.find(lasso_editor.supportedNoSave).remove();
 			html = $temp.html();
 		}	
 

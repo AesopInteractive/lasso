@@ -102,6 +102,7 @@ jQuery(document).ready(function($){
 		if (lasso_editor.objectsNoSave) {
 			var $temp = $('<div></div>').html( html );
 			$temp.find(lasso_editor.objectsNoSave).remove();
+			$temp.find(lasso_editor.supportedNoSave).remove();
 			html = $temp.html();
 		}	
 

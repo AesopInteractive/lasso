@@ -213,10 +213,23 @@ jQuery(document).ready(function($){
 		$(objectsNonEditable).attr('readonly',true);
 		
 		// remove any additional markup so we dont save it as HTML
+		if (objectsNoSave.length) {
+		    objectsNoSave = objectsNoSave+","+supportedNoSave;
+		} else {
+			objectsNoSave = supportedNoSave;
+		}
 		$(objectsNoSave).attr('contenteditable',false);
 		$(objectsNoSave).attr('readonly',true);
+		lasso_editor.objectsNoSave = objectsNoSave;
+		
+		if ($(objectsNonEditable).length || $(objectsNoSave).length) {
+			lasso_editor.readOnlyExists = true;
+		} else {
+			lasso_editor.readOnlyExists = false;
+		}
+		
 		//$(objectsNoSave).remove();
-		$(supportedNoSave).remove();
+		//$(supportedNoSave).remove();
 		
 		//$(objectsNonEditable).disableSelection();
 
