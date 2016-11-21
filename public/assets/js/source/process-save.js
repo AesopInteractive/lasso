@@ -97,6 +97,13 @@ jQuery(document).ready(function($){
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
+			
+	    // remove objects to ignore
+		if (lasso_editor.objectsNoSave) {
+			var $temp = $('<div></div>').html( html );
+			$temp.find(lasso_editor.objectsNoSave).remove();
+			html = $temp.html();
+		}	
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');

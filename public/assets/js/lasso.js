@@ -10495,9 +10495,7 @@ jQuery(document).ready(function($){
 
 		})
 
-		// remove any additional markup so we dont save it as HTML
-		$(objectsNoSave).remove();
-		$(supportedNoSave).remove();
+		
 		
 
 		/////////////////
@@ -10528,6 +10526,13 @@ jQuery(document).ready(function($){
 		
 		$(objectsNonEditable).attr('contenteditable',false);
 		$(objectsNonEditable).attr('readonly',true);
+		
+		// remove any additional markup so we dont save it as HTML
+		$(objectsNoSave).attr('contenteditable',false);
+		$(objectsNoSave).attr('readonly',true);
+		//$(objectsNoSave).remove();
+		$(supportedNoSave).remove();
+		
 		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if
@@ -12415,6 +12420,13 @@ jQuery(document).ready(function($){
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
+			
+	    // remove objects to ignore
+		if (lasso_editor.objectsNoSave) {
+			var $temp = $('<div></div>').html( html );
+			$temp.find(lasso_editor.objectsNoSave).remove();
+			html = $temp.html();
+		}	
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');

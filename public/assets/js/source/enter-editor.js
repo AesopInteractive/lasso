@@ -180,9 +180,7 @@ jQuery(document).ready(function($){
 
 		})
 
-		// remove any additional markup so we dont save it as HTML
-		$(objectsNoSave).remove();
-		$(supportedNoSave).remove();
+		
 		
 
 		/////////////////
@@ -213,6 +211,13 @@ jQuery(document).ready(function($){
 		
 		$(objectsNonEditable).attr('contenteditable',false);
 		$(objectsNonEditable).attr('readonly',true);
+		
+		// remove any additional markup so we dont save it as HTML
+		$(objectsNoSave).attr('contenteditable',false);
+		$(objectsNoSave).attr('readonly',true);
+		//$(objectsNoSave).remove();
+		$(supportedNoSave).remove();
+		
 		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if

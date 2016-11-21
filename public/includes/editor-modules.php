@@ -511,6 +511,10 @@ function lasso_editor_newpost_modal() {
 function lasso_editor_allpost_modal() {
 
 	global $post;
+	
+	global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Articles';
 
 	ob_start();
 
@@ -542,6 +546,8 @@ function lasso_editor_allpost_modal() {
 				if ( ! empty( $post_types ) ) {
 					$first = 'active';
 					foreach( $post_types as $name => $label ) {
+						//printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $name ), esc_attr( $label ) );
+						//print_r($post_types);
 						printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $name ), esc_attr( $label ) );
 						$first = '';
 					}

@@ -101,6 +101,7 @@ class settings {
 		
 		$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 		$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
+		$disable_tour = lasso_editor_get_option('disable_tour', 'lasso_editor');
 
 ?>
 		<div class="wrap">
@@ -217,6 +218,14 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[enable_autosave]" id="lasso_editor[enable_autosave]" <?php echo checked( $enable_autosave, 'on' );?> >
 						<label for="lasso_editor[enable_autosave]"><?php _e( 'Enable Auto Save', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to enable auto save.', 'lasso' );?></span>
+					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[disable_tour]" id="lasso_editor[disable_tour]" <?php echo checked( $disable_tour, 'on' );?> >
+						<label for="lasso_editor[disable_tour]"> <?php _e( 'Do Not Show Tour Dialog', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Check this box to disable the tour dialog box for all users.', 'lasso' );?></span>
 					</div>
 				</div>
 

@@ -11,8 +11,10 @@ class tour {
 
 	public function __construct() {
 
-		add_action( 'wp_footer',       array( $this, 'draw_tour' ) );
-
+	    $disable_tour = lasso_editor_get_option('disable_tour', 'lasso_editor');
+		if (!$disable_tour) {
+		    add_action( 'wp_footer',       array( $this, 'draw_tour' ) );
+		}
 	}
 
 	/**
