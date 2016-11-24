@@ -171,6 +171,7 @@ class assets {
 				'enableAutoSave'    => lasso_editor_get_option( 'enable_autosave', 'lasso_editor' ),
 				'showColor'         => $show_color,
 				'showAlignment'     => $show_align,
+				'showIgnoredItems'  => lasso_editor_get_option('show_ignored_items', 'lasso_editor'),
 				'skipToEdit'        => ( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 

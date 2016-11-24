@@ -98,8 +98,8 @@ jQuery(document).ready(function($){
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
 			
-	    // remove objects to ignore
-		if (lasso_editor.objectsNoSave) {
+	    // remove objects to ignore if they are not removed already
+		if (lasso_editor.showIgnoredItems ) {
 			var $temp = $('<div></div>').html( html );
 			$temp.find(lasso_editor.objectsNoSave).remove();
 			$temp.find(lasso_editor.supportedNoSave).remove();

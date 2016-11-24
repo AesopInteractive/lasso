@@ -10540,18 +10540,21 @@ jQuery(document).ready(function($){
 		} else {
 			objectsNoSave = supportedNoSave;
 		}
-		$(objectsNoSave).attr('contenteditable',false);
-		$(objectsNoSave).attr('readonly',true);
+		
 		lasso_editor.objectsNoSave = objectsNoSave;
 		
-		if ($(objectsNonEditable).length || $(objectsNoSave).length) {
+		if ($(objectsNonEditable).length || (lasso_editor.showIgnoredItems && ($(objectsNoSave).length)|| $(supportedNoSave).length )) {
 			lasso_editor.readOnlyExists = true;
 		} else {
 			lasso_editor.readOnlyExists = false;
 		}
-		
-		//$(objectsNoSave).remove();
-		//$(supportedNoSave).remove();
+		if (!lasso_editor.showIgnoredItems) {
+		    $(objectsNoSave).remove();
+		    $(supportedNoSave).remove();
+		} else {
+			$(objectsNoSave).attr('contenteditable',false);
+		    $(objectsNoSave).attr('readonly',true);
+		}
 		
 		//$(objectsNonEditable).disableSelection();
 
@@ -12441,8 +12444,8 @@ jQuery(document).ready(function($){
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
 			
-	    // remove objects to ignore
-		if (lasso_editor.objectsNoSave) {
+	    // remove objects to ignore if they are not removed already
+		if (lasso_editor.showIgnoredItems ) {
 			var $temp = $('<div></div>').html( html );
 			$temp.find(lasso_editor.objectsNoSave).remove();
 			$temp.find(lasso_editor.supportedNoSave).remove();

@@ -102,6 +102,7 @@ class settings {
 		$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 		$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 		$disable_tour = lasso_editor_get_option('disable_tour', 'lasso_editor');
+		$show_ignored_items = lasso_editor_get_option('show_ignored_items', 'lasso_editor');
 
 ?>
 		<div class="wrap">
@@ -150,6 +151,14 @@ class settings {
 						<label><?php _e( 'Read Only Items', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'If your post has items that should not be editable, list the css class names (comma separated, including the dot) of those items.', 'lasso' );?></span>
 						<textarea name="lasso_editor[non_editable]" id="lasso_editor[non_editable]" placeholder=".classname, .another-class"><?php echo esc_attr( $objectsNonEditable );?></textarea>
+					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[show_ignored_items]" id="lasso_editor[show_ignored_items]" <?php echo checked( $show_ignored_items, 'on' );?> >
+						<label for="lasso_editor[show_ignored_items]"> <?php _e( 'Show Ignored Items', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'By default the ignored items are hidden. Check this to show ignored items while keeping them uneditable.', 'lasso' );?></span>
 					</div>
 				</div>
 
