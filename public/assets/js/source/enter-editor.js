@@ -76,6 +76,48 @@ jQuery(document).ready(function($){
 				return;
 			}
 		}
+		
+		// lock the post for editing
+		var data = {
+				action: 'editus_lock_post',
+				postid: lasso_editor.postid
+		};
+		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+			if( response ){
+				if (response!="true") {
+					alert(response);
+					exitEditor();
+				}
+				
+			} else {
+				alert("Error locking the post for edit");
+				exitEditor();
+			}
+			
+		});
+		//keep locking periodically
+		lasso_editor.lockIntervalID = window.setInterval(lockPost, 120000);
+		
+		
+		function lockPost() {
+			var data = {
+				action: 'editus_lock_post',
+				postid: lasso_editor.postid
+			};
+			jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+				/*if( response ){
+					if (response!="true") {
+						alert(response);
+						exitEditor();
+					}
+					
+				} else {
+					alert("Error locking the post for edit");
+					exitEditor();
+				}*/
+				
+			});
+		}
 	
 		e.preventDefault();
 
@@ -261,60 +303,7 @@ jQuery(document).ready(function($){
 			return false;
 		};
 		
-		/*
-		// Todo: code for future integration
-		document.getElementById('lasso-toolbar--color').onmousedown = function() {
-			article.highlight();
-		    //articleMedium.invokeElement('b');
-			//handleClick: function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            //this.selectionState = this.base.exportSelection();
-
-            // If no text selected, stop here.
-            //if(this.selectionState && (this.selectionState.end - this.selectionState.start === 0) ) {
-            //  return;
-            //}
-
-            // colors for picker
-            var pickerColors = [ 
-              "#1abc9c",
-              "#2ecc71",
-              "#3498db",
-              "#9b59b6",
-              "#34495e",
-			  
-              "#16a085",
-              "#27ae60",
-              "#2980b9",
-              "#8e44ad",
-              "#2c3e50",
-			  
-              "#f1c40f",
-              "#e67e22",
-              "#e74c3c",
-              "#bdc3c7",
-              "#95a5a6",
-			  
-              "#f39c12"
-            ];
-
-            //var picker = vanillaColorPicker(this.document.querySelector(".medium-editor-toolbar-active .editor-color-picker"));
-			var picker = vanillaColorPicker(document.getElementById('lasso-toolbar--color'));
-            picker.set("customColors", pickerColors);
-            picker.set("positionOnTop");
-            picker.openPicker();
-            picker.on("colorChosen", function(color) {
-              //this.base.importSelection(this.selectionState);
-              document.execCommand("styleWithCSS", false, true);
-              document.execCommand("foreColor", false, color);
-			  //var container = window.selRange.startContainer.parentNode;
-			  //container.style.color = color;
-            }.bind(this));
-        //}
-			return false;
-		};*/
+		
 		
 		//color
 		if (lasso_editor.showColor) {
@@ -540,6 +529,9 @@ jQuery(document).ready(function($){
 		/// EXIT EDITOR
 		///////////////////
 		function exitEditor(){
+			if (lasso_editor.intervalID) {
+			     window.clearInterval(lasso_editor.intervalID);
+			}
 			if ($('body').hasClass('lasso-sidebar-open')) {
 				//e.preventDefault();
 				$('body').removeClass('lasso-sidebar-open');

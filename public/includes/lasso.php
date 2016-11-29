@@ -58,6 +58,7 @@ class lasso {
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		
 		add_action( 'wp_ajax_get_aesop_component',     array( $this, 'get_aesop_component' ) );
+		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
 
 		//enqueue assets
 		new assets();
@@ -252,6 +253,22 @@ class lasso {
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 		$out = load_textdomain( $domain, trailingslashit( LASSO_DIR ). 'languages/' . $domain . '-' . $locale . '.mo' );
+	}
+	
+    // new ajax function to lock post for editing
+	public function editus_lock_post()
+	{
+		$post_id= $_POST["postid"];
+		$locked = wp_check_post_lock($post_id);
+		
+		if (!$locked) {
+		    wp_set_post_lock($post_id);
+			echo "true";
+		} else {
+			$user_info = get_userdata($locked);
+			echo "Post opened by ".$user_info->first_name .  " " . $user_info->last_name;
+		}
+		exit;
 	}
 	
 	
