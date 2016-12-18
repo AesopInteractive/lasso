@@ -79,7 +79,7 @@ class assets {
 				'loading' 			=> __('Loading...','lasso'),
 				'loadMore'			=> __('Load More','lasso'),
 				'noPostsFound'		=> __('No more posts found','lasso'),
-				'fetchFail'	    	=> __('Fetching failed. REST API 1.2.5 plugin may not have been installed or configured correctly. (This requirement will be removed after WordPress adds built-in REST API support.)','lasso'),
+				'fetchFail'	    	=> __('Fetching failed. REST API may not have been installed or configured correctly.','lasso'),
 				'galleryCreated' 	=> __('Gallery Created!','lasso'),
 				'galleryUpdated' 	=> __('Gallery Updated!','lasso'),
 				'justWrite'			=> __('Just write...','lasso'),
@@ -112,16 +112,17 @@ class assets {
 			$gallery_class = new gallery();
 			$gallery_nonce_action = $gallery_class->nonce_action;
 			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
-			
-			$settings = array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ) );
-			//wp_enqueue_script( 'wp-api' );
-			wp_enqueue_script( 'wp-api', '', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
-			wp_localize_script( 'wp-api', 'wpApiSettings', $settings );
-			wp_localize_script( 'wp-api', 'WP_API_Settings', $settings );
-			
-			if ( class_exists( 'WP_REST_Controller' )) {
-                // we are using REST API V2
-			    $using_restapiv2 = true;
+			if (function_exists('rest_url')) {
+				$settings = array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ) );
+				//wp_enqueue_script( 'wp-api' );
+				wp_enqueue_script( 'wp-api', '', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
+				wp_localize_script( 'wp-api', 'wpApiSettings', $settings );
+				wp_localize_script( 'wp-api', 'WP_API_Settings', $settings );
+				
+				if ( class_exists( 'WP_REST_Controller' )) {
+					// we are using REST API V2
+					$using_restapiv2 = true;
+				}
 			}
 
 			// localized objects

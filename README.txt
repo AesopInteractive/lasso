@@ -3,8 +3,8 @@ Contributors: nphaskins, hyunster, michaelbeil
 Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.6.0
-Stable tag: 0.9.10.5
+Tested up to: 4.7.0
+Stable tag: 0.9.13.0
 
 Front-end editing and creation suite.
 
@@ -12,11 +12,29 @@ Front-end editing and creation suite.
 
 Front-end editing and creation suite.
 
-== Installation ==
-
-Refer to owner's manual
 
 == Changelog ==
+
+= 0.9.13.0 =
+* Added REST API v2 support
+* Fixed a bug automatically entering Edit Mode when it shouldn't.
+
+= 0.9.12.2 =
+* Fixed some issues with "Read Only" item options
+* Added an option to show the "Ignored Items" and keep them read only
+
+= 0.9.12.0 =
+* Aesop Hero Gallery has been added
+* Fixed several issues with Gallery AJAX update
+* When a new post is created Editus automatically enters Edit Mode
+
+= 0.9.11.1 =
+* Added an option to open a link a new browser tab.
+
+= 0.9.11.0 =
+* Now Gallery components update without having to reload the page, using AJAX. 
+* Also fixed a bug in gallery image update.
+
 = 0.9.10.5 =
 * Major new features in Beta:
 * Added Color Text Button Options.

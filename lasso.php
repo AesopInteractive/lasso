@@ -10,7 +10,7 @@
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           0.9.12.2
+ * Version:           0.9.13.0
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
