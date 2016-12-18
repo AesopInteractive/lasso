@@ -89,11 +89,15 @@
                 pageAttr -= 1;
                 var setContainer = $( '<div data-page-num="' + collection.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + pageAttr + '"></div>' );
 
-                collection.each( function ( model ) {
-
-                    setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) );
-
-                } );
+                if (lasso_editor.restapi2) {
+					collection.each( function ( model ) {
+					   setContainer.append( postTemplate( { post: model.attributes, link_: model.attributes._links.self[0].href, settings: WP_API_Settings } ) );
+					} );
+				} else {
+					collection.each( function ( model ) {
+					   setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) );
+					} );
+				}
 
                 // append to the post container
                 $(postList).append( setContainer );
@@ -143,6 +147,8 @@
             data: {
                 page: page,
                 type: type,
+				author: author,
+				per_page: 7,
                 filter: {
                     post_status: ['publish','draft','pending'],
                     posts_per_page: 7,

@@ -67,7 +67,7 @@ class assets {
 			// post id reference
 			$postid 			= get_the_ID();
 			
-			$post_date = get_the_time('U');
+			$post_date = get_the_time('U', $postid);
             $delta = time() - $post_date;
 
 			$strings = array(
@@ -112,6 +112,17 @@ class assets {
 			$gallery_class = new gallery();
 			$gallery_nonce_action = $gallery_class->nonce_action;
 			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
+			
+			$settings = array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ) );
+			//wp_enqueue_script( 'wp-api' );
+			wp_enqueue_script( 'wp-api', '', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
+			wp_localize_script( 'wp-api', 'wpApiSettings', $settings );
+			wp_localize_script( 'wp-api', 'WP_API_Settings', $settings );
+			
+			if ( class_exists( 'WP_REST_Controller' )) {
+                // we are using REST API V2
+			    $using_restapiv2 = true;
+			}
 
 			// localized objects
 			$objects = array(
@@ -172,14 +183,20 @@ class assets {
 				'showColor'         => $show_color,
 				'showAlignment'     => $show_align,
 				'showIgnoredItems'  => lasso_editor_get_option('show_ignored_items', 'lasso_editor'),
-				'skipToEdit'        => ( $delta < 30 ) // if it's a new post, skip to edit mode
+				'restapi2'          => $using_restapiv2,
+				'skipToEdit'        =>( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 
 
 			// wp api client
-			wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
-			$settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
-			wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
+			
+			
+			if (!$using_restapiv2) {
+               // enqueue REST API V1
+			   wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
+			   $settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
+			   wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
+			}
 
 			$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
 			if ($show_color) {
