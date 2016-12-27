@@ -12448,6 +12448,7 @@ jQuery(document).ready(function($){
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
+		html = removeComment(html);
 
 		// gather the data
 		var data      = {

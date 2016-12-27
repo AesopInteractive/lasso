@@ -25,6 +25,7 @@ class save implements api_action {
 
 		$postid = (int) $data[ 'post_id' ];
 		$content = $this->replace_rendered_shortcodes( $data[ 'content' ] );
+		$content = $this->remove_comments( $content );
 
 		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
@@ -58,6 +59,7 @@ class save implements api_action {
 
 		$postid = (int) $data[ 'post_id' ];
 		$content = $this->replace_rendered_shortcodes( $data[ 'content' ] );
+		$content = $this->remove_comments( $content );
 
 		if ( 'off' == $save_to_post_disabled || empty( $save_to_post_disabled ) ) {
 
@@ -143,6 +145,10 @@ class save implements api_action {
 	 * @return string
 	 */
 	protected function replace_rendered_shortcodes( $content ) {
+		//debug line
+        //file_put_contents(WP_PLUGIN_DIR."/file1.txt", $content);
+		
+
 		if ( false === strpos( $content, '--EDITUS_OTHER_SHORTCODE_START|' ) ) {
 			return $content;
 		}
@@ -155,6 +161,10 @@ class save implements api_action {
 		);
 
 		return $content;
+	}
+	
+	protected function remove_comments($content) {
+		return preg_replace('/<!--(.*)-->/Uis', '', $content);
 	}
 
 }
