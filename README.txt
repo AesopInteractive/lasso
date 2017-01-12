@@ -15,6 +15,10 @@ Front-end editing and creation suite.
 
 == Changelog ==
 
+= 0.9.13.2 =
+* Fixed some styling issues for mobile.
+* Fixed an issue in third party shortcode handling.
+
 = 0.9.13.1 =
 * Save removes html comments
 
