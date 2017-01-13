@@ -32,7 +32,7 @@ function lasso_wrap_shortcodes( $content ) {
 	$tagregexp = join( '|', array_map( 'preg_quote', $tagnames ) );
 	$pattern   = "/\\[($tagregexp)/s";
 
-	if ( 0 === preg_match( $pattern, $content ) ) {
+	if ( 1 !== preg_match( $pattern, $content ) ) {
 		// Avoids parsing HTML when there are no shortcodes or embeds anyway.
 		return $content;
 	}
