@@ -11203,9 +11203,7 @@ jQuery(document).ready(function($){
 							.attr({
 								'data-component-type': type
 							});
-						//item2.append("<p></p>");
 						$(item).replaceWith( item2);
-						
 					}
 
 					if ( 'map' == type ) { mapsGoTime() }
@@ -13730,8 +13728,8 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 	var contentTemplate = $('#lasso-tmpl--post' )
 	, 	postTemplate 	= _.template( contentTemplate.html() )
-	, 	posts 			= new wp.api.collections.Posts()
-	,	pages 			= new wp.api.collections.Pages()
+	//, 	posts 			= new wp.api.collections.Posts()
+	//,	pages 			= new wp.api.collections.Pages()
 	,	postAll         = $('#lasso--post-all')
 	,	postList        = '#lasso--post-list'
 	,	loadingText     = lasso_editor.strings.loading

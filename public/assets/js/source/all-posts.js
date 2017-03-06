@@ -2,8 +2,8 @@
 
 	var contentTemplate = $('#lasso-tmpl--post' )
 	, 	postTemplate 	= _.template( contentTemplate.html() )
-	, 	posts 			= new wp.api.collections.Posts()
-	,	pages 			= new wp.api.collections.Pages()
+	//, 	posts 			= new wp.api.collections.Posts()
+	//,	pages 			= new wp.api.collections.Pages()
 	,	postAll         = $('#lasso--post-all')
 	,	postList        = '#lasso--post-list'
 	,	loadingText     = lasso_editor.strings.loading
