@@ -11,6 +11,15 @@
 			$('body').removeClass('lasso-modal-open');
 			$('#lasso--post-settings__modal, #lasso--modal__overlay').remove();
 		}
+		
+		jQuery(document).on('click', '.lasso--postsettings__option', function(e){
+			if ($(e.target).hasClass('tagit') ||  $(e.target).hasClass('story-categories-option')) {
+				// close the modal window if the user clicks on empty spaces
+				// destroy posts modal
+				
+				destroyModal();
+			}			
+		});
 
 		// modal click
 		//$('#lasso--post-settings').live('click',function(e){

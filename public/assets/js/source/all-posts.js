@@ -402,5 +402,15 @@
 		// remove close
 		destroyClose()
 	}
+	
+	jQuery(document).on('click', '#lasso--post-list', function(e){
+			if (e.target.id === 'lasso--post-list') {
+				// close modal if the user clicks on empty spaces
+				// destroy posts modal
+				$('#lasso--all-posts__modal').remove();
+				$( '#lasso--modal__overlay' ).remove();
+				$('body').remove('#lasso--modal__overlay');
+			}
+	});
 
 })( jQuery, Backbone, _, WP_API_Settings );

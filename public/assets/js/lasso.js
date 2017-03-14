@@ -11262,6 +11262,15 @@ jQuery(document).ready(function($){
 			$('body').removeClass('lasso-modal-open');
 			$('#lasso--post-settings__modal, #lasso--modal__overlay').remove();
 		}
+		
+		jQuery(document).on('click', '.lasso--postsettings__option', function(e){
+			if ($(e.target).hasClass('tagit') ||  $(e.target).hasClass('story-categories-option')) {
+				// close the modal window if the user clicks on empty spaces
+				// destroy posts modal
+				
+				destroyModal();
+			}			
+		});
 
 		// modal click
 		//$('#lasso--post-settings').live('click',function(e){
@@ -14128,6 +14137,16 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		// remove close
 		destroyClose()
 	}
+	
+	jQuery(document).on('click', '#lasso--post-list', function(e){
+			if (e.target.id === 'lasso--post-list') {
+				// close modal if the user clicks on empty spaces
+				// destroy posts modal
+				$('#lasso--all-posts__modal').remove();
+				$( '#lasso--modal__overlay' ).remove();
+				$('body').remove('#lasso--modal__overlay');
+			}
+	});
 
 })( jQuery, Backbone, _, WP_API_Settings );
 (function( $ ) {

@@ -16,8 +16,9 @@ Front-end editing and creation suite.
 == Changelog ==
 
 = 0.9.13.3 =
-* Fixed an issue with REST API codes
-* A fix for the tour dialog style
+* Fixed an issue with REST API codes causing an error during the loading of javascripts.
+* Fixes for dialog text colors on certain themes.
+* Dialog behaviors improved for mobile platforms.
 
 
 = 0.9.13.2 =

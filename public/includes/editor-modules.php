@@ -45,7 +45,7 @@ function lasso_editor_controls() {
 		// user is capable
 		$is_capable = is_singular() && lasso_user_can('edit_post');
 		
-		$mobile_style = wp_is_mobile() ? 'style="top:40px;"' : null;
+		$mobile_style = wp_is_mobile() ? 'style="top:40px; width:100%;"' : null;
 
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
@@ -394,7 +394,7 @@ function lasso_editor_component_modal() {
 					<div class="lasso--postsettings__middle">
 
 						<div class="lasso--postsettings__option story-categories-option">
-							<label><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<label style="width:120px;"><?php _e( 'Categories', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a category name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<input id="lasso--cat-select" class="lasso--modal__trigger-footer" type="hidden" name="story_cats" value="<?php echo $categories;?>">
 						</div>
 
@@ -455,8 +455,11 @@ function lasso_editor_newpost_modal() {
 	// return the post type
 	$type = get_post_type( get_the_ID() );
 
+	if (wp_is_mobile()) {
+		$mobile_style = 'style="top:140px !important;"';
+	}
 	?>
-	<div id="lasso--post-new__modal" class="lasso--modal lasso--modal__med lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
+	<div id="lasso--post-new__modal" class="lasso--modal lasso--modal__med lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style;?>">
 		<div class="lasso--modal__inner">
 
 			<form id="lasso--postnew__form" enctype="multipart/form-data" class="lasso--post-form">
@@ -486,7 +489,7 @@ function lasso_editor_newpost_modal() {
 					</div>
 				</div>
 
-				<div class="lasso--postsettings__footer" style="display:none;">
+				<div class="lasso--postsettings__footer" style="<?php if (!wp_is_mobile()) {echo 'display:none;';} ?>">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 					<input type="hidden" name="action" value="process_new-object_post">
 					<input type="hidden" name="object" value="post">
@@ -525,7 +528,7 @@ function lasso_editor_allpost_modal() {
 	$custom_classes = apply_filters( 'lasso_modal_all_post_classes', '' );
 
 	?>
-	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
+	<div id="lasso--all-posts__modal" class="lasso--modal lasso--modal__full lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>" style="max-height:100%">
 		<div class="lasso--modal__inner">
 
 			<div class="lasso--post-filtering not-visible">

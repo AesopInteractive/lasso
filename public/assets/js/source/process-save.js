@@ -140,6 +140,10 @@ jQuery(document).ready(function($){
 			runSavePublish()
 
 		}
+		
+		function removeComment(content) {
+			return content.replace(/<!--[\s\S]*?-->/g, "");
+		}
 
 		/**
 		 	* Turn content html into shortcodes
