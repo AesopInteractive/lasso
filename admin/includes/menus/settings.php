@@ -163,30 +163,32 @@ class settings {
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap">
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
 						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable H2 and H3 Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set H2 and H3 settings.', 'lasso' );?></span>
 
 					</div>
-				</div>
-				
-				<div class="lasso-editor-settings--option-wrap">
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_color]" id="lasso_editor[toolbar_show_color]" <?php echo checked( $toolbar_show_color, 'on' );?> >
 						<label for="lasso_editor[toolbar_show_color]"><?php _e( 'Enable Text Color Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text colors.', 'lasso' );?></span>
 
 					</div>
-				</div>
-				
-				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_alignment]" id="lasso_editor[toolbar_show_alignment]" <?php echo checked( $toolbar_show_alignment, 'on' );?> >
 						<label for="lasso_editor[toolbar_show_alignment]"><?php _e( 'Enable Text Align Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text alignment.', 'lasso' );?></span>
 
 					</div>
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					
+				</div>
+				
+				<div class="lasso-editor-settings--option-wrap">
+					
 				</div>
 
 				<div class="lasso-editor-settings--option-wrap">
@@ -230,6 +232,15 @@ class settings {
 					</div>
 				</div>
 				
+				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[save_using_rest_disabled]" id="lasso_editor[save_using_rest_disabled]" <?php echo checked( $save_using_rest_disabled, 'on' );?> >
+						<label for="lasso_editor[save_using_rest_disabled]"><?php _e( "Don't Use REST API to Save", 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'By default the editor will use REST API to save posts. Check this box to use custom AJAX calls instead.', 'lasso' );?></span>
+
+					</div>
+				</div>
+				
 				<div class="lasso-editor-settings--option-wrap last">
 					<div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[disable_tour]" id="lasso_editor[disable_tour]" <?php echo checked( $disable_tour, 'on' );?> >
@@ -238,13 +249,14 @@ class settings {
 					</div>
 				</div>
 
-				<?php do_action('lasso_settings_after');?>
 
 				<div class="lasso-editor-settings--submit">
 				    <input type="hidden" name="action" value="lasso-editor-settings" />
 				    <input type="submit" class="button-primary" value="<?php esc_attr_e( 'Save Settings', 'lasso' );?>" />
 					<?php wp_nonce_field( 'nonce', 'lasso_editor_settings' ); ?>
 				</div>
+				
+				<?php do_action('lasso_settings_after');?>
 			</form>
 
 		</div><?php

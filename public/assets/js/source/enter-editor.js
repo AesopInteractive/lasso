@@ -59,6 +59,9 @@ jQuery(document).ready(function($){
 			// try one more time
 			post_container = '.entry-content';
 			if ($(post_container).length ==0 ){
+				post_container = '.aesop-entry-content';
+			}
+			if ($(post_container).length ==0 ){
 				// if we can't find the article class, warn them and exit
 				swal({
 					title: strings.warning,

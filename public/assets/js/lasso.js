@@ -10381,6 +10381,9 @@ jQuery(document).ready(function($){
 			// try one more time
 			post_container = '.entry-content';
 			if ($(post_container).length ==0 ){
+				post_container = '.aesop-entry-content';
+			}
+			if ($(post_container).length ==0 ){
 				// if we can't find the article class, warn them and exit
 				swal({
 					title: strings.warning,
@@ -12561,35 +12564,84 @@ jQuery(document).ready(function($){
 			return processed;
 
 		}
+		
+		// Save post using REST API V2
+		function savePublishREST(postid, content_, type_,status_){
+			
+			var data      = {
+				content: 	content_,
+				status: status_
+			};
+			var type;
+			if (type_=="post") {
+				type = "posts";
+			} else if (type_=="page"){
+				type = "pages";
+			} else {
+				type = type_;
+			}
+			
+			$.ajax({
+				method: "POST",
+				url: lasso_editor.rest_root + 'wp/v2/'+type+'/'+postid,
+				data: data,
+				beforeSend: function ( xhr ) {
+					xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+				},
+				success : function( response ) {
+					saveSuccess();
+				},
+				error : function (xhr, exception) {
+					console.log( xhr );
+					alert("AJAX Error: "+xhr.responseText );
+					$(save).removeClass('being-saved').addClass('lasso--error');	
+				}
+			});
+		}
+		
+		// code to run when post saving is successful
+		function saveSuccess() {
+			// change button class to saved
+			$(save).removeClass('being-saved').addClass('lasso--saved');
+
+			// if this is being published then remove the publish button afterwards
+			if ( $this.hasClass('lasso-publish-post') ) {
+				$this.remove();
+			}
+
+			// wait a bit then remvoe the button class so they can save again
+			setTimeout(function(){
+				$(save).removeClass('lasso--saved');
+
+				if ( $this.hasClass('lasso-publish-post') ) {
+					location.reload()
+				}
+
+			},1200);
+
+			// then remove this copy from local stoarge
+			localStorage.removeItem( 'lasso_backup_'+postid );
+			lasso_editor.dirtyByComponent = false;
+		}
+		
 
 		// make the actual ajax call to save or publish
 		function runSavePublish(){
+			if (lasso_editor.saveusingrest) {
+				var status_ = 'publish';
+				if (data.action != 'process_save_publish-content') {
+					if ($('.lasso--controls__right').find('.lasso-publish-post').length != 0 ) {
+						status_ = 'draft';
+					}
+				}
+				savePublishREST(postid, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				return;
+			}
+			
 			$.post( ajaxurl, data, function(response) {
 
 				if( true == response.success ) {
-
-					// change button class to saved
-					$(save).removeClass('being-saved').addClass('lasso--saved');
-
-					// if this is being published then remove the publish button afterwards
-					if ( $this.hasClass('lasso-publish-post') ) {
-						$this.remove();
-					}
-
-					// wait a bit then remvoe the button class so they can save again
-					setTimeout(function(){
-						$(save).removeClass('lasso--saved');
-
-						if ( $this.hasClass('lasso-publish-post') ) {
-							location.reload()
-						}
-
-					},1200);
-
-					// then remove this copy from local stoarge
-					localStorage.removeItem( 'lasso_backup_'+postid );
-					lasso_editor.dirtyByComponent = false;
-
+					saveSuccess();
 				} else {
 
 					// testing
@@ -13523,32 +13575,67 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.adding);
 
-			var data = $this.serialize();
-
-			/////////////
-			//	DO TEH SAVE
-			/////////////
-			$.post( lasso_editor.ajaxurl, data, function(response) {
-
-				if ( true == response.success ) {
-
-					$('input[type="submit"]').addClass('saved');
-					$('input[type="submit"]').val(lasso_editor.strings.added);
-
-					window.location.replace(response.data.postlink);
-
-				} else {
-
-					alert('error');
-
-				}
-
-
-			});
+			
+			if (lasso_editor.saveusingrest) {
+				var data2 = $this.serializeArray().reduce(function(obj, item) {
+					obj[item.name] = item.value;
+					return obj;
+				}, {});
+				newPostREST(data2.story_title, data2.object,lasso_editor.newObjectContent);
+			} else {
+				var data = $this.serialize();
+				/////////////
+				//	DO TEH SAVE
+				/////////////
+				$.post( lasso_editor.ajaxurl, data, function(response) {
+					if ( true == response.success ) {
+						$('input[type="submit"]').addClass('saved');
+						$('input[type="submit"]').val(lasso_editor.strings.added);
+						window.location.replace(response.data.postlink);
+					} else {
+						alert('error');
+					}
+				});
+			}
 
 		});
 
 	});
+	
+	function newPostREST(title_, type_,content_){
+		var data      = {
+			title: title_,
+			content: 	content_, 
+			status: "draft"
+		};
+		
+		var type;
+		if (type_=="post") {
+			type = "posts";
+		} else if (type_=="page"){
+			type = "pages";
+		} else {
+			type = type_;
+		}
+			
+		$.ajax({
+			method: "POST",
+			url: lasso_editor.rest_root + 'wp/v2/'+type,
+			data: data,
+			beforeSend: function ( xhr ) {
+				xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+			},
+			success : function( response ) {
+				$('input[type="submit"]').addClass('saved');
+				$('input[type="submit"]').val(lasso_editor.strings.added);
+
+				window.location.replace(response.link);
+			},
+			error : function (xhr, exception) {
+				alert("AJAX Error: "+xhr.responseText );		
+			}
+		});
+	}
 
 	/////////////
 	// POST OBJECT CHANGE - since 0.9.5

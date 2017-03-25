@@ -48,6 +48,7 @@ class assets {
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 			$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
+			$disableRESTSave = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
 
 			
 			//text alignement
@@ -112,8 +113,12 @@ class assets {
 			$gallery_class = new gallery();
 			$gallery_nonce_action = $gallery_class->nonce_action;
 			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
+			$rest_nonce = '';
+			$rest_root =''; 
 			if (function_exists('rest_url')) {
-				$settings = array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ) );
+				$rest_root = esc_url_raw( rest_url());
+				$rest_nonce = wp_create_nonce( 'wp_rest' );
+				$settings = array( 'root' => $rest_root, 'nonce' => $rest_nonce );
 				//wp_enqueue_script( 'wp-api' );
 				wp_enqueue_script( 'wp-api', '', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
 				wp_localize_script( 'wp-api', 'wpApiSettings', $settings );
@@ -129,6 +134,8 @@ class assets {
 			$objects = array(
 				'ajaxurl' 			=> esc_url( $api_url ),
 				'ajaxurl2' 			=> esc_url( admin_url( 'admin-ajax.php' )),
+				'rest_root'         => $rest_root,
+				'rest_nonce'        => $rest_nonce,
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE
 				'article_object'	=> $article_object,
 				'featImgClass'		=> $featImgClass,
@@ -185,11 +192,13 @@ class assets {
 				'showAlignment'     => $show_align,
 				'showIgnoredItems'  => lasso_editor_get_option('show_ignored_items', 'lasso_editor'),
 				'restapi2'          => $using_restapiv2,
+				'saveusingrest'     => $using_restapiv2 && !$disableRESTSave,
+				'newObjectContent'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ),
 				'skipToEdit'        =>( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 
 
-			// wp api client
+			// wp api 
 			
 			
 			if (!$using_restapiv2) {

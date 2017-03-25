@@ -214,39 +214,80 @@ jQuery(document).ready(function($){
 			return processed;
 
 		}
+		
+		// Save post using REST API V2
+		function savePublishREST(postid, content_, type_,status_){
+			
+			var data      = {
+				content: 	content_,
+				status: status_
+			};
+			var type;
+			if (type_=="post") {
+				type = "posts";
+			} else if (type_=="page"){
+				type = "pages";
+			} else {
+				type = type_;
+			}
+			
+			$.ajax({
+				method: "POST",
+				url: lasso_editor.rest_root + 'wp/v2/'+type+'/'+postid,
+				data: data,
+				beforeSend: function ( xhr ) {
+					xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+				},
+				success : function( response ) {
+					saveSuccess();
+				},
+				error : function (xhr, exception) {
+					console.log( xhr );
+					alert("AJAX Error: "+xhr.responseText );
+					$(save).removeClass('being-saved').addClass('lasso--error');	
+				}
+			});
+		}
+		
+		// code to run when post saving is successful
+		function saveSuccess() {
+			// change button class to saved
+			$(save).removeClass('being-saved').addClass('lasso--saved');
+
+			// if this is being published then remove the publish button afterwards
+			if ( $this.hasClass('lasso-publish-post') ) {
+				$this.remove();
+			}
+
+			// wait a bit then remvoe the button class so they can save again
+			setTimeout(function(){
+				$(save).removeClass('lasso--saved');
+
+				if ( $this.hasClass('lasso-publish-post') ) {
+					location.reload()
+				}
+
+			},1200);
+
+			// then remove this copy from local stoarge
+			localStorage.removeItem( 'lasso_backup_'+postid );
+			lasso_editor.dirtyByComponent = false;
+		}
+		
 
 		// make the actual ajax call to save or publish
 		function runSavePublish(){
+			if (lasso_editor.saveusingrest) {
+				var status_ = $('.lasso--controls__right').data( "status" );
+				savePublishREST(postid, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				return;
+			}
+			
 			$.post( ajaxurl, data, function(response) {
 
 				if( true == response.success ) {
-
-					// change button class to saved
-					$(save).removeClass('being-saved').addClass('lasso--saved');
-
-					// if this is being published then remove the publish button afterwards
-					if ( $this.hasClass('lasso-publish-post') ) {
-						$this.remove();
-					}
-
-					// wait a bit then remvoe the button class so they can save again
-					setTimeout(function(){
-						$(save).removeClass('lasso--saved');
-
-						if ( $this.hasClass('lasso-publish-post') ) {
-							location.reload()
-						}
-
-					},1200);
-
-					// then remove this copy from local stoarge
-					localStorage.removeItem( 'lasso_backup_'+postid );
-					lasso_editor.dirtyByComponent = false;
-
+					saveSuccess();
 				} else {
-
-					// testing
-					//console.log(response);
 					$(save).removeClass('being-saved').addClass('lasso--error');
 				}
 

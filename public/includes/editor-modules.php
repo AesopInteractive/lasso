@@ -79,7 +79,7 @@ function lasso_editor_controls() {
 
 			<?php if ( is_singular() ) { ?>
 
-				<div class="lasso--controls__right">
+				<div class="lasso--controls__right" data-posttype="<?php echo get_post_type( get_the_ID() );?>" data-status="<?php echo $status;?>">
 
 					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
 

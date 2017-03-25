@@ -65,32 +65,68 @@
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.adding);
 
-			var data = $this.serialize();
-
-			/////////////
-			//	DO TEH SAVE
-			/////////////
-			$.post( lasso_editor.ajaxurl, data, function(response) {
-
-				if ( true == response.success ) {
-
-					$('input[type="submit"]').addClass('saved');
-					$('input[type="submit"]').val(lasso_editor.strings.added);
-
-					window.location.replace(response.data.postlink);
-
-				} else {
-
-					alert('error');
-
-				}
-
-
-			});
+			
+			if (lasso_editor.saveusingrest) {
+                // Use REST API 
+				var data2 = $this.serializeArray().reduce(function(obj, item) {
+					obj[item.name] = item.value;
+					return obj;
+				}, {});
+				newPostREST(data2.story_title, data2.object,lasso_editor.newObjectContent);
+			} else {
+				var data = $this.serialize();
+				/////////////
+				//	DO TEH SAVE
+				/////////////
+				$.post( lasso_editor.ajaxurl, data, function(response) {
+					if ( true == response.success ) {
+						$('input[type="submit"]').addClass('saved');
+						$('input[type="submit"]').val(lasso_editor.strings.added);
+						window.location.replace(response.data.postlink);
+					} else {
+						alert('error');
+					}
+				});
+			}
 
 		});
 
 	});
+	
+	function newPostREST(title_, type_,content_){
+		var data      = {
+			title: title_,
+			content: 	content_, 
+			status: "draft"
+		};
+		
+		var type;
+		if (type_=="post") {
+			type = "posts";
+		} else if (type_=="page"){
+			type = "pages";
+		} else {
+			type = type_;
+		}
+			
+		$.ajax({
+			method: "POST",
+			url: lasso_editor.rest_root + 'wp/v2/'+type,
+			data: data,
+			beforeSend: function ( xhr ) {
+				xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+			},
+			success : function( response ) {
+				$('input[type="submit"]').addClass('saved');
+				$('input[type="submit"]').val(lasso_editor.strings.added);
+
+				window.location.replace(response.link);
+			},
+			error : function (xhr, exception) {
+				alert("AJAX Error: "+xhr.responseText );		
+			}
+		});
+	}
 
 	/////////////
 	// POST OBJECT CHANGE - since 0.9.5
