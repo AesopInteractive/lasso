@@ -6174,7 +6174,7 @@ Undo.Command.extend = function(protoProps) {
 			 * plain text before inserting the data.
 			 */
 			pasteHook: function (fn) {
-				var textarea = d.createElement('textarea'),
+				/*var textarea = d.createElement('textarea'),
 					el = this.element,
 					existingValue,
 					existingLength,
@@ -6187,7 +6187,7 @@ Undo.Command.extend = function(protoProps) {
 
 				el.parentNode.appendChild(textarea);
 
-				textarea.focus();
+				//textarea.focus();
 
 				if (!wild) {
 					medium.makeUndoable();
@@ -6204,7 +6204,7 @@ Undo.Command.extend = function(protoProps) {
 					}
 					fn(textarea.value);
 					html.deleteNode(textarea);
-				}, 2);
+				}, 2);*/
 			},
 			setupContents: function () {
 				var el = this.element,
@@ -12628,12 +12628,7 @@ jQuery(document).ready(function($){
 		// make the actual ajax call to save or publish
 		function runSavePublish(){
 			if (lasso_editor.saveusingrest) {
-				var status_ = 'publish';
-				if (data.action != 'process_save_publish-content') {
-					if ($('.lasso--controls__right').find('.lasso-publish-post').length != 0 ) {
-						status_ = 'draft';
-					}
-				}
+				var status_ = $('.lasso--controls__right').data( "status" );
 				savePublishREST(postid, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
 			}
@@ -12643,9 +12638,6 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					saveSuccess();
 				} else {
-
-					// testing
-					//console.log(response);
 					$(save).removeClass('being-saved').addClass('lasso--error');
 				}
 
@@ -13577,6 +13569,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 			
 			if (lasso_editor.saveusingrest) {
+                // Use REST API 
 				var data2 = $this.serializeArray().reduce(function(obj, item) {
 					obj[item.name] = item.value;
 					return obj;

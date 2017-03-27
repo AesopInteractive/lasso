@@ -1292,7 +1292,7 @@
 			 * plain text before inserting the data.
 			 */
 			pasteHook: function (fn) {
-				var textarea = d.createElement('textarea'),
+				/*var textarea = d.createElement('textarea'),
 					el = this.element,
 					existingValue,
 					existingLength,
@@ -1305,7 +1305,7 @@
 
 				el.parentNode.appendChild(textarea);
 
-				textarea.focus();
+				//textarea.focus();
 
 				if (!wild) {
 					medium.makeUndoable();
@@ -1322,7 +1322,7 @@
 					}
 					fn(textarea.value);
 					html.deleteNode(textarea);
-				}, 2);
+				}, 2);*/
 			},
 			setupContents: function () {
 				var el = this.element,

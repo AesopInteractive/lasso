@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.7.0
-Stable tag: 0.9.13.3
+Stable tag: 0.9.13.5
 
 Front-end editing and creation suite.
 
@@ -14,6 +14,13 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+
+= 0.9.13.5 =
+* Now Editus uses REST API to save posts when it can.
+* REST API saving can also be disabled from the options.
+* Addressed the issue where cursor jump when pasting texts.
+* Filters \' in components when edited. Filters it back to single apostrophe
+
 
 = 0.9.13.3 =
 * Fixed an issue with REST API codes causing an error during the loading of javascripts.
