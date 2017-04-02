@@ -18,7 +18,6 @@
 						
 		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
 				if( response ){
-					response = response.replace(/\\'/g, "'");
 					var $a = $(response);
 					window.component.replaceWith($a);
 					window.component = $a;
@@ -184,16 +183,10 @@
 		}
 		
 		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] ||
-		      'character' == cdata['componentType'] || 'collection' == cdata['componentType'] ) {
-			window.get_aesop_component_ajax(cdata);
-		} else if ('content' == cdata['componentType']) {
-			var inner = component.find('.aesop-component-content-data');
-
-			if ( inner.length != 0 ) {
-				cdata['content_data'] = inner[0].innerHTML;
-			}
+		      'character' == cdata['componentType'] || 'collection' == cdata['componentType']) {
 			window.get_aesop_component_ajax(cdata);
 		}
+
 	});
 
 })( jQuery );

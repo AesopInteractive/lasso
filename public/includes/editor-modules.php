@@ -44,8 +44,10 @@ function lasso_editor_controls() {
 
 		// user is capable
 		$is_capable = is_singular() && lasso_user_can('edit_post');
+		$is_mobile = wp_is_mobile();
 		
-		$mobile_style = wp_is_mobile() ? 'style="top:40px; width:100%;"' : null;
+		$mobile_style = $is_mobile ? 'style="bottom:0px;"' : null;
+		
 
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
@@ -77,7 +79,7 @@ function lasso_editor_controls() {
 
 			</ul>
 
-			<?php if ( is_singular() ) { ?>
+			<?php if ( is_singular() && !$is_mobile ) { ?>
 
 				<div class="lasso--controls__right" data-posttype="<?php echo get_post_type( get_the_ID() );?>" data-status="<?php echo $status;?>">
 
@@ -149,18 +151,20 @@ function lasso_editor_text_toolbar() {
 	
 	// mobile styles
     $mobile_class = $is_mobile ? 'lasso-mobile' : false;
-	$mobile_style =$is_mobile ? 'style="top:40px;"' : null;
+	$mobile_style =$is_mobile ? 'style="bottom:0px;"' : null;
 	
 	//show color
 	$show_color = lasso_editor_get_option('toolbar_show_color', 'lasso_editor');
 	
 	//show alignment
 	$show_align = lasso_editor_get_option('toolbar_show_alignment', 'lasso_editor');
+	
+	$status = get_post_status( get_the_ID() );
 
 
 	?>
 	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$mobile_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style ?>>
-		<ul class="lasso--toolbar__inner lasso-editor-controls">
+		<ul class="lasso--toolbar__inner lasso-editor-controls" <?php if ($is_mobile) {echo 'style="float:left;"';}?>>
 			<?php do_action( 'lasso_toolbar_components_before' );?>
 		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--underline" title="<?php esc_attr_e( 'Underline', 'lasso' );?>"></li>
@@ -175,11 +179,7 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Text Color', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
 			<?php endif; ?>
-			
-		    
-			
-			
-			
+					
 		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
 			    <ul id="lasso-toolbar--components__list" style="display:none;">
 			    	<?php if ( 'ase-active' == $ase_status ): ?>
@@ -239,6 +239,19 @@ function lasso_editor_text_toolbar() {
 			<li id="lasso-toolbar--right-align" title="<?php esc_attr_e( 'Text Right Align', 'lasso' );?>"></li>
 			<?php endif; ?>
 		</ul>
+		<?php if ( is_singular() && $is_mobile ) { ?>
+
+				<div class="lasso--controls__right" data-posttype="<?php echo get_post_type( get_the_ID() );?>" data-status="<?php echo $status;?>" style="position:static;bottom:0px;right;0px;left:auto;">
+
+					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+
+					<?php if ( 'draft' == $status && ( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') )  ) { ?>
+						<a href="#" title="<?php esc_attr_e( 'Publish Post', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<?php } ?>
+
+				</div>
+
+		<?php } ?>
 	</div>
 
 	<?php return ob_get_clean();
