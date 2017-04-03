@@ -57,10 +57,14 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time
-			post_container = '.entry-content';
-			if ($(post_container).length ==0 ){
-				post_container = '.aesop-entry-content';
+			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content"];
+			for (var i = 0; i < contClasses.length; i++) {		
+				if ($(contClasses[i]).length >0 ){
+					post_container = contClasses[i];
+					break;
+				}
 			}
+			
 			if ($(post_container).length ==0 ){
 				// if we can't find the article class, warn them and exit
 				swal({
@@ -151,10 +155,14 @@ jQuery(document).ready(function($){
 		if ( $(titleClass).length > 0 ) {
 			$(titleClass).attr('contenteditable', true);
 		} else {
-			// try one more time with .entry-header
-			titleClass = '.entry-header';
-			if ( $(titleClass).length > 0 ) {
-				$(titleClass).attr('contenteditable', true);
+			// try one more time with .entry-title
+			var titleClasses = [".entry-title-primary",".entry-title",".novella-entry-title"];
+			for (var i = 0; i < titleClasses.length; i++) {
+				if ( $(titleClasses[i]).length > 0 ) {
+					lasso_editor.titleClass = titleClass = titleClasses[i];
+					$(titleClass).attr('contenteditable', true);
+					break;
+				};
 			}
 		}
 

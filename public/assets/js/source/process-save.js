@@ -216,7 +216,7 @@ jQuery(document).ready(function($){
 		}
 		
 		// Save post using REST API V2
-		function savePublishREST(postid, content_, type_,status_){
+		function savePublishREST(postid, title, content_, type_,status_){
 			
 			var data      = {
 				content: 	content_,
@@ -229,6 +229,9 @@ jQuery(document).ready(function($){
 				type = "pages";
 			} else {
 				type = type_;
+			}
+			if (title && title.length>0) {
+				data['title'] = title;
 			}
 			
 			$.ajax({
@@ -278,8 +281,13 @@ jQuery(document).ready(function($){
 		// make the actual ajax call to save or publish
 		function runSavePublish(){
 			if (lasso_editor.saveusingrest) {
+				// get the status of the post (published/draft)
 				var status_ = $('.lasso--controls__right').data( "status" );
-				savePublishREST(postid, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				var title="";
+				if ($(lasso_editor.titleClass).length>0) {
+					title = $(lasso_editor.titleClass)[0].innerHTML;
+				}
+				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
 			}
 			
