@@ -5332,7 +5332,7 @@ Undo.Command.extend = function(protoProps) {
 						},
 						keyContext: null,
 						pasteEventHandler: function (e) {
-							e = e || w.event;
+							/*e = e || w.event;
 							medium.makeUndoable();
 							var length = medium.value().length,
 								totalLength;
@@ -5375,7 +5375,7 @@ Undo.Command.extend = function(protoProps) {
 									html.clean();
 									html.placeholders();
 								}, 20);
-							}
+							}*/
 						}
 					},
 					settings = utils.deepExtend(defaultSettings, userSettings),
@@ -10379,10 +10379,14 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time
-			post_container = '.entry-content';
-			if ($(post_container).length ==0 ){
-				post_container = '.aesop-entry-content';
+			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content"];
+			for (var i = 0; i < contClasses.length; i++) {		
+				if ($(contClasses[i]).length >0 ){
+					post_container = contClasses[i];
+					break;
+				}
 			}
+			
 			if ($(post_container).length ==0 ){
 				// if we can't find the article class, warn them and exit
 				swal({
@@ -10473,10 +10477,14 @@ jQuery(document).ready(function($){
 		if ( $(titleClass).length > 0 ) {
 			$(titleClass).attr('contenteditable', true);
 		} else {
-			// try one more time with .entry-header
-			titleClass = '.entry-header';
-			if ( $(titleClass).length > 0 ) {
-				$(titleClass).attr('contenteditable', true);
+			// try one more time with .entry-title
+			var titleClasses = [".entry-title-primary",".entry-title",".novella-entry-title"];
+			for (var i = 0; i < titleClasses.length; i++) {
+				if ( $(titleClasses[i]).length > 0 ) {
+					lasso_editor.titleClass = titleClass = titleClasses[i];
+					$(titleClass).attr('contenteditable', true);
+					break;
+				};
 			}
 		}
 
@@ -12566,7 +12574,7 @@ jQuery(document).ready(function($){
 		}
 		
 		// Save post using REST API V2
-		function savePublishREST(postid, content_, type_,status_){
+		function savePublishREST(postid, title, content_, type_,status_){
 			
 			var data      = {
 				content: 	content_,
@@ -12579,6 +12587,9 @@ jQuery(document).ready(function($){
 				type = "pages";
 			} else {
 				type = type_;
+			}
+			if (title && title.length>0) {
+				data['title'] = title;
 			}
 			
 			$.ajax({
@@ -12628,8 +12639,13 @@ jQuery(document).ready(function($){
 		// make the actual ajax call to save or publish
 		function runSavePublish(){
 			if (lasso_editor.saveusingrest) {
+				// get the status of the post (published/draft)
 				var status_ = $('.lasso--controls__right').data( "status" );
-				savePublishREST(postid, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				var title="";
+				if ($(lasso_editor.titleClass).length>0) {
+					title = $(lasso_editor.titleClass)[0].innerHTML;
+				}
+				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
 			}
 			
@@ -13327,6 +13343,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 						
 		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
 				if( response ){
+					response = response.replace(/\\'/g, "'");
 					var $a = $(response);
 					window.component.replaceWith($a);
 					window.component = $a;
@@ -13492,10 +13509,16 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		}
 		
 		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] ||
-		      'character' == cdata['componentType'] || 'collection' == cdata['componentType']) {
+		      'character' == cdata['componentType'] || 'collection' == cdata['componentType'] ) {
+			window.get_aesop_component_ajax(cdata);
+		} else if ('content' == cdata['componentType']) {
+			var inner = component.find('.aesop-component-content-data');
+
+			if ( inner.length != 0 ) {
+				cdata['content_data'] = inner[0].innerHTML;
+			}
 			window.get_aesop_component_ajax(cdata);
 		}
-
 	});
 
 })( jQuery );

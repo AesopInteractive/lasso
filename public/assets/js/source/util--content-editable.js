@@ -450,7 +450,7 @@
 						},
 						keyContext: null,
 						pasteEventHandler: function (e) {
-							e = e || w.event;
+							/*e = e || w.event;
 							medium.makeUndoable();
 							var length = medium.value().length,
 								totalLength;
@@ -493,7 +493,7 @@
 									html.clean();
 									html.placeholders();
 								}, 20);
-							}
+							}*/
 						}
 					},
 					settings = utils.deepExtend(defaultSettings, userSettings),
