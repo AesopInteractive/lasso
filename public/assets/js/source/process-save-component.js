@@ -50,6 +50,9 @@
 							}
 						}
 					});
+					if ('video' == cdata['componentType']) {
+						$('.aesop-video-component').fitVids();			
+					}
 				} else {
 					alert("error");
 			}
@@ -183,7 +186,7 @@
 
 		}
 		
-		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] ||
+		if ( 'image' == cdata['componentType'] || 'quote' == cdata['componentType'] || 'parallax' == cdata['componentType'] || 'chapter' == cdata['componentType'] || 'video' == cdata['componentType'] ||
 		      'character' == cdata['componentType'] || 'collection' == cdata['componentType'] ) {
 			window.get_aesop_component_ajax(cdata);
 		} else if ('content' == cdata['componentType']) {

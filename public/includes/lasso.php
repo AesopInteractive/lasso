@@ -285,10 +285,10 @@ class lasso {
 				$atts[$key] = $value;
 			}
 		}
-		/*if ($code == "aesop_video") {
+		if ($code == "aesop_video") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-video.php');
-		    echo aesop_video_shortcode($atts)."</div>";
-		}*/
+		    echo aesop_video_shortcode($atts);
+		}
 		
 		if ($code == "aesop_image") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-image.php');
