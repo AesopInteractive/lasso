@@ -14,6 +14,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.13.7 =
+* Aesop Video Component is now updated using AJAX
+* Fix for the publish button 
 
 = 0.9.13.6 =
 * Fixed an issue with saving post titles
