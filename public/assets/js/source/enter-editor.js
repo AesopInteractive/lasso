@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time
-			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content"];
+			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content",".post-content"];
 			for (var i = 0; i < contClasses.length; i++) {		
 				if ($(contClasses[i]).length >0 ){
 					post_container = contClasses[i];
