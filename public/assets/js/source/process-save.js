@@ -131,13 +131,13 @@ jQuery(document).ready(function($){
 			},
 			function(){
 
-				runSavePublish()
+				runSavePublish(true)
 
 			});
 
 		} else {
 
-			runSavePublish()
+			runSavePublish(false)
 
 		}
 		
@@ -279,13 +279,16 @@ jQuery(document).ready(function($){
 		
 
 		// make the actual ajax call to save or publish
-		function runSavePublish(){
+		function runSavePublish(forcePublish){
 			if (lasso_editor.saveusingrest) {
 				// get the status of the post (published/draft)
 				var status_ = $('.lasso--controls__right').data( "status" );
 				var title="";
 				if ($(lasso_editor.titleClass).length>0) {
 					title = $(lasso_editor.titleClass)[0].innerHTML;
+				}
+				if (forcePublish) {
+					status_ = "publish";
 				}
 				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;

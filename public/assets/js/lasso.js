@@ -10379,7 +10379,7 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time
-			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content"];
+			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content",".post-content"];
 			for (var i = 0; i < contClasses.length; i++) {		
 				if ($(contClasses[i]).length >0 ){
 					post_container = contClasses[i];
@@ -12489,13 +12489,13 @@ jQuery(document).ready(function($){
 			},
 			function(){
 
-				runSavePublish()
+				runSavePublish(true)
 
 			});
 
 		} else {
 
-			runSavePublish()
+			runSavePublish(false)
 
 		}
 		
@@ -12637,13 +12637,16 @@ jQuery(document).ready(function($){
 		
 
 		// make the actual ajax call to save or publish
-		function runSavePublish(){
+		function runSavePublish(forcePublish){
 			if (lasso_editor.saveusingrest) {
 				// get the status of the post (published/draft)
 				var status_ = $('.lasso--controls__right').data( "status" );
 				var title="";
 				if ($(lasso_editor.titleClass).length>0) {
 					title = $(lasso_editor.titleClass)[0].innerHTML;
+				}
+				if (forcePublish) {
+					status_ = "publish";
 				}
 				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
