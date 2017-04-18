@@ -95,10 +95,13 @@
 
     &:before {
         position: relative;
-        top:4px;
+        top:5px;
         left:0;
-        height:auto;
-        content:'\e601';
+        //height:auto;
+		width:28px;
+		height:28px;
+        //content:'\e601';
+		content: url('floppy.svg');
     }
 
     &:hover {
@@ -112,6 +115,9 @@
     // post is being saved
     &.being-saved:before {
         content:'\e97f';
+		top:4px;
+		width:22px;
+		height:22px;
         -webkit-animation: spin 2s infinite linear;
         animation: spin 2s infinite linear;
     }

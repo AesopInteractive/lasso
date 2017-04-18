@@ -287,6 +287,9 @@ jQuery(document).ready(function($){
 		    $(objectsNoSave).attr('readonly',true);
 		}
 		
+		// set links clickable
+		$("a").attr('contenteditable',false);
+		
 		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if
@@ -465,9 +468,9 @@ jQuery(document).ready(function($){
 		    restoreSelection(window.selRange);
 
 			if ($('#aesop-toolbar--link_newtab').is(':checked')) {
-				 articleMedium.insertHtml('<a class="lasso-link" target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+				 articleMedium.insertHtml('<a class="lasso-link" contenteditable="false" target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 			} else {
-			    articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			    articleMedium.insertHtml('<a class="lasso-link" contenteditable="false"  href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 			}
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;

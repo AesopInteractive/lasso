@@ -53,6 +53,7 @@
 					if ('video' == cdata['componentType']) {
 						$('.aesop-video-component').fitVids();			
 					}
+					lasso_editor.dirtyByComponent = true;
 				} else {
 					alert("error");
 			}

@@ -55,6 +55,9 @@
 		});
     }
 
+	// set links clickable
+	$("a").attr('contenteditable',false);
+		
 	//////////////////
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////

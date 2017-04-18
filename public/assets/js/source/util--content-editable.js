@@ -241,19 +241,22 @@
 													e.preventDefault();
 												}											
 												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
-													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false") {
+													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false" && container.previousElementSibling.tagName !="A") {
 														e.preventDefault();
 													}
 												} else if (e.keyCode == key['delete'] && (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined)) {
-													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false") {
+													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false" && container.nextElementSibling.tagName !="A") {
 														e.preventDefault();
 													}
 												}
 											} else {
 												// check if the selection contains noneditable element
 												var nodes = selRange.cloneContents().querySelectorAll("[contenteditable='false']");
-												if (nodes.length >0) {
-													e.preventDefault();
+												for (i =0; i< nodes.length; i++) {
+													if (nodes[i].tagName !="A") {
+													   e.preventDefault();
+													   break;
+													}
 												}
 												
 											}
