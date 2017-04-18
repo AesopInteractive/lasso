@@ -866,8 +866,7 @@ jQuery(document).ready(function($){
             	return $('<div class="lasso-drag-holder lasso-toolbar--component__'+type+'"></div>');
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
-            receive: function () {
-
+            receive: function (event,ui) {
 
             	// close modal drag
             	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
@@ -880,13 +879,19 @@ jQuery(document).ready(function($){
 
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
+					// check if it's inserted at the end
+					var newIndex = $(this).data("ui-sortable").currentItem.index();
+				    var sortable_len = $(this).data("ui-sortable").items.length;
+					var last = false;
+					var item2 = "";
+					if (newIndex>= (sortable_len-1)) {
+						last = true;
+						
+					}
 
 					// if a stock wordpress image is dragged in
 					if ( 'wpimg' == type ) {
-
 						item2 = $(components[type]['content']).prepend( wpImgEdit );
-						$(item).replaceWith( item2 );
-
 					// else it's likely an aesop component
 					} else {
 
@@ -895,8 +900,12 @@ jQuery(document).ready(function($){
 							.attr({
 								'data-component-type': type
 							});
-						$(item).replaceWith( item2);
 					}
+					if (last) {
+						item2.append("<p></p>");
+					}
+					$(item).replaceWith( item2);
+					
 
 					if ( 'map' == type ) { mapsGoTime() }
 
