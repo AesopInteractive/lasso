@@ -125,9 +125,6 @@ function lasso_get_supported_theme_title_class() {
 		case 'jorgen': // aesop
 			$out = '.jorgen-entry-title';
 			break;
-		case 'novella': // aesop
-			$out = '.novella-entry-title';
-			break;
 		case 'genji': // aesop
 			$out = '.genji-entry-title';
 			break;
