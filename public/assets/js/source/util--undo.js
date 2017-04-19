@@ -82,7 +82,7 @@ extend(Undo.Stack.prototype, {
 		this.changed();
 	},
 	dirty: function() {
-		return this.stackPosition != this.savePosition;
+		return (this.stackPosition != this.savePosition) || lasso_editor.dirtyByComponent;
 	},
 	_clearRedo: function() {
 		// TODO there's probably a more efficient way for this
