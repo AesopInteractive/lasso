@@ -4,7 +4,7 @@ Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.7.0
-Stable tag: 0.9.13.7
+Stable tag: 0.9.13.9
 
 Front-end editing and creation suite.
 
@@ -14,6 +14,11 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.13.9 =
+* Fixed a bug where shortcodes were not properly restored while saving using REST API
+* Links are now always clickable.
+
+
 = 0.9.13.7 =
 * Aesop Video Component is now updated using AJAX
 * Fix for the publish button 

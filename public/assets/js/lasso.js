@@ -5123,19 +5123,22 @@ Undo.Command.extend = function(protoProps) {
 													e.preventDefault();
 												}											
 												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
-													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false") {
+													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false" && container.previousElementSibling.tagName !="A") {
 														e.preventDefault();
 													}
 												} else if (e.keyCode == key['delete'] && (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined)) {
-													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false") {
+													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false" && container.nextElementSibling.tagName !="A") {
 														e.preventDefault();
 													}
 												}
 											} else {
 												// check if the selection contains noneditable element
 												var nodes = selRange.cloneContents().querySelectorAll("[contenteditable='false']");
-												if (nodes.length >0) {
-													e.preventDefault();
+												for (i =0; i< nodes.length; i++) {
+													if (nodes[i].tagName !="A") {
+													   e.preventDefault();
+													   break;
+													}
 												}
 												
 											}
@@ -10609,6 +10612,9 @@ jQuery(document).ready(function($){
 		    $(objectsNoSave).attr('readonly',true);
 		}
 		
+		// set links clickable
+		$("a").attr('contenteditable',false);
+		
 		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if
@@ -10787,9 +10793,9 @@ jQuery(document).ready(function($){
 		    restoreSelection(window.selRange);
 
 			if ($('#aesop-toolbar--link_newtab').is(':checked')) {
-				 articleMedium.insertHtml('<a class="lasso-link" target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+				 articleMedium.insertHtml('<a class="lasso-link" contenteditable="false" target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 			} else {
-			    articleMedium.insertHtml('<a class="lasso-link" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			    articleMedium.insertHtml('<a class="lasso-link" contenteditable="false"  href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
 			}
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;
@@ -11185,8 +11191,7 @@ jQuery(document).ready(function($){
             	return $('<div class="lasso-drag-holder lasso-toolbar--component__'+type+'"></div>');
             },
         	beforeStop: function (event, ui) { draggedItem = ui.item },
-            receive: function () {
-
+            receive: function (event,ui) {
 
             	// close modal drag
             	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
@@ -11199,13 +11204,19 @@ jQuery(document).ready(function($){
 
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
+					// check if it's inserted at the end
+					var newIndex = $(this).data("ui-sortable").currentItem.index();
+				    var sortable_len = $(this).data("ui-sortable").items.length;
+					var last = false;
+					var item2 = "";
+					if (newIndex>= (sortable_len-1)) {
+						last = true;
+						
+					}
 
 					// if a stock wordpress image is dragged in
 					if ( 'wpimg' == type ) {
-
 						item2 = $(components[type]['content']).prepend( wpImgEdit );
-						$(item).replaceWith( item2 );
-
 					// else it's likely an aesop component
 					} else {
 
@@ -11214,8 +11225,12 @@ jQuery(document).ready(function($){
 							.attr({
 								'data-component-type': type
 							});
-						$(item).replaceWith( item2);
 					}
+					if (last) {
+						item2.append("<p></p>");
+					}
+					$(item).replaceWith( item2);
+					
 
 					if ( 'map' == type ) { mapsGoTime() }
 
@@ -12573,8 +12588,22 @@ jQuery(document).ready(function($){
 
 		}
 		
+		function replace_rendered_shortcodes( content ) {
+
+			if ( content.indexOf('--EDITUS_OTHER_SHORTCODE_START|' ) == -1) {
+				return content;
+			}
+
+			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/ ;
+			content = content.replace(re,'$1');
+
+			return content;
+		}
+		
 		// Save post using REST API V2
 		function savePublishREST(postid, title, content_, type_,status_){
+			
+			content_ = replace_rendered_shortcodes( content_ );
 			
 			var data      = {
 				content: 	content_,
@@ -13381,6 +13410,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					if ('video' == cdata['componentType']) {
 						$('.aesop-video-component').fitVids();			
 					}
+					lasso_editor.dirtyByComponent = true;
 				} else {
 					alert("error");
 			}
@@ -13899,6 +13929,9 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		});
     }
 
+	// set links clickable
+	$("a").attr('contenteditable',false);
+		
 	//////////////////
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
