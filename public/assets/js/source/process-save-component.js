@@ -29,6 +29,9 @@
 						$(window).trigger( 'load' ); 
 					}
 					$('.aesop-component').each(function(){
+						if ($(this).css("height")=="0px") {
+							$(this).css("height","auto");
+						}
 
 						// if there's no toolbar present
 						if ( !$('.lasso-component--toolbar').length > 0 ) {
