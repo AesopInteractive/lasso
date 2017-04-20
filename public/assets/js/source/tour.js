@@ -47,15 +47,17 @@
 
 (function( $ ) {
 	jQuery(document).ready(function($){
+		if ( $( "#lasso--tour__slides" ).length ) {
 
-		$('body').addClass('lasso-modal-open');
+			$('body').addClass('lasso-modal-open');
 
-		$('.lasso--loading').remove();
-		$('#lasso--tour__slides').hide().fadeIn()
+			$('.lasso--loading').remove();
+			$('#lasso--tour__slides').hide().fadeIn()
 
-		$('#lasso--tour__slides').unslider({
-			dots: true,
-			delay:7000
-		});
+			$('#lasso--tour__slides').unslider({
+				dots: true,
+				delay:7000
+			});
+		}
 	});
 })( jQuery );
