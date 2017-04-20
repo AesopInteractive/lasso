@@ -108,6 +108,8 @@ jQuery(document).ready(function($){
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
+		
+		html = removeEditable(html);
 
 		// gather the data
 		var data      = {
@@ -143,6 +145,11 @@ jQuery(document).ready(function($){
 		
 		function removeComment(content) {
 			return content.replace(/<!--[\s\S]*?-->/g, "");
+		}
+		
+		function removeEditable(content) 
+		{	
+			return content.replace(/contenteditable="(false|true)"/g, "");
 		}
 
 		/**
