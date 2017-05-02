@@ -110,15 +110,15 @@ jQuery(document).ready(function($){
 		$(this).addClass('being-saved');
 		
 		// remove extra classes
-		/*{
+		{
 			var $temp = $('<div></div>').html( html );
-			$temp.find(a).removeClass("lasso-link");
-			$temp.find(span).removeClass("lasso-span");
-			$temp.find(h2).removeClass("h2-lasso");
-			$temp.find(h3).removeClass("h3-lasso");
+			$temp.find("a").removeClass("lasso-link");
+			$temp.find("span").removeClass("lasso-span");
+			$temp.find("h2").removeClass("lasso-h2");
+			$temp.find("h3").removeClass("lasso-h3");
 			
 			html = $temp.html();
-		}*/	
+		}
 		
 		// remove all contenteditable attr
 		html = removeEditable(html);
