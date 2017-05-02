@@ -297,6 +297,9 @@ jQuery(document).ready(function($){
 	    // ref http://stackoverflow.com/a/15482748
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
+		// cursor to the beginning
+        articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
@@ -444,6 +447,10 @@ jQuery(document).ready(function($){
 				article.highlight();
 
 				articleMedium.invokeElement('h2');
+				// the following code breaks the paragraphs before and after h2
+				$(articleMedium.element).html(function(index,html){
+					return html.replace(/<h2 class="lasso-h2">([^<>]*)<\/h2>/i,'</p><h2>$1</h2><p>');
+				});
 
 				return false;
 			};
@@ -452,6 +459,10 @@ jQuery(document).ready(function($){
 				articleMedium.element.contentEditable = true;
 				article.highlight();
 				articleMedium.invokeElement('h3');
+				// the following code breaks the paragraphs before and after h3
+				$(articleMedium.element).html(function(index,html){
+					return html.replace(/<h3 class="lasso-h3">([^<>]*)<\/h3>/i,'</p><h3>$1</h3><p>');
+				});
 				return false;
 			};
 		}

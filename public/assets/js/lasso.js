@@ -82,7 +82,7 @@ extend(Undo.Stack.prototype, {
 		this.changed();
 	},
 	dirty: function() {
-		return this.stackPosition != this.savePosition;
+		return (this.stackPosition != this.savePosition) || lasso_editor.dirtyByComponent;
 	},
 	_clearRedo: function() {
 		// TODO there's probably a more efficient way for this
@@ -10622,6 +10622,9 @@ jQuery(document).ready(function($){
 	    // ref http://stackoverflow.com/a/15482748
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
+		// cursor to the beginning
+        articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
@@ -10769,6 +10772,10 @@ jQuery(document).ready(function($){
 				article.highlight();
 
 				articleMedium.invokeElement('h2');
+				// the following code breaks the paragraphs before and after h2
+				$(articleMedium.element).html(function(index,html){
+					return html.replace(/<h2 class="lasso-h2">([^<>]*)<\/h2>/i,'</p><h2>$1</h2><p>');
+				});
 
 				return false;
 			};
@@ -10777,6 +10784,10 @@ jQuery(document).ready(function($){
 				articleMedium.element.contentEditable = true;
 				article.highlight();
 				articleMedium.invokeElement('h3');
+				// the following code breaks the paragraphs before and after h3
+				$(articleMedium.element).html(function(index,html){
+					return html.replace(/<h3 class="lasso-h3">([^<>]*)<\/h3>/i,'</p><h3>$1</h3><p>');
+				});
 				return false;
 			};
 		}
@@ -12481,6 +12492,12 @@ jQuery(document).ready(function($){
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
+		
+		// remove all contenteditable attr
+		html = removeEditable(html);
+		
+		// shortcode ultimate
+		html = shortcodify_su(html);
 
 		// gather the data
 		var data      = {
@@ -12516,6 +12533,11 @@ jQuery(document).ready(function($){
 		
 		function removeComment(content) {
 			return content.replace(/<!--[\s\S]*?-->/g, "");
+		}
+		
+		function removeEditable(content) 
+		{	
+			return content.replace(/contenteditable="(false|true)"/g, "");
 		}
 
 		/**
@@ -12586,6 +12608,74 @@ jQuery(document).ready(function($){
 
 			return processed;
 
+		}
+		
+		//shortcode ultimates
+		function shortcodify_su(content,selector){
+
+			// Convert the html into a series of jQuery objects
+			var j = $.parseHTML(content);
+			var processed = '';
+
+			// Iterate through the array of dom objects
+			for (var i = 0; i < j.length; i++) {
+
+	    		var component = $(j[i]);
+
+	    		// If it's not a component, move along
+	    		if ( !component.hasClass('su-box') &&  !component.hasClass('su-note') && !component.hasClass('su-document') && !component.hasClass('su-spoiler')) {
+
+	    			// Let's test what kind of object it is
+	    			if ( component.context.nodeType == 3 ) {
+	    				// Text only object without dom
+	    				processed += j[i].data;
+	    			} else if ( component.context.nodeType == 8 ) {
+	    				processed += '<!--' + j[i].data + '-->';
+	    			} else {
+	    				// DOM object
+	    				processed += j[i].outerHTML;
+	    			}
+	    			continue;
+	    		}
+				
+				
+				if ( component.hasClass('su-box')) {
+					var box_title = component.find('.su-box-title')[0].innerHTML;
+					var box_content = component.find('.su-box-content')[0].innerHTML;
+					var box_color = component.find('.su-box-title')[0].style.backgroundColor;
+					var sc = '[su_box title="'+box_title+'"'+' box_color="' +box_color+'"]' + box_content+'[/su_box]';
+					processed += sc;
+					
+				} else if ( component.hasClass('su-note')) {
+					var note_content = component.find('.su-note-inner')[0].innerHTML;
+					note_content = shortcodify_su(note_content);
+					var note_color = component.find('.su-note-inner')[0].style.backgroundColor;
+					var text_color = component.find('.su-note-inner')[0].style.color;
+					var sc = '[su_note note_color="'+ note_color + '" text_color="'+text_color +'"]' + note_content+'[/su_note]';
+					processed += sc;
+					
+				} else if ( component.hasClass('su-document')) {
+					
+					var ifr = component.find('iframe.su-document')[0];
+					var url = getParameterByName("url",ifr.src);
+					var width = ifr.width;
+					var height = ifr.height;
+					var sc = '[su_document url="'+ url + '" width="'+ width +'" height="' + height+'"]';
+					processed += sc;
+					
+				} else if ( component.hasClass('su-spoiler')) {
+					var spoiler_content = component.find('.su-spoiler-content')[0].innerHTML;
+					spoiler_content = shortcodify_su(spoiler_content);
+					var title = component.find('.su-spoiler-title')[0].textContent;
+					
+					var sc = '[su_spoiler title="'+ title + '" style="fancy" open="no"]' + spoiler_content+'[/su_spoiler]';
+					processed += sc;
+					
+				}		
+
+			}
+
+			return processed;
 		}
 		
 		function replace_rendered_shortcodes( content ) {
@@ -13386,6 +13476,9 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 						$(window).trigger( 'load' ); 
 					}
 					$('.aesop-component').each(function(){
+						if ($(this).css("height")=="0px") {
+							$(this).css("height","auto");
+						}
 
 						// if there's no toolbar present
 						if ( !$('.lasso-component--toolbar').length > 0 ) {
@@ -14336,6 +14429,23 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 	});
 
+})( jQuery );
+
+(function( $ ) {
+	jQuery(document).ready(function($){
+		if ( $( "#lasso--tour__slides" ).length ) {
+
+			$('body').addClass('lasso-modal-open');
+
+			$('.lasso--loading').remove();
+			$('#lasso--tour__slides').hide().fadeIn()
+
+			$('#lasso--tour__slides').unslider({
+				dots: true,
+				delay:7000
+			});
+		}
+	});
 })( jQuery );
 
 (function( $ ) {

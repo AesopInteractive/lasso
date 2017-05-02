@@ -109,7 +109,11 @@ jQuery(document).ready(function($){
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
 		
+		// remove all contenteditable attr
 		html = removeEditable(html);
+		
+		// shortcode ultimate
+		html = shortcodify_su(html);
 
 		// gather the data
 		var data      = {
@@ -220,6 +224,74 @@ jQuery(document).ready(function($){
 
 			return processed;
 
+		}
+		
+		//shortcode ultimates
+		function shortcodify_su(content,selector){
+
+			// Convert the html into a series of jQuery objects
+			var j = $.parseHTML(content);
+			var processed = '';
+
+			// Iterate through the array of dom objects
+			for (var i = 0; i < j.length; i++) {
+
+	    		var component = $(j[i]);
+
+	    		// If it's not a component, move along
+	    		if ( !component.hasClass('su-box') &&  !component.hasClass('su-note') && !component.hasClass('su-document') && !component.hasClass('su-spoiler')) {
+
+	    			// Let's test what kind of object it is
+	    			if ( component.context.nodeType == 3 ) {
+	    				// Text only object without dom
+	    				processed += j[i].data;
+	    			} else if ( component.context.nodeType == 8 ) {
+	    				processed += '<!--' + j[i].data + '-->';
+	    			} else {
+	    				// DOM object
+	    				processed += j[i].outerHTML;
+	    			}
+	    			continue;
+	    		}
+				
+				
+				if ( component.hasClass('su-box')) {
+					var box_title = component.find('.su-box-title')[0].innerHTML;
+					var box_content = component.find('.su-box-content')[0].innerHTML;
+					var box_color = component.find('.su-box-title')[0].style.backgroundColor;
+					var sc = '[su_box title="'+box_title+'"'+' box_color="' +box_color+'"]' + box_content+'[/su_box]';
+					processed += sc;
+					
+				} else if ( component.hasClass('su-note')) {
+					var note_content = component.find('.su-note-inner')[0].innerHTML;
+					note_content = shortcodify_su(note_content);
+					var note_color = component.find('.su-note-inner')[0].style.backgroundColor;
+					var text_color = component.find('.su-note-inner')[0].style.color;
+					var sc = '[su_note note_color="'+ note_color + '" text_color="'+text_color +'"]' + note_content+'[/su_note]';
+					processed += sc;
+					
+				} else if ( component.hasClass('su-document')) {
+					
+					var ifr = component.find('iframe.su-document')[0];
+					var url = getParameterByName("url",ifr.src);
+					var width = ifr.width;
+					var height = ifr.height;
+					var sc = '[su_document url="'+ url + '" width="'+ width +'" height="' + height+'"]';
+					processed += sc;
+					
+				} else if ( component.hasClass('su-spoiler')) {
+					var spoiler_content = component.find('.su-spoiler-content')[0].innerHTML;
+					spoiler_content = shortcodify_su(spoiler_content);
+					var title = component.find('.su-spoiler-title')[0].textContent;
+					
+					var sc = '[su_spoiler title="'+ title + '" style="fancy" open="no"]' + spoiler_content+'[/su_spoiler]';
+					processed += sc;
+					
+				}		
+
+			}
+
+			return processed;
 		}
 		
 		function replace_rendered_shortcodes( content ) {

@@ -3,14 +3,14 @@
  *
  *
  * @package   Editus
- * @author    Nick Haskins <nick@aesopinteractive.com>
+ * @author    Hyun Supul <hyun@aesopinteractive.com>, Nick Haskins <nick@aesopinteractive.com>
  * @link      http://edituswp.com
- * @copyright 2015-2016 Aesopinteractive 
+ * @copyright 2015-2017 Aesopinteractive 
  *
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           0.9.13.9
+ * Version:           0.9.14.0
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '0.9.13.9' );
+define( 'LASSO_VERSION', '0.9.14.0' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 define( 'LASSO_FILE', __FILE__ );

@@ -1,10 +1,9 @@
 === Editus ===
 Contributors: nphaskins, hyunster, michaelbeil
-Author URI:  http://nickhaskins.com
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.7.0
-Stable tag: 0.9.13.9
+Stable tag: 0.9.14.0
 
 Front-end editing and creation suite.
 
@@ -14,6 +13,12 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.14.0 =
+* Inserting H2 and H3 now also inserts p tags 
+* Fixed the tour dialog getting stuck at loading 
+* Fixed an issue where a component somtimes goes invisible after editing
+* All contenteditable attributes removed before being saved
+
 = 0.9.13.9 =
 * Fixed a bug where shortcodes were not properly restored while saving using REST API
 * Links are now always clickable.
