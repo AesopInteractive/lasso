@@ -10623,8 +10623,9 @@ jQuery(document).ready(function($){
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
 		// cursor to the beginning
-        articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
-
+        if (articleMedium.element.firstChild != null) {
+			articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+		}
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
@@ -12492,6 +12493,17 @@ jQuery(document).ready(function($){
 
 		// let user know someting is happening on click
 		$(this).addClass('being-saved');
+		
+		// remove extra classes
+		/*{
+			var $temp = $('<div></div>').html( html );
+			$temp.find(a).removeClass("lasso-link");
+			$temp.find(span).removeClass("lasso-span");
+			$temp.find(h2).removeClass("h2-lasso");
+			$temp.find(h3).removeClass("h3-lasso");
+			
+			html = $temp.html();
+		}*/	
 		
 		// remove all contenteditable attr
 		html = removeEditable(html);

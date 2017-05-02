@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.7.0
-Stable tag: 0.9.14.0
+Stable tag: 0.9.14.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,10 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.14.1 =
+* Fixed a bug involving an empty post
+* Fixed the icon file missing.
+
 = 0.9.14.0 =
 * Inserting H2 and H3 now also inserts p tags 
 * Fixed the tour dialog getting stuck at loading 

@@ -298,8 +298,9 @@ jQuery(document).ready(function($){
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
 		// cursor to the beginning
-        articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
-
+        if (articleMedium.element.firstChild != null) {
+			articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+		}
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
