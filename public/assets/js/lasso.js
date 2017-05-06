@@ -10623,9 +10623,14 @@ jQuery(document).ready(function($){
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
 		// cursor to the beginning
-        if (articleMedium.element.firstChild != null) {
-			articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+        if (articleMedium.element.firstChild == null) {
+			//debugger;
+			var node = document.createElement("p");
+			var textnode = document.createTextNode(" ");         // Create a text node
+			node.appendChild(textnode);   
+			articleMedium.element.appendChild(node);
 		}
+		articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
@@ -12495,15 +12500,15 @@ jQuery(document).ready(function($){
 		$(this).addClass('being-saved');
 		
 		// remove extra classes
-		/*{
+		{
 			var $temp = $('<div></div>').html( html );
-			$temp.find(a).removeClass("lasso-link");
-			$temp.find(span).removeClass("lasso-span");
-			$temp.find(h2).removeClass("h2-lasso");
-			$temp.find(h3).removeClass("h3-lasso");
+			$temp.find("a").removeClass("lasso-link");
+			$temp.find("span").removeClass("lasso-span");
+			$temp.find("h2").removeClass("lasso-h2");
+			$temp.find("h3").removeClass("lasso-h3");
 			
 			html = $temp.html();
-		}*/	
+		}
 		
 		// remove all contenteditable attr
 		html = removeEditable(html);

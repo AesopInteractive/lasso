@@ -298,9 +298,14 @@ jQuery(document).ready(function($){
 	    document.execCommand('defaultParagraphSeparator', false, 'p');
 
 		// cursor to the beginning
-        if (articleMedium.element.firstChild != null) {
-			articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+        if (articleMedium.element.firstChild == null) {
+			//debugger;
+			var node = document.createElement("p");
+			var textnode = document.createTextNode(" ");         // Create a text node
+			node.appendChild(textnode);   
+			articleMedium.element.appendChild(node);
 		}
+		articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
 
 		article.highlight = function() {
 			if (document.activeElement !== article) {
