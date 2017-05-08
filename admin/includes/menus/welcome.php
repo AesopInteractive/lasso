@@ -155,7 +155,7 @@ class welcome {
 			// we dont automatically support this theme so show them otherwise
 			$notices[] = sprintf('<li class="error">
 							<h3>'.__( 'Article CSS Class Needed!', 'lasso' ).'</h3>
-							<p>'.__( 'Before using Editus,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. You can <a href="https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/using-inspector-lasso.gif" target="_blank">use a tool like inspector</a> in Chrome or Firefox to find this CSS class, or ', 'lasso' ).' <a href="mailto:help@lasso.is">'.__( 'email us.', 'lasso' ).'</a> '.__( 'with a link to a public URL with the theme and we\'ll find it for you.', 'lasso' ).'</p>
+							<p>'.__( 'Before using Editus,', 'lasso' ).' <a href="%s">'.__( 'enter and save', 'lasso' ).'</a> '.__( 'the CSS class of the container that holds your post and page content. You can <a href="https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/using-inspector-lasso.gif" target="_blank">use a tool like inspector</a> in Chrome or Firefox to find this CSS class, or ', 'lasso' ).' <a href="mailto:editus@aesopinteractive.com">'.__( 'email us.', 'lasso' ).'</a> '.__( 'with a link to a public URL with the theme and we\'ll find it for you.', 'lasso' ).'</p>
 							</li>', admin_url( 'admin.php?page=lasso-editor-settings' ) );
 		}
 

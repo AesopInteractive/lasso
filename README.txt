@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.7.0
-Stable tag: 0.9.14.1
+Stable tag: 0.9.14.2
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,10 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.14.2 =
+* Editus tag classes now removed when saving
+* Fixed support email
+
 = 0.9.14.1 =
 * Fixed a bug involving an empty post
 * Fixed the icon file missing.
