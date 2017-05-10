@@ -306,14 +306,14 @@ jQuery(document).ready(function($){
 		}
 		
 		function replace_rendered_shortcodes( content ) {
-
 			if ( content.indexOf('--EDITUS_OTHER_SHORTCODE_START|' ) == -1) {
 				return content;
 			}
 
-			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/ ;
-			content = content.replace(re,'$1');
-
+			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
+			// also remove scripts
+			content = content.replace(re,'$1').replace(/<script.*>.*<\/script>/g, " ");
+			
 			return content;
 		}
 		
