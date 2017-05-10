@@ -103,6 +103,7 @@ class settings {
 		$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 		$disable_tour = lasso_editor_get_option('disable_tour', 'lasso_editor');
 		$show_ignored_items = lasso_editor_get_option('show_ignored_items', 'lasso_editor');
+		$save_using_rest_disabled = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
 
 ?>
 		<div class="wrap">
