@@ -12515,6 +12515,9 @@ jQuery(document).ready(function($){
 		
 		// shortcode ultimate
 		html = shortcodify_su(html);
+		
+		// restore rendered shortcoeds without the original shortcodes
+		html = replace_rendered_shortcodes( html );
 
 		// gather the data
 		var data      = {
@@ -12696,21 +12699,19 @@ jQuery(document).ready(function($){
 		}
 		
 		function replace_rendered_shortcodes( content ) {
-
 			if ( content.indexOf('--EDITUS_OTHER_SHORTCODE_START|' ) == -1) {
 				return content;
 			}
 
-			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/ ;
-			content = content.replace(re,'$1');
-
+			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
+			// also remove scripts
+			content = content.replace(re,'$1').replace(/<script.*>.*<\/script>/g, " ");
+			
 			return content;
 		}
 		
 		// Save post using REST API V2
 		function savePublishREST(postid, title, content_, type_,status_){
-			
-			content_ = replace_rendered_shortcodes( content_ );
 			
 			var data      = {
 				content: 	content_,

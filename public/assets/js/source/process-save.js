@@ -125,6 +125,9 @@ jQuery(document).ready(function($){
 		
 		// shortcode ultimate
 		html = shortcodify_su(html);
+		
+		// restore rendered shortcoeds without the original shortcodes
+		html = replace_rendered_shortcodes( html );
 
 		// gather the data
 		var data      = {
@@ -319,8 +322,6 @@ jQuery(document).ready(function($){
 		
 		// Save post using REST API V2
 		function savePublishREST(postid, title, content_, type_,status_){
-			
-			content_ = replace_rendered_shortcodes( content_ );
 			
 			var data      = {
 				content: 	content_,
