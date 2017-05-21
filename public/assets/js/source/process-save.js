@@ -116,6 +116,7 @@ jQuery(document).ready(function($){
 			$temp.find("span").removeClass("lasso-span");
 			$temp.find("h2").removeClass("lasso-h2");
 			$temp.find("h3").removeClass("lasso-h3");
+			$temp.find(".lasso-component--controls").remove();
 			
 			html = $temp.html();
 		}
@@ -126,14 +127,17 @@ jQuery(document).ready(function($){
 		// shortcode ultimate
 		html = shortcodify_su(html);
 		
-		// restore rendered shortcoeds without the original shortcodes
+		// shortcode aesop
+		html = $this.hasClass('shortcodify-enabled') ? shortcodify(html) : html;
+		
+		// restore other shortcodes to the original shortcodes
 		html = replace_rendered_shortcodes( html );
 
 		// gather the data
 		var data      = {
 			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
-			content: 	$this.hasClass('shortcodify-enabled') ? shortcodify(html) : html,
+			content: 	html,
 			post_id:   	postid,
 			nonce:     	lasso_editor.nonce
 		};
@@ -189,6 +193,11 @@ jQuery(document).ready(function($){
 
 	    		// If it's not a component, move along
 	    		if ( !component.hasClass('aesop-component') ) {
+					// if any child has aesop component
+					if (component.find('.aesop-component').length !==0) {
+						var inner = j[i].innerHTML;
+						j[i].innerHTML = shortcodify(inner);
+					}
 
 	    			// Let's test what kind of object it is
 	    			if ( component.context.nodeType == 3 ) {
@@ -309,13 +318,15 @@ jQuery(document).ready(function($){
 		}
 		
 		function replace_rendered_shortcodes( content ) {
+			// also remove scripts
+			content = content.replace(/<script.*>.*<\/script>/g, " ");
+			
 			if ( content.indexOf('--EDITUS_OTHER_SHORTCODE_START|' ) == -1) {
 				return content;
 			}
 
 			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
-			// also remove scripts
-			content = content.replace(re,'$1').replace(/<script.*>.*<\/script>/g, " ");
+			content = content.replace(re,'$1');
 			
 			return content;
 		}
