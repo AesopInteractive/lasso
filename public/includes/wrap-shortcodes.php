@@ -63,7 +63,7 @@ function lasso_wrap_shortcode_tag( $m ) {
 		return substr( $m[0], 1, - 1 );
 	}
 	$exception_arr1 = array('aesop_gallery_pop','aesop_character_carousel');
-	$exception_arr2 = array('su_box', 'su_note', 'su_document', 'su_spoiler','av_textblock');//,'av_toggle_container','av_toggle');
+	$exception_arr2 = array('su_box', 'su_note', 'su_document', 'su_spoiler','av_textblock','av_toggle_container','av_toggle');
 
 	if ( strpos( $m[2],'aesop_'  ) === 0 ) {
 		// check against the exceptions

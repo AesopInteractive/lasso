@@ -32,7 +32,7 @@ function lasso_wrap_shortcodes( $content ) {
 	$tagregexp = join( '|', array_map( 'preg_quote', $tagnames ) );
 	$pattern   = "/\\[($tagregexp)/s";
 
-	if ( 1 !== preg_match( $pattern, $content ) ) {
+	if ( 0 === preg_match( $pattern, $content ) ) {
 		// Avoids parsing HTML when there are no shortcodes or embeds anyway.
 		return $content;
 	}
@@ -62,13 +62,17 @@ function lasso_wrap_shortcode_tag( $m ) {
 	if ( $m[1] == '[' && $m[6] == ']' ) {
 		return substr( $m[0], 1, - 1 );
 	}
-	//array('aesop_quote','aesop_gallery','aesop_chapter','aesop_timeline_stop','aesop_video','aesop_collection','aesop_character','aesop_document','aesop_audio','aesop_content','aesop_map')
+	$exception_arr1 = array('aesop_gallery_pop','aesop_character_carousel');
+	$exception_arr2 = array('su_box', 'su_note', 'su_document', 'su_spoiler','av_textblock');//,'av_toggle_container','av_toggle');
 
 	if ( strpos( $m[2],'aesop_'  ) === 0 ) {
 		// check against the exceptions
-		if (strpos_arr($m[2],array('aesop_gallery_pop','aesop_character_carousel'))===false) {
+		if (strpos_arr($m[2],$exception_arr1)===false) {
 		    return $m[0];
 		}
+	}
+	if (strpos_arr($m[2],$exception_arr2)!==false) {
+		return $m[0];
 	}
 
 	return '<!--EDITUS_OTHER_SHORTCODE_START|[' . $m[0] . ']-->' . $m[0] . '<!--EDITUS_OTHER_SHORTCODE_END-->';
