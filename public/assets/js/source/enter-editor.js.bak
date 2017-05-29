@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time
-			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content",".post-content", ".entry-content-wrapper"];
+			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content",".post-content"];
 			for (var i = 0; i < contClasses.length; i++) {		
 				if ($(contClasses[i]).length >0 ){
 					post_container = contClasses[i];
@@ -286,9 +286,6 @@ jQuery(document).ready(function($){
 			$(objectsNoSave).attr('contenteditable',false);
 		    $(objectsNoSave).attr('readonly',true);
 		}
-		
-		// detect avia editor
-		lasso_editor.aviaEditor = ($('.av_toggle_section,.av_textblock_section').length>0);
 		
 		// set links clickable
 		$("a").attr('contenteditable',false);

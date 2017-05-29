@@ -51,12 +51,8 @@ class settings {
 		if ( isset( $_POST['action'] ) && 'lasso-editor-settings' == $_POST['action'] && check_admin_referer( 'nonce', 'lasso_editor_settings' ) ) {
 
 			$options = isset( $_POST['lasso_editor'] ) ? $_POST['lasso_editor'] : false;
-			
-			$arr = $options['allowed_post_types'];
-			$options = array_map( 'sanitize_text_field', $options );
-			$options['allowed_post_types'] = array_keys( $arr);
 
-			
+			$options = array_map( 'sanitize_text_field', $options );
 
 			if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 
@@ -108,9 +104,6 @@ class settings {
 		$disable_tour = lasso_editor_get_option('disable_tour', 'lasso_editor');
 		$show_ignored_items = lasso_editor_get_option('show_ignored_items', 'lasso_editor');
 		$save_using_rest_disabled = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
-		
-		$default_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page'));
-		$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor',  $default_post_types);
 
 ?>
 		<div class="wrap">
@@ -120,32 +113,6 @@ class settings {
 			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
 
 				<?php do_action('lasso_settings_before');?>
-				
-				
-				
-				<div class="lasso-editor-settings--option-wrap">
-					<div class="lasso-editor-settings--option-inner">
-						<label><?php _e( 'Enable for:', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'Enable Editus for the following post types.', 'lasso' );?></span>
-						<?php
-						$args = array(
-							'public'   => true
-						);
-						 
-						$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
-						$post_types = get_post_types( $args, 'objects' );
-						 
-						foreach ( $post_types  as $post_type ) {
-						   $checked ="";
-						   if (  in_array( $post_type->name, $allowed_post_types ) ) {
-								$checked = 'checked="checked"';
-						   }
-						   echo '<label><input type="checkbox" '.$checked.' name="lasso_editor[allowed_post_types]['.$post_type->name.']" id="lasso_editor[allowed_post_types]['.$post_type->name.']" >'.$post_type->name.'</label>';
-						}
-						?>
-					</div>
-				</div>
-				
 
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">

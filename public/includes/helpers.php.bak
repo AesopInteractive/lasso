@@ -251,8 +251,7 @@ function lasso_post_types_names() {
 	 *
 	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
 	 */
-	$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post', 'page') );
-	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
+	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page') );
 	foreach( $post_types as $name => $label ) {
 		if ( ! in_array( $name, $allowed_post_types ) ) {
 			unset( $post_types[ $name ] );
@@ -276,8 +275,7 @@ function lasso_post_types() {
 	 *
 	 * @param array $allowed_post_types Array of names (not labels) of allowed post types. Must be registered.
 	 */
-	$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post') );
-	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
+	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page') );
 	foreach( $post_types as $name => $label ) {
 		if ( ! in_array( $name, $allowed_post_types ) ) {
 			unset( $post_types[ $name ] );
@@ -378,13 +376,7 @@ if ( !function_exists( 'lasso_user_can' ) ):
 			$postid = get_the_ID();
 
 		if ( is_user_logged_in() && current_user_can( $action, $postid ) ) {
-			// check against post types:
-			$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post') );
-			$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
-			$type = get_post_type( $postid );
-			if ( in_array( $type, $allowed_post_types ) ) {
-				$result =  true;
-			}
+			$result =  true;
 		} else {
 			$result = false;
 		}

@@ -60,6 +60,9 @@ class lasso {
 		add_action( 'wp_ajax_get_aesop_component',     array( $this, 'get_aesop_component' ) );
 		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
 
+		// enable saving custom fields through REST API
+		self::enable_metasave('post');
+		self::enable_metasave('page');
 		//enqueue assets
 		new assets();
 
@@ -269,6 +272,21 @@ class lasso {
 			echo "Post opened by ".$user_info->first_name .  " " . $user_info->last_name;
 		}
 		exit;
+	}
+	
+	public static function enable_metasave($type)
+	{
+		register_rest_field( $type, 'metadata', array(
+			'get_callback' => function ( $data ) {
+				return get_post_meta( $data['id']);//, '', '' );
+			}, 
+			'update_callback' => function( $data, $post ) {
+				foreach ($data as $key => $value) {
+					update_post_meta($post->ID, $key, $value);
+				}
+				return true;
+			}
+		));
 	}
 	
 	
