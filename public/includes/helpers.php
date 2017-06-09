@@ -379,12 +379,20 @@ if ( !function_exists( 'lasso_user_can' ) ):
 
 		if ( is_user_logged_in() && current_user_can( $action, $postid ) ) {
 			// check against post types:
-			$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post') );
-			$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
-			$type = get_post_type( $postid );
-			if ( in_array( $type, $allowed_post_types ) ) {
+			$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post', 'page') );
+			
+			
+			
+            if (!empty($allowed_post_types) && !empty($postid)) {
+				$type = get_post_type( $postid );
+                $allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
+				
+                if ( in_array( $type, $allowed_post_types ) ) {
+				   $result =  true;
+			    }
+            } else {
 				$result =  true;
-			}
+        	}
 		} else {
 			$result = false;
 		}

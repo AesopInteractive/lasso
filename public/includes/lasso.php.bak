@@ -274,7 +274,7 @@ class lasso {
 		exit;
 	}
 	
-	public function enable_metasave($type)
+	public static function enable_metasave($type)
 	{
 		register_rest_field( $type, 'metadata', array(
 			'get_callback' => function ( $data ) {
