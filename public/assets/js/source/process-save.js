@@ -190,6 +190,9 @@ jQuery(document).ready(function($){
 			// Convert the html into a series of jQuery objects
 			var j = $.parseHTML(content);
 			var processed = '';
+			if (j == null) {
+				return content;
+			}
 
 			// Iterate through the array of dom objects
 			for (var i = 0; i < j.length; i++) {
@@ -198,13 +201,14 @@ jQuery(document).ready(function($){
 
 	    		// If it's not a component, move along
 	    		if ( !component.hasClass('aesop-component') ) {
-					// if any child has aesop component
-					if (component.find('.aesop-component').length !==0) {
-						var inner = j[i].innerHTML;
-						j[i].innerHTML = shortcodify(inner);
-					}
-
-	    			// Let's test what kind of object it is
+					
+					if(component.find('.aesop-component').length !== 0) {
+						// if there is an aesop component in a child, recursively process it
+						var comp_content = component.html();
+						comp_content = shortcodify(comp_content);
+						component.html(comp_content);
+						processed += component.clone().wrap('<p>').parent().html();;
+					} else   			// Let's test what kind of object it is
 	    			if ( component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;

@@ -391,6 +391,7 @@ if ( !function_exists( 'lasso_user_can' ) ):
 				   $result =  true;
 			    }
             } else {
+                //we are not checking against a post, return true
 				$result =  true;
         	}
 		} else {
