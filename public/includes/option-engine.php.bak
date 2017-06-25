@@ -71,7 +71,7 @@ function lasso_modal_addons( $type = 'tab' ){
 
 			$out = '<ul class="lasso--modal__tabs">';
 
-				$out .= '<li class="active-tab" data-addon-name="core">Editus</li>';
+				$out .= '<li class="active-tab" data-addon-name="core">Lasso</li>';
 
 				foreach ( $tabs as $tab ) {
 
