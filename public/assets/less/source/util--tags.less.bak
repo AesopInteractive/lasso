@@ -118,7 +118,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        z-index: 99999;
+        z-index: 9999;
         float: left;
         display: none;
         min-width: 160px;

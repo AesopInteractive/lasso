@@ -86,7 +86,7 @@
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'add categories...',
+				placeholderText: 'search categories...',
 				availableTags: lasso_editor.postCategories
 			});
 
@@ -96,7 +96,7 @@
 
 			tags.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'add tags...',
+				placeholderText: 'search tags...',
 				availableTags: lasso_editor.postTags
 			});
 
