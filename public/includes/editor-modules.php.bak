@@ -420,7 +420,7 @@ function lasso_editor_component_modal() {
 
 					<?php do_action( 'lasso_modal_post_form' ); // action ?>
 
-					<div class="lasso--postsettings__footer" >
+					<div class="lasso--postsettings__footer" style="display:none;">
 						<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 						<input type="hidden" name="status" value="">
 						<input type="hidden" name="categories" value="">

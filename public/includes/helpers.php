@@ -202,7 +202,8 @@ function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
 
 	$out = '';
 	foreach( $objects as $object ) {
-		$out .= $object->slug.', ';
+		//$out .= $object->slug.', ';
+		$out .= $object->name.', ';
 	}
 
 	return rtrim($out, ', ');

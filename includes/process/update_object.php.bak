@@ -126,23 +126,11 @@ class update_object implements api_action{
 	public function set_post_terms( $postid, $value, $taxonomy ) {
 		if( $value ) {
 			// first check if multiple, make array if so.
-			if ( self::has_multiple_objects( $value ) ) {	
+			if ( self::has_multiple_objects( $value ) ) {
 				$value = explode( ',', $value );
 			}
-			
-			if ($taxonomy =='category') {
-                // convert from names to category ids
-				$cats = array();
-				if (is_array($value)) {
-					foreach ($value as $cat) {
-						$cats [] = get_cat_ID($cat);
-					}
-					$value = $cats;
-				} else {
-					$value = get_cat_ID($value);
-				}
-			}
-	
+
+
 			$result = wp_set_object_terms( $postid, $value, $taxonomy );
 		}
 		else  {
