@@ -109,27 +109,6 @@ ul.lasso-editor-controls{
     font-weight:bold;
     letter-spacing: 0.05em;
 }
-#lasso-toolbar--h4:before {
-    content:'H4';
-    top:9px;
-    font-size:17px;
-    font-weight:bold;
-    letter-spacing: 0.05em;
-}
-#lasso-toolbar--h5:before {
-    content:'H5';
-    top:9px;
-    font-size:17px;
-    font-weight:bold;
-    letter-spacing: 0.05em;
-}
-#lasso-toolbar--h6:before {
-    content:'H6';
-    top:9px;
-    font-size:17px;
-    font-weight:bold;
-    letter-spacing: 0.05em;
-}
 #lasso-toolbar--html:before {
     content:'\ea7f';
 }

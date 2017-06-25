@@ -100,6 +100,7 @@ class settings {
 		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
 
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
+		$toolbar_headings_h4      = lasso_editor_get_option( 'toolbar_headings_h4', 'lasso_editor' );
 		$toolbar_show_color      = lasso_editor_get_option( 'toolbar_show_color', 'lasso_editor' );
 		$toolbar_show_alignment  = lasso_editor_get_option( 'toolbar_show_alignment', 'lasso_editor' );
 		
@@ -201,6 +202,12 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
 						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable H2 and H3 Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set H2 and H3 settings.', 'lasso' );?></span>
+
+					</div>
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
+						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings_h4]" id="lasso_editor[toolbar_headings_h4]" <?php echo checked( $toolbar_headings_h4, 'on' );?> >
+						<label for="lasso_editor[toolbar_headings_h4]"><?php _e( 'Enable H4/H5/H6 Buttons', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set H4/H5/H6 settings.', 'lasso' );?></span>
 
 					</div>
 					<div class="lasso-editor-settings--option-inner" style="border:none;">

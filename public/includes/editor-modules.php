@@ -146,6 +146,7 @@ function lasso_editor_text_toolbar() {
 
 	// are toolbar headings enabled
 	$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
+	$toolbar_headings_h4      = lasso_editor_get_option( 'toolbar_headings_h4', 'lasso_editor' );
 
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
 	
@@ -173,6 +174,11 @@ function lasso_editor_text_toolbar() {
 		    <?php if ( $toolbar_headings ): ?>
 		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
+			<?php endif; ?>
+			<?php if ( $toolbar_headings_h4 ): ?>
+		    <li id="lasso-toolbar--h4" title="<?php esc_attr_e( 'H4 Heading', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--h5" title="<?php esc_attr_e( 'H5 Heading', 'lasso' );?>"></li>
+			<li id="lasso-toolbar--h6" title="<?php esc_attr_e( 'H6 Heading', 'lasso' );?>"></li>
 			<?php endif; ?>
 			
 			<?php if ( $show_color ): ?>

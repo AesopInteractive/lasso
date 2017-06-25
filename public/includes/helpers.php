@@ -225,7 +225,7 @@ function lasso_get_objects( $taxonomy = 'category' ) {
 
 	$out = array();
 	foreach( $objects as $object ) {
-		$out[] = $object->slug;
+		$out .= $object->name.', ';
 	}
 
 	return $out;

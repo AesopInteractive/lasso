@@ -89,11 +89,13 @@ jQuery(document).ready(function($){
 				action: 'editus_lock_post',
 				postid: lasso_editor.postid
 		};
+		lasso_editor.dontlock = false;
 		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
 			if( response ){
 				if (response!="true") {
-					alert(response);
-					exitEditor();
+					//alert(response);
+					//exitEditor();
+					lasso_editor.dontlock = true;
 				}
 				
 			} else {
@@ -103,7 +105,9 @@ jQuery(document).ready(function($){
 			
 		});
 		//keep locking periodically
-		lasso_editor.lockIntervalID = window.setInterval(lockPost, 120000);
+		if (!lasso_editor.dontlock) {
+			lasso_editor.lockIntervalID = window.setInterval(lockPost, 120000);
+		}
 		
 		
 		function lockPost() {
@@ -449,30 +453,40 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		function heading_helper(heading) {
+			articleMedium.element.contentEditable = true;
+			article.highlight();
+
+			articleMedium.invokeElement(heading);
+			//reg = '/<h2 class="lasso-h2">([^<>]*)<\/h2>/i';
+			reg = new RegExp('<'+heading+' class="lasso-'+heading+'">([^<>]*)<\\/'+heading+'>', 'i');;
+				// the following code breaks the paragraphs before and after heading
+			$(articleMedium.element).html(function(index,html){
+				//return html.replace(/<h2 class="lasso-h2">([^<>]*)<\/h2>/i,'</p><'+heading+'>$1</'+heading+'><p>');
+				return html.replace(reg,'</p><'+heading+'>$1</'+heading+'><p>');
+			});
+
+			return false;
+		}
+
 		if ( toolbarHeading ) {
-
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
-				articleMedium.element.contentEditable = true;
-				article.highlight();
-
-				articleMedium.invokeElement('h2');
-				// the following code breaks the paragraphs before and after h2
-				$(articleMedium.element).html(function(index,html){
-					return html.replace(/<h2 class="lasso-h2">([^<>]*)<\/h2>/i,'</p><h2>$1</h2><p>');
-				});
-
-				return false;
+				return heading_helper('h2');
 			};
 
 			document.getElementById('lasso-toolbar--h3').onmousedown = function() {
-				articleMedium.element.contentEditable = true;
-				article.highlight();
-				articleMedium.invokeElement('h3');
-				// the following code breaks the paragraphs before and after h3
-				$(articleMedium.element).html(function(index,html){
-					return html.replace(/<h3 class="lasso-h3">([^<>]*)<\/h3>/i,'</p><h3>$1</h3><p>');
-				});
-				return false;
+				return heading_helper('h3');
+			};
+		}
+		if ( lasso_editor.toolbarHeadingsH4 ) {
+			document.getElementById('lasso-toolbar--h4').onmousedown = function() {
+				return heading_helper('h4');
+			};
+			document.getElementById('lasso-toolbar--h5').onmousedown = function() {
+				return heading_helper('h5');
+			};
+			document.getElementById('lasso-toolbar--h6').onmousedown = function() {
+				return heading_helper('h6');
 			};
 		}
 
