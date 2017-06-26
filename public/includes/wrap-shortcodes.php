@@ -3,6 +3,9 @@
  * Wraps shortcodes of other Plugins in prep for later replacement on save to preserve the shortcodes
  */
 
+
+
+ 
 if ( lasso_user_can( 'edit_posts' ) && ! is_admin() ) {
 	add_filter( 'the_content', 'lasso_wrap_shortcodes', 9 );
 }

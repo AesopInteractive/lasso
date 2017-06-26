@@ -46,7 +46,6 @@ class assets {
 				$titleClass = lasso_get_supported_theme_title_class();
 			}
 			$toolbar_headings  	= lasso_editor_get_option('toolbar_headings', 'lasso_editor');
-			$toolbar_headings_h4  	= lasso_editor_get_option('toolbar_headings_h4', 'lasso_editor');
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 			$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 			$disableRESTSave = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
@@ -156,7 +155,6 @@ class assets {
 				'handle'			=> lasso_editor_settings_toolbar(),
 				'toolbar'			=> lasso_editor_text_toolbar(),
 				'toolbarHeadings'   => $toolbar_headings,
-				'toolbarHeadingsH4'   => $toolbar_headings_h4,
 				'component_modal'	=> lasso_editor_component_modal(),
 				'component_sidebar'	=> lasso_editor_component_sidebar(),
 				'components'		=> lasso_editor_components(),

@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.7.0
-Stable tag: 0.9.14.4
+Tested up to: 4.7.5
+Stable tag: 0.9.14.6
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,13 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.14.6 =
+* Added settings options to enable/disable post types
+* Added H4-H6 button options
+* Post settings dialog now shows names, not tags
+* Aesop components enclosed under another tag is now processed properly
+
+
 = 0.9.14.3 =
 * Further fixes to shortcode handling. Remove the scripts inserted by the shortcodes
 

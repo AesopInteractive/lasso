@@ -9781,7 +9781,7 @@ function makeArray( obj ) {
             autocomplete: {},
 
             // Shows autocomplete before the user even types anything.
-            showAutocompleteOnFocus: false,
+            showAutocompleteOnFocus: true,
 
             // When enabled, quotes are unneccesary for inputting multi-word tags.
             allowSpaces: false,
@@ -9874,7 +9874,7 @@ function makeArray( obj ) {
             if (!this.options.autocomplete.source) {
                 this.options.autocomplete.source = function(search, showChoices) {
                     var filter = search.term.toLowerCase();
-                    var choices = $.grep(this.options.availableTags, function(element) {
+                    var choices = $.grep(this.options.availableTags.split(","), function(element) {
                         // Only match autocomplete options that begin with the search term.
                         // (Case insensitive.)
                         return (element.toLowerCase().indexOf(filter) === 0);
@@ -10382,7 +10382,7 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time
-			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content",".post-content"];
+			var contClasses = [".entry-content",".aesop-entry-content",".novella-entry-content",".post-content", ".entry-content-wrapper"];
 			for (var i = 0; i < contClasses.length; i++) {		
 				if ($(contClasses[i]).length >0 ){
 					post_container = contClasses[i];
@@ -10414,11 +10414,13 @@ jQuery(document).ready(function($){
 				action: 'editus_lock_post',
 				postid: lasso_editor.postid
 		};
+		lasso_editor.dontlock = false;
 		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
 			if( response ){
 				if (response!="true") {
-					alert(response);
-					exitEditor();
+					//alert(response);
+					//exitEditor();
+					lasso_editor.dontlock = true;
 				}
 				
 			} else {
@@ -10428,7 +10430,9 @@ jQuery(document).ready(function($){
 			
 		});
 		//keep locking periodically
-		lasso_editor.lockIntervalID = window.setInterval(lockPost, 120000);
+		if (!lasso_editor.dontlock) {
+			lasso_editor.lockIntervalID = window.setInterval(lockPost, 120000);
+		}
 		
 		
 		function lockPost() {
@@ -10612,8 +10616,22 @@ jQuery(document).ready(function($){
 		    $(objectsNoSave).attr('readonly',true);
 		}
 		
+		// detect avia editor
+		lasso_editor.aviaEditor = ($('.av_toggle_section,.av_textblock_section').length>0);
+		
 		// set links clickable
-		$("a").attr('contenteditable',false);
+		if (!lasso_editor.aviaEditor) {
+			$("a").attr('contenteditable',false);
+		}
+		
+		// set custom fields editable
+		if (lasso_editor.customFields) {
+			debugger;
+			lasso_editor.customFields = jQuery.parseJSON(lasso_editor.customFields);
+			for (k in lasso_editor.customFields) {
+			   $(lasso_editor.customFields[k]).attr('contenteditable',true);
+			}
+		}
 		
 		//$(objectsNonEditable).disableSelection();
 
@@ -10771,30 +10789,40 @@ jQuery(document).ready(function($){
 			return false;
 		};
 
+		function heading_helper(heading) {
+			articleMedium.element.contentEditable = true;
+			article.highlight();
+
+			articleMedium.invokeElement(heading);
+			//reg = '/<h2 class="lasso-h2">([^<>]*)<\/h2>/i';
+			reg = new RegExp('<'+heading+' class="lasso-'+heading+'">([^<>]*)<\\/'+heading+'>', 'i');;
+				// the following code breaks the paragraphs before and after heading
+			$(articleMedium.element).html(function(index,html){
+				//return html.replace(/<h2 class="lasso-h2">([^<>]*)<\/h2>/i,'</p><'+heading+'>$1</'+heading+'><p>');
+				return html.replace(reg,'</p><'+heading+'>$1</'+heading+'><p>');
+			});
+
+			return false;
+		}
+
 		if ( toolbarHeading ) {
-
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
-				articleMedium.element.contentEditable = true;
-				article.highlight();
-
-				articleMedium.invokeElement('h2');
-				// the following code breaks the paragraphs before and after h2
-				$(articleMedium.element).html(function(index,html){
-					return html.replace(/<h2 class="lasso-h2">([^<>]*)<\/h2>/i,'</p><h2>$1</h2><p>');
-				});
-
-				return false;
+				return heading_helper('h2');
 			};
 
 			document.getElementById('lasso-toolbar--h3').onmousedown = function() {
-				articleMedium.element.contentEditable = true;
-				article.highlight();
-				articleMedium.invokeElement('h3');
-				// the following code breaks the paragraphs before and after h3
-				$(articleMedium.element).html(function(index,html){
-					return html.replace(/<h3 class="lasso-h3">([^<>]*)<\/h3>/i,'</p><h3>$1</h3><p>');
-				});
-				return false;
+				return heading_helper('h3');
+			};
+		}
+		if ( lasso_editor.toolbarHeadingsH4 ) {
+			document.getElementById('lasso-toolbar--h4').onmousedown = function() {
+				return heading_helper('h4');
+			};
+			document.getElementById('lasso-toolbar--h5').onmousedown = function() {
+				return heading_helper('h5');
+			};
+			document.getElementById('lasso-toolbar--h6').onmousedown = function() {
+				return heading_helper('h6');
 			};
 		}
 
@@ -11380,7 +11408,7 @@ jQuery(document).ready(function($){
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'search categories...',
+				placeholderText: 'add categories...',
 				availableTags: lasso_editor.postCategories
 			});
 
@@ -11390,7 +11418,7 @@ jQuery(document).ready(function($){
 
 			tags.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'search tags...',
+				placeholderText: 'add tags...',
 				availableTags: lasso_editor.postTags
 			});
 
@@ -12519,9 +12547,22 @@ jQuery(document).ready(function($){
 		
 		// shortcode aesop
 		html = $this.hasClass('shortcodify-enabled') ? shortcodify(html) : html;
-		
 		// restore other shortcodes to the original shortcodes
 		html = replace_rendered_shortcodes( html );
+
+		
+
+		// avia editor
+		if (lasso_editor.aviaEditor) {
+			html = shortcodify_avia(html);
+		}
+		
+		// if customfields
+		var customFieldsData = null;
+		//lasso_editor.customFields = {field1: '#customfield1'}
+		if (lasso_editor.customFields) {
+			customFieldsData = get_customfields();
+		}
 
 		// gather the data
 		var data      = {
@@ -12529,7 +12570,8 @@ jQuery(document).ready(function($){
 			author:  	lasso_editor.author,
 			content: 	html,
 			post_id:   	postid,
-			nonce:     	lasso_editor.nonce
+			nonce:     	lasso_editor.nonce,
+			customFields: customFieldsData
 		};
 
 		// intercept if publish to confirm
@@ -12563,6 +12605,16 @@ jQuery(document).ready(function($){
 		{	
 			return content.replace(/contenteditable="(false|true)"/g, "");
 		}
+		
+		function get_customfields()
+		{
+			var f = lasso_editor.customFields
+			var data      = {};
+			for (k in f) {
+				data[k] = $(f[k]).innertHTML;
+			}
+			return data;
+		}
 
 		/**
 		 	* Turn content html into shortcodes
@@ -12571,10 +12623,12 @@ jQuery(document).ready(function($){
 		 	* @return {[type]}          [description]
 		*/
 		function shortcodify(content,selector){
-
 			// Convert the html into a series of jQuery objects
 			var j = $.parseHTML(content);
 			var processed = '';
+			if (j == null) {
+				return content;
+			}
 
 			// Iterate through the array of dom objects
 			for (var i = 0; i < j.length; i++) {
@@ -12583,13 +12637,14 @@ jQuery(document).ready(function($){
 
 	    		// If it's not a component, move along
 	    		if ( !component.hasClass('aesop-component') ) {
-					// if any child has aesop component
-					if (component.find('.aesop-component').length !==0) {
-						var inner = j[i].innerHTML;
-						j[i].innerHTML = shortcodify(inner);
-					}
-
-	    			// Let's test what kind of object it is
+					
+					if(component.find('.aesop-component').length !== 0) {
+						// if there is an aesop component in a child, recursively process it
+						var comp_content = component.html();
+						comp_content = shortcodify(comp_content);
+						component.html(comp_content);
+						processed += component.clone().wrap('<p>').parent().html();;
+					} else   			// Let's test what kind of object it is
 	    			if ( component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;
@@ -12707,6 +12762,63 @@ jQuery(document).ready(function($){
 			return processed;
 		}
 		
+		//shortcode avia layout editor
+		function shortcodify_avia(content,selector){
+			// Convert the html into a series of jQuery objects
+			var j = $.parseHTML(content);
+			var processed = '';
+
+			// Iterate through the array of dom objects
+			for (var i = 0; i < j.length; i++) {
+
+	    		var component = $(j[i]);
+
+	    		// If it's not a component, move along
+	    		if ( !component.hasClass('av_textblock_section') && !component.hasClass('av_toggle_section') && !component.hasClass('togglecontainer')) {
+
+	    			// Let's test what kind of object it is
+	    			if ( component.context.nodeType == 3 ) {
+	    				// Text only object without dom
+	    				processed += j[i].data;
+	    			} else if ( component.context.nodeType == 8 ) {
+	    				processed += '<!--' + j[i].data + '-->';
+	    			} else {
+	    				// DOM object
+	    				processed += j[i].outerHTML;
+	    			}
+	    			continue;
+	    		}
+				
+				
+				if ( component.hasClass('av_textblock_section')) {
+					var box_text = component.find('.avia_textblock')[0].innerHTML;
+					var sc = '[av_textblock]' + box_text+'[/av_textblock]';
+					processed += sc;
+					
+				} else if ( component.hasClass('togglecontainer')) {
+					
+					var content = component[0].innerHTML;
+					var mode ="accordion";
+					content = shortcodify_avia(content);
+					if (component[0].hasClass('enable_toggles')) {
+						mode = "toggle";
+					}
+					var sc = "[av_toggle_container mode='"+mode+"']" + content+'[/av_toggle_container]';
+					processed += sc;
+					
+				} else if ( component.hasClass('av_toggle_section')) {
+					var toggle_title = component.find('.toggler')[0].innerText;
+					var toggle_content = component.find('.toggle_content')[0].innerHTML;
+					var sc = '[av_toggle title="'+toggle_title+'"]' + toggle_content+'[/av_toggle]';
+					processed += sc;
+					
+				}
+
+			}
+
+			return processed;
+		}
+		
 		function replace_rendered_shortcodes( content ) {
 			// also remove scripts
 			content = content.replace(/<script.*>.*<\/script>/g, " ");
@@ -12716,18 +12828,29 @@ jQuery(document).ready(function($){
 			}
 
 			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
-			content = content.replace(re,'$1');
+			// also remove scripts
+			content = content.replace(re,'$1').replace(/<script.*>.*<\/script>/g, " ");
 			
 			return content;
 		}
 		
 		// Save post using REST API V2
-		function savePublishREST(postid, title, content_, type_,status_){
-			
+		function savePublishREST(postid, title, content_, type_,status_, customFieldData){
+			content_ = replace_rendered_shortcodes( content_ );
 			var data      = {
 				content: 	content_,
 				status: status_
 			};
+			if (lasso_editor.aviaEditor) {
+				data['content'] ="";
+				data['metadata'] = { '_aviaLayoutBuilderCleanData': content_};
+			}
+			if (customFieldData) {
+				for (k in customFieldData) {
+					data[k] = customFieldData[k];
+				}
+			}
+			
 			var type;
 			if (type_=="post") {
 				type = "posts";
@@ -12791,12 +12914,12 @@ jQuery(document).ready(function($){
 				var status_ = $('.lasso--controls__right').data( "status" );
 				var title="";
 				if ($(lasso_editor.titleClass).length>0) {
-					title = $(lasso_editor.titleClass)[0].innerHTML;
+					title = $(lasso_editor.titleClass)[0].innerText;
 				}
 				if (forcePublish) {
 					status_ = "publish";
 				}
-				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_, data.customFields);
 				return;
 			}
 			

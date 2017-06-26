@@ -254,6 +254,9 @@ function lasso_post_types_names() {
 	 */
 	$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post', 'page') );
 	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
+	if (!current_user_can('edit_pages')) {
+		$allowed_post_types = array_diff($allowed_post_types,array('page'));
+	}
 	foreach( $post_types as $name => $label ) {
 		if ( ! in_array( $name, $allowed_post_types ) ) {
 			unset( $post_types[ $name ] );
@@ -382,7 +385,9 @@ if ( !function_exists( 'lasso_user_can' ) ):
 			// check against post types:
 			$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( 'post', 'page') );
 			
-			
+			if (!current_user_can('edit_pages')) {
+				$allowed_post_types = array_diff($allowed_post_types,array('page'));
+			}
 			
             if (!empty($allowed_post_types) && !empty($postid)) {
 				$type = get_post_type( $postid );

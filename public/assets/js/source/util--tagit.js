@@ -46,7 +46,7 @@
             autocomplete: {},
 
             // Shows autocomplete before the user even types anything.
-            showAutocompleteOnFocus: false,
+            showAutocompleteOnFocus: true,
 
             // When enabled, quotes are unneccesary for inputting multi-word tags.
             allowSpaces: false,
