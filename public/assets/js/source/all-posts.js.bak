@@ -71,28 +71,14 @@
 
             collection = new wp.api.collections.Pages( options );
 
-		} else if ( 'post' == type ) {
+		} else {
 
             capable = lasso_editor.edit_others_posts;
 
         	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 
             collection = new wp.api.collections.Posts( options );
-        } else {
-			var customPost = wp.api.models.Post.extend({
-				urlRoot: WP_API_Settings.root + 'wp/v2/'+type,
-				defaults: {
-					type: type
-				}
-			});
-
-			var customCollection = wp.api.collections.Posts.extend({
-				url: WP_API_Settings.root + 'wp/v2/'+type,
-				model: customPost
-			});
-
-			collection = new customCollection;
-		}
+        }
 
 		// get the posts
 		collection.fetch( options ).done( function() {
