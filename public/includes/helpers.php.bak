@@ -270,6 +270,7 @@ function lasso_post_types() {
 	$post_types = get_post_types( array(
 		'public' => true,
 	), 'names' );
+	//$post_types = array_combine( array_keys( $post_types ), wp_list_pluck( $post_types, 'label' ) );
     unset( $post_types[ 'attachment' ] );
 
 	/**
@@ -289,16 +290,7 @@ function lasso_post_types() {
 	return $post_types;
 }
 
-function lasso_post_types_rest_base() {
-	global $wp_post_types;
-	$post_types = lasso_post_types();
-	$rest_base = array();
-	foreach ( $post_types as $post_type) {
-		$rest_base[$post_type] = $wp_post_types[$post_type]->rest_base;
-	}
-    
-	return $rest_base;
-}
+
 
 ////////////////////
 // INTERNAL

@@ -564,12 +564,13 @@ function lasso_editor_allpost_modal() {
 				<?php
 
 				$post_types = lasso_post_types_names();
-				$rest_bases = lasso_post_types_rest_base();
 
 				if ( ! empty( $post_types ) ) {
 					$first = 'active';
 					foreach( $post_types as $name => $label ) {
-						printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $rest_bases[$name] ), esc_attr( $label ) );
+						//printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $name ), esc_attr( $label ) );
+						//print_r($post_types);
+						printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $name ), esc_attr( $label ) );
 						$first = '';
 					}
 

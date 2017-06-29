@@ -22,7 +22,7 @@
 	,	showClass       = 'lasso--show'
 	,	helper      	= '#lasso--helper'
 	,	page 			= 1
-    ,   lastType        = 'post'
+    ,   lastType        = 'posts'
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
@@ -62,8 +62,12 @@
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){
+		
+		capable = lasso_editor.edit_others_posts;
 
-		if ( 'page' == type ) {
+        options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+
+		if ( 'pages' == type ) {
 
 			capable = lasso_editor.edit_others_pages;
 
@@ -71,11 +75,7 @@
 
             collection = new wp.api.collections.Pages( options );
 
-		} else if ( 'post' == type ) {
-
-            capable = lasso_editor.edit_others_posts;
-
-        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+		} else if ( 'posts' == type ) {
 
             collection = new wp.api.collections.Posts( options );
         } else {
@@ -189,7 +189,7 @@
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts('post');
+		fetchPosts('posts');
 
 		modalResizer();
 
@@ -205,7 +205,11 @@
 
         $(this).addClass('lasso--btn-loading').text( loadingText );
 
-        page++;
+        if (lastType == type) {
+			page++;
+		} else {
+			page = 1;
+		}
 
         lastType = type;
 
