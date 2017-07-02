@@ -165,6 +165,7 @@
                 page: page,
                 type: type,
 				author: author,
+				status:['publish','draft','pending'],
 				per_page: 7,
                 filter: {
                     post_status: ['publish','draft','pending'],
