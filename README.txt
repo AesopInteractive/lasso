@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.7.5
-Stable tag: 0.9.14.6
+Tested up to: 4.8
+Stable tag: 0.9.15.0
 
 Front-end editing and creation suite.
 
@@ -13,12 +13,18 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
-= 0.9.14.6 =
-* Added settings options to enable/disable post types
-* Added H4-H6 button options
-* Post settings dialog now shows names, not tags
-* Aesop components enclosed under another tag is now processed properly
+= 0.9.15.0 =
+* The Post List dialog now displays draft posts
+* The Post List dialog now displays custom post types properly.
 
+
+= 0.9.14.6 =
+* Added settings option to specify allowed post types
+* Option to add H4-H6 buttons
+* Now the post list doesn't list pages if the user doesn't have a permission to edit pages
+* The post settings dialog box now shows the category list
+* The post settings dialog box now shows the names of the categories, not slugs. This fixes the
+  issues with non-English category names.
 
 = 0.9.14.3 =
 * Further fixes to shortcode handling. Remove the scripts inserted by the shortcodes

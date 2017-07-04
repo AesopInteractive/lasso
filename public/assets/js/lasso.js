@@ -10620,18 +10620,7 @@ jQuery(document).ready(function($){
 		lasso_editor.aviaEditor = ($('.av_toggle_section,.av_textblock_section').length>0);
 		
 		// set links clickable
-		if (!lasso_editor.aviaEditor) {
-			$("a").attr('contenteditable',false);
-		}
-		
-		// set custom fields editable
-		if (lasso_editor.customFields) {
-			debugger;
-			lasso_editor.customFields = jQuery.parseJSON(lasso_editor.customFields);
-			for (k in lasso_editor.customFields) {
-			   $(lasso_editor.customFields[k]).attr('contenteditable',true);
-			}
-		}
+		$("a").attr('contenteditable',false);
 		
 		//$(objectsNonEditable).disableSelection();
 
@@ -12547,31 +12536,22 @@ jQuery(document).ready(function($){
 		
 		// shortcode aesop
 		html = $this.hasClass('shortcodify-enabled') ? shortcodify(html) : html;
+		
 		// restore other shortcodes to the original shortcodes
 		html = replace_rendered_shortcodes( html );
-
-		
 
 		// avia editor
 		if (lasso_editor.aviaEditor) {
 			html = shortcodify_avia(html);
 		}
 		
-		// if customfields
-		var customFieldsData = null;
-		//lasso_editor.customFields = {field1: '#customfield1'}
-		if (lasso_editor.customFields) {
-			customFieldsData = get_customfields();
-		}
-
 		// gather the data
 		var data      = {
 			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
 			content: 	html,
 			post_id:   	postid,
-			nonce:     	lasso_editor.nonce,
-			customFields: customFieldsData
+			nonce:     	lasso_editor.nonce
 		};
 
 		// intercept if publish to confirm
@@ -12605,16 +12585,6 @@ jQuery(document).ready(function($){
 		{	
 			return content.replace(/contenteditable="(false|true)"/g, "");
 		}
-		
-		function get_customfields()
-		{
-			var f = lasso_editor.customFields
-			var data      = {};
-			for (k in f) {
-				data[k] = $(f[k]).innertHTML;
-			}
-			return data;
-		}
 
 		/**
 		 	* Turn content html into shortcodes
@@ -12623,6 +12593,7 @@ jQuery(document).ready(function($){
 		 	* @return {[type]}          [description]
 		*/
 		function shortcodify(content,selector){
+
 			// Convert the html into a series of jQuery objects
 			var j = $.parseHTML(content);
 			var processed = '';
@@ -12828,15 +12799,14 @@ jQuery(document).ready(function($){
 			}
 
 			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
-			// also remove scripts
-			content = content.replace(re,'$1').replace(/<script.*>.*<\/script>/g, " ");
+			content = content.replace(re,'$1');
 			
 			return content;
 		}
 		
 		// Save post using REST API V2
-		function savePublishREST(postid, title, content_, type_,status_, customFieldData){
-			content_ = replace_rendered_shortcodes( content_ );
+		function savePublishREST(postid, title, content_, type_,status_){
+			
 			var data      = {
 				content: 	content_,
 				status: status_
@@ -12844,11 +12814,6 @@ jQuery(document).ready(function($){
 			if (lasso_editor.aviaEditor) {
 				data['content'] ="";
 				data['metadata'] = { '_aviaLayoutBuilderCleanData': content_};
-			}
-			if (customFieldData) {
-				for (k in customFieldData) {
-					data[k] = customFieldData[k];
-				}
 			}
 			
 			var type;
@@ -12919,7 +12884,7 @@ jQuery(document).ready(function($){
 				if (forcePublish) {
 					status_ = "publish";
 				}
-				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_, data.customFields);
+				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
 			}
 			
@@ -14141,7 +14106,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	,	showClass       = 'lasso--show'
 	,	helper      	= '#lasso--helper'
 	,	page 			= 1
-    ,   lastType        = 'post'
+    ,   lastType        = 'posts'
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
@@ -14181,8 +14146,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){
+		
+		capable = lasso_editor.edit_others_posts;
 
-		if ( 'page' == type ) {
+        options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+
+		if ( 'pages' == type ) {
 
 			capable = lasso_editor.edit_others_pages;
 
@@ -14190,14 +14159,24 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
             collection = new wp.api.collections.Pages( options );
 
-		} else {
-
-            capable = lasso_editor.edit_others_posts;
-
-        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+		} else if ( 'posts' == type ) {
 
             collection = new wp.api.collections.Posts( options );
-        }
+        } else {
+			var customPost = wp.api.models.Post.extend({
+				urlRoot: WP_API_Settings.root + 'wp/v2/'+type,
+				defaults: {
+					type: type
+				}
+			});
+
+			var customCollection = wp.api.collections.Posts.extend({
+				url: WP_API_Settings.root + 'wp/v2/'+type,
+				model: customPost
+			});
+
+			collection = new customCollection;
+		}
 
 		// get the posts
 		collection.fetch( options ).done( function() {
@@ -14270,6 +14249,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
                 page: page,
                 type: type,
 				author: author,
+				status:['publish','draft','pending'],
 				per_page: 7,
                 filter: {
                     post_status: ['publish','draft','pending'],
@@ -14294,7 +14274,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts('post');
+		fetchPosts('posts');
 
 		modalResizer();
 
@@ -14310,7 +14290,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
         $(this).addClass('lasso--btn-loading').text( loadingText );
 
-        page++;
+        if (lastType == type) {
+			page++;
+		} else {
+			page = 1;
+		}
 
         lastType = type;
 
