@@ -290,15 +290,6 @@ class lasso {
 		));
 	}
 	
-	public function editus_do_shortcode()
-	{
-		
-		$code= $_POST["code"];
-		file_put_contents(WP_PLUGIN_DIR."/file10.txt", $code);
-		$out = lasso_wrap_shortcodes( $code);
-		echo do_shortcode($out);
-		exit;
-	}
 	
 	public function get_aesop_component()
 	{
