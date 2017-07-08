@@ -137,8 +137,9 @@ class settings {
 						$post_types = get_post_types( $args, 'objects' );
 						 
 						foreach ( $post_types  as $post_type ) {
+						   if ($post_type->name == 'attachment') continue;
 						   $checked ="";
-						   if (  in_array( $post_type->name, $allowed_post_types ) ) {
+						   if (  in_array( $post_type->name, $allowed_post_types )  ) {
 								$checked = 'checked="checked"';
 						   }
 						   echo '<label><input type="checkbox" '.$checked.' name="lasso_editor[allowed_post_types]['.$post_type->name.']" id="lasso_editor[allowed_post_types]['.$post_type->name.']" >'.$post_type->name.'</label>';

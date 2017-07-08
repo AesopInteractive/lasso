@@ -10846,20 +10846,35 @@ jQuery(document).ready(function($){
 
 		    return false;
 		};
-		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
-		    articleMedium.element.contentEditable = true;
-		    restoreSelection(window.selRange);
-
+		
+		// process shortcode using AJAX service and insert the result
+		function do_shortcode_ajax(content)
+		{
+			var data = {
+					action: 'editus_do_shortcode',
+					code: content
+			};
+			
+							
+			jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+					if( response ){
+						return insert_html(response);
+					} else {
+						return insert_html(content);
+				}
+			});
+		}
+		
+		function insert_html(htmlContent) {
 			var container = window.selRange.startContainer,
-				containerTag;
+			containerTag;
 
 			containerTag = container.localName;
-			var containerObject = $(container),
-					htmlContent = $('#lasso-toolbar--html__inner').text();
-
+			var containerObject = $(container);
+			
 			htmlContent = $(htmlContent);
 			htmlContent.attr('contenteditable','true');
-
+			
 			// handle 3 specific scenarios dealing with <p>'s
 			// note: might need climb up dom tree depending on nesting use case
 			if (containerTag == 'p') {
@@ -10885,6 +10900,20 @@ jQuery(document).ready(function($){
         	$('#lasso-toolbar--html').removeClass('html--drop-up');
 
 		    return false;
+		}
+		
+		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
+		    articleMedium.element.contentEditable = true;
+		    restoreSelection(window.selRange);
+
+
+			var htmlContent = $('#lasso-toolbar--html__inner').text();
+			if (htmlContent.indexOf("]") != -1) {
+				do_shortcode_ajax(htmlContent);
+				return false;
+			} else  {
+				return insert_html(htmlContent);
+			}
 		};
 
 		if (lasso_editor.enableAutoSave) {

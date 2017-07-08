@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.15.0
+Stable tag: 0.9.15.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.15.1 =
+* Insert HTML button can now process 3rd party shortcodes 
+
 = 0.9.15.0 =
 * The Post List dialog now displays draft posts
 * The Post List dialog now displays custom post types properly.
