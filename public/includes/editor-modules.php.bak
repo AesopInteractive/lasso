@@ -489,13 +489,12 @@ function lasso_editor_newpost_modal() {
 	// return the post type
 	$type = get_post_type( get_the_ID() );
 
-	$mobile_style = "";
 	if (wp_is_mobile()) {
 		$mobile_style = 'style="top:140px !important;"';
 	}
 	?>
 	<div id="lasso--post-new__modal" class="lasso--modal lasso--modal__med lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style;?>">
-		<div class="lasso--modal__inner lasso--hasnewform">
+		<div class="lasso--modal__inner">
 
 			<form id="lasso--postnew__form" enctype="multipart/form-data" class="lasso--post-form">
 

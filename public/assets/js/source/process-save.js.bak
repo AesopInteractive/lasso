@@ -116,7 +116,6 @@ jQuery(document).ready(function($){
 			$temp.find("span").removeClass("lasso-span");
 			$temp.find("h2").removeClass("lasso-h2");
 			$temp.find("h3").removeClass("lasso-h3");
-			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
 			$temp.find(".lasso-component--controls").remove();
 			
 			html = $temp.html();
