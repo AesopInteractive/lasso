@@ -662,7 +662,12 @@ jQuery(document).ready(function($){
 		//$('#lasso--exit').live('click',function(e){
 		jQuery(document).on('click','#lasso--exit', function(e){
 			e.preventDefault();
-			exitEditor();
+			//previously we just called exitEditor(), now the following reloads the page if there is an unsaved change
+			if (articleMedium.dirty) {
+			   location.reload();
+			} else {
+			  exitEditor();
+			}
 		})
 
 		// on control s save
