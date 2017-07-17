@@ -22,7 +22,7 @@
 	,	showClass       = 'lasso--show'
 	,	helper      	= '#lasso--helper'
 	,	page 			= 1
-    ,   lastType        = 'posts'
+    ,   lastType        = 'post'
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
@@ -62,12 +62,8 @@
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){
-		
-		capable = lasso_editor.edit_others_posts;
 
-        options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
-
-		if ( 'pages' == type ) {
+		if ( 'page' == type ) {
 
 			capable = lasso_editor.edit_others_pages;
 
@@ -75,24 +71,14 @@
 
             collection = new wp.api.collections.Pages( options );
 
-		} else if ( 'posts' == type ) {
+		} else {
+
+            capable = lasso_editor.edit_others_posts;
+
+        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 
             collection = new wp.api.collections.Posts( options );
-        } else {
-			var customPost = wp.api.models.Post.extend({
-				urlRoot: WP_API_Settings.root + 'wp/v2/'+type,
-				defaults: {
-					type: type
-				}
-			});
-
-			var customCollection = wp.api.collections.Posts.extend({
-				url: WP_API_Settings.root + 'wp/v2/'+type,
-				model: customPost
-			});
-
-			collection = new customCollection;
-		}
+        }
 
 		// get the posts
 		collection.fetch( options ).done( function() {
@@ -165,7 +151,6 @@
                 page: page,
                 type: type,
 				author: author,
-				status:['publish','draft','pending'],
 				per_page: 7,
                 filter: {
                     post_status: ['publish','draft','pending'],
@@ -190,7 +175,7 @@
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts('posts');
+		fetchPosts('post');
 
 		modalResizer();
 
@@ -206,11 +191,7 @@
 
         $(this).addClass('lasso--btn-loading').text( loadingText );
 
-        if (lastType == type) {
-			page++;
-		} else {
-			page = 1;
-		}
+        page++;
 
         lastType = type;
 

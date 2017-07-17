@@ -423,9 +423,10 @@ function lasso_editor_component_modal() {
 						</div>
 
 					</div>
-					<div style="max-height:300px;overflow-y: scroll;">
+					<!-- alternate way to display categories disabled now -->
+					<!--div style="max-height:300px;overflow-y: scroll;"-->
                     <?php
-							$allcats = explode(",",lasso_get_objects('category'));
+							/*$allcats = explode(",",lasso_get_objects('category'));
 							$currcats = explode(",",$categories);
 							foreach ( $allcats  as $category ) {
 								if (empty($category)) continue;
@@ -435,9 +436,9 @@ function lasso_editor_component_modal() {
 									
 							   }
 							   echo '<label><input type="checkbox" '.$checked.' name="categories" id="'.$category.'" >'.$category.'</label>';
-							}
+							}*/
 					?>
-					</div>
+					<!--/div-->
 
 					<?php do_action( 'lasso_modal_post_form' ); // action ?>
 
