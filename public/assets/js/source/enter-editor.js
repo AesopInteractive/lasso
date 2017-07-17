@@ -329,7 +329,7 @@ jQuery(document).ready(function($){
 		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
 			articleMedium.element.contentEditable = true;
 			article.highlight();
-		    articleMedium.invokeElement('b');
+		    articleMedium.invokeElement(lasso_editor.boldTag);
 			return false;
 		};
 		

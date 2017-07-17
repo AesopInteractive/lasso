@@ -119,6 +119,8 @@ jQuery(document).ready(function($){
 			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
 			$temp.find(".lasso-component--controls").remove();
 			
+			$temp.find('*[class=""]').removeAttr('class');
+			
 			html = $temp.html();
 		}
 		

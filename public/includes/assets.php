@@ -50,6 +50,8 @@ class assets {
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 			$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 			$disableRESTSave = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
+			
+			$bold_tag = lasso_editor_get_option('bold_tag', 'lasso_editor','b');
 
 			
 			//text alignement
@@ -196,6 +198,7 @@ class assets {
 				'restapi2'          => $using_restapiv2,
 				'saveusingrest'     => $using_restapiv2 && !$disableRESTSave,
 				'newObjectContent'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ),
+				'boldTag'           => $bold_tag,
 				'skipToEdit'        =>( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 

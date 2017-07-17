@@ -5773,7 +5773,7 @@ Undo.Command.extend = function(protoProps) {
 							cl = (attr.className.split[' '] || [attr.className]).shift();
 							delete attr.className;
 						} else {
-							cl = 'lasso-' + tagName;
+							cl = 'lasso-noclass';
 						}
 
 						applier = rangy.createClassApplier(cl, {
@@ -10654,7 +10654,7 @@ jQuery(document).ready(function($){
 		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
 			articleMedium.element.contentEditable = true;
 			article.highlight();
-		    articleMedium.invokeElement('b');
+		    articleMedium.invokeElement(lasso_editor.boldTag);
 			return false;
 		};
 		
@@ -12552,7 +12552,10 @@ jQuery(document).ready(function($){
 			$temp.find("span").removeClass("lasso-span");
 			$temp.find("h2").removeClass("lasso-h2");
 			$temp.find("h3").removeClass("lasso-h3");
+			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
 			$temp.find(".lasso-component--controls").remove();
+			
+			$temp.find('*[class=""]').removeAttr('class');
 			
 			html = $temp.html();
 		}
@@ -14135,7 +14138,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	,	showClass       = 'lasso--show'
 	,	helper      	= '#lasso--helper'
 	,	page 			= 1
-    ,   lastType        = 'posts'
+    ,   lastType        = 'post'
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
@@ -14175,12 +14178,8 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){
-		
-		capable = lasso_editor.edit_others_posts;
 
-        options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
-
-		if ( 'pages' == type ) {
+		if ( 'page' == type ) {
 
 			capable = lasso_editor.edit_others_pages;
 
@@ -14188,24 +14187,14 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
             collection = new wp.api.collections.Pages( options );
 
-		} else if ( 'posts' == type ) {
+		} else {
+
+            capable = lasso_editor.edit_others_posts;
+
+        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 
             collection = new wp.api.collections.Posts( options );
-        } else {
-			var customPost = wp.api.models.Post.extend({
-				urlRoot: WP_API_Settings.root + 'wp/v2/'+type,
-				defaults: {
-					type: type
-				}
-			});
-
-			var customCollection = wp.api.collections.Posts.extend({
-				url: WP_API_Settings.root + 'wp/v2/'+type,
-				model: customPost
-			});
-
-			collection = new customCollection;
-		}
+        }
 
 		// get the posts
 		collection.fetch( options ).done( function() {
@@ -14278,7 +14267,6 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
                 page: page,
                 type: type,
 				author: author,
-				status:['publish','draft','pending'],
 				per_page: 7,
                 filter: {
                     post_status: ['publish','draft','pending'],
@@ -14303,7 +14291,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts('posts');
+		fetchPosts('post');
 
 		modalResizer();
 
@@ -14319,11 +14307,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
         $(this).addClass('lasso--btn-loading').text( loadingText );
 
-        if (lastType == type) {
-			page++;
-		} else {
-			page = 1;
-		}
+        page++;
 
         lastType = type;
 
