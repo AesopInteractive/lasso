@@ -10987,7 +10987,12 @@ jQuery(document).ready(function($){
 		//$('#lasso--exit').live('click',function(e){
 		jQuery(document).on('click','#lasso--exit', function(e){
 			e.preventDefault();
-			exitEditor();
+			//previously we just called exitEditor(), now the following reloads the page if there is an unsaved change
+			if (articleMedium.dirty) {
+			   location.reload();
+			} else {
+			  exitEditor();
+			}
 		})
 
 		// on control s save
@@ -14138,7 +14143,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	,	showClass       = 'lasso--show'
 	,	helper      	= '#lasso--helper'
 	,	page 			= 1
-    ,   lastType        = 'post'
+    ,   lastType        = 'posts'
     ,   collection      = false
     ,   initial         = true
     ,   totalPages      = null
@@ -14178,8 +14183,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){
+		
+		capable = lasso_editor.edit_others_posts;
 
-		if ( 'page' == type ) {
+        options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+
+		if ( 'pages' == type ) {
 
 			capable = lasso_editor.edit_others_pages;
 
@@ -14187,14 +14196,24 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
             collection = new wp.api.collections.Pages( options );
 
-		} else {
-
-            capable = lasso_editor.edit_others_posts;
-
-        	options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+		} else if ( 'posts' == type ) {
 
             collection = new wp.api.collections.Posts( options );
-        }
+        } else {
+			var customPost = wp.api.models.Post.extend({
+				urlRoot: WP_API_Settings.root + 'wp/v2/'+type,
+				defaults: {
+					type: type
+				}
+			});
+
+			var customCollection = wp.api.collections.Posts.extend({
+				url: WP_API_Settings.root + 'wp/v2/'+type,
+				model: customPost
+			});
+
+			collection = new customCollection;
+		}
 
 		// get the posts
 		collection.fetch( options ).done( function() {
@@ -14244,9 +14263,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		    // destroy the spinny loader
 		    destroyLoader();
 
-		}).fail( function() {
+		}).fail(function(xhr, err) {
 			$( '#lasso--loading' ).remove();
-			$( postList ).append( fetchFailMessage );
+			// show some info
+			//var regExp = /\[{.*}\]/;
+			//var matches = regExp.exec(xhr.responseText);
+			$( postList ).append( fetchFailMessage + '<div style="overflow-y: scroll; height:400px;"><code style="font-size:8px;">'+JSON.stringify(xhr)+'</code></div>' );			
 		});
 
 
@@ -14267,6 +14289,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
                 page: page,
                 type: type,
 				author: author,
+				status:['publish','draft','pending'],
 				per_page: 7,
                 filter: {
                     post_status: ['publish','draft','pending'],
@@ -14291,7 +14314,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		body.append( lasso_editor.allPostModal );
 
 		// get the intial posts
-		fetchPosts('post');
+		fetchPosts('posts');
 
 		modalResizer();
 
@@ -14307,7 +14330,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
         $(this).addClass('lasso--btn-loading').text( loadingText );
 
-        page++;
+        if (lastType == type) {
+			page++;
+		} else {
+			page = 1;
+		}
 
         lastType = type;
 

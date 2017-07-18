@@ -142,9 +142,12 @@
 		    // destroy the spinny loader
 		    destroyLoader();
 
-		}).fail( function() {
+		}).fail(function(xhr, err) {
 			$( '#lasso--loading' ).remove();
-			$( postList ).append( fetchFailMessage );
+			// show some info
+			//var regExp = /\[{.*}\]/;
+			//var matches = regExp.exec(xhr.responseText);
+			$( postList ).append( fetchFailMessage + '<div style="overflow-y: scroll; height:400px;"><code style="font-size:8px;">'+JSON.stringify(xhr)+'</code></div>' );			
 		});
 
 

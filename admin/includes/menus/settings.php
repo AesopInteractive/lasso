@@ -126,9 +126,10 @@ class settings {
 				
 				
 				
+				<h3><?php _e( 'Enable for:', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner">
-						<label><?php _e( 'Enable for:', 'lasso' );?></label>
+						
 						<span class="lasso--setting-description"><?php _e( 'Enable Editus for the following post types.', 'lasso' );?></span>
 						<?php
 						$args = array(
@@ -151,7 +152,7 @@ class settings {
 				</div>
 				
 
-				<h3>Internal Settings</h3>
+				<h3><?php _e( 'Internal Settings', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<label><?php _e( 'Article Class', 'lasso' );?></label>
@@ -190,7 +191,7 @@ class settings {
 					</div>
 				</div>
 
-				<h3>Editor UI</h3>
+				<h3><?php _e( 'Editor UI', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
@@ -222,7 +223,7 @@ class settings {
 				
 				
 
-				<h3>Post UI</h3>
+				<h3><?php _e( 'Post Settings UI', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap"  >
 					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_settings_disabled]" id="lasso_editor[post_settings_disabled]" <?php echo checked( $post_settings_disabled, 'on' );?> >
@@ -237,7 +238,7 @@ class settings {
 					</div>
 				</div>
 				
-				<h3>Misc</h3>
+				<h3><?php _e( 'Misc', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[disable_tour]" id="lasso_editor[disable_tour]" <?php echo checked( $disable_tour, 'on' );?> >
@@ -247,28 +248,27 @@ class settings {
 
 					<div class="lasso-editor-settings--option-inner" >
 					    <label for="lasso_editor[bold_tag]"> <?php _e( '"Bold" Tag', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'Choose the HTML tag used for "Bold".', 'lasso' );?></span>
+						<span class="lasso--setting-description"><?php _e( 'Choose the HTML tag used for the "Bold" style.', 'lasso' );?></span>
 					    <input type="radio" name="lasso_editor[bold_tag]" value='b' <?php echo checked( $bold_tag, 'b' );?>> b
 						<input type="radio" name="lasso_editor[bold_tag]" value="strong" <?php echo checked( $bold_tag, 'strong' );?>> strong
-						<input type="radio" name="lasso_editor[bold_tag]" value="em" <?php echo checked( $bold_tag, 'em' );?>> em  
 					</div>
 				</div>
 
-				<h3>Advanced</h3>
+				<h3><?php _e( 'Advanced', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap ">
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[shortcodify_disabled]" id="lasso_editor[shortcodify_disabled]" <?php echo checked( $shortcodify_disabled, 'on' );?> >
 						<label for="lasso_editor[shortcodify_disabled]"><?php _e( 'Disable Aesop Component Conversion', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable the conversion process used on Aesop Story Engine components.', 'lasso' );?></span>
 					</div>
 				
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[enable_autosave]" id="lasso_editor[enable_autosave]" <?php echo checked( $enable_autosave, 'on' );?> >
 						<label for="lasso_editor[enable_autosave]"><?php _e( 'Enable Auto Save', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to enable auto save.', 'lasso' );?></span>
 					</div>
 				
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_save_disabled]" id="lasso_editor[post_save_disabled]" <?php echo checked( $save_to_post_disabled, 'on' );?> >
 						<label for="lasso_editor[post_save_disabled]"><?php _e( 'Disable Post Saving', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'By default the editor will update the database with the post or page it is being used on. Check this box to disable this. If you check this box, it is assumed that you will be using the provided filters to save your own content.', 'lasso' );?></span>
