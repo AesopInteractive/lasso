@@ -45,21 +45,15 @@ if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	}
 }
 
-function lasso_show_in_rest() {
-	global $wp_post_types;
-	
-	$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( ) );
+add_filter('register_post_type_args', 'lasso_show_in_rest', 10, 2);
+function lasso_show_in_rest($args, $post_type){
+ 
+    $allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( ) );
 	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
-	
-	foreach( $allowed_post_types as $key ) {
-	    
-		// If the post type doesn't exist, skip it
-		if( !$wp_post_types[$key] )
-			continue;
-	    	
-    	$wp_post_types[$key]->show_in_rest = true;
-    }
+	if (in_array( $post_type,$allowed_post_types)) {
+		$args['show_in_rest'] = true;
+	}
+ 
+    return $args;
 }
-
- add_action( 'init', 'lasso_show_in_rest' );
 

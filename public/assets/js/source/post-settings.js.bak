@@ -138,17 +138,6 @@
 			e.preventDefault();
 
 			var $this = $(this);
-			
-			/*
-			//alternate way of setting categories, disabled for now
-			var cats = [];
-			
-			$('input[name="categories"]').each(function () {
-				if (this.checked) { cats.push(this.id);}
-			});
-			if (cats.length>0) {
-				$('input[name="story_cats"]').val(cats.join(','));
-			}*/
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
 
