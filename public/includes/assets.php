@@ -52,6 +52,7 @@ class assets {
 			$disableRESTSave = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
 			
 			$bold_tag = lasso_editor_get_option('bold_tag', 'lasso_editor','b');
+			$i_tag = lasso_editor_get_option('i_tag', 'lasso_editor','i');
 
 			
 			//text alignement
@@ -199,6 +200,7 @@ class assets {
 				'saveusingrest'     => $using_restapiv2 && !$disableRESTSave,
 				'newObjectContent'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ),
 				'boldTag'           => $bold_tag,
+				'iTag'           => $i_tag,
 				'skipToEdit'        =>( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 

@@ -114,6 +114,7 @@ class settings {
 		$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor',  $default_post_types);
 		
 		$bold_tag = lasso_editor_get_option( 'bold_tag', 'lasso_editor',  "b");
+		$i_tag = lasso_editor_get_option( 'i_tag', 'lasso_editor',  "i");
 
 ?>
 		<div class="wrap">
@@ -251,6 +252,12 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Choose the HTML tag used for the "Bold" style.', 'lasso' );?></span>
 					    <input type="radio" name="lasso_editor[bold_tag]" value='b' <?php echo checked( $bold_tag, 'b' );?>> b
 						<input type="radio" name="lasso_editor[bold_tag]" value="strong" <?php echo checked( $bold_tag, 'strong' );?>> strong
+					</div>
+					<div class="lasso-editor-settings--option-inner" >
+					    <label for="lasso_editor[i_tag]"> <?php _e( '"Italic" Tag', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Choose the HTML tag used for the "Italic" style.', 'lasso' );?></span>
+					    <input type="radio" name="lasso_editor[i_tag]" value='i' <?php echo checked( $i_tag, 'i' );?>> i
+						<input type="radio" name="lasso_editor[i_tag]" value="em" <?php echo checked( $i_tag, 'em' );?>> em
 					</div>
 				</div>
 
