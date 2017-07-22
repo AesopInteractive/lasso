@@ -52,9 +52,6 @@ function lasso_show_in_rest($args, $post_type){
 	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
 	if (in_array( $post_type,$allowed_post_types)) {
 		$args['show_in_rest'] = true;
-		if ($post_type != 'post' && $post_type != 'page') {
-			$args['rest_base'] = $post_type;
-		}
 	}
  
     return $args;
