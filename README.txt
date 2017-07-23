@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.15.2
+Stable tag: 0.9.15.3
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,10 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.15.3 =
+* More fix for custom post types
+* New option to set the tag for the "Italic" style
+
 = 0.9.15.2 =
 * Fix for post delete
 * Settings page update. New option to set the tag for the "Bold" style
