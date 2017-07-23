@@ -5,7 +5,7 @@ if ( !function_exists( 'lasso_backbone_templates' ) ):
 	add_action('wp_footer', 'lasso_backbone_templates');
 	function lasso_backbone_templates(){
 
-		$can_delete = lasso_user_can('delete_others_posts');
+		$can_delete = lasso_user_can('delete_posts');
 		$can_delete_class = $can_delete ? false : 'no-delete';
 
 		
