@@ -58,7 +58,12 @@ extend(Undo.Stack.prototype, {
 		this._clearRedo();
 		command.execute();
 		this.commands.push(command);
-		this.stackPosition++;
+		if (this.commands.length>10) {
+			this.commands.shift();
+		} else {
+			this.stackPosition++;
+		}
+		
 		this.changed();
 	},
 	undo: function() {
