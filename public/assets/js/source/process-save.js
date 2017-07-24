@@ -149,6 +149,11 @@ jQuery(document).ready(function($){
 			post_id:   	postid,
 			nonce:     	lasso_editor.nonce
 		};
+		
+		// if custom fields
+		if (lasso_editor.customFields) {
+			saveCustomFields(html);
+		}
 
 		// intercept if publish to confirm
 		if ( $this.hasClass('lasso-publish-post') ) {
@@ -180,6 +185,21 @@ jQuery(document).ready(function($){
 		function removeEditable(content) 
 		{	
 			return content.replace(/contenteditable="(false|true)"/g, "");
+		}
+		
+		// gather the custom field data and save to lasso_editor.cftosave
+		function saveCustomFields(content) {
+			var $temp = $('<div></div>').html( content );
+			var data ={};
+			var p = lasso_editor.customFields;
+			for (var key in p) {
+			  if (p.hasOwnProperty(key)) {
+				  if ($temp.find(p[key])) {
+					data[key] = $temp.find(p[key])[0].innerText.replace(/[\n\r]/g, '');;
+				  }
+			  }
+			}
+			lasso_editor.cftosave = data;
 		}
 
 		/**
@@ -410,6 +430,15 @@ jQuery(document).ready(function($){
 			if (lasso_editor.aviaEditor) {
 				data['content'] ="";
 				data['metadata'] = { '_aviaLayoutBuilderCleanData': content_};
+			}
+			
+			//custom fields to save
+			if (lasso_editor.cftosave) {
+				if (!data['metadata']) {
+					data['metadata']=  lasso_editor.cftosave;
+				} else {
+					Object.assign(data['metadata'], lasso_editor.cftosave);
+				}
 			}
 			
 			var type;
