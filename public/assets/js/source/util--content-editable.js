@@ -899,7 +899,7 @@
 							elementAttributes: this.attributes
 						});
 
-						this.medium.makeUndoable();
+						//this.medium.makeUndoable();
 
 						applier.toggleSelection(w);
 
@@ -983,6 +983,7 @@
 						},
 						undo: function () {
 							element.innerHTML = this.oldValue;
+							startValue = this.oldValue;
 							medium.canUndo = stack.canUndo();
 							medium.canRedo = stack.canRedo();
 							medium.dirty = stack.dirty();

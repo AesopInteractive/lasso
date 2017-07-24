@@ -326,12 +326,7 @@ jQuery(document).ready(function($){
 			}
 		};
 
-		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
-			articleMedium.element.contentEditable = true;
-			article.highlight();
-		    articleMedium.invokeElement(lasso_editor.boldTag);
-			return false;
-		};
+		
 		
 		
 		
@@ -347,9 +342,6 @@ jQuery(document).ready(function($){
 			    //Hide the color picker if visible
 				$("#lasso-toolbar--color-pick").iris('hide');
 			});
-			/*$(".iris-picker").click(function(e) {
-			   
-			});*/
 			
 			function rgb2hex(rgb) {
 				rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -397,60 +389,63 @@ jQuery(document).ready(function($){
 				} else if (document.selection) {  // IE?
 				  document.selection.empty();
 				}
+				articleMedium.makeUndoable();
 				return false;
 			});
 		}
 
+		
 		
 		// color end
 		
 		//alignement
 		if (lasso_editor.showAlignment) {
-			$('#lasso-toolbar--right-align').mousedown(function() {
+			function alignHelper(align) {
 				var focusedElements = articleMedium.html.textElementsAtCaret();
 				if (focusedElements) {
 					for (i = 0; i < focusedElements.length; i++) {
-					  focusedElements[i].style.textAlign = "right";
+					  focusedElements[i].style.textAlign = align;
 					}			
 				}
+				articleMedium.makeUndoable();
 				return false;
+			}
+			$('#lasso-toolbar--right-align').mousedown(function() {
+				return alignHelper("right");
 			});
 			
 			$('#lasso-toolbar--left-align').mousedown(function() {
-				var focusedElements = articleMedium.html.textElementsAtCaret();
-				if (focusedElements) {
-					for (i = 0; i < focusedElements.length; i++) {
-					  focusedElements[i].style.textAlign = "left";
-					}			
-				}
-				return false;
+				return alignHelper("left");
 			});
 			
 			$('#lasso-toolbar--center-align').mousedown(function() {
-				var focusedElements = articleMedium.html.textElementsAtCaret();
-				if (focusedElements) {
-					for (i = 0; i < focusedElements.length; i++) {
-					  focusedElements[i].style.textAlign = "center";
-					}			
-				}
-				return false;
+				return alignHelper("center");
 			});
 		}
 		
 		//end alignment
 		
-		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
+		function taghelper(tag) {
 			articleMedium.element.contentEditable = true;
 			article.highlight();
-			articleMedium.invokeElement('u');
+		    articleMedium.invokeElement(tag);
+			articleMedium.makeUndoable();
 			return false;
+		}
+		
+		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
+			return taghelper(lasso_editor.boldTag);
+		};
+		
+		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
+			return taghelper('u');
 		};
 
 		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
-			articleMedium.element.contentEditable = true;
-			article.highlight();
-			articleMedium.invokeElement(lasso_editor.iTag);
-			return false;
+			return taghelper(lasso_editor.iTag);
+		};
+		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
+			return taghelper('strike');
 		};
 
 		function heading_helper(heading) {
@@ -466,6 +461,7 @@ jQuery(document).ready(function($){
 				return html.replace(reg,'</p><'+heading+'>$1</'+heading+'><p>');
 			});
 
+			articleMedium.makeUndoable();
 			return false;
 		}
 
@@ -490,12 +486,7 @@ jQuery(document).ready(function($){
 			};
 		}
 
-		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
-			articleMedium.element.contentEditable = true;
-			article.highlight();
-			articleMedium.invokeElement('strike');
-			return false;
-		};
+		
 		document.getElementById('lasso-toolbar--link__create').onmousedown = function() {
 			articleMedium.element.contentEditable = true;
 		    article.highlight();
@@ -518,6 +509,8 @@ jQuery(document).ready(function($){
 
 		    // close modal drag
         	$('#lasso-toolbar--link').removeClass('link--drop-up');
+			
+			articleMedium.makeUndoable();
 
 		    return false;
 		};
@@ -573,6 +566,8 @@ jQuery(document).ready(function($){
 
 		    // close modal drag
         	$('#lasso-toolbar--html').removeClass('html--drop-up');
+			
+			articleMedium.makeUndoable();
 
 		    return false;
 		}

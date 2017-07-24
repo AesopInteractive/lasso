@@ -64,6 +64,7 @@ extend(Undo.Stack.prototype, {
 	undo: function() {
 		this.commands[this.stackPosition].undo();
 		this.stackPosition--;
+		this.commands.pop();
 		this.changed();
 	},
 	canUndo: function() {
