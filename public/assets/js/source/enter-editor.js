@@ -297,6 +297,20 @@ jQuery(document).ready(function($){
 		// set links clickable
 		$("a").attr('contenteditable',false);
 		
+		// custom fields
+		if (lasso_editor.customFields) {
+			var joined = [];
+			for (var key in lasso_editor.customFields) {
+				joined.push(lasso_editor.customFields[key]);
+				lasso_editor.cfselector = key;
+				break;
+			}
+			lasso_editor.cfselector = joined.join(',');
+			if (lasso_editor.undeletableExists = ($(lasso_editor.cfselector).length>0)) {
+				$(lasso_editor.cfselector).addClass('lasso-undeletable');
+			}
+		}
+		
 		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if

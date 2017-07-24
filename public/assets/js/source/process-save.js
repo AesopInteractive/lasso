@@ -117,6 +117,7 @@ jQuery(document).ready(function($){
 			$temp.find("h2").removeClass("lasso-h2");
 			$temp.find("h3").removeClass("lasso-h3");
 			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
+			$temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
 			$temp.find(".lasso-component--controls").remove();
 			
 			$temp.find('*[class=""]').removeAttr('class');
@@ -194,7 +195,8 @@ jQuery(document).ready(function($){
 			var p = lasso_editor.customFields;
 			for (var key in p) {
 			  if (p.hasOwnProperty(key)) {
-				  if ($temp.find(p[key])) {
+				  var arr = $temp.find(p[key]);
+				  if (arr.length) {
 					data[key] = $temp.find(p[key])[0].innerText.replace(/[\n\r]/g, '');;
 				  }
 			  }

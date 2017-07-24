@@ -230,6 +230,7 @@
 											var selRange = sel.getRangeAt(0);
 											if (window.getSelection().isCollapsed) {
 												var container = selRange.endContainer;
+												var container1 = container;
 												while (container && container.parentNode !== articleMedium.element) {
 													var nodes = container.parentNode.querySelectorAll("[contenteditable='false']");
 													if (nodes.length >0) {
@@ -241,7 +242,8 @@
 													e.preventDefault();
 												}											
 												if (e.keyCode == key['backspace'] && 
-												   (container.previousElementSibling && container.previousElementSibling.contentEditable == "false" && container.previousElementSibling.tagName !="A")) {
+												   (container.previousElementSibling && (container.previousElementSibling.contentEditable == "false" || container.previousElementSibling.classList.contains('lasso-undeletable'))
+												     && container.previousElementSibling.tagName !="A")) {
 													if (sel.focusOffset == 0 ) {
 														e.preventDefault();
 													} else if (container1.length == sel.focusOffset && container1.length == 1) {
@@ -249,7 +251,8 @@
 														container1.data = "";
 													}
 												} else if (e.keyCode == key['delete'] && 
-												    (container.nextElementSibling && container.nextElementSibling.contentEditable == "false" && container.nextElementSibling.tagName !="A")) {
+												    (container.nextElementSibling && (container.nextElementSibling.contentEditable == "false" || container.nextElementSibling.classList.contains('lasso-undeletable'))
+													&& container.nextElementSibling.tagName !="A")) {
 												    if (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined) {
 														e.preventDefault();
 													} else if (container1.length == 1 && sel.focusOffset == 0){
@@ -267,6 +270,46 @@
 													}
 												}
 												
+											}
+										}
+									}
+									// the undeletable elements can be edited unlike the readonly elements, but should not be deleted
+									// they are marked with class lasso-undeletable
+									if (lasso_editor.undeletableExists) {
+										var sel = w.getSelection();
+										if (sel.rangeCount) {
+											var selRange = sel.getRangeAt(0);
+											if (window.getSelection().isCollapsed) {
+												var container1 = selRange.endContainer;
+												var container = container1.parentNode;
+												while (container !== articleMedium.element) {	
+													if (container.classList.contains('lasso-undeletable')) {
+														if (e.keyCode == key['backspace']) {
+															if (sel.focusOffset == 0 ) {
+																e.preventDefault();
+															} else if (container1.length == sel.focusOffset && container1.length == 1) {
+																e.preventDefault();
+																container1.data = "";
+															}
+														} else if (e.keyCode == key['delete']) {
+															if (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined) {
+																e.preventDefault();
+															} else if (container1.length == 1 && sel.focusOffset == 0){
+																e.preventDefault();
+																container1.data = "";
+															}
+														}
+														break;
+													}
+													container = container.parentNode;
+												} 	
+												
+											} else {
+												// check if the selection contains non deletable element
+												var nodes = selRange.cloneContents().querySelectorAll(".lasso-undeletable");
+												if (nodes.length) {
+													e.preventDefault();
+												}
 											}
 										}
 									}
