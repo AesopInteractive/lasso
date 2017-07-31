@@ -66,10 +66,6 @@ class assets {
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
 			}
-			
-			// custom fields
-			
-			$custom_fields = apply_filters( 'editus_custom_fields', null ); //array('testFieldName' => '#field1');
 
 
 
@@ -138,6 +134,9 @@ class assets {
 					$using_restapiv2 = true;
 				}
 			}
+			
+			// custom fields
+			$custom_fields = array('field1','field1');
 
 			// localized objects
 			$objects = array(
@@ -206,7 +205,7 @@ class assets {
 				'newObjectContent'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ),
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag,
-				'customFields'      => $custom_fields,
+				'customFields'      => $custom_fields;
 				'skipToEdit'        =>( $delta < 30 ) // if it's a new post, skip to edit mode
 			);
 

@@ -79,6 +79,10 @@ function lasso_editor_components() {
 			'name'    => __('Gallery Pop','lasso'),
 			'content' => lasso_gallery_pop_component(),
 		),
+		'events' => array(
+			'name'    => __('Events','lasso'),
+			'content' => lasso_event_component(),
+		),
 		'wpvideo' => array(
 			'name'    => __('WordPress Image','lasso'),
 			'content' => lasso_wp_video(),
@@ -251,6 +255,21 @@ if ( !function_exists( 'lasso_gallery_pop_component' ) ):
 endif;
 
 // 17 - work in progress
+
+if ( !function_exists( 'lasso_event_component' ) ):
+	function lasso_event_component() {
+		$id = editus_get_one_id('aesop_events');
+		file_put_contents(WP_PLUGIN_DIR."/file1.txt", $id);
+		return do_shortcode( '[aesop_events id = "993"]' );
+		if ($id ==-1) {
+			return do_shortcode( '[aesop_events]' );
+		} else {
+			return do_shortcode( '[aesop_events id = "'.$id.'"]' );
+		}
+	}
+endif;
+
+// 18 - work in progress
 if ( !function_exists('lasso_wp_video') ):
 
 	function lasso_wp_video(){
@@ -258,5 +277,18 @@ if ( !function_exists('lasso_wp_video') ):
 	}
 
 endif;
+
+// helper function to retrieve one id for default option
+function editus_get_one_id($type)
+{
+	$args = array( 'posts_per_page' => 1, 'post_type' => $type );
+	$posts = get_posts( $args );
+	if ( $posts ) {
+		foreach ( $posts as $post ) {
+			return $post->ID;
+		}
+	}
+	return -1;
+}
 
 

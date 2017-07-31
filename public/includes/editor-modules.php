@@ -205,6 +205,9 @@ function lasso_editor_text_toolbar() {
 						<?php if ( class_exists ('Aesop_GalleryPop') ) { ?>
 						     <li data-type="gallery" title="<?php esc_attr_e( 'Gallery Pop', 'lasso' );?>"  class="lasso-toolbar--component__gallerypop"></li>
 						<?php }?>
+						<?php if ( class_exists ('Aesop_Events') ) { ?>
+						     <li data-type="events" title="<?php esc_attr_e( 'Event', 'lasso' );?>"  class="lasso-toolbar--component__event"></li>
+						<?php }?>
 					<?php else: ?>
 						<li data-type="wpimg" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
 						<li data-type="wpquote" title="<?php esc_attr_e( 'WordPress Quote', 'lasso' );?>" class="quote lasso-toolbar--component__quote"></li>

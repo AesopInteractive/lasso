@@ -317,49 +317,51 @@ class lasso {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-video.php');
 		    echo aesop_video_shortcode($atts);
 		}
-		
-		if ($code == "aesop_image") {
+		else if ($code == "aesop_image") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-image.php');
 		    echo aesop_image_shortcode($atts);
 		}
-		if ($code == "aesop_quote") {
+		else if ($code == "aesop_quote") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-quote.php');
 		    echo aesop_quote_shortcode($atts);
 		}
-		
-		if ($code == "aesop_parallax") {
+		else if ($code == "aesop_parallax") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-parallax.php');
 		    echo aesop_parallax_shortcode($atts);
 		}
-		
-		if ($code == "aesop_character") {
+		else if ($code == "aesop_character") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-character.php');
 		    echo aesop_character_shortcode($atts);
 		}
-		
-		if ($code == "aesop_collection") {
+		else if ($code == "aesop_collection") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-collections.php');
 		    echo aesop_collection_shortcode($atts);
 		}
-		
-		if ($code == "aesop_chapter") {
+		else if ($code == "aesop_chapter") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-heading.php');
 		    echo aesop_chapter_shortcode($atts);
 		}
-		
-		if ($code == "aesop_content") {
+		else if ($code == "aesop_content") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-cbox.php');
 		    echo aesop_content_shortcode($atts, $atts['content_data']);
 		}
-		
-		if ($code == "aesop_gallery") {
+		else if ($code == "aesop_gallery") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-gallery.php');
 		    echo do_shortcode( '[aesop_gallery id="'.$atts["id"].'"]');
 		}
-		
-		if ($code == "aesop_audio") {
+		else if ($code == "aesop_audio") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-audio.php');
 		    echo aesop_audio_shortcode($atts);
+		}
+		else {
+			$code = '['.$code.' ';
+			foreach ($atts as $key => $value) {
+			    $code = ''.$key.'="'.$value.'" ';
+			}
+			$code = $code.']';
+			echo do_shortcode($code);
+		    //require_once( ABSPATH . '/wp-content/plugins/aesop-events/public/includes/shortcode.php');
+		    //echo aesop_audio_shortcode($atts);
 		}
 		
 		exit; 
