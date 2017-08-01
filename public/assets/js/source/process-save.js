@@ -455,6 +455,10 @@ jQuery(document).ready(function($){
 				data['title'] = title;
 			}
 			
+			if (lasso_editor.disableSavePost == 'on') {
+				delete data['content'];
+			}
+			
 			$.ajax({
 				method: "POST",
 				url: lasso_editor.rest_root + 'wp/v2/'+type+'/'+postid,

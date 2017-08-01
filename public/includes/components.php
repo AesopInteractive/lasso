@@ -260,7 +260,6 @@ if ( !function_exists( 'lasso_event_component' ) ):
 	function lasso_event_component() {
 		$id = editus_get_one_id('aesop_events');
 		file_put_contents(WP_PLUGIN_DIR."/file1.txt", $id);
-		return do_shortcode( '[aesop_events id = "993"]' );
 		if ($id ==-1) {
 			return do_shortcode( '[aesop_events]' );
 		} else {

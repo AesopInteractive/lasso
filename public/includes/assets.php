@@ -50,6 +50,7 @@ class assets {
 			$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 			$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
 			$disableRESTSave = lasso_editor_get_option('save_using_rest_disabled', 'lasso_editor');
+			$save_to_post_disabled  = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
 			
 			$bold_tag = lasso_editor_get_option('bold_tag', 'lasso_editor','b');
 			$i_tag = lasso_editor_get_option('i_tag', 'lasso_editor','i');
@@ -204,6 +205,7 @@ class assets {
 				'restapi2'          => $using_restapiv2,
 				'saveusingrest'     => $using_restapiv2 && !$disableRESTSave,
 				'newObjectContent'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ),
+				'disableSavePost'   => $save_to_post_disabled,
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag,
 				'customFields'      => $custom_fields,
