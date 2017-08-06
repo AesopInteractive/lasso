@@ -258,14 +258,13 @@ endif;
 
 if ( !function_exists( 'lasso_event_component' ) ):
 	function lasso_event_component() {
-		
-		return '<div data-component-type="events" class="aesop-component lasso-component"><p>Aesop Event: After setting the event, save and reload the page.</p></div>';
-		/*$id = editus_get_one_id('aesop_events');
+		$id = editus_get_one_id('aesop_events');
+		file_put_contents(WP_PLUGIN_DIR."/file1.txt", $id);
 		if ($id ==-1) {
 			return do_shortcode( '[aesop_events]' );
 		} else {
 			return do_shortcode( '[aesop_events id = "'.$id.'"]' );
-		}*/
+		}
 	}
 endif;
 

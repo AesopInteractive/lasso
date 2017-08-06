@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
 			$temp.find("h3").removeClass("lasso-h3");
 			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
 			$temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
-			$temp.find(".lasso-component--controls, .aesop-events-edit").remove();
+			$temp.find(".lasso-component--controls").remove();
 			
 			$temp.find('*[class=""]').removeAttr('class');
 			
