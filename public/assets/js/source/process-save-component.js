@@ -200,7 +200,10 @@
 				cdata['content_data'] = inner[0].innerHTML;
 			}
 			window.get_aesop_component_ajax(cdata);
-		}
+		} /*else if ('events' == cdata['componentType']) {
+			//aesop events
+			alert("Save and Reload the page to see the update.");
+		}*/
 	});
 
 })( jQuery );

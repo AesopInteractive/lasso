@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.15.3
+Stable tag: 0.9.16.0
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,12 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.16.0 =
+* Option to work with custom fields from frontend: (https://edituswp.com/editing-and-updating-custom-fields-from-frontend/)
+* Improvement to the Undo behavior.
+* A bug fix for shortcode handling
+* Aesop event support
+
 = 0.9.15.3 =
 * More fix for custom post types
 * New option to set the tag for the "Italic" style

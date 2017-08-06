@@ -296,9 +296,7 @@ class lasso {
 		$code= $_POST["code"];
 		$code = str_replace('\"', '"', $code);
 		$out = lasso_wrap_shortcodes( $code);
-		//file_put_contents(WP_PLUGIN_DIR."/file9.txt", $out);
 		$out =  do_shortcode($out);
-		//file_put_contents(WP_PLUGIN_DIR."/file10.txt", $out);
 		echo $out;
 		exit;
 	}

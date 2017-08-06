@@ -258,14 +258,8 @@ endif;
 
 if ( !function_exists( 'lasso_event_component' ) ):
 	function lasso_event_component() {
-		
+		$id = editus_get_one_id('aesop_events');
 		return '<div data-component-type="events" class="aesop-component lasso-component"><p>Aesop Event: After setting the event, save and reload the page.</p></div>';
-		/*$id = editus_get_one_id('aesop_events');
-		if ($id ==-1) {
-			return do_shortcode( '[aesop_events]' );
-		} else {
-			return do_shortcode( '[aesop_events id = "'.$id.'"]' );
-		}*/
 	}
 endif;
 

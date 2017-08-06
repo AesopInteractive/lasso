@@ -58,12 +58,18 @@ extend(Undo.Stack.prototype, {
 		this._clearRedo();
 		command.execute();
 		this.commands.push(command);
-		this.stackPosition++;
+		if (this.commands.length>15) {
+			this.commands.shift();
+		} else {
+			this.stackPosition++;
+		}
+		
 		this.changed();
 	},
 	undo: function() {
 		this.commands[this.stackPosition].undo();
 		this.stackPosition--;
+		//this.commands.pop();
 		this.changed();
 	},
 	canUndo: function() {
@@ -5112,6 +5118,7 @@ Undo.Command.extend = function(protoProps) {
 											var selRange = sel.getRangeAt(0);
 											if (window.getSelection().isCollapsed) {
 												var container = selRange.endContainer;
+												var container1 = container;
 												while (container && container.parentNode !== articleMedium.element) {
 													var nodes = container.parentNode.querySelectorAll("[contenteditable='false']");
 													if (nodes.length >0) {
@@ -5122,13 +5129,23 @@ Undo.Command.extend = function(protoProps) {
 												if (container.contentEditable == "false") {
 													e.preventDefault();
 												}											
-												if (e.keyCode == key['backspace'] && sel.focusOffset == 0 ) {
-													if (container.previousElementSibling && container.previousElementSibling.contentEditable == "false" && container.previousElementSibling.tagName !="A") {
+												if (e.keyCode == key['backspace'] && 
+												   (container.previousElementSibling && (container.previousElementSibling.contentEditable == "false" || container.previousElementSibling.classList.contains('lasso-undeletable'))
+												     && container.previousElementSibling.tagName !="A")) {
+													if (sel.focusOffset == 0 ) {
 														e.preventDefault();
+													} else if (container1.length == sel.focusOffset && container1.length == 1) {
+														e.preventDefault();
+														container1.data = "";
 													}
-												} else if (e.keyCode == key['delete'] && (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined)) {
-													if (container.nextElementSibling && container.nextElementSibling.contentEditable == "false" && container.nextElementSibling.tagName !="A") {
+												} else if (e.keyCode == key['delete'] && 
+												    (container.nextElementSibling && (container.nextElementSibling.contentEditable == "false" || container.nextElementSibling.classList.contains('lasso-undeletable'))
+													&& container.nextElementSibling.tagName !="A")) {
+												    if (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined) {
 														e.preventDefault();
+													} else if (container1.length == 1 && sel.focusOffset == 0){
+														e.preventDefault();
+														container1.data = "";
 													}
 												}
 											} else {
@@ -5141,6 +5158,46 @@ Undo.Command.extend = function(protoProps) {
 													}
 												}
 												
+											}
+										}
+									}
+									// the undeletable elements can be edited unlike the readonly elements, but should not be deleted
+									// they are marked with class lasso-undeletable
+									if (lasso_editor.undeletableExists) {
+										var sel = w.getSelection();
+										if (sel.rangeCount) {
+											var selRange = sel.getRangeAt(0);
+											if (window.getSelection().isCollapsed) {
+												var container1 = selRange.endContainer;
+												var container = container1.parentNode;
+												while (container !== articleMedium.element) {	
+													if (container.classList.contains('lasso-undeletable')) {
+														if (e.keyCode == key['backspace']) {
+															if (sel.focusOffset == 0 ) {
+																e.preventDefault();
+															} else if (container1.length == sel.focusOffset && container1.length == 1) {
+																e.preventDefault();
+																container1.data = "";
+															}
+														} else if (e.keyCode == key['delete']) {
+															if (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined) {
+																e.preventDefault();
+															} else if (container1.length == 1 && sel.focusOffset == 0){
+																e.preventDefault();
+																container1.data = "";
+															}
+														}
+														break;
+													}
+													container = container.parentNode;
+												} 	
+												
+											} else {
+												// check if the selection contains non deletable element
+												var nodes = selRange.cloneContents().querySelectorAll(".lasso-undeletable");
+												if (nodes.length) {
+													e.preventDefault();
+												}
 											}
 										}
 									}
@@ -5781,7 +5838,7 @@ Undo.Command.extend = function(protoProps) {
 							elementAttributes: this.attributes
 						});
 
-						this.medium.makeUndoable();
+						//this.medium.makeUndoable();
 
 						applier.toggleSelection(w);
 
@@ -5865,6 +5922,7 @@ Undo.Command.extend = function(protoProps) {
 						},
 						undo: function () {
 							element.innerHTML = this.oldValue;
+							startValue = this.oldValue;
 							medium.canUndo = stack.canUndo();
 							medium.canRedo = stack.canRedo();
 							medium.dirty = stack.dirty();
@@ -5920,13 +5978,14 @@ Undo.Command.extend = function(protoProps) {
 
 					utils.preventDefaultEvent(e);
 
-					me.movingThroughStack = true;
-
 					if (e.shiftKey) {
+						me.movingThroughStack = true;
 						stack.canRedo() && stack.redo()
 					} else {
+						me.movingThroughStack = true;
 						stack.canUndo() && stack.undo();
 					}
+					me.movingThroughStack = false;
 				});
 			};
 		}
@@ -10622,6 +10681,20 @@ jQuery(document).ready(function($){
 		// set links clickable
 		$("a").attr('contenteditable',false);
 		
+		// custom fields
+		if (lasso_editor.customFields) {
+			var joined = [];
+			for (var key in lasso_editor.customFields) {
+				joined.push(lasso_editor.customFields[key]);
+				lasso_editor.cfselector = key;
+				break;
+			}
+			lasso_editor.cfselector = joined.join(',');
+			if (lasso_editor.undeletableExists = ($(lasso_editor.cfselector).length>0)) {
+				$(lasso_editor.cfselector).addClass('lasso-undeletable');
+			}
+		}
+		
 		//$(objectsNonEditable).disableSelection();
 
 	    // this forces the default new element in content editable to be a paragraph element if
@@ -10651,12 +10724,7 @@ jQuery(document).ready(function($){
 			}
 		};
 
-		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
-			articleMedium.element.contentEditable = true;
-			article.highlight();
-		    articleMedium.invokeElement(lasso_editor.boldTag);
-			return false;
-		};
+		
 		
 		
 		
@@ -10672,9 +10740,6 @@ jQuery(document).ready(function($){
 			    //Hide the color picker if visible
 				$("#lasso-toolbar--color-pick").iris('hide');
 			});
-			/*$(".iris-picker").click(function(e) {
-			   
-			});*/
 			
 			function rgb2hex(rgb) {
 				rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -10722,60 +10787,63 @@ jQuery(document).ready(function($){
 				} else if (document.selection) {  // IE?
 				  document.selection.empty();
 				}
+				articleMedium.makeUndoable();
 				return false;
 			});
 		}
 
+		
 		
 		// color end
 		
 		//alignement
 		if (lasso_editor.showAlignment) {
-			$('#lasso-toolbar--right-align').mousedown(function() {
+			function alignHelper(align) {
 				var focusedElements = articleMedium.html.textElementsAtCaret();
 				if (focusedElements) {
 					for (i = 0; i < focusedElements.length; i++) {
-					  focusedElements[i].style.textAlign = "right";
+					  focusedElements[i].style.textAlign = align;
 					}			
 				}
+				articleMedium.makeUndoable();
 				return false;
+			}
+			$('#lasso-toolbar--right-align').mousedown(function() {
+				return alignHelper("right");
 			});
 			
 			$('#lasso-toolbar--left-align').mousedown(function() {
-				var focusedElements = articleMedium.html.textElementsAtCaret();
-				if (focusedElements) {
-					for (i = 0; i < focusedElements.length; i++) {
-					  focusedElements[i].style.textAlign = "left";
-					}			
-				}
-				return false;
+				return alignHelper("left");
 			});
 			
 			$('#lasso-toolbar--center-align').mousedown(function() {
-				var focusedElements = articleMedium.html.textElementsAtCaret();
-				if (focusedElements) {
-					for (i = 0; i < focusedElements.length; i++) {
-					  focusedElements[i].style.textAlign = "center";
-					}			
-				}
-				return false;
+				return alignHelper("center");
 			});
 		}
 		
 		//end alignment
 		
-		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
+		function taghelper(tag) {
 			articleMedium.element.contentEditable = true;
 			article.highlight();
-			articleMedium.invokeElement('u');
+		    articleMedium.invokeElement(tag);
+			articleMedium.makeUndoable();
 			return false;
+		}
+		
+		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
+			return taghelper(lasso_editor.boldTag);
+		};
+		
+		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
+			return taghelper('u');
 		};
 
 		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
-			articleMedium.element.contentEditable = true;
-			article.highlight();
-			articleMedium.invokeElement(lasso_editor.iTag);
-			return false;
+			return taghelper(lasso_editor.iTag);
+		};
+		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
+			return taghelper('strike');
 		};
 
 		function heading_helper(heading) {
@@ -10791,6 +10859,7 @@ jQuery(document).ready(function($){
 				return html.replace(reg,'</p><'+heading+'>$1</'+heading+'><p>');
 			});
 
+			articleMedium.makeUndoable();
 			return false;
 		}
 
@@ -10815,12 +10884,7 @@ jQuery(document).ready(function($){
 			};
 		}
 
-		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
-			articleMedium.element.contentEditable = true;
-			article.highlight();
-			articleMedium.invokeElement('strike');
-			return false;
-		};
+		
 		document.getElementById('lasso-toolbar--link__create').onmousedown = function() {
 			articleMedium.element.contentEditable = true;
 		    article.highlight();
@@ -10843,6 +10907,8 @@ jQuery(document).ready(function($){
 
 		    // close modal drag
         	$('#lasso-toolbar--link').removeClass('link--drop-up');
+			
+			articleMedium.makeUndoable();
 
 		    return false;
 		};
@@ -10898,6 +10964,8 @@ jQuery(document).ready(function($){
 
 		    // close modal drag
         	$('#lasso-toolbar--html').removeClass('html--drop-up');
+			
+			articleMedium.makeUndoable();
 
 		    return false;
 		}
@@ -12569,7 +12637,8 @@ jQuery(document).ready(function($){
 			$temp.find("h2").removeClass("lasso-h2");
 			$temp.find("h3").removeClass("lasso-h3");
 			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
-			$temp.find(".lasso-component--controls").remove();
+			$temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
+			$temp.find(".lasso-component--controls, .aesop-events-edit").remove();
 			
 			$temp.find('*[class=""]').removeAttr('class');
 			
@@ -12578,6 +12647,11 @@ jQuery(document).ready(function($){
 		
 		// remove all contenteditable attr
 		html = removeEditable(html);
+		
+		// if custom fields
+		if (lasso_editor.customFields) {
+			saveCustomFields(html);
+		}
 		
 		// shortcode ultimate
 		html = shortcodify_su(html);
@@ -12601,6 +12675,8 @@ jQuery(document).ready(function($){
 			post_id:   	postid,
 			nonce:     	lasso_editor.nonce
 		};
+		
+		
 
 		// intercept if publish to confirm
 		if ( $this.hasClass('lasso-publish-post') ) {
@@ -12632,6 +12708,22 @@ jQuery(document).ready(function($){
 		function removeEditable(content) 
 		{	
 			return content.replace(/contenteditable="(false|true)"/g, "");
+		}
+		
+		// gather the custom field data and save to lasso_editor.cftosave
+		function saveCustomFields(content) {
+			var $temp = $('<div></div>').html( content );
+			var data ={};
+			var p = lasso_editor.customFields;
+			for (var key in p) {
+			  if (p.hasOwnProperty(key)) {
+				  var arr = $temp.find(p[key]);
+				  if (arr.length) {
+					data[key] = $temp.find(p[key])[0].innerText.replace(/[\n\r]/g, '');;
+				  }
+			  }
+			}
+			lasso_editor.cftosave = data;
 		}
 
 		/**
@@ -12864,6 +12956,15 @@ jQuery(document).ready(function($){
 				data['metadata'] = { '_aviaLayoutBuilderCleanData': content_};
 			}
 			
+			//custom fields to save
+			if (lasso_editor.cftosave) {
+				if (!data['metadata']) {
+					data['metadata']=  lasso_editor.cftosave;
+				} else {
+					Object.assign(data['metadata'], lasso_editor.cftosave);
+				}
+			}
+			
 			var type;
 			if (type_=="post") {
 				type = "posts";
@@ -12874,6 +12975,10 @@ jQuery(document).ready(function($){
 			}
 			if (title && title.length>0) {
 				data['title'] = title;
+			}
+			
+			if (lasso_editor.disableSavePost == 'on') {
+				delete data['content'];
 			}
 			
 			$.ajax({
@@ -13812,7 +13917,10 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				cdata['content_data'] = inner[0].innerHTML;
 			}
 			window.get_aesop_component_ajax(cdata);
-		}
+		} /*else if ('events' == cdata['componentType']) {
+			//aesop events
+			alert("Save and Reload the page to see the update.");
+		}*/
 	});
 
 })( jQuery );
@@ -14212,7 +14320,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){	
-		capable = lasso_editor.edit_others_posts;
+		var capable = lasso_editor.edit_others_posts;
 		lastType = type;
 		if ( 'pages' == type ) {
 			capable = lasso_editor.edit_others_pages;
@@ -14278,6 +14386,68 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				fetchError(xhr);
 			});
 		} else {
+			var author = capable ? lasso_editor.author : -1;
+			var parms = getParams( true, page, author );
+			jQuery.ajax({
+				method: "GET",
+				url: WP_API_Settings.root+'wp/v2/'+type+parms,//'?status[]=draft&author[]='+lasso_editor.author,
+				//dataType: "json",
+				beforeSend: function(xhr){
+					xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+				},
+				success : function( data ) {
+					dispPosts(data, type);
+					parms = getParams( false, page, author );
+					jQuery.ajax({
+						method: "GET",
+						url: WP_API_Settings.root+'wp/v2/'+type+parms,
+						//dataType: "json",
+						beforeSend: function(xhr){
+							xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+						},
+						success : function( data ) {
+							dispPosts(data, type);
+						},
+						done: function(data)  {						
+						},
+						error: function(xhr, err)  {
+						    $( '#lasso--loading' ).remove();
+							//alert(xhr.responseText);
+							//fetchError(xhr);
+						}
+					});
+				},
+				done: function(data)  {
+					
+				},
+				error: function(xhr, err)  {
+				    $( '#lasso--loading' ).remove();
+					//alert(xhr.responseText);
+					//fetchError(xhr);
+					parms = getParams( false, page, lasso_editor.author );
+					jQuery.ajax({
+						method: "GET",
+						url: WP_API_Settings.root+'wp/v2/'+type+parms,
+						//dataType: "json",
+						beforeSend: function(xhr){
+							xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+						},
+						success : function( data ) {
+							dispPosts(data, type);
+						},
+						done: function(data)  {						
+						},
+						error: function(xhr, err)  {
+						    $( '#lasso--loading' ).remove();
+							//alert(xhr.responseText);
+							//fetchError(xhr);
+						}
+					});
+				}
+			});
+
+			
+			
 			options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 			jQuery.getJSON(WP_API_Settings.root+'wp/v2/'+type,options, function(data) {
 				$( '#lasso--load-more' ).remove();
@@ -14313,8 +14483,48 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				fetchError(xhr);
 			});
 		}
-
 	}
+	
+	function dispPosts(data, type) {
+		$( '#lasso--load-more' ).remove();
+		if ( data.length > 0 ) {
+						var setContainer = $( '<div data-page-num="' + page + '" class="lasso--object-batch" id="lasso--object-batch-' + page + '"></div>' );
+
+						jQuery.each( data, function( i, val ) {
+						   setContainer.append( postTemplate( { post: val, link_: val.link, settings: WP_API_Settings } ) );
+						});
+						// append to the post container
+						$(postList).append( setContainer );
+
+						//put back more button
+						if (data.length>=7 ) {
+							$(postList).append( moreButton );
+							$( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
+						}
+
+						// show search filtering
+						$('.lasso--post-filtering').removeClass('not-visible').addClass('visible');
+						// re-init scroll
+						initScroll()
+		} else {
+						//$( postList ).append( noPostsMessage );
+						setTimeout(function(){
+							$('#lafesso--end-posts').fadeOut('slow')
+						}, 1000)
+		}
+		destroyLoader();
+	}
+	
+	function getParams( draft, page, author ) {
+		var params = '?page='+page;
+	   if (author != -1) {
+		   params += '&author[]='+author;
+	   }
+	   if (draft) {
+		   params += '&status[]=draft';
+	   }
+	   return params;
+    }
 
     /**
      * Helper function to reset options

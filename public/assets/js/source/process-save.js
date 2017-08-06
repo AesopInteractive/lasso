@@ -128,6 +128,11 @@ jQuery(document).ready(function($){
 		// remove all contenteditable attr
 		html = removeEditable(html);
 		
+		// if custom fields
+		if (lasso_editor.customFields) {
+			saveCustomFields(html);
+		}
+		
 		// shortcode ultimate
 		html = shortcodify_su(html);
 		
@@ -151,10 +156,7 @@ jQuery(document).ready(function($){
 			nonce:     	lasso_editor.nonce
 		};
 		
-		// if custom fields
-		if (lasso_editor.customFields) {
-			saveCustomFields(html);
-		}
+		
 
 		// intercept if publish to confirm
 		if ( $this.hasClass('lasso-publish-post') ) {

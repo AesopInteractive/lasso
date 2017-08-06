@@ -80,7 +80,7 @@
 	// FETCH POSTS HELPER FUNCTION
 	/////////////////
 	function fetchPosts( type ){	
-		capable = lasso_editor.edit_others_posts;
+		var capable = lasso_editor.edit_others_posts;
 		lastType = type;
 		if ( 'pages' == type ) {
 			capable = lasso_editor.edit_others_pages;
@@ -146,6 +146,68 @@
 				fetchError(xhr);
 			});
 		} else {
+			var author = capable ? lasso_editor.author : -1;
+			var parms = getParams( true, page, author );
+			jQuery.ajax({
+				method: "GET",
+				url: WP_API_Settings.root+'wp/v2/'+type+parms,//'?status[]=draft&author[]='+lasso_editor.author,
+				//dataType: "json",
+				beforeSend: function(xhr){
+					xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+				},
+				success : function( data ) {
+					dispPosts(data, type);
+					parms = getParams( false, page, author );
+					jQuery.ajax({
+						method: "GET",
+						url: WP_API_Settings.root+'wp/v2/'+type+parms,
+						//dataType: "json",
+						beforeSend: function(xhr){
+							xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+						},
+						success : function( data ) {
+							dispPosts(data, type);
+						},
+						done: function(data)  {						
+						},
+						error: function(xhr, err)  {
+						    $( '#lasso--loading' ).remove();
+							//alert(xhr.responseText);
+							//fetchError(xhr);
+						}
+					});
+				},
+				done: function(data)  {
+					
+				},
+				error: function(xhr, err)  {
+				    $( '#lasso--loading' ).remove();
+					//alert(xhr.responseText);
+					//fetchError(xhr);
+					parms = getParams( false, page, lasso_editor.author );
+					jQuery.ajax({
+						method: "GET",
+						url: WP_API_Settings.root+'wp/v2/'+type+parms,
+						//dataType: "json",
+						beforeSend: function(xhr){
+							xhr.setRequestHeader( 'X-WP-Nonce', lasso_editor.rest_nonce );
+						},
+						success : function( data ) {
+							dispPosts(data, type);
+						},
+						done: function(data)  {						
+						},
+						error: function(xhr, err)  {
+						    $( '#lasso--loading' ).remove();
+							//alert(xhr.responseText);
+							//fetchError(xhr);
+						}
+					});
+				}
+			});
+
+			
+			
 			options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
 			jQuery.getJSON(WP_API_Settings.root+'wp/v2/'+type,options, function(data) {
 				$( '#lasso--load-more' ).remove();
@@ -181,8 +243,48 @@
 				fetchError(xhr);
 			});
 		}
-
 	}
+	
+	function dispPosts(data, type) {
+		$( '#lasso--load-more' ).remove();
+		if ( data.length > 0 ) {
+						var setContainer = $( '<div data-page-num="' + page + '" class="lasso--object-batch" id="lasso--object-batch-' + page + '"></div>' );
+
+						jQuery.each( data, function( i, val ) {
+						   setContainer.append( postTemplate( { post: val, link_: val.link, settings: WP_API_Settings } ) );
+						});
+						// append to the post container
+						$(postList).append( setContainer );
+
+						//put back more button
+						if (data.length>=7 ) {
+							$(postList).append( moreButton );
+							$( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
+						}
+
+						// show search filtering
+						$('.lasso--post-filtering').removeClass('not-visible').addClass('visible');
+						// re-init scroll
+						initScroll()
+		} else {
+						//$( postList ).append( noPostsMessage );
+						setTimeout(function(){
+							$('#lafesso--end-posts').fadeOut('slow')
+						}, 1000)
+		}
+		destroyLoader();
+	}
+	
+	function getParams( draft, page, author ) {
+		var params = '?page='+page;
+	   if (author != -1) {
+		   params += '&author[]='+author;
+	   }
+	   if (draft) {
+		   params += '&status[]=draft';
+	   }
+	   return params;
+    }
 
     /**
      * Helper function to reset options
