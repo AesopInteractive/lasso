@@ -147,6 +147,15 @@ jQuery(document).ready(function($){
 			html = shortcodify_avia(html);
 		}
 		
+		// any user supplied filters
+	
+		if (lasso_editor.filterArray) {
+			$(lasso_editor.filterArray).each(function(key, val){
+				html = val(html );
+			});
+		}
+		
+		
 		// gather the data
 		var data      = {
 			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
