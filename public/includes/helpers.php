@@ -12,26 +12,28 @@
  * @return the option value
  * @since 1.0
  */
-function lasso_editor_get_option( $option, $section, $default = '' ) {
+if( !function_exists('lasso_editor_get_option')):
+	function lasso_editor_get_option( $option, $section, $default = '' ) {
 
-	if ( empty( $option ) )
-		return;
+		if ( empty( $option ) )
+			return;
 
-	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 
-		$options = get_site_option( $section );
+			$options = get_site_option( $section );
 
-	} else {
+		} else {
 
-		$options = get_option( $section );
+			$options = get_option( $section );
+		}
+
+		if ( isset( $options[$option] ) ) {
+			return $options[$option];
+		}
+
+		return $default;
 	}
-
-	if ( isset( $options[$option] ) ) {
-		return $options[$option];
-	}
-
-	return $default;
-}
+endif;
 
 /**
  * Check to see if any Lasso galleries exist
