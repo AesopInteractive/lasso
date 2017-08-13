@@ -589,7 +589,9 @@ function lasso_editor_allpost_modal() {
 				if ( ! empty( $post_types ) ) {
 					$first = 'active';
 					foreach( $post_types as $name => $label ) {
-						printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $rest_bases[$name] ), esc_attr( $label ) );
+						if (array_key_exists($name, $rest_bases)) {
+							printf( '<li class="%1s lasso--show-objects" data-post-type="%2s">%3s</li>', esc_attr( $first), esc_attr( $rest_bases[$name] ), esc_attr( $label ) );
+						}
 						$first = '';
 					}
 
