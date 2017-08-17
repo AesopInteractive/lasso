@@ -243,6 +243,8 @@ class welcome {
 	            'nag_type'                        => 'updated' // Determines admin notice type - can only be 'updated', 'update-nag' or 'error'.
 	        )
 	    );
+		
+		$plugins = apply_filters( 'lasso_required_plugins', $plugins );
 
 	    tgmpa( $plugins, $config );
 

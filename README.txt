@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.16.0
+Stable tag: 0.9.16.2
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,14 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.16.2 =
+* Added lasso_required_plugins filter
+
+= 0.9.16.1 =
+* A bug fix for multisite installation.
+* A bug fix for page list.
+* Added a way to add a filter to the save operation.
+
 = 0.9.16.0 =
 * Option to work with custom fields from frontend: (https://edituswp.com/editing-and-updating-custom-fields-from-frontend/)
 * Improvement to the Undo behavior.
