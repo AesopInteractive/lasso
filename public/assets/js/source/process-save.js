@@ -139,6 +139,14 @@ jQuery(document).ready(function($){
 		// shortcode aesop
 		html = $this.hasClass('shortcodify-enabled') ? shortcodify(html) : html;
 		
+		// any user supplied filters
+	
+		if (lasso_editor.filterArray) {
+			$(lasso_editor.filterArray).each(function(key, val){
+				html = val(html );
+			});
+		}
+		
 		// restore other shortcodes to the original shortcodes
 		html = replace_rendered_shortcodes( html );
 
@@ -147,13 +155,7 @@ jQuery(document).ready(function($){
 			html = shortcodify_avia(html);
 		}
 		
-		// any user supplied filters
-	
-		if (lasso_editor.filterArray) {
-			$(lasso_editor.filterArray).each(function(key, val){
-				html = val(html );
-			});
-		}
+		
 		
 		
 		// gather the data

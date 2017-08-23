@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.16.2
+Stable tag: 0.9.16.3
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.16.3 =
+* Adjusted the content filter so it can filter shortcode content
+
 = 0.9.16.2 =
 * Added lasso_required_plugins filter
 
