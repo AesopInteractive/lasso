@@ -4899,6 +4899,20 @@ Undo.Command.extend = function(protoProps) {
 
 (function (w, d) {
 	'use strict';
+	
+	// check if the selection contains noneditable element
+	function checkNonEditable(e, selRange) {
+		var i =0;
+		var nodes = selRange.cloneContents().querySelectorAll("[contenteditable='false']");
+		for (i =0; i< nodes.length; i++) {
+			if (nodes[i].tagName !="A") {
+				e.preventDefault();
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	var Medium = (function () {
 		
 		var trim = function (string) {
@@ -5150,14 +5164,9 @@ Undo.Command.extend = function(protoProps) {
 												}
 											} else {
 												// check if the selection contains noneditable element
-												var nodes = selRange.cloneContents().querySelectorAll("[contenteditable='false']");
-												for (i =0; i< nodes.length; i++) {
-													if (nodes[i].tagName !="A") {
-													   e.preventDefault();
-													   break;
-													}
+												if (checkNonEditable(e,selRange)) {
+													break;
 												}
-												
 											}
 										}
 									}
@@ -5203,6 +5212,23 @@ Undo.Command.extend = function(protoProps) {
 									}
 									intercept.backspaceOrDeleteKey(e);
 									break;
+								default: 
+									if (lasso_editor.readOnlyExists || lasso_editor.undeletableExists) {
+										var sel = w.getSelection();
+										if (sel.rangeCount) {
+											var selRange = sel.getRangeAt(0);
+											if (!window.getSelection().isCollapsed) {
+												if (checkNonEditable(e, selRange)) {
+													break;
+												}	
+												// check if the selection contains non deletable element
+												var nodes = selRange.cloneContents().querySelectorAll(".lasso-undeletable");
+												if (nodes.length) {
+													e.preventDefault();
+												}
+											}
+										}
+									}
 							}
 
 							return keepEvent;
