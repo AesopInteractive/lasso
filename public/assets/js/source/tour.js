@@ -8,7 +8,7 @@
 		}
 
 		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
-		jQuery(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
+		Query(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
 
 			e.preventDefault();
 
@@ -19,24 +19,43 @@
 				destroyModal()
 
 			} else {
-
-				var data = {
-					action: 		'process_tour_hide',
-					nonce: 			$(this).data('nonce')
-				}
-
-				$.post( lasso_editor.ajaxurl, data, function(response) {
-
-					if ( true == response.success ) {
-
-						destroyModal();
-
+				if (lasso_editor.saveusingrest) {
+					var data = {
+						action: 		'process_tour_hide',
+						nonce: 			$(this).data('nonce')
 					}
 
-				}).fail(function(xhr, err) { 
-					var responseTitle= $(xhr.responseText).filter('title').get(0);
-					alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
-				});
+					$.post( lasso_editor.ajaxurl, data, function(response) {
+
+						if ( true == response.success ) {
+
+							destroyModal();
+
+						}
+
+					}).fail(function(xhr, err) { 
+						var responseTitle= $(xhr.responseText).filter('title').get(0);
+						alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+					});
+				} else {
+					var data = {
+						action: 		'process_tour_hide',
+						nonce: 			$(this).data('nonce')
+					}
+
+					$.post( lasso_editor.ajaxurl, data, function(response) {
+
+						if ( true == response.success ) {
+
+							destroyModal();
+
+						}
+
+					}).fail(function(xhr, err) { 
+						var responseTitle= $(xhr.responseText).filter('title').get(0);
+						alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+					});				
+				}
 			}
 
 		});
