@@ -45,12 +45,6 @@ if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	}
 }
 
-
-register_meta('user', 'lasso_hide_tour', array(
-  "type" => "string",
-  "show_in_rest" => true // this is the key part
-));
-
 /*function lasso_show_in_rest() {
 	global $wp_post_types;
 	
