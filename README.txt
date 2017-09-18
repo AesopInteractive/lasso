@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.16.4
+Stable tag: 0.9.16.8
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,11 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.16.8 =
+* Added Twitter handling codes
+* Tour dialog uses REST API to save settings
+* More social share plugins supported.
+
 = 0.9.16.4 =
 * Added lasso_wrap_shortcode_exceptions filter
 * Fixed a bug where you could delete readonly elements by selecting and hitting 
