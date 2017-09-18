@@ -8,7 +8,7 @@
 		}
 
 		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
-		Query(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
+		jQuery(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
 
 			e.preventDefault();
 
