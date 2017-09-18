@@ -98,6 +98,9 @@ jQuery(document).ready(function($){
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
 			
+		// take care of twitter widget
+		html = process_twitter(html);
+			
 	    // remove objects to ignore if they are not removed already
 		if (lasso_editor.showIgnoredItems ) {
 			var $temp = $('<div></div>').html( html );
@@ -294,6 +297,23 @@ jQuery(document).ready(function($){
 
 			return processed;
 
+		}
+		
+		function process_twitter(html)
+		{
+			// if twitter widget doesn't exist return
+			if (html.indexOf("twitterwidget") ==-1) return html;
+			var t = $('#'+editor).clone();
+			var t1 = t.find('twitterwidget');
+			var t2 = $('#'+editor).find('twitterwidget');
+			var i;
+			for (i = 0; i<t1.length; i++) {
+				var t5 = $('<div></div>').html(t2[i].shadowRoot.innerHTML).find('.EmbeddedTweet').data('click-to-open-target');
+				$(t1[i]).replaceWith(t5);
+			}
+			
+			var html2 = t.html();
+			return html2;
 		}
 		
 		//shortcode ultimates

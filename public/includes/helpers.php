@@ -169,7 +169,7 @@ function lasso_get_supported_theme_featured_image_class() {
 */
 function lasso_supported_no_save(){
 
-	return apply_filters('lasso_dont_save', '.lasso--ignore,.sharedaddy,.us_wrapper,.meta,.edit-link,.ssba,.addtoany_share_save_container,.mashsb-container,.heateor_sss_sharing_container, .jp-relatedposts, .fb-comments');
+	return apply_filters('lasso_dont_save', '.lasso--ignore,.sharedaddy,.us_wrapper,.meta,.edit-link,.ssba,.addtoany_share_save_container,.mashsb-container,.heateor_sss_sharing_container,.nc_socialPanel, .jp-relatedposts, .fb-comments');
 }
 
 /**

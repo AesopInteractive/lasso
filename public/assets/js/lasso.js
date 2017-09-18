@@ -5165,9 +5165,9 @@ Undo.Command.extend = function(protoProps) {
 											} else {
 												// check if the selection contains noneditable element
 												if (checkNonEditable(e,selRange)) {
-													break;
+													   break;
+													}
 												}
-											}
 										}
 									}
 									// the undeletable elements can be edited unlike the readonly elements, but should not be deleted
@@ -12644,6 +12644,9 @@ jQuery(document).ready(function($){
 		var html = $('#'+editor).html(),
 			postid = $this.closest('#lasso--controls').data('post-id');
 			
+		// take care of twitter widget
+		html = process_twitter(html);
+			
 	    // remove objects to ignore if they are not removed already
 		if (lasso_editor.showIgnoredItems ) {
 			var $temp = $('<div></div>').html( html );
@@ -12840,6 +12843,23 @@ jQuery(document).ready(function($){
 
 			return processed;
 
+		}
+		
+		function process_twitter(html)
+		{
+			// if twitter widget doesn't exist return
+			if (html.indexOf("twitterwidget") ==-1) return html;
+			var t = $('#'+editor).clone();
+			var t1 = t.find('twitterwidget');
+			var t2 = $('#'+editor).find('twitterwidget');
+			var i;
+			for (i = 0; i<t1.length; i++) {
+				var t5 = $('<div></div>').html(t2[i].shadowRoot.innerHTML).find('.EmbeddedTweet').data('click-to-open-target');
+				$(t1[i]).replaceWith(t5);
+			}
+			
+			var html2 = t.html();
+			return html2;
 		}
 		
 		//shortcode ultimates
@@ -14887,7 +14907,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		}
 
 		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
-		jQuery(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
+		Query(document).on('click', '#lasso--tour__modal input[type="submit"]', function(e){
 
 			e.preventDefault();
 
@@ -14898,24 +14918,43 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				destroyModal()
 
 			} else {
-
-				var data = {
-					action: 		'process_tour_hide',
-					nonce: 			$(this).data('nonce')
-				}
-
-				$.post( lasso_editor.ajaxurl, data, function(response) {
-
-					if ( true == response.success ) {
-
-						destroyModal();
-
+				if (lasso_editor.saveusingrest) {
+					var data = {
+						action: 		'process_tour_hide',
+						nonce: 			$(this).data('nonce')
 					}
 
-				}).fail(function(xhr, err) { 
-					var responseTitle= $(xhr.responseText).filter('title').get(0);
-					alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
-				});
+					$.post( lasso_editor.ajaxurl, data, function(response) {
+
+						if ( true == response.success ) {
+
+							destroyModal();
+
+						}
+
+					}).fail(function(xhr, err) { 
+						var responseTitle= $(xhr.responseText).filter('title').get(0);
+						alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+					});
+				} else {
+					var data = {
+						action: 		'process_tour_hide',
+						nonce: 			$(this).data('nonce')
+					}
+
+					$.post( lasso_editor.ajaxurl, data, function(response) {
+
+						if ( true == response.success ) {
+
+							destroyModal();
+
+						}
+
+					}).fail(function(xhr, err) { 
+						var responseTitle= $(xhr.responseText).filter('title').get(0);
+						alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+					});				
+				}
 			}
 
 		});
