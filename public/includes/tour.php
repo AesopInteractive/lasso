@@ -36,6 +36,24 @@ class tour {
 
 			?>
 			<div id="lasso--tour__modal" class="lasso--modal lasso--tour__modal lasso--modal__checkbox <?php echo sanitize_html_class( $custom_classes );?>">
+			    <script>
+				(function( $ ) {
+					$(document).ready(function(){
+						jQuery(document).on('click','#editus_tour_submit', function(e){
+							if ($('#hide_tour').prop('checked')) {
+								var data = {
+										action: 'editus_hide_tour'
+								};
+												
+								jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+									    
+									
+								});
+							}
+						});
+					});
+				})( jQuery );
+				</script>
 				<div class="lasso--modal__inner">
 
 					<?php echo self::tour_slides();?>
@@ -50,7 +68,7 @@ class tour {
 					        </label>
 						</div>
 
-						<input type="submit" value="<?php _e( 'Okay, got it!', 'lasso' );?>" data-nonce="<?php echo $nonce;?>" >
+						<input id ="editus_tour_submit" type="submit" value="<?php _e( 'Okay, got it!', 'lasso' );?>" data-nonce="<?php echo $nonce;?>" >
 					</div>
 
 				</div>

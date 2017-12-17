@@ -60,6 +60,7 @@ class lasso {
 		add_action( 'wp_ajax_get_aesop_component',     array( $this, 'get_aesop_component' ) );
 		add_action( 'wp_ajax_editus_do_shortcode',     array( $this, 'editus_do_shortcode' ) );
 		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
+		add_action( 'wp_ajax_editus_hide_tour',     array( $this, 'editus_hide_tour' ) );
 
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
@@ -272,6 +273,15 @@ class lasso {
 			$user_info = get_userdata($locked);
 			echo "Post opened by ".$user_info->first_name .  " " . $user_info->last_name;
 		}
+		exit;
+	}
+	
+	// new ajax function to update tour setting
+	public function editus_hide_tour()
+	{
+		$user_id = get_current_user_ID();
+				
+		update_user_meta( $user_id, 'lasso_hide_tour', true );
 		exit;
 	}
 	
