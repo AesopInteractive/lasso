@@ -96,7 +96,6 @@ class settings {
 		$post_new_disabled   = lasso_editor_get_option( 'post_adding_disabled', 'lasso_editor' );
 		$save_to_post_disabled  = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
 		$post_settings_disabled = lasso_editor_get_option( 'post_settings_disabled', 'lasso_editor' );
-		$allow_change_date = lasso_editor_get_option( 'allow_change_date', 'lasso_editor' );
 		$shortcodify_disabled  = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
 
@@ -231,12 +230,6 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_settings_disabled]" id="lasso_editor[post_settings_disabled]" <?php echo checked( $post_settings_disabled, 'on' );?> >
 						<label for="lasso_editor[post_settings_disabled]"> <?php _e( 'Disable Post Settings', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this to disable users from being able to edit post settings from the front-end.', 'lasso' );?></span>
-					</div>
-					
-					<div class="lasso-editor-settings--option-inner" style="border:none">
-						<input type="checkbox" class="checkbox" name="lasso_editor[allow_change_date]" id="lasso_editor[allow_change_date]" <?php echo checked( $allow_change_date, 'on' );?> >
-						<label for="lasso_editor[allow_change_date]"> <?php _e( 'Allow Changing Post Date', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'Add the date selector to change the post\'s date to the Post Setting dialog', 'lasso' );?></span>
 					</div>
 				
 					<div class="lasso-editor-settings--option-inner" >

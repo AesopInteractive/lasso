@@ -103,6 +103,10 @@
 			tags.on('change',function(event){
 				$('.lasso--postsettings__footer').slideDown()
 			})
+			
+			if( $('.editus_custom_date').length ) {
+				$('.editus_custom_date').datepicker({});
+			}
 
 			modalResizer()
 

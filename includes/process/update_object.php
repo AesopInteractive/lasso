@@ -54,6 +54,14 @@ class update_object implements api_action{
 		// update tags
 		$tags = isset( $data['story_tags'] ) ? $data['story_tags'] : false;
 		self::set_post_terms( $postid, $tags, 'post_tag' );
+		
+		// update custom taxonomy
+		$taxs  = isset( $data['story_custom_taxonomy'] ) ? $data['story_custom_taxonomy'] : false;
+		self::set_custom_taxonomy( $postid, $taxs );
+		
+		//update date
+		$date  = isset( $data['post_date'] ) ? $data['post_date'] : false;
+		self::set_date( $postid, $date );
 
 
 		do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
@@ -83,6 +91,14 @@ class update_object implements api_action{
 				'strip_tags',
 			),
 			'story_tags' => array(
+				'trim',
+				'strip_tags',
+			),
+			'story_custom_taxonomy' => array(
+				'trim',
+				'strip_tags',
+			),
+			'post_date' => array(
 				'trim',
 				'strip_tags',
 			),
@@ -156,8 +172,56 @@ class update_object implements api_action{
 		}else{
 			return false;
 		}
-
-
+	}
+	
+	/**
+	 *  Update terms for post.
+	 *
+	 *
+	 *  @param    int    	$postid       	The current postid
+     *  @param    string|bool     $value    The term slug, or a comma separated list of slugs. Or false to remove all terms set for post.
+	 *                                      The first item is the name of taxonomy
+	 *
+	 *  @return bool True if update was successful, false if not.
+	 */
+	public function set_custom_taxonomy( $postid, $value) {
+		
+		if( $value ) {
+			// first check if multiple, make array if so.
+			if ( self::has_multiple_objects( $value ) ) {	
+				$value = explode( ',', $value );
+			}
+						
+            // Deleting first array item
+			$taxonomy = array_shift($value);
+			$cats = array();
+			foreach ($value as $cat) {
+				$cats [] = get_cat_ID($cat);
+			}
+			$value = $cats;
+			
+	
+			$result = wp_set_object_terms( $postid, $cats, $taxonomy );
+			if ( ! is_wp_error( $result ) ) {
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	public function set_date( $postid, $value) {
+		
+		if( $value ) {
+			$time = current_time('mysql');
+            wp_update_post(
+				array (
+					'ID'            => $postid, // ID of the post to update
+					'post_date'     => date( 'Y-m-d H:i:s',  strtotime($value) ),
+					'post_date_gmt'     => gmdate( 'Y-m-d H:i:s',  strtotime($value) ),
+				)
+			);
+		}
 	}
 
 	/**

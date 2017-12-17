@@ -50,7 +50,8 @@ jQuery(document).ready(function($){
 	///////////////////////
 	//$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
 	//jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
-	jQuery('.lasso--controls__right a:not(#lasso--exit)').on('click', function(e){
+	//jQuery('.lasso--controls__right a:not(#lasso--exit)').on('click', function(e){
+	jQuery(document).on('click','.lasso--controls__right a:not(#lasso--exit)', function(e){
 
 		var warnNoSave = null;
 
@@ -505,7 +506,7 @@ jQuery(document).ready(function($){
 				error : function (xhr, exception) {
 					console.log( xhr );
 					alert("AJAX Error: "+xhr.responseText );
-					$(save).removeClass('being-saved').addClass('lasso--error');	
+					$('#lasso--save').removeClass('being-saved').addClass('lasso--error');	
 				}
 			});
 		}
@@ -513,7 +514,7 @@ jQuery(document).ready(function($){
 		// code to run when post saving is successful
 		function saveSuccess() {
 			// change button class to saved
-			$(save).removeClass('being-saved').addClass('lasso--saved');
+			$('#lasso--save').removeClass('being-saved').addClass('lasso--saved');
 
 			// if this is being published then remove the publish button afterwards
 			if ( $this.hasClass('lasso-publish-post') ) {
@@ -522,7 +523,7 @@ jQuery(document).ready(function($){
 
 			// wait a bit then remvoe the button class so they can save again
 			setTimeout(function(){
-				$(save).removeClass('lasso--saved');
+				$('#lasso--save').removeClass('lasso--saved');
 
 				if ( $this.hasClass('lasso-publish-post') ) {
 					location.reload()
@@ -548,7 +549,7 @@ jQuery(document).ready(function($){
 				if (forcePublish) {
 					status_ = "publish";
 				}
-				savePublishREST(postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				savePublishREST(lasso_editor.postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
 			}
 			
@@ -557,13 +558,13 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					saveSuccess();
 				} else {
-					$(save).removeClass('being-saved').addClass('lasso--error');
+					$('#lasso--save').removeClass('being-saved').addClass('lasso--error');
 				}
 
 			}).fail(function(xhr, err) { 
 				var responseTitle= $(xhr.responseText).filter('title').get(0);
 				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
-				$(save).removeClass('being-saved').addClass('lasso--error');				
+				$('#lasso--save').removeClass('being-saved').addClass('lasso--error');				
 			});
 		}
 

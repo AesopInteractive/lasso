@@ -171,23 +171,8 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--underline" title="<?php esc_attr_e( 'Underline', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--italic" title="<?php esc_attr_e( 'Italicize', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--strike" title="<?php esc_attr_e( 'Strikethrough', 'lasso' );?>"></li>
-		    <?php if ( $toolbar_headings ): ?>
-		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
-		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
-			<?php endif; ?>
-			<?php if ( $toolbar_headings_h4 ): ?>
-		    <li id="lasso-toolbar--h4" title="<?php esc_attr_e( 'H4 Heading', 'lasso' );?>"></li>
-		    <li id="lasso-toolbar--h5" title="<?php esc_attr_e( 'H5 Heading', 'lasso' );?>"></li>
-			<li id="lasso-toolbar--h6" title="<?php esc_attr_e( 'H6 Heading', 'lasso' );?>"></li>
-			<?php endif; ?>
-			
-			<?php if ( $show_color ): ?>
-		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Text Color', 'lasso' );?>"></li>
-		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
-			<?php endif; ?>
-					
-		    <li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>">
-			    <ul id="lasso-toolbar--components__list" style="display:none;">
+			<li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>" style="color:#ffffa0;">
+			    <ul id="lasso-toolbar--components__list" style="display:none;color:white;">
 			    	<?php if ( 'ase-active' == $ase_status ): ?>
 						<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="lasso-toolbar--component__image"></li>
 						<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="lasso-toolbar--component__character"></li>
@@ -216,6 +201,22 @@ function lasso_editor_text_toolbar() {
 					<?php do_action( 'lasso_toolbar_components' );?>
 			    </ul>
 			</li>
+		    <?php if ( $toolbar_headings ): ?>
+		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
+			<?php endif; ?>
+			<?php if ( $toolbar_headings_h4 ): ?>
+		    <li id="lasso-toolbar--h4" title="<?php esc_attr_e( 'H4 Heading', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--h5" title="<?php esc_attr_e( 'H5 Heading', 'lasso' );?>"></li>
+			<li id="lasso-toolbar--h6" title="<?php esc_attr_e( 'H6 Heading', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
+			<?php if ( $show_color ): ?>
+		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Text Color', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
+			<?php endif; ?>
+					
+		    
 			<li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
 		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
 		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
@@ -353,6 +354,9 @@ function lasso_editor_component_modal() {
 	// modal tabs
 	$tabs  				= lasso_modal_addons('tab');
 	$content 			= lasso_modal_addons('content');
+	
+	//editor options
+	$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
 
 	// are we singular
 	$is_singular 		= is_singular();
@@ -424,6 +428,14 @@ function lasso_editor_component_modal() {
 							<label><?php _e( 'Tags', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a tag name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<input id="lasso--tag-select" class="lasso--modal__trigger-footer" type="hidden" name="story_tags" value="<?php echo $tags;?>">
 						</div>
+						<?php 
+						if ($allow_change_date) { 
+						    $dateformat = get_option( 'date_format' ); 
+						?>
+						    <label><?php _e( 'Post Date', 'lasso' ); ?></label>
+							<input type="text" class="editus_custom_date" name="post_date" value="<?php echo get_the_time($dateformat, $postid);?>"/>
+						<?php
+						}?>
 
 					</div>
 					<!-- alternate way to display categories disabled now -->

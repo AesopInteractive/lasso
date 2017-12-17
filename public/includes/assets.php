@@ -62,6 +62,9 @@ class assets {
 			//color 
 			$show_color = lasso_editor_get_option('toolbar_show_color', 'lasso_editor');
 			
+			// allow change date for post
+			$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
+			
 			if ($show_color) {
 				//color picker
 				wp_enqueue_style( 'wp-color-picker' );
@@ -123,6 +126,13 @@ class assets {
 			$gallery_nonce_action = $gallery_class->nonce_action;
 			$gallery_nonce = wp_create_nonce( $gallery_nonce_action );
 			
+			
+            if ($allow_change_date) {
+			    $permalink = get_site_url().'/?p='.$postid;
+            } else {
+                $permalink = get_permalink($postid);
+            }
+			
 			// rest api
 			$rest_nonce = '';
 			$rest_root =''; 
@@ -154,7 +164,7 @@ class assets {
 				'settingsLink'		=> function_exists('is_multisite') && is_multisite() ? network_admin_url( 'settings.php?page=lasso-editor' ) : admin_url( 'admin.php?page=lasso-editor-settings' ),
 				'post_status'		=> get_post_status( $postid ),
 				'postid'			=> $postid,
-				'permalink'			=> get_permalink(),
+				'permalink'			=> $permalink,
 				'edit_others_pages'	=> current_user_can('edit_others_pages') ? true : false,
 				'edit_others_posts'	=> current_user_can('edit_others_posts') ? true : false,
 				'userCanEdit'		=> current_user_can('edit_post', $postid ),
@@ -221,6 +231,12 @@ class assets {
 			   wp_enqueue_script( 'wp-api-js', LASSO_URL.'/public/assets/js/source/util--wp-api.js', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
 			   $settings = array( 'root' => home_url( $home_url ), 'nonce' => wp_create_nonce( 'wp_json' ) );
 			   wp_localize_script( 'wp-api-js', 'WP_API_Settings', $settings );
+			}
+			
+			if ($allow_change_date) {
+				wp_enqueue_script('jquery-ui-datepicker');
+				wp_register_style('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
+				wp_enqueue_style('jquery-ui');
 			}
 
 			$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
