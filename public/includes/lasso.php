@@ -6,7 +6,7 @@
  * @author    Nick Haskins <nick@aesopinteractive.com>
  * @license   GPL-2.0+
  * @link      http://aesopinteractive.com
- * @copyright 2015 Aesopinteractive LLC
+ * @copyright 2015-2017 Aesopinteractive 
  */
 namespace lasso_public_facing;
 /**

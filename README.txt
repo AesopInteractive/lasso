@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 0.9.16.8
+Stable tag: 0.9.17.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,12 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+
+= 0.9.17.1 =
+* Added support for subtitle editing, for Aesop themes and the Subtitle (https://wordpress.org/plugins/subtitles/) plugin.
+* Added an option to enable changing post dates using the Post Setting dialog
+* Changed the AJAX code to hide the tour dialog
+
 = 0.9.16.8 =
 * Added Twitter handling codes
 * Tour dialog uses REST API to save settings
