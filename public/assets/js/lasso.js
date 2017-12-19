@@ -10579,6 +10579,16 @@ jQuery(document).ready(function($){
 				};
 			}
 		}
+		
+		lasso_editor.subtitleClass="";
+		var subtitleClasses = [".entry-subtitle",".novella-entry-subtitle"];
+		for (var i = 0; i < titleClasses.length; i++) {
+			if ( $(subtitleClasses[i]).length > 0 ) {
+				lasso_editor.subtitleClass = subtitleClasses[i];
+				$(subtitleClasses[i]).attr('contenteditable', true);
+				break;
+			};
+		}
 
 		// if tehre are any scrollnav sections we need to break them open so that we can drag compnents around in them
 		$('.scroll-nav__section').each(function(){
@@ -13007,7 +13017,7 @@ jQuery(document).ready(function($){
 		}
 		
 		// Save post using REST API V2
-		function savePublishREST(postid, title, content_, type_,status_){
+		function savePublishREST(postid, title, subtitle, content_, type_,status_){
 			
 			var data      = {
 				content: 	content_,
@@ -13035,8 +13045,11 @@ jQuery(document).ready(function($){
 			} else {
 				type = type_;
 			}
-			if (title && title.length>0) {
+			if (title.length>0) {
 				data['title'] = title;
+			}
+			if (subtitle.length>0) {
+				data['metadata'] = { '_subtitle': subtitle};
 			}
 			
 			if (lasso_editor.disableSavePost == 'on') {
@@ -13096,10 +13109,14 @@ jQuery(document).ready(function($){
 				if ($(lasso_editor.titleClass).length>0) {
 					title = $(lasso_editor.titleClass)[0].innerText;
 				}
+				var subtitle="";
+				if ($(lasso_editor.subtitleClass).length>0) {
+					subtitle = $(lasso_editor.subtitleClass)[0].innerText;
+				}
 				if (forcePublish) {
 					status_ = "publish";
 				}
-				savePublishREST(lasso_editor.postid, title, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				savePublishREST(lasso_editor.postid, title, subtitle, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
 			}
 			

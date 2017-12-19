@@ -169,6 +169,16 @@ jQuery(document).ready(function($){
 				};
 			}
 		}
+		
+		lasso_editor.subtitleClass="";
+		var subtitleClasses = [".entry-subtitle",".novella-entry-subtitle"];
+		for (var i = 0; i < titleClasses.length; i++) {
+			if ( $(subtitleClasses[i]).length > 0 ) {
+				lasso_editor.subtitleClass = subtitleClasses[i];
+				$(subtitleClasses[i]).attr('contenteditable', true);
+				break;
+			};
+		}
 
 		// if tehre are any scrollnav sections we need to break them open so that we can drag compnents around in them
 		$('.scroll-nav__section').each(function(){
