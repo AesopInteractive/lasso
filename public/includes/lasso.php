@@ -61,6 +61,7 @@ class lasso {
 		add_action( 'wp_ajax_editus_do_shortcode',     array( $this, 'editus_do_shortcode' ) );
 		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
 		add_action( 'wp_ajax_editus_hide_tour',     array( $this, 'editus_hide_tour' ) );
+		add_action( 'wp_ajax_editus_set_post_setting',     array( $this, 'editus_set_post_setting' ) );
 
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
@@ -285,6 +286,50 @@ class lasso {
 		exit;
 	}
 	
+	public function editus_set_post_setting()
+	{
+		
+		
+		$data = array();
+		parse_str($_POST['data'], $data);
+		
+		if (!wp_verify_nonce( $data[ 'nonce' ], 'lasso-update-post-settings' )) {
+			wp_send_json_error();
+			exit;
+		}
+		
+		$status = isset( $data['status'] ) ? $data['status'] : false;
+		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
+		$slug   = isset( $data['story_slug'] ) ? $data['story_slug'] : false;
+	
+
+		$args = array(
+			'ID'   			=> (int) $postid,
+			'post_name'  	=> $slug,
+			'post_status' 	=> $status
+		);
+		
+		
+
+		wp_update_post( apply_filters( 'lasso_object_status_update_args', $args ) );
+		
+		// update categories
+		$cats  = isset( $data['story_cats'] ) ? $data['story_cats'] : false;
+		self::set_post_terms( $postid, $cats, 'category' );
+		
+		// update tags
+		$tags = isset( $data['story_tags'] ) ? $data['story_tags'] : false;
+		self::set_post_terms( $postid, $tags, 'post_tag' );
+		
+		//update date
+		$date  = isset( $data['post_date'] ) ? $data['post_date'] : false;
+		self::set_date( $postid, $date );
+		
+		do_action( 'lasso_post_updated', $postid, $slug, $status, get_current_user_ID() );
+		wp_send_json_success();
+		exit;
+	}
+	
 	public static function enable_metasave($type)
 	{
 		register_rest_field( $type, 'metadata', array(
@@ -376,5 +421,43 @@ class lasso {
 		}
 		
 		exit; 
+	}
+	public function set_post_terms( $postid, $value, $taxonomy ) {
+		if( $value ) {
+			$value = explode( ',', $value );
+			
+			if ($taxonomy =='category') {
+                // convert from names to category ids
+				$cats = array();
+				foreach ($value as $cat) {
+					$cats [] = get_cat_ID($cat);
+				}
+				$value = $cats;
+			}
+	
+			$result = wp_set_object_terms( $postid, $value, $taxonomy );
+		}
+		else  {
+			//remove all terms from post
+			$result = wp_set_object_terms( $postid, null, $taxonomy );
+		}
+
+		if ( ! is_wp_error( $result ) ) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function set_date( $postid, $value) {
+		if( $value ) {
+            wp_update_post(
+				array (
+					'ID'            => $postid, // ID of the post to update
+					'post_date'     => date( 'Y-m-d H:i:s',  strtotime($value) ),
+					'post_date_gmt'     => gmdate( 'Y-m-d H:i:s',  strtotime($value) ),
+				)
+			);
+		}
 	}
 }

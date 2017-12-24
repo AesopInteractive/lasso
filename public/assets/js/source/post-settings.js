@@ -156,27 +156,29 @@
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
 
-			var data = $this.serialize();
+			
+			var data2 = $this.serialize();
 
 			/////////////
-			//	DO TEH SAVE
+			//	DO THE SAVE
 			/////////////
-			$.post( lasso_editor.ajaxurl, data, function(response) {
-
-				console.log(response)
+				
+			var data = {
+				action: 'editus_set_post_setting',
+			    postid: lasso_editor.postid,
+				data: data2
+			};
+				
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if( true == response.success ) {
-
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
 					location.reload();
-
 					window.location.replace(lasso_editor.permalink);
 
 				} else {
-
-					alert('error');
-
+					alert('error:'+response);
 					console.log(response)
 
 				}
