@@ -172,7 +172,7 @@ jQuery(document).ready(function($){
 		
 		lasso_editor.subtitleClass="";
 		var subtitleClasses = [".entry-subtitle",".novella-entry-subtitle"];
-		for (var i = 0; i < titleClasses.length; i++) {
+		for (var i = 0; i < subtitleClasses.length; i++) {
 			if ( $(subtitleClasses[i]).length > 0 ) {
 				lasso_editor.subtitleClass = subtitleClasses[i];
 				$(subtitleClasses[i]).attr('contenteditable', true);
