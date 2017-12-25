@@ -139,6 +139,7 @@
 	    	}
 
 			setTimeout( function(){ $('body').removeClass('lasso-sidebar-open'); }, timeout );
+			articleMedium.makeUndoable();
 			lasso_editor.dirtyByComponent = true;
 
 	    }
