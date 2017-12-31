@@ -958,6 +958,7 @@ jQuery(document).ready(function($){
             	// close modal drag
             	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
+				articleMedium.makeUndoable();
             	// get the item and type
 				var item = draggedItem['context'],
 					type = $(item).attr('data-type');

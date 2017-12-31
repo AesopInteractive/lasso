@@ -230,7 +230,12 @@ function lasso_editor_text_toolbar() {
 		    	<div id="lasso-toolbar--html__wrap" <?php echo $mobile_style ?>>
 		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?>"></div>
 		    		<div id="lasso-toolbar--html__footer">
+					<div id="lasso-toolbar--html__footer_desc" >
+					<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?><br>
+					<?php esc_attr_e( 'You can also use Shortcodes', 'lasso' );?>
+					</div>
 		    			<ul class="lasso-toolbar--html-snips">
+						
 		    				<?php if ( !$toolbar_headings ): ?>
 		    				<li id="lasso-html--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>">
 		    				<li id="lasso-html--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>">
