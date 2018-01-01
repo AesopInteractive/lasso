@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.9.17.2
+Stable tag: 0.9.17.3
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,10 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+
+= 0.9.17.3 =
+* Changed the code to obtain the REST API root 
+* A JS bug fix.
 
 = 0.9.17.2 =
 * A JS bug fix.

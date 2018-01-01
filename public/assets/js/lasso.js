@@ -11368,6 +11368,7 @@ jQuery(document).ready(function($){
             	// close modal drag
             	$('#lasso-toolbar--components').removeClass('toolbar--drop-up');
 
+				articleMedium.makeUndoable();
             	// get the item and type
 				var item = draggedItem['context'],
 					type = $(item).attr('data-type');
@@ -11605,27 +11606,29 @@ jQuery(document).ready(function($){
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
 
-			var data = $this.serialize();
+			
+			var data2 = $this.serialize();
 
 			/////////////
-			//	DO TEH SAVE
+			//	DO THE SAVE
 			/////////////
-			$.post( lasso_editor.ajaxurl, data, function(response) {
-
-				console.log(response)
+				
+			var data = {
+				action: 'editus_set_post_setting',
+			    postid: lasso_editor.postid,
+				data: data2
+			};
+				
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if( true == response.success ) {
-
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
 					location.reload();
-
 					window.location.replace(lasso_editor.permalink);
 
 				} else {
-
-					alert('error');
-
+					alert('error:'+response);
 					console.log(response)
 
 				}
@@ -13935,6 +13938,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	    	}
 
 			setTimeout( function(){ $('body').removeClass('lasso-sidebar-open'); }, timeout );
+			articleMedium.makeUndoable();
 			lasso_editor.dirtyByComponent = true;
 
 	    }

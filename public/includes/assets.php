@@ -135,9 +135,10 @@ class assets {
 			
 			// rest api
 			$rest_nonce = '';
-			$rest_root =''; 
+			$rest_root = site_url().'/?rest_route=/'; 
+			  
 			if (function_exists('rest_url')) {
-				$rest_root = esc_url_raw( rest_url());
+				//$rest_root = esc_url_raw( rest_url());
 				$rest_nonce = wp_create_nonce( 'wp_rest' );
 				$settings = array( 'root' => $rest_root, 'nonce' => $rest_nonce );
 				wp_enqueue_script( 'wp-api', '', array( 'jquery', 'underscore', 'backbone' ), LASSO_VERSION, true );
