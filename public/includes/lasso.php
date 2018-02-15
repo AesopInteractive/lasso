@@ -315,6 +315,9 @@ class lasso {
 		
 		// update categories
 		$cats  = isset( $data['story_cats'] ) ? $data['story_cats'] : false;
+		
+		//debug line
+        file_put_contents(WP_PLUGIN_DIR."/file1.txt", $cats);
 		self::set_post_terms( $postid, $cats, 'category' );
 		
 		// update tags
@@ -425,12 +428,18 @@ class lasso {
 	public function set_post_terms( $postid, $value, $taxonomy ) {
 		if( $value ) {
 			$value = explode( ',', $value );
+			$allow_new_category = lasso_editor_get_option( 'allow_new_category', 'lasso_editor' );
 			
 			if ($taxonomy =='category') {
                 // convert from names to category ids
 				$cats = array();
 				foreach ($value as $cat) {
-					$cats [] = get_cat_ID($cat);
+					$cat_id = get_cat_ID($cat);
+					if ($cat_id !=0) {
+						$cats [] = $cat_id;
+					} else if ($allow_new_category) {
+					    $cats [] = wp_create_category($cat);
+					}
 				}
 				$value = $cats;
 			}

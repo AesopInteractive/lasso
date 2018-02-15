@@ -97,6 +97,7 @@ class settings {
 		$save_to_post_disabled  = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
 		$post_settings_disabled = lasso_editor_get_option( 'post_settings_disabled', 'lasso_editor' );
 		$allow_change_date = lasso_editor_get_option( 'allow_change_date', 'lasso_editor' );
+		$allow_new_category = lasso_editor_get_option( 'allow_new_category', 'lasso_editor' );
 		$shortcodify_disabled  = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
 
@@ -238,12 +239,20 @@ class settings {
 						<label for="lasso_editor[allow_change_date]"> <?php _e( 'Allow Changing Post Date', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Add the date selector to change the post\'s date to the Post Setting dialog', 'lasso' );?></span>
 					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[allow_new_category]" id="lasso_editor[allow_new_category]" <?php echo checked( $allow_new_category, 'on' );?> >
+						<label for="lasso_editor[allow_new_category]"> <?php _e( 'Allow Adding New Category', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Add the user to create new, previously non-existing categories for posts.', 'lasso' );?></span>
+					</div>
 				
 					<div class="lasso-editor-settings--option-inner" >
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_adding_disabled]" id="lasso_editor[post_adding_disabled]" <?php echo checked( $post_new_disabled, 'on' );?> >
 						<label for="lasso_editor[post_adding_disabled]"><?php _e( 'Disable Post Adding', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable users from being able to add new posts from the front-end.', 'lasso' );?></span>
 					</div>
+					
+
 				</div>
 				
 				<h3><?php _e( 'Misc', 'lasso' );?></h3>
@@ -254,7 +263,7 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable the tour dialog box for all users.', 'lasso' );?></span>
 					</div>
 
-					<div class="lasso-editor-settings--option-inner" >
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 					    <label for="lasso_editor[bold_tag]"> <?php _e( '"Bold" Tag', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Choose the HTML tag used for the "Bold" style.', 'lasso' );?></span>
 					    <input type="radio" name="lasso_editor[bold_tag]" value='b' <?php echo checked( $bold_tag, 'b' );?>> b
