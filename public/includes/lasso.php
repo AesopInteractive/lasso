@@ -316,8 +316,6 @@ class lasso {
 		// update categories
 		$cats  = isset( $data['story_cats'] ) ? $data['story_cats'] : false;
 		
-		//debug line
-        file_put_contents(WP_PLUGIN_DIR."/file1.txt", $cats);
 		self::set_post_terms( $postid, $cats, 'category' );
 		
 		// update tags

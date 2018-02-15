@@ -528,13 +528,9 @@ function lasso_editor_newpost_modal() {
 
 							<?php
 								$types = lasso_post_types();
-
 								if ( !empty( $types ) ) {
-
-									foreach( $types as $type ) {
-
+									foreach( $types as $type ) {					
 										$type = preg_replace( '/s\b/','', $type );
-
 										printf( '<option value="%s">%s</option>', lcfirst( esc_attr( $type ) ) , ucfirst( esc_attr( $type ) ) );
 									}
 
@@ -548,7 +544,14 @@ function lasso_editor_newpost_modal() {
 				<div class="lasso--postsettings__footer" style="<?php if (!wp_is_mobile()) {echo 'display:none;';} ?>">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 					<input type="hidden" name="action" value="process_new-object_post">
-					<input type="hidden" name="object" value="post">
+					<?php
+						if ( !empty( $types ) ) {
+							// get the first element
+						    $type = reset($types);							
+							$type = preg_replace( '/s\b/','', $type );
+							printf( '<input type="hidden" name="object" value="%s">', lcfirst( esc_attr( $type ) ) );		
+						}
+					?>
 					<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 					<input type="submit" value="<?php esc_attr_e( 'Create', 'lasso' );?>">
 				</div>
