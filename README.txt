@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.9.17.3
+Stable tag: 0.9.17.4
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.17.4 =
+* Fixed a bug that happens when the "Post" type is not selected under the "Enable for" options
+* Added an option allow users to create new categories for posts.
 
 = 0.9.17.3 =
 * Changed the code to obtain the REST API root 
