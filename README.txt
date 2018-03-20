@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.9.17.4
+Stable tag: 0.9.17.5
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,10 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.17.5 =
+* Fixed a bug with the Set Date codes.
+* Changed the way PASTE works when the source is an HTML code.
+
 = 0.9.17.4 =
 * Fixed a bug that happens when the "Post" type is not selected under the "Enable for" options
 * Added an option allow users to create new categories for posts.

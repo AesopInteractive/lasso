@@ -394,7 +394,7 @@
 							},
 							paste: function (e) {
 								medium.makeUndoable();
-								if (settings.pasteAsText) {
+								/*if (settings.pasteAsText) {
 									var sel = utils.selection.saveSelection();
 									utils.pasteHook(function (text) {
 										utils.selection.restoreSelection(sel);
@@ -411,7 +411,7 @@
 								} else {
 									html.clean();
 									html.placeholders();
-								}
+								}*/
 							}
 						},
 						enterKey: function (e) {
@@ -530,50 +530,55 @@
 						},
 						keyContext: null,
 						pasteEventHandler: function (e) {
-							/*e = e || w.event;
+							e = e || w.event;
 							medium.makeUndoable();
 							var length = medium.value().length,
 								totalLength;
 
 							if (settings.pasteAsText) {
+								var t = e.clipboardData.getData('text/html');
+								
 								utils.preventDefaultEvent(e);
 								var
 									sel = utils.selection.saveSelection(),
-									text = prompt(Medium.Messages.pastHere) || '';
+									text = t;//prompt(Medium.Messages.pastHere) || '';
 
+								el.focus();
+								Medium.activeElement = el;
+								utils.selection.restoreSelection(sel);
 								if (text.length > 0) {
-									el.focus();
-									Medium.activeElement = el;
-									utils.selection.restoreSelection(sel);
 
-									//encode the text first
-									text = html.encodeHtml(text);
-
-									//cut down it's length
+									//cut down its length
 									totalLength = text.length + length;
 									if (settings.maxLength > 0 && totalLength > settings.maxLength) {
 										text = text.substring(0, settings.maxLength - length);
 									}
 
-									if (settings.mode !== Medium.inlineMode) {
-										text = text.replace(/\n/g, '<br>');
-									}
-
-									(new Medium.Html(medium, text))
+									
+									 text = text.replace(/<\/p>/g, '<br>');
+									var regex = /<(?=(?!\/a))(?=(?!a ))(?=(?!br))([^>]+)>/ig;
+									text = text.replace(regex, "");
+									regex = /style=\"[^\"]+\"/ig;
+									text = text.replace(regex, "");
+									
+								} else {
+									text = e.clipboardData.getData('text/plain');
+									text = text.replace(/\n/g, '<br>');
+								}
+								(new Medium.Html(medium, text))
 										.setClean(false)
 										.insert(settings.beforeInsertHtml, true);
 
-									html.clean();
-									html.placeholders();
+								html.clean();
+								html.placeholders();
 
-									return false;
-								}
+								return false;
 							} else {
 								setTimeout(function () {
 									html.clean();
 									html.placeholders();
 								}, 20);
-							}*/
+							}
 						}
 					},
 					settings = utils.deepExtend(defaultSettings, userSettings),
