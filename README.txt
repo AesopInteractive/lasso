@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.9.17.5
+Stable tag: 0.9.17.6
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.9.17.6 =
+* Fixed a style bug with the category editing.
+
 = 0.9.17.5 =
 * Fixed a bug with the Set Date codes.
 * Changed the way PASTE works when the source is an HTML code.
