@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 	
 		if ($(post_container).length ==0 ){
 			// try one more time, support for shapely theme
-			var contClasses = [".shapely-content",".entry-content",".aesop-entry-content",".novella-entry-content",".post-content", ".entry-content-wrapper"];
+			var contClasses = [".shapely-content",".entry-content",".aesop-entry-content",".novella-entry-content",".post-content", ".entry-content-wrapper",".post_content",".gp-entry-content"];
 			for (var i = 0; i < contClasses.length; i++) {		
 				if ($(contClasses[i]).length >0 ){
 					post_container = contClasses[i];
