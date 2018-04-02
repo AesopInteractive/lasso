@@ -139,11 +139,15 @@
             clear: both;
             font-weight: normal;
             line-height: 18px;
-			background-color: @modal--bg;
-            color: white;//@tag--color;
+			
             white-space: nowrap;
             font-family: @editor--font;
             font-size:@modal--font__size;
+			background-color: @modal--bg;
+			a {
+				background-color: @modal--bg;
+				color: white;//@tag--color;
+			}
 
             &:hover,
             &.ui-state-active {
