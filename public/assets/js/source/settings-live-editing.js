@@ -13,18 +13,18 @@
 			var settings 	= $('#lasso--component__settings')
 
 			// QUOTE LIVE EDIT ///////////////////
-			//settings.find('#lasso-generator-attr-background').live('change',function(){
-			settings.find('#lasso-generator-attr-background').on('change',function(){
+			//settings.find('#aesop-generator-attr-background').live('change',function(){
+			settings.find('#aesop-generator-attr-background').on('change',function(){
 			  	component.css({'background-color': $(this).val()});
 			});
-			//settings.find('#lasso-generator-attr-text').live('change',function(){
-			settings.find('#lasso-generator-attr-text').on('change',function(){
+			//settings.find('#aesop-generator-attr-text').live('change',function(){
+			settings.find('#aesop-generator-attr-text').on('change',function(){
 			  	component.css({'color': $(this).val()});
 			});
-			settings.find('#lasso-generator-attr-quote').on('keyup',function(){
+			settings.find('#aesop-generator-attr-quote').on('keyup',function(){
 			  	component.find('blockquote span').text( $(this).val() );
 			});
-			settings.find('#lasso-generator-attr-cite').on('keyup',function(){
+			settings.find('#aesop-generator-attr-cite').on('keyup',function(){
 
 				var t = component.find('blockquote cite');
 
@@ -36,10 +36,10 @@
 			  		component.find('blockquote cite').text( $(this).val() );
 				}
 			});
-			settings.find('.lasso-quote-width > #lasso-generator-attr-width').on('keyup',function(){
+			settings.find('.aesop-quote-width > #aesop-generator-attr-width').on('keyup',function(){
 				component.css('width', $(this).val() );
 			});
-			settings.find('.lasso-quote-type #lasso-generator-attr-type').on('change',function(){
+			settings.find('.aesop-quote-type #aesop-generator-attr-type').on('change',function(){
 
 				var value = $(this).val()
 
@@ -52,7 +52,7 @@
 				component.addClass('aesop-quote-type-'+$(this).val()+' ')
 			});
 
-			settings.find('.lasso-quote-align #lasso-generator-attr-align').on('change',function(){
+			settings.find('.aesop-quote-align #aesop-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
@@ -77,7 +77,7 @@
 			});
 
 			// PARALLAX LIVE EDIT ///////////////////
-			settings.find('.lasso-parallax-caption > #lasso-generator-attr-caption').on('keyup',function(){
+			settings.find('.aesop-parallax-caption > #aesop-generator-attr-caption').on('keyup',function(){
 
 
 				var t = component.find('.aesop-parallax-sc-caption-wrap')
@@ -90,7 +90,7 @@
 			  		component.find('.aesop-parallax-sc-caption-wrap').text( $(this).val() );
 				}
 			})
-			settings.find('.lasso-parallax-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
+			settings.find('.aesop-parallax-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
 
 				var value = $(this).val()
 
@@ -117,7 +117,7 @@
 			})
 
 			// IMAGE LIVE EDIT ///////////////////
-			settings.find('.lasso-image-caption > #lasso-generator-attr-caption').on('keyup',function(){
+			settings.find('.aesop-image-caption > #aesop-generator-attr-caption').on('keyup',function(){
 
 				var t = component.find('.aesop-image-component-caption');
 
@@ -130,10 +130,10 @@
 				}
 
 			})
-			settings.find('.lasso-image-imgwidth > #lasso-generator-attr-imgwidth').on('keyup',function(){
+			settings.find('.aesop-image-imgwidth > #aesop-generator-attr-imgwidth').on('keyup',function(){
 				component.find('.aesop-image-component-image').css('max-width', $(this).val() );
 			})
-			settings.find('.lasso-image-align > #lasso-generator-attr-align').on('change',function(){
+			settings.find('.aesop-image-align > #aesop-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
@@ -154,7 +154,7 @@
 				component.find('.aesop-image-component-image').addClass('aesop-component-align-'+$(this).val()+' ')
 
 			})
-				settings.find('.lasso-image-captionposition > #lasso-generator-attr-captionposition').on('change',function(){
+				settings.find('.aesop-image-captionposition > #aesop-generator-attr-captionposition').on('change',function(){
 
 					var value = $(this).val();
 
@@ -174,7 +174,7 @@
 
 					component.find('.lasso-image-component-image').addClass('lasso-image-component-caption-'+value+' ');
 				});
-				settings.find('.lasso-image-offset > #lasso-generator-attr-offset').on('keyup',function(){
+				settings.find('.aesop-image-offset > #aesop-generator-attr-offset').on('keyup',function(){
 
 					var value = $(this).val();
 
@@ -191,13 +191,13 @@
 
 
 			// CHARACTER LIVE EDIT ///////////////////
-			settings.find('.lasso-character-name > #lasso-generator-attr-name').on('keyup',function(){
+			settings.find('.aesop-character-name > #aesop-generator-attr-name').on('keyup',function(){
 				component.find('.aesop-character-title').text( $(this).val() );
 			})
-			settings.find('.lasso-character-caption > #lasso-generator-attr-caption').on('keyup',function(){
+			settings.find('.aesop-character-caption > #aesop-generator-attr-caption').on('keyup',function(){
 				component.find('.aesop-character-cap').text( $(this).val() );
 			})
-			settings.find('.lasso-character-align > #lasso-generator-attr-align').on('change',function(){
+			settings.find('.aesop-character-align > #aesop-generator-attr-align').on('change',function(){
 
 				var value = $(this).val()
 
@@ -216,16 +216,16 @@
 			});
 
 			// CHAPTER LIVE EDIT ///////////////////
-			settings.find('.lasso-chapter-title > #lasso-generator-attr-title').on('keyup',function(){
+			settings.find('.aesop-chapter-title > #aesop-generator-attr-title').on('keyup',function(){
 				component.find('.aesop-cover-title span').text( $(this).val() );
 			})
-			settings.find('.lasso-chapter-subtitle > #lasso-generator-attr-subtitle').on('keyup',function(){
+			settings.find('.aesop-chapter-subtitle > #aesop-generator-attr-subtitle').on('keyup',function(){
 				component.find('.aesop-cover-title small').text( $(this).val() );
 			})
 
 			// VIDEO LIVE EDITOR /////////////////////
-			//settings.find('.lasso-video-src > #lasso-generator-attr-src').live('change blur',function(){
-			settings.find('.lasso-video-src > #lasso-generator-attr-src').on('change blur',function(){
+			//settings.find('.lasso-video-src > #aesop-generator-attr-src').live('change blur',function(){
+			settings.find('.aesop-video-src > #aesop-generator-attr-src').on('change blur',function(){
 
 				val = $(this).val()
 
@@ -243,8 +243,8 @@
 				}
 
 			});
-			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('keyup',function(){
-				t = $('.lasso-video-src > #lasso-generator-attr-src').val();
+			settings.find('.aesop-video-id > #aesop-generator-attr-id').on('keyup',function(){
+				t = $('.aesop-video-src > #aesop-generator-attr-src').val();
 				val = $(this).val();
 				if ( 'vimeo' == t ) {
 					component.find('iframe').attr('src', '//player.vimeo.com/video/'+val+' ')
@@ -252,29 +252,29 @@
 					component.find('iframe').attr('src', '//www.youtube.com/embed/'+val+'?rel=0&wmode=transparent')
 				}
 			});
-			settings.find('.lasso-video-width > #lasso-generator-attr-width').on('keyup',function(){
+			settings.find('.aesop-video-width > #aesop-generator-attr-width').on('keyup',function(){
 				component.find('.aesop-video-container').css('max-width', $(this).val() );
 			});
 
 			// CONTENT COMPONENT LIVE EDIT /////
-			//settings.find('.lasso-content-background > #lasso-generator-attr-background').live('change',function(){
-			settings.find('.lasso-content-background > #lasso-generator-attr-background').on('change',function(){
+			//settings.find('.lasso-content-background > #aesop-generator-attr-background').live('change',function(){
+			settings.find('.lasso-content-background > #aesop-generator-attr-background').on('change',function(){
 			  	component.find('.aesop-content-comp-wrap').css({'background-color': $(this).val()});
 			});
-				//settings.find('.lasso-content-color > #lasso-generator-attr-color').live('change',function(){
-				settings.find('.lasso-content-color > #lasso-generator-attr-color').on('change',function(){
+				//settings.find('.lasso-content-color > #aesop-generator-attr-color').live('change',function(){
+				settings.find('.aesop-content-color > #aesop-generator-attr-color').on('change',function(){
 				  	component.find('.aesop-content-comp-wrap').css({'color': $(this).val()});
 				});
-				//settings.find('.lasso-content-height > #lasso-generator-attr-height').live('keyup',function(){
-				settings.find('.lasso-content-height > #lasso-generator-attr-height').on('keyup',function(){
+				//settings.find('.lasso-content-height > #aesop-generator-attr-height').live('keyup',function(){
+				settings.find('.aesop-content-height > #aesop-generator-attr-height').on('keyup',function(){
 
 					val = $(this).val()
 
 					component.find('.aesop-content-comp-wrap').css({'min-height': $(this).val()});
 
 				});
-				//settings.find('.lasso-content-columns > #lasso-generator-attr-columns').live('change',function(){
-				settings.find('.lasso-content-columns > #lasso-generator-attr-columns').on('change',function(){
+				//settings.find('.lasso-content-columns > #aesop-generator-attr-columns').live('change',function(){
+				settings.find('.aesop-content-columns > #aesop-generator-attr-columns').on('change',function(){
 
 					val = $(this).val()
 
@@ -302,8 +302,8 @@
 		*/
 		function initVideoProvider( settings, component, type ){
 
-			//settings.find('.lasso-video-id > #lasso-generator-attr-id').live('change',function(){
-			settings.find('.lasso-video-id > #lasso-generator-attr-id').on('change',function(){
+			//settings.find('.lasso-video-id > #aesop-generator-attr-id').live('change',function(){
+			settings.find('.lasso-video-id > #aesop-generator-attr-id').on('change',function(){
 
 				video_id = $(this).val()
 

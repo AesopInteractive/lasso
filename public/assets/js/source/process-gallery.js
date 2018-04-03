@@ -92,8 +92,8 @@
 	//////////
 	// NEW GALLERY SWAP
 	//////////
-	//$('.lasso-gallery-id #lasso-generator-attr-id').live('change',function(){
-	jQuery(document).on('change','.lasso-gallery-id #lasso-generator-attr-id',function(){
+	//$('.lasso-gallery-id #aesop-generator-attr-id').live('change',function(){
+	jQuery(document).on('change','.aesop-gallery-id #aesop-generator-attr-id',function(){
 
 		editus_gallery_swap($(this).val());
 		

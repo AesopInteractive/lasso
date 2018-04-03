@@ -75,9 +75,14 @@
 
 	      	$('article').removeClass('no-post-thumbnail').addClass('has-post-thumbnail');
 
-	      	$(lasso_editor.featImgClass).css({
-	      		'background-image': 'url('+attachment.url+')'
-	      	});
+	      	if ( $(lasso_editor.featImgClass).is( "img" ) ) {
+				$(lasso_editor.featImgClass).attr("src",attachment.url);
+				$(lasso_editor.featImgClass).attr("srcset","");
+			} else {
+				$(lasso_editor.featImgClass).css({
+					'background-image': 'url('+attachment.url+')'
+				});
+			}
 
 	      	save.attr('data-featimg-id',attachment.id).trigger('click');
 
@@ -128,10 +133,14 @@
 					$('#lasso--featImgDelete').addClass('lasso--featImg--controlHidden');
 					$this.closest('ul').removeClass('lasso--featImg--has-thumb');
 
-					// remove teh attr src - just a real-time update
-			      	$(lasso_editor.featImgClass).css({
-			      		'background-image': 'url()'
-			      	});
+					// remove the attr src - just a real-time update
+			      	if ( $(lasso_editor.featImgClass).is( "img" ) ) {
+						$(lasso_editor.featImgClass).attr("src","");
+					} else {
+						$(lasso_editor.featImgClass).css({
+							'background-image': 'url()'
+						});
+					}
 
 
 				}

@@ -152,7 +152,11 @@ jQuery(document).ready(function($){
 
 		// append upload bar to featured image if present
 		if ( $( featImgClass ).length > 0 ) {
-			$(featImgClass).append( uploadControls );
+			if ( $(lasso_editor.featImgClass).is( "img" ) ) {
+				$(featImgClass).parent().append( uploadControls );
+			} else {
+				$(featImgClass).append( uploadControls );
+			}
 		}
 
 		// append contenteditable to title if set

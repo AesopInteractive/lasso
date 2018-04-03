@@ -743,14 +743,14 @@ function lasso_editor_options_blob() {
 				$prefix = isset( $attr_info['prefix'] ) ? sprintf( '<span class="lasso-option-prefix">%s</span>', $attr_info['prefix'] ) : null;
 
 				$return .= '<form id="lasso--component-settings-form" class="'.$galleries.'" method="post">';
-				$return .= '<p data-option="'.$attr_name.'" class="lasso-option lasso-'.$slug.'-'.$attr_name.'">';
-				$return .= '<label for="lasso-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
+				$return .= '<p data-option="'.$attr_name.'" class="lasso-option aesop-'.$slug.'-'.$attr_name.'">';
+				$return .= '<label for="aesop-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
 				$return .= '<small class="lasso-option-desc">'.$attr_info['tip'].'</small>';
 				// Select
 
 				if ( isset( $attr_info['values'] ) ) {
 
-					$return .= '<select name="' . $attr_name . '" id="lasso-generator-attr-' . $attr_name . '" class="lasso-generator-attr">';
+					$return .= '<select name="' . $attr_name . '" id="aesop-generator-attr-' . $attr_name . '" class="lasso-generator-attr">';
 
 					$i=0;
 
@@ -771,19 +771,19 @@ function lasso_editor_options_blob() {
 					// image upload
 					if ( 'media_upload' == $attr_info['type'] ) {
 
-						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="lasso-generator-attr-' . $attr_name . '" class="lasso-generator-attr lasso-generator-attr-'.$attr_field_type.'" />';
+						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="aesop-generator-attr-' . $attr_name . '" class="lasso-generator-attr aesop-generator-attr-'.$attr_field_type.'" />';
 						$return .= '<a href="#" id="lasso-upload-img" class="lasso-option-button" /></a>';
 
 					} elseif ( 'color' == $attr_info['type'] ) {
 
-						$return .= '<input type="color" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="lasso-generator-attr-' . $attr_name . '" class="lasso-generator-attr lasso-generator-attr-'.$attr_field_type.'" />';
+						$return .= '<input type="color" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="aesop-generator-attr-' . $attr_name . '" class="lasso-generator-attr aesop-generator-attr-'.$attr_field_type.'" />';
 
 					} elseif ( 'text_area' == $attr_info['type'] ) {
 
-						$return .= '<textarea name="' . $attr_name . '" id="lasso-generator-attr-' . $attr_name . '" class="lasso-generator-attr lasso-generator-attr-'.$attr_field_type.'" placeholder="'.$attr_info['default'].'" /></textarea>'.$prefix.'';
+						$return .= '<textarea name="' . $attr_name . '" id="aesop-generator-attr-' . $attr_name . '" class="lasso-generator-attr aesop-generator-attr-'.$attr_field_type.'" placeholder="'.$attr_info['default'].'" /></textarea>'.$prefix.'';
 
 					} else {
-						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="lasso-generator-attr-' . $attr_name . '" class="lasso-generator-attr lasso-generator-attr-'.$attr_field_type.'" />'.$prefix.'';
+						$return .= '<input type="' . $attr_field_type . '" name="' . $attr_name . '" value="'.$attr_info['default'].'" id="aesop-generator-attr-' . $attr_name . '" class="lasso-generator-attr aesop-generator-attr-'.$attr_field_type.'" />'.$prefix.'';
 					}
 				}
 				$return .= '</p>';
@@ -823,6 +823,10 @@ function lasso_editor_options_blob() {
 		$return .= '<input type="hidden" name="nonce" id="lasso-generator-nonce" value="'.$nonce.'" />';
 		$return .= '</form>';
 
+		// extra JS codes
+        if (isset($shortcode['codes'])) {
+		    $return .= $shortcode['codes'];
+        }
 		$blob[$slug] = $return;
 	}
 

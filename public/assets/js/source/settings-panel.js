@@ -246,7 +246,7 @@
 
 		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
 
-		      	$('.lasso-generator-attr-media_upload').attr('value',attachment.url);
+		      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
 
 				/////////////
 				// START LIVE IMAGE EDITING COMPONENTS
@@ -264,7 +264,9 @@
 
 		      	} else if ( 'image' == type ) {
 
-				  	component.find('.aesop-image-component-image > img').attr('src', attachment.url)
+				  	component.find('.aesop-image-component-image > img').attr('src', attachment.url);
+					// new addition for panorama images
+					component.find('.paver__pano').css({'background-image': 'url('+ attachment.url +')'});
 
 		      	} else if ( 'character' == type ) {
 
