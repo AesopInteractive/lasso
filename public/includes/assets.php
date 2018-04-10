@@ -22,8 +22,13 @@ class assets {
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
-            // No longer using autocomplete
-			//wp_enqueue_script('jquery-ui-autocomplete');
+            //don't load autocomplete if it's a stockholm theme
+			$themename  	= wp_get_theme()->get('Name');
+			file_put_contents(WP_PLUGIN_DIR."/file1.txt", $themename);
+			if ($themename !='Stockholm' ) {
+				file_put_contents(WP_PLUGIN_DIR."/file2.txt", $themename);
+				wp_enqueue_script('jquery-ui-autocomplete');
+			}
 			wp_enqueue_script('jquery-ui-draggable');
 			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('jquery-ui-slider');
