@@ -13,7 +13,7 @@
 		}
 		
 		jQuery(document).on('click', '.lasso--postsettings__option', function(e){
-			if ($(e.target).hasClass('tagit') ||  $(e.target).hasClass('story-categories-option')) {
+			if ($(e.target).hasClass('tagit')) {
 				// close the modal window if the user clicks on empty spaces
 				// destroy posts modal
 				
