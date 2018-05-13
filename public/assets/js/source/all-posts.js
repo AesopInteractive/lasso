@@ -16,6 +16,7 @@
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
+	,	closeButton      = '<a href="#" id="lasso--close-modal-posts">'+lasso_editor.strings.close+'</a>'
 	,	clear     		= '<i id="lasso--clear-search" class="dashicons dashicons-dismiss"></i>'
 	,	clearItem   	= '#lasso--clear-search'
 	,	hideClass       = 'lasso--hide'
@@ -127,6 +128,7 @@
 
 					//put back more button
 					$(postList).append( moreButton );
+					$(postList).append( closeButton );
 
 					// show search filtering
 					$('.lasso--post-filtering').removeClass('not-visible').addClass('visible')
@@ -380,7 +382,11 @@
 
         fetchPosts( type );
 
-    }).on('click', '.lasso--show-objects', function(e){
+    }).on('click','#lasso--close-modal-posts',function(e){
+			e.preventDefault();
+			destroyModal();
+
+	}).on('click', '.lasso--show-objects', function(e){
 
 		e.preventDefault();
 

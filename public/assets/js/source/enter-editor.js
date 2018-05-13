@@ -536,7 +536,7 @@ jQuery(document).ready(function($){
 		    window.selRange = null;
 
 		    // close modal drag
-        	$('#lasso-toolbar--link').removeClass('link--drop-up');
+        	$('#lasso-toolbar--link').removeClass('link--drop-up link--drop-down');
 			
 			articleMedium.makeUndoable();
 

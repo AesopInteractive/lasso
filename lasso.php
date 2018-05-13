@@ -5,12 +5,12 @@
  * @package   Editus
  * @author    Hyun Supul <hyun@aesopinteractive.com>, Nick Haskins <nick@aesopinteractive.com>
  * @link      http://edituswp.com
- * @copyright 2015-2017 Aesopinteractive 
+ * @copyright 2015-2018 Aesopinteractive 
  *
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           0.9.17.9
+ * Version:           0.9.18.1
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '0.9.17.9' );
+define( 'LASSO_VERSION', '0.9.18.1' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 define( 'LASSO_FILE', __FILE__ );
@@ -87,21 +87,3 @@ register_meta('user', 'lasso_hide_tour', array(
   "show_in_rest" => true // this is the key part
 ));
 
-/*function lasso_show_in_rest() {
-	global $wp_post_types;
-	
-	$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor', array( ) );
-	$allowed_post_types = apply_filters( 'lasso_allowed_post_types', $allowed_post_types );
-	
-	foreach( $allowed_post_types as $key ) {
-	    
-		// If the post type doesn't exist, skip it
-		if( !$wp_post_types[$key] )
-			continue;
-	    	
-    	$wp_post_types[$key]->show_in_rest = true;
-    }
-}
-
- add_action( 'init', 'lasso_show_in_rest' );
-*/

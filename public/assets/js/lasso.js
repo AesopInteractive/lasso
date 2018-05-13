@@ -10951,7 +10951,7 @@ jQuery(document).ready(function($){
 		    window.selRange = null;
 
 		    // close modal drag
-        	$('#lasso-toolbar--link').removeClass('link--drop-up');
+        	$('#lasso-toolbar--link').removeClass('link--drop-up link--drop-down');
 			
 			articleMedium.makeUndoable();
 
@@ -11725,6 +11725,7 @@ jQuery(document).ready(function($){
 			window.component = component;
 
 			data = component.data();
+			if (!data) return;
 			// special case for hero gallery
 			if ( $(this).parent().parent().hasClass('aesop-hero-gallery-wrapper') ) {
 			    jQuery.extend(data, $(component).find(".fotorama").data());
@@ -14359,6 +14360,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	,	noResultsDiv  	= lasso_editor.noResultsDiv
 	, 	loader			= '<div id="lasso--loading" class="lasso--loading"><div class="lasso--loader"></div></div>'
 	,	moreButton      = '<a href="#" id="lasso--load-more">'+loadMoreText+'</a>'
+	,	closeButton      = '<a href="#" id="lasso--close-modal-posts">'+lasso_editor.strings.close+'</a>'
 	,	clear     		= '<i id="lasso--clear-search" class="dashicons dashicons-dismiss"></i>'
 	,	clearItem   	= '#lasso--clear-search'
 	,	hideClass       = 'lasso--hide'
@@ -14470,6 +14472,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 					//put back more button
 					$(postList).append( moreButton );
+					$(postList).append( closeButton );
 
 					// show search filtering
 					$('.lasso--post-filtering').removeClass('not-visible').addClass('visible')
@@ -14723,7 +14726,11 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
         fetchPosts( type );
 
-    }).on('click', '.lasso--show-objects', function(e){
+    }).on('click','#lasso--close-modal-posts',function(e){
+			e.preventDefault();
+			destroyModal();
+
+	}).on('click', '.lasso--show-objects', function(e){
 
 		e.preventDefault();
 
@@ -14949,7 +14956,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 		destroyModal = function(){
 			$('body').removeClass('lasso-modal-open');
-			$('#lasso--tour__modal,#lasso--tour__modal ~ #lasso--modal__overlay').remove();
+			$('#lasso--tour__modal,#lasso--all-posts__modal,#lasso--modal__overlay').remove();
 		}
 
 		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {

@@ -47,6 +47,7 @@
 			window.component = component;
 
 			data = component.data();
+			if (!data) return;
 			// special case for hero gallery
 			if ( $(this).parent().parent().hasClass('aesop-hero-gallery-wrapper') ) {
 			    jQuery.extend(data, $(component).find(".fotorama").data());

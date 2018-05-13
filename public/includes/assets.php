@@ -97,6 +97,7 @@ class assets {
 				'added'				=> __('Added!','lasso'),
 				'loading' 			=> __('Loading...','lasso'),
 				'loadMore'			=> __('Load More','lasso'),
+				'close'			=> __('Close','lasso'),
 				'noPostsFound'		=> __('No more posts found','lasso'),
 				'fetchFail'	    	=> __('Fetching failed.','lasso'),
 				'galleryCreated' 	=> __('Gallery Created!','lasso'),
@@ -226,7 +227,7 @@ class assets {
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag,
 				'customFields'      => $custom_fields,
-				'skipToEdit'        =>( $delta < 30 ) // if it's a new post, skip to edit mode
+				'skipToEdit'        =>( $delta < 10 ) // if it's a new post, skip to edit mode
 			);
 
 

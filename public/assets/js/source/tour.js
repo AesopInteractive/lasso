@@ -4,7 +4,7 @@
 
 		destroyModal = function(){
 			$('body').removeClass('lasso-modal-open');
-			$('#lasso--tour__modal,#lasso--tour__modal ~ #lasso--modal__overlay').remove();
+			$('#lasso--tour__modal,#lasso--all-posts__modal,#lasso--modal__overlay').remove();
 		}
 
 		//$('#lasso--tour__modal input[type="submit"]').live('click', function(e) {
