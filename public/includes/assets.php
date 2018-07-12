@@ -75,6 +75,10 @@ class assets {
 				wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
 			}
 			
+			// click to insert components, not drag and drop
+			$insert_comp_ui = lasso_editor_get_option('insert_comp_ui', 'lasso_editor');
+			
+			
 			// custom fields
 			
 			$custom_fields = apply_filters( 'editus_custom_fields', null ); //array('testFieldName' => '#field1');
@@ -225,6 +229,7 @@ class assets {
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag,
 				'customFields'      => $custom_fields,
+				'clickToInsert'     => ($insert_comp_ui =='click'),                
 				'skipToEdit'        =>( $delta < 10 ) // if it's a new post, skip to edit mode
 			);
 

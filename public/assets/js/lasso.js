@@ -10976,15 +10976,18 @@ jQuery(document).ready(function($){
 			});
 		}
 		
-		function insert_html(htmlContent) {
+		
+		function insert_html(htmlContent, html) {
+			html= html || true;
 			var container = window.selRange.startContainer,
 			containerTag;
 
 			containerTag = container.localName;
 			var containerObject = $(container);
-			
-			htmlContent = $(htmlContent);
-			htmlContent.attr('contenteditable','true');
+			if (html) {
+				htmlContent = $(htmlContent);
+				htmlContent.attr('contenteditable','true');
+			}
 			
 			// handle 3 specific scenarios dealing with <p>'s
 			// note: might need climb up dom tree depending on nesting use case
@@ -11012,7 +11015,7 @@ jQuery(document).ready(function($){
 			
 			articleMedium.makeUndoable();
 
-		    return false;
+		    return htmlContent;
 		}
 		
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
@@ -11426,23 +11429,39 @@ jQuery(document).ready(function($){
 		    }
 		});
 
-		$('#lasso-toolbar--components__list li').draggable({
-			axis:'y',
-			helper:'clone',
-		    cursor: 'move',
-		    connectToSortable: '#'+editor,
-		    start: function(ui) {
+		if (lasso_editor.clickToInsert) {		
+			jQuery(document).on('mousedown', '#lasso-toolbar--components__list li', function(){
+				var type = $(this).attr('data-type');
+				var item = $(components[type]['content'])
+								.prepend( lassoDragHandle )
+								.attr({
+									'data-component-type': type
+								});
+				restoreSelection(window.selRange);
+				var t = insert_html(item, false);
+				t.find('.lasso-settings').trigger('click');
+			});
+		} 
+		else 
+		{
+			$('#lasso-toolbar--components__list li').draggable({
+				axis:'y',
+				helper:'clone',
+				cursor: 'move',
+				connectToSortable: '#'+editor,
+				start: function(ui) {
 
-		    	// add an origin so sortable can detect where comign from
-		    	origin = 'draggable';
+					// add an origin so sortable can detect where comign from
+					origin = 'draggable';
 
-		    	// get the curent target and add the type class to the drag event
-				var item = ui.currentTarget,
-					type = $(item).attr('data-type');
+					// get the curent target and add the type class to the drag event
+					var item = ui.currentTarget,
+						type = $(item).attr('data-type');
 
-              	$(this).addClass(type);
-		    }
-		});
+					$(this).addClass(type);
+				}
+			});
+		}
 
 	});
 	if (lasso_editor.skipToEdit)
@@ -12385,7 +12404,7 @@ jQuery(function( $ ) {
 	/////////////
 
 	//$('#lasso-toolbar--html').live('mousedown',function(){
-	jQuery(document).on('mousedown', '#lasso-toolbar--html', function(){
+	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			window.selRange = saveSelection();
@@ -14056,7 +14075,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 		    // if any changes happen then show the footer
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
-			  	$('.lasso--postsettings__footer').slideDown()
+			  	$('.lasso--postsettings__footer #lasso--postsettings-create').slideDown()
 			});
 
 			modalResizer()
@@ -14451,7 +14470,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 			collection = new wp.api.collections.Posts( );
 			collection.fetch(  options ).done( function() {
 				//remove more button
-				$( '#lasso--load-more' ).remove();
+				$( '#lasso--load-more,#lasso--close-modal-posts' ).remove();
 				// if we have more posts then load them
 				if ( collection.length > 0 ) {
 					var setContainer = $( '<div data-page-num="' + collection.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + page + '"></div>' );

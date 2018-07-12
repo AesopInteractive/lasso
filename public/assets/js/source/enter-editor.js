@@ -561,15 +561,18 @@ jQuery(document).ready(function($){
 			});
 		}
 		
-		function insert_html(htmlContent) {
+		
+		function insert_html(htmlContent, html) {
+			html= html || true;
 			var container = window.selRange.startContainer,
 			containerTag;
 
 			containerTag = container.localName;
 			var containerObject = $(container);
-			
-			htmlContent = $(htmlContent);
-			htmlContent.attr('contenteditable','true');
+			if (html) {
+				htmlContent = $(htmlContent);
+				htmlContent.attr('contenteditable','true');
+			}
 			
 			// handle 3 specific scenarios dealing with <p>'s
 			// note: might need climb up dom tree depending on nesting use case
@@ -597,7 +600,7 @@ jQuery(document).ready(function($){
 			
 			articleMedium.makeUndoable();
 
-		    return false;
+		    return htmlContent;
 		}
 		
 		document.getElementById('lasso-toolbar--html__insert').onmousedown = function() {
@@ -1011,23 +1014,39 @@ jQuery(document).ready(function($){
 		    }
 		});
 
-		$('#lasso-toolbar--components__list li').draggable({
-			axis:'y',
-			helper:'clone',
-		    cursor: 'move',
-		    connectToSortable: '#'+editor,
-		    start: function(ui) {
+		if (lasso_editor.clickToInsert) {		
+			jQuery(document).on('mousedown', '#lasso-toolbar--components__list li', function(){
+				var type = $(this).attr('data-type');
+				var item = $(components[type]['content'])
+								.prepend( lassoDragHandle )
+								.attr({
+									'data-component-type': type
+								});
+				restoreSelection(window.selRange);
+				var t = insert_html(item, false);
+				t.find('.lasso-settings').trigger('click');
+			});
+		} 
+		else 
+		{
+			$('#lasso-toolbar--components__list li').draggable({
+				axis:'y',
+				helper:'clone',
+				cursor: 'move',
+				connectToSortable: '#'+editor,
+				start: function(ui) {
 
-		    	// add an origin so sortable can detect where comign from
-		    	origin = 'draggable';
+					// add an origin so sortable can detect where comign from
+					origin = 'draggable';
 
-		    	// get the curent target and add the type class to the drag event
-				var item = ui.currentTarget,
-					type = $(item).attr('data-type');
+					// get the curent target and add the type class to the drag event
+					var item = ui.currentTarget,
+						type = $(item).attr('data-type');
 
-              	$(this).addClass(type);
-		    }
-		});
+					$(this).addClass(type);
+				}
+			});
+		}
 
 	});
 	if (lasso_editor.skipToEdit)

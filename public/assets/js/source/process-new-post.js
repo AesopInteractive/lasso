@@ -25,7 +25,7 @@
 
 		    // if any changes happen then show the footer
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
-			  	$('.lasso--postsettings__footer').slideDown()
+			  	$('.lasso--postsettings__footer #lasso--postsettings-create').slideDown()
 			});
 
 			modalResizer()

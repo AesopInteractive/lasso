@@ -107,7 +107,7 @@
 			collection = new wp.api.collections.Posts( );
 			collection.fetch(  options ).done( function() {
 				//remove more button
-				$( '#lasso--load-more' ).remove();
+				$( '#lasso--load-more,#lasso--close-modal-posts' ).remove();
 				// if we have more posts then load them
 				if ( collection.length > 0 ) {
 					var setContainer = $( '<div data-page-num="' + collection.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + page + '"></div>' );

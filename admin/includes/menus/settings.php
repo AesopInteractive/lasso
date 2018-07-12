@@ -117,6 +117,11 @@ class settings {
 		
 		$bold_tag = lasso_editor_get_option( 'bold_tag', 'lasso_editor',  "b");
 		$i_tag = lasso_editor_get_option( 'i_tag', 'lasso_editor',  "i");
+		
+		$insert_comp_ui = lasso_editor_get_option('insert_comp_ui', 'lasso_editor');
+		if (!$insert_comp_ui) {
+			$insert_comp_ui = 'drag';
+		}
 
 ?>
 		<div class="wrap">
@@ -214,11 +219,17 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text colors.', 'lasso' );?></span>
 
 					</div>
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_alignment]" id="lasso_editor[toolbar_show_alignment]" <?php echo checked( $toolbar_show_alignment, 'on' );?> >
 						<label for="lasso_editor[toolbar_show_alignment]"><?php _e( 'Enable Text Align Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text alignment.', 'lasso' );?></span>
 
+					</div>
+					<div class="lasso-editor-settings--option-inner">
+					    <label for="lasso_editor[insert_comp_ui]"> <?php _e( 'Insert Component UI', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'UI mechanism to insert components', 'lasso' );?></span>
+					    <input type="radio" name="lasso_editor[insert_comp_ui]" value='drag' <?php echo checked( $insert_comp_ui, 'drag' );?>> <?php _e( 'Drag and Drop', 'lasso' );?>
+						<input type="radio" name="lasso_editor[insert_comp_ui]" value="click" <?php echo checked( $insert_comp_ui, 'click' );?>> <?php _e( 'Click', 'lasso' );?>
 					</div>
 				</div>
 				
