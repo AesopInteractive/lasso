@@ -10963,7 +10963,8 @@ jQuery(document).ready(function($){
 		{
 			var data = {
 					action: 'editus_do_shortcode',
-					code: content
+					code: content,
+					ID: lasso_editor.postid
 			};
 			
 							

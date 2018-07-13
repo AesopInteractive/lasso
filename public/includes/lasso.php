@@ -351,8 +351,21 @@ class lasso {
 		
 		$code= $_POST["code"];
 		$code = str_replace('\"', '"', $code);
-		$out = lasso_wrap_shortcodes( $code);
-		$out =  do_shortcode($out);
+		
+		$code_wrapped = lasso_wrap_shortcodes( $code);
+		$out =  do_shortcode($code_wrapped);
+		if ($out != '') {
+			echo $out;
+			exit;
+		}
+		
+		// do_shortcode didn't work. Try again using wp_embed
+
+		/** @var \WP_Embed $wp_embed */
+		global $wp_embed;
+		$wp_embed->post_ID = $_POST["ID"];
+		$out =$wp_embed->run_shortcode( $code );
+		
 		echo $out;
 		exit;
 	}
