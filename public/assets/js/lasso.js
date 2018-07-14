@@ -11357,6 +11357,35 @@ jQuery(document).ready(function($){
 			}
 		}
 
+		function setComponent(type) {
+			// if a stock wordpress image is dragged in
+			var comp ="";
+			if ( 'wpimg' == type ) {
+				comp = $(components[type]['content']).prepend( wpImgEdit );
+			// else it's likely an aesop component
+			} else {
+
+				comp = $(components[type]['content'])
+							.prepend( lassoDragHandle )
+							.attr({
+								'data-component-type': type
+							});
+			}
+			return comp;
+		}
+		
+		function postComponent(comp,type) {
+			// if a stock wordpress image is dragged in
+			if ( 'map' == type ) { mapsGoTime() }
+
+			if ('timeline_stop' == type ) { timelineGoTime() }
+
+			if ('video' == type ) { videoGoTime() }
+					
+			$(comp).find('.lasso-settings').trigger('click');
+
+		}
+
 		/////////////////
 		/// DRAG DROP
 		///////////////////
@@ -11387,7 +11416,7 @@ jQuery(document).ready(function($){
 				var item = draggedItem['context'],
 					type = $(item).attr('data-type');
 				// item2 will be the content tthat gets inserted. It also has edit controls
-                var item2;
+                
 
 				// if coming from draggable replace with our content and prepend toolbar
 				if ( origin == 'draggable' ) {
@@ -11395,37 +11424,22 @@ jQuery(document).ready(function($){
 					var newIndex = $(this).data("ui-sortable").currentItem.index();
 				    var sortable_len = $(this).data("ui-sortable").items.length;
 					var last = false;
-					var item2 = "";
 					if (newIndex>= (sortable_len-1)) {
 						last = true;
 						
 					}
 
-					// if a stock wordpress image is dragged in
-					if ( 'wpimg' == type ) {
-						item2 = $(components[type]['content']).prepend( wpImgEdit );
-					// else it's likely an aesop component
-					} else {
-
-						item2 = $(components[type]['content'])
-							.prepend( lassoDragHandle )
-							.attr({
-								'data-component-type': type
-							});
-					}
+					
+					var item2 = setComponent(type);
+					
 					if (last) {
 						item2.append("<p></p>");
 					}
 					$(item).replaceWith( item2);
 					
 
-					if ( 'map' == type ) { mapsGoTime() }
-
-					if ('timeline_stop' == type ) { timelineGoTime() }
-
-					if ('video' == type ) { videoGoTime() }
+					postComponent(item2,type);
 					
-					$(item2).find('.lasso-settings').trigger('click');
 				}
 
 		    }
@@ -11434,14 +11448,11 @@ jQuery(document).ready(function($){
 		if (lasso_editor.clickToInsert) {		
 			jQuery(document).on('mousedown', '#lasso-toolbar--components__list li', function(){
 				var type = $(this).attr('data-type');
-				var item = $(components[type]['content'])
-								.prepend( lassoDragHandle )
-								.attr({
-									'data-component-type': type
-								});
+				var item = setComponent(type);
 				restoreSelection(window.selRange);
 				var t = insert_html(item, false);
-				t.find('.lasso-settings').trigger('click');
+				
+				postComponent(item,type);
 			});
 		} 
 		else 
