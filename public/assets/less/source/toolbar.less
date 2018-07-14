@@ -339,6 +339,7 @@ ul.lasso-toolbar--html-snips {
 }
 
 // components drop up
+#lasso-side-comp-button,
 #lasso-toolbar--components{
 
     ul {
@@ -349,7 +350,8 @@ ul.lasso-toolbar--html-snips {
 
     // drop up menu
     &.toolbar--drop-down,
-    &.toolbar--drop-up {
+    &.toolbar--drop-up,
+	&.toolbar--side	{
 
         * { .box-sizing(border-box); }
         box-shadow:none;
@@ -567,6 +569,44 @@ ul.lasso-toolbar--html-snips {
 
 #lasso-toolbar--components__list,#lasso-toolbar--link__wrap, #lasso-toolbar--html__wrap, .iris-picker{
     z-index: @z-index--toolbar+1;
+}
+
+//side component button
+#lasso-side-comp-button.toolbar--side {
+	background:none;
+}
+#lasso-side-comp-button:before {
+	 content: "\f502";
+	 font-family: dashicons;
+    display: inline-block;
+    font-weight: 400;
+	font-size:30px;
+}
+
+#lasso-side-comp-button li {
+    float: left;
+}
+
+#lasso-side-comp-button ul:after {
+    content:none !important;
+}
+
+#lasso-side-comp-button li:before {
+    font-family: icomoon;
+    display: inline-block;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    transition: all .2s ease;
+    position: relative;
+    top: 10px;
 }
 
 

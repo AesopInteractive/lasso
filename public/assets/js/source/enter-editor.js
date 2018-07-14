@@ -334,7 +334,6 @@ jQuery(document).ready(function($){
 
 		// cursor to the beginning
         if (articleMedium.element.firstChild == null) {
-			//debugger;
 			var node = document.createElement("p");
 			var textnode = document.createTextNode(" ");         // Create a text node
 			node.appendChild(textnode);   
@@ -645,7 +644,7 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit, #lasso--exit').fadeOut().remove();
+			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit, #lasso--exit, #lasso-side-comp-button').fadeOut().remove();
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);

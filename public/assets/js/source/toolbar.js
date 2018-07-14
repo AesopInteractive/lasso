@@ -34,6 +34,27 @@ jQuery(function( $ ) {
 		return ifSmallWidth() ? 'up' : 'down';
 
 	}
+	
+	lasso_editor.addComponentButton = function()
+	{
+			// this function checks the current selected element and adds the component button if appropriate
+			if (!lasso_editor.buttonOnEmptyP) {
+				// if this feature is not turned on, return
+				return;
+			}
+			window.selRange = saveSelection();
+			var container = window.selRange.startContainer,
+			containerTag;
+
+			containerTag = container.localName;
+			if ( containerTag == 'p') {
+				$('#lasso-side-comp-button').fadeOut().remove();
+				//articleMedium.cursor.caretToBeginning(container);
+				articleMedium.insertHtml('<div id="lasso-side-comp-button" style="width:32px;height:32px;left:-30px;top:30px;position:relative;" contenteditable="false"></div>');
+			} else {
+				$('#lasso-side-comp-button').remove();
+			}
+	}
 
 	/////////////
 	/// DROP UP
@@ -73,6 +94,47 @@ jQuery(function( $ ) {
 		}
 
 
+	});
+	
+	
+	
+	// if we the side component button feature is on
+	if (lasso_editor.buttonOnEmptyP) {
+		jQuery(document).on('click', '#lasso--content p', function(e){
+			//if the user click on a paragraph
+			if ($(this).find("#lasso-side-comp-button").length == 0) {
+				lasso_editor.addComponentButton();
+			}
+		});
+	}
+	
+	
+	
+	jQuery(document).on('mousedown', '#lasso-side-comp-button', function(){	
+		// side component button handler
+		window.selRange = saveSelection();
+		$(this).toggleClass('toolbar--side' );
+        // show and hide the component list 
+		var drop			= $('#lasso-side-comp-button #lasso-toolbar--components__list');
+		if (drop.length ==0) {
+			drop 			= $('#lasso-toolbar--components__list').clone();
+			$(this).append(drop);
+			
+		}
+		
+		if ($(this).hasClass( 'toolbar--side')) {
+			$(drop).show();
+		} else {
+			$(drop).hide();
+		}
+		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
+		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
+		
+		$(drop).css({
+				left: '30px',
+				top:'0px'
+			});
+	
 	});
 
 	/////////////

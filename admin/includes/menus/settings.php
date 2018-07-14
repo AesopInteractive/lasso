@@ -230,6 +230,7 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'UI mechanism to insert components', 'lasso' );?></span>
 					    <input type="radio" name="lasso_editor[insert_comp_ui]" value='drag' <?php echo checked( $insert_comp_ui, 'drag' );?>> <?php _e( 'Drag and Drop', 'lasso' );?>
 						<input type="radio" name="lasso_editor[insert_comp_ui]" value="click" <?php echo checked( $insert_comp_ui, 'click' );?>> <?php _e( 'Click', 'lasso' );?>
+						<input type="radio" name="lasso_editor[insert_comp_ui]" value="mediumcom" <?php echo checked( $insert_comp_ui, 'mediumcom' );?>> <?php _e( 'Auto Button on Empty Paragraph', 'lasso' );?>
 					</div>
 				</div>
 				

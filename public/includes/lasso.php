@@ -353,8 +353,9 @@ class lasso {
 		$code = str_replace('\"', '"', $code);
 		
 		$code_wrapped = lasso_wrap_shortcodes( $code);
-		$out =  do_shortcode($code_wrapped);
+		$out =  do_shortcode($code);
 		if ($out != '') {
+			$out =  do_shortcode($code_wrapped);
 			echo $out;
 			exit;
 		}
@@ -364,7 +365,7 @@ class lasso {
 		/** @var \WP_Embed $wp_embed */
 		global $wp_embed;
 		$wp_embed->post_ID = $_POST["ID"];
-		$out =$wp_embed->run_shortcode( $code );
+		$out =$wp_embed->run_shortcode( $code_wrapped );
 		
 		echo $out;
 		exit;

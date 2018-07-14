@@ -5998,6 +5998,8 @@ Undo.Command.extend = function(protoProps) {
 					clearTimeout(timer);
 					timer = setTimeout(function () {
 						makeUndoable();
+						// check if we need to add the component button
+						lasso_editor.addComponentButton();
 					}, 250);
 				});
 
@@ -10749,7 +10751,6 @@ jQuery(document).ready(function($){
 
 		// cursor to the beginning
         if (articleMedium.element.firstChild == null) {
-			//debugger;
 			var node = document.createElement("p");
 			var textnode = document.createTextNode(" ");         // Create a text node
 			node.appendChild(textnode);   
@@ -11060,7 +11061,7 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit, #lasso--exit').fadeOut().remove();
+			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit, #lasso--exit, #lasso-side-comp-button').fadeOut().remove();
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);
@@ -12359,6 +12360,27 @@ jQuery(function( $ ) {
 		return ifSmallWidth() ? 'up' : 'down';
 
 	}
+	
+	lasso_editor.addComponentButton = function()
+	{
+			// this function checks the current selected element and adds the component button if appropriate
+			if (!lasso_editor.buttonOnEmptyP) {
+				// if this feature is not turned on, return
+				return;
+			}
+			window.selRange = saveSelection();
+			var container = window.selRange.startContainer,
+			containerTag;
+
+			containerTag = container.localName;
+			if ( containerTag == 'p') {
+				$('#lasso-side-comp-button').fadeOut().remove();
+				//articleMedium.cursor.caretToBeginning(container);
+				articleMedium.insertHtml('<div id="lasso-side-comp-button" style="width:32px;height:32px;left:-30px;top:30px;position:relative;" contenteditable="false"></div>');
+			} else {
+				$('#lasso-side-comp-button').remove();
+			}
+	}
 
 	/////////////
 	/// DROP UP
@@ -12398,6 +12420,47 @@ jQuery(function( $ ) {
 		}
 
 
+	});
+	
+	
+	
+	// if we the side component button feature is on
+	if (lasso_editor.buttonOnEmptyP) {
+		jQuery(document).on('click', '#lasso--content p', function(e){
+			//if the user click on a paragraph
+			if ($(this).find("#lasso-side-comp-button").length == 0) {
+				lasso_editor.addComponentButton();
+			}
+		});
+	}
+	
+	
+	
+	jQuery(document).on('mousedown', '#lasso-side-comp-button', function(){	
+		// side component button handler
+		window.selRange = saveSelection();
+		$(this).toggleClass('toolbar--side' );
+        // show and hide the component list 
+		var drop			= $('#lasso-side-comp-button #lasso-toolbar--components__list');
+		if (drop.length ==0) {
+			drop 			= $('#lasso-toolbar--components__list').clone();
+			$(this).append(drop);
+			
+		}
+		
+		if ($(this).hasClass( 'toolbar--side')) {
+			$(drop).show();
+		} else {
+			$(drop).hide();
+		}
+		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
+		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
+		
+		$(drop).css({
+				left: '30px',
+				top:'0px'
+			});
+	
 	});
 
 	/////////////

@@ -1110,6 +1110,8 @@
 					clearTimeout(timer);
 					timer = setTimeout(function () {
 						makeUndoable();
+						// check if we need to add the component button
+						lasso_editor.addComponentButton();
 					}, 250);
 				});
 
