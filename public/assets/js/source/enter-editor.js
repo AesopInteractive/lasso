@@ -564,43 +564,49 @@ jQuery(document).ready(function($){
 		
 		function insert_html(htmlContent, html) {
 			html= html || true;
-			var container = window.selRange.startContainer,
-			containerTag;
+			try  {
+				var container = window.selRange.startContainer,
+				containerTag;
+				
 
-			containerTag = container.localName;
-			var containerObject = $(container);
-			if (html) {
-				htmlContent = $(htmlContent);
-				htmlContent.attr('contenteditable','true');
-			}
-			
-			// handle 3 specific scenarios dealing with <p>'s
-			// note: might need climb up dom tree depending on nesting use case
-			if (containerTag == 'p') {
-				// empty p tag
-				htmlContent.insertAfter( containerObject );
-				containerObject.remove();
-			} else {
-				// within a p tag
-				container = container.parentNode;
 				containerTag = container.localName;
-
-				if( containerTag == 'p') {
-					htmlContent.insertAfter( containerObject );
-				} else {
-					// let's just go ahead and paste it on location
-					articleMedium.insertHtml( htmlContent.text() );
+				var containerObject = $(container);
+				if (html) {
+					htmlContent = $(htmlContent);
+					htmlContent.attr('contenteditable','true');
 				}
+				
+				// handle 3 specific scenarios dealing with <p>'s
+				// note: might need climb up dom tree depending on nesting use case
+				if (containerTag == 'p') {
+					// empty p tag
+					htmlContent.insertAfter( containerObject );
+					containerObject.remove();
+				} else {
+					// within a p tag
+					container = container.parentNode;
+					containerTag = container.localName;
+
+					if( containerTag == 'p') {
+						htmlContent.insertAfter( containerObject );
+					} else {
+						// let's just go ahead and paste it on location
+						articleMedium.insertHtml( htmlContent.text() );
+					}
+				}
+
+				window.selRange = null;
+
+				// close modal drag
+				$('#lasso-toolbar--html').removeClass('html--drop-up');
+				
+				articleMedium.makeUndoable();
+
+				return htmlContent;
+			} catch (e) {
+				alert(e.message);
+				
 			}
-
-		    window.selRange = null;
-
-		    // close modal drag
-        	$('#lasso-toolbar--html').removeClass('html--drop-up');
-			
-			articleMedium.makeUndoable();
-
-		    return htmlContent;
 		}
 		
 		function isURL(str) {

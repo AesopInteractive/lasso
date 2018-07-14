@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-07-14 12:53-0500\n"
-"PO-Revision-Date: 2018-07-14 12:53-0500\n"
+"POT-Creation-Date: 2018-07-14 14:14-0500\n"
+"PO-Revision-Date: 2018-07-14 14:14-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -313,7 +313,6 @@ msgstr ""
 #: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:296
 #: public/includes/editor-modules.php:648
 #: public/includes/editor-modules.php:669
-#: public/includes/editor-modules.php:691
 msgid "Settings"
 msgstr ""
 
@@ -909,7 +908,7 @@ msgid "Audio"
 msgstr ""
 
 #: public/includes/components.php:35 public/includes/editor-modules.php:180
-#: public/includes/editor-modules.php:839
+#: public/includes/editor-modules.php:817
 msgid "Content"
 msgstr ""
 
@@ -1109,7 +1108,7 @@ msgstr ""
 msgid "All Posts"
 msgstr ""
 
-#: public/includes/editor-modules.php:71 public/includes/editor-modules.php:876
+#: public/includes/editor-modules.php:71 public/includes/editor-modules.php:854
 msgid "Revisions"
 msgstr ""
 
@@ -1197,7 +1196,7 @@ msgstr ""
 
 #: public/includes/editor-modules.php:229
 #: public/includes/editor-modules.php:248
-msgid "Insert HTML"
+msgid "Insert HTML or Code"
 msgstr ""
 
 #: public/includes/editor-modules.php:231
@@ -1247,21 +1246,18 @@ msgstr ""
 #: public/includes/editor-modules.php:295
 #: public/includes/editor-modules.php:647
 #: public/includes/editor-modules.php:668
-#: public/includes/editor-modules.php:690
 msgid "Move"
 msgstr ""
 
 #: public/includes/editor-modules.php:297
 #: public/includes/editor-modules.php:649
 #: public/includes/editor-modules.php:670
-#: public/includes/editor-modules.php:692
 msgid "Clone"
 msgstr ""
 
 #: public/includes/editor-modules.php:298
 #: public/includes/editor-modules.php:650
 #: public/includes/editor-modules.php:671
-#: public/includes/editor-modules.php:693
 msgid "Delete"
 msgstr ""
 
@@ -1353,15 +1349,15 @@ msgstr "만들기"
 msgid "results found"
 msgstr ""
 
-#: public/includes/editor-modules.php:715
+#: public/includes/editor-modules.php:693
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:733
+#: public/includes/editor-modules.php:711
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 
-#: public/includes/editor-modules.php:876
+#: public/includes/editor-modules.php:854
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
 
