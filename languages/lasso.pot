@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso (beta) 0.9.3\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2018-07-13 22:01-0500\n"
+"POT-Creation-Date: 2018-07-14 12:53-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -379,7 +379,7 @@ msgid "Version"
 msgstr ""
 
 #: admin/includes/class-tgm-plugin-activation.php:2443
-#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:405
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:406
 msgid "Status"
 msgstr ""
 
@@ -548,8 +548,9 @@ msgstr ""
 msgid "Deactivate License"
 msgstr ""
 
-#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:295
-#: public/includes/editor-modules.php:647 public/includes/editor-modules.php:668
+#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:296
+#: public/includes/editor-modules.php:648 public/includes/editor-modules.php:669
+#: public/includes/editor-modules.php:691
 msgid "Settings"
 msgstr ""
 
@@ -1036,7 +1037,8 @@ msgstr ""
 msgid "Nonce not set."
 msgstr ""
 
-#: public/includes/assets.php:95 public/includes/editor-modules.php:473
+#: public/includes/assets.php:95 public/includes/editor-modules.php:474
+#: public/includes/option-engine.php:134
 msgid "Save"
 msgstr ""
 
@@ -1197,7 +1199,7 @@ msgid "Audio"
 msgstr ""
 
 #: public/includes/components.php:35 public/includes/editor-modules.php:180
-#: public/includes/editor-modules.php:816
+#: public/includes/editor-modules.php:839
 msgid "Content"
 msgstr ""
 
@@ -1395,7 +1397,7 @@ msgstr ""
 msgid "All Posts"
 msgstr ""
 
-#: public/includes/editor-modules.php:71 public/includes/editor-modules.php:853
+#: public/includes/editor-modules.php:71 public/includes/editor-modules.php:876
 msgid "Revisions"
 msgstr ""
 
@@ -1403,11 +1405,11 @@ msgstr ""
 msgid "Add Post"
 msgstr ""
 
-#: public/includes/editor-modules.php:86 public/includes/editor-modules.php:261
+#: public/includes/editor-modules.php:86 public/includes/editor-modules.php:262
 msgid "Save Post"
 msgstr ""
 
-#: public/includes/editor-modules.php:89 public/includes/editor-modules.php:264
+#: public/includes/editor-modules.php:89 public/includes/editor-modules.php:265
 msgid "Publish Post"
 msgstr ""
 
@@ -1439,11 +1441,11 @@ msgstr ""
 msgid "WordPress Video"
 msgstr ""
 
-#: public/includes/editor-modules.php:205 public/includes/editor-modules.php:240
+#: public/includes/editor-modules.php:205 public/includes/editor-modules.php:241
 msgid "H2 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:206 public/includes/editor-modules.php:241
+#: public/includes/editor-modules.php:206 public/includes/editor-modules.php:242
 msgid "H3 Heading"
 msgstr ""
 
@@ -1479,7 +1481,7 @@ msgstr ""
 msgid "Create Link"
 msgstr ""
 
-#: public/includes/editor-modules.php:229 public/includes/editor-modules.php:247
+#: public/includes/editor-modules.php:229 public/includes/editor-modules.php:248
 msgid "Insert HTML"
 msgstr ""
 
@@ -1491,147 +1493,152 @@ msgstr ""
 msgid "You can also use Shortcodes"
 msgstr ""
 
-#: public/includes/editor-modules.php:243
-msgid "Unordered List"
+#: public/includes/editor-modules.php:236
+msgid ""
+"You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs."
 msgstr ""
 
 #: public/includes/editor-modules.php:244
+msgid "Unordered List"
+msgstr ""
+
+#: public/includes/editor-modules.php:245
 msgid "Ordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:246 public/includes/editor-modules.php:466
-#: public/includes/editor-modules.php:545
+#: public/includes/editor-modules.php:247 public/includes/editor-modules.php:467
+#: public/includes/editor-modules.php:546
 msgid "Cancel"
 msgstr ""
 
-#: public/includes/editor-modules.php:247
+#: public/includes/editor-modules.php:248
 msgid "Insert"
 msgstr ""
 
-#: public/includes/editor-modules.php:252
+#: public/includes/editor-modules.php:253
 msgid "Text Left Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:253
+#: public/includes/editor-modules.php:254
 msgid "Text Center Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:254
+#: public/includes/editor-modules.php:255
 msgid "Text Right Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:294 public/includes/editor-modules.php:646
-#: public/includes/editor-modules.php:667
+#: public/includes/editor-modules.php:295 public/includes/editor-modules.php:647
+#: public/includes/editor-modules.php:668 public/includes/editor-modules.php:690
 msgid "Move"
 msgstr ""
 
-#: public/includes/editor-modules.php:296 public/includes/editor-modules.php:648
-#: public/includes/editor-modules.php:669
+#: public/includes/editor-modules.php:297 public/includes/editor-modules.php:649
+#: public/includes/editor-modules.php:670 public/includes/editor-modules.php:692
 msgid "Clone"
 msgstr ""
 
-#: public/includes/editor-modules.php:297 public/includes/editor-modules.php:649
-#: public/includes/editor-modules.php:670
+#: public/includes/editor-modules.php:298 public/includes/editor-modules.php:650
+#: public/includes/editor-modules.php:671 public/includes/editor-modules.php:693
 msgid "Delete"
 msgstr ""
 
-#: public/includes/editor-modules.php:321
+#: public/includes/editor-modules.php:322
 msgid "Replace Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:322
+#: public/includes/editor-modules.php:323
 msgid "Delete Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:323
+#: public/includes/editor-modules.php:324
 msgid "save"
 msgstr ""
 
-#: public/includes/editor-modules.php:384
+#: public/includes/editor-modules.php:385
 msgid "Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:384
+#: public/includes/editor-modules.php:385
 msgid "Change the featured image for this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:388
+#: public/includes/editor-modules.php:389
 msgid "Change Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:389
+#: public/includes/editor-modules.php:390
 msgid "Delete Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:405
+#: public/includes/editor-modules.php:406
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
-#: public/includes/editor-modules.php:407
+#: public/includes/editor-modules.php:408
 msgid "Draft"
 msgstr ""
 
-#: public/includes/editor-modules.php:408
+#: public/includes/editor-modules.php:409
 msgid "Publish"
 msgstr ""
 
-#: public/includes/editor-modules.php:418
+#: public/includes/editor-modules.php:419
 msgid "Post URL"
 msgstr ""
 
-#: public/includes/editor-modules.php:418
+#: public/includes/editor-modules.php:419
 msgid "Change the URL (slug) of this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:428
+#: public/includes/editor-modules.php:429
 msgid "Categories"
 msgstr ""
 
-#: public/includes/editor-modules.php:428
+#: public/includes/editor-modules.php:429
 msgid "Type a category name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:433
+#: public/includes/editor-modules.php:434
 msgid "Tags"
 msgstr ""
 
-#: public/includes/editor-modules.php:433
+#: public/includes/editor-modules.php:434
 msgid "Type a tag name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:440
+#: public/includes/editor-modules.php:441
 msgid "Post Date"
 msgstr ""
 
-#: public/includes/editor-modules.php:524
+#: public/includes/editor-modules.php:525
 msgid "New <span>post</span> title"
 msgstr ""
 
-#: public/includes/editor-modules.php:524
+#: public/includes/editor-modules.php:525
 msgid "Specify title for new post, then save to edit."
 msgstr ""
 
-#: public/includes/editor-modules.php:525
+#: public/includes/editor-modules.php:526
 msgid "Grump Wizards Make Toxic Brew"
 msgstr ""
 
-#: public/includes/editor-modules.php:556
+#: public/includes/editor-modules.php:557
 msgid "Create"
 msgstr ""
 
-#: public/includes/editor-modules.php:595
+#: public/includes/editor-modules.php:596
 msgid "results found"
 msgstr ""
 
-#: public/includes/editor-modules.php:692
+#: public/includes/editor-modules.php:715
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:710
+#: public/includes/editor-modules.php:733
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 
-#: public/includes/editor-modules.php:853
+#: public/includes/editor-modules.php:876
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
 

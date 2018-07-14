@@ -5,7 +5,7 @@ msgstr ""
 "PO-Revision-Date: 2018-07-14 12:53-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_ES\n"
+"Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -748,11 +748,11 @@ msgstr ""
 #: public/includes/assets.php:95 public/includes/editor-modules.php:474
 #: public/includes/option-engine.php:134
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 #: public/includes/assets.php:96
 msgid "Saving..."
-msgstr ""
+msgstr "저장중"
 
 #: public/includes/assets.php:97
 msgid "Saved!"
@@ -768,15 +768,15 @@ msgstr ""
 
 #: public/includes/assets.php:100
 msgid "Loading..."
-msgstr ""
+msgstr "로딩"
 
 #: public/includes/assets.php:101
 msgid "Load More"
-msgstr ""
+msgstr "더보기"
 
 #: public/includes/assets.php:102 public/includes/helpers.php:440
 msgid "Close"
-msgstr "Cerra"
+msgstr "닫기"
 
 #: public/includes/assets.php:103
 msgid "No more posts found"
@@ -896,7 +896,7 @@ msgstr ""
 
 #: public/includes/components.php:23 public/includes/editor-modules.php:177
 msgid "Image"
-msgstr ""
+msgstr "이미지"
 
 #: public/includes/components.php:27
 #: public/includes/editor-modules--gallery.php:74
@@ -935,7 +935,7 @@ msgstr ""
 
 #: public/includes/components.php:59 public/includes/editor-modules.php:185
 msgid "Map"
-msgstr "Mapa"
+msgstr "지도"
 
 #: public/includes/components.php:63 public/includes/editor-modules.php:186
 msgid "Timeline"
@@ -1115,11 +1115,11 @@ msgstr ""
 
 #: public/includes/editor-modules.php:75
 msgid "Add Post"
-msgstr ""
+msgstr "새 포스트"
 
 #: public/includes/editor-modules.php:86 public/includes/editor-modules.php:262
 msgid "Save Post"
-msgstr ""
+msgstr "포스트저자"
 
 #: public/includes/editor-modules.php:89 public/includes/editor-modules.php:265
 msgid "Publish Post"
@@ -1226,7 +1226,7 @@ msgstr ""
 #: public/includes/editor-modules.php:467
 #: public/includes/editor-modules.php:546
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "취소"
 
 #: public/includes/editor-modules.php:248
 msgid "Insert"
@@ -1271,15 +1271,15 @@ msgstr ""
 
 #: public/includes/editor-modules.php:323
 msgid "Delete Image"
-msgstr ""
+msgstr "이미지 삭제"
 
 #: public/includes/editor-modules.php:324
 msgid "save"
-msgstr ""
+msgstr "저장"
 
 #: public/includes/editor-modules.php:385
 msgid "Featured Image"
-msgstr ""
+msgstr "대표 이미지"
 
 #: public/includes/editor-modules.php:385
 msgid "Change the featured image for this post."
@@ -1315,7 +1315,7 @@ msgstr ""
 
 #: public/includes/editor-modules.php:429
 msgid "Categories"
-msgstr ""
+msgstr "카테고리"
 
 #: public/includes/editor-modules.php:429
 msgid "Type a category name and press enter."
@@ -1323,7 +1323,7 @@ msgstr ""
 
 #: public/includes/editor-modules.php:434
 msgid "Tags"
-msgstr ""
+msgstr "태그"
 
 #: public/includes/editor-modules.php:434
 msgid "Type a tag name and press enter."
@@ -1331,74 +1331,67 @@ msgstr ""
 
 #: public/includes/editor-modules.php:441
 msgid "Post Date"
-msgstr ""
+msgstr "글쓴날짜"
 
 #: public/includes/editor-modules.php:525
 msgid "New <span>post</span> title"
-msgstr "Escribe el nombre de tu <span> entrada/proyecto </ span>"
+msgstr "새글 제목"
 
 #: public/includes/editor-modules.php:525
 msgid "Specify title for new post, then save to edit."
 msgstr ""
-"Especificar el título de mensaje nuevo, a continuación, guardar editar."
 
 #: public/includes/editor-modules.php:526
 msgid "Grump Wizards Make Toxic Brew"
-msgstr "Aquí titulo de tu entrada/proyecto"
+msgstr "제목"
 
 #: public/includes/editor-modules.php:557
 msgid "Create"
-msgstr "Crear"
+msgstr "만들기"
 
 #: public/includes/editor-modules.php:596
 msgid "results found"
-msgstr "resultados encontrados"
+msgstr ""
 
 #: public/includes/editor-modules.php:715
 msgid "Save Locations"
-msgstr "guardar ubicaciones"
+msgstr ""
 
 #: public/includes/editor-modules.php:733
 msgid "Save this post and refesh the page to see these changes."
-msgstr "Guarde este post y refesh la página para ver los cambios."
+msgstr ""
 
 #: public/includes/editor-modules.php:876
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
-"Utilice el control deslizante para ver la revisión en vivo en la página."
 
 #: public/includes/helpers.php:432
 msgid "No posts to show"
-msgstr "No hay publicaciones para mostrar"
+msgstr ""
 
 #: public/includes/helpers.php:438
 msgid "No revisions found"
-msgstr "No hay revisiones encontrados"
+msgstr ""
 
 #: public/includes/tour.php:67
 msgid "Don't show this again"
-msgstr "No mostrar de nuevo."
+msgstr ""
 
 #: public/includes/tour.php:71
 msgid "Okay, got it!"
-msgstr "OK. Entendido."
+msgstr "OK. "
 
 #: public/includes/tour.php:96
 msgid ""
 "Access posts by clicking the list icon. Create a new post by clicking the "
 "new post icon."
 msgstr ""
-"Puede crear una nueva entrada/proyecto clickando sobre el icono simbolizado "
-"con una hoja con un plus. Este botón lo puede encontrar en la parte inferior "
-"de su pantalla."
 
 #: public/includes/tour.php:99
 msgid ""
 "While on a single post, edit by clicking the Pen icon. Access post settings "
 "with the settings icon. Press escape to exit any modal."
 msgstr ""
-"Clickando sobre el botón de la pluma, puede empezar a escribir o editar su "
-"entrada // proyecto."
 
 #: public/includes/tour.php:102
 msgid ""
@@ -1406,20 +1399,14 @@ msgid ""
 "Click the Disk icon or CMD-S to save. Click the orange \"X\" button to exit "
 "the editor."
 msgstr ""
-"Esta será su barra de edición de textos, con ella podrá editar el formato de "
-"sus textos mientras escribe ( texto en negrita, subrayado, italic, tachado, "
-"añadir enlaces, codigo y mucho más..."
 
 #: public/includes/tour.php:105
 msgid ""
 "Story components can be added by clicking the plus icon, and dragging any "
 "component from the component tray into the story."
 msgstr ""
-"Clickando sobre el botón más, podra arrastrar estos componentes a sus "
-"publicaciones (imágenes, audios, videos, galerias de imagenes, mapa con "
-"localización, citas de autor....)"
 
 #: public/includes/underscore-templates.php:25
 #: public/includes/underscore-templates.php:43
 msgid "Delete Post"
-msgstr ""
+msgstr "글 삭제"

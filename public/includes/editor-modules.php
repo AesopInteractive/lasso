@@ -232,7 +232,8 @@ function lasso_editor_text_toolbar() {
 		    		<div id="lasso-toolbar--html__footer">
 					<div id="lasso-toolbar--html__footer_desc" >
 					<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?><br>
-					<?php esc_attr_e( 'You can also use Shortcodes', 'lasso' );?>
+					<?php esc_attr_e( 'You can also use Shortcodes', 'lasso' );?><br>
+					<?php esc_attr_e( 'You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs.', 'lasso' );?>
 					</div>
 		    			<ul class="lasso-toolbar--html-snips">
 						
