@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso (beta) 0.9.3\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2018-07-14 14:14-0500\n"
+"POT-Creation-Date: 2018-07-16 14:59-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1461,7 +1461,7 @@ msgid "H6 Heading"
 msgstr ""
 
 #: public/includes/editor-modules.php:215
-msgid "Set Text Color"
+msgid "Set Color for Selected Text"
 msgstr ""
 
 #: public/includes/editor-modules.php:216
@@ -1506,7 +1506,7 @@ msgid "Ordered List"
 msgstr ""
 
 #: public/includes/editor-modules.php:247 public/includes/editor-modules.php:467
-#: public/includes/editor-modules.php:546
+#: public/includes/editor-modules.php:546 public/includes/editor-modules.php:860
 msgid "Cancel"
 msgstr ""
 
@@ -1639,6 +1639,10 @@ msgstr ""
 
 #: public/includes/editor-modules.php:854
 msgid "Use the slider to view the revision live on the page."
+msgstr ""
+
+#: public/includes/editor-modules.php:861
+msgid "Select"
 msgstr ""
 
 #: public/includes/helpers.php:432

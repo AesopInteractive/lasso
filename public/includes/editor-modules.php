@@ -212,7 +212,7 @@ function lasso_editor_text_toolbar() {
 			<?php endif; ?>
 			
 			<?php if ( $show_color ): ?>
-		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Text Color', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Color for Selected Text', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
 			<?php endif; ?>
 					
@@ -226,7 +226,7 @@ function lasso_editor_text_toolbar() {
 		    	</div>
 		    </li>
 		    <?php do_action( 'lasso_toolbar_components_after' );?>
-		    <li id="lasso-toolbar--html" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>">
+		    <li id="lasso-toolbar--html" title="<?php esc_attr_e( 'Insert HTML or Code', 'lasso' );?>">
 		    	<div id="lasso-toolbar--html__wrap" <?php echo $mobile_style ?>>
 		    		<div id="lasso-toolbar--html__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'Enter HTML to insert', 'lasso' );?>"></div>
 		    		<div id="lasso-toolbar--html__footer">
@@ -245,7 +245,7 @@ function lasso_editor_text_toolbar() {
 		    				<li id="lasso-html--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>">
 		    			</ul>
 		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e( 'Cancel', 'lasso' );?></a>
-		    			<a href="#" title="<?php esc_attr_e( 'Insert HTML', 'lasso' );?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e( 'Insert', 'lasso' );?></a>
+		    			<a href="#" title="<?php esc_attr_e( 'Insert HTML or Code', 'lasso' );?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e( 'Insert', 'lasso' );?></a>
 		    		</div>
 		    	</div>
 		    </li>
@@ -857,8 +857,8 @@ function lasso_editor_revision_modal() {
 					</div>
 					<ul id="lasso--revision-list"></ul>
 					<div class="lasso--btn-group lasso--btn-group-small">
-						<a href="#" class="lasso--btn-secondary" id="lasso--close-modal">Cancel</a>
-						<a href="#" class="lasso--btn-primary" id="lasso--select-revision">Select</a>
+						<a href="#" class="lasso--btn-secondary" id="lasso--close-modal"><?php _e( 'Cancel', 'lasso' );?></a>
+						<a href="#" class="lasso--btn-primary" id="lasso--select-revision"><?php _e( 'Select', 'lasso' );?></a>
 					</div>
 				</div>
 

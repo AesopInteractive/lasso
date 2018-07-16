@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-07-14 14:14-0500\n"
-"PO-Revision-Date: 2018-07-14 14:14-0500\n"
+"POT-Creation-Date: 2018-07-16 15:11-0500\n"
+"PO-Revision-Date: 2018-07-16 15:40-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -38,7 +38,7 @@ msgstr ""
 
 #: admin/includes/EDD_SL_Plugin_Updater.php:324
 msgid "Error"
-msgstr ""
+msgstr "에러"
 
 #: admin/includes/class-tgm-plugin-activation.php:333
 #: admin/includes/menus/welcome.php:226
@@ -188,7 +188,7 @@ msgstr ""
 #: admin/includes/class-tgm-plugin-activation.php:2443
 #: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:406
 msgid "Status"
-msgstr ""
+msgstr "상태"
 
 #: admin/includes/class-tgm-plugin-activation.php:2603
 msgid "Install"
@@ -856,11 +856,11 @@ msgstr ""
 
 #: public/includes/assets.php:122
 msgid "Trash Post?"
-msgstr ""
+msgstr "글을 삭제할까요?"
 
 #: public/includes/assets.php:123
 msgid "Yes, trash it!"
-msgstr ""
+msgstr "예"
 
 #: public/includes/assets.php:124
 msgid "Oh snap!"
@@ -942,16 +942,16 @@ msgstr ""
 
 #: public/includes/components.php:67 public/includes/editor-modules.php:184
 msgid "Video"
-msgstr ""
+msgstr "동영상"
 
 #: public/includes/components.php:71 public/includes/components.php:87
 #: public/includes/editor-modules.php:197
 msgid "WordPress Image"
-msgstr ""
+msgstr "이미지"
 
 #: public/includes/components.php:75 public/includes/editor-modules.php:198
 msgid "WordPress Quote"
-msgstr ""
+msgstr "인용구"
 
 #: public/includes/components.php:79 public/includes/editor-modules.php:191
 msgid "Gallery Pop"
@@ -1098,31 +1098,31 @@ msgstr ""
 #: public/includes/underscore-templates.php:23
 #: public/includes/underscore-templates.php:41
 msgid "Edit Post"
-msgstr ""
+msgstr "글 편집"
 
 #: public/includes/editor-modules.php:63
 msgid "Post Settings"
-msgstr ""
+msgstr "글 세팅"
 
 #: public/includes/editor-modules.php:68
 msgid "All Posts"
-msgstr ""
+msgstr "글 목록"
 
 #: public/includes/editor-modules.php:71 public/includes/editor-modules.php:854
 msgid "Revisions"
-msgstr ""
+msgstr "리비젼"
 
 #: public/includes/editor-modules.php:75
 msgid "Add Post"
-msgstr "새 포스트"
+msgstr "새글"
 
 #: public/includes/editor-modules.php:86 public/includes/editor-modules.php:262
 msgid "Save Post"
-msgstr "포스트저자"
+msgstr "글저장"
 
 #: public/includes/editor-modules.php:89 public/includes/editor-modules.php:265
 msgid "Publish Post"
-msgstr ""
+msgstr "글공개"
 
 #: public/includes/editor-modules.php:170
 msgid "Bold"
@@ -1150,7 +1150,7 @@ msgstr ""
 
 #: public/includes/editor-modules.php:199
 msgid "WordPress Video"
-msgstr ""
+msgstr "코드"
 
 #: public/includes/editor-modules.php:205
 #: public/includes/editor-modules.php:241
@@ -1175,16 +1175,16 @@ msgid "H6 Heading"
 msgstr ""
 
 #: public/includes/editor-modules.php:215
-msgid "Set Text Color"
-msgstr ""
+msgid "Set Color for Selected Text"
+msgstr "선택된 텍스트색 설정"
 
 #: public/includes/editor-modules.php:216
 msgid "Choose Color"
-msgstr ""
+msgstr "색 변경"
 
 #: public/includes/editor-modules.php:220
 msgid "Anchor Link"
-msgstr ""
+msgstr "링크"
 
 #: public/includes/editor-modules.php:222
 msgid "http://url.com"
@@ -1192,26 +1192,26 @@ msgstr ""
 
 #: public/includes/editor-modules.php:223
 msgid "Create Link"
-msgstr ""
+msgstr "링크"
 
 #: public/includes/editor-modules.php:229
 #: public/includes/editor-modules.php:248
 msgid "Insert HTML or Code"
-msgstr ""
+msgstr "코드"
 
 #: public/includes/editor-modules.php:231
 #: public/includes/editor-modules.php:234
 msgid "Enter HTML to insert"
-msgstr ""
+msgstr "삽입할 HTML코드"
 
 #: public/includes/editor-modules.php:235
 msgid "You can also use Shortcodes"
-msgstr ""
+msgstr "또는 워드프레스 숏코드"
 
 #: public/includes/editor-modules.php:236
 msgid ""
 "You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs."
-msgstr ""
+msgstr "아니면 삽입할 URL을 입력하세요. 유튜브나 트위터등을 지원합니다."
 
 #: public/includes/editor-modules.php:244
 msgid "Unordered List"
@@ -1224,12 +1224,13 @@ msgstr ""
 #: public/includes/editor-modules.php:247
 #: public/includes/editor-modules.php:467
 #: public/includes/editor-modules.php:546
+#: public/includes/editor-modules.php:860
 msgid "Cancel"
 msgstr "취소"
 
 #: public/includes/editor-modules.php:248
 msgid "Insert"
-msgstr ""
+msgstr "삽입"
 
 #: public/includes/editor-modules.php:253
 msgid "Text Left Align"
@@ -1259,11 +1260,11 @@ msgstr ""
 #: public/includes/editor-modules.php:650
 #: public/includes/editor-modules.php:671
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 #: public/includes/editor-modules.php:322
 msgid "Replace Image"
-msgstr ""
+msgstr "이미지변경"
 
 #: public/includes/editor-modules.php:323
 msgid "Delete Image"
@@ -1295,15 +1296,15 @@ msgstr ""
 
 #: public/includes/editor-modules.php:408
 msgid "Draft"
-msgstr ""
+msgstr "비공개"
 
 #: public/includes/editor-modules.php:409
 msgid "Publish"
-msgstr ""
+msgstr "공개"
 
 #: public/includes/editor-modules.php:419
 msgid "Post URL"
-msgstr ""
+msgstr "글주소"
 
 #: public/includes/editor-modules.php:419
 msgid "Change the URL (slug) of this post."
@@ -1360,6 +1361,10 @@ msgstr ""
 #: public/includes/editor-modules.php:854
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
+
+#: public/includes/editor-modules.php:861
+msgid "Select"
+msgstr "선택"
 
 #: public/includes/helpers.php:432
 msgid "No posts to show"

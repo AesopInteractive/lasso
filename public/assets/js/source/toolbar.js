@@ -47,12 +47,19 @@ jQuery(function( $ ) {
 			containerTag;
 
 			containerTag = container.localName;
+			$('#lasso-side-comp-button').remove();
 			if ( containerTag == 'p') {
-				$('#lasso-side-comp-button').fadeOut().remove();
-				//articleMedium.cursor.caretToBeginning(container);
-				articleMedium.insertHtml('<div id="lasso-side-comp-button" style="width:32px;height:32px;left:-30px;top:30px;position:relative;" contenteditable="false"></div>');
-			} else {
-				$('#lasso-side-comp-button').remove();
+				
+				var top_ = container.offsetTop-10;
+				var left_ = container.offsetLeft-30;
+				if (left_ <0) {
+					left_=0;
+				}
+				var button = $('<div id="lasso-side-comp-button" style="width:30px;height:30px;position:absolute;" contenteditable="false"></div>');
+				button.css({top:top_,left:left_});
+						
+				$("#lasso--content").append(button);
+				//button.fadeIn("fast");​
 			}
 	}
 

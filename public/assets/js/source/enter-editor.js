@@ -984,7 +984,7 @@ jQuery(document).ready(function($){
 			if ('timeline_stop' == type ) { timelineGoTime() }
 
 			if ('video' == type ) { videoGoTime() }
-					
+			$('#lasso-side-comp-button').remove();
 			$(comp).find('.lasso-settings').trigger('click');
 
 		}
