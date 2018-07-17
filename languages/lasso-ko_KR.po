@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-07-16 15:11-0500\n"
-"PO-Revision-Date: 2018-07-16 15:40-0500\n"
+"POT-Creation-Date: 2018-07-17 15:16-0500\n"
+"PO-Revision-Date: 2018-07-17 15:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -718,7 +718,7 @@ msgstr ""
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/process/new_object.php:42 public/includes/assets.php:227
+#: includes/process/new_object.php:42 public/includes/assets.php:229
 msgid "Once upon a time..."
 msgstr ""
 
@@ -749,143 +749,154 @@ msgstr ""
 msgid "Save"
 msgstr "저장"
 
-#: public/includes/assets.php:96
+#: public/includes/assets.php:96 public/includes/editor-modules.php:247
+#: public/includes/editor-modules.php:467
+#: public/includes/editor-modules.php:546
+#: public/includes/editor-modules.php:860
+msgid "Cancel"
+msgstr "취소"
+
+#: public/includes/assets.php:97
+msgid "Exit Editor"
+msgstr "에디터 종료"
+
+#: public/includes/assets.php:98
 msgid "Saving..."
 msgstr "저장중"
 
-#: public/includes/assets.php:97
+#: public/includes/assets.php:99
 msgid "Saved!"
 msgstr ""
 
-#: public/includes/assets.php:98
+#: public/includes/assets.php:100
 msgid "Adding..."
 msgstr ""
 
-#: public/includes/assets.php:99
+#: public/includes/assets.php:101
 msgid "Added!"
 msgstr ""
 
-#: public/includes/assets.php:100
+#: public/includes/assets.php:102
 msgid "Loading..."
 msgstr "로딩"
 
-#: public/includes/assets.php:101
+#: public/includes/assets.php:103
 msgid "Load More"
 msgstr "더보기"
 
-#: public/includes/assets.php:102 public/includes/helpers.php:440
+#: public/includes/assets.php:104 public/includes/helpers.php:440
 msgid "Close"
 msgstr "닫기"
 
-#: public/includes/assets.php:103
+#: public/includes/assets.php:105
 msgid "No more posts found"
 msgstr ""
 
-#: public/includes/assets.php:104
+#: public/includes/assets.php:106
 msgid "Fetching failed."
 msgstr ""
 
-#: public/includes/assets.php:105
+#: public/includes/assets.php:107
 msgid "Gallery Created!"
 msgstr ""
 
-#: public/includes/assets.php:106
+#: public/includes/assets.php:108
 msgid "Gallery Updated!"
 msgstr ""
 
-#: public/includes/assets.php:107
+#: public/includes/assets.php:109
 msgid "Just write..."
 msgstr ""
 
-#: public/includes/assets.php:108
+#: public/includes/assets.php:110
 msgid "Choose an image"
 msgstr ""
 
-#: public/includes/assets.php:109
+#: public/includes/assets.php:111
 msgid "Update Image"
 msgstr ""
 
-#: public/includes/assets.php:110
+#: public/includes/assets.php:112
 msgid "Insert Image"
 msgstr ""
 
-#: public/includes/assets.php:111
+#: public/includes/assets.php:113
 msgid "Select Image"
 msgstr ""
 
-#: public/includes/assets.php:112
+#: public/includes/assets.php:114
 msgid "Remove featured image?"
-msgstr ""
+msgstr "대표 이미지를 뺄까요?"
 
-#: public/includes/assets.php:113
+#: public/includes/assets.php:115
 msgid "Update Selected Image"
 msgstr ""
 
-#: public/includes/assets.php:114
+#: public/includes/assets.php:116
 msgid "Choose images"
 msgstr ""
 
-#: public/includes/assets.php:115
+#: public/includes/assets.php:117
 msgid "Edit Image"
 msgstr ""
 
-#: public/includes/assets.php:116
+#: public/includes/assets.php:118
 #: public/includes/editor-modules--gallery.php:28
 msgid "Add Images"
 msgstr ""
 
-#: public/includes/assets.php:117
+#: public/includes/assets.php:119
 msgid "Add New Gallery"
 msgstr ""
 
-#: public/includes/assets.php:118
+#: public/includes/assets.php:120
 msgid "Select Lasso Gallery Image"
 msgstr ""
 
-#: public/includes/assets.php:119
+#: public/includes/assets.php:121
 msgid "Use Selected Images"
 msgstr ""
 
-#: public/includes/assets.php:120
-msgid "Publish Post?"
-msgstr ""
-
-#: public/includes/assets.php:121
-msgid "Yes, publish it!"
-msgstr ""
-
 #: public/includes/assets.php:122
-msgid "Trash Post?"
-msgstr "글을 삭제할까요?"
+msgid "Publish Post?"
+msgstr "글을 공개할까요?"
 
 #: public/includes/assets.php:123
-msgid "Yes, trash it!"
+msgid "Yes, publish it!"
 msgstr "예"
 
 #: public/includes/assets.php:124
+msgid "Trash Post?"
+msgstr "글을 삭제할까요?"
+
+#: public/includes/assets.php:125
+msgid "Yes, trash it!"
+msgstr "예"
+
+#: public/includes/assets.php:126
 msgid "Oh snap!"
 msgstr ""
 
-#: public/includes/assets.php:125
+#: public/includes/assets.php:127
 msgid "O.K. got it!"
 msgstr ""
 
-#: public/includes/assets.php:126
+#: public/includes/assets.php:128
 msgid ""
 "It looks like we are either missing the Article CSS class, or it is "
 "configured incorrectly. Editus will not function correctly without this CSS "
 "class."
 msgstr ""
 
-#: public/includes/assets.php:127
+#: public/includes/assets.php:129
 msgid "Update Settings"
 msgstr ""
 
-#: public/includes/assets.php:128
+#: public/includes/assets.php:130
 msgid "one more letter"
 msgstr ""
 
-#: public/includes/assets.php:129
+#: public/includes/assets.php:131
 msgid "You are currently editing a backup copy of this post."
 msgstr ""
 
@@ -1194,6 +1205,10 @@ msgstr ""
 msgid "Create Link"
 msgstr "링크"
 
+#: public/includes/editor-modules.php:225
+msgid "Open in a New Tab"
+msgstr "새 탭에서 열기"
+
 #: public/includes/editor-modules.php:229
 #: public/includes/editor-modules.php:248
 msgid "Insert HTML or Code"
@@ -1220,13 +1235,6 @@ msgstr ""
 #: public/includes/editor-modules.php:245
 msgid "Ordered List"
 msgstr ""
-
-#: public/includes/editor-modules.php:247
-#: public/includes/editor-modules.php:467
-#: public/includes/editor-modules.php:546
-#: public/includes/editor-modules.php:860
-msgid "Cancel"
-msgstr "취소"
 
 #: public/includes/editor-modules.php:248
 msgid "Insert"
@@ -1376,7 +1384,7 @@ msgstr ""
 
 #: public/includes/tour.php:67
 msgid "Don't show this again"
-msgstr ""
+msgstr "다시보지 않기"
 
 #: public/includes/tour.php:71
 msgid "Okay, got it!"

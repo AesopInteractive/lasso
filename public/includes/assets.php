@@ -93,6 +93,8 @@ class assets {
 
 			$strings = array(
 				'save' 				=> __('Save','lasso'),
+				'cancel' 			=> __('Cancel','lasso'),
+				'exiteditor' 		=> __('Exit Editor','lasso'),
 				'saving' 			=> __('Saving...','lasso'),
 				'saved'				=> __('Saved!','lasso'),
 				'adding' 			=> __('Adding...','lasso'),

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lasso (beta) 0.9.3\n"
 "Report-Msgid-Bugs-To: http://lasso.is\n"
-"POT-Creation-Date: 2018-07-16 14:59-0500\n"
+"POT-Creation-Date: 2018-07-17 15:16-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1010,7 +1010,7 @@ msgstr ""
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/process/new_object.php:42 public/includes/assets.php:227
+#: includes/process/new_object.php:42 public/includes/assets.php:229
 msgid "Once upon a time..."
 msgstr ""
 
@@ -1041,141 +1041,151 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: public/includes/assets.php:96
-msgid "Saving..."
+#: public/includes/assets.php:96 public/includes/editor-modules.php:247
+#: public/includes/editor-modules.php:467 public/includes/editor-modules.php:546
+#: public/includes/editor-modules.php:860
+msgid "Cancel"
 msgstr ""
 
 #: public/includes/assets.php:97
-msgid "Saved!"
+msgid "Exit Editor"
 msgstr ""
 
 #: public/includes/assets.php:98
-msgid "Adding..."
+msgid "Saving..."
 msgstr ""
 
 #: public/includes/assets.php:99
-msgid "Added!"
+msgid "Saved!"
 msgstr ""
 
 #: public/includes/assets.php:100
-msgid "Loading..."
+msgid "Adding..."
 msgstr ""
 
 #: public/includes/assets.php:101
-msgid "Load More"
+msgid "Added!"
 msgstr ""
 
-#: public/includes/assets.php:102 public/includes/helpers.php:440
-msgid "Close"
+#: public/includes/assets.php:102
+msgid "Loading..."
 msgstr ""
 
 #: public/includes/assets.php:103
-msgid "No more posts found"
+msgid "Load More"
 msgstr ""
 
-#: public/includes/assets.php:104
-msgid "Fetching failed."
+#: public/includes/assets.php:104 public/includes/helpers.php:440
+msgid "Close"
 msgstr ""
 
 #: public/includes/assets.php:105
-msgid "Gallery Created!"
+msgid "No more posts found"
 msgstr ""
 
 #: public/includes/assets.php:106
-msgid "Gallery Updated!"
+msgid "Fetching failed."
 msgstr ""
 
 #: public/includes/assets.php:107
-msgid "Just write..."
+msgid "Gallery Created!"
 msgstr ""
 
 #: public/includes/assets.php:108
-msgid "Choose an image"
+msgid "Gallery Updated!"
 msgstr ""
 
 #: public/includes/assets.php:109
-msgid "Update Image"
+msgid "Just write..."
 msgstr ""
 
 #: public/includes/assets.php:110
-msgid "Insert Image"
+msgid "Choose an image"
 msgstr ""
 
 #: public/includes/assets.php:111
-msgid "Select Image"
+msgid "Update Image"
 msgstr ""
 
 #: public/includes/assets.php:112
-msgid "Remove featured image?"
+msgid "Insert Image"
 msgstr ""
 
 #: public/includes/assets.php:113
-msgid "Update Selected Image"
+msgid "Select Image"
 msgstr ""
 
 #: public/includes/assets.php:114
-msgid "Choose images"
+msgid "Remove featured image?"
 msgstr ""
 
 #: public/includes/assets.php:115
-msgid "Edit Image"
+msgid "Update Selected Image"
 msgstr ""
 
-#: public/includes/assets.php:116 public/includes/editor-modules--gallery.php:28
-msgid "Add Images"
+#: public/includes/assets.php:116
+msgid "Choose images"
 msgstr ""
 
 #: public/includes/assets.php:117
-msgid "Add New Gallery"
+msgid "Edit Image"
 msgstr ""
 
-#: public/includes/assets.php:118
-msgid "Select Lasso Gallery Image"
+#: public/includes/assets.php:118 public/includes/editor-modules--gallery.php:28
+msgid "Add Images"
 msgstr ""
 
 #: public/includes/assets.php:119
-msgid "Use Selected Images"
+msgid "Add New Gallery"
 msgstr ""
 
 #: public/includes/assets.php:120
-msgid "Publish Post?"
+msgid "Select Lasso Gallery Image"
 msgstr ""
 
 #: public/includes/assets.php:121
-msgid "Yes, publish it!"
+msgid "Use Selected Images"
 msgstr ""
 
 #: public/includes/assets.php:122
-msgid "Trash Post?"
+msgid "Publish Post?"
 msgstr ""
 
 #: public/includes/assets.php:123
-msgid "Yes, trash it!"
+msgid "Yes, publish it!"
 msgstr ""
 
 #: public/includes/assets.php:124
-msgid "Oh snap!"
+msgid "Trash Post?"
 msgstr ""
 
 #: public/includes/assets.php:125
-msgid "O.K. got it!"
+msgid "Yes, trash it!"
 msgstr ""
 
 #: public/includes/assets.php:126
+msgid "Oh snap!"
+msgstr ""
+
+#: public/includes/assets.php:127
+msgid "O.K. got it!"
+msgstr ""
+
+#: public/includes/assets.php:128
 msgid ""
 "It looks like we are either missing the Article CSS class, or it is configured "
 "incorrectly. Editus will not function correctly without this CSS class."
 msgstr ""
 
-#: public/includes/assets.php:127
+#: public/includes/assets.php:129
 msgid "Update Settings"
 msgstr ""
 
-#: public/includes/assets.php:128
+#: public/includes/assets.php:130
 msgid "one more letter"
 msgstr ""
 
-#: public/includes/assets.php:129
+#: public/includes/assets.php:131
 msgid "You are currently editing a backup copy of this post."
 msgstr ""
 
@@ -1480,6 +1490,10 @@ msgstr ""
 msgid "Create Link"
 msgstr ""
 
+#: public/includes/editor-modules.php:225
+msgid "Open in a New Tab"
+msgstr ""
+
 #: public/includes/editor-modules.php:229 public/includes/editor-modules.php:248
 msgid "Insert HTML or Code"
 msgstr ""
@@ -1503,11 +1517,6 @@ msgstr ""
 
 #: public/includes/editor-modules.php:245
 msgid "Ordered List"
-msgstr ""
-
-#: public/includes/editor-modules.php:247 public/includes/editor-modules.php:467
-#: public/includes/editor-modules.php:546 public/includes/editor-modules.php:860
-msgid "Cancel"
 msgstr ""
 
 #: public/includes/editor-modules.php:248

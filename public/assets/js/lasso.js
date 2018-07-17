@@ -7809,7 +7809,7 @@ Undo.Command.extend = function(protoProps) {
         closeOnCancel: true,
         confirmButtonText: 'OK',
         confirmButtonColor: '#AEDEF4',
-        cancelButtonText: 'Cancel',
+        cancelButtonText: lasso_editor.strings.cancel,
         imageUrl: null,
         imageSize: null,
         timer: null
@@ -7975,7 +7975,7 @@ Undo.Command.extend = function(protoProps) {
    */
 
   window.sweetAlertInitialize = function() {
-    var sweetHTML = '<div class="sweet-overlay" tabIndex="-1"></div><div class="sweet-alert" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <div class="icon custom"></div> <h2>Title</h2><p>Text</p><button class="cancel" tabIndex="2">Cancel</button><button class="confirm" tabIndex="1">OK</button></div>',
+    var sweetHTML = '<div class="sweet-overlay" tabIndex="-1"></div><div class="sweet-alert" tabIndex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <div class="icon custom"></div> <h2>Title</h2><p>Text</p><button class="cancel" tabIndex="2">'+lasso_editor.strings.cancel+'</button><button class="confirm" tabIndex="1">OK</button></div>',
         sweetWrap = document.createElement('div');
 
     sweetWrap.innerHTML = sweetHTML;
@@ -10607,7 +10607,7 @@ jQuery(document).ready(function($){
 		})
 
 		// add an exit editor button
-		$('.lasso--controls__right ').prepend('<a title="Exit Editor" id="lasso--exit" href="#"></a>');
+		$('.lasso--controls__right ').prepend('<a title="'+lasso_editor.strings.exiteditor+'" id="lasso--exit" href="#"></a>');
 
 		// append the toolbar to any components that dont have them
 		// @todo - this likely needs to be changed to a lasso- namespaced item which then needs to be updated in Aesop Story Engine
