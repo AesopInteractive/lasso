@@ -129,6 +129,8 @@ class assets {
 				'missingConfirm'	=> __('Update Settings', 'lasso'),
 				'helperText'		=> __('one more letter','lasso'),
 				'editingBackup'  	=> __('You are currently editing a backup copy of this post.'),
+				'selectText'	  	=> __('Please Select Text First.'),
+				
 			);
 
 			$api_url = trailingslashit( home_url() ) . 'lasso-internal-api';

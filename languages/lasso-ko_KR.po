@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-07-17 15:16-0500\n"
-"PO-Revision-Date: 2018-07-17 15:17-0500\n"
+"POT-Creation-Date: 2018-07-18 09:06-0500\n"
+"PO-Revision-Date: 2018-07-18 09:07-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -718,7 +718,7 @@ msgstr ""
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/process/new_object.php:42 public/includes/assets.php:229
+#: includes/process/new_object.php:42 public/includes/assets.php:231
 msgid "Once upon a time..."
 msgstr ""
 
@@ -766,15 +766,15 @@ msgstr "저장중"
 
 #: public/includes/assets.php:99
 msgid "Saved!"
-msgstr ""
+msgstr "저장완료"
 
 #: public/includes/assets.php:100
 msgid "Adding..."
-msgstr ""
+msgstr "추가중"
 
 #: public/includes/assets.php:101
 msgid "Added!"
-msgstr ""
+msgstr "추가완료"
 
 #: public/includes/assets.php:102
 msgid "Loading..."
@@ -790,7 +790,7 @@ msgstr "닫기"
 
 #: public/includes/assets.php:105
 msgid "No more posts found"
-msgstr ""
+msgstr "더 글이 없습니다."
 
 #: public/includes/assets.php:106
 msgid "Fetching failed."
@@ -899,6 +899,10 @@ msgstr ""
 #: public/includes/assets.php:131
 msgid "You are currently editing a backup copy of this post."
 msgstr ""
+
+#: public/includes/assets.php:132
+msgid "Please Select Text First."
+msgstr "텍스트를 먼저 선택하십시요."
 
 #: public/includes/components.php:19 public/includes/editor-modules.php:179
 msgid "Quote"

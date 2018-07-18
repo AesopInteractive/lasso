@@ -10820,7 +10820,9 @@ jQuery(document).ready(function($){
 			$('#lasso-toolbar--color-set').mousedown(function() {
 				$("#lasso-toolbar--color-pick").iris('hide');
 				articleMedium.element.contentEditable = true;
-				//article.highlight();
+				// exit if nothing is selected
+				if (!lasso_editor.checkSelection()) return false;
+				
 				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
 				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
 				//unselect
@@ -12380,6 +12382,19 @@ jQuery(function( $ ) {
 	        }
 	    }
 	}
+	
+	
+	lasso_editor.checkSelection = function () {		
+		if (window.selRange && window.selRange.collapsed) {
+			swal({
+				    title:"",
+					text: lasso_editor.strings.selectText,
+					closeOnConfirm: true
+			});
+			return false;
+		}
+		return true;
+	}
 
 	var ifSmallWidth = function(){
 
@@ -12609,6 +12624,9 @@ jQuery(function( $ ) {
 	});
 
 	$(document).on('click', '#lasso-toolbar--link', function(e){
+
+		 // exit if nothing is selected
+		if (!lasso_editor.checkSelection()) return false;
 
 		$(this).toggleClass('link--drop-'+dropClass());
 		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );

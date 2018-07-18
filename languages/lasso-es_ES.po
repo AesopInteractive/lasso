@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-07-17 15:15-0500\n"
-"PO-Revision-Date: 2018-07-17 15:16-0500\n"
+"POT-Creation-Date: 2018-07-18 09:05-0500\n"
+"PO-Revision-Date: 2018-07-18 09:05-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -718,7 +718,7 @@ msgstr ""
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/process/new_object.php:42 public/includes/assets.php:229
+#: includes/process/new_object.php:42 public/includes/assets.php:231
 msgid "Once upon a time..."
 msgstr ""
 
@@ -898,6 +898,10 @@ msgstr ""
 
 #: public/includes/assets.php:131
 msgid "You are currently editing a backup copy of this post."
+msgstr ""
+
+#: public/includes/assets.php:132
+msgid "Please Select Text First."
 msgstr ""
 
 #: public/includes/components.php:19 public/includes/editor-modules.php:179

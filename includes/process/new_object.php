@@ -39,7 +39,7 @@ class new_object implements api_action {
 			'post_title'    => $title,
 			'post_status'   => 'draft',
 			'post_type'    	=> $object,
-			'post_content'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') )
+			'post_content'  => apply_filters( 'lasso_new_object_content', '<p>'.__( 'Once upon a time...','lasso').'</p>' )
 		);
 
 		$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );
