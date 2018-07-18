@@ -25,8 +25,14 @@ jQuery(function( $ ) {
 	}
 	
 	
-	lasso_editor.checkSelection = function () {		
-		if (window.selRange && window.selRange.collapsed) {
+	lasso_editor.checkSelection = function (saveSel) {
+
+		saveSel = saveSel || false;
+		if (saveSel) {
+			window.selRange = saveSelection();
+		}
+
+		if (window.selRange.collapsed) {
 			swal({
 				    title:"",
 					text: lasso_editor.strings.selectText,
@@ -165,9 +171,9 @@ jQuery(function( $ ) {
 	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
+			article.highlight();
 			window.selRange = saveSelection();
 			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
-				article.highlight();
 				window.selRange = saveSelection();
 			}
 		}

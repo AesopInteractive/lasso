@@ -10821,7 +10821,7 @@ jQuery(document).ready(function($){
 				$("#lasso-toolbar--color-pick").iris('hide');
 				articleMedium.element.contentEditable = true;
 				// exit if nothing is selected
-				if (!lasso_editor.checkSelection()) return false;
+				if (!lasso_editor.checkSelection(true)) return false;
 				
 				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
 				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
@@ -10983,6 +10983,7 @@ jQuery(document).ready(function($){
 		
 		function insert_html(htmlContent, html) {
 			html= html || true;
+			debugger;
 			try  {
 				var container = window.selRange.startContainer,
 				containerTag;
@@ -10990,6 +10991,7 @@ jQuery(document).ready(function($){
 
 				containerTag = container.localName;
 				var containerObject = $(container);
+				var htmlCopy = htmlContent;
 				if (html) {
 					htmlContent = $(htmlContent);
 					htmlContent.attr('contenteditable','true');
@@ -11010,7 +11012,7 @@ jQuery(document).ready(function($){
 						htmlContent.insertAfter( containerObject );
 					} else {
 						// let's just go ahead and paste it on location
-						articleMedium.insertHtml( htmlContent.text() );
+						articleMedium.insertHtml( '<p>'+htmlCopy+'</p>' );
 					}
 				}
 
@@ -12384,8 +12386,14 @@ jQuery(function( $ ) {
 	}
 	
 	
-	lasso_editor.checkSelection = function () {		
-		if (window.selRange && window.selRange.collapsed) {
+	lasso_editor.checkSelection = function (saveSel) {
+
+		saveSel = saveSel || false;
+		if (saveSel) {
+			window.selRange = saveSelection();
+		}
+
+		if (window.selRange.collapsed) {
 			swal({
 				    title:"",
 					text: lasso_editor.strings.selectText,
@@ -12524,9 +12532,9 @@ jQuery(function( $ ) {
 	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
+			article.highlight();
 			window.selRange = saveSelection();
 			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
-				article.highlight();
 				window.selRange = saveSelection();
 			}
 		}

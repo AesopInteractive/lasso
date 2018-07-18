@@ -404,7 +404,7 @@ jQuery(document).ready(function($){
 				$("#lasso-toolbar--color-pick").iris('hide');
 				articleMedium.element.contentEditable = true;
 				// exit if nothing is selected
-				if (!lasso_editor.checkSelection()) return false;
+				if (!lasso_editor.checkSelection(true)) return false;
 				
 				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
 				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
@@ -566,6 +566,7 @@ jQuery(document).ready(function($){
 		
 		function insert_html(htmlContent, html) {
 			html= html || true;
+			debugger;
 			try  {
 				var container = window.selRange.startContainer,
 				containerTag;
@@ -573,6 +574,7 @@ jQuery(document).ready(function($){
 
 				containerTag = container.localName;
 				var containerObject = $(container);
+				var htmlCopy = htmlContent;
 				if (html) {
 					htmlContent = $(htmlContent);
 					htmlContent.attr('contenteditable','true');
@@ -593,7 +595,7 @@ jQuery(document).ready(function($){
 						htmlContent.insertAfter( containerObject );
 					} else {
 						// let's just go ahead and paste it on location
-						articleMedium.insertHtml( htmlContent.text() );
+						articleMedium.insertHtml( '<p>'+htmlCopy+'</p>' );
 					}
 				}
 

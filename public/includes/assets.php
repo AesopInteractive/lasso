@@ -93,6 +93,7 @@ class assets {
 
 			$strings = array(
 				'save' 				=> __('Save','lasso'),
+				'selectText'	  	=> __('Please Select Text First.','lasso'),
 				'cancel' 			=> __('Cancel','lasso'),
 				'exiteditor' 		=> __('Exit Editor','lasso'),
 				'saving' 			=> __('Saving...','lasso'),
@@ -129,7 +130,7 @@ class assets {
 				'missingConfirm'	=> __('Update Settings', 'lasso'),
 				'helperText'		=> __('one more letter','lasso'),
 				'editingBackup'  	=> __('You are currently editing a backup copy of this post.'),
-				'selectText'	  	=> __('Please Select Text First.'),
+				
 				
 			);
 
@@ -228,7 +229,7 @@ class assets {
 				'showIgnoredItems'  => lasso_editor_get_option('show_ignored_items', 'lasso_editor'),
 				'restapi2'          => $using_restapiv2,
 				'saveusingrest'     => $using_restapiv2 && !$disableRESTSave,
-				'newObjectContent'  => apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ),
+				'newObjectContent'  => '<p>'.apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ).'</p>',
 				'disableSavePost'   => $save_to_post_disabled,
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag,
