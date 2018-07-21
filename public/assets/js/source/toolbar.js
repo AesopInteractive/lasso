@@ -25,10 +25,13 @@ jQuery(function( $ ) {
 	}
 	
 	
+	
 	lasso_editor.checkSelection = function (saveSel) {
-
-		saveSel = saveSel || false;
-		if (saveSel) {
+		/*var saveSel = saveSelection;
+		if (saveSel == undefined) { 
+			saveSel =  false;
+		} */
+		if (saveSel == true) {
 			window.selRange = saveSelection();
 		}
 
@@ -67,18 +70,22 @@ jQuery(function( $ ) {
 
 			containerTag = container.localName;
 			$('#lasso-side-comp-button').remove();
-			if ( containerTag == 'p') {
-				
+			if ( containerTag == 'p') {	
+				var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
+				if (innerText != "") {
+					//this paragraph is not empty, return
+					return;
+				}
 				var top_ = container.offsetTop-10;
 				var left_ = container.offsetLeft-30;
-				if (left_ <0) {
-					left_=0;
-				}
+				
 				var button = $('<div id="lasso-side-comp-button" style="width:30px;height:30px;position:absolute;" contenteditable="false"></div>');
 				button.css({top:top_,left:left_});
-						
+
 				$("#lasso--content").append(button);
-				//button.fadeIn("fast");​
+				if (button.offset().left<0) {
+					button.offset({left:0});
+				}
 			}
 	}
 

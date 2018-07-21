@@ -564,18 +564,18 @@ jQuery(document).ready(function($){
 		}
 		
 		
-		function insert_html(htmlContent, html) {
-			html= html || true;
-			debugger;
+		function insert_html(htmlContent, contentishtml) {		
+			var html = contentishtml; 
+			if (contentishtml == undefined) {
+				html = true;
+			}
 			try  {
-				var container = window.selRange.startContainer,
-				containerTag;
-				
-
-				containerTag = container.localName;
+				var container = window.selRange.startContainer;
+				var containerTag = container.localName;
 				var containerObject = $(container);
 				var htmlCopy = htmlContent;
 				if (html) {
+                    //htmlContent is html, not an object
 					htmlContent = $(htmlContent);
 					htmlContent.attr('contenteditable','true');
 				}
@@ -583,16 +583,27 @@ jQuery(document).ready(function($){
 				// handle 3 specific scenarios dealing with <p>'s
 				// note: might need climb up dom tree depending on nesting use case
 				if (containerTag == 'p') {
-					// empty p tag
-					htmlContent.insertAfter( containerObject );
-					containerObject.remove();
+					var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
+					if (!html) {			
+						htmlContent.insertAfter( containerObject );
+						if (innerText =="") {
+							// empty p tag
+							containerObject.remove();
+						}
+					} else {
+						articleMedium.insertHtml( htmlCopy );
+					}
+					
+
 				} else {
 					// within a p tag
 					container = container.parentNode;
 					containerTag = container.localName;
 
 					if( containerTag == 'p') {
-						htmlContent.insertAfter( containerObject );
+						//if (string.indexOf(<) !== -1;
+						//htmlContent.insertAfter( containerObject );
+						articleMedium.insertHtml( htmlCopy );
 					} else {
 						// let's just go ahead and paste it on location
 						articleMedium.insertHtml( '<p>'+htmlCopy+'</p>' );
@@ -605,6 +616,7 @@ jQuery(document).ready(function($){
 				$('#lasso-toolbar--html').removeClass('html--drop-up');
 				
 				articleMedium.makeUndoable();
+				lasso_editor.addComponentButton();
 
 				return htmlContent;
 			} catch (e) {

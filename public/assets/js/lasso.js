@@ -10981,18 +10981,18 @@ jQuery(document).ready(function($){
 		}
 		
 		
-		function insert_html(htmlContent, html) {
-			html= html || true;
-			debugger;
+		function insert_html(htmlContent, contentishtml) {		
+			var html = contentishtml; 
+			if (contentishtml == undefined) {
+				html = true;
+			}
 			try  {
-				var container = window.selRange.startContainer,
-				containerTag;
-				
-
-				containerTag = container.localName;
+				var container = window.selRange.startContainer;
+				var containerTag = container.localName;
 				var containerObject = $(container);
 				var htmlCopy = htmlContent;
 				if (html) {
+                    //htmlContent is html, not an object
 					htmlContent = $(htmlContent);
 					htmlContent.attr('contenteditable','true');
 				}
@@ -11000,16 +11000,27 @@ jQuery(document).ready(function($){
 				// handle 3 specific scenarios dealing with <p>'s
 				// note: might need climb up dom tree depending on nesting use case
 				if (containerTag == 'p') {
-					// empty p tag
-					htmlContent.insertAfter( containerObject );
-					containerObject.remove();
+					var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
+					if (!html) {			
+						htmlContent.insertAfter( containerObject );
+						if (innerText =="") {
+							// empty p tag
+							containerObject.remove();
+						}
+					} else {
+						articleMedium.insertHtml( htmlCopy );
+					}
+					
+
 				} else {
 					// within a p tag
 					container = container.parentNode;
 					containerTag = container.localName;
 
 					if( containerTag == 'p') {
-						htmlContent.insertAfter( containerObject );
+						//if (string.indexOf(<) !== -1;
+						//htmlContent.insertAfter( containerObject );
+						articleMedium.insertHtml( htmlCopy );
 					} else {
 						// let's just go ahead and paste it on location
 						articleMedium.insertHtml( '<p>'+htmlCopy+'</p>' );
@@ -11022,6 +11033,7 @@ jQuery(document).ready(function($){
 				$('#lasso-toolbar--html').removeClass('html--drop-up');
 				
 				articleMedium.makeUndoable();
+				lasso_editor.addComponentButton();
 
 				return htmlContent;
 			} catch (e) {
@@ -12386,10 +12398,13 @@ jQuery(function( $ ) {
 	}
 	
 	
+	
 	lasso_editor.checkSelection = function (saveSel) {
-
-		saveSel = saveSel || false;
-		if (saveSel) {
+		/*var saveSel = saveSelection;
+		if (saveSel == undefined) { 
+			saveSel =  false;
+		} */
+		if (saveSel == true) {
 			window.selRange = saveSelection();
 		}
 
@@ -12428,18 +12443,22 @@ jQuery(function( $ ) {
 
 			containerTag = container.localName;
 			$('#lasso-side-comp-button').remove();
-			if ( containerTag == 'p') {
-				
+			if ( containerTag == 'p') {	
+				var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
+				if (innerText != "") {
+					//this paragraph is not empty, return
+					return;
+				}
 				var top_ = container.offsetTop-10;
 				var left_ = container.offsetLeft-30;
-				if (left_ <0) {
-					left_=0;
-				}
+				
 				var button = $('<div id="lasso-side-comp-button" style="width:30px;height:30px;position:absolute;" contenteditable="false"></div>');
 				button.css({top:top_,left:left_});
-						
+
 				$("#lasso--content").append(button);
-				//button.fadeIn("fast");​
+				if (button.offset().left<0) {
+					button.offset({left:0});
+				}
 			}
 	}
 
