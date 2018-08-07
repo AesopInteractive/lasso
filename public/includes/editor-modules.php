@@ -2,7 +2,6 @@
 
 /**
  * These functions are then localized and then appended with JS in enter-editor.js
- *  All are protectd under a capability and logged in check using a filterable function lasso_user_can()
  *
  * @since 1.0
  */
@@ -109,8 +108,6 @@ function lasso_editor_component_sidebar() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_sidebar_classes', '' );
@@ -133,8 +130,6 @@ function lasso_editor_text_toolbar() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 	
 	$is_mobile = wp_is_mobile();
 
@@ -284,8 +279,6 @@ function lasso_editor_settings_toolbar() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_component_classes', '' );
@@ -311,8 +304,6 @@ function lasso_editor_image_controls() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 
 	// has post thumbnail
 	$has_thumbnail = has_post_thumbnail( get_the_ID() ) ? 'class="lasso--featImg--has-thumb"' : false;
@@ -340,8 +331,6 @@ function lasso_editor_component_modal() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 
 	global $post;
 
@@ -498,8 +487,6 @@ function lasso_editor_newpost_modal() {
 
 	ob_start();
 
-	if ( !lasso_user_can('edit_posts') )
-		return;
 
 	$status = get_post_status( get_the_ID() );
 
@@ -542,7 +529,7 @@ function lasso_editor_newpost_modal() {
 					</div>
 				</div>
 
-				<div class="lasso--postsettings__footer" style="<?php if (!wp_is_mobile()) {echo 'display:none;';} ?>">
+				<div class="lasso--postsettings__footer">
 					<a href="#" class="lasso--postsettings-cancel"><?php _e( 'Cancel', 'lasso' );?></a>
 					<input type="hidden" name="action" value="process_new-object_post">
 					<?php
@@ -636,8 +623,6 @@ function lasso_editor_wpimg_edit() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_wpimg_classes', '' );
@@ -657,8 +642,6 @@ function lasso_editor_wpvideo_edit() {
 
 	ob_start();
 
-	if ( !lasso_user_can() )
-		return;
 
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_wpimg_classes', '' );
