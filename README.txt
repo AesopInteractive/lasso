@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.10.1.0
+Stable tag: 0.10.1.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.10.1.1 =
+* Some style fixes and internal changes
+
 = 0.10.1.0 =
 * Fixed some issues with BR tags
 
