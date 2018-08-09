@@ -174,21 +174,26 @@ jQuery(document).ready(function($){
 		
 
 		// intercept if publish to confirm
-		if ( $this.hasClass('lasso-publish-post') ) {
-			swal({
-				title: lasso_editor.strings.publishPost,
-				type: "info",
-				text: false,
-				showCancelButton: true,
-				confirmButtonColor: "#5bc0de",
-				confirmButtonText: lasso_editor.strings.publishYes,
-				closeOnConfirm: true
-			},
-			function(){
+		if ( $this.hasClass('lasso-publish-post') ) {	
+			if (lasso_editor.publishHandler) {
+				// custom publish handler
+				lasso_editor.publishHandler(data);
+			} else {
+				swal({
+					title: lasso_editor.strings.publishPost,
+					type: "info",
+					text: false,
+					showCancelButton: true,
+					confirmButtonColor: "#5bc0de",
+					confirmButtonText: lasso_editor.strings.publishYes,
+					closeOnConfirm: true
+				},
+				function(){
+					runSavePublish(true)
 
-				runSavePublish(true)
-
-			});
+				});
+				
+			}
 
 		} else {
 
