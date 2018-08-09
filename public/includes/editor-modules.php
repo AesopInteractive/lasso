@@ -460,7 +460,7 @@ function lasso_editor_component_modal() {
 						<input type="hidden" name="action" value="process_update-object_post">
 						<input type="hidden" name="nonce" value="<?php echo $nonce;?>">
 						<?php do_action( 'lasso_modal_post_form_footer' ); // action ?>
-						<input type="submit" value="<?php esc_attr_e( 'Save', 'lasso' );?>">
+						<input type="submit" id="lasso--postsettings-submit" value="<?php esc_attr_e( 'Save', 'lasso' );?>">
 					</div>
 
 				</form>
