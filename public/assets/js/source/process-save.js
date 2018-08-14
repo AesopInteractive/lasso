@@ -164,7 +164,7 @@ jQuery(document).ready(function($){
 		
 		// gather the data
 		var data      = {
-			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
+			action:    	($this.hasClass('lasso-publish-post') && lasso_editor.can_publish) ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
 			content: 	html,
 			post_id:   	postid,
@@ -559,7 +559,10 @@ jQuery(document).ready(function($){
 					subtitle = $(lasso_editor.subtitleClass)[0].innerText;
 				}
 				if (forcePublish) {
-					status_ = "publish";
+					status_ = "publish";				
+					if (!lasso_editor.can_publish) {
+						status_ = "pending";
+					}
 				}
 				savePublishREST(lasso_editor.postid, title, subtitle, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;

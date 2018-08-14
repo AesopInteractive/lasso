@@ -37,17 +37,19 @@
 			/// UI SLIDER INIT AND METHODS
 			///////////////////
 
-			// return the right value
 			var statusReturn = function( value ) {
 
 				var out;
-
 				if ( 100 == value ) {
 					out = 'draft';
+				} else if ( 150 == value ) {
+					out = 'pending';
 				} else if ( 200 == value ) {
 					out = 'publish';
 				} else if ( 'draft' == value ) {
 					out = 100;
+				} else if ( 'pending' == value ) {
+					out = 150;
 				} else if ( 'publish' == value ) {
 					out = 200;
 				}
@@ -59,7 +61,7 @@
 		      	value:statusReturn(lasso_editor.post_status),
 		      	min: 100,
 		      	max: 200,
-		      	step: 100,
+		      	step: 50,
 		      	animate:'fast',
 		      	slide: function( event, ui ) {
 		        	$('input[name="status"]').val( statusReturn(ui.value) );
@@ -75,10 +77,10 @@
 		    });
 		    $('input[name="status"]').val( statusReturn( $( "#lasso--slider" ).slider('value') ) );
 
-		    // if any changes happen then show the footer
+		    /*// if any changes happen then show the footer
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
-			});
+			});*/
 
 		    // categories
 		    var cats = $('#lasso--cat-select')

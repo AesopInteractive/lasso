@@ -87,12 +87,15 @@
         margin:12px 0 8px;
         padding:0 10px;
         line-height: 1;
+		display:table;
+		width:100%;
         .clearfix();
 
         li {
             font-size: @modal--font__size;
-            float: left;
+            //float: left;
             list-style-type: none;
+			display: table-cell;
         }
 
         &.story-status-publish {
@@ -100,19 +103,21 @@
                 .opacity(0.3);
             }
         }
+
         &.story-status-draft {
             #lasso--status-publish {
                  .opacity(0.3);
             }
         }
 
-        #lasso--status-draft {
-
+        #lasso--status-pending {
+			text-align:center;
         }
 
         // published
         #lasso--status-publish {
             float: right;
+			text-align:right;
         }
     }
 

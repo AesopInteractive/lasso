@@ -46,6 +46,7 @@ function lasso_editor_controls() {
 		$is_mobile = wp_is_mobile();
 		
 		$mobile_style = $is_mobile ? 'style="bottom:0px;"' : null;
+		$can_publish = lasso_user_can('publish_posts') || lasso_user_can('publish_pages');
 		
 
 		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
@@ -84,8 +85,8 @@ function lasso_editor_controls() {
 
 					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
 
-					<?php if ( 'draft' == $status && ( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') )  ) { ?>
-						<a href="#" title="<?php esc_attr_e( 'Publish Post', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<?php if ( ('draft' == $status ) || ('pending' == $status && $can_publish) ) { ?>
+						<a href="#" title="<?php $can_publish ? esc_attr_e( 'Publish Post', 'lasso' ) : esc_attr_e( 'Submit For Review', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
 					<?php } ?>
 
 				</div>
@@ -395,6 +396,7 @@ function lasso_editor_component_modal() {
 							<label><?php _e( 'Status', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the status of the post to draft or publish.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 								<li id="lasso--status-draft"><?php _e( 'Draft', 'lasso' );?></li>
+								<li id="lasso--status-pending"><?php _e( 'Pending', 'lasso' );?></li>
 								<li id="lasso--status-publish"><?php _e( 'Publish', 'lasso' );?></li>
 							</ul>
 							<div class="lasso--slider_wrap">
@@ -800,8 +802,7 @@ function lasso_editor_options_blob() {
 			$return .= '<p data-option="content" class="lasso-option lasso-c-comp-text"><label>' . __( 'Content', 'lasso' ) . '</label><textarea type="text" name="lasso-generator-content" id="lasso-generator-content" value="' . $shortcode['content'] . '" /></textarea></p>';
 		}
 
-		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel
-</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
+		$return .= '<p class="lasso-buttoninsert-wrap"><a href="#" class="lasso-generator-cancel" id="lasso--sidebar__close">Cancel</a><input type="submit" id="lasso-generator-insert" value="Save Settings"></p>';
 		$return .= '<input class="component_type" type="hidden" name="component_type" value="">';
 		$return .= '<input type="hidden" name="unique" value="">';
 		$return .= '<input type="hidden" name="nonce" id="lasso-generator-nonce" value="'.$nonce.'" />';

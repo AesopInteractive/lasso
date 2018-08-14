@@ -11572,17 +11572,19 @@ jQuery(document).ready(function($){
 			/// UI SLIDER INIT AND METHODS
 			///////////////////
 
-			// return the right value
 			var statusReturn = function( value ) {
 
 				var out;
-
 				if ( 100 == value ) {
 					out = 'draft';
+				} else if ( 150 == value ) {
+					out = 'pending';
 				} else if ( 200 == value ) {
 					out = 'publish';
 				} else if ( 'draft' == value ) {
 					out = 100;
+				} else if ( 'pending' == value ) {
+					out = 150;
 				} else if ( 'publish' == value ) {
 					out = 200;
 				}
@@ -11594,7 +11596,7 @@ jQuery(document).ready(function($){
 		      	value:statusReturn(lasso_editor.post_status),
 		      	min: 100,
 		      	max: 200,
-		      	step: 100,
+		      	step: 50,
 		      	animate:'fast',
 		      	slide: function( event, ui ) {
 		        	$('input[name="status"]').val( statusReturn(ui.value) );
@@ -11610,10 +11612,10 @@ jQuery(document).ready(function($){
 		    });
 		    $('input[name="status"]').val( statusReturn( $( "#lasso--slider" ).slider('value') ) );
 
-		    // if any changes happen then show the footer
+		    /*// if any changes happen then show the footer
 		    $('.lasso--modal__trigger-footer').on('keyup',function(){
 			  	$('.lasso--postsettings__footer').slideDown()
-			});
+			});*/
 
 		    // categories
 		    var cats = $('#lasso--cat-select')
@@ -12913,7 +12915,7 @@ jQuery(document).ready(function($){
 		
 		// gather the data
 		var data      = {
-			action:    	$this.hasClass('lasso-publish-post') ? 'process_save_publish-content' : 'process_save_content',
+			action:    	($this.hasClass('lasso-publish-post') && lasso_editor.can_publish) ? 'process_save_publish-content' : 'process_save_content',
 			author:  	lasso_editor.author,
 			content: 	html,
 			post_id:   	postid,
@@ -13308,7 +13310,10 @@ jQuery(document).ready(function($){
 					subtitle = $(lasso_editor.subtitleClass)[0].innerText;
 				}
 				if (forcePublish) {
-					status_ = "publish";
+					status_ = "publish";				
+					if (!lasso_editor.can_publish) {
+						status_ = "pending";
+					}
 				}
 				savePublishREST(lasso_editor.postid, title, subtitle, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
 				return;
