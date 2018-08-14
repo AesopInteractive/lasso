@@ -11001,11 +11001,18 @@ jQuery(document).ready(function($){
 				// note: might need climb up dom tree depending on nesting use case
 				if (containerTag == 'p') {
 					var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
-					if (!html) {			
-						htmlContent.insertAfter( containerObject );
+					if (!html) {	
+						// currently we come here only if when inserting components
+                        					
+						/*htmlContent.insertAfter( containerObject );
 						if (innerText =="") {
 							// empty p tag
 							containerObject.remove();
+						}*/
+						// decided to change the behavior Now the component is inserted before the empty paragraph	
+						htmlContent.insertBefore( containerObject );
+						if (innerText =="") {
+							articleMedium.cursor.caretToBeginning(container);
 						}
 					} else {
 						articleMedium.insertHtml( htmlCopy );
@@ -11489,6 +11496,7 @@ jQuery(document).ready(function($){
 				var t = insert_html(item, false);
 				
 				postComponent(item,type);
+				lasso_editor.addComponentButton();
 			});
 		} 
 		else 
