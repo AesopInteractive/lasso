@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.10.2.0
+Stable tag: 0.10.2.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 0.10.2.1 =
+* A "Contributor" can now create posts, just not publish
+
 = 0.10.2.0 =
 * Posts can be now set to "Pending"
 

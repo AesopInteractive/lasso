@@ -71,7 +71,7 @@ function lasso_editor_controls() {
 					<li id="lasso--post-revisions" title="<?php esc_attr_e( 'Revisions', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
-				<?php if ( ( 'off' == $post_new_disabled || empty( $post_new_disabled ) && lasso_user_can('publish_posts') ) ) { ?>
+				<?php if ( ( 'off' == $post_new_disabled || empty( $post_new_disabled ) && lasso_user_can('edit_posts') ) ) { ?>
 					<li id="lasso--post-new" title="<?php esc_attr_e( 'Add Post', 'lasso' );?>"><a href="#" class="lasso--button__primary"></a></li>
 				<?php } ?>
 
@@ -517,11 +517,14 @@ function lasso_editor_newpost_modal() {
 						<select id="lasso--select-type" name="story_type">
 
 							<?php
-								$types = lasso_post_types();
+								$types = lasso_post_types_names();
 								if ( !empty( $types ) ) {
-									foreach( $types as $type ) {					
-										$type = preg_replace( '/s\b/','', $type );
-										printf( '<option value="%s">%s</option>', lcfirst( esc_attr( $type ) ) , ucfirst( esc_attr( $type ) ) );
+									foreach( $types as $name => $label ) {										
+										$type = preg_replace( '/s\b/','', $name );
+										if ($type == 'page' && !current_user_can('edit_pages')) {
+											continue;
+										}
+										printf( '<option value="%s">%s</option>', lcfirst( esc_attr( $type ) ) , ucfirst( esc_attr( $label ) ) );
 									}
 
 								}
