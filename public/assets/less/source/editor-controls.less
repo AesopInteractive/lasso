@@ -66,16 +66,16 @@
 
 
 #lasso--edit{
-    background: @toolbar--bg__accent;
+    //background: @toolbar--bg__accent;
     border-top-left-radius: @editor--radius - 1;
     border-bottom-left-radius: @editor--radius - 1;
     &:before {
         content:'\e908';
     }
 
-    &:hover {
-        background: darken(@toolbar--bg__accent,3);
-    }
+    //&:hover {
+    //    background: darken(@toolbar--bg__accent,3);
+    //}
 }
 #lasso--post-settings:before {
     content:'\f031';
@@ -94,6 +94,34 @@
     top:11px;
 }
 
+//settings button
+#lasso--post-settings2 {
+    background:@editor--color__update;
+    font-size: @control--font__size + 2;
+
+    &:before {
+        position: relative;
+        top:3px;
+        left:0;
+        //height:auto;
+		width:28px;
+		height:28px;
+        content:'\f031';
+		//content: url('wrench.svg');
+    }
+
+    &:hover {
+        background:darken(@editor--color__update,10);
+    }
+
+    &:active {
+        .box-shadow(inset 1px 1px 2px rgba(0,0,0,0.4));
+    }
+
+
+
+}
+
 
 // SAVE BUTTON
 #lasso--save {
@@ -107,8 +135,8 @@
         //height:auto;
 		width:28px;
 		height:28px;
-        //content:'\e601';
-		content: url('floppy.svg');
+        content:'\e601';
+		//content: url('floppy.svg');
     }
 
     &:hover {

@@ -73,6 +73,7 @@
         text-align: center;
         width: 100%;
         margin:0;
+		height:30px;
 
         li {
             display: inline-block;
@@ -82,7 +83,7 @@
             margin: 0 3px;
             text-indent: -999em;
             border: 1px solid @modal--border;
-             background: @modal--bg__accent;
+             background: fadeout(@editor--color__update,25);
             border-radius: 100%;
             cursor: pointer;
             .opacity(.4);
@@ -92,7 +93,7 @@
             .box-shadow(0 1px 1px rgba(255,255,255,0.1));
 
             &.active {
-                background: fadeout(@editor--color__update,25);
+                background: white;
                 opacity: 1;
             }
         }
