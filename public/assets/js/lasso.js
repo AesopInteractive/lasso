@@ -5420,12 +5420,10 @@ Undo.Command.extend = function(protoProps) {
 						pasteEventHandler: function (e) {
 							e = e || w.event;
 							medium.makeUndoable();
-							var length = medium.value().length,
-								totalLength;
+							var length = medium.value().length;
 
 							if (settings.pasteAsText) {
 								var t = e.clipboardData.getData('text/html');
-								
 								utils.preventDefaultEvent(e);
 								var
 									sel = utils.selection.saveSelection(),
@@ -5434,25 +5432,25 @@ Undo.Command.extend = function(protoProps) {
 								el.focus();
 								Medium.activeElement = el;
 								utils.selection.restoreSelection(sel);
-								if (text.length > 0) {
-
-									//cut down its length
-									totalLength = text.length + length;
-									if (settings.maxLength > 0 && totalLength > settings.maxLength) {
-										text = text.substring(0, settings.maxLength - length);
-									}
+								if (text.match(/microsoft-com/)) {
+									// if the source is ms word
+									text = e.clipboardData.getData('text/plain');
+									text = text.replace(/\n/g, '<br>');
+								} else {
+									//limit its length
+									//totalLength = text.length + length;
+									//if (settings.maxLength > 0 && totalLength > settings.maxLength) {
+									//	text = text.substring(0, settings.maxLength - length);
+									//}
 
 									
-									 text = text.replace(/<\/p>/g, '<br>');
+									text = text.replace(/<\/p>/g, '<br>');
 									var regex = /<(?=(?!\/a))(?=(?!a ))(?=(?!br))([^>]+)>/ig;
 									text = text.replace(regex, "");
 									regex = /style=\"[^\"]+\"/ig;
 									text = text.replace(regex, "");
 									
-								} else {
-									text = e.clipboardData.getData('text/plain');
-									text = text.replace(/\n/g, '<br>');
-								}
+								} 
 								(new Medium.Html(medium, text))
 										.setClean(false)
 										.insert(settings.beforeInsertHtml, true);
@@ -6547,7 +6545,11 @@ Undo.Command.extend = function(protoProps) {
 
 				// Empty Editor
 				if (text.length < 1 && childCount < 2) {
-					if (el.placeHolderActive) return;
+                    //the behavior when the editable content becomes empty.
+                    //simplified from the previous version
+					el.innerHTML = '<p></p>';
+                 
+					/*if (el.placeHolderActive) return;
 
 					if (!el.innerHTML.match('<' + s.tags.paragraph)) {
 						el.innerHTML = '';
@@ -6615,7 +6617,7 @@ Undo.Command.extend = function(protoProps) {
 							}
 						}
 					}
-					el.placeHolderActive = true;
+					el.placeHolderActive = true;*/
 				} else if (el.placeHolderActive) {
 					el.placeHolderActive = false;
 					style.display = 'none';
@@ -11488,20 +11490,16 @@ jQuery(document).ready(function($){
 		    }
 		});
 
-		if (lasso_editor.clickToInsert) {		
-			jQuery(document).on('mousedown', '#lasso-toolbar--components__list li', function(){
-				var type = $(this).attr('data-type');
-				var item = setComponent(type);
-				restoreSelection(window.selRange);
-				var t = insert_html(item, false);
-				
-				postComponent(item,type);
-				lasso_editor.addComponentButton();
-			});
-		} 
+        // the following codes decide which UI triggers drag-drop and which UI triggers click-insert
+        // If we are only using drag-drop then clickToInsertElement would be empty
+		var clickToInsertElement = '#lasso-side-comp-button #lasso-toolbar--components__list li';
+		if (lasso_editor.clickToInsert) {
+			clickToInsertElement = '#lasso-toolbar--components__list li'
+		} 		
+			
 		else 
 		{
-			$('#lasso-toolbar--components__list li').draggable({
+			$('#lasso-toolbar--components #lasso-toolbar--components__list li').draggable({
 				axis:'y',
 				helper:'clone',
 				cursor: 'move',
@@ -11519,6 +11517,15 @@ jQuery(document).ready(function($){
 				}
 			});
 		}
+		jQuery(document).on('mousedown', clickToInsertElement, function(){
+				var type = $(this).attr('data-type');
+				var item = setComponent(type);
+				restoreSelection(window.selRange);
+				var t = insert_html(item, false);
+				
+				postComponent(item,type);
+				lasso_editor.addComponentButton();
+			});
 
 	});
 	if (lasso_editor.skipToEdit)
@@ -11558,7 +11565,7 @@ jQuery(document).ready(function($){
 
 		// modal click
 		//$('#lasso--post-settings').live('click',function(e){
-		jQuery(document).on('click','#lasso--post-settings',function(e){
+		jQuery(document).on('click','#lasso--post-settings, #lasso--post-settings2',function(e){
 
 			e.preventDefault();
 
@@ -12638,14 +12645,8 @@ jQuery(function( $ ) {
 	////////////
 	//$('#lasso-toolbar--link').live('mousedown',function(){
 	jQuery(document).on('mousedown', '#lasso-toolbar--link', function(){
-		if( ! $(this).hasClass('link--drop-up') ) {
-			var article = document.getElementById(lasso_editor.editor);
-			window.selRange = saveSelection();
-			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
-				article.highlight();
-				window.selRange = saveSelection();
-			}
-		}
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
+		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 	});
 
 	//$('#lasso-toolbar--link__inner').live('focusout',function(){
@@ -12666,8 +12667,7 @@ jQuery(function( $ ) {
 		if (!lasso_editor.checkSelection()) return false;
 
 		$(this).toggleClass('link--drop-'+dropClass());
-		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
-		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
+		
 
 		$('#aesop-toolbar--link_newtab').unbind('mousedown').mousedown(function() {
 			$(this).prop("checked", !$(this).prop("checked"));
@@ -12802,7 +12802,7 @@ jQuery(document).ready(function($){
 	//$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
 	//jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
 	//jQuery('.lasso--controls__right a:not(#lasso--exit)').on('click', function(e){
-	jQuery(document).on('click','.lasso--controls__right a:not(#lasso--exit)', function(e){
+	jQuery(document).on('click','#lasso--save, #lasso--publish', function(e){
 
 		var warnNoSave = null;
 

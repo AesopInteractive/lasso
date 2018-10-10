@@ -255,14 +255,8 @@ jQuery(function( $ ) {
 	////////////
 	//$('#lasso-toolbar--link').live('mousedown',function(){
 	jQuery(document).on('mousedown', '#lasso-toolbar--link', function(){
-		if( ! $(this).hasClass('link--drop-up') ) {
-			var article = document.getElementById(lasso_editor.editor);
-			window.selRange = saveSelection();
-			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
-				article.highlight();
-				window.selRange = saveSelection();
-			}
-		}
+		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
+		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 	});
 
 	//$('#lasso-toolbar--link__inner').live('focusout',function(){
@@ -283,8 +277,7 @@ jQuery(function( $ ) {
 		if (!lasso_editor.checkSelection()) return false;
 
 		$(this).toggleClass('link--drop-'+dropClass());
-		$('#lasso-toolbar--components').removeClass('toolbar--drop-'+dropClass() );
-		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
+		
 
 		$('#aesop-toolbar--link_newtab').unbind('mousedown').mousedown(function() {
 			$(this).prop("checked", !$(this).prop("checked"));

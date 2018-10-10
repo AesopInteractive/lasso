@@ -23,7 +23,7 @@
 
 		// modal click
 		//$('#lasso--post-settings').live('click',function(e){
-		jQuery(document).on('click','#lasso--post-settings',function(e){
+		jQuery(document).on('click','#lasso--post-settings, #lasso--post-settings2',function(e){
 
 			e.preventDefault();
 

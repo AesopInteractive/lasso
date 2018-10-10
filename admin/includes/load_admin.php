@@ -98,7 +98,11 @@ class load_admin {
 		);
 
 		foreach ( $pages as $page ) {
-			wp_enqueue_script( 'lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array( 'jquery' ), LASSO_VERSION, true );
+			wp_enqueue_media();
+            wp_enqueue_style( 'wp-color-picker');
+            wp_enqueue_script( 'wp-color-picker');
+		
+			wp_enqueue_script( 'lasso-editor-settings-script', LASSO_URL.'/admin/assets/js/lasso-editor-settings.js', array( 'jquery','wp-color-picker' ), LASSO_VERSION, true );
 			wp_enqueue_style( 'lasso-editor-settings-style', LASSO_URL.'/admin/assets/css/lasso-editor-settings.css', LASSO_VERSION );
 		}
 	}

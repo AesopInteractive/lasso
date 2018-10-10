@@ -1071,20 +1071,16 @@ jQuery(document).ready(function($){
 		    }
 		});
 
-		if (lasso_editor.clickToInsert) {		
-			jQuery(document).on('mousedown', '#lasso-toolbar--components__list li', function(){
-				var type = $(this).attr('data-type');
-				var item = setComponent(type);
-				restoreSelection(window.selRange);
-				var t = insert_html(item, false);
-				
-				postComponent(item,type);
-				lasso_editor.addComponentButton();
-			});
-		} 
+        // the following codes decide which UI triggers drag-drop and which UI triggers click-insert
+        // If we are only using drag-drop then clickToInsertElement would be empty
+		var clickToInsertElement = '#lasso-side-comp-button #lasso-toolbar--components__list li';
+		if (lasso_editor.clickToInsert) {
+			clickToInsertElement = '#lasso-toolbar--components__list li'
+		} 		
+			
 		else 
 		{
-			$('#lasso-toolbar--components__list li').draggable({
+			$('#lasso-toolbar--components #lasso-toolbar--components__list li').draggable({
 				axis:'y',
 				helper:'clone',
 				cursor: 'move',
@@ -1102,6 +1098,15 @@ jQuery(document).ready(function($){
 				}
 			});
 		}
+		jQuery(document).on('mousedown', clickToInsertElement, function(){
+				var type = $(this).attr('data-type');
+				var item = setComponent(type);
+				restoreSelection(window.selRange);
+				var t = insert_html(item, false);
+				
+				postComponent(item,type);
+				lasso_editor.addComponentButton();
+			});
 
 	});
 	if (lasso_editor.skipToEdit)

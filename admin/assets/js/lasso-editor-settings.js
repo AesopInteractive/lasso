@@ -36,5 +36,14 @@ jQuery(document).ready(function($){
 		});
 
     });
+		
+	$('.color-picker').wpColorPicker();
+	// initialize color pickers with default values
+	$('#lasso-editor-settings--default-colors').click(function() {
+		$($(".color-picker")[0]).wpColorPicker('color', "#0000ff");
+		$($(".color-picker")[1]).wpColorPicker('color', "#000030");
+		$($(".color-picker")[2]).wpColorPicker('color', "#000055");
+		$($(".color-picker")[3]).wpColorPicker('color', "#ffffff");
+	});
 
 });

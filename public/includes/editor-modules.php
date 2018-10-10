@@ -19,6 +19,12 @@ function lasso_editor_controls() {
 	if ( lasso_user_can('edit_posts') ) {
 
 		$status = get_post_status( get_the_ID() );
+		$button_color1 = lasso_editor_get_option('button-color1', 'lasso_editor','#0000ff');
+		$button_color2 = lasso_editor_get_option('button-color2', 'lasso_editor','#0000');
+		$dialog_color = lasso_editor_get_option('dialog-color', 'lasso_editor','#000055');
+		$text_color = lasso_editor_get_option('text-color', 'lasso_editor','#ffffff');
+		$hover_color1 = lasso_editor_adjustBrightness($button_color1, 50);
+		$hover_color2 = lasso_editor_adjustBrightness($button_color2, 50);
 
 		// let users add custom css classes
 		$custom_classes = apply_filters( 'lasso_control_classes', '' );
@@ -49,7 +55,55 @@ function lasso_editor_controls() {
 		$can_publish = lasso_user_can('publish_posts') || lasso_user_can('publish_pages');
 		
 
-		?><div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
+		?>
+		<style>
+		.lasso-editor-controls--wrap, #lasso--post-settings2,#lasso--save,#lasso--exit,#lasso--publish {
+			background-image: -webkit-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
+			background-image: -o-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
+			background-image: linear-gradient(to bottom,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
+			color: <?php echo $text_color;?>;
+		}
+		
+		.lasso--controls__right a:before, #lasso-toolbar--html__footer_desc {
+			color: <?php echo $text_color;?> !important;
+		}
+		
+		ul.lasso-editor-controls li:hover, #lasso--exit:hover,#lasso--post-settings2:hover,#lasso--publish:hover,#lasso--save:hover {
+			background-image: -webkit-linear-gradient(top,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
+			background-image: -o-linear-gradient(top,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
+			background-image: linear-gradient(to bottom,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
+		}
+		
+		.lasso--modal__inner,.sweet-alert,#lasso-toolbar--components.toolbar--drop-up ul,#lasso-toolbar--components__list,#lasso-toolbar--html.html--drop-up #lasso-toolbar--html__wrap,
+		#lasso-toolbar--link.link--drop-up #lasso-toolbar--link__wrap		{
+			background: <?php echo $dialog_color;?>;
+			color: <?php echo $text_color;?>;
+		}
+		.sweet-alert p,.lasso--modal__inner label,.lasso--toolbar__inner label {
+			color: <?php echo $text_color;?> !important;
+		}
+		
+		<?php if (!$is_mobile)?>
+		.lasso-editor-controls--wrap {
+			display:table;
+		}
+		ul.lasso-editor-controls {
+			height:42px;
+			font-size: 22px;
+		}
+		.lasso-editor-controls--wrap {
+			height:42px;
+		}
+		#lasso--post-all:before {
+			font-size: 22px;
+		}
+
+		ul.lasso-editor-controls li {
+			height: 42px;
+		}
+		<?php}?>
+		</style>
+		<div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> "  <?php echo $mobile_style ?> >
 
@@ -82,6 +136,9 @@ function lasso_editor_controls() {
 			<?php if ( is_singular() && !$is_mobile ) { ?>
 
 				<div class="lasso--controls__right" data-posttype="<?php echo get_post_type( get_the_ID() );?>" data-status="<?php echo $status;?>">
+				
+				<a href="#" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>" id="lasso--post-settings2" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+
 
 					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
 
@@ -853,4 +910,33 @@ function lasso_editor_revision_modal() {
 		</div>
 	<?php
 	return ob_get_clean();
+}
+
+/**
+ * 
+ * Takes a color code and returns an adjusted value
+ * @since 1.0.0
+ * Steps should be between -255 and 255. Negative = darker, positive = lighter
+ * @return string
+ */
+function lasso_editor_adjustBrightness($hex, $steps) { 
+    $steps = max(-255, min(255, $steps));
+
+    // Normalize into a six character long hex string
+    $hex = str_replace('#', '', $hex);
+    if (strlen($hex) == 3) {
+        $hex = str_repeat(substr($hex,0,1), 2).str_repeat(substr($hex,1,1), 2).str_repeat(substr($hex,2,1), 2);
+    }
+
+    // Split into three parts: R, G and B
+    $color_parts = str_split($hex, 2);
+    $return = '#';
+
+    foreach ($color_parts as $color) {
+        $color   = hexdec($color); // Convert to decimal
+        $color   = max(0,min(255,$color + $steps)); // Adjust color
+        $return .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT); // Make two char hex code
+    }
+
+    return $return;
 }

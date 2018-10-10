@@ -51,7 +51,7 @@ jQuery(document).ready(function($){
 	//$('.lasso--controls__right a:not(#lasso--exit)').live('click',function(e) {
 	//jQuery(document).on('click', '.lasso--controls__right a:not(#lasso--exit)', function(e){
 	//jQuery('.lasso--controls__right a:not(#lasso--exit)').on('click', function(e){
-	jQuery(document).on('click','.lasso--controls__right a:not(#lasso--exit)', function(e){
+	jQuery(document).on('click','#lasso--save, #lasso--publish', function(e){
 
 		var warnNoSave = null;
 

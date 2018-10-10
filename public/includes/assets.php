@@ -235,8 +235,9 @@ class assets {
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag,
 				'customFields'      => $custom_fields,
-				'clickToInsert'     => ($insert_comp_ui !='drag'),
-				'buttonOnEmptyP'     => ($insert_comp_ui =='mediumcom'),      // auto show a button to insert components on an empty paragraph           
+				'clickToInsert'     => ($insert_comp_ui =='click'),
+				'buttonOnEmptyP'     => ($insert_comp_ui =='mediumcom'),      // auto show a button to insert components on an empty paragraph      
+                'rtl'               => is_rtl(),				
 				'skipToEdit'        =>( $delta < 10 ) // if it's a new post, skip to edit mode
 			);
 

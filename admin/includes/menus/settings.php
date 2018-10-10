@@ -78,6 +78,15 @@ class settings {
 		die();
 
 	}
+	
+	function create_section_for_color_picker($id, $title, $defvalue) { 
+		$color_value = lasso_editor_get_option( $id, 'lasso_editor',$defvalue );
+	 
+		echo '<div lass="lasso-editor-settings--option-inner">'."\n";
+		echo '<label>'.$title.'</label>';
+		echo '<input type="text" name="lasso_editor['.$id.']" value="'.$color_value.'" id="lasso-editor-'.$title.'" class="color-picker"/>';
+		echo "</div>\n";
+	 }
 
 	/**
 	 * Draw the settings form
@@ -201,6 +210,14 @@ class settings {
 
 				<h3><?php _e( 'Editor UI', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
+					<?php
+					self::create_section_for_color_picker('button-color1', _e( 'Editor Bar Color Top', 'lasso' ), '#0000ff');
+					self::create_section_for_color_picker('button-color2', _e( 'Editor Bar Color Bottom', 'lasso' ), '#000030');
+					self::create_section_for_color_picker('dialog-color', _e( 'Dialog Color', 'lasso' ), '#000055');
+					self::create_section_for_color_picker('text-color', _e( 'Icon/Text Color', 'lasso' ), '#ffffff');
+					?>
+					<button type="button" id="lasso-editor-settings--default-colors" ><?php _e( 'Default Colors', 'lasso' );?></button>
+				    <div style="height:50px;"></div>
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
 						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable H2 and H3 Buttons', 'lasso' );?></label>
@@ -228,9 +245,15 @@ class settings {
 					<div class="lasso-editor-settings--option-inner">
 					    <label for="lasso_editor[insert_comp_ui]"> <?php _e( 'Insert Component UI', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'UI mechanism to insert components', 'lasso' );?></span>
-					    <input type="radio" name="lasso_editor[insert_comp_ui]" value='drag' <?php echo checked( $insert_comp_ui, 'drag' );?>> <?php _e( 'Drag and Drop', 'lasso' );?>
+						<div class="lasso-editor-settings--option-inner" style="border:none;">
+					       <input type="radio" name="lasso_editor[insert_comp_ui]" value='drag' <?php echo checked( $insert_comp_ui, 'drag' );?>> <?php _e( 'Drag and Drop', 'lasso' );?>
+						</div>
+						<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="radio" name="lasso_editor[insert_comp_ui]" value="click" <?php echo checked( $insert_comp_ui, 'click' );?>> <?php _e( 'Click', 'lasso' );?>
-						<input type="radio" name="lasso_editor[insert_comp_ui]" value="mediumcom" <?php echo checked( $insert_comp_ui, 'mediumcom' );?>> <?php _e( 'Auto Button on Empty Paragraph', 'lasso' );?>
+						</div>
+						<div class="lasso-editor-settings--option-inner" style="border:none;">
+						<input type="radio" name="lasso_editor[insert_comp_ui]" value="mediumcom" <?php echo checked( $insert_comp_ui, 'mediumcom' );?>> <?php _e( 'Auto Button on Empty Paragraph. medium.com-like UI.', 'lasso' );?>
+						</div>
 					</div>
 				</div>
 				

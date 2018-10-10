@@ -532,12 +532,10 @@
 						pasteEventHandler: function (e) {
 							e = e || w.event;
 							medium.makeUndoable();
-							var length = medium.value().length,
-								totalLength;
+							var length = medium.value().length;
 
 							if (settings.pasteAsText) {
 								var t = e.clipboardData.getData('text/html');
-								
 								utils.preventDefaultEvent(e);
 								var
 									sel = utils.selection.saveSelection(),
@@ -546,25 +544,25 @@
 								el.focus();
 								Medium.activeElement = el;
 								utils.selection.restoreSelection(sel);
-								if (text.length > 0) {
-
-									//cut down its length
-									totalLength = text.length + length;
-									if (settings.maxLength > 0 && totalLength > settings.maxLength) {
-										text = text.substring(0, settings.maxLength - length);
-									}
+								if (text.match(/microsoft-com/)) {
+									// if the source is ms word
+									text = e.clipboardData.getData('text/plain');
+									text = text.replace(/\n/g, '<br>');
+								} else {
+									//limit its length
+									//totalLength = text.length + length;
+									//if (settings.maxLength > 0 && totalLength > settings.maxLength) {
+									//	text = text.substring(0, settings.maxLength - length);
+									//}
 
 									
-									 text = text.replace(/<\/p>/g, '<br>');
+									text = text.replace(/<\/p>/g, '<br>');
 									var regex = /<(?=(?!\/a))(?=(?!a ))(?=(?!br))([^>]+)>/ig;
 									text = text.replace(regex, "");
 									regex = /style=\"[^\"]+\"/ig;
 									text = text.replace(regex, "");
 									
-								} else {
-									text = e.clipboardData.getData('text/plain');
-									text = text.replace(/\n/g, '<br>');
-								}
+								} 
 								(new Medium.Html(medium, text))
 										.setClean(false)
 										.insert(settings.beforeInsertHtml, true);
@@ -1659,7 +1657,11 @@
 
 				// Empty Editor
 				if (text.length < 1 && childCount < 2) {
-					if (el.placeHolderActive) return;
+                    //the behavior when the editable content becomes empty.
+                    //simplified from the previous version
+					el.innerHTML = '<p></p>';
+                 
+					/*if (el.placeHolderActive) return;
 
 					if (!el.innerHTML.match('<' + s.tags.paragraph)) {
 						el.innerHTML = '';
@@ -1727,7 +1729,7 @@
 							}
 						}
 					}
-					el.placeHolderActive = true;
+					el.placeHolderActive = true;*/
 				} else if (el.placeHolderActive) {
 					el.placeHolderActive = false;
 					style.display = 'none';
