@@ -19,6 +19,15 @@ class assets {
 
 	
 		if ( lasso_user_can('edit_posts')) {
+			
+			/**    Returns the time offset from UTC
+			*/
+			function get_UTC_offset() {
+				$origin_dtz = new \DateTimeZone(get_option('timezone_string'));				
+				$origin_dt = new \DateTime("now", $origin_dtz);
+				$offset = $origin_dtz->getOffset($origin_dt);
+				return $offset;
+			}
 
 			wp_enqueue_style('lasso-style', LASSO_URL.'/public/assets/css/lasso.css', LASSO_VERSION, true);
 
@@ -87,9 +96,10 @@ class assets {
 
 			// post id reference
 			$postid 			= get_the_ID();
-			
+			$tz_offset = get_UTC_offset();
 			$post_date = get_the_time('U', $postid);
-            $delta = time() - $post_date;
+			$time = (time()+$tz_offset);
+            $delta = $time - $post_date;
 
 			$strings = array(
 				'save' 				=> __('Save','lasso'),
@@ -238,7 +248,7 @@ class assets {
 				'clickToInsert'     => ($insert_comp_ui =='click'),
 				'buttonOnEmptyP'     => ($insert_comp_ui =='mediumcom'),      // auto show a button to insert components on an empty paragraph      
                 'rtl'               => is_rtl(),				
-				'skipToEdit'        =>( $delta < 10 ) // if it's a new post, skip to edit mode
+				'skipToEdit'        =>( $delta < 10 && $delta >=0 ), // if it's a new post, skip to edit mode
 			);
 
 
