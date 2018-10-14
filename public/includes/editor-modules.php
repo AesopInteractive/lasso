@@ -597,7 +597,8 @@ function lasso_editor_newpost_modal() {
 					<?php
 						if ( !empty( $types ) ) {
 							// get the first element
-						    $type = key($types);						
+							$keys = array_keys($types);
+						    $type =$keys[0];						
 							$type = preg_replace( '/s\b/','', $type );
 							printf( '<input type="hidden" name="object" value="%s">', lcfirst( esc_attr( $type ) ) );		
 						}
