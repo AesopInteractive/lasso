@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 0.10.2.2
+Stable tag: 1.0.0
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,13 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.0.0 =
+* Added new UI color customization options
+* The Post Settings button is now available under the edit mode
+* Fixed a bug with automatically entering the edit mode
+* Copy and paste from MS Word strips the formatting
+* Fixed a bug with the new post dialog
+
 = 0.10.2.2 =
 * Fixed a bug for non-English installation
 
