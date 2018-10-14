@@ -110,6 +110,7 @@ class settings {
 		$shortcodify_disabled  = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
 
+		$use_old_ui      = lasso_editor_get_option( 'use_old_ui', 'lasso_editor' );
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 		$toolbar_headings_h4      = lasso_editor_get_option( 'toolbar_headings_h4', 'lasso_editor' );
 		$toolbar_show_color      = lasso_editor_get_option( 'toolbar_show_color', 'lasso_editor' );
@@ -210,6 +211,12 @@ class settings {
 
 				<h3><?php _e( 'Editor UI', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
+						<input type="checkbox" class="checkbox" name="lasso_editor[use_old_ui]" id="lasso_editor_use_old_ui" <?php echo checked( $use_old_ui, 'on' );?> >
+						<label for="lasso_editor[use_old_ui]"><?php _e( 'Use the Old Toolbar', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Use this option to disable the new color options and use the pre-1.0 toolbar.', 'lasso' );?></span>
+					</div>
+				    <div id="lasso-editor-settings--colors">
 					<?php
 					self::create_section_for_color_picker('button-color1', _e( 'Editor Bar Color Top', 'lasso' ), '#0000ff');
 					self::create_section_for_color_picker('button-color2', _e( 'Editor Bar Color Bottom', 'lasso' ), '#000030');
@@ -218,6 +225,7 @@ class settings {
 					?>
 					<button type="button" id="lasso-editor-settings--default-colors" ><?php _e( 'Default Colors', 'lasso' );?></button>
 				    <div style="height:50px;"></div>
+					</div>
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_headings]" id="lasso_editor[toolbar_headings]" <?php echo checked( $toolbar_headings, 'on' );?> >
 						<label for="lasso_editor[toolbar_headings]"><?php _e( 'Enable H2 and H3 Buttons', 'lasso' );?></label>

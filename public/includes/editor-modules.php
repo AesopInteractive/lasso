@@ -19,6 +19,7 @@ function lasso_editor_controls() {
 	if ( lasso_user_can('edit_posts') ) {
 
 		$status = get_post_status( get_the_ID() );
+		$use_old_ui   = lasso_editor_get_option( 'use_old_ui', 'lasso_editor' );
 		$button_color1 = lasso_editor_get_option('button-color1', 'lasso_editor','#0000ff');
 		$button_color2 = lasso_editor_get_option('button-color2', 'lasso_editor','#000000');
 		$dialog_color = lasso_editor_get_option('dialog-color', 'lasso_editor','#000055');
@@ -55,6 +56,7 @@ function lasso_editor_controls() {
 		$can_publish = lasso_user_can('publish_posts') || lasso_user_can('publish_pages');
 		
 
+		if (!$use_old_ui) {
 		?>
 		<style>
 		.lasso-editor-controls--wrap, #lasso--post-settings2,#lasso--save,#lasso--exit,#lasso--publish {
@@ -83,7 +85,7 @@ function lasso_editor_controls() {
 			color: <?php echo $text_color;?> !important;
 		}
 		
-		<?php if (!$is_mobile)?>
+		<?php if (!$is_mobile) {?>
 		.lasso-editor-controls--wrap {
 			display:table;
 		}
@@ -101,8 +103,11 @@ function lasso_editor_controls() {
 		ul.lasso-editor-controls li {
 			height: 42px;
 		}
-		<?php}?>
+		<?php
+		} ?>
 		</style>
+		<?php
+		} ?>
 		<div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> "  <?php echo $mobile_style ?> >

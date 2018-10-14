@@ -45,5 +45,15 @@ jQuery(document).ready(function($){
 		$($(".color-picker")[2]).wpColorPicker('color', "#000055");
 		$($(".color-picker")[3]).wpColorPicker('color', "#ffffff");
 	});
+	
+	$('#lasso_editor_use_old_ui').change(function() {
+		if(this.checked) {
+            $('#lasso-editor-settings--colors').slideUp();
+        } else {
+			$('#lasso-editor-settings--colors').slideDown();   
+		}
+        
+    });
+
 
 });
