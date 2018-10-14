@@ -169,7 +169,7 @@ function lasso_get_supported_theme_featured_image_class() {
 */
 function lasso_supported_no_save(){
 
-	return apply_filters('lasso_dont_save', '.lasso--ignore,.sharedaddy,.us_wrapper,.meta,.edit-link,.ssba,.addtoany_share_save_container,.mashsb-container,.heateor_sss_sharing_container,.nc_socialPanel,.jp-relatedposts,.fb-comments,.adsbygoogle');
+	return apply_filters('lasso_dont_save', '.lasso--ignore,.sharedaddy,.us_wrapper,.meta,.edit-link,.ssba,.addtoany_share_save_container,.mashsb-container,.heateor_sss_sharing_container,.nc_socialPanel,.jp-relatedposts,.fb-comments,.adsbygoogle,.swp_social_panel');
 }
 
 /**
@@ -413,6 +413,7 @@ if ( !function_exists( 'lasso_user_can' ) ):
 		} else {
 			$result = false;
 		}
+		//if ( function_exists( 'is_gutenberg_page' ) && has_blocks() ) return false;
 		
 		return apply_filters( 'lasso_user_can_filter', $result,  $action, $postid);
 	}
