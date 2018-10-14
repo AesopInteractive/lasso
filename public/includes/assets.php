@@ -18,12 +18,19 @@ class assets {
 	public function scripts(){
 
 	
-		if ( lasso_user_can('edit_posts')) {
+		global $post;
+		if ( lasso_user_can('edit_posts') && 
+		     !( function_exists( 'is_gutenberg_page' ) && has_blocks( $post->post_content) )) {// bail if the post has Gutenberg bloc
 			
 			/**    Returns the time offset from UTC
 			*/
 			function get_UTC_offset() {
-				$origin_dtz = new \DateTimeZone(get_option('timezone_string'));				
+				$timezone_string = get_option( 'timezone_string' );
+				if (empty( $timezone_string ) ) {
+					return get_option('gmt_offset')*3600;
+				}
+				
+				$origin_dtz = new \DateTimeZone($timezone_string);				
 				$origin_dt = new \DateTime("now", $origin_dtz);
 				$offset = $origin_dtz->getOffset($origin_dt);
 				return $offset;

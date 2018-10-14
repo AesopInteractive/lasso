@@ -148,6 +148,13 @@ class welcome {
 
 		$license   		= get_option( 'lasso_license_key' );
 		$status   		= get_option( 'lasso_license_status' );
+		
+		// Gutenberg Not Supported
+		if( function_exists( 'is_gutenberg_page' )) {
+			$notices[] = '<li class="info"><h3>Gutenberg Not Supported.</h3>
+							<p>'.__( 'Currently Editus does not support Gutenberg. It will be disabled on Gutenberg enabled posts.', 'lasso' ).'</p>
+							</li>';
+		}
 
 		// if the required CSS class has not been saved and we're not a supported theme
 		if ( empty( $article_object ) && false == $theme_class ) {
