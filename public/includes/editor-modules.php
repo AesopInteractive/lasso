@@ -20,7 +20,7 @@ function lasso_editor_controls() {
 
 		$status = get_post_status( get_the_ID() );
 		$button_color1 = lasso_editor_get_option('button-color1', 'lasso_editor','#0000ff');
-		$button_color2 = lasso_editor_get_option('button-color2', 'lasso_editor','#0000');
+		$button_color2 = lasso_editor_get_option('button-color2', 'lasso_editor','#000000');
 		$dialog_color = lasso_editor_get_option('dialog-color', 'lasso_editor','#000055');
 		$text_color = lasso_editor_get_option('text-color', 'lasso_editor','#ffffff');
 		$hover_color1 = lasso_editor_adjustBrightness($button_color1, 50);
