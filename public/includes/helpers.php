@@ -36,7 +36,7 @@ if( !function_exists('lasso_editor_get_option')):
 endif;
 
 /**
- * Check to see if any Lasso galleries exist
+ * Check to see if any Aesop galleries exist
  *
  * @since 1.0
  */
@@ -161,7 +161,7 @@ function lasso_get_supported_theme_featured_image_class() {
 
 
 /**
-*	Return a string of classes with items that Lasso will remove when entering the editor
+*	Return a string of classes with items that Editus will remove when entering the editor
 *	so that we don't save them as HTML
 *
 *	@since 0.8.7

@@ -1,6 +1,6 @@
 <?php
 /**
-*	Load the assets used for Lasso
+*	Load the assets used for Editus
 *
 *	@since 1.0
 */
@@ -135,7 +135,7 @@ class assets {
 				'editImage'			=> __('Edit Image','lasso'),
 				'addImages'			=> __('Add Images','lasso'),
 				'addNewGallery'		=> __('Add New Gallery','lasso'),
-				'selectGallery'		=> __('Select Lasso Gallery Image','lasso'),
+				'selectGallery'		=> __('Select Editus Gallery Image','lasso'),
 				'useSelectedImages' => __('Use Selected Images','lasso'),
 				'publishPost'		=> __('Publish Post?','lasso'),
 				'publishYes'		=> __('Yes, publish it!','lasso'),

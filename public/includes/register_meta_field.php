@@ -1,6 +1,6 @@
 <?php
 /**
- * Helper class for registering meta fields to work with Lasso Options API
+ * Helper class for registering meta fields to work with Editus Options API
  */
 
 namespace lasso_public_facing;

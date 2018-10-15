@@ -27,7 +27,7 @@ class route {
 		$action = $wp_query->get( 'action' );
 		if ( $action && strpos( $_SERVER['REQUEST_URI'], 'lasso-internal-api' ) ) {
 
-			$response = __( 'Lasso API Error.', 'lasso' );
+			$response = __( 'Editus API Error.', 'lasso' );
 			$code = 400;
 
 			//see if have a nonce. Will verify it in auth class.

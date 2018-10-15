@@ -766,8 +766,8 @@ function lasso_editor_refresh_message() {
 }
 
 /**
- * Draw out the settings field based on the shortcodes array with options foudn in Lasso Story Engine
- *  This was mostly backported from lasso story engine and modified to allow for non lasso shortcodes and components
+ * Draw out the settings field based on the shortcodes array with options foudn in Aesop Story Engine
+ *  This was mostly backported from aesop story engine and modified to allow for non aesop shortcodes and components
  *
  * @since 1.0
  */

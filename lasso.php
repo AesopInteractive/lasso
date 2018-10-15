@@ -40,7 +40,7 @@ if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 	add_action('admin_head', 'lasso_fail_notice');
 	function lasso_fail_notice(){
 
-		printf('<div class="error"><p>Lasso requires PHP 5.4 or higher.</p></div>');
+		printf('<div class="error"><p>Editus requires PHP 5.4 or higher.</p></div>');
 
 	}
 }

@@ -68,7 +68,7 @@ class auth {
 					$this->status_code   = 401;
 				}
 			} else {
-				$this->error_message = __( 'All callback classes used for processing the Lasso Internal API must implement the lasso\internal_api\api_action interface.', 'lasso' );
+				$this->error_message = __( 'All callback classes used for processing the Editus Internal API must implement the lasso\internal_api\api_action interface.', 'lasso' );
 				$this->status_code   = 401;
 			}
 		} else {
