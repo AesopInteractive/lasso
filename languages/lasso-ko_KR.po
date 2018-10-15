@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-10-14 18:39-0500\n"
-"PO-Revision-Date: 2018-10-14 18:39-0500\n"
+"POT-Creation-Date: 2018-10-14 20:50-0500\n"
+"PO-Revision-Date: 2018-10-14 20:50-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -763,7 +763,7 @@ msgstr ""
 
 #: internal-api/auth.php:71
 msgid ""
-"All callback classes used for processing the Lasso Internal API must "
+"All callback classes used for processing the Editus Internal API must "
 "implement the lasso\\internal_api\\api_action interface."
 msgstr ""
 
@@ -772,7 +772,7 @@ msgid "Nonce invalid"
 msgstr ""
 
 #: internal-api/route.php:30
-msgid "Lasso API Error."
+msgid "Editus API Error."
 msgstr ""
 
 #: internal-api/route.php:66
@@ -889,7 +889,7 @@ msgid "Add New Gallery"
 msgstr ""
 
 #: public/includes/assets.php:138
-msgid "Select Lasso Gallery Image"
+msgid "Select Editus Gallery Image"
 msgstr ""
 
 #: public/includes/assets.php:139
