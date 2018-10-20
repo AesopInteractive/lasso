@@ -10728,7 +10728,9 @@ jQuery(document).ready(function($){
 		lasso_editor.aviaEditor = ($('.av_toggle_section,.av_textblock_section').length>0);
 		
 		// set links clickable
-		$("a").attr('contenteditable',false);
+		if (!lasso_editor.links_editable) {
+			$("a").attr('contenteditable',false);
+		}
 		
 		// custom fields
 		if (lasso_editor.customFields) {
@@ -14585,7 +14587,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
     }
 
 	// set links clickable
-	$("a").attr('contenteditable',false);
+	//$("a").attr('contenteditable',false);
 	
 	function fetchError(xhr){
 		$( '#lasso--loading' ).remove();

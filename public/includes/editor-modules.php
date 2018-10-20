@@ -85,29 +85,33 @@ function lasso_editor_controls() {
 			color: <?php echo $text_color;?> !important;
 		}
 		
-		<?php if (!$is_mobile) {?>
-		.lasso-editor-controls--wrap {
-			display:table;
-		}
-		ul.lasso-editor-controls {
-			height:42px;
-			font-size: 22px;
-		}
-		.lasso-editor-controls--wrap {
-			height:42px;
-		}
-		#lasso--post-all:before {
-			font-size: 22px;
-		}
+		<?php if (!$is_mobile) { ?>
+			.lasso-editor-controls--wrap {
+				display:table;
+			}
+			ul.lasso-editor-controls {
+				height:42px;
+				font-size: 22px;
+			}
+			.lasso-editor-controls--wrap {
+				height:42px;
+			}
+			#lasso--post-all:before {
+				font-size: 22px;
+			}
 
-		ul.lasso-editor-controls li {
-			height: 42px;
-		}
+			ul.lasso-editor-controls li {
+				height: 42px;
+			}
 		<?php
-		} ?>
+		} 
+		?>
+		
+		
 		</style>
 		<?php
-		} ?>
+		} 
+		?>
 		<div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> "  <?php echo $mobile_style ?> >
@@ -574,7 +578,7 @@ function lasso_editor_newpost_modal() {
 
 				<div class="lasso--postsettings__option story-slug-option lasso--last-option">
 					<label><?php esc_attr_e( 'New <span>post</span> title', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Specify title for new post, then save to edit.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
-					<input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="" placeholder="<?php esc_attr_e( 'Grump Wizards Make Toxic Brew', 'lasso' );?>">
+					<input class="lasso--modal__trigger-footer" type="text" required name="story_title" value="" placeholder="<?php esc_attr_e( 'Type Your Title Here', 'lasso' );?>">
 						<div class="lasso--select-wrap" style="width:90px">
 						<select id="lasso--select-type" name="story_type">
 

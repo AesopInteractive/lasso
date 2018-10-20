@@ -125,6 +125,7 @@ class settings {
 		$default_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page'));
 		$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor',  $default_post_types);
 		
+		$links_editable = lasso_editor_get_option('links_editable', 'lasso_editor', false);
 		$bold_tag = lasso_editor_get_option( 'bold_tag', 'lasso_editor',  "b");
 		$i_tag = lasso_editor_get_option( 'i_tag', 'lasso_editor',  "i");
 		
@@ -248,6 +249,13 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_alignment]" id="lasso_editor[toolbar_show_alignment]" <?php echo checked( $toolbar_show_alignment, 'on' );?> >
 						<label for="lasso_editor[toolbar_show_alignment]"><?php _e( 'Enable Text Align Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set text alignment.', 'lasso' );?></span>
+
+					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
+						<input type="checkbox" class="checkbox" name="lasso_editor[links_editable]" id="lasso_editor[links_editable]" <?php echo checked( $links_editable, 'on' );?> >
+						<label for="lasso_editor[links_editable]"><?php _e( 'Make links editable under the Editing Mode', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Make links editable under the Editing Mode. Turning this on will make the links non-clickable while editing.', 'lasso' );?></span>
 
 					</div>
 					<div class="lasso-editor-settings--option-inner">

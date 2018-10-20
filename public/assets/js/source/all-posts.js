@@ -57,7 +57,7 @@
     }
 
 	// set links clickable
-	$("a").attr('contenteditable',false);
+	//$("a").attr('contenteditable',false);
 	
 	function fetchError(xhr){
 		$( '#lasso--loading' ).remove();

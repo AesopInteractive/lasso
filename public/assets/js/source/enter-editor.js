@@ -309,7 +309,9 @@ jQuery(document).ready(function($){
 		lasso_editor.aviaEditor = ($('.av_toggle_section,.av_textblock_section').length>0);
 		
 		// set links clickable
-		$("a").attr('contenteditable',false);
+		if (!lasso_editor.links_editable) {
+			$("a").attr('contenteditable',false);
+		}
 		
 		// custom fields
 		if (lasso_editor.customFields) {

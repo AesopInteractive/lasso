@@ -79,6 +79,9 @@ class assets {
 			//text alignement
 			$show_align = lasso_editor_get_option('toolbar_show_alignment', 'lasso_editor');
 			
+			//make links editable under the editing mode
+			$links_editable = lasso_editor_get_option('links_editable', 'lasso_editor');
+			
 			//color 
 			$show_color = lasso_editor_get_option('toolbar_show_color', 'lasso_editor');
 			
@@ -256,6 +259,7 @@ class assets {
 				'buttonOnEmptyP'     => ($insert_comp_ui =='mediumcom'),      // auto show a button to insert components on an empty paragraph      
                 'rtl'               => is_rtl(),				
 				'skipToEdit'        =>( $delta < 10 && $delta >=0 ), // if it's a new post, skip to edit mode
+				'links_editable'    => $links_editable
 			);
 
 
