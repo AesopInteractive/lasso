@@ -212,14 +212,13 @@ jQuery(document).ready(function($){
 		
 		// gather the custom field data and save to lasso_editor.cftosave
 		function saveCustomFields(content) {
-			var $temp = $('<div></div>').html( content );
 			var data ={};
 			var p = lasso_editor.customFields;
 			for (var key in p) {
 			  if (p.hasOwnProperty(key)) {
-				  var arr = $temp.find(p[key]);
+				  var arr = $(document).find(p[key]);
 				  if (arr.length) {
-					data[key] = $temp.find(p[key])[0].innerText.replace(/[\n\r]/g, '');;
+					data[key] = arr[0].innerText.replace(/[\n\r]/g, '');;
 				  }
 			  }
 			}

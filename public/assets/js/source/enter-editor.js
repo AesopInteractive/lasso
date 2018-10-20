@@ -320,6 +320,7 @@ jQuery(document).ready(function($){
 				break;
 			}
 			lasso_editor.cfselector = joined.join(',');
+			$(lasso_editor.cfselector).attr('contenteditable',true);
 			if (lasso_editor.undeletableExists = ($(lasso_editor.cfselector).length>0)) {
 				$(lasso_editor.cfselector).addClass('lasso-undeletable');
 			}
