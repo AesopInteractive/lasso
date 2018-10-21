@@ -318,8 +318,6 @@ jQuery(document).ready(function($){
 			var joined = [];
 			for (var key in lasso_editor.customFields) {
 				joined.push(lasso_editor.customFields[key]);
-				lasso_editor.cfselector = key;
-				break;
 			}
 			lasso_editor.cfselector = joined.join(',');
 			$(lasso_editor.cfselector).attr('contenteditable',true);
