@@ -12970,7 +12970,7 @@ jQuery(document).ready(function($){
 			  if (p.hasOwnProperty(key)) {
 				  var arr = $(document).find(p[key]);
 				  if (arr.length) {
-					data[key] = arr[0].innerText.replace(/[\n\r]/g, '');;
+					data[key] = arr[0].innerText;//.replace(/[\n\r]/g, '');;
 				  }
 			  }
 			}
