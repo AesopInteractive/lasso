@@ -213,14 +213,24 @@ jQuery(document).ready(function($){
 		// gather the custom field data and save to lasso_editor.cftosave
 		function saveCustomFields(content) {
 			var data ={};
-			var p = lasso_editor.customFields;
-			for (var key in p) {
-			  if (p.hasOwnProperty(key)) {
-				  var arr = $(document).find(p[key]);
-				  if (arr.length) {
-					data[key] = arr[0].innerText;//.replace(/[\n\r]/g, '');;
-				  }
-			  }
+			var customFields = lasso_editor.customFields;
+			for (var key in customFields) {
+				var selector ='';
+				var html = false;
+				if (typeof(lasso_editor.customFields[key]) == 'object') {
+					selector = customFields[key]['selector'];
+					html = customFields[key]['html'];
+				} else {
+					selector =customFields[key];
+				}
+				var arr = $(document).find(selector);
+				if (arr.length) {
+					if (html) {
+						  data[key] = arr[0].innerHTML;
+					} else {
+						  data[key] = arr[0].innerText;//.replace(/[\n\r]/g, '');
+					}
+				}
 			}
 			lasso_editor.cftosave = data;
 		}

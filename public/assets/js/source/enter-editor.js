@@ -313,11 +313,20 @@ jQuery(document).ready(function($){
 			$("a").attr('contenteditable',false);
 		}
 		
+		if (lasso_editor.disableEditPost) {
+			//set everything uneditable
+			$( "[contenteditable]" ).attr('contenteditable',false);
+		}
+		
 		// custom fields
 		if (lasso_editor.customFields) {
 			var joined = [];
 			for (var key in lasso_editor.customFields) {
-				joined.push(lasso_editor.customFields[key]);
+				if (typeof(lasso_editor.customFields[key]) == 'object') {
+					joined.push(lasso_editor.customFields[key]['selector']);
+				} else {
+				   joined.push(lasso_editor.customFields[key]);
+				}
 			}
 			lasso_editor.cfselector = joined.join(',');
 			$(lasso_editor.cfselector).attr('contenteditable',true);
@@ -1114,6 +1123,12 @@ jQuery(document).ready(function($){
 	{
 		$('#lasso--edit').trigger('click');
 		lasso_editor.skipToEdit = false;
+	}
+	
+	if (lasso_editor.setupHookArray) {
+		$(lasso_editor.setupHookArray).each(function(key, val){
+			val();
+		});
 	}
 });
 

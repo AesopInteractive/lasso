@@ -104,6 +104,7 @@ class settings {
 
 		$post_new_disabled   = lasso_editor_get_option( 'post_adding_disabled', 'lasso_editor' );
 		$save_to_post_disabled  = lasso_editor_get_option( 'post_save_disabled', 'lasso_editor' );
+		$edit_post_disabled  = lasso_editor_get_option( 'post_edit_disabled', 'lasso_editor' );
 		$post_settings_disabled = lasso_editor_get_option( 'post_settings_disabled', 'lasso_editor' );
 		$allow_change_date = lasso_editor_get_option( 'allow_change_date', 'lasso_editor' );
 		$allow_new_category = lasso_editor_get_option( 'allow_new_category', 'lasso_editor' );
@@ -346,6 +347,13 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_save_disabled]" id="lasso_editor[post_save_disabled]" <?php echo checked( $save_to_post_disabled, 'on' );?> >
 						<label for="lasso_editor[post_save_disabled]"><?php _e( 'Disable Post Saving', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'By default the editor will update the database with the post or page it is being used on. Check this box to disable this. If you check this box, it is assumed that you will be using the provided filters to save your own content.', 'lasso' );?></span>
+
+					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[post_edit_disabled]" id="lasso_editor[post_edit_disabled]" <?php echo checked( $edit_post_disabled, 'on' );?> >
+						<label for="lasso_editor[post_edit_disabled]"><?php _e( 'Disable Post Editing', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'You may use this option if you only want to edit custom fields. Refer <a href="https://edituswp.com/editing-and-updating-custom-fields-from-frontend/">here</a> for more information. The custom fields you specify will be still editable under the editing mode.', 'lasso' );?></span>
 
 					</div>
 				

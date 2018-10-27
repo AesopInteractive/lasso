@@ -10732,11 +10732,20 @@ jQuery(document).ready(function($){
 			$("a").attr('contenteditable',false);
 		}
 		
+		if (lasso_editor.disableEditPost) {
+			//set everything uneditable
+			$( "[contenteditable]" ).attr('contenteditable',false);
+		}
+		
 		// custom fields
 		if (lasso_editor.customFields) {
 			var joined = [];
 			for (var key in lasso_editor.customFields) {
-				joined.push(lasso_editor.customFields[key]);
+				if (typeof(lasso_editor.customFields[key]) == 'object') {
+					joined.push(lasso_editor.customFields[key]['selector']);
+				} else {
+				   joined.push(lasso_editor.customFields[key]);
+				}
 			}
 			lasso_editor.cfselector = joined.join(',');
 			$(lasso_editor.cfselector).attr('contenteditable',true);
@@ -11533,6 +11542,12 @@ jQuery(document).ready(function($){
 	{
 		$('#lasso--edit').trigger('click');
 		lasso_editor.skipToEdit = false;
+	}
+	
+	if (lasso_editor.setupHookArray) {
+		$(lasso_editor.setupHookArray).each(function(key, val){
+			val();
+		});
 	}
 });
 
@@ -12964,15 +12979,25 @@ jQuery(document).ready(function($){
 		
 		// gather the custom field data and save to lasso_editor.cftosave
 		function saveCustomFields(content) {
-			var data ={};
-			var p = lasso_editor.customFields;
-			for (var key in p) {
-			  if (p.hasOwnProperty(key)) {
-				  var arr = $(document).find(p[key]);
-				  if (arr.length) {
-					data[key] = arr[0].innerText;//.replace(/[\n\r]/g, '');;
-				  }
-			  }
+						var data ={};
+			var customFields = lasso_editor.customFields;
+			for (var key in customFields) {
+				var selector ='';
+				var html = false;
+				if (typeof(lasso_editor.customFields[key]) == 'object') {
+					selector = customFields[key]['selector'];
+					html = customFields[key]['html'];
+				} else {
+					selector =customFields[key];
+				}
+				var arr = $(document).find(selector);
+				if (arr.length) {
+					if (html) {
+						  data[key] = arr[0].innerHTML;
+					} else {
+						  data[key] = arr[0].innerText;//.replace(/[\n\r]/g, '');
+					}
+				}
 			}
 			lasso_editor.cftosave = data;
 		}
