@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.0.2 =
+* Changes for custom fields
+
 = 1.0.1 =
 * A new option setting to make links editable under the Edit mode
 * Fixed a bug with multiple custom field entries

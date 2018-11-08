@@ -12979,7 +12979,7 @@ jQuery(document).ready(function($){
 		
 		// gather the custom field data and save to lasso_editor.cftosave
 		function saveCustomFields(content) {
-						var data ={};
+			var data ={};
 			var customFields = lasso_editor.customFields;
 			for (var key in customFields) {
 				var selector ='';
