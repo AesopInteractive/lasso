@@ -59,7 +59,7 @@ function lasso_editor_controls() {
 		if (!$use_old_ui) {
 		?>
 		<style>
-		.lasso-editor-controls--wrap, #lasso--post-settings2,#lasso--save,#lasso--exit,#lasso--publish {
+		.lasso-editor-controls--wrap, #lasso--post-settings2,#lasso--save,#lasso--post-delete,#lasso--exit,#lasso--publish {
 			background-image: -webkit-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
 			background-image: -o-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
 			background-image: linear-gradient(to bottom,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
@@ -70,7 +70,7 @@ function lasso_editor_controls() {
 			color: <?php echo $text_color;?> !important;
 		}
 		
-		ul.lasso-editor-controls li:hover, #lasso--exit:hover,#lasso--post-settings2:hover,#lasso--publish:hover,#lasso--save:hover {
+		ul.lasso-editor-controls li:hover, #lasso--exit:hover,#lasso--post-settings2:hover,#lasso--post-delete:hover,#lasso--publish:hover,#lasso--save:hover {
 			background-image: -webkit-linear-gradient(top,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
 			background-image: -o-linear-gradient(top,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
 			background-image: linear-gradient(to bottom,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
@@ -146,7 +146,8 @@ function lasso_editor_controls() {
 
 				<div class="lasso--controls__right" data-posttype="<?php echo get_post_type( get_the_ID() );?>" data-status="<?php echo $status;?>">
 				
-				<a href="#" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>" id="lasso--post-settings2" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<a href="#" title="<?php esc_attr_e( 'Delete Post', 'lasso' );?>" id="lasso--post-delete" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<a href="#" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>" id="lasso--post-settings2" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
 
 
 					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
@@ -154,6 +155,7 @@ function lasso_editor_controls() {
 					<?php if ( ('draft' == $status ) || ('pending' == $status && $can_publish) ) { ?>
 						<a href="#" title="<?php $can_publish ? esc_attr_e( 'Publish Post', 'lasso' ) : esc_attr_e( 'Submit For Review', 'lasso' );?>" id="lasso--publish" class="lasso-publish-post lasso--button <?php echo $sc_saving_class;?>"></a>
 					<?php } ?>
+					
 
 				</div>
 

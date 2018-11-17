@@ -593,6 +593,37 @@ jQuery(document).ready(function($){
 		}
 
 	});
+	
+	
+	jQuery(document).on('click','#lasso--post-delete', function(e){
+		e.preventDefault();
+		var $this = $(this);
+		swal({
+			title: lasso_editor.strings.deletePost,
+			type: "error",
+			text: false,
+			showCancelButton: true,
+			confirmButtonColor: "#d9534f",
+			confirmButtonText: lasso_editor.strings.deleteYes,
+			closeOnConfirm: true
+		},
+		function(){
+
+			var data = {
+				action: 		'process_delete_post',
+				postid: 		postid = $this.closest('#lasso--controls').data('post-id'),
+				nonce: 			lasso_editor.deletePost
+			}
+
+			$.post( lasso_editor.ajaxurl, data, function(response) {
+				location.reload();
+			}).fail(function(xhr, err) { 
+				var responseTitle= $(xhr.responseText).filter('title').get(0);
+				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
+			});
+
+		});
+	});
 });
 
 function EditusFormatAJAXErrorMessage(jqXHR, exception) {
