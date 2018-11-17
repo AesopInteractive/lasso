@@ -44,7 +44,9 @@ class meta implements api_action {
 		if ( ! empty( $allowed_fields ) ) {
 			foreach( $allowed_fields as $field ) {
 				if ( isset( $data[ $field ] ) ) {
-					update_post_meta( $post_id, lasso_unclean_string( $field ), $data[ $field ]  );
+					//this original line changed dash to underscore
+					//update_post_meta( $post_id, lasso_unclean_string( $field ), $data[ $field ]  );
+					update_post_meta( $post_id,  $field, $data[ $field ]  );
 				}
 			}
 		}
