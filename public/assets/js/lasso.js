@@ -12581,7 +12581,7 @@ jQuery(function( $ ) {
 	/////////////
 
 	//$('#lasso-toolbar--html').live('mousedown',function(){
-	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components', function(){
+	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components,#lasso-toolbar--link', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			article.highlight();
