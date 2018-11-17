@@ -131,7 +131,7 @@ function lasso_option_form( $name = '', $options = array() ){
 
 		$out .= lasso_option_fields( $name, $options );
 		$out .='<div class="form--bottom">';
-			$out .='<input type="submit" value="'._e( 'Save', 'lasso' ).'">';
+			$out .='<input type="submit" value="'.__( 'Save', 'lasso' ).'">';
 			$out .='<input type="hidden" name="tab_name" value="'.$key.'">';
 			$out .='<input type="hidden" name="post_id" value="'.get_the_ID().'">';
 			$out .='<input type="hidden" name="nonce" value="'.$nonce.'">';

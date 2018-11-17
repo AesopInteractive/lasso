@@ -130,6 +130,9 @@ class settings {
 		$bold_tag = lasso_editor_get_option( 'bold_tag', 'lasso_editor',  "b");
 		$i_tag = lasso_editor_get_option( 'i_tag', 'lasso_editor',  "i");
 		
+		// do we support pending status
+		$no_pending_status = lasso_editor_get_option('no_pending_status', 'lasso_editor');
+		
 		$insert_comp_ui = lasso_editor_get_option('insert_comp_ui', 'lasso_editor');
 		if (!$insert_comp_ui) {
 			$insert_comp_ui = 'drag';
@@ -296,6 +299,12 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[allow_new_category]" id="lasso_editor[allow_new_category]" <?php echo checked( $allow_new_category, 'on' );?> >
 						<label for="lasso_editor[allow_new_category]"> <?php _e( 'Allow Adding New Category', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Add the user to create new, previously non-existing categories for posts.', 'lasso' );?></span>
+					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[no_pending_status]" id="lasso_editor[no_pending_status]" <?php echo checked( $no_pending_status, 'on' );?> >
+						<label for="lasso_editor[no_pending_status]"> <?php _e( 'Do Not Allow "Pending" Status', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Remove the Option to Set the Status to Pending.', 'lasso' );?></span>
 					</div>
 				
 					<div class="lasso-editor-settings--option-inner" >

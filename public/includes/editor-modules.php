@@ -223,6 +223,10 @@ function lasso_editor_text_toolbar() {
 	$show_align = lasso_editor_get_option('toolbar_show_alignment', 'lasso_editor');
 	
 	$status = get_post_status( get_the_ID() );
+	
+	$shortcodify_disabled = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
+	
+	$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
 
 	?>
@@ -426,6 +430,9 @@ function lasso_editor_component_modal() {
 	$has_thumb_class    = has_post_thumbnail() ? 'has-thumbnail' : 'no-thumbnail';
 	$theme_supports     = current_theme_supports('post-thumbnails');
 	$default_image 		= LASSO_URL.'/admin/assets/img/empty-img.png';
+	
+	// do we support pending status
+	$no_pending_status = lasso_editor_get_option('no_pending_status', 'lasso_editor');
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -462,7 +469,9 @@ function lasso_editor_component_modal() {
 							<label><?php _e( 'Status', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the status of the post to draft or publish.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<ul class="story-status story-status-<?php echo sanitize_html_class( $status );?>">
 								<li id="lasso--status-draft"><?php _e( 'Draft', 'lasso' );?></li>
+								<?php if( !$no_pending_status ): ?>								
 								<li id="lasso--status-pending"><?php _e( 'Pending', 'lasso' );?></li>
+								<?php endif; ?>
 								<li id="lasso--status-publish"><?php _e( 'Publish', 'lasso' );?></li>
 							</ul>
 							<div class="lasso--slider_wrap">

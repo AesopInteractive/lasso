@@ -11619,7 +11619,7 @@ jQuery(document).ready(function($){
 		      	value:statusReturn(lasso_editor.post_status),
 		      	min: 100,
 		      	max: 200,
-		      	step: 50,
+		      	step: lasso_editor.supportPendingStatus ? 50 : 100,
 		      	animate:'fast',
 		      	slide: function( event, ui ) {
 		        	$('input[name="status"]').val( statusReturn(ui.value) );
