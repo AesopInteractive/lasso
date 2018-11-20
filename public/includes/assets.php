@@ -193,6 +193,7 @@ class assets {
 			$objects = array(
 				'ajaxurl' 			=> esc_url( $api_url ),
 				'ajaxurl2' 			=> esc_url( admin_url( 'admin-ajax.php' )),
+				'siteUrl'           => site_url(),
 				'rest_root'         => $rest_root,
 				'rest_nonce'        => $rest_nonce,
 				'editor' 			=> 'lasso--content', // ID of editable content (without #) DONT CHANGE
