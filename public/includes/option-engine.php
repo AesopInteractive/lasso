@@ -84,8 +84,6 @@ function lasso_modal_addons( $type = 'tab' ){
 			$out .= '</ul>';
 
 		} elseif ( 'content' == $type ) {
-
-
 			foreach ( $tabs as $tab ) {
 
 				if ( isset( $tab ) ) {
@@ -139,6 +137,32 @@ function lasso_option_form( $name = '', $options = array() ){
 		$out .='</div>';
 
 	$out .= '</form>';
+	
+	$out .= "<script>(function( $ ) {
+					$(document).ready(function(){
+						function imgCustomTabDialog( ){
+                			var that = this;
+                
+                		    var lasso_file_frame = wp.media.frames.file_frame = wp.media({
+                		      	title: 'Select Image',
+                		      	button: {
+                		        	text: 'Insert Image',
+                		      	},
+                		      	multiple: false  
+                		    });
+                
+                		    lasso_file_frame.on( 'select', function() {
+                		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
+                		        $(that).parent().find('input').val(attachment.url );
+                		        $(that).parent().find('img').attr('src', attachment.url );               
+                		    });
+                			lasso_file_frame.open();
+                		};
+                		
+                		jQuery('.editus-customtab-image-control').mousedown(imgCustomTabDialog);
+					});
+				})( jQuery );  		
+    		</script>";
 
 	echo $out;
 
@@ -174,12 +198,17 @@ function lasso_option_fields( $name = '', $options = array() ){
 			case 'textarea':
 				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'textarea' ), $after );
 				break;
+			case 'imgurl':
+				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'imgurl' ), $after );
+				break;
 			case 'checkbox':
 				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'checkbox' ), $after );
 				break;
 		}
 
 	}
+	
+	
 
 	return $out;
 }
@@ -207,10 +236,13 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 
 	switch ( $type ) {
 		case 'text':
-			$out = sprintf('<label for="lasso--post-option-%s">%s</label><input id="lasso--post-option-%s" name="%s" type="text" value="%s">',$id, esc_html( $desc ), $id, $id, $value );
+			$out = sprintf('<label for="lasso--post-option-%s">%s</label><input id="lasso--post-option-%s" class="editus-custom-field-text" name="%s" type="text" value="%s">',$id, esc_html( $desc ), $id, $id, $value );
 			break;
 		case 'textarea':
 			$out = sprintf('<label for="lasso--post-option-%s">%s</label><textarea id="lasso--post-option-%s" name="%s">%s</textarea>',$id, esc_html( $desc ), $id, $id, $value );
+			break;
+		case 'imgurl':
+			$out = sprintf('<label for="lasso--post-option-%s">%s</label><img src="%s" style="height:80px;"><input id="lasso--post-option-%s" class="editus-custom-field-text" name="%s" type="text" value="%s" style="display:none;"><div title="Replace Image"  class="editus-customtab-image-control" style="float:left;"><i class="lasso-icon-image" style="font-size:20px;padding:5px;"></i></div>',$id, esc_html( $desc ), $value, $id, $id,  $value );
 			break;
 		case 'checkbox':
 			$out = sprintf('<label for="lasso--post-option-%s" class="checkbox-control checkbox"><input id="lasso--post-option-%s" type="checkbox" name="%s" class="checkbox"><span class="control-indicator"></span>%s',$id, $id, $id ,esc_html( $desc ) );
