@@ -322,8 +322,17 @@ jQuery(document).ready(function($){
 		if (lasso_editor.customFields) {
 			var joined = [];
 			for (var key in lasso_editor.customFields) {
+				var imgControls = '<a title="Replace Image" href="" class="editus-custom-image-control" style="position:absolute;right:0px;"><i class="lasso-icon-image" style="color: black;font-size: 20px"></i></a>';
 				if (typeof(lasso_editor.customFields[key]) == 'object') {
-					joined.push(lasso_editor.customFields[key]['selector']);
+					var selector = lasso_editor.customFields[key]['selector'];
+					joined.push(selector);
+					if (lasso_editor.customFields[key]['imgurl']) {
+						if ($(selector).find('.editus-custosm-image-control').length == 0) {
+							$(selector).parent().parent().append( imgControls );
+							$(selector).parent().parent().css("position", "relative");
+							$(selector).parent().parent().find('.editus-custom-image-control').mousedown(imgDialog);
+						}				
+					}
 				} else {
 				   joined.push(lasso_editor.customFields[key]);
 				}
@@ -1019,8 +1028,36 @@ jQuery(document).ready(function($){
 			if ('video' == type ) { videoGoTime() }
 			$('#lasso-side-comp-button').remove();
 			$(comp).find('.lasso-settings').trigger('click');
-
 		}
+		
+				
+		function  imgDialog( ){
+			var that = this;
+		    // Create the media frame.
+		    var lasso_file_frame = wp.media.frames.file_frame = wp.media({
+		      	title: 'Select Image',
+		      	button: {
+		        	text: 'Insert Image',
+		      	},
+		      	multiple: false  // Set to true to allow multiple files to be selected
+		    });
+
+		    // When an image is selected, run a callback.
+		    lasso_file_frame.on( 'select', function() {
+		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
+				$(that).parent().data('imgid',''+attachment.id);
+				if ($(that).parent().find('img').length > 0) {
+					$(that).parent().find('img').attr('src', attachment.url );
+				} else {i
+					$(that).parent().css({
+				  		'background-image': 'url('+ attachment.url +')'
+				  	});
+				}
+		    });
+
+		    // Finally, open the modal
+			lasso_file_frame.open();
+		};
 
 		/////////////////
 		/// DRAG DROP
