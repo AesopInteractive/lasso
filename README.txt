@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 4.9
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,11 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.0.3 =
+* Added the delete post button
+* Option to disable "Pending" status
+* More changes for custom fields
+
 = 1.0.2 =
 * Changes for custom fields
 
