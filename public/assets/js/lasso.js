@@ -11771,8 +11771,8 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
-					location.reload();
-					window.location.replace(lasso_editor.permalink);
+					//location.reload();
+					window.location.replace(response.data['link']);
 
 				} else {
 					alert('error:'+response);
@@ -14396,7 +14396,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					if ( true == response.success ) {
 						$('input[type="submit"]').addClass('saved');
 						$('input[type="submit"]').val(lasso_editor.strings.added);
-						window.location.replace(response.data.postlink);
+						window.location.replace(response.link+'&preview=true');
 					} else {
 						alert('error');
 					}
@@ -14434,7 +14434,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				$('input[type="submit"]').addClass('saved');
 				$('input[type="submit"]').val(lasso_editor.strings.added);
 
-				window.location.replace(response.link);
+				window.location.replace(response.link+'&preview=true');
 			},
 			error : function (xhr, exception) {
 				alert("AJAX Error: "+xhr.responseText );		

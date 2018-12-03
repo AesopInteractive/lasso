@@ -140,28 +140,42 @@ function lasso_option_form( $name = '', $options = array() ){
 	
 	$out .= "<script>(function( $ ) {
 					$(document).ready(function(){
+					   
 						function imgCustomTabDialog( ){
                 			var that = this;
                 
+                		    // Create the media frame.
                 		    var lasso_file_frame = wp.media.frames.file_frame = wp.media({
                 		      	title: 'Select Image',
                 		      	button: {
                 		        	text: 'Insert Image',
                 		      	},
-                		      	multiple: false  
+                		      	multiple: false  // Set to true to allow multiple files to be selected
                 		    });
                 
+                		    // When an image is selected, run a callback.
                 		    lasso_file_frame.on( 'select', function() {
                 		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
                 		        $(that).parent().find('input').val(attachment.url );
-                		        $(that).parent().find('img').attr('src', attachment.url );               
+                		        $(that).parent().find('img').attr('src', attachment.url );
+                
                 		    });
+                
+                		    // Finally, open the modal
                 			lasso_file_frame.open();
+                		};
+						
+						function imgCustomTabRemove( ){
+                		    $(this).parent().find('input').val('');
+                		    $(this).parent().find('img').attr('src', '' );
                 		};
                 		
                 		jQuery('.editus-customtab-image-control').mousedown(imgCustomTabDialog);
+						jQuery('.editus-customtab-image-remove').mousedown(imgCustomTabRemove);
 					});
-				})( jQuery );  		
+				})( jQuery );
+	        
+    		
     		</script>";
 
 	echo $out;
@@ -242,7 +256,7 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 			$out = sprintf('<label for="lasso--post-option-%s">%s</label><textarea id="lasso--post-option-%s" name="%s">%s</textarea>',$id, esc_html( $desc ), $id, $id, $value );
 			break;
 		case 'imgurl':
-			$out = sprintf('<label for="lasso--post-option-%s">%s</label><img src="%s" style="height:80px;"><input id="lasso--post-option-%s" class="editus-custom-field-text" name="%s" type="text" value="%s" style="display:none;"><div title="Replace Image"  class="editus-customtab-image-control" style="float:left;"><i class="lasso-icon-image" style="font-size:20px;padding:5px;"></i></div>',$id, esc_html( $desc ), $value, $id, $id,  $value );
+			$out = sprintf('<label for="lasso--post-option-%s">%s</label><img src="%s" style="height:80px;"><input id="lasso--post-option-%s" class="editus-custom-field-text" name="%s" type="text" value="%s" style="display:none;"><div title="Replace Image"  class="editus-customtab-image-control" style="float:left;"><i class="lasso-icon-image" style="font-size:20px;padding:5px;"></i></div><div title="Remove Image"  class="editus-customtab-image-remove" style="float:left;"><i class="lasso-icon-bin2" style="font-size:20px;padding:5px;"></i></div>',$id, esc_html( $desc ), $value, $id, $id,  $value );
 			break;
 		case 'checkbox':
 			$out = sprintf('<label for="lasso--post-option-%s" class="checkbox-control checkbox"><input id="lasso--post-option-%s" type="checkbox" name="%s" class="checkbox"><span class="control-indicator"></span>%s',$id, $id, $id ,esc_html( $desc ) );

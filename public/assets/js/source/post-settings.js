@@ -176,8 +176,7 @@
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
-					location.reload();
-					window.location.replace(lasso_editor.permalink);
+					window.location.replace(response.data['link']);
 
 				} else {
 					alert('error:'+response);

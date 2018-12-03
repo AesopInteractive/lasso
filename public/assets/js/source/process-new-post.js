@@ -82,7 +82,7 @@
 					if ( true == response.success ) {
 						$('input[type="submit"]').addClass('saved');
 						$('input[type="submit"]').val(lasso_editor.strings.added);
-						window.location.replace(response.data.postlink);
+						window.location.replace(response.link+'&preview=true');
 					} else {
 						alert('error');
 					}
@@ -120,7 +120,7 @@
 				$('input[type="submit"]').addClass('saved');
 				$('input[type="submit"]').val(lasso_editor.strings.added);
 
-				window.location.replace(response.link);
+				window.location.replace(response.link+'&preview=true');
 			},
 			error : function (xhr, exception) {
 				alert("AJAX Error: "+xhr.responseText );		
