@@ -425,6 +425,7 @@ function lasso_editor_component_modal() {
 	
 	//editor options
 	$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
+	$no_url_setting = lasso_editor_get_option('no_url_setting', 'lasso_editor');
 
 	// are we singular
 	$is_singular 		= is_singular();
@@ -482,7 +483,7 @@ function lasso_editor_component_modal() {
 						</div>
 						<?php endif; ?>
 
-						<?php if ( 'publish' == $status ): ?>
+						<?php if ( 'publish' == $status  && !$no_url_setting): ?>
 						<div class="lasso--postsettings__option story-slug-option">
 							<label><?php _e( 'Post URL', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Change the URL (slug) of this post.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<input class="lasso--modal__trigger-footer" type="text" name="story_slug" value="<?php echo isset( $post ) ? esc_attr( $post->post_name ) : false;?>">

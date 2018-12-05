@@ -133,6 +133,8 @@ class settings {
 		// do we support pending status
 		$no_pending_status = lasso_editor_get_option('no_pending_status', 'lasso_editor');
 		
+		$no_url_setting = lasso_editor_get_option('no_url_setting', 'lasso_editor');
+		
 		$insert_comp_ui = lasso_editor_get_option('insert_comp_ui', 'lasso_editor');
 		if (!$insert_comp_ui) {
 			$insert_comp_ui = 'drag';
@@ -305,6 +307,12 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[no_pending_status]" id="lasso_editor[no_pending_status]" <?php echo checked( $no_pending_status, 'on' );?> >
 						<label for="lasso_editor[no_pending_status]"> <?php _e( 'Do Not Allow "Pending" Status', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Remove the Option to Set the Status to Pending.', 'lasso' );?></span>
+					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[no_url_setting]" id="lasso_editor[no_slug_setting]" <?php echo checked( $no_url_setting, 'on' );?> >
+						<label for="lasso_editor[no_url_setting]"> <?php _e( 'Remove POST URL Option', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Remove the Option to Set the URL for the Post.', 'lasso' );?></span>
 					</div>
 				
 					<div class="lasso-editor-settings--option-inner" >
