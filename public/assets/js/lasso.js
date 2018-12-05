@@ -11771,7 +11771,6 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
-					//location.reload();
 					window.location.replace(response.data['link']);
 
 				} else {
@@ -11983,9 +11982,9 @@ jQuery(document).ready(function($){
 			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
 
-			if ( $(this).parent().parent().hasClass('empty-gallery') ) {
-				settings.addClass('gallery-no-images')
-			}
+			//if ( $(this).parent().parent().hasClass('empty-gallery') ) {
+				//settings.addClass('gallery-no-images')
+			//}
 
 			if ( $(this).parent().parent().hasClass('aesop-gallery-component') ) {
 
@@ -14159,7 +14158,30 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					if ('video' == cdata['componentType']) {
 						$('.aesop-video-component').fitVids();			
 					}
+					if ('gallery' == cdata['componentType']) {
+						get_aesop_options('gallery');
+					}
+					if ('gallery_pop' == cdata['componentType']) {
+						get_aesop_options('gallery_pop');
+					}
 					lasso_editor.dirtyByComponent = true;
+				} else {
+					alert("error");
+			}
+		});
+	}
+	
+	//reload aesop component options
+	function get_aesop_options(comp)
+	{
+		var data = {
+				action: 'editus_get_ase_options',
+				component: comp
+		};
+						
+		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+				if( response ){				
+					lasso_editor.component_options[comp] = response;
 				} else {
 					alert("error");
 			}
@@ -14231,7 +14253,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 			} else if ( true == gallery ) {
 
-				form.addClass('hide-all-fields').prepend('<div id="lasso--pagerefresh">Gallery Created! Save your post and refresh the page to access this new gallery.</div>')
+				//form.addClass('hide-all-fields').prepend('<div id="lasso--pagerefresh">Gallery Created! Save your post and refresh the page to access this new gallery.</div>')
 
 				setTimeout( function(){ saveActions(true); }, 500 );
 

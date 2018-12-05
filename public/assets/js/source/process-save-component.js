@@ -56,7 +56,30 @@
 					if ('video' == cdata['componentType']) {
 						$('.aesop-video-component').fitVids();			
 					}
+					if ('gallery' == cdata['componentType']) {
+						get_aesop_options('gallery');
+					}
+					if ('gallery_pop' == cdata['componentType']) {
+						get_aesop_options('gallery_pop');
+					}
 					lasso_editor.dirtyByComponent = true;
+				} else {
+					alert("error");
+			}
+		});
+	}
+	
+	//reload aesop component options
+	function get_aesop_options(comp)
+	{
+		var data = {
+				action: 'editus_get_ase_options',
+				component: comp
+		};
+						
+		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+				if( response ){				
+					lasso_editor.component_options[comp] = response;
 				} else {
 					alert("error");
 			}
@@ -128,7 +151,7 @@
 
 			} else if ( true == gallery ) {
 
-				form.addClass('hide-all-fields').prepend('<div id="lasso--pagerefresh">Gallery Created! Save your post and refresh the page to access this new gallery.</div>')
+				//form.addClass('hide-all-fields').prepend('<div id="lasso--pagerefresh">Gallery Created! Save your post and refresh the page to access this new gallery.</div>')
 
 				setTimeout( function(){ saveActions(true); }, 500 );
 

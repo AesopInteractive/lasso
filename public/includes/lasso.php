@@ -62,6 +62,7 @@ class lasso {
 		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
 		add_action( 'wp_ajax_editus_hide_tour',     array( $this, 'editus_hide_tour' ) );
 		add_action( 'wp_ajax_editus_set_post_setting',     array( $this, 'editus_set_post_setting' ) );
+		add_action( 'wp_ajax_editus_get_ase_options',     array( $this, 'get_ase_options' ) );
 
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
@@ -440,6 +441,16 @@ class lasso {
 		
 		exit; 
 	}
+	
+	
+	public function get_ase_options()
+	{
+		$blob = lasso_editor_options_blob();
+		$code= $_POST["component"];
+		echo $blob[$code];
+		exit; 
+	}
+	
 	public function set_post_terms( $postid, $value, $taxonomy ) {
 		if( $value ) {
 			$value = explode( ',', $value );

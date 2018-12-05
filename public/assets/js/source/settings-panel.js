@@ -167,9 +167,9 @@
 			// GET GALLERY IMAGES IF ITS A GALLERY
 			/////////////
 
-			if ( $(this).parent().parent().hasClass('empty-gallery') ) {
-				settings.addClass('gallery-no-images')
-			}
+			//if ( $(this).parent().parent().hasClass('empty-gallery') ) {
+				//settings.addClass('gallery-no-images')
+			//}
 
 			if ( $(this).parent().parent().hasClass('aesop-gallery-component') ) {
 
