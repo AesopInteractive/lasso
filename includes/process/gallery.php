@@ -229,7 +229,7 @@ class gallery implements api_action {
 			'postid'   => 'absint',
 			'content'   => 'wp_kses_post',
 			'edgallerytitle' =>'sanitize_text_field',
-			'galleryType'      => array(
+			'gallery_type'      => array(
 				'sanitize_text_field',
 				'trim'
 			),
