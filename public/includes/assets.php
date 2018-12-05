@@ -265,7 +265,7 @@ class assets {
 				'buttonOnEmptyP'     => ($insert_comp_ui =='mediumcom'),      // auto show a button to insert components on an empty paragraph      
                 'rtl'               => is_rtl(),				
 				'skipToEdit'        =>( $delta < 10 && $delta >=0 ), // if it's a new post, skip to edit mode
-				'links_editable'    => $links_editable,
+				'linksEditable'    => $links_editable,
 				'supportPendingStatus' => !$no_pending_status
 			);
 
