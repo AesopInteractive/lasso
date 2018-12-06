@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2018-12-05 17:02-0500\n"
-"PO-Revision-Date: 2018-12-05 17:06-0500\n"
+"POT-Creation-Date: 2018-10-21 19:56-0500\n"
+"PO-Revision-Date: 2018-12-06 07:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 1.8.13\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
@@ -20,18 +20,18 @@ msgstr ""
 #: admin/includes/EDD_SL_Plugin_Updater.php:177
 #, php-format
 msgid ""
-"There is a new version of %1$s available. <a target=\"_blank\" class="
-"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+"There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox"
+"\" href=\"%2$s\">View version %3$s details</a>."
 msgstr ""
-"Eine neue Version von %1$s ist erhältlich. <a target=\"_blank\" class="
-"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+"Eine neue Version von %1$s ist erhältlich. <a target=\"_blank\" class=\"thickbox"
+"\" href=\"%2$s\">View version %3$s details</a>."
 
 #: admin/includes/EDD_SL_Plugin_Updater.php:184
 #, php-format
 msgid ""
-"There is a new version of %1$s available. <a target=\"_blank\" class="
-"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
-"\">update now</a>."
+"There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox"
+"\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s\">update now</"
+"a>."
 msgstr ""
 "Es ist eine neue Version von %1$s verfügbar. <a target=\"_blank\" class="
 "\"thickbox\" href=\"%2$s\">Zeige Details zur Version %3$s</a> oder <a href="
@@ -66,10 +66,113 @@ msgstr "Installieren von Plugin:%s"
 msgid "Something went wrong with the plugin API."
 msgstr "Irgendetwas ging schief mit der Plugin API."
 
+#: admin/includes/class-tgm-plugin-activation.php:338
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] "Dieses Thema benötigt das folgende Plugin: %1$s."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:343
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] "Dieses Theme empfiehlt das folgende Plugin: %1$s."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:348
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %1$s plugin."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %1$s plugins."
+msgstr[0] ""
+"Pardon, aber Sie haben nicht die erforderlichen Berechtigungen, um dieses %1$s "
+"Plugin zu installieren."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:353
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+"Das folgende Plugin muss auf die neueste Version aktualisiert werden, um "
+"maximale Kompatibilität mit diesem Thema zu sicher zu stellen: %1$s."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:358
+#, php-format
+msgid "There is an update available for: %1$s."
+msgid_plural "There are updates available for the following plugins: %1$s."
+msgstr[0] "Es ist ein Update verfügbar für:%1$s."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:363
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %1$s plugin."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %1$s plugins."
+msgstr[0] ""
+"Sorry, aber Sie haben nicht die erforderlichen Berechtigungen, um das %1$s "
+"Plugin zu aktualisieren."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:368
+#: admin/includes/menus/welcome.php:240
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] "Das folgende erforderliche Plugin ist derzeit inaktiv: %1$s."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:373
+#: admin/includes/menus/welcome.php:241
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] "Das folgende empfohlene Plugin ist derzeit inaktiv: %1$s."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:378
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %1$s plugin."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %1$s plugins."
+msgstr[0] ""
+"Pardon, aber Sie haben nicht die erforderlichen Berechtigungen, um dieses %1$s "
+"Plugin zu aktivieren."
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:383
+#: admin/includes/menus/welcome.php:245
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] "Beginne mit der Installation des Plugins"
+msgstr[1] "Beginne mit der Installation der Plugins"
+
+#: admin/includes/class-tgm-plugin-activation.php:388
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] "Beginne mit der Aktualisierung des Plugins"
+msgstr[1] "Beginne mit der Aktualisierung der Plugins"
+
+#: admin/includes/class-tgm-plugin-activation.php:393
+#: admin/includes/menus/welcome.php:246
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] "Beginne mit der Aktivierung des Plugins"
+msgstr[1] "Beginne mit der Aktivierung ders Plugins"
+
 #: admin/includes/class-tgm-plugin-activation.php:397
 #: admin/includes/menus/welcome.php:247
 msgid "Return to Required Plugins Installer"
-msgstr "Zurück zum Plugininstaller (erforderliche Plugins)"
+msgstr "Zurück zur Installation der benötigten Plugins"
 
 #: admin/includes/class-tgm-plugin-activation.php:398
 msgid "Return to the dashboard"
@@ -82,11 +185,11 @@ msgid "Plugin activated successfully."
 msgstr "Plugin erfolgreich aktiviert."
 
 #: admin/includes/class-tgm-plugin-activation.php:400
-#, fuzzy
-#| msgid "The following plugin was activated successfully:"
-#| msgid_plural "The following plugins were activated successfully:"
+#: admin/includes/class-tgm-plugin-activation.php:2832
 msgid "The following plugin was activated successfully:"
-msgstr "Erfolgreich zur Auswahl hinzugefügt!"
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] "Das folgende Plugin wurde erfolgreich aktiviert:"
+msgstr[1] "Die folgenden Plugins wurden erfolgreich aktiviert:"
 
 #: admin/includes/class-tgm-plugin-activation.php:401
 #, php-format
@@ -96,8 +199,8 @@ msgstr "Keine Aktion durchgeführt. Das Plugin %1$s war bereits aktiviert."
 #: admin/includes/class-tgm-plugin-activation.php:402
 #, php-format
 msgid ""
-"Plugin not activated. A higher version of %s is needed for this theme. "
-"Please update the plugin."
+"Plugin not activated. A higher version of %s is needed for this theme. Please "
+"update the plugin."
 msgstr ""
 "Das Plugin wurde nicht aktiviert. Eine neuere Version von %s ist für dieses "
 "Theme erforderlich. Bitte aktualisiere das Plugin."
@@ -114,6 +217,61 @@ msgstr "Nachricht löschen"
 #: admin/includes/class-tgm-plugin-activation.php:405
 msgid "Please contact the administrator of this site for help."
 msgstr "Bitte wende dich sich an den Support um Hilfe zu erhalten."
+
+#: admin/includes/class-tgm-plugin-activation.php:520
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+"Dieses Plugin muss aktualisiert werden, um mit Deinem Theme kompatibel zu sein."
+
+#: admin/includes/class-tgm-plugin-activation.php:521
+msgid "Update Required"
+msgstr "Aktualisierung erforderlich"
+
+#: admin/includes/class-tgm-plugin-activation.php:635
+msgid "Set the parent_slug config variable instead."
+msgstr "Stattdessen die parent_slug-Konfigurationsvariable setzen."
+
+#: admin/includes/class-tgm-plugin-activation.php:828
+#: admin/includes/class-tgm-plugin-activation.php:3438
+msgid "Return to the Dashboard"
+msgstr "Zurüch zum Dashboard"
+
+#: admin/includes/class-tgm-plugin-activation.php:935
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug and "
+"renaming did not work."
+msgstr ""
+"Das externe Plugin-Paket enthält keinen Ordner mit der erforderlichen "
+"Bezeichnung und eine Umbenennung war nicht möglich."
+
+#: admin/includes/class-tgm-plugin-activation.php:935
+#: admin/includes/class-tgm-plugin-activation.php:938
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+"Bitte wende Dich an den Anbieter des Plugins, um eine Plugin-Version nach den "
+"WordPress-Richtlinien zu erhalten."
+
+#: admin/includes/class-tgm-plugin-activation.php:938
+msgid ""
+"The remote plugin package consists of more than one file, but the files are not "
+"packaged in a folder."
+msgstr ""
+"Das externe Plugin-Paket besteht aus mehreren Dateien, die jedoch nicht in "
+"einem Ordner gepackt wurden."
+
+#: admin/includes/class-tgm-plugin-activation.php:1116
+#: admin/includes/class-tgm-plugin-activation.php:2828
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr "Plugin A*und* Plugin B und"
+
+#: admin/includes/class-tgm-plugin-activation.php:1881
+#, php-format
+msgctxt "%s = version number"
+msgid "TGMPA v%s"
+msgstr "TGMPA v% s"
 
 #: admin/includes/class-tgm-plugin-activation.php:2167
 msgid "Required"
@@ -159,6 +317,46 @@ msgstr "Benötigt Update"
 msgid "Update recommended"
 msgstr "Update empfohlen"
 
+#: admin/includes/class-tgm-plugin-activation.php:2235
+#, php-format
+msgctxt "%1$s = install status, %2$s = update status"
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#: admin/includes/class-tgm-plugin-activation.php:2280
+#, php-format
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] "Alle <span class=\"count\">(%s)</span>"
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2283
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] "<span class=„event_booking_status pending“>%s</span>"
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2286
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] "Aktualisierung verfügbar <span class=\"count\">(%s)</span>"
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2289
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] "Zum Aktivieren <span class=\"count\">(%s)</span>"
+msgstr[1] ""
+
+#: admin/includes/class-tgm-plugin-activation.php:2371
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr "unbekannt"
+
 #: admin/includes/class-tgm-plugin-activation.php:2379
 msgid "Installed version:"
 msgstr "Installierte Version:"
@@ -177,8 +375,8 @@ msgid ""
 "No plugins to install, update or activate. <a href=\"%1$s\">Return to the "
 "Dashboard</a>"
 msgstr ""
-"Keine Plugins zu instalieren, zu aktualisieren oder zu aktivieren. <a href="
-"\"%1$s\">Zurück zum Dashboard</a>"
+"Keine Plugins zu installieren, aktualisieren oder aktivieren. <a href=\"%1$s"
+"\">Zurück zum Dashboard</a>"
 
 #: admin/includes/class-tgm-plugin-activation.php:2436
 msgid "Plugin"
@@ -190,7 +388,7 @@ msgstr "Quelle"
 
 #: admin/includes/class-tgm-plugin-activation.php:2438
 msgid "Type"
-msgstr "Art"
+msgstr "Type"
 
 #: admin/includes/class-tgm-plugin-activation.php:2442
 #: admin/includes/menus/welcome.php:118
@@ -198,9 +396,31 @@ msgid "Version"
 msgstr "Version"
 
 #: admin/includes/class-tgm-plugin-activation.php:2443
-#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:472
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:462
 msgid "Status"
-msgstr "Statusmitteilung"
+msgstr "Status"
+
+#: admin/includes/class-tgm-plugin-activation.php:2491
+#, php-format
+msgctxt "%2$s = plugin name in screen reader markup"
+msgid "Install %2$s"
+msgstr "Installiere %2$s"
+
+#: admin/includes/class-tgm-plugin-activation.php:2495
+#, php-format
+msgctxt "%2$s = plugin name in screen reader markup"
+msgid "Update %2$s"
+msgstr "Aktualisiere %2$s"
+
+#: admin/includes/class-tgm-plugin-activation.php:2500
+#, php-format
+msgctxt "%2$s = plugin name in screen reader markup"
+msgid "Activate %2$s"
+msgstr "Aktiviere %2$s"
+
+#: admin/includes/class-tgm-plugin-activation.php:2570
+msgid "Upgrade message from the plugin author:"
+msgstr "Upgrade-Nachricht vom Plugin Autor:"
 
 #: admin/includes/class-tgm-plugin-activation.php:2603
 msgid "Install"
@@ -234,9 +454,19 @@ msgstr "Derzeit stehen keine Plugins zur Installation zur Verfügung."
 msgid "No plugins are available to be updated at this time."
 msgstr "Derzeit stehen keine Plugins zur Aktualisierung zur Verfügung."
 
+#: admin/includes/class-tgm-plugin-activation.php:2788
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+"Es wurden keine Plugins zur Aktivierung ausgewählt. Es wurde daher nichts "
+"unternommen."
+
+#: admin/includes/class-tgm-plugin-activation.php:2814
+msgid "No plugins are available to be activated at this time."
+msgstr "Derzeit stehen keine Plugins zur Aktivierung zur Verfügung."
+
 #: admin/includes/class-tgm-plugin-activation.php:3028
 msgid "Plugin activation failed."
-msgstr "Erweiterungs-Aktivierung fehlgeschlagen."
+msgstr "Plugin-Aktivierung fehlgeschlagen."
 
 #: admin/includes/class-tgm-plugin-activation.php:3362
 #, php-format
@@ -260,14 +490,23 @@ msgid ""
 "The installation and activation process is starting. This process may take a "
 "while on some hosts, so please be patient."
 msgstr ""
-"Der Installations- und Aktivierungsprozess wird gestartet. Dieser Prozess "
-"kann auf manchen Servern etwas Zeit in Anspruch nehmen. Bitte haben Sie "
-"etwas Geduld."
+"Der Installations- und Aktivierungsprozess wird gestartet. Dieser Prozess kann "
+"auf manchen Servern etwas Zeit in Anspruch nehmen. Bitte habe etwas Geduld."
 
 #: admin/includes/class-tgm-plugin-activation.php:3370
 #, php-format
 msgid "%1$s installed and activated successfully."
 msgstr "%1$s erfolgreich installiert und aktiviert."
+
+#: admin/includes/class-tgm-plugin-activation.php:3370
+#: admin/includes/class-tgm-plugin-activation.php:3376
+msgid "Show Details"
+msgstr "Weitere Details"
+
+#: admin/includes/class-tgm-plugin-activation.php:3370
+#: admin/includes/class-tgm-plugin-activation.php:3376
+msgid "Hide Details"
+msgstr "Details verbergen"
 
 #: admin/includes/class-tgm-plugin-activation.php:3371
 msgid "All installations and activations have been completed."
@@ -276,7 +515,7 @@ msgstr "Alle Installationen und Aktivierungen wurden abgeschlossen."
 #: admin/includes/class-tgm-plugin-activation.php:3372
 #, php-format
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr "Installiere und aktiviere Erweiterung %1$s (%2$d/%3$d)"
+msgstr "Plugin installieren und aktivieren %1$s (%2$d/%3$d)"
 
 #: admin/includes/class-tgm-plugin-activation.php:3375
 msgid ""
@@ -284,7 +523,12 @@ msgid ""
 "hosts, so please be patient."
 msgstr ""
 "Der Installationsprozess wird gestartet. Dieser Prozess kann auf manchen "
-"Servern etwas Zeit in Anspruch nehmen. Bitte haben Sie Geduld."
+"Servern etwas Zeit in Anspruch nehmen. Bitte habe Geduld."
+
+#: admin/includes/class-tgm-plugin-activation.php:3376
+#, php-format
+msgid "%1$s installed successfully."
+msgstr "%1$s erfolgreich installiert."
 
 #: admin/includes/class-tgm-plugin-activation.php:3377
 msgid "All installations have been completed."
@@ -297,7 +541,7 @@ msgstr "Installiere Erweiterung %1$s (%2$d/%3$d)"
 
 #: admin/includes/load_admin.php:151
 msgid "Dismiss this notice."
-msgstr "Diese Meldung ausblenden."
+msgstr "Diesen Hinweis ausblenden"
 
 #: admin/includes/menus/license.php:30
 msgid "Aesopinteractive LLC"
@@ -317,11 +561,11 @@ msgstr "Editus-Lizenz"
 
 #: admin/includes/menus/license.php:48
 msgid ""
-"Input the license key you recieved with your purchase to ensure your version "
-"of Editus stays updated."
+"Input the license key you recieved with your purchase to ensure your version of "
+"Editus stays updated."
 msgstr ""
-"Geben Sie den Lizenzschlüssel an, den Sie mit Ihrem Kauf erhalten haben um "
-"sicherzugehen, dass Lasso aktuell bleibt."
+"Gebe den Lizenzschlüssel an, den du beim Kauf erhalten hast, um sicherzugehen, "
+"dass Lasso aktuell bleibt."
 
 #: admin/includes/menus/license.php:66 admin/includes/menus/license.php:75
 msgid "Activate License"
@@ -335,787 +579,873 @@ msgstr "aktivieren"
 msgid "Deactivate License"
 msgstr "Lizenzschlüssel deaktivieren"
 
-#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:362
-#: public/includes/editor-modules.php:717
-#: public/includes/editor-modules.php:736
+#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:356
+#: public/includes/editor-modules.php:705 public/includes/editor-modules.php:724
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin/includes/menus/settings.php:146
+#: admin/includes/menus/settings.php:141
 msgid "Editus Settings"
-msgstr "Einstellungen"
+msgstr "Editus-Einstellungen"
 
-#: admin/includes/menus/settings.php:154
+#: admin/includes/menus/settings.php:149
 msgid "Enable for:"
-msgstr "Ermöglicht für:"
+msgstr "Aktivieren für:"
 
-#: admin/includes/menus/settings.php:158
+#: admin/includes/menus/settings.php:153
 msgid "Enable Editus for the following post types."
 msgstr "Editus für die folgende Post-Typen zu ermöglichen."
 
-#: admin/includes/menus/settings.php:180
+#: admin/includes/menus/settings.php:175
 msgid "Internal Settings"
 msgstr "Interne Einstellungen"
 
-#: admin/includes/menus/settings.php:183
+#: admin/includes/menus/settings.php:178
 msgid "Article Class"
 msgstr "Artikel Klasse"
 
-#: admin/includes/menus/settings.php:184
+#: admin/includes/menus/settings.php:179
 msgid ""
-"Provide the CSS class (including the preceding dot) of container that holds "
-"the post. This should be the first parent container class that holds "
-"the_content."
+"Provide the CSS class (including the preceding dot) of container that holds the "
+"post. This should be the first parent container class that holds the_content."
 msgstr ""
-"Geben Sie die CSS-Klasse (einschließlich des vorangehenden Punktes) der "
-"Container, der den Posten innehat. Dies sollte die erste übergeordnete "
-"Container-Klasse, die The_content hält."
+"Gebe die CSS-Klasse (einschließlich des vorangehenden Punkts) des Containers "
+"an, der den Beitrag enthält. Dies sollte die erste übergeordnete "
+"Containerklasse sein, die den Inhalt enthält."
 
-#: admin/includes/menus/settings.php:189
+#: admin/includes/menus/settings.php:184
 msgid "Featured Image Class"
 msgstr "Beitragsbild Klasse"
 
-#: admin/includes/menus/settings.php:190
+#: admin/includes/menus/settings.php:185
 msgid ""
 "Provide the CSS class that uses a featured image as a background image. This "
-"currently only supports themes that have the featured image set as "
-"background image."
+"currently only supports themes that have the featured image set as background "
+"image."
 msgstr ""
-"Geben Sie die CSS-Klasse, die ein ausgewähltes Bild als Hintergrundbild "
-"verwendet. Dies unterstützt derzeit nur Themen, die das ausgewählte Bild als "
-"Hintergrundbild festgelegt haben."
+"Stelle die CSS-Klasse bereit, die ein gekennzeichnetes Bild als Hintergrundbild "
+"verwendet. Derzeit werden nur Designs unterstützt, bei denen das vorgestellte "
+"Bild als Hintergrundbild festgelegt ist."
 
-#: admin/includes/menus/settings.php:195
+#: admin/includes/menus/settings.php:190
 msgid "Article Title Class"
 msgstr "Artikel Titel Klasse"
 
-#: admin/includes/menus/settings.php:196
+#: admin/includes/menus/settings.php:191
 msgid ""
 "Provide the CSS class for the post title. This will enable you to update the "
 "title of the post by clicking and typing."
 msgstr ""
-"Geben Sie die CSS-Klasse für die Post-Titel. Dadurch können Sie die Titel "
-"der Post zu aktualisieren, indem Sie klicken und eingeben."
+"Gebe die CSS-Klasse für den Beitragstitel an. Auf diese Weise kannst du den "
+"Titel des Beitrags durch Klicken und Eingeben aktualisieren."
 
-#: admin/includes/menus/settings.php:201
+#: admin/includes/menus/settings.php:196
 msgid "Ignored Items to Save"
-msgstr "Artikel zu speichern ignoriert"
+msgstr "Ignorierte Elemente zum Speichern"
+
+#: admin/includes/menus/settings.php:197
+msgid ""
+"If your post container holds additional markup, list the css class names (comma "
+"separated, including the dot) of those items. When you enter the editor, Editus "
+"will remove (NOT delete) these items so that it does not save them as HTML."
+msgstr ""
+"Wenn derr Post-Container zusätzliche Markierungen enthält, liste die CSS-"
+"Klassennamen (durch Kommas getrennt, einschließlich des Punktes) dieser "
+"Elemente auf. Wenn du den Editor startest, werden diese Elemente von Editus "
+"entfernt (NICHT gelöscht), sodass diese nicht als HTML gespeichert werden."
 
 #: admin/includes/menus/settings.php:202
-msgid ""
-"If your post container holds additional markup, list the css class names "
-"(comma separated, including the dot) of those items. When you enter the "
-"editor, Editus will remove (NOT delete) these items so that it does not save "
-"them as HTML."
-msgstr ""
-"Wenn Ihr Container \"Post\" zusätzliches Markup enthält, Listen Sie die Css-"
-"Klassennamen (durch Kommata getrennt, einschließlich den Punkt) dieser "
-"Elemente. Wenn Sie den Editor eingeben, wird Editus nicht entfernen "
-"(löschen) diese Elemente so, dass es sie nicht im HTML-Format speichert."
-
-#: admin/includes/menus/settings.php:207
 msgid "Read Only Items"
-msgstr "Nur Artikel zu lesen"
+msgstr "Nur lesen"
 
-#: admin/includes/menus/settings.php:208
+#: admin/includes/menus/settings.php:203
 msgid ""
 "If your post has items that should not be editable, list the css class names "
 "(comma separated, including the dot) of those items."
 msgstr ""
-"Wenn Ihr Beitrag Elemente, die nicht bearbeitet werden sollte verfügt, Liste "
-"der Css-Klassennamen (durch Kommata getrennt, einschließlich den Punkt) "
-"dieser Elemente."
+"Wenn dein Beitrag Elemente enthält, die nicht bearbeitet werden können, listen "
+"die CSS-Klassennamen (durch Kommas getrennt, einschließlich des Punktes) dieser "
+"Elemente auf."
 
-#: admin/includes/menus/settings.php:214
+#: admin/includes/menus/settings.php:209
 msgid "Show Ignored Items"
 msgstr "Ignorierte Objekte anzeigen"
 
-#: admin/includes/menus/settings.php:215
+#: admin/includes/menus/settings.php:210
 msgid ""
-"By default the ignored items are hidden. Check this to show ignored items "
-"while keeping them uneditable."
+"By default the ignored items are hidden. Check this to show ignored items while "
+"keeping them uneditable."
 msgstr ""
-"Standardmäßig sind die ignorierten Elemente ausgeblendet. Aktivieren Sie "
-"diese um ignorierten Elemente anzuzeigen, während man sie bearbeitbare."
+"Standardmäßig sind die ignorierten Elemente ausgeblendet. Aktiviere dieses "
+"Kontrollkästchen, um ignorierte Elemente anzuzeigen, die jedoch nicht "
+"bearbeitet werden können."
+
+#: admin/includes/menus/settings.php:214
+msgid "Editor UI"
+msgstr "Editor UI"
+
+#: admin/includes/menus/settings.php:218
+msgid "Use the Old Toolbar"
+msgstr "Verwende die alte Symbolleiste"
 
 #: admin/includes/menus/settings.php:219
-msgid "Editor UI"
-msgstr "Editor-Werkzeugleiste"
-
-#: admin/includes/menus/settings.php:223
-msgid "Use the Old Toolbar"
-msgstr "Verwenden Sie die alte Symbolleiste"
-
-#: admin/includes/menus/settings.php:224
 msgid ""
 "Use this option to disable the new color options and use the pre-1.0 toolbar."
 msgstr ""
-"Verwenden Sie diese Option deaktivieren der neuen Farboptionen und die "
-"Pre-1.0-Symbolleiste verwenden."
+"Verwende diese Option, um die neuen Farboptionen zu deaktivieren und die "
+"Symbolleiste vor 1.0 zu verwenden."
 
-#: admin/includes/menus/settings.php:228
+#: admin/includes/menus/settings.php:223
 msgid "Editor Bar Color Top"
-msgstr "Editor-Bar Farbe Top"
+msgstr "Editor-Bar Farbe oben"
 
-#: admin/includes/menus/settings.php:229
+#: admin/includes/menus/settings.php:224
 msgid "Editor Bar Color Bottom"
 msgstr "Editor-Bar Farbe unten"
 
-#: admin/includes/menus/settings.php:230
+#: admin/includes/menus/settings.php:225
 msgid "Dialog Color"
 msgstr "Dialogfeld Farbe"
 
-#: admin/includes/menus/settings.php:231
+#: admin/includes/menus/settings.php:226
 msgid "Icon/Text Color"
 msgstr "Icon und Textfarbe"
 
-#: admin/includes/menus/settings.php:233
+#: admin/includes/menus/settings.php:228
 msgid "Default Colors"
 msgstr "Standardfarben"
 
-#: admin/includes/menus/settings.php:238
+#: admin/includes/menus/settings.php:233
 msgid "Enable H2 and H3 Buttons"
-msgstr "Aktivieren Sie die Tasten H2 und H3"
+msgstr "Aktiviere H2/H3 Button"
+
+#: admin/includes/menus/settings.php:234
+msgid "Show the buttons to set H2 and H3 settings."
+msgstr "Zeige Button für  H2/H3-Einstellungen."
 
 #: admin/includes/menus/settings.php:239
-msgid "Show the buttons to set H2 and H3 settings."
-msgstr ""
-"Zeigen Sie die Tasten an, um die Einstellungen für H2 und H3 festzulegen."
-
-#: admin/includes/menus/settings.php:244
 msgid "Enable H4/H5/H6 Buttons"
-msgstr "Aktivieren Sie die Tasten H4 / H5 / H6"
+msgstr "Aktiviere H4/H5/H6 Button"
+
+#: admin/includes/menus/settings.php:240
+msgid "Show the buttons to set H4/H5/H6 settings."
+msgstr "Zeige Button für  H4/H5/H6-Einstellungen."
 
 #: admin/includes/menus/settings.php:245
-msgid "Show the buttons to set H4/H5/H6 settings."
-msgstr ""
-"Zeigen Sie die Tasten an, um die H4 / H5 / H6-Einstellungen festzulegen."
-
-#: admin/includes/menus/settings.php:250
 msgid "Enable Text Color Buttons"
-msgstr "Aktivieren Sie die Schaltflächen für Textfarben"
+msgstr "Aktiviere Button für Textfarben"
+
+#: admin/includes/menus/settings.php:246
+msgid "Show the buttons to set text colors."
+msgstr "Zeige Button, um Textfarben zu ändern"
 
 #: admin/includes/menus/settings.php:251
-msgid "Show the buttons to set text colors."
-msgstr "Zeigen Sie die Schaltflächen an, um die Textfarben festzulegen."
-
-#: admin/includes/menus/settings.php:256
 msgid "Enable Text Align Buttons"
-msgstr "Aktivieren Sie die Schaltflächen zum Ausrichten von Text"
+msgstr "Buttons Ausrichten aktivieren"
 
-#: admin/includes/menus/settings.php:257
+#: admin/includes/menus/settings.php:252
 msgid "Show the buttons to set text alignment."
-msgstr "Zeigen Sie die Schaltflächen an, um die Textausrichtung festzulegen."
+msgstr "Zeige die Schaltflächen an, um die Textausrichtung festzulegen."
+
+#: admin/includes/menus/settings.php:258
+msgid "Make links editable under the Editing Mode"
+msgstr "Mache Links im Bearbeitungsmodus editierbar"
+
+#: admin/includes/menus/settings.php:259
+msgid ""
+"Make links editable under the Editing Mode. Turning this on will make the links "
+"non-clickable while editing."
+msgstr ""
+"Mache Links im Bearbeitungsmodus editierbar. Wenn diese Option aktiviert ist, "
+"können Links während der Bearbeitung nicht angeklickt werden."
 
 #: admin/includes/menus/settings.php:263
-msgid "Make links editable under the Editing Mode"
-msgstr "Machen Sie Links im Bearbeitungsmodus editierbar"
-
-#: admin/includes/menus/settings.php:264
-msgid ""
-"Make links editable under the Editing Mode. Turning this on will make the "
-"links non-clickable while editing."
-msgstr ""
-"Machen Sie Links im Bearbeitungsmodus editierbar. Wenn Sie diese Option "
-"aktivieren, können die Links während der Bearbeitung nicht angeklickt werden."
-
-#: admin/includes/menus/settings.php:268
 msgid "Insert Component UI"
 msgstr "Komponente einfügen"
 
-#: admin/includes/menus/settings.php:269
+#: admin/includes/menus/settings.php:264
 msgid "UI mechanism to insert components"
 msgstr "UI-Mechanismus zum Einfügen von Komponenten"
 
-#: admin/includes/menus/settings.php:271
+#: admin/includes/menus/settings.php:266
 msgid "Drag and Drop"
 msgstr "Drag & Drop"
 
-#: admin/includes/menus/settings.php:274
+#: admin/includes/menus/settings.php:269
 msgid "Click"
 msgstr "Klick"
 
-#: admin/includes/menus/settings.php:277
+#: admin/includes/menus/settings.php:272
 msgid "Auto Button on Empty Paragraph. medium.com-like UI."
 msgstr "Auto Button bei leerem Absatz. medium.com-ähnliche Benutzeroberfläche."
 
-#: admin/includes/menus/settings.php:286
+#: admin/includes/menus/settings.php:281
 msgid "Post Settings UI"
-msgstr "Beitrag Einstellungen"
+msgstr "Benutzeroberfläche für Beitragseinstellungen"
 
-#: admin/includes/menus/settings.php:290
+#: admin/includes/menus/settings.php:285
 msgid "Disable Post Settings"
 msgstr "Beitragseinstellungen deaktivieren"
 
-#: admin/includes/menus/settings.php:291
+#: admin/includes/menus/settings.php:286
 msgid ""
 "Check this to disable users from being able to edit post settings from the "
 "front-end."
 msgstr ""
-"Wählen Sie dies aus um Benutzern nicht ermöglichen die Beitragseinstellungen "
-"zu bearbeiten."
+"Aktiviere diese Option, um zu verhindern, dass Benutzer Post-Einstellungen im "
+"Frontend bearbeiten können."
 
-#: admin/includes/menus/settings.php:296
+#: admin/includes/menus/settings.php:291
 msgid "Allow Changing Post Date"
-msgstr "Post Datum nach anzeigen"
+msgstr "Ändern des Beitragsdatums zulassen"
+
+#: admin/includes/menus/settings.php:292
+msgid "Add the date selector to change the post's date to the Post Setting dialog"
+msgstr ""
+"Füge die Datumsauswahl hinzu, um das Datum des Beitrags im Dialogfeld "
+"\"Einstellung\" zu ändern"
 
 #: admin/includes/menus/settings.php:297
-msgid ""
-"Add the date selector to change the post's date to the Post Setting dialog"
-msgstr ""
-"Hinzufügen der Datumsauswahl um das Beitragsdatum in der Post-Einstellung-"
-"Dialog ändern"
-
-#: admin/includes/menus/settings.php:302
 msgid "Allow Adding New Category"
-msgstr "Lassen Sie neue Kategorie hinzufügen zu"
+msgstr "Erlaube das Hinzufügen neuer Kategorien"
+
+#: admin/includes/menus/settings.php:298
+msgid "Add the user to create new, previously non-existing categories for posts."
+msgstr "Erlaube Benutzern,  neue Kategorien für Beiträge zu erstellen."
 
 #: admin/includes/menus/settings.php:303
-msgid ""
-"Add the user to create new, previously non-existing categories for posts."
-msgstr ""
-"Fügen Sie den Benutzer um neue, bisher nicht vorhandene Kategorien für "
-"Beiträge zu erstellen."
-
-#: admin/includes/menus/settings.php:308
-msgid "Do Not Allow \"Pending\" Status"
-msgstr ""
-
-#: admin/includes/menus/settings.php:309
-msgid "Remove the Option to Set the Status to Pending."
-msgstr ""
-
-#: admin/includes/menus/settings.php:314
-msgid "Remove POST URL Option"
-msgstr ""
-
-#: admin/includes/menus/settings.php:315
-msgid "Remove the Option to Set the URL for the Post."
-msgstr ""
-
-#: admin/includes/menus/settings.php:320
 msgid "Disable Post Adding"
 msgstr "Beitragserstellung deaktivieren"
 
-#: admin/includes/menus/settings.php:321
+#: admin/includes/menus/settings.php:304
 msgid ""
-"Check this box to disable users from being able to add new posts from the "
-"front-end."
+"Check this box to disable users from being able to add new posts from the front-"
+"end."
 msgstr ""
-"Wählen Sie dies um Benutzern nicht zu ermöglichen neue Beitrage zu erstellen"
+"Aktiviere dieses Kontrollkästchen, um zu verhindern, dass Benutzer neue "
+"Beiträge aus dem Frontend hinzufügen können."
 
-#: admin/includes/menus/settings.php:327
+#: admin/includes/menus/settings.php:310
 msgid "Misc"
 msgstr "Diverse"
 
-#: admin/includes/menus/settings.php:331
+#: admin/includes/menus/settings.php:314
 msgid "Do Not Show Tour Dialog"
 msgstr "Tour-Dialogfeld nicht mehr anzeigen"
 
-#: admin/includes/menus/settings.php:332
+#: admin/includes/menus/settings.php:315
 msgid "Check this box to disable the tour dialog box for all users."
 msgstr ""
-"Aktivieren Sie dieses Kontrollkästchen deaktivieren Sie im Dialogfeld Tour "
-"für alle Benutzer."
+"Aktiviere dieses Kontrollkästchen, um das Tour-Dialogfeld für alle Benutzer zu "
+"deaktivieren."
 
-#: admin/includes/menus/settings.php:336
+#: admin/includes/menus/settings.php:319
 msgid "\"Bold\" Tag"
 msgstr "\"Fett\" Tag"
 
-#: admin/includes/menus/settings.php:337
+#: admin/includes/menus/settings.php:320
 msgid "Choose the HTML tag used for the \"Bold\" style."
-msgstr "Wählen Sie das HTML-Tag für \"Bold\" Stil verwendet."
+msgstr "Wählen Sie HTML-Tag für \"Bold\"."
 
-#: admin/includes/menus/settings.php:342
+#: admin/includes/menus/settings.php:325
 msgid "\"Italic\" Tag"
 msgstr "\"Kursiv\" Tag"
 
-#: admin/includes/menus/settings.php:343
+#: admin/includes/menus/settings.php:326
 msgid "Choose the HTML tag used for the \"Italic\" style."
-msgstr "Wählen Sie das HTML-Tag für die \"Kursiv\" Stil verwendet."
+msgstr "Wähle das HTML-Tag für \"Kursiv\"."
 
-#: admin/includes/menus/settings.php:349
+#: admin/includes/menus/settings.php:332
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#: admin/includes/menus/settings.php:353
+#: admin/includes/menus/settings.php:336
 msgid "Disable Aesop Component Conversion"
 msgstr "Aesop Komponente Konvertierung deaktivieren"
 
-#: admin/includes/menus/settings.php:354
+#: admin/includes/menus/settings.php:337
 msgid ""
 "Check this box to disable the conversion process used on Aesop Story Engine "
 "components."
 msgstr ""
-"Aktivieren Sie dieses Kontrollkästchen deaktivieren Sie den "
-"Konvertierungsprozess auf Aesop Geschichte Motorkomponenten verwendet."
+"Aktiviere dieses Kontrollkästchen, um den für die Aesop Story Engine-"
+"Komponenten verwendeten Konvertierungsprozess zu deaktivieren."
 
-#: admin/includes/menus/settings.php:359
+#: admin/includes/menus/settings.php:342
 msgid "Enable Auto Save"
-msgstr "Aktivieren Sie das Automatische Speichern"
+msgstr "Automatisches Speichern aktivieren"
 
-#: admin/includes/menus/settings.php:360
+#: admin/includes/menus/settings.php:343
 msgid "Check this box to enable auto save."
 msgstr ""
-"Markieren Sie dieses Kontrollkästchen, um die automatische Speicherung und "
-"die Vorschau zu aktivieren"
+"Aktiviere dieses Kontrollkästchen, um das automatische Speichern zu aktivieren."
 
-#: admin/includes/menus/settings.php:365
+#: admin/includes/menus/settings.php:348
 msgid "Disable Post Saving"
 msgstr "Speichern von Beiträgen deaktivieren"
 
-#: admin/includes/menus/settings.php:366
+#: admin/includes/menus/settings.php:349
 msgid ""
 "By default the editor will update the database with the post or page it is "
 "being used on. Check this box to disable this. If you check this box, it is "
 "assumed that you will be using the provided filters to save your own content."
 msgstr ""
-"Standardmäßig wird der Editor Aktualisierung der Datenbank mit der Post oder "
-"Seite, die sie auf verwendet wird. Aktivieren Sie dieses Kontrollkästchen, "
-"um diese zu deaktivieren. Wenn Sie dieses Kontrollkästchen aktivieren, wird "
-"davon ausgegangen, dass Sie die bereitgestellten Filter verwenden, um Ihre "
-"eigenen Inhalte zu speichern."
+"Standardmäßig aktualisiert der Editor die Datenbank mit dem Beitrag oder der "
+"Seite, auf der er verwendet wird. Aktiviere dieses Kontrollkästchen, um dies zu "
+"deaktivieren. Wenn dieses Kontrollkästchen aktiviert ist, wird davon "
+"ausgegangen, dass die bereitgestellten Filter zum Speichern des eigenen Inhalts "
+"verwenden werden."
 
-#: admin/includes/menus/settings.php:372
+#: admin/includes/menus/settings.php:355
 msgid "Disable Post Editing"
-msgstr "Deaktivieren Sie Post bearbeiten"
+msgstr "Deaktiviere das Bearbeitung von Beiträgen"
 
-#: admin/includes/menus/settings.php:373
+#: admin/includes/menus/settings.php:356
 msgid ""
-"You may use this option if you only want to edit custom fields. Refer <a "
-"href=\"https://edituswp.com/editing-and-updating-custom-fields-from-frontend/"
-"\">here</a> for more information. The custom fields you specify will be "
-"still editable under the editing mode."
+"You may use this option if you only want to edit custom fields. Refer <a href="
+"\"https://edituswp.com/editing-and-updating-custom-fields-from-frontend/"
+"\">here</a> for more information. The custom fields you specify will be still "
+"editable under the editing mode."
 msgstr ""
-"Sie können diese Option verwenden, wenn Sie nur benutzerdefinierte Felder "
-"bearbeiten möchten. Finden Sie <a href=\"https://edituswp.com/editing-and-"
-"updating-custom-fields-from-frontend/\">hier</a> weitere Informationen. Die "
-"benutzerdefinierten Felder, die Sie angeben werden noch unter den editing-"
-"Modus bearbeitet werden."
+"Du kannst diese Option verwenden, wenn du nur benutzerdefinierte Felder "
+"bearbeiten möchten. Weitere Infors <a href=\"https://edituswp.com/editing-and-"
+"updating-custom-fields-from-frontend/\">hier</a>. Die von dir angegebenen "
+"benutzerdefinierten Felder können im Bearbeitungsmodus weiterhin bearbeitet "
+"werden."
 
-#: admin/includes/menus/settings.php:379
+#: admin/includes/menus/settings.php:362
 msgid "Don't Use REST API to Save"
-msgstr "Verwenden Sie keine REST-API zum Speichern"
+msgstr "Verwende keine REST-API zum Speichern"
 
-#: admin/includes/menus/settings.php:380
+#: admin/includes/menus/settings.php:363
 msgid ""
 "By default the editor will use REST API to save posts. Check this box to use "
 "custom AJAX calls instead."
 msgstr ""
+"Standardmäßig verwendet der Editor die REST-API zum Speichern von Beiträgen. "
+"Aktiviere das Kontrollkästchen, um stattdessen benutzerdefinierte AJAX-Aufrufe "
+"zu verwenden."
 
-#: admin/includes/menus/settings.php:390
+#: admin/includes/menus/settings.php:373
 msgid "Save Settings"
-msgstr ""
+msgstr "Einstellungen speichern"
 
 #: admin/includes/menus/welcome.php:48
 msgid "Editus"
-msgstr ""
+msgstr "Editus"
 
 #: admin/includes/menus/welcome.php:49
 msgid "Welcome"
-msgstr ""
+msgstr "Herzlich willkommen"
 
 #: admin/includes/menus/welcome.php:71
 msgid ""
 "We will check the current theme on every site in your network and give you a "
-"quick status feedback here. You can see the status by visiting the Editus "
-"menu on each site."
+"quick status feedback here. You can see the status by visiting the Editus menu "
+"on each site."
 msgstr ""
+"Wir werden das aktuelle Theme auf jeder Website in deinem Netzwerk überprüfen "
+"und dir hier ein Feedback geben. Du kannst den Status abrufen, indem du das "
+"Editus-Menü auf jeder Website besuchst."
 
 #: admin/includes/menus/welcome.php:90
 msgid "You're Ready to Rock!"
-msgstr ""
+msgstr "Du bist bereit loszulegen!"
 
 #: admin/includes/menus/welcome.php:92
 msgid "Your theme is automatically supported. No additional setup is needed."
 msgstr ""
+"Das Theme wird automatisch unterstützt. Es sind keine zusätzlichen "
+"Einstellungen notwendig."
 
 #: admin/includes/menus/welcome.php:94
 msgid ""
 "Editus will place a small menu on the bottom of your site. While on a single "
-"post or page, click the \"pen\" icon to go into edit mode. Press escape to "
-"get out of edit mode."
+"post or page, click the \"pen\" icon to go into edit mode. Press escape to get "
+"out of edit mode."
 msgstr ""
+"Lasso wird ein kleines Menü unten auf deiner Webseite platzieren. Wenn du auf "
+"einem einzelnen Beitrag oder einer Seite bist, klicken das „Stift“-Icon, um in "
+"den Bearbeitungsmodus zu wechseln. Drücke „Esc“, um den Bearbeitungsmodus zu "
+"verlassen."
 
 #: admin/includes/menus/welcome.php:117
 msgid "Welcome to Editus"
-msgstr ""
+msgstr "Willkommen bei Editus"
 
 #: admin/includes/menus/welcome.php:123
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: admin/includes/menus/welcome.php:124
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: admin/includes/menus/welcome.php:125
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: admin/includes/menus/welcome.php:155
 msgid ""
-"Currently Editus does not support Gutenberg. It will be disabled on "
-"Gutenberg enabled posts."
+"Currently Editus does not support Gutenberg. It will be disabled on Gutenberg "
+"enabled posts."
 msgstr ""
+"Derzeit unterstützt Editus Gutenberg nicht. Es wird für Beiträge, die mit "
+"Gutenberg bearbeitet werden, deaktiviert."
 
 #: admin/includes/menus/welcome.php:164
 msgid "Article CSS Class Needed!"
-msgstr ""
+msgstr "Beitrags CSS Klasse wird benötigt!"
 
 #: admin/includes/menus/welcome.php:165
 msgid "Before using Editus,"
-msgstr ""
+msgstr "Vor der Verwendung von Editus"
 
 #: admin/includes/menus/welcome.php:165
 msgid "enter and save"
-msgstr ""
+msgstr "enter und speichern"
 
 #: admin/includes/menus/welcome.php:165
 msgid ""
-"the CSS class of the container that holds your post and page content. You "
-"can <a href=\"https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-"
-"movies/using-inspector-lasso.gif\" target=\"_blank\">use a tool like "
-"inspector</a> in Chrome or Firefox to find this CSS class, or "
+"the CSS class of the container that holds your post and page content. You can "
+"<a href=\"https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-movies/"
+"using-inspector-lasso.gif\" target=\"_blank\">use a tool like inspector</a> in "
+"Chrome or Firefox to find this CSS class, or "
 msgstr ""
+"die CSS Klasse des Containers der den Inhalt der Seiten und Beiträge enthält. "
+"Du kannst <a href=\"https://dl.dropboxusercontent.com/u/5594632/lasso-media/doc-"
+"movies/using-inspector-lasso.gif\" target=\"_blank\">ein Tool wie den "
+"Inspektor</a> in Chrome oder Firefox benutzen um die CSS Klasse zu finden, oder"
 
 #: admin/includes/menus/welcome.php:165
 msgid "email us."
-msgstr ""
+msgstr "Sende uns eine E-Mail"
 
 #: admin/includes/menus/welcome.php:165
 msgid "with a link to a public URL with the theme and we'll find it for you."
 msgstr ""
+"mit einem Link zu einer öffentlichen URL mit dem Theme und wir werden es für "
+"dich finden."
 
 #: admin/includes/menus/welcome.php:172
 msgid ""
-"Just a heads up that the WP REST API isn't activated. This is required to "
-"list the posts and pages on the front-end."
+"Just a heads up that the WP REST API isn't activated. This is required to list "
+"the posts and pages on the front-end."
 msgstr ""
+"Nur ein Hinweis, dass die WP-REST-API nicht aktiviert ist. Dies ist "
+"erforderlich, um die Beiträge und Seiten im Frontend aufzulisten."
 
 #: admin/includes/menus/welcome.php:179
 msgid "Just a heads up that "
-msgstr ""
+msgstr "Nur eine Vorwarnung"
 
 #: admin/includes/menus/welcome.php:180 admin/includes/menus/welcome.php:217
 msgid "Aesop Story Engine"
-msgstr ""
+msgstr "Aesop Story Engine"
 
 #: admin/includes/menus/welcome.php:180
 msgid ""
 "isn't activated. It's not required to use Editus, but you won't get the cool "
 "drag and drop components without it activated. It's free!"
 msgstr ""
+"ist nicht aktiviert. Es ist nicht erforderlich um Editus zu verwenden. Aber "
+"dann sind die coolen Drag & Drop-Komponenten nicht enhalten. Es ist kostenlos!"
 
 #: admin/includes/menus/welcome.php:186
 msgid "WP Side Comments Compatibility Warning!"
-msgstr ""
+msgstr "WP-Seite Kommentare Kompatibilitätswarnung!"
 
 #: admin/includes/menus/welcome.php:187
 msgid ""
-"Since Editus saves the HTML of a post, this may cause undesired issues. "
-"We're working to resolve incompatibilities faster than a jack rabbit in a "
-"hot greasy griddle in the middle of August."
+"Since Editus saves the HTML of a post, this may cause undesired issues. We're "
+"working to resolve incompatibilities faster than a jack rabbit in a hot greasy "
+"griddle in the middle of August."
 msgstr ""
+"Da Editus den HTML-Code eines Beitrags speichert, kann dies zu unerwünschten "
+"Problemen führen. Wir arbeiten daran, Inkompatibilitäten i zu lösen."
 
 #: admin/includes/menus/welcome.php:193
 msgid "License Key Not Activated"
-msgstr ""
+msgstr "Lizenzschlüssel nicht aktiviert"
 
 #: admin/includes/menus/welcome.php:194
 msgid ""
-"Just a heads up, your license key isn't activated. Enter your license key "
-"into the License tab on the left in order to receive plugin update "
-"notifications."
+"Just a heads up, your license key isn't activated. Enter your license key into "
+"the License tab on the left in order to receive plugin update notifications."
 msgstr ""
+"Nur ein Hinweis, dein Lizenzschlüssel ist nicht aktiviert. Gebe deinen "
+"Lizenzschlüssel in der Registerkarte \"Lizenz\" links ein, um "
+"Benachrichtigungen zu Plug-Ins zu erhalten."
 
 #: admin/includes/menus/welcome.php:198
 msgid "License Key Invalid"
-msgstr ""
+msgstr "Lizenzschlüssel ungültig"
 
 #: admin/includes/menus/welcome.php:199
 msgid "The license key that you entered is "
-msgstr ""
+msgstr "Der Lizenzschlüssel den du eingegeben hast"
 
 #: admin/includes/menus/welcome.php:199
 msgid "invalid"
-msgstr ""
+msgstr "ungültig"
 
 #: admin/includes/menus/welcome.php:199
 msgid ". It may have been entered incorreclty, or may have expired."
-msgstr ""
+msgstr ". Dieser wurde möglicherweise falsch eingegeben oder ist abgelaufen."
+
+#: admin/includes/menus/welcome.php:237
+#, php-format
+msgid "This plugin requires the following plugin: %1$s."
+msgid_plural "This plugin requires the following plugins: %1$s."
+msgstr[0] "Dieses Plugin erfordert das folgende Plugin:%1$s."
+msgstr[1] "Dieses Plugin erfordert die folgenden Plugin:%1$s."
+
+#: admin/includes/menus/welcome.php:238
+#, php-format
+msgid "This plugin recommends the following plugin: %1$s."
+msgid_plural "This plugin recommends the following plugins: %1$s."
+msgstr[0] "Dieses Plugin empfiehlt die folgende Plugin: %1$s."
+msgstr[1] "Dieses Plugin empfiehlt die folgende Plugins: %1$s."
+
+#: admin/includes/menus/welcome.php:239
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin installed."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %s plugins. "
+"Contact the administrator of this site for help on getting the plugins "
+"installed."
+msgstr[0] ""
+"Sorry, aber Sie haben nicht die richtigen Berechtigungen, um das %s Plugin zu "
+"installieren. Wenden Sie sich an den Administrator dieser Website, um Hilfe bei "
+"der Installation des Plugins zu erhalten."
+msgstr[1] ""
+"Sorry, aber Sie haben nicht die richtigen Berechtigungen, um das %s Plugin zu "
+"installieren. Wenden Sie sich an den Administrator dieser Website, um Hilfe bei "
+"der Installation des Plugins zu erhalten."
+
+#: admin/includes/menus/welcome.php:242
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin activated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %s plugins. "
+"Contact the administrator of this site for help on getting the plugins "
+"activated."
+msgstr[0] ""
+"Entschuldigung, aber Du hast nicht die Berechtigung zum Aktivieren des %s "
+"Plugin. Wenden Sie sich an den Administrator dieser Website, um Hilfe bei der "
+"Aktivierung der Plugins zu erhalten."
+msgstr[1] ""
+"Entschuldigung, aber Du hast nicht die Berechtigung zum Aktivieren der %s "
+"Plugins. Wenden Sie sich an den Administrator dieser Website, um Hilfe bei der "
+"Aktivierung der Plugins zu erhalten."
+
+#: admin/includes/menus/welcome.php:243
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this plugin: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this plugin: %1$s."
+msgstr[0] ""
+"Das folgende Plugin muss auf die neueste Version aktualisiert werden, um "
+"maximale Kompatibilität mit diesem Theme sicher zu stellen: %1$s."
+msgstr[1] ""
+"Das folgenden Plugins müssen auf die neueste Version aktualisiert werden, um "
+"maximale Kompatibilität mit diesem Theme sicher zu stellen: %1$s."
+
+#: admin/includes/menus/welcome.php:244
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin updated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %s plugins. "
+"Contact the administrator of this site for help on getting the plugins updated."
+msgstr[0] ""
+"Entschuldigung, aber du hast nicht die richtigen Berechtigungen, um das %s "
+"Plugin zu aktualisieren. Wende dich an den Administrator dieser Website, um "
+"Hilfe zum Aktualisieren des Plugins zu erhalten."
+msgstr[1] ""
+"Entschuldigung, aber du hast nicht die richtigen Berechtigungen, um diese %s "
+"Plugin zu aktualisieren. Wende dich an den Administrator dieser Website, um "
+"Hilfe zum Aktualisieren des Plugins zu erhalten."
 
 #: admin/includes/menus/welcome.php:249
 #, php-format
 msgid "All plugins installed and activated successfully. %s"
-msgstr ""
+msgstr "Alle Plugins wurden installiert und erfolgreich aktiviert. %s"
 
 #: includes/process/gallery.php:40
 msgid "Save and refresh to view gallery."
-msgstr ""
+msgstr "Speichern und aktualisieren, um die Galerie anzuzeigen."
 
 #: includes/process/gallery.php:199
 msgid "Delete From Gallery"
-msgstr ""
+msgstr "Aus der Galerie entfernen"
 
 #: includes/process/gallery.php:200
 msgid "Edit Image Caption"
-msgstr ""
+msgstr "Bildunterschrift bearbeiten"
 
-#: includes/process/new_object.php:42 public/includes/assets.php:262
+#: includes/process/new_object.php:42 public/includes/assets.php:254
 msgid "Once upon a time..."
-msgstr ""
+msgstr "Bitte hier den Text reinschreiben..."
 
 #: internal-api/auth.php:67
 msgid "Unauthorized action"
-msgstr ""
+msgstr "Nicht authorisierte Aktion"
 
 #: internal-api/auth.php:71
 msgid ""
-"All callback classes used for processing the Editus Internal API must "
-"implement the lasso\\internal_api\\api_action interface."
+"All callback classes used for processing the Editus Internal API must implement "
+"the lasso\\internal_api\\api_action interface."
 msgstr ""
+"Alle Callback-Klassen, die zur Verarbeitung der internen API von Editus "
+"verwendet werden, müssen die Schnittstelle lasso \\ internal_api pi_action "
+"implementieren."
 
 #: internal-api/auth.php:76
 msgid "Nonce invalid"
-msgstr ""
+msgstr "Ungültiger Nonce"
 
 #: internal-api/route.php:30
 msgid "Editus API Error."
-msgstr ""
+msgstr "Editus API-Fehler."
 
 #: internal-api/route.php:66
 msgid "Nonce not set."
-msgstr ""
+msgstr "Nonce gesetzt."
 
-#: public/includes/assets.php:123 public/includes/editor-modules.php:543
-#: public/includes/option-engine.php:132
+#: public/includes/assets.php:116 public/includes/editor-modules.php:531
+#: public/includes/option-engine.php:134
 msgid "Save"
 msgstr "Sichern"
 
-#: public/includes/assets.php:124
+#: public/includes/assets.php:117
 msgid "Please Select Text First."
 msgstr "Bitte wählen Sie zuerst Text."
 
-#: public/includes/assets.php:125 public/includes/editor-modules.php:315
-#: public/includes/editor-modules.php:536
-#: public/includes/editor-modules.php:616
-#: public/includes/editor-modules.php:926
+#: public/includes/assets.php:118 public/includes/editor-modules.php:309
+#: public/includes/editor-modules.php:524 public/includes/editor-modules.php:604
+#: public/includes/editor-modules.php:914
 msgid "Cancel"
 msgstr "Abbruch"
 
-#: public/includes/assets.php:126
+#: public/includes/assets.php:119
 msgid "Exit Editor"
 msgstr "Editor verlassen"
 
-#: public/includes/assets.php:127
+#: public/includes/assets.php:120
 msgid "Saving..."
 msgstr "Speichern…"
 
-#: public/includes/assets.php:128
+#: public/includes/assets.php:121
 msgid "Saved!"
 msgstr "Gespeichert!"
 
-#: public/includes/assets.php:129
+#: public/includes/assets.php:122
 msgid "Adding..."
 msgstr "Hinzufügen …"
 
-#: public/includes/assets.php:130
+#: public/includes/assets.php:123
 msgid "Added!"
 msgstr "Hinzugefügt!"
 
-#: public/includes/assets.php:131
+#: public/includes/assets.php:124
 msgid "Loading..."
-msgstr "Lädt"
+msgstr "Laden..."
 
-#: public/includes/assets.php:132
+#: public/includes/assets.php:125
 msgid "Load More"
 msgstr "Lade mehr"
 
-#: public/includes/assets.php:133 public/includes/helpers.php:441
+#: public/includes/assets.php:126 public/includes/helpers.php:441
 msgid "Close"
-msgstr "Schliessen"
+msgstr "Schließen"
 
-#: public/includes/assets.php:134
+#: public/includes/assets.php:127
 msgid "No more posts found"
 msgstr "Keine weiteren Beiträge gefunden"
 
-#: public/includes/assets.php:135
+#: public/includes/assets.php:128
 msgid "Fetching failed."
 msgstr "Fehler beim Abrufen."
 
-#: public/includes/assets.php:136
+#: public/includes/assets.php:129
 msgid "Gallery Created!"
 msgstr "Galerie erstellt!"
 
-#: public/includes/assets.php:137
+#: public/includes/assets.php:130
 msgid "Gallery Updated!"
 msgstr "Galerie aktualisiert!"
 
-#: public/includes/assets.php:138
+#: public/includes/assets.php:131
 msgid "Just write..."
 msgstr "Einfach schreiben…"
 
-#: public/includes/assets.php:139
+#: public/includes/assets.php:132
 msgid "Choose an image"
 msgstr "Bild auswählen"
 
-#: public/includes/assets.php:140
+#: public/includes/assets.php:133
 msgid "Update Image"
 msgstr "Bild aktualisieren"
 
-#: public/includes/assets.php:141
+#: public/includes/assets.php:134
 msgid "Insert Image"
 msgstr "Bild einfügen"
 
-#: public/includes/assets.php:142
+#: public/includes/assets.php:135
 msgid "Select Image"
 msgstr "Bild wählen"
 
-#: public/includes/assets.php:143
+#: public/includes/assets.php:136
 msgid "Remove featured image?"
 msgstr "Beitragsbild entfernen"
 
-#: public/includes/assets.php:144
+#: public/includes/assets.php:137
 msgid "Update Selected Image"
-msgstr "Kein Bild ausgewählt"
+msgstr "Beitragsbild ändern"
 
-#: public/includes/assets.php:145
+#: public/includes/assets.php:138
 msgid "Choose images"
 msgstr "Bilder auswählen"
 
-#: public/includes/assets.php:146
+#: public/includes/assets.php:139
 msgid "Edit Image"
 msgstr "Bild bearbeiten"
 
-#: public/includes/assets.php:147
-#: public/includes/editor-modules--gallery.php:28
+#: public/includes/assets.php:140 public/includes/editor-modules--gallery.php:28
 msgid "Add Images"
 msgstr "Bilder hinzufügen"
 
-#: public/includes/assets.php:148
+#: public/includes/assets.php:141
 msgid "Add New Gallery"
-msgstr "Galerie erstellen"
+msgstr "Neue Galerie hinzufügen"
 
-#: public/includes/assets.php:149
+#: public/includes/assets.php:142
 msgid "Select Editus Gallery Image"
-msgstr "Wählen Sie eine Bildergalerie"
+msgstr "Eine Editus Galerie auswählen"
 
-#: public/includes/assets.php:150
+#: public/includes/assets.php:143
 msgid "Use Selected Images"
-msgstr "Benutze die ausgewählten Bilder"
+msgstr "Die ausgewählten Bilder verwenden"
 
-#: public/includes/assets.php:151
+#: public/includes/assets.php:144
 msgid "Publish Post?"
 msgstr "Beitrag veröffentlichen?"
 
-#: public/includes/assets.php:152
+#: public/includes/assets.php:145
 msgid "Yes, publish it!"
-msgstr "Veröffentliche die Galerie."
+msgstr "Ja, veröffentlichen!"
 
-#: public/includes/assets.php:153
+#: public/includes/assets.php:146
 msgid "Trash Post?"
-msgstr "Beitrag in Papierkorb"
+msgstr "Beitrag löschen?"
 
-#: public/includes/assets.php:154
+#: public/includes/assets.php:147
 msgid "Yes, trash it!"
-msgstr "In den Papierkorb"
+msgstr "Ja, löschen!"
 
-#: public/includes/assets.php:155
+#: public/includes/assets.php:148
 msgid "Oh snap!"
 msgstr "Oh! Probleme!"
 
-#: public/includes/assets.php:156
+#: public/includes/assets.php:149
 msgid "O.K. got it!"
 msgstr "OK, verstanden!"
 
-#: public/includes/assets.php:157
+#: public/includes/assets.php:150
 msgid ""
-"It looks like we are either missing the Article CSS class, or it is "
-"configured incorrectly. Editus will not function correctly without this CSS "
-"class."
+"It looks like we are either missing the Article CSS class, or it is configured "
+"incorrectly. Editus will not function correctly without this CSS class."
 msgstr ""
-"Es sieht aus wie wir entweder fehlen, die die Artikel CSS-Klasse, oder es "
-"falsch konfiguriert ist. Editus funktioniert nicht richtig ohne diese CSS-"
-"Klasse."
+"Es scheint, dass entweder die Artikel-CSS-Klasse nicht vorhanden ist oder "
+"falsch konfiguriert wurde. Ohne diese CSS-Klasse wird Editus nicht einwandfrei "
+"funktionieren."
 
-#: public/includes/assets.php:158
+#: public/includes/assets.php:151
 msgid "Update Settings"
-msgstr "Aktualisieren"
+msgstr "Einstellungen aktualisieren"
 
-#: public/includes/assets.php:159
+#: public/includes/assets.php:152
 msgid "one more letter"
 msgstr "eine weitere Buchstaben"
 
-#: public/includes/assets.php:160
+#: public/includes/assets.php:153
 msgid "You are currently editing a backup copy of this post."
-msgstr "Sie sind gerade eine backup-Kopie von diesem Post bearbeiten."
+msgstr "Du bearbeitest gerade eine Sicherungskopie des Beitrags."
 
-#: public/includes/components.php:19 public/includes/editor-modules.php:247
+#: public/includes/components.php:19 public/includes/editor-modules.php:241
 msgid "Quote"
 msgstr "Zitat"
 
-#: public/includes/components.php:23 public/includes/editor-modules.php:245
+#: public/includes/components.php:23 public/includes/editor-modules.php:239
 msgid "Image"
 msgstr "Bild"
 
 #: public/includes/components.php:27
 #: public/includes/editor-modules--gallery.php:74
-#: public/includes/editor-modules.php:250
+#: public/includes/editor-modules.php:244
 msgid "Parallax"
 msgstr "Parallax"
 
-#: public/includes/components.php:31 public/includes/editor-modules.php:251
+#: public/includes/components.php:31 public/includes/editor-modules.php:245
 msgid "Audio"
 msgstr "Audio"
 
-#: public/includes/components.php:35 public/includes/editor-modules.php:248
-#: public/includes/editor-modules.php:884
+#: public/includes/components.php:35 public/includes/editor-modules.php:242
+#: public/includes/editor-modules.php:872
 msgid "Content"
 msgstr "Inhalt"
 
-#: public/includes/components.php:39 public/includes/editor-modules.php:246
+#: public/includes/components.php:39 public/includes/editor-modules.php:240
 msgid "Character"
 msgstr "Zeichen"
 
-#: public/includes/components.php:43 public/includes/editor-modules.php:256
+#: public/includes/components.php:43 public/includes/editor-modules.php:250
 msgid "Collection"
-msgstr "Kollektion"
+msgstr "Sammlung"
 
-#: public/includes/components.php:47 public/includes/editor-modules.php:255
+#: public/includes/components.php:47 public/includes/editor-modules.php:249
 msgid "Document"
 msgstr "Dokument"
 
-#: public/includes/components.php:51 public/includes/editor-modules.php:257
+#: public/includes/components.php:51 public/includes/editor-modules.php:251
 msgid "Gallery"
 msgstr "Galerie"
 
-#: public/includes/components.php:55 public/includes/editor-modules.php:249
+#: public/includes/components.php:55 public/includes/editor-modules.php:243
 msgid "Chapter"
 msgstr "Kapitel"
 
-#: public/includes/components.php:59 public/includes/editor-modules.php:253
+#: public/includes/components.php:59 public/includes/editor-modules.php:247
 msgid "Map"
 msgstr "Karte"
 
-#: public/includes/components.php:63 public/includes/editor-modules.php:254
+#: public/includes/components.php:63 public/includes/editor-modules.php:248
 msgid "Timeline"
 msgstr "Zeitleiste"
 
-#: public/includes/components.php:67 public/includes/editor-modules.php:252
+#: public/includes/components.php:67 public/includes/editor-modules.php:246
 msgid "Video"
 msgstr "Video"
 
 #: public/includes/components.php:71 public/includes/components.php:87
-#: public/includes/editor-modules.php:265
+#: public/includes/editor-modules.php:259
 msgid "WordPress Image"
-msgstr "Bild"
+msgstr "WordPress Bild"
 
-#: public/includes/components.php:75 public/includes/editor-modules.php:266
+#: public/includes/components.php:75 public/includes/editor-modules.php:260
 msgid "WordPress Quote"
-msgstr "Zitat"
+msgstr "WordPress Zitat"
 
-#: public/includes/components.php:79 public/includes/editor-modules.php:259
+#: public/includes/components.php:79 public/includes/editor-modules.php:253
 msgid "Gallery Pop"
 msgstr "Galerie Pop"
 
@@ -1133,16 +1463,15 @@ msgstr "Bilder verwalten"
 
 #: public/includes/editor-modules--gallery.php:31
 msgid "Rearrange or edit the images in this gallery."
-msgstr ""
-"Ordnen Sie die Bilder in dieser Galerie neu an oder bearbeiten Sie sie."
+msgstr "Bilder in der Galerie sortieren oder bearbeiten."
 
 #: public/includes/editor-modules--gallery.php:47
 msgid "Create a Gallery"
-msgstr "Eine Galerie erstellen"
+msgstr "Galerie erstellen"
 
 #: public/includes/editor-modules--gallery.php:51
 msgid "Select images to create a gallery."
-msgstr "Wählen Sie Bilder um die Galerie zu erstellen."
+msgstr "Wähle Bilder für die Galerie aus."
 
 #: public/includes/editor-modules--gallery.php:52
 msgid "Select Images"
@@ -1158,11 +1487,11 @@ msgstr "Galerie Typ"
 
 #: public/includes/editor-modules--gallery.php:68
 msgid "Select the type of gallery."
-msgstr "Wählen Sie die Galerie-Art."
+msgstr "Wähle die Galerie-Art."
 
 #: public/includes/editor-modules--gallery.php:70
 msgid "Grid"
-msgstr "Inhalt im Raster:"
+msgstr "Raster"
 
 #: public/includes/editor-modules--gallery.php:71
 msgid "Thumbnail"
@@ -1170,7 +1499,7 @@ msgstr "Vorschaubild"
 
 #: public/includes/editor-modules--gallery.php:73
 msgid "Photoset"
-msgstr "Fotosatz:"
+msgstr "Bildauswahl"
 
 #: public/includes/editor-modules--gallery.php:84
 msgid "Grid Item Width"
@@ -1181,23 +1510,22 @@ msgid ""
 "Adjust the width of the individual grid items, only if using Grid gallery "
 "style. Default is 400."
 msgstr ""
-"Passen Sie die Breite der einzelnen Rasterelemente, nur wenn Grid-Galerie-"
-"Stil verwenden. Standardwert ist 400."
+"Passe die Breite der einzelnen Rasterelemente an (nur wenn Grid-Galerie-Stil "
+"verwendet werden). Standardwert ist 400."
 
 #: public/includes/editor-modules--gallery.php:95
 msgid "Gallery Transition"
 msgstr "Galerie Übergang"
 
 #: public/includes/editor-modules--gallery.php:96
-msgid ""
-"Adjust the transition effect for the Thumbnail gallery. Default is slide."
+msgid "Adjust the transition effect for the Thumbnail gallery. Default is slide."
 msgstr ""
-"Passen Sie den Übergangseffekt für die Thumbnail-Galerie. Standardwert ist "
-"Folie."
+"Passe den Übergangseffekt für die Thumbnail-Galerie an. Standardwert ist der "
+"Slider."
 
 #: public/includes/editor-modules--gallery.php:98
 msgid "Fade"
-msgstr "Blende"
+msgstr "Einblenden"
 
 #: public/includes/editor-modules--gallery.php:99
 msgid "Slide"
@@ -1212,8 +1540,7 @@ msgid "Gallery Transition Speed"
 msgstr "Galerie Übergangsgeschwindigkeit"
 
 #: public/includes/editor-modules--gallery.php:106
-msgid ""
-"Activate slideshow by setting a speed for the transition.5000 = 5 seconds."
+msgid "Activate slideshow by setting a speed for the transition.5000 = 5 seconds."
 msgstr ""
 "Diashow zu aktivieren, durch die Festlegung einer Geschwindigkeit für die "
 "transition.5000 = 5 Sekunden."
@@ -1228,17 +1555,17 @@ msgstr "Galerie Layout"
 
 #: public/includes/editor-modules--gallery.php:122
 msgid ""
-"Let's say you have 4 images in this gallery. If you enter 121 you will have "
-"one image on the top row, two images on the second row, and one image on the "
-"third row."
+"Let's say you have 4 images in this gallery. If you enter 121 you will have one "
+"image on the top row, two images on the second row, and one image on the third "
+"row."
 msgstr ""
-"Angenommen, Sie haben 4 Bilder in dieser Galerie. Wenn Sie 121 eingeben, "
-"haben Sie ein Bild in der oberen Reihe, zwei Bilder aus der zweiten Reihe "
-"und ein Bild aus der dritten Reihe."
+"Angenommen, du hast 4 Bilder in dieser Galerie. Wenn du 121 eingeben, hast du "
+"ein Bild in der oberen Reihe, zwei Bilder aus der zweiten Reihe und ein Bild "
+"aus der dritten Reihe."
 
 #: public/includes/editor-modules--gallery.php:137
 msgid "Main Gallery Height"
-msgstr "Galerie Höhe"
+msgstr "Höhe Haupt-Galerie"
 
 #: public/includes/editor-modules--gallery.php:138
 #, php-format
@@ -1246,12 +1573,11 @@ msgid ""
 "Adjust the overall height of the gallery. Acceptable values include 500px or "
 "50% etc."
 msgstr ""
-"Passen Sie die Höhe der Galerie. Die zulässigen Werte sind 500px oder 50 "
-"% usw.."
+"Passen Sie die Höhe der Galerie. Die zulässigen Werte sind 500px oder 50 % usw.."
 
 #: public/includes/editor-modules--gallery.php:148
 msgid "Main Gallery Width"
-msgstr "Haupt Galerie-Breite"
+msgstr "Breite Haupt-Galerie"
 
 #: public/includes/editor-modules--gallery.php:149
 #, php-format
@@ -1259,8 +1585,8 @@ msgid ""
 "Adjust the overall width of the gallery. Acceptable values include 500px or "
 "50% etc."
 msgstr ""
-"Passen Sie die Gesamtbreite der Galerie. Die zulässigen Werte sind 500px "
-"oder 50 % usw.."
+"Passen Sie die Gesamtbreite der Galerie. Die zulässigen Werte sind 500px oder "
+"50% usw.."
 
 #: public/includes/editor-modules--gallery.php:153
 msgid "Gallery Caption"
@@ -1268,7 +1594,7 @@ msgstr "Galerie Bildunterschrift"
 
 #: public/includes/editor-modules--gallery.php:154
 msgid "Add an optional caption for the gallery."
-msgstr "Fügen Sie eine Optionale Bildunterschrift zur Galerie hinzu."
+msgstr "Füge eine optionale Bildunterschrift zur Galerie hinzu."
 
 #: public/includes/editor-modules.php:123
 #: public/includes/underscore-templates.php:23
@@ -1276,8 +1602,7 @@ msgstr "Fügen Sie eine Optionale Bildunterschrift zur Galerie hinzu."
 msgid "Edit Post"
 msgstr "Beitrag bearbeiten"
 
-#: public/includes/editor-modules.php:126
-#: public/includes/editor-modules.php:150
+#: public/includes/editor-modules.php:126 public/includes/editor-modules.php:149
 msgid "Post Settings"
 msgstr "Beitragseinstellungen"
 
@@ -1285,8 +1610,7 @@ msgstr "Beitragseinstellungen"
 msgid "All Posts"
 msgstr "Alle Einträge"
 
-#: public/includes/editor-modules.php:134
-#: public/includes/editor-modules.php:920
+#: public/includes/editor-modules.php:134 public/includes/editor-modules.php:908
 msgid "Revisions"
 msgstr "Revisionen"
 
@@ -1294,273 +1618,253 @@ msgstr "Revisionen"
 msgid "Add Post"
 msgstr "Neuen Beitrag erstellen"
 
-#: public/includes/editor-modules.php:149
-#: public/includes/underscore-templates.php:25
-#: public/includes/underscore-templates.php:43
-msgid "Delete Post"
-msgstr "Beitrag löschen"
-
-#: public/includes/editor-modules.php:153
-#: public/includes/editor-modules.php:330
+#: public/includes/editor-modules.php:152 public/includes/editor-modules.php:324
 msgid "Save Post"
 msgstr "Beitrag speichern"
 
-#: public/includes/editor-modules.php:156
-#: public/includes/editor-modules.php:333
+#: public/includes/editor-modules.php:155 public/includes/editor-modules.php:327
 msgid "Publish Post"
-msgstr "Beitrags Datum"
+msgstr "Beitrag veröffentlichen"
 
-#: public/includes/editor-modules.php:156
+#: public/includes/editor-modules.php:155
 msgid "Submit For Review"
 msgstr "Einreichen zur Überprüfung"
 
-#: public/includes/editor-modules.php:238
+#: public/includes/editor-modules.php:232
 msgid "Bold"
 msgstr "Fett"
 
-#: public/includes/editor-modules.php:239
+#: public/includes/editor-modules.php:233
 msgid "Underline"
 msgstr "Unterstreichen"
 
-#: public/includes/editor-modules.php:240
+#: public/includes/editor-modules.php:234
 msgid "Italicize"
 msgstr "Kursiv"
 
-#: public/includes/editor-modules.php:241
+#: public/includes/editor-modules.php:235
 msgid "Strikethrough"
 msgstr "Durchgestrichen"
 
-#: public/includes/editor-modules.php:242
+#: public/includes/editor-modules.php:236
 msgid "Insert Component"
 msgstr "Komponente einfügen"
 
-#: public/includes/editor-modules.php:262
+#: public/includes/editor-modules.php:256
 msgid "Event"
 msgstr "Veranstaltung"
 
-#: public/includes/editor-modules.php:267
+#: public/includes/editor-modules.php:261
 msgid "WordPress Video"
 msgstr "WordPress Video"
 
-#: public/includes/editor-modules.php:273
-#: public/includes/editor-modules.php:309
+#: public/includes/editor-modules.php:267 public/includes/editor-modules.php:303
 msgid "H2 Heading"
 msgstr "H2 Überschrift"
 
-#: public/includes/editor-modules.php:274
-#: public/includes/editor-modules.php:310
+#: public/includes/editor-modules.php:268 public/includes/editor-modules.php:304
 msgid "H3 Heading"
 msgstr "H3 Überschrift"
 
-#: public/includes/editor-modules.php:277
+#: public/includes/editor-modules.php:271
 msgid "H4 Heading"
 msgstr "H4 Überschrift"
 
-#: public/includes/editor-modules.php:278
+#: public/includes/editor-modules.php:272
 msgid "H5 Heading"
 msgstr "H5 Überschrift"
 
-#: public/includes/editor-modules.php:279
+#: public/includes/editor-modules.php:273
 msgid "H6 Heading"
 msgstr "H6 Überschrift"
 
-#: public/includes/editor-modules.php:283
+#: public/includes/editor-modules.php:277
 msgid "Set Color for Selected Text"
 msgstr "Festlegen der Farbe für markierten Text"
 
-#: public/includes/editor-modules.php:284
+#: public/includes/editor-modules.php:278
 msgid "Choose Color"
 msgstr "Farbe wählen"
 
-#: public/includes/editor-modules.php:288
+#: public/includes/editor-modules.php:282
 msgid "Anchor Link"
-msgstr "Link-Anker"
+msgstr "Anker-Link"
 
-#: public/includes/editor-modules.php:290
+#: public/includes/editor-modules.php:284
 msgid "http://url.com"
 msgstr "http://url.de"
 
-#: public/includes/editor-modules.php:291
+#: public/includes/editor-modules.php:285
 msgid "Create Link"
 msgstr "Link erzeugen"
 
-#: public/includes/editor-modules.php:293
+#: public/includes/editor-modules.php:287
 msgid "Open in a New Tab"
-msgstr "In einem neuen Reiter öffnen"
+msgstr "Öffnen im neuen Tab"
+
+#: public/includes/editor-modules.php:291 public/includes/editor-modules.php:310
+msgid "Insert HTML or Code"
+msgstr "Füge HTML oder Code ein"
+
+#: public/includes/editor-modules.php:293 public/includes/editor-modules.php:296
+msgid "Enter HTML to insert"
+msgstr "Nutze HTML zum einfügen"
 
 #: public/includes/editor-modules.php:297
-#: public/includes/editor-modules.php:316
-msgid "Insert HTML or Code"
-msgstr "Fügen Sie HTML oder Code ein"
-
-#: public/includes/editor-modules.php:299
-#: public/includes/editor-modules.php:302
-msgid "Enter HTML to insert"
-msgstr "Geben Sie HTML ein, dass Sie einfügen wollen"
-
-#: public/includes/editor-modules.php:303
 msgid "You can also use Shortcodes"
 msgstr "Shortcode einsetzbar"
 
-#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:298
 msgid ""
 "You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs."
-msgstr ""
-"Sie können auch eine URL einbetten, wie Youtube, Vimeo und Twitter URLs "
-"eingeben."
+msgstr "Du kannst auch eine URL von Youtube, Vimeo oder Twitter eingeben."
 
-#: public/includes/editor-modules.php:312
+#: public/includes/editor-modules.php:306
 msgid "Unordered List"
 msgstr "Ungeordnete Liste"
 
-#: public/includes/editor-modules.php:313
+#: public/includes/editor-modules.php:307
 msgid "Ordered List"
 msgstr "Geordnete Liste"
 
-#: public/includes/editor-modules.php:316
+#: public/includes/editor-modules.php:310
 msgid "Insert"
 msgstr "Einfügen"
 
-#: public/includes/editor-modules.php:321
+#: public/includes/editor-modules.php:315
 msgid "Text Left Align"
-msgstr "Linksbündig"
+msgstr "Text Links ausrichten"
 
-#: public/includes/editor-modules.php:322
+#: public/includes/editor-modules.php:316
 msgid "Text Center Align"
-msgstr "Zentriert"
+msgstr "Text zentrieren"
 
-#: public/includes/editor-modules.php:323
+#: public/includes/editor-modules.php:317
 msgid "Text Right Align"
-msgstr "Rechtsbündig"
+msgstr "Text rechts ausrichten"
 
-#: public/includes/editor-modules.php:361
-#: public/includes/editor-modules.php:716
-#: public/includes/editor-modules.php:735
+#: public/includes/editor-modules.php:355 public/includes/editor-modules.php:704
+#: public/includes/editor-modules.php:723
 msgid "Move"
 msgstr "Verschieben"
 
-#: public/includes/editor-modules.php:363
-#: public/includes/editor-modules.php:718
-#: public/includes/editor-modules.php:737
+#: public/includes/editor-modules.php:357 public/includes/editor-modules.php:706
+#: public/includes/editor-modules.php:725
 msgid "Clone"
-msgstr "Klonen"
+msgstr "Duplizieren"
 
-#: public/includes/editor-modules.php:364
-#: public/includes/editor-modules.php:719
-#: public/includes/editor-modules.php:738
+#: public/includes/editor-modules.php:358 public/includes/editor-modules.php:707
+#: public/includes/editor-modules.php:726
 msgid "Delete"
 msgstr "Löschen"
 
-#: public/includes/editor-modules.php:386
+#: public/includes/editor-modules.php:380
 msgid "Replace Image"
 msgstr "Bild ersetzen"
 
-#: public/includes/editor-modules.php:387
+#: public/includes/editor-modules.php:381
 msgid "Delete Image"
 msgstr "Lösche Bild"
 
-#: public/includes/editor-modules.php:388
+#: public/includes/editor-modules.php:382
 msgid "save"
 msgstr "speichern"
 
-#: public/includes/editor-modules.php:451
+#: public/includes/editor-modules.php:441
 msgid "Featured Image"
 msgstr "Beitragsbild"
 
-#: public/includes/editor-modules.php:451
+#: public/includes/editor-modules.php:441
 msgid "Change the featured image for this post."
 msgstr "Das Beitragsbild ändern."
 
-#: public/includes/editor-modules.php:455
+#: public/includes/editor-modules.php:445
 msgid "Change Featured Image"
 msgstr "Bild für die Vorschau ändern"
 
-#: public/includes/editor-modules.php:456
+#: public/includes/editor-modules.php:446
 msgid "Delete Featured Image"
 msgstr "Beitragsbild entfernen"
 
-#: public/includes/editor-modules.php:472
+#: public/includes/editor-modules.php:462
 msgid "Change the status of the post to draft or publish."
 msgstr "Status des Beitrags auf Entwurf oder Veröffentlicht ändern."
 
-#: public/includes/editor-modules.php:474
+#: public/includes/editor-modules.php:464
 msgid "Draft"
 msgstr "Entwurf"
 
-#: public/includes/editor-modules.php:476
+#: public/includes/editor-modules.php:465
 msgid "Pending"
 msgstr "Wartend"
 
-#: public/includes/editor-modules.php:478
+#: public/includes/editor-modules.php:466
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: public/includes/editor-modules.php:488
+#: public/includes/editor-modules.php:476
 msgid "Post URL"
 msgstr "Beitrags-URL"
 
-#: public/includes/editor-modules.php:488
+#: public/includes/editor-modules.php:476
 msgid "Change the URL (slug) of this post."
-msgstr "Ändern Sie die URL dieses Beitrags."
+msgstr "URL des Beitrags ändern"
 
-#: public/includes/editor-modules.php:498
+#: public/includes/editor-modules.php:486
 msgid "Categories"
 msgstr "Kategorien"
 
-#: public/includes/editor-modules.php:498
+#: public/includes/editor-modules.php:486
 msgid "Type a category name and press enter."
-msgstr "Geben Sie einen Kategorie-Namen an und drücken Sie Enter."
+msgstr "Schlagwort eingeben und mit Enter bestätigen"
 
-#: public/includes/editor-modules.php:503
+#: public/includes/editor-modules.php:491
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: public/includes/editor-modules.php:503
+#: public/includes/editor-modules.php:491
 msgid "Type a tag name and press enter."
-msgstr "Geben Sie einen Tag-Namen an und drücken Sie Enter."
+msgstr "Gebe einen Tag-Namen an und bestätige mit Enter."
 
-#: public/includes/editor-modules.php:510
+#: public/includes/editor-modules.php:498
 msgid "Post Date"
-msgstr "Beitrags Datum"
+msgstr "Beitragsdatum"
 
-#: public/includes/editor-modules.php:592
+#: public/includes/editor-modules.php:580
 msgid "New <span>post</span> title"
-msgstr "Neue <span>post</span> -Titel"
+msgstr "Neuer <span>post</span> -Titel"
 
-#: public/includes/editor-modules.php:592
+#: public/includes/editor-modules.php:580
 msgid "Specify title for new post, then save to edit."
-msgstr ""
-"Geben Sie einen Titel für den neuen Beitrag an und drücken Sie dann auf "
-"Speichern um diesen zu bearbeiten."
+msgstr "Gebe einen Titel für den neuen Beitrag an, dann speichern zum editieren."
 
-#: public/includes/editor-modules.php:593
+#: public/includes/editor-modules.php:581
 msgid "Type Your Title Here"
 msgstr "Titel hier eingeben"
 
-#: public/includes/editor-modules.php:628
+#: public/includes/editor-modules.php:616
 msgid "Create"
-msgstr "Jetzt neu anlegen"
+msgstr "Erstellen"
 
-#: public/includes/editor-modules.php:667
+#: public/includes/editor-modules.php:655
 msgid "results found"
 msgstr "Ergebnisse gefunden"
 
-#: public/includes/editor-modules.php:760
+#: public/includes/editor-modules.php:748
 msgid "Save Locations"
 msgstr "Positionen speichern"
 
-#: public/includes/editor-modules.php:778
+#: public/includes/editor-modules.php:766
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
-"Speichern Sie diesen Beitrag und aktualisieren Sie die Seite um die "
-"Änderungen zu sehen."
+"Speichere diesen Beitrag und aktualisiere die Seite, um die Änderungen zu sehen."
 
-#: public/includes/editor-modules.php:920
+#: public/includes/editor-modules.php:908
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
-"Verwende den Schieberegler auf die Revision, zur Anzeige einer Revision."
+"Verwende den Schieberegler, um die Revision live auf der Seite anzuzeigen."
 
-#: public/includes/editor-modules.php:927
+#: public/includes/editor-modules.php:915
 msgid "Select"
 msgstr "Auswählen"
 
@@ -1582,31 +1886,30 @@ msgstr "Okay, verstanden!"
 
 #: public/includes/tour.php:96
 msgid ""
-"Access posts by clicking the list icon. Create a new post by clicking the "
-"new post icon."
+"Access posts by clicking the list icon. Create a new post by clicking the new "
+"post icon."
 msgstr ""
-"Greife auf Beiträge zu indem Sie auf das Listen-Icon klicken. Erstellen Sie "
-"einen neuen Beitrag indem Sie auf das „Neuer Beitrag“-Icon klicken."
+"Greife auf Beiträge zu indem Du auf das Listen-Icon klicken. Erstelle einen "
+"neuen Beitrag indem DU auf das „Neuer Beitrag“-Icon klicken."
 
 #: public/includes/tour.php:99
 msgid ""
 "While on a single post, edit by clicking the Pen icon. Access post settings "
 "with the settings icon. Press escape to exit any modal."
 msgstr ""
-"Während Sie auf der Seite eines einzelnen Beitrags sind, bearbeiten Sie "
-"diesen durch klicken auf das Stift-Icon. Greifen Sie auf Beitrags-"
-"Einstellungen mit dem Zahnrad-Symbol zu. Drücken Sie „Esc“ um jedes Fenster "
-"zu verlassen."
+"Während Du auf der Seite eines einzelnen Beitrags bist, bearbeite diesen durch "
+"klicken auf das Stift-Icon. Greife auf Beitrags-Einstellungen mit dem Zahnrad-"
+"Symbol zu. Drücke „Esc“ um jedes Fenster zu verlassen."
 
 #: public/includes/tour.php:102
 msgid ""
-"Highlight a piece of text, and click on a formatting option to style it. "
-"Click the Disk icon or CMD-S to save. Click the orange \"X\" button to exit "
-"the editor."
+"Highlight a piece of text, and click on a formatting option to style it. Click "
+"the Disk icon or CMD-S to save. Click the orange \"X\" button to exit the "
+"editor."
 msgstr ""
-"Markieren Sie ein Stück Text und klicken Sie auf eine der "
-"Formatierungsoptionen um es zu stylen. Klicken Sie das Disketten-Icon um zu "
-"speichern. Klicken Sie den orangenen „X“-Button um den Editor zu verlassen."
+"Markiere ein Stück Text und klicke auf eine der Formatierungsoptionen um es zu "
+"gestalten. Klicke das Disketten-Icon um zu speichern. Klicke den orangenen „X“-"
+"Button um den Editor zu verlassen."
 
 #: public/includes/tour.php:105
 msgid ""
@@ -1616,193 +1919,7 @@ msgstr ""
 "Mögliche Komponenten können durch klicken des Plus-Icons angezeigt werden. "
 "Ziehen Sie jedes dieser Komponenten in den Beitrag um es zu verwenden."
 
-#~ msgid "This theme requires the following plugin: %1$s."
-#~ msgid_plural "This theme requires the following plugins: %1$s."
-#~ msgstr[0] "Dieses Thema benötigt das folgende Plugin: %1$s."
-#~ msgstr[1] ""
-
-#~ msgid "This theme recommends the following plugin: %1$s."
-#~ msgid_plural "This theme recommends the following plugins: %1$s."
-#~ msgstr[0] "Dieses Theme empfiehlt das folgende Plugin: %1$s."
-#~ msgstr[1] ""
-
-#~ msgid ""
-#~ "Sorry, but you do not have the correct permissions to install the %1$s "
-#~ "plugin."
-#~ msgid_plural ""
-#~ "Sorry, but you do not have the correct permissions to install the %1$s "
-#~ "plugins."
-#~ msgstr[0] ""
-#~ "Pardon, aber Sie haben nicht die erforderlichen Berechtigungen, um dieses "
-#~ "%1$s Plugin zu installieren."
-#~ msgstr[1] ""
-
-#~ msgid ""
-#~ "The following plugin needs to be updated to its latest version to ensure "
-#~ "maximum compatibility with this theme: %1$s."
-#~ msgid_plural ""
-#~ "The following plugins need to be updated to their latest version to "
-#~ "ensure maximum compatibility with this theme: %1$s."
-#~ msgstr[0] ""
-#~ "Das folgende Plugin muss auf die neueste Version aktualisiert werden, um "
-#~ "maximale Kompatibilität mit diesem Thema zu sicher zu stellen: %1$s."
-#~ msgstr[1] ""
-
-#~ msgid "There is an update available for: %1$s."
-#~ msgid_plural "There are updates available for the following plugins: %1$s."
-#~ msgstr[0] "Es ist ein Update verfügbar für:%1$s."
-#~ msgstr[1] ""
-
-#~ msgid ""
-#~ "Sorry, but you do not have the correct permissions to update the %1$s "
-#~ "plugin."
-#~ msgid_plural ""
-#~ "Sorry, but you do not have the correct permissions to update the %1$s "
-#~ "plugins."
-#~ msgstr[0] ""
-#~ "Sorry, aber Sie haben nicht die erforderlichen Berechtigungen, um das "
-#~ "%1$s Plugin zu aktualisieren."
-#~ msgstr[1] ""
-
-#~ msgid "The following required plugin is currently inactive: %1$s."
-#~ msgid_plural "The following required plugins are currently inactive: %1$s."
-#~ msgstr[0] "Das folgende erforderliche Plugin ist derzeit inaktiv: %1$s."
-#~ msgstr[1] ""
-
-#~ msgid "The following recommended plugin is currently inactive: %1$s."
-#~ msgid_plural ""
-#~ "The following recommended plugins are currently inactive: %1$s."
-#~ msgstr[0] "Das folgende empfohlene Plugin ist derzeit inaktiv: %1$s."
-#~ msgstr[1] ""
-
-#~ msgid ""
-#~ "Sorry, but you do not have the correct permissions to activate the %1$s "
-#~ "plugin."
-#~ msgid_plural ""
-#~ "Sorry, but you do not have the correct permissions to activate the %1$s "
-#~ "plugins."
-#~ msgstr[0] ""
-#~ "Pardon, aber Sie haben nicht die erforderlichen Berechtigungen, um dieses "
-#~ "%1$s Plugin zu aktivieren."
-#~ msgstr[1] ""
-
-#~ msgid "Begin installing plugin"
-#~ msgid_plural "Begin installing plugins"
-#~ msgstr[0] "Beginn der Installation des Plugins"
-#~ msgstr[1] ""
-
-#~ msgid "Begin updating plugin"
-#~ msgid_plural "Begin updating plugins"
-#~ msgstr[0] "Mit der Plugin-Aktualisierung beginnen"
-#~ msgstr[1] ""
-
-#~ msgid "Begin activating plugin"
-#~ msgid_plural "Begin activating plugins"
-#~ msgstr[0] "Aktiviere das Plugin"
-#~ msgstr[1] ""
-
-#~ msgid "This plugin needs to be updated to be compatible with your theme."
-#~ msgstr ""
-#~ "Dieses Plugin muss aktualisiert werden, um mit Deinem Theme kompatibel zu "
-#~ "sein."
-
-#~ msgid "Update Required"
-#~ msgstr "Aktualisierung erforderlich"
-
-#~ msgid "Set the parent_slug config variable instead."
-#~ msgstr "Stattdessen die parent_slug-Konfigurationsvariable setzen."
-
-#~ msgid "Return to the Dashboard"
-#~ msgstr ""
-#~ "Keine Plugins zu instalieren, zu aktualisieren oder zu aktivieren. <a "
-#~ "href=\"%1$s\">Zurück zum Dashboard</a>"
-
-#~ msgid ""
-#~ "The remote plugin package does not contain a folder with the desired slug "
-#~ "and renaming did not work."
-#~ msgstr ""
-#~ "Das externe Plugin-Paket enthält keinen Ordner mit der erforderlichen "
-#~ "Bezeichnung und eine Umbenennung war nicht möglich."
-
-#~ msgid ""
-#~ "Please contact the plugin provider and ask them to package their plugin "
-#~ "according to the WordPress guidelines."
-#~ msgstr ""
-#~ "Bitte wende Dich an den Anbieter des Plugins, um ein ein Plugin-Version "
-#~ "nach den WordPress-Richtlinien zu erhalten."
-
-#~ msgid ""
-#~ "The remote plugin package consists of more than one file, but the files "
-#~ "are not packaged in a folder."
-#~ msgstr ""
-#~ "Das externe Plugin-Paket besteht aus mehreren Dateien, die jedoch nicht "
-#~ "in einem Ordner gepackt wurden."
-
-#~ msgctxt "plugin A *and* plugin B"
-#~ msgid "and"
-#~ msgstr "Plugin A*und* Plugin B und"
-
-#~ msgctxt "%s = version number"
-#~ msgid "TGMPA v%s"
-#~ msgstr "TGMPA v% s"
-
-#~ msgctxt "%1$s = install status, %2$s = update status"
-#~ msgid "%1$s, %2$s"
-#~ msgstr "%1$s, %2$s"
-
-#~ msgctxt "plugins"
-#~ msgid "All <span class=\"count\">(%s)</span>"
-#~ msgid_plural "All <span class=\"count\">(%s)</span>"
-#~ msgstr[0] "Alle <span class=\"count\">(%s)</span>"
-#~ msgstr[1] ""
-
-#~ msgid "To Install <span class=\"count\">(%s)</span>"
-#~ msgid_plural "To Install <span class=\"count\">(%s)</span>"
-#~ msgstr[0] "<span class=„event_booking_status pending“>%s</span>"
-#~ msgstr[1] ""
-
-#~ msgid "Update Available <span class=\"count\">(%s)</span>"
-#~ msgid_plural "Update Available <span class=\"count\">(%s)</span>"
-#~ msgstr[0] "Aktualisierung verfügbar <span class=\"count\">(%s)</span>"
-#~ msgstr[1] ""
-
-#~ msgid "To Activate <span class=\"count\">(%s)</span>"
-#~ msgid_plural "To Activate <span class=\"count\">(%s)</span>"
-#~ msgstr[0] "Zum Aktivieren <span class=\"count\">(%s)</span>"
-#~ msgstr[1] ""
-
-#~ msgctxt "as in: \"version nr unknown\""
-#~ msgid "unknown"
-#~ msgstr "unbekannt"
-
-#~ msgctxt "%2$s = plugin name in screen reader markup"
-#~ msgid "Install %2$s"
-#~ msgstr "Installiere %2$s"
-
-#~ msgctxt "%2$s = plugin name in screen reader markup"
-#~ msgid "Update %2$s"
-#~ msgstr "Aktualisiere %2$s"
-
-#~ msgctxt "%2$s = plugin name in screen reader markup"
-#~ msgid "Activate %2$s"
-#~ msgstr "Aktiviere %2$s"
-
-#~ msgid "Upgrade message from the plugin author:"
-#~ msgstr "Aktualisierungsnachricht des Plugin-Autors:"
-
-#~ msgid "No plugins were selected to be activated. No action taken."
-#~ msgstr ""
-#~ "Es wurden keine Plugins zur Aktivierung ausgewählt. Es wurde daher nichts "
-#~ "unternommen."
-
-#~ msgid "No plugins are available to be activated at this time."
-#~ msgstr "Derzeit stehen keine Plugins zur Aktivierung zur Verfügung."
-
-#~ msgid "Show Details"
-#~ msgstr "Weitere Details"
-
-#~ msgid "Hide Details"
-#~ msgstr "Details verbergen"
-
-#~ msgid "%1$s installed successfully."
-#~ msgstr "%1$s erfolgreich installiert."
+#: public/includes/underscore-templates.php:25
+#: public/includes/underscore-templates.php:43
+msgid "Delete Post"
+msgstr "Beitrag löschen"
