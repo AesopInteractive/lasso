@@ -97,7 +97,7 @@ jQuery(document).ready(function($){
 
 		// get the html from our div
 		var html = $('#'+editor).html(),
-			postid = $this.closest('#lasso--controls').data('post-id');
+			postid = lasso_editor.postid;
 			
 		// take care of twitter widget
 		html = process_twitter(html);
@@ -616,7 +616,7 @@ jQuery(document).ready(function($){
 
 			var data = {
 				action: 		'process_delete_post',
-				postid: 		postid = $this.closest('#lasso--controls').data('post-id'),
+				postid: 		lasso_editor.postid,
 				nonce: 			lasso_editor.deletePost
 			}
 
