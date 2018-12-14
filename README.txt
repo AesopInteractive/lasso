@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 4.9
-Stable tag: 1.0.5
+Tested up to: 5.0
+Stable tag: 1.0.6
 
 Front-end editing and creation suite.
 
@@ -13,9 +13,12 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.0.6
+* Fix for Status saving and component insertion
+
 = 1.0.5
 * Fix for Aesop Gallery component
-* Fix for Status saving and component insertion
+
 
 = 1.0.4
 * Fix for draft posts when preview setting is required
