@@ -15,6 +15,7 @@ Front-end editing and creation suite.
 == Changelog ==
 = 1.0.5
 * Fix for Aesop Gallery component
+* Fix for Status saving and component insertion
 
 = 1.0.4
 * Fix for draft posts when preview setting is required

@@ -102,6 +102,7 @@ jQuery(function( $ ) {
 		} else {
 			$(dropUp).hide();
 		}
+		restoreSelection(window.selRange);
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 		if( !lasso_editor.isMobile) {

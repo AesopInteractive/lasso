@@ -142,6 +142,7 @@
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
+			$('#lasso--save').trigger('click');
 
 			var $this = $(this);
 			

@@ -43,10 +43,12 @@
 		      		'src': imageURL,
 		      		'alt': attachment.alt,
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
-		      	})
+		      	});
+				$("html").scrollTop(lasso_editor.scrollTop);
 
 		    });
 
+			lasso_editor.scrollTop = $(window).scrollTop();
 		    // Finally, open the modal
 		    ase_edit_frame.open();
 

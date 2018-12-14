@@ -11742,6 +11742,7 @@ jQuery(document).ready(function($){
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
+			$('#lasso--save').trigger('click');
 
 			var $this = $(this);
 			
@@ -12549,6 +12550,7 @@ jQuery(function( $ ) {
 		} else {
 			$(dropUp).hide();
 		}
+		restoreSelection(window.selRange);
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
 		if( !lasso_editor.isMobile) {
@@ -12905,7 +12907,7 @@ jQuery(document).ready(function($){
 
 		// get the html from our div
 		var html = $('#'+editor).html(),
-			postid = $this.closest('#lasso--controls').data('post-id');
+			postid = lasso_editor.postid;
 			
 		// take care of twitter widget
 		html = process_twitter(html);
@@ -13424,7 +13426,7 @@ jQuery(document).ready(function($){
 
 			var data = {
 				action: 		'process_delete_post',
-				postid: 		postid = $this.closest('#lasso--controls').data('post-id'),
+				postid: 		lasso_editor.postid,
 				nonce: 			lasso_editor.deletePost
 			}
 
@@ -14575,10 +14577,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		      		'src': imageURL,
 		      		'alt': attachment.alt,
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
-		      	})
+		      	});
+				$("html").scrollTop(lasso_editor.scrollTop);
 
 		    });
 
+			lasso_editor.scrollTop = $(window).scrollTop();
 		    // Finally, open the modal
 		    ase_edit_frame.open();
 
