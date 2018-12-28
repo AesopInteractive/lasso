@@ -229,7 +229,7 @@ jQuery(document).ready(function($){
 				var arr = $(document).find(selector);
 				if (arr.length) {
 					if (html) {
-						data[key] = arr[0].innerHTML;
+						data[key] = arr[0].innerHTML.replace(/[\n\r]/g, '');;
 					} else if (isimgurl) {
 						data[key] = $(arr[0]).attr('src');
 					} else {

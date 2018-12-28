@@ -3,6 +3,7 @@
 	$(document).on('submit', '#lasso--post-form', function(e) {
 
 		e.preventDefault();
+		$('#lasso--save').trigger('click');
 
 		var $this 	= $(this)
 		,	submit 	= $this.find('input[type="submit"]')
@@ -17,14 +18,15 @@
 
 				submit.val( strings.saved ).addClass('saved');
 
-				console.log(response)
+				/*console.log(response)
 
 				setTimeout(function(){
 
 					submit.removeClass('saved');
 					submit.val( strings.save );
 
-				},1000);
+				},1000);*/
+				location.reload();
 
 			}
 
