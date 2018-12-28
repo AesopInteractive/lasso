@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 5.0
-Stable tag: 1.0.6
+Tested up to: 5.2
+Stable tag: 1.0.7
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.0.7
+* Fix for meta information saving
+
 = 1.0.6
 * Fix for Status saving and component insertion
 

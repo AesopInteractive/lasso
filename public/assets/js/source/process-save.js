@@ -98,6 +98,7 @@ jQuery(document).ready(function($){
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = lasso_editor.postid;
+		if (!html) return;
 			
 		// take care of twitter widget
 		html = process_twitter(html);
@@ -322,6 +323,7 @@ jQuery(document).ready(function($){
 		function process_twitter(html)
 		{
 			// if twitter widget doesn't exist return
+			if (!html) return null;
 			if (html.indexOf("twitterwidget") ==-1) return html;
 			var t = $('#'+editor).clone();
 			var t1 = t.find('twitterwidget');

@@ -484,8 +484,28 @@ class lasso {
 		}
 	}
 	
+	function getEnglishMonthName($foreignMonthName){
+
+		  setlocale(LC_ALL, 'en_US');
+
+		  $month_numbers = range(1,12);
+
+		  foreach($month_numbers as $month)
+			$english_months[] = strftime('%B',mktime(0,0,0,$month,1,2011));
+
+		  setlocale(LC_ALL, get_locale());
+
+		  foreach($month_numbers as $month)
+			$foreign_months[] = strftime('%B',mktime(0,0,0,$month,1,2011));
+
+		  return str_replace($foreign_months, $english_months, $foreignMonthName);
+	}
+
+
+	
 	public function set_date( $postid, $value) {
 		if( $value ) {
+			$value = self::getEnglishMonthName($value);
             wp_update_post(
 				array (
 					'ID'            => $postid, // ID of the post to update

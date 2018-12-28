@@ -12908,6 +12908,7 @@ jQuery(document).ready(function($){
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = lasso_editor.postid;
+		if (!html) return;
 			
 		// take care of twitter widget
 		html = process_twitter(html);
@@ -13039,7 +13040,7 @@ jQuery(document).ready(function($){
 				var arr = $(document).find(selector);
 				if (arr.length) {
 					if (html) {
-						data[key] = arr[0].innerHTML;
+						data[key] = arr[0].innerHTML.replace(/[\n\r]/g, '');;
 					} else if (isimgurl) {
 						data[key] = $(arr[0]).attr('src');
 					} else {
@@ -13132,6 +13133,7 @@ jQuery(document).ready(function($){
 		function process_twitter(html)
 		{
 			// if twitter widget doesn't exist return
+			if (!html) return null;
 			if (html.indexOf("twitterwidget") ==-1) return html;
 			var t = $('#'+editor).clone();
 			var t1 = t.find('twitterwidget');
@@ -14595,6 +14597,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	$(document).on('submit', '#lasso--post-form', function(e) {
 
 		e.preventDefault();
+		$('#lasso--save').trigger('click');
 
 		var $this 	= $(this)
 		,	submit 	= $this.find('input[type="submit"]')
@@ -14609,14 +14612,15 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 				submit.val( strings.saved ).addClass('saved');
 
-				console.log(response)
+				/*console.log(response)
 
 				setTimeout(function(){
 
 					submit.removeClass('saved');
 					submit.val( strings.save );
 
-				},1000);
+				},1000);*/
+				location.reload();
 
 			}
 
