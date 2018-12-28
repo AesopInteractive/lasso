@@ -61,27 +61,6 @@ function lasso_show_in_rest($args, $post_type){
 }
 
 
-function lasso_editor_get_option( $option, $section, $default = '' ) {
-
-	if ( empty( $option ) )
-		return;
-
-	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-
-		$options = get_site_option( $section );
-
-	} else {
-
-		$options = get_option( $section );
-	}
-
-	if ( isset( $options[$option] ) ) {
-		return $options[$option];
-	}
-
-	return $default;
-}
-
 register_meta('user', 'lasso_hide_tour', array(
   "type" => "string",
   "show_in_rest" => true // this is the key part

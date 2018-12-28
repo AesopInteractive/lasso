@@ -26,6 +26,8 @@ if( !function_exists('lasso_editor_get_option')):
 
 			$options = get_option( $section );
 		}
+		
+		$options = apply_filters( 'editus_filter_options', $options );
 
 		if ( isset( $options[$option] ) ) {
 			return $options[$option];
