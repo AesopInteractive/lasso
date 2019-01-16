@@ -327,6 +327,9 @@ function lasso_editor_text_toolbar() {
 
 				<div class="lasso--controls__right" data-posttype="<?php echo get_post_type( get_the_ID() );?>" data-status="<?php echo $status;?>" style="position:static;bottom:0px;right;0px;left:auto;">
 
+					<a href="#" title="<?php esc_attr_e( 'Delete Post', 'lasso' );?>" id="lasso--post-delete" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+					<a href="#" title="<?php esc_attr_e( 'Post Settings', 'lasso' );?>" id="lasso--post-settings2" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
+
 					<a href="#" title="<?php esc_attr_e( 'Save Post', 'lasso' );?>" id="lasso--save" class="lasso-save-post lasso--button <?php echo $sc_saving_class;?>"></a>
 
 					<?php if ( 'draft' == $status && ( lasso_user_can('publish_posts') || lasso_user_can('publish_pages') )  ) { ?>
