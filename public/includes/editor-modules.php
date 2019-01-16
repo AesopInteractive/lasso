@@ -512,6 +512,7 @@ function lasso_editor_component_modal() {
 						?>
 						    <label><?php _e( 'Post Date', 'lasso' ); ?></label>
 							<input type="text" class="editus_custom_date" name="post_date" value="<?php echo get_the_time($dateformat, $postid);?>"/>
+							<a href="#" id="lasso--postsettings-setnow"><?php _e( 'Set to Now', 'lasso' ); ?></a>
 						<?php
 						}?>
 

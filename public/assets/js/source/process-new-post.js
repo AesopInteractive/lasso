@@ -38,6 +38,10 @@
 			e.preventDefault();
 			destroyModal();
 		});
+		
+		jQuery(document).on('click', '#lasso--postsettings-setnow', function(e){
+			$('.editus_custom_date').datepicker( "setDate", new Date().setTime(Date.now()) );
+		});
 
 		/////////////////
 		/// EXIT SETTINGS
