@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
 "POT-Creation-Date: 2019-01-16 15:31-0200\n"
-"PO-Revision-Date: 2019-01-16 15:31-0200\n"
+"PO-Revision-Date: 2019-01-18 08:36-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -1556,7 +1556,7 @@ msgstr "Beitragsdatum"
 
 #: public/includes/editor-modules.php:515
 msgid "Set to Now"
-msgstr ""
+msgstr "Jetzt eingestellt"
 
 #: public/includes/editor-modules.php:596
 msgid "New <span>post</span> title"

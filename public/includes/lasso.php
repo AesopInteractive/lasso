@@ -505,7 +505,7 @@ class lasso {
 	
 	public function set_date( $postid, $value) {
 		if( $value ) {
-			$value = self::getEnglishMonthName($value)." ".date("H:i:s", current_time( 'timestamp', 0 ));
+			$value = self::getEnglishMonthName($value)." ".date("H:i:s", current_time( 'timestamp', 1 ));
             wp_update_post(
 				array (
 					'ID'            => $postid, // ID of the post to update
