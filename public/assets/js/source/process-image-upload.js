@@ -9,7 +9,7 @@
 		,	saveStatus = $('#lasso--save-status')
 
 		var data = {
-			action: 'process_upload-image_upload',
+			action: 'editus_featured_img',
 			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
 			nonce: 	lasso_editor.featImgNonce
@@ -17,7 +17,7 @@
 
 		saveStatus.removeClass('not-visible').addClass('visible lasso--animate__spin');
 
-		$.post( lasso_editor.ajaxurl, data, function(response) {
+		$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 			if ( response ) {
 				console.log('response')
@@ -104,7 +104,7 @@
 		var $this = $(this);
 
 		var data = {
-			action: 'process_upload-image_delete',
+			action: 'editus_del_featured_img',
 			postid: lasso_editor.postid,
 			nonce: 	lasso_editor.featImgNonce
 		}
@@ -120,7 +120,7 @@
 		},
 		function(){
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if ( true == response.success ) {
 
@@ -203,7 +203,7 @@
 		var $this = $(this);
 
 		var data = {
-			action: 'process_upload-image_delete',
+			action: 'editus_del_featured_img',
 			postid: lasso_editor.postid,
 			nonce: 	lasso_editor.featImgNonce
 		}
@@ -219,7 +219,7 @@
 		},
 		function(){
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if ( true == response.success ) {
 					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb');

@@ -421,12 +421,12 @@
 		function(){
 
 			var data = {
-				action: 		'process_delete_post',
+				action: 		'editus_delete_post',
 				postid: 		$this.closest('a').data('postid'),
 				nonce: 			lasso_editor.deletePost
 			}
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if ( true == response.success ) {
 

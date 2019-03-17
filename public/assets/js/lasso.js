@@ -13427,18 +13427,19 @@ jQuery(document).ready(function($){
 		function(){
 
 			var data = {
-				action: 		'process_delete_post',
+				action: 		'editus_delete_post',
 				postid: 		lasso_editor.postid,
 				nonce: 			lasso_editor.deletePost
 			}
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 				//load home page after deleting the post
 				window.location.assign(lasso_editor.siteUrl);
 			}).fail(function(xhr, err) { 
 				var responseTitle= $(xhr.responseText).filter('title').get(0);
 				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
+
 
 		});
 	});
@@ -13879,7 +13880,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		,	saveStatus = $('#lasso--save-status')
 
 		var data = {
-			action: 'process_upload-image_upload',
+			action: 'editus_featured_img',
 			postid: lasso_editor.postid,
 			image_id: $this.data('featimg-id'),
 			nonce: 	lasso_editor.featImgNonce
@@ -13887,7 +13888,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 		saveStatus.removeClass('not-visible').addClass('visible lasso--animate__spin');
 
-		$.post( lasso_editor.ajaxurl, data, function(response) {
+		$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 			if ( response ) {
 				console.log('response')
@@ -13974,7 +13975,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		var $this = $(this);
 
 		var data = {
-			action: 'process_upload-image_delete',
+			action: 'editus_del_featured_img',
 			postid: lasso_editor.postid,
 			nonce: 	lasso_editor.featImgNonce
 		}
@@ -13990,7 +13991,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		},
 		function(){
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if ( true == response.success ) {
 
@@ -14073,7 +14074,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		var $this = $(this);
 
 		var data = {
-			action: 'process_upload-image_delete',
+			action: 'editus_del_featured_img',
 			postid: lasso_editor.postid,
 			nonce: 	lasso_editor.featImgNonce
 		}
@@ -14089,7 +14090,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		},
 		function(){
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if ( true == response.success ) {
 					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb');
@@ -15087,12 +15088,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		function(){
 
 			var data = {
-				action: 		'process_delete_post',
+				action: 		'editus_delete_post',
 				postid: 		$this.closest('a').data('postid'),
 				nonce: 			lasso_editor.deletePost
 			}
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
 				if ( true == response.success ) {
 

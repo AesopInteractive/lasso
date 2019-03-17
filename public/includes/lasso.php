@@ -63,6 +63,9 @@ class lasso {
 		add_action( 'wp_ajax_editus_hide_tour',     array( $this, 'editus_hide_tour' ) );
 		add_action( 'wp_ajax_editus_set_post_setting',     array( $this, 'editus_set_post_setting' ) );
 		add_action( 'wp_ajax_editus_get_ase_options',     array( $this, 'get_ase_options' ) );
+		add_action( 'wp_ajax_editus_delete_post',     array( $this, 'delete_post' ) );
+		add_action( 'wp_ajax_editus_featured_img',     array( $this, 'set_featured_img' ) );
+		add_action( 'wp_ajax_editus_del_featured_img',     array( $this, 'del_featured_img' ) );
 
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
@@ -450,6 +453,78 @@ class lasso {
 		echo $blob[$code];
 		exit; 
 	}
+	
+	public function delete_post( ) {
+
+		$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+
+		// bail out if teh current user can't publish posts
+		if ( !lasso_user_can( 'delete_post', $postid ) )
+			return;
+		
+		if (!wp_verify_nonce( $_POST[ 'nonce' ], 'lasso_delete_post' )) {
+			wp_send_json_error();
+			exit;
+		}
+
+		$args = array(
+			'ID'   			=> (int) $postid,
+			'post_status' 	=> 'trash'
+		);
+
+		wp_update_post( apply_filters( 'lasso_object_deleted_args', $args ) );
+
+		do_action( 'lasso_object_deleted', $postid, get_current_user_ID() );
+
+		exit;
+	}
+	
+	public function set_featured_img( ) {
+
+		$postid  	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+		$image_id  	= isset( $_POST['image_id'] ) ? absint( $_POST['image_id'] ) : false;
+		if (!wp_verify_nonce( $_POST[ 'nonce' ], 'lasso_gallery' )) {
+			wp_send_json_error();
+			exit;
+		}	
+
+		set_post_thumbnail( $postid, $image_id );
+
+		do_action( 'lasso_featured_image_set', $postid, $image_id, get_current_user_ID() );
+
+		exit;
+	}
+	
+	public function del_featured_img( ) {
+
+		$postid  = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+		if (!wp_verify_nonce( $_POST[ 'nonce' ], 'lasso_gallery' )) {
+			wp_send_json_error();
+			exit;
+		}	
+
+		delete_post_thumbnail( $postid );
+
+		do_action( 'lasso_featured_image_deleted', $postid, get_current_user_ID() );
+
+		exit;
+	}
+	
+	/*public function revision_get( ) {
+		$args = array();
+		if ( isset( $_POST[ 'limit' ] ) ) {
+			$args[ 'posts_per_page' ] = $data[ 'limit' ];
+		}else{
+			$args[ 'posts_per_page' ] = 6; // we start at revision 0
+		}
+
+		$revisions = wp_get_post_revisions( $_POST[ 'postid' ], $args  );
+		if ( is_array( $revisions )  && ! empty( $revisions )  ) {
+			self::set_revisions( $data[ 'postid' ], $revisions );
+		}
+
+		return self::$revisions;
+	}*/
 	
 	public function set_post_terms( $postid, $value, $taxonomy ) {
 		if( $value ) {

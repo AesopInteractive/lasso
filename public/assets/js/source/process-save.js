@@ -617,18 +617,19 @@ jQuery(document).ready(function($){
 		function(){
 
 			var data = {
-				action: 		'process_delete_post',
+				action: 		'editus_delete_post',
 				postid: 		lasso_editor.postid,
 				nonce: 			lasso_editor.deletePost
 			}
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 				//load home page after deleting the post
 				window.location.assign(lasso_editor.siteUrl);
 			}).fail(function(xhr, err) { 
 				var responseTitle= $(xhr.responseText).filter('title').get(0);
 				alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 			});
+
 
 		});
 	});
