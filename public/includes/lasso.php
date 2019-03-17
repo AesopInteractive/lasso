@@ -571,7 +571,7 @@ class lasso {
 		  setlocale(LC_ALL, get_locale());
 
 		  foreach($month_numbers as $month)
-			$foreign_months[] = strftime('%B',mktime(0,0,0,$month,1,2011));
+			$foreign_months[] = utf8_encode(strftime('%B',mktime(0,0,0,$month,1,2011)));
 
 		  return str_replace($foreign_months, $english_months, $foreignMonthName);
 	}
