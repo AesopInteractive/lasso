@@ -22,16 +22,15 @@
 			if ( response ) {
 				console.log('response')
 				$('#lasso--featImgSave').css('opacity',0);
-
-				saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
-
-				setTimeout(function(){
-					saveStatus.removeClass('lasso--animate__spin lasso-icon-check').addClass('lasso-icon-spinner6 not-visible')
-				},500);
+				//setTimeout(function(){
+				//	saveStatus.removeClass('lasso--animate__spin lasso-icon-check').addClass('lasso-icon-spinner6 not-visible')
+				//},500);
 			}
+			saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
 
 		}).fail(function(xhr, err) { 
 			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
 			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 

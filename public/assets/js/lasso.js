@@ -5425,6 +5425,11 @@ Undo.Command.extend = function(protoProps) {
 							if (settings.pasteAsText) {
 								var t = e.clipboardData.getData('text/html');
 								utils.preventDefaultEvent(e);
+								if (t.length ==0 )
+								{
+									t = e.clipboardData.getData('text/plain');
+									t = t.replace(/\n/g, '<br>');
+								}
 								var
 									sel = utils.selection.saveSelection(),
 									text = t;//prompt(Medium.Messages.pastHere) || '';
@@ -10503,6 +10508,13 @@ jQuery(document).ready(function($){
 			}
 		}
 		
+		// ways to inject codes into the enterEditor
+		if (lasso_editor.enterEditorHookArray) {
+			$(lasso_editor.enterEditorHookArray).each(function(key, val){
+				val();
+			});
+		}
+		
 		// lock the post for editing
 		var data = {
 				action: 'editus_lock_post',
@@ -11121,6 +11133,17 @@ jQuery(document).ready(function($){
 			if (lasso_editor.intervalID) {
 			     window.clearInterval(lasso_editor.intervalID);
 			}
+			if (lasso_editor.lockIntervalID) {
+			     window.clearInterval(lasso_editor.lockIntervalID);
+				 lasso_editor.lockIntervalID = 0;
+				 //unlock post
+				 var data = {
+					action: 'editus_unlock_post',
+					postid: lasso_editor.postid
+				};
+				jQuery.post(lasso_editor.ajaxurl2, data, function(response) {					
+				});			 
+			}
 			if ($('body').hasClass('lasso-sidebar-open')) {
 				//e.preventDefault();
 				$('body').removeClass('lasso-sidebar-open');
@@ -11155,7 +11178,16 @@ jQuery(document).ready(function($){
 
 			$(articleMedium.element).find("*").removeAttr('contenteditable');
 			articleMedium.destroy();
+			
+			// ways to inject codes into the exitEditor
+			if (lasso_editor.exitEditorHookArray) {
+				$(lasso_editor.exitEditorHookArray).each(function(key, val){
+					val();
+				});
+			}
 		}
+		lasso_editor.exitEditor = exitEditor;
+		
 		// on escape key exit
 		$(document).keyup(function(e) {
 
@@ -13893,16 +13925,15 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 			if ( response ) {
 				console.log('response')
 				$('#lasso--featImgSave').css('opacity',0);
-
-				saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
-
-				setTimeout(function(){
-					saveStatus.removeClass('lasso--animate__spin lasso-icon-check').addClass('lasso-icon-spinner6 not-visible')
-				},500);
+				//setTimeout(function(){
+				//	saveStatus.removeClass('lasso--animate__spin lasso-icon-check').addClass('lasso-icon-spinner6 not-visible')
+				//},500);
 			}
+			saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
 
 		}).fail(function(xhr, err) { 
 			var responseTitle= $(xhr.responseText).filter('title').get(0);
+			saveStatus.removeClass('lasso--animate__spin lasso-icon-spinner6').addClass('lasso-icon-check');
 			alert($(responseTitle).text() + "\n" + EditusFormatAJAXErrorMessage(xhr, err) );
 		});
 

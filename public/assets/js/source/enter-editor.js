@@ -84,6 +84,13 @@ jQuery(document).ready(function($){
 			}
 		}
 		
+		// ways to inject codes into the enterEditor
+		if (lasso_editor.enterEditorHookArray) {
+			$(lasso_editor.enterEditorHookArray).each(function(key, val){
+				val();
+			});
+		}
+		
 		// lock the post for editing
 		var data = {
 				action: 'editus_lock_post',
@@ -702,6 +709,17 @@ jQuery(document).ready(function($){
 			if (lasso_editor.intervalID) {
 			     window.clearInterval(lasso_editor.intervalID);
 			}
+			if (lasso_editor.lockIntervalID) {
+			     window.clearInterval(lasso_editor.lockIntervalID);
+				 lasso_editor.lockIntervalID = 0;
+				 //unlock post
+				 var data = {
+					action: 'editus_unlock_post',
+					postid: lasso_editor.postid
+				};
+				jQuery.post(lasso_editor.ajaxurl2, data, function(response) {					
+				});			 
+			}
 			if ($('body').hasClass('lasso-sidebar-open')) {
 				//e.preventDefault();
 				$('body').removeClass('lasso-sidebar-open');
@@ -736,7 +754,16 @@ jQuery(document).ready(function($){
 
 			$(articleMedium.element).find("*").removeAttr('contenteditable');
 			articleMedium.destroy();
+			
+			// ways to inject codes into the exitEditor
+			if (lasso_editor.exitEditorHookArray) {
+				$(lasso_editor.exitEditorHookArray).each(function(key, val){
+					val();
+				});
+			}
 		}
+		lasso_editor.exitEditor = exitEditor;
+		
 		// on escape key exit
 		$(document).keyup(function(e) {
 

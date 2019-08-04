@@ -60,6 +60,7 @@ class lasso {
 		add_action( 'wp_ajax_get_aesop_component',     array( $this, 'get_aesop_component' ) );
 		add_action( 'wp_ajax_editus_do_shortcode',     array( $this, 'editus_do_shortcode' ) );
 		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
+		add_action( 'wp_ajax_editus_unlock_post',     array( $this, 'editus_unlock_post' ) );
 		add_action( 'wp_ajax_editus_hide_tour',     array( $this, 'editus_hide_tour' ) );
 		add_action( 'wp_ajax_editus_set_post_setting',     array( $this, 'editus_set_post_setting' ) );
 		add_action( 'wp_ajax_editus_get_ase_options',     array( $this, 'get_ase_options' ) );
@@ -278,6 +279,16 @@ class lasso {
 			$user_info = get_userdata($locked);
 			echo "Post opened by ".$user_info->first_name .  " " . $user_info->last_name;
 		}
+		exit;
+	}
+	
+	public function editus_unlock_post()
+	{
+		$post_id= $_POST["postid"];
+		$locked = wp_check_post_lock($post_id);
+		delete_post_meta( $post_id, '_edit_lock');
+		echo "true";
+		
 		exit;
 	}
 	

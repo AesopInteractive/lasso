@@ -537,6 +537,11 @@
 							if (settings.pasteAsText) {
 								var t = e.clipboardData.getData('text/html');
 								utils.preventDefaultEvent(e);
+								if (t.length ==0 )
+								{
+									t = e.clipboardData.getData('text/plain');
+									t = t.replace(/\n/g, '<br>');
+								}
 								var
 									sel = utils.selection.saveSelection(),
 									text = t;//prompt(Medium.Messages.pastHere) || '';
