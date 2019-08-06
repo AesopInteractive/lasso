@@ -702,12 +702,11 @@ jQuery(document).ready(function($){
 			}
 		}
 		
-		/////////////////
-		/// EXIT EDITOR
-		///////////////////
-		function exitEditor(){
+		function clearTimer()
+		{
 			if (lasso_editor.intervalID) {
 			     window.clearInterval(lasso_editor.intervalID);
+				 lasso_editor.intervalID = 0;
 			}
 			if (lasso_editor.lockIntervalID) {
 			     window.clearInterval(lasso_editor.lockIntervalID);
@@ -720,6 +719,14 @@ jQuery(document).ready(function($){
 				jQuery.post(lasso_editor.ajaxurl2, data, function(response) {					
 				});			 
 			}
+		}
+		
+		/////////////////
+		/// EXIT EDITOR
+		///////////////////
+		function exitEditor(){
+			clearTimer();
+
 			if ($('body').hasClass('lasso-sidebar-open')) {
 				//e.preventDefault();
 				$('body').removeClass('lasso-sidebar-open');
@@ -784,6 +791,7 @@ jQuery(document).ready(function($){
 			e.preventDefault();
 			//previously we just called exitEditor(), now the following reloads the page if there is an unsaved change
 			if (articleMedium.dirty) {
+				clearTimer();
 			   location.reload();
 			} else {
 			  exitEditor();

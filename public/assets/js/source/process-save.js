@@ -558,6 +558,7 @@ jQuery(document).ready(function($){
 			// then remove this copy from local stoarge
 			localStorage.removeItem( 'lasso_backup_'+postid );
 			lasso_editor.dirtyByComponent = false;
+			articleMedium.dirty = false;
 		}
 		
 
