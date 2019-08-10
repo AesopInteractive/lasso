@@ -10904,6 +10904,32 @@ jQuery(document).ready(function($){
 		
 		//end alignment
 		
+		$('#lasso-toolbar--ul').mousedown(function() {
+				makeList("ul");
+		});
+		$('#lasso-toolbar--ol').mousedown(function() {
+				makeList("ol");
+		});
+		
+		function makeList(list_type) {
+			var list = $("<"+list_type+"/>");
+			var focusedElements = articleMedium.html.textElementsAtCaret();
+			if (focusedElements) {
+					for (i = 0; i < focusedElements.length; i++) {
+					  list.append("<li>" + focusedElements[i].innerHTML + "</li>");
+					  if (i>0) {
+						  focusedElements[i].parentNode.removeChild(focusedElements[i]); 
+					  }
+					}	
+					$(focusedElements[0]).replaceWith(list[0]);				
+			}
+				
+			articleMedium.makeUndoable();
+			article.highlight();
+			//setCursor($(focusedElements[0]));
+			//articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
+		}
+		
 		function taghelper(tag) {
 			articleMedium.element.contentEditable = true;
 			article.highlight();

@@ -114,6 +114,7 @@ class settings {
 		$use_old_ui      = lasso_editor_get_option( 'use_old_ui', 'lasso_editor' );
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 		$toolbar_headings_h4      = lasso_editor_get_option( 'toolbar_headings_h4', 'lasso_editor' );
+		$toolbar_list      = lasso_editor_get_option( 'toolbar_list', 'lasso_editor' );
 		$toolbar_show_color      = lasso_editor_get_option( 'toolbar_show_color', 'lasso_editor' );
 		$toolbar_show_alignment  = lasso_editor_get_option( 'toolbar_show_alignment', 'lasso_editor' );
 		
@@ -245,6 +246,13 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to set H4/H5/H6 settings.', 'lasso' );?></span>
 
 					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
+						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_list]" id="lasso_editor[toolbar_list]" <?php echo checked( $toolbar_list, 'on' );?> >
+						<label for="lasso_editor[toolbar_list]"><?php _e( 'Enabled OL/UL Buttons', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Show the buttons to create Ordered and Unordered Lists from text selection.', 'lasso' );?></span>
+					</div>
+					
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_show_color]" id="lasso_editor[toolbar_show_color]" <?php echo checked( $toolbar_show_color, 'on' );?> >
 						<label for="lasso_editor[toolbar_show_color]"><?php _e( 'Enable Text Color Buttons', 'lasso' );?></label>

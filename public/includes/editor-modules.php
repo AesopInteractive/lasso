@@ -211,6 +211,7 @@ function lasso_editor_text_toolbar() {
 	// are toolbar headings enabled
 	$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
 	$toolbar_headings_h4      = lasso_editor_get_option( 'toolbar_headings_h4', 'lasso_editor' );
+	$toolbar_list      = lasso_editor_get_option( 'toolbar_list', 'lasso_editor' );
 
 	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;
 	
@@ -273,6 +274,9 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
 			<?php endif; ?>
+			
+			
+			
 			<?php if ( $toolbar_headings_h4 ): ?>
 		    <li id="lasso-toolbar--h4" title="<?php esc_attr_e( 'H4 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h5" title="<?php esc_attr_e( 'H5 Heading', 'lasso' );?>"></li>
@@ -282,6 +286,11 @@ function lasso_editor_text_toolbar() {
 			<?php if ( $show_color ): ?>
 		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Color for Selected Text', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
+			<?php if ( $toolbar_list ): ?>
+		    <li id="lasso-toolbar--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--ul" title="<?php esc_attr_e( 'Unordered', 'lasso' );?>"></li>
 			<?php endif; ?>
 					
 		    
