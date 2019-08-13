@@ -1,3 +1,15 @@
+/* ways to ibject JS Codes
+
+lasso_editor.setupHookArray
+lasso_editor.enterEditorHookArray
+lasso_editor.exitEditorHookArray
+lasso_editor.saveSuccessHookArray
+
+*/
+
+
+
+
 /*
  * Undo.js - A undo/redo framework for JavaScript
  * 

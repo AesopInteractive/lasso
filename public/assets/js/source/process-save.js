@@ -559,6 +559,11 @@ jQuery(document).ready(function($){
 			localStorage.removeItem( 'lasso_backup_'+postid );
 			lasso_editor.dirtyByComponent = false;
 			articleMedium.dirty = false;
+			if (lasso_editor.saveSuccessHookArray) {
+				$(lasso_editor.saveSuccessHookArray).each(function(key, val){
+					val();
+				});
+			}
 		}
 		
 
