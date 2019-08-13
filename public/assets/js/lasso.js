@@ -11896,8 +11896,8 @@ jQuery(document).ready(function($){
 
 		// close the sidebar when clicking outside of it
 		$('body').on('click', '#'+lasso_editor.editor, function(){
-
-			destroySidebar()
+             //lets not for now
+			//destroySidebar()
 		});
 
 		// helper to set the height of the settings panel
@@ -11932,6 +11932,7 @@ jQuery(document).ready(function($){
 
 			// let's force globalize this until we refactor the js
 			window.component = component;
+			window.componentClone = component.clone();
 
 			data = component.data();
 			if (!data) return;
@@ -12179,8 +12180,10 @@ jQuery(document).ready(function($){
 
 		// destroy panel if clicking close or overlay
 		//$('#lasso--sidebar__close').live('click',function(e){
+		// cancel 
 		jQuery(document).on('click','#lasso--sidebar__close',function(e){
 			e.preventDefault();
+			window.component.replaceWith(window.componentClone); //restore the state before editing
 			destroySidebar();
 			$('#lasso--component__settings').perfectScrollbar('destroy');
 		});
