@@ -250,6 +250,10 @@ jQuery(function( $ ) {
 		e.preventDefault();
 		htmlItemInsert('<ol><li>Item</li></ol>');
 	});
+	jQuery(document).on('click', '#lasso-html--table', function(e){
+		e.preventDefault();
+		htmlItemInsert('<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><th>Cell 3</th><th>Cell 4</th></tr></table>');
+	});
 
 	////////////
 	/// LINK DROP UIP

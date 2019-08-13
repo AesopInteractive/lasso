@@ -320,6 +320,7 @@ function lasso_editor_text_toolbar() {
 		    				<?php endif; ?>
 		    				<li id="lasso-html--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>">
 		    				<li id="lasso-html--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>">
+							<li id="lasso-html--table" title="<?php esc_attr_e( 'Table', 'lasso' );?>">
 		    			</ul>
 		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e( 'Cancel', 'lasso' );?></a>
 		    			<a href="#" title="<?php esc_attr_e( 'Insert HTML or Code', 'lasso' );?>" class="lasso-toolbar--html__control" id="lasso-toolbar--html__insert" ><?php _e( 'Insert', 'lasso' );?></a>
