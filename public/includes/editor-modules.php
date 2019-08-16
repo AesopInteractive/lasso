@@ -162,6 +162,9 @@ function lasso_editor_controls() {
 			<?php } ?>
 
 		</div>
+		
+		
+		<?php do_action( 'lasso_editor_controls_after_outside' );?>
 
 	<?php }
 }
