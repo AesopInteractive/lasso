@@ -9985,15 +9985,17 @@ function makeArray( obj ) {
             if (!this.options.autocomplete.source) {
                 this.options.autocomplete.source = function(search, showChoices) {
                     var filter = search.term.toLowerCase();
-                    var choices = $.grep(this.options.availableTags.split(","), function(element) {
-                        // Only match autocomplete options that begin with the search term.
-                        // (Case insensitive.)
-                        return (element.toLowerCase().indexOf(filter) === 0);
-                    });
-                    if (!this.options.allowDuplicates) {
-                        choices = this._subtractArray(choices, this.assignedTags());
-                    }
-                    showChoices(choices);
+					if (this.options.availableTags) {
+						var choices = $.grep(this.options.availableTags.split(","), function(element) {
+							// Only match autocomplete options that begin with the search term.
+							// (Case insensitive.)
+							return (element.toLowerCase().indexOf(filter) === 0);
+						});
+						if (!this.options.allowDuplicates) {
+							choices = this._subtractArray(choices, this.assignedTags());
+						}
+						showChoices(choices);
+					}
                 };
             }
 
@@ -10519,6 +10521,8 @@ jQuery(document).ready(function($){
 				return;
 			}
 		}
+		
+		lasso_editor.article_object = post_container;
 		
 		// ways to inject codes into the enterEditor
 		if (lasso_editor.enterEditorHookArray) {
@@ -11766,7 +11770,7 @@ jQuery(document).ready(function($){
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'add categories...',
+				placeholderText: lasso_editor.strings.catsPlaceholder, //'add categories...',
 				availableTags: lasso_editor.postCategories
 			});
 
@@ -11776,7 +11780,7 @@ jQuery(document).ready(function($){
 
 			tags.tagit({
 				//fieldName:'itemName[fieldName][]',
-				placeholderText: 'add tags...',
+				placeholderText: lasso_editor.strings.tagsPlaceholder,//'add tags...',
 				availableTags: lasso_editor.postTags
 			});
 

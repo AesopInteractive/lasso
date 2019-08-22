@@ -54,11 +54,19 @@ function lasso_editor_controls() {
 		
 		$mobile_style = $is_mobile ? 'style="bottom:0px;"' : null;
 		$can_publish = lasso_user_can('publish_posts') || lasso_user_can('publish_pages');
+		?>
+		<style>
+		#lasso-html--table:before {
+			content: "<?php esc_attr_e( 'Table', 'lasso' );?>";
+		}
+		</style>
 		
+		<?php
 
 		if (!$use_old_ui) {
 		?>
 		<style>
+		
 		.lasso-editor-controls--wrap, #lasso--post-settings2,#lasso--save,#lasso--post-delete,#lasso--exit,#lasso--publish {
 			background-image: -webkit-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
 			background-image: -o-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
@@ -69,6 +77,8 @@ function lasso_editor_controls() {
 		.lasso--controls__right a:before, #lasso-toolbar--html__footer_desc {
 			color: <?php echo $text_color;?> !important;
 		}
+		
+		
 		
 		ul.lasso-editor-controls li:hover, #lasso--exit:hover,#lasso--post-settings2:hover,#lasso--post-delete:hover,#lasso--publish:hover,#lasso--save:hover {
 			background-image: -webkit-linear-gradient(top,<?php echo $hover_color1;?> 0,<?php echo $hover_color2;?> 100%);
@@ -293,7 +303,7 @@ function lasso_editor_text_toolbar() {
 			
 			<?php if ( $toolbar_list ): ?>
 		    <li id="lasso-toolbar--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>"></li>
-		    <li id="lasso-toolbar--ul" title="<?php esc_attr_e( 'Unordered', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>"></li>
 			<?php endif; ?>
 					
 		    
@@ -321,8 +331,9 @@ function lasso_editor_text_toolbar() {
 		    				<li id="lasso-html--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>">
 		    				<li id="lasso-html--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>">
 		    				<?php endif; ?>
-		    				<li id="lasso-html--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>">
 		    				<li id="lasso-html--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>">
+							<li id="lasso-html--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>">
+							
 							<li id="lasso-html--table" title="<?php esc_attr_e( 'Table', 'lasso' );?>">
 		    			</ul>
 		    			<a class="lasso-toolbar--html__control lasso-toolbar--html__cancel" href="#"><?php _e( 'Cancel', 'lasso' );?></a>

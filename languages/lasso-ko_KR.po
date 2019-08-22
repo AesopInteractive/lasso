@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2019-01-16 15:31-0200\n"
-"PO-Revision-Date: 2019-01-16 15:31-0200\n"
+"POT-Creation-Date: 2019-08-22 17:20-0500\n"
+"PO-Revision-Date: 2019-08-22 17:21-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
@@ -186,7 +186,7 @@ msgid "Version"
 msgstr ""
 
 #: admin/includes/class-tgm-plugin-activation.php:2443
-#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:475
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:498
 msgid "Status"
 msgstr "상태"
 
@@ -310,65 +310,65 @@ msgstr ""
 msgid "Deactivate License"
 msgstr ""
 
-#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:365
-#: public/includes/editor-modules.php:721
-#: public/includes/editor-modules.php:740
+#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:388
+#: public/includes/editor-modules.php:744
+#: public/includes/editor-modules.php:763
 msgid "Settings"
 msgstr ""
 
-#: admin/includes/menus/settings.php:146
+#: admin/includes/menus/settings.php:147
 msgid "Editus Settings"
 msgstr ""
 
-#: admin/includes/menus/settings.php:154
+#: admin/includes/menus/settings.php:155
 msgid "Enable for:"
 msgstr ""
 
-#: admin/includes/menus/settings.php:158
+#: admin/includes/menus/settings.php:159
 msgid "Enable Editus for the following post types."
 msgstr ""
 
-#: admin/includes/menus/settings.php:180
+#: admin/includes/menus/settings.php:181
 msgid "Internal Settings"
 msgstr ""
 
-#: admin/includes/menus/settings.php:183
+#: admin/includes/menus/settings.php:184
 msgid "Article Class"
 msgstr ""
 
-#: admin/includes/menus/settings.php:184
+#: admin/includes/menus/settings.php:185
 msgid ""
 "Provide the CSS class (including the preceding dot) of container that holds "
 "the post. This should be the first parent container class that holds "
 "the_content."
 msgstr ""
 
-#: admin/includes/menus/settings.php:189
+#: admin/includes/menus/settings.php:190
 msgid "Featured Image Class"
 msgstr ""
 
-#: admin/includes/menus/settings.php:190
+#: admin/includes/menus/settings.php:191
 msgid ""
 "Provide the CSS class that uses a featured image as a background image. This "
 "currently only supports themes that have the featured image set as "
 "background image."
 msgstr ""
 
-#: admin/includes/menus/settings.php:195
+#: admin/includes/menus/settings.php:196
 msgid "Article Title Class"
 msgstr ""
 
-#: admin/includes/menus/settings.php:196
+#: admin/includes/menus/settings.php:197
 msgid ""
 "Provide the CSS class for the post title. This will enable you to update the "
 "title of the post by clicking and typing."
 msgstr ""
 
-#: admin/includes/menus/settings.php:201
+#: admin/includes/menus/settings.php:202
 msgid "Ignored Items to Save"
 msgstr ""
 
-#: admin/includes/menus/settings.php:202
+#: admin/includes/menus/settings.php:203
 msgid ""
 "If your post container holds additional markup, list the css class names "
 "(comma separated, including the dot) of those items. When you enter the "
@@ -376,245 +376,254 @@ msgid ""
 "them as HTML."
 msgstr ""
 
-#: admin/includes/menus/settings.php:207
+#: admin/includes/menus/settings.php:208
 msgid "Read Only Items"
 msgstr ""
 
-#: admin/includes/menus/settings.php:208
+#: admin/includes/menus/settings.php:209
 msgid ""
 "If your post has items that should not be editable, list the css class names "
 "(comma separated, including the dot) of those items."
 msgstr ""
 
-#: admin/includes/menus/settings.php:214
+#: admin/includes/menus/settings.php:215
 msgid "Show Ignored Items"
 msgstr ""
 
-#: admin/includes/menus/settings.php:215
+#: admin/includes/menus/settings.php:216
 msgid ""
 "By default the ignored items are hidden. Check this to show ignored items "
 "while keeping them uneditable."
 msgstr ""
 
-#: admin/includes/menus/settings.php:219
+#: admin/includes/menus/settings.php:220
 msgid "Editor UI"
 msgstr ""
 
-#: admin/includes/menus/settings.php:223
+#: admin/includes/menus/settings.php:224
 msgid "Use the Old Toolbar"
 msgstr ""
 
-#: admin/includes/menus/settings.php:224
+#: admin/includes/menus/settings.php:225
 msgid ""
 "Use this option to disable the new color options and use the pre-1.0 toolbar."
 msgstr ""
 
-#: admin/includes/menus/settings.php:228
+#: admin/includes/menus/settings.php:229
 msgid "Editor Bar Color Top"
 msgstr ""
 
-#: admin/includes/menus/settings.php:229
+#: admin/includes/menus/settings.php:230
 msgid "Editor Bar Color Bottom"
 msgstr ""
 
-#: admin/includes/menus/settings.php:230
+#: admin/includes/menus/settings.php:231
 msgid "Dialog Color"
 msgstr ""
 
-#: admin/includes/menus/settings.php:231
+#: admin/includes/menus/settings.php:232
 msgid "Icon/Text Color"
 msgstr ""
 
-#: admin/includes/menus/settings.php:233
+#: admin/includes/menus/settings.php:234
 msgid "Default Colors"
 msgstr ""
 
-#: admin/includes/menus/settings.php:238
+#: admin/includes/menus/settings.php:239
 msgid "Enable H2 and H3 Buttons"
 msgstr ""
 
-#: admin/includes/menus/settings.php:239
+#: admin/includes/menus/settings.php:240
 msgid "Show the buttons to set H2 and H3 settings."
 msgstr ""
 
-#: admin/includes/menus/settings.php:244
+#: admin/includes/menus/settings.php:245
 msgid "Enable H4/H5/H6 Buttons"
 msgstr ""
 
-#: admin/includes/menus/settings.php:245
+#: admin/includes/menus/settings.php:246
 msgid "Show the buttons to set H4/H5/H6 settings."
 msgstr ""
 
-#: admin/includes/menus/settings.php:250
+#: admin/includes/menus/settings.php:252
+msgid "Enable OL/UL Buttons"
+msgstr ""
+
+#: admin/includes/menus/settings.php:253
+msgid ""
+"Show the buttons to create Ordered and Unordered Lists from text selection."
+msgstr ""
+
+#: admin/includes/menus/settings.php:258
 msgid "Enable Text Color Buttons"
 msgstr ""
 
-#: admin/includes/menus/settings.php:251
+#: admin/includes/menus/settings.php:259
 msgid "Show the buttons to set text colors."
 msgstr ""
 
-#: admin/includes/menus/settings.php:256
+#: admin/includes/menus/settings.php:264
 msgid "Enable Text Align Buttons"
 msgstr ""
 
-#: admin/includes/menus/settings.php:257
+#: admin/includes/menus/settings.php:265
 msgid "Show the buttons to set text alignment."
 msgstr ""
 
-#: admin/includes/menus/settings.php:263
+#: admin/includes/menus/settings.php:271
 msgid "Make links editable under the Editing Mode"
 msgstr ""
 
-#: admin/includes/menus/settings.php:264
+#: admin/includes/menus/settings.php:272
 msgid ""
 "Make links editable under the Editing Mode. Turning this on will make the "
 "links non-clickable while editing."
 msgstr ""
 
-#: admin/includes/menus/settings.php:268
+#: admin/includes/menus/settings.php:276
 msgid "Insert Component UI"
 msgstr ""
 
-#: admin/includes/menus/settings.php:269
+#: admin/includes/menus/settings.php:277
 msgid "UI mechanism to insert components"
 msgstr ""
 
-#: admin/includes/menus/settings.php:271
+#: admin/includes/menus/settings.php:279
 msgid "Drag and Drop"
 msgstr ""
 
-#: admin/includes/menus/settings.php:274
+#: admin/includes/menus/settings.php:282
 msgid "Click"
 msgstr ""
 
-#: admin/includes/menus/settings.php:277
+#: admin/includes/menus/settings.php:285
 msgid "Auto Button on Empty Paragraph. medium.com-like UI."
 msgstr ""
 
-#: admin/includes/menus/settings.php:286
+#: admin/includes/menus/settings.php:294
 msgid "Post Settings UI"
 msgstr ""
 
-#: admin/includes/menus/settings.php:290
+#: admin/includes/menus/settings.php:298
 msgid "Disable Post Settings"
 msgstr ""
 
-#: admin/includes/menus/settings.php:291
+#: admin/includes/menus/settings.php:299
 msgid ""
 "Check this to disable users from being able to edit post settings from the "
 "front-end."
 msgstr ""
 
-#: admin/includes/menus/settings.php:296
+#: admin/includes/menus/settings.php:304
 msgid "Allow Changing Post Date"
 msgstr ""
 
-#: admin/includes/menus/settings.php:297
+#: admin/includes/menus/settings.php:305
 msgid ""
 "Add the date selector to change the post's date to the Post Setting dialog"
 msgstr ""
 
-#: admin/includes/menus/settings.php:302
+#: admin/includes/menus/settings.php:310
 msgid "Allow Adding New Category"
 msgstr ""
 
-#: admin/includes/menus/settings.php:303
+#: admin/includes/menus/settings.php:311
 msgid ""
 "Add the user to create new, previously non-existing categories for posts."
 msgstr ""
 
-#: admin/includes/menus/settings.php:308
+#: admin/includes/menus/settings.php:316
 msgid "Do Not Allow \"Pending\" Status"
 msgstr ""
 
-#: admin/includes/menus/settings.php:309
+#: admin/includes/menus/settings.php:317
 msgid "Remove the Option to Set the Status to Pending."
 msgstr ""
 
-#: admin/includes/menus/settings.php:314
+#: admin/includes/menus/settings.php:322
 msgid "Remove POST URL Option"
 msgstr ""
 
-#: admin/includes/menus/settings.php:315
+#: admin/includes/menus/settings.php:323
 msgid "Remove the Option to Set the URL for the Post."
 msgstr ""
 
-#: admin/includes/menus/settings.php:320
+#: admin/includes/menus/settings.php:328
 msgid "Disable Post Adding"
 msgstr ""
 
-#: admin/includes/menus/settings.php:321
+#: admin/includes/menus/settings.php:329
 msgid ""
 "Check this box to disable users from being able to add new posts from the "
 "front-end."
 msgstr ""
 
-#: admin/includes/menus/settings.php:327
+#: admin/includes/menus/settings.php:335
 msgid "Misc"
 msgstr ""
 
-#: admin/includes/menus/settings.php:331
+#: admin/includes/menus/settings.php:339
 msgid "Do Not Show Tour Dialog"
 msgstr ""
 
-#: admin/includes/menus/settings.php:332
+#: admin/includes/menus/settings.php:340
 msgid "Check this box to disable the tour dialog box for all users."
 msgstr ""
 
-#: admin/includes/menus/settings.php:336
+#: admin/includes/menus/settings.php:344
 msgid "\"Bold\" Tag"
 msgstr ""
 
-#: admin/includes/menus/settings.php:337
+#: admin/includes/menus/settings.php:345
 msgid "Choose the HTML tag used for the \"Bold\" style."
 msgstr ""
 
-#: admin/includes/menus/settings.php:342
+#: admin/includes/menus/settings.php:350
 msgid "\"Italic\" Tag"
 msgstr ""
 
-#: admin/includes/menus/settings.php:343
+#: admin/includes/menus/settings.php:351
 msgid "Choose the HTML tag used for the \"Italic\" style."
 msgstr ""
 
-#: admin/includes/menus/settings.php:349
+#: admin/includes/menus/settings.php:357
 msgid "Advanced"
 msgstr ""
 
-#: admin/includes/menus/settings.php:353
+#: admin/includes/menus/settings.php:361
 msgid "Disable Aesop Component Conversion"
 msgstr ""
 
-#: admin/includes/menus/settings.php:354
+#: admin/includes/menus/settings.php:362
 msgid ""
 "Check this box to disable the conversion process used on Aesop Story Engine "
 "components."
 msgstr ""
 
-#: admin/includes/menus/settings.php:359
+#: admin/includes/menus/settings.php:367
 msgid "Enable Auto Save"
 msgstr ""
 
-#: admin/includes/menus/settings.php:360
+#: admin/includes/menus/settings.php:368
 msgid "Check this box to enable auto save."
 msgstr ""
 
-#: admin/includes/menus/settings.php:365
+#: admin/includes/menus/settings.php:373
 msgid "Disable Post Saving"
 msgstr ""
 
-#: admin/includes/menus/settings.php:366
+#: admin/includes/menus/settings.php:374
 msgid ""
 "By default the editor will update the database with the post or page it is "
 "being used on. Check this box to disable this. If you check this box, it is "
 "assumed that you will be using the provided filters to save your own content."
 msgstr ""
 
-#: admin/includes/menus/settings.php:372
+#: admin/includes/menus/settings.php:380
 msgid "Disable Post Editing"
 msgstr ""
 
-#: admin/includes/menus/settings.php:373
+#: admin/includes/menus/settings.php:381
 msgid ""
 "You may use this option if you only want to edit custom fields. Refer <a "
 "href=\"https://edituswp.com/editing-and-updating-custom-fields-from-frontend/"
@@ -622,17 +631,17 @@ msgid ""
 "still editable under the editing mode."
 msgstr ""
 
-#: admin/includes/menus/settings.php:379
+#: admin/includes/menus/settings.php:387
 msgid "Don't Use REST API to Save"
 msgstr ""
 
-#: admin/includes/menus/settings.php:380
+#: admin/includes/menus/settings.php:388
 msgid ""
 "By default the editor will use REST API to save posts. Check this box to use "
 "custom AJAX calls instead."
 msgstr ""
 
-#: admin/includes/menus/settings.php:390
+#: admin/includes/menus/settings.php:398
 msgid "Save Settings"
 msgstr ""
 
@@ -791,7 +800,7 @@ msgstr ""
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/process/new_object.php:42 public/includes/assets.php:262
+#: includes/process/new_object.php:42 public/includes/assets.php:261
 msgid "Once upon a time..."
 msgstr ""
 
@@ -817,231 +826,241 @@ msgstr ""
 msgid "Nonce not set."
 msgstr ""
 
-#: public/includes/assets.php:123 public/includes/editor-modules.php:547
+#: public/includes/assets.php:119 public/includes/editor-modules.php:570
 #: public/includes/option-engine.php:132
 msgid "Save"
 msgstr "저장"
 
-#: public/includes/assets.php:124
+#: public/includes/assets.php:120
 msgid "Please Select Text First."
 msgstr "텍스트를 먼저 선택하십시요."
 
-#: public/includes/assets.php:125 public/includes/editor-modules.php:315
-#: public/includes/editor-modules.php:540
-#: public/includes/editor-modules.php:620
-#: public/includes/editor-modules.php:930
+#: public/includes/assets.php:121 public/includes/editor-modules.php:338
+#: public/includes/editor-modules.php:563
+#: public/includes/editor-modules.php:643
+#: public/includes/editor-modules.php:953
 msgid "Cancel"
 msgstr "취소"
 
-#: public/includes/assets.php:126
+#: public/includes/assets.php:122
 msgid "Exit Editor"
 msgstr "에디터 종료"
 
-#: public/includes/assets.php:127
+#: public/includes/assets.php:123
 msgid "Saving..."
 msgstr "저장중"
 
-#: public/includes/assets.php:128
+#: public/includes/assets.php:124
 msgid "Saved!"
 msgstr "저장완료"
 
-#: public/includes/assets.php:129
+#: public/includes/assets.php:125
 msgid "Adding..."
 msgstr "추가중"
 
-#: public/includes/assets.php:130
+#: public/includes/assets.php:126
 msgid "Added!"
 msgstr "추가완료"
 
-#: public/includes/assets.php:131
+#: public/includes/assets.php:127
 msgid "Loading..."
 msgstr "로딩"
 
-#: public/includes/assets.php:132
+#: public/includes/assets.php:128
 msgid "Load More"
 msgstr "더보기"
 
-#: public/includes/assets.php:133 public/includes/helpers.php:443
+#: public/includes/assets.php:129 public/includes/helpers.php:443
 msgid "Close"
 msgstr "닫기"
 
-#: public/includes/assets.php:134
+#: public/includes/assets.php:130
 msgid "No more posts found"
 msgstr "더 글이 없습니다."
 
-#: public/includes/assets.php:135
+#: public/includes/assets.php:131
 msgid "Fetching failed."
 msgstr ""
 
-#: public/includes/assets.php:136
+#: public/includes/assets.php:132
 msgid "Gallery Created!"
 msgstr ""
 
-#: public/includes/assets.php:137
+#: public/includes/assets.php:133
 msgid "Gallery Updated!"
 msgstr ""
 
-#: public/includes/assets.php:138
+#: public/includes/assets.php:134
 msgid "Just write..."
 msgstr ""
 
-#: public/includes/assets.php:139
+#: public/includes/assets.php:135
 msgid "Choose an image"
 msgstr ""
 
-#: public/includes/assets.php:140
+#: public/includes/assets.php:136
 msgid "Update Image"
 msgstr ""
 
-#: public/includes/assets.php:141
+#: public/includes/assets.php:137
 msgid "Insert Image"
 msgstr ""
 
-#: public/includes/assets.php:142
+#: public/includes/assets.php:138
 msgid "Select Image"
 msgstr ""
 
-#: public/includes/assets.php:143
+#: public/includes/assets.php:139
 msgid "Remove featured image?"
 msgstr "대표 이미지를 뺄까요?"
 
-#: public/includes/assets.php:144
+#: public/includes/assets.php:140
 msgid "Update Selected Image"
 msgstr ""
 
-#: public/includes/assets.php:145
+#: public/includes/assets.php:141
 msgid "Choose images"
 msgstr ""
 
-#: public/includes/assets.php:146
+#: public/includes/assets.php:142
 msgid "Edit Image"
 msgstr ""
 
-#: public/includes/assets.php:147
+#: public/includes/assets.php:143
 #: public/includes/editor-modules--gallery.php:28
 msgid "Add Images"
 msgstr ""
 
-#: public/includes/assets.php:148
+#: public/includes/assets.php:144
 msgid "Add New Gallery"
 msgstr ""
 
-#: public/includes/assets.php:149
+#: public/includes/assets.php:145
 msgid "Select Editus Gallery Image"
 msgstr ""
 
-#: public/includes/assets.php:150
+#: public/includes/assets.php:146
 msgid "Use Selected Images"
 msgstr ""
 
-#: public/includes/assets.php:151
+#: public/includes/assets.php:147
 msgid "Publish Post?"
 msgstr "글을 공개할까요?"
 
-#: public/includes/assets.php:152
+#: public/includes/assets.php:148
 msgid "Yes, publish it!"
 msgstr "예"
 
-#: public/includes/assets.php:153
+#: public/includes/assets.php:149
 msgid "Trash Post?"
 msgstr "글을 삭제할까요?"
 
-#: public/includes/assets.php:154
+#: public/includes/assets.php:150
 msgid "Yes, trash it!"
 msgstr "예"
 
-#: public/includes/assets.php:155
+#: public/includes/assets.php:151
 msgid "Oh snap!"
 msgstr ""
 
-#: public/includes/assets.php:156
+#: public/includes/assets.php:152
 msgid "O.K. got it!"
 msgstr ""
 
-#: public/includes/assets.php:157
+#: public/includes/assets.php:153
 msgid ""
 "It looks like we are either missing the Article CSS class, or it is "
 "configured incorrectly. Editus will not function correctly without this CSS "
 "class."
 msgstr ""
 
-#: public/includes/assets.php:158
+#: public/includes/assets.php:154
 msgid "Update Settings"
 msgstr ""
 
-#: public/includes/assets.php:159
+#: public/includes/assets.php:155
 msgid "one more letter"
 msgstr ""
 
-#: public/includes/assets.php:160
+#: public/includes/assets.php:156
 msgid "You are currently editing a backup copy of this post."
 msgstr ""
 
-#: public/includes/components.php:19 public/includes/editor-modules.php:247
+#: public/includes/assets.php:158
+#, fuzzy
+#| msgid "Categories"
+msgid "add categories..."
+msgstr "카테고리"
+
+#: public/includes/assets.php:159
+msgid "add tags..."
+msgstr ""
+
+#: public/includes/components.php:19 public/includes/editor-modules.php:260
 msgid "Quote"
 msgstr ""
 
-#: public/includes/components.php:23 public/includes/editor-modules.php:245
+#: public/includes/components.php:23 public/includes/editor-modules.php:258
 msgid "Image"
 msgstr "이미지"
 
 #: public/includes/components.php:27
 #: public/includes/editor-modules--gallery.php:74
-#: public/includes/editor-modules.php:250
+#: public/includes/editor-modules.php:263
 msgid "Parallax"
 msgstr ""
 
-#: public/includes/components.php:31 public/includes/editor-modules.php:251
+#: public/includes/components.php:31 public/includes/editor-modules.php:264
 msgid "Audio"
 msgstr ""
 
-#: public/includes/components.php:35 public/includes/editor-modules.php:248
-#: public/includes/editor-modules.php:888
+#: public/includes/components.php:35 public/includes/editor-modules.php:261
+#: public/includes/editor-modules.php:911
 msgid "Content"
 msgstr ""
 
-#: public/includes/components.php:39 public/includes/editor-modules.php:246
+#: public/includes/components.php:39 public/includes/editor-modules.php:259
 msgid "Character"
 msgstr ""
 
-#: public/includes/components.php:43 public/includes/editor-modules.php:256
+#: public/includes/components.php:43 public/includes/editor-modules.php:269
 msgid "Collection"
 msgstr ""
 
-#: public/includes/components.php:47 public/includes/editor-modules.php:255
+#: public/includes/components.php:47 public/includes/editor-modules.php:268
 msgid "Document"
 msgstr ""
 
-#: public/includes/components.php:51 public/includes/editor-modules.php:257
+#: public/includes/components.php:51 public/includes/editor-modules.php:270
 msgid "Gallery"
 msgstr ""
 
-#: public/includes/components.php:55 public/includes/editor-modules.php:249
+#: public/includes/components.php:55 public/includes/editor-modules.php:262
 msgid "Chapter"
 msgstr ""
 
-#: public/includes/components.php:59 public/includes/editor-modules.php:253
+#: public/includes/components.php:59 public/includes/editor-modules.php:266
 msgid "Map"
 msgstr "지도"
 
-#: public/includes/components.php:63 public/includes/editor-modules.php:254
+#: public/includes/components.php:63 public/includes/editor-modules.php:267
 msgid "Timeline"
 msgstr ""
 
-#: public/includes/components.php:67 public/includes/editor-modules.php:252
+#: public/includes/components.php:67 public/includes/editor-modules.php:265
 msgid "Video"
 msgstr "동영상"
 
 #: public/includes/components.php:71 public/includes/components.php:87
-#: public/includes/editor-modules.php:265
+#: public/includes/editor-modules.php:278
 msgid "WordPress Image"
 msgstr "이미지"
 
-#: public/includes/components.php:75 public/includes/editor-modules.php:266
+#: public/includes/components.php:75 public/includes/editor-modules.php:279
 msgid "WordPress Quote"
 msgstr "인용구"
 
-#: public/includes/components.php:79 public/includes/editor-modules.php:259
+#: public/includes/components.php:79 public/includes/editor-modules.php:272
 msgid "Gallery Pop"
 msgstr ""
 
@@ -1182,296 +1201,302 @@ msgstr ""
 msgid "Add an optional caption for the gallery."
 msgstr ""
 
-#: public/includes/editor-modules.php:123
+#: public/includes/editor-modules.php:60 public/includes/editor-modules.php:336
+msgid "Table"
+msgstr ""
+
+#: public/includes/editor-modules.php:132
 #: public/includes/underscore-templates.php:23
 #: public/includes/underscore-templates.php:41
 msgid "Edit Post"
 msgstr "글 편집"
 
-#: public/includes/editor-modules.php:126
-#: public/includes/editor-modules.php:150
-#: public/includes/editor-modules.php:331
+#: public/includes/editor-modules.php:135
+#: public/includes/editor-modules.php:159
+#: public/includes/editor-modules.php:354
 msgid "Post Settings"
 msgstr "글 세팅"
 
-#: public/includes/editor-modules.php:131
+#: public/includes/editor-modules.php:140
 msgid "All Posts"
 msgstr "글 목록"
 
-#: public/includes/editor-modules.php:134
-#: public/includes/editor-modules.php:924
+#: public/includes/editor-modules.php:143
+#: public/includes/editor-modules.php:947
 msgid "Revisions"
 msgstr "리비젼"
 
-#: public/includes/editor-modules.php:138
+#: public/includes/editor-modules.php:147
 msgid "Add Post"
 msgstr "새글"
 
-#: public/includes/editor-modules.php:149
-#: public/includes/editor-modules.php:330
+#: public/includes/editor-modules.php:158
+#: public/includes/editor-modules.php:353
 #: public/includes/underscore-templates.php:25
 #: public/includes/underscore-templates.php:43
 msgid "Delete Post"
 msgstr "글 삭제"
 
-#: public/includes/editor-modules.php:153
-#: public/includes/editor-modules.php:333
+#: public/includes/editor-modules.php:162
+#: public/includes/editor-modules.php:356
 msgid "Save Post"
 msgstr "글저장"
 
-#: public/includes/editor-modules.php:156
-#: public/includes/editor-modules.php:336
+#: public/includes/editor-modules.php:165
+#: public/includes/editor-modules.php:359
 msgid "Publish Post"
 msgstr "글공개"
 
-#: public/includes/editor-modules.php:156
+#: public/includes/editor-modules.php:165
 msgid "Submit For Review"
 msgstr "검토글로 저장"
 
-#: public/includes/editor-modules.php:238
+#: public/includes/editor-modules.php:251
 msgid "Bold"
 msgstr ""
 
-#: public/includes/editor-modules.php:239
+#: public/includes/editor-modules.php:252
 msgid "Underline"
 msgstr ""
 
-#: public/includes/editor-modules.php:240
+#: public/includes/editor-modules.php:253
 msgid "Italicize"
 msgstr ""
 
-#: public/includes/editor-modules.php:241
+#: public/includes/editor-modules.php:254
 msgid "Strikethrough"
 msgstr ""
 
-#: public/includes/editor-modules.php:242
+#: public/includes/editor-modules.php:255
 msgid "Insert Component"
 msgstr ""
 
-#: public/includes/editor-modules.php:262
+#: public/includes/editor-modules.php:275
 msgid "Event"
 msgstr ""
 
-#: public/includes/editor-modules.php:267
+#: public/includes/editor-modules.php:280
 msgid "WordPress Video"
 msgstr "코드"
 
-#: public/includes/editor-modules.php:273
-#: public/includes/editor-modules.php:309
+#: public/includes/editor-modules.php:286
+#: public/includes/editor-modules.php:330
 msgid "H2 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:274
-#: public/includes/editor-modules.php:310
+#: public/includes/editor-modules.php:287
+#: public/includes/editor-modules.php:331
 msgid "H3 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:277
+#: public/includes/editor-modules.php:293
 msgid "H4 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:278
+#: public/includes/editor-modules.php:294
 msgid "H5 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:279
+#: public/includes/editor-modules.php:295
 msgid "H6 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:283
+#: public/includes/editor-modules.php:299
 msgid "Set Color for Selected Text"
 msgstr "선택된 텍스트색 설정"
 
-#: public/includes/editor-modules.php:284
+#: public/includes/editor-modules.php:300
 msgid "Choose Color"
 msgstr "색 변경"
 
-#: public/includes/editor-modules.php:288
+#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:333
+msgid "Ordered List"
+msgstr ""
+
+#: public/includes/editor-modules.php:305
+#: public/includes/editor-modules.php:334
+msgid "Unordered List"
+msgstr ""
+
+#: public/includes/editor-modules.php:309
 msgid "Anchor Link"
 msgstr "링크"
 
-#: public/includes/editor-modules.php:290
+#: public/includes/editor-modules.php:311
 msgid "http://url.com"
 msgstr ""
 
-#: public/includes/editor-modules.php:291
+#: public/includes/editor-modules.php:312
 msgid "Create Link"
 msgstr "링크"
 
-#: public/includes/editor-modules.php:293
+#: public/includes/editor-modules.php:314
 msgid "Open in a New Tab"
 msgstr "새 탭에서 열기"
 
-#: public/includes/editor-modules.php:297
-#: public/includes/editor-modules.php:316
+#: public/includes/editor-modules.php:318
+#: public/includes/editor-modules.php:339
 msgid "Insert HTML or Code"
 msgstr "코드"
 
-#: public/includes/editor-modules.php:299
-#: public/includes/editor-modules.php:302
+#: public/includes/editor-modules.php:320
+#: public/includes/editor-modules.php:323
 msgid "Enter HTML to insert"
 msgstr "삽입할 HTML코드"
 
-#: public/includes/editor-modules.php:303
+#: public/includes/editor-modules.php:324
 msgid "You can also use Shortcodes"
 msgstr "또는 워드프레스 숏코드"
 
-#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:325
 msgid ""
 "You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs."
 msgstr "아니면 삽입할 URL을 입력하세요. 유튜브나 트위터등을 지원합니다."
 
-#: public/includes/editor-modules.php:312
-msgid "Unordered List"
-msgstr ""
-
-#: public/includes/editor-modules.php:313
-msgid "Ordered List"
-msgstr ""
-
-#: public/includes/editor-modules.php:316
+#: public/includes/editor-modules.php:339
 msgid "Insert"
 msgstr "삽입"
 
-#: public/includes/editor-modules.php:321
+#: public/includes/editor-modules.php:344
 msgid "Text Left Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:322
+#: public/includes/editor-modules.php:345
 msgid "Text Center Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:323
+#: public/includes/editor-modules.php:346
 msgid "Text Right Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:364
-#: public/includes/editor-modules.php:720
-#: public/includes/editor-modules.php:739
+#: public/includes/editor-modules.php:387
+#: public/includes/editor-modules.php:743
+#: public/includes/editor-modules.php:762
 msgid "Move"
 msgstr ""
 
-#: public/includes/editor-modules.php:366
-#: public/includes/editor-modules.php:722
-#: public/includes/editor-modules.php:741
+#: public/includes/editor-modules.php:389
+#: public/includes/editor-modules.php:745
+#: public/includes/editor-modules.php:764
 msgid "Clone"
 msgstr ""
 
-#: public/includes/editor-modules.php:367
-#: public/includes/editor-modules.php:723
-#: public/includes/editor-modules.php:742
+#: public/includes/editor-modules.php:390
+#: public/includes/editor-modules.php:746
+#: public/includes/editor-modules.php:765
 msgid "Delete"
 msgstr "삭제"
 
-#: public/includes/editor-modules.php:389
+#: public/includes/editor-modules.php:412
 msgid "Replace Image"
 msgstr "이미지변경"
 
-#: public/includes/editor-modules.php:390
+#: public/includes/editor-modules.php:413
 msgid "Delete Image"
 msgstr "이미지 삭제"
 
-#: public/includes/editor-modules.php:391
+#: public/includes/editor-modules.php:414
 msgid "save"
 msgstr "저장"
 
-#: public/includes/editor-modules.php:454
+#: public/includes/editor-modules.php:477
 msgid "Featured Image"
 msgstr "대표 이미지"
 
-#: public/includes/editor-modules.php:454
+#: public/includes/editor-modules.php:477
 msgid "Change the featured image for this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:458
+#: public/includes/editor-modules.php:481
 msgid "Change Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:459
+#: public/includes/editor-modules.php:482
 msgid "Delete Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:475
+#: public/includes/editor-modules.php:498
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
-#: public/includes/editor-modules.php:477
+#: public/includes/editor-modules.php:500
 msgid "Draft"
 msgstr "비공개"
 
-#: public/includes/editor-modules.php:479
+#: public/includes/editor-modules.php:502
 msgid "Pending"
 msgstr "검토"
 
-#: public/includes/editor-modules.php:481
+#: public/includes/editor-modules.php:504
 msgid "Publish"
 msgstr "공개"
 
-#: public/includes/editor-modules.php:491
+#: public/includes/editor-modules.php:514
 msgid "Post URL"
 msgstr "글주소"
 
-#: public/includes/editor-modules.php:491
+#: public/includes/editor-modules.php:514
 msgid "Change the URL (slug) of this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:501
+#: public/includes/editor-modules.php:524
 msgid "Categories"
 msgstr "카테고리"
 
-#: public/includes/editor-modules.php:501
+#: public/includes/editor-modules.php:524
 msgid "Type a category name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:506
+#: public/includes/editor-modules.php:529
 msgid "Tags"
 msgstr "태그"
 
-#: public/includes/editor-modules.php:506
+#: public/includes/editor-modules.php:529
 msgid "Type a tag name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:513
+#: public/includes/editor-modules.php:536
 msgid "Post Date"
 msgstr "글쓴날짜"
 
-#: public/includes/editor-modules.php:515
+#: public/includes/editor-modules.php:538
 msgid "Set to Now"
 msgstr ""
 
-#: public/includes/editor-modules.php:596
+#: public/includes/editor-modules.php:619
 msgid "New <span>post</span> title"
 msgstr "새글 제목"
 
-#: public/includes/editor-modules.php:596
+#: public/includes/editor-modules.php:619
 msgid "Specify title for new post, then save to edit."
 msgstr ""
 
-#: public/includes/editor-modules.php:597
+#: public/includes/editor-modules.php:620
 msgid "Type Your Title Here"
 msgstr ""
 
-#: public/includes/editor-modules.php:632
+#: public/includes/editor-modules.php:655
 msgid "Create"
 msgstr "만들기"
 
-#: public/includes/editor-modules.php:671
+#: public/includes/editor-modules.php:694
 msgid "results found"
 msgstr ""
 
-#: public/includes/editor-modules.php:764
+#: public/includes/editor-modules.php:787
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:782
+#: public/includes/editor-modules.php:805
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 
-#: public/includes/editor-modules.php:924
+#: public/includes/editor-modules.php:947
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
 
-#: public/includes/editor-modules.php:931
+#: public/includes/editor-modules.php:954
 msgid "Select"
 msgstr "선택"
 

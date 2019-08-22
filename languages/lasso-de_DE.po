@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2019-01-16 15:31-0200\n"
-"PO-Revision-Date: 2019-08-11 15:05+0200\n"
+"POT-Creation-Date: 2019-08-22 17:21-0500\n"
+"PO-Revision-Date: 2019-08-22 17:56-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -198,7 +198,7 @@ msgid "Version"
 msgstr "Version"
 
 #: admin/includes/class-tgm-plugin-activation.php:2443
-#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:475
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:498
 msgid "Status"
 msgstr "Status"
 
@@ -335,33 +335,33 @@ msgstr "aktiviert"
 msgid "Deactivate License"
 msgstr "Lizenz deaktivieren"
 
-#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:365
-#: public/includes/editor-modules.php:721
-#: public/includes/editor-modules.php:740
+#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:388
+#: public/includes/editor-modules.php:744
+#: public/includes/editor-modules.php:763
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin/includes/menus/settings.php:146
+#: admin/includes/menus/settings.php:147
 msgid "Editus Settings"
 msgstr "Editus-Einstellungen"
 
-#: admin/includes/menus/settings.php:154
+#: admin/includes/menus/settings.php:155
 msgid "Enable for:"
 msgstr "Aktivieren für:"
 
-#: admin/includes/menus/settings.php:158
+#: admin/includes/menus/settings.php:159
 msgid "Enable Editus for the following post types."
 msgstr "Editus für die folgende Post-Typen aktivieren."
 
-#: admin/includes/menus/settings.php:180
+#: admin/includes/menus/settings.php:181
 msgid "Internal Settings"
 msgstr "Interne Einstellungen"
 
-#: admin/includes/menus/settings.php:183
+#: admin/includes/menus/settings.php:184
 msgid "Article Class"
 msgstr "Artikel Klasse"
 
-#: admin/includes/menus/settings.php:184
+#: admin/includes/menus/settings.php:185
 msgid ""
 "Provide the CSS class (including the preceding dot) of container that holds "
 "the post. This should be the first parent container class that holds "
@@ -371,11 +371,11 @@ msgstr ""
 "an, der den Beitrag enthält. Dies sollte die erste übergeordnete "
 "Containerklasse sein, die the_content enthält."
 
-#: admin/includes/menus/settings.php:189
+#: admin/includes/menus/settings.php:190
 msgid "Featured Image Class"
 msgstr "Beitragsbild Klasse"
 
-#: admin/includes/menus/settings.php:190
+#: admin/includes/menus/settings.php:191
 msgid ""
 "Provide the CSS class that uses a featured image as a background image. This "
 "currently only supports themes that have the featured image set as "
@@ -385,11 +385,11 @@ msgstr ""
 "verwendet. Derzeit werden nur Designs unterstützt, bei denen das "
 "Beitragsbild als Hintergrundbild festgelegt ist."
 
-#: admin/includes/menus/settings.php:195
+#: admin/includes/menus/settings.php:196
 msgid "Article Title Class"
 msgstr "Artikel Titel Klasse"
 
-#: admin/includes/menus/settings.php:196
+#: admin/includes/menus/settings.php:197
 msgid ""
 "Provide the CSS class for the post title. This will enable you to update the "
 "title of the post by clicking and typing."
@@ -397,11 +397,11 @@ msgstr ""
 "Geib die CSS-Klasse für den Beitragstitel an. Auf diese Weise kannst du den "
 "Titel des Beitrags durch Klicken und Eingeben aktualisieren."
 
-#: admin/includes/menus/settings.php:201
+#: admin/includes/menus/settings.php:202
 msgid "Ignored Items to Save"
 msgstr "Ignorierte Elemente zum Speichern"
 
-#: admin/includes/menus/settings.php:202
+#: admin/includes/menus/settings.php:203
 msgid ""
 "If your post container holds additional markup, list the css class names "
 "(comma separated, including the dot) of those items. When you enter the "
@@ -413,11 +413,11 @@ msgstr ""
 "Elemente auf. Wenn du den Editor startest, werden diese Elemente von Editus "
 "entfernt (NICHT gelöscht), sodass diese nicht als HTML gespeichert werden."
 
-#: admin/includes/menus/settings.php:207
+#: admin/includes/menus/settings.php:208
 msgid "Read Only Items"
 msgstr "Nur lesen"
 
-#: admin/includes/menus/settings.php:208
+#: admin/includes/menus/settings.php:209
 msgid ""
 "If your post has items that should not be editable, list the css class names "
 "(comma separated, including the dot) of those items."
@@ -426,11 +426,11 @@ msgstr ""
 "führe die CSS-Klassennamen (durch Kommas getrennt, einschließlich des "
 "Punktes) dieser Elemente an."
 
-#: admin/includes/menus/settings.php:214
+#: admin/includes/menus/settings.php:215
 msgid "Show Ignored Items"
 msgstr "Ignorierte Objekte anzeigen"
 
-#: admin/includes/menus/settings.php:215
+#: admin/includes/menus/settings.php:216
 msgid ""
 "By default the ignored items are hidden. Check this to show ignored items "
 "while keeping them uneditable."
@@ -439,78 +439,89 @@ msgstr ""
 "Kontrollkästchen, um ignorierte Elemente anzuzeigen, die jedoch nicht "
 "bearbeitet werden können."
 
-#: admin/includes/menus/settings.php:219
+#: admin/includes/menus/settings.php:220
 msgid "Editor UI"
 msgstr "Editor UI"
 
-#: admin/includes/menus/settings.php:223
+#: admin/includes/menus/settings.php:224
 msgid "Use the Old Toolbar"
 msgstr "Verwende die alte Symbolleiste"
 
-#: admin/includes/menus/settings.php:224
+#: admin/includes/menus/settings.php:225
 msgid ""
 "Use this option to disable the new color options and use the pre-1.0 toolbar."
 msgstr ""
 "Verwende diese Option, um die neuen Farboptionen zu deaktivieren und die "
 "Symbolleiste vor 1.0 zu verwenden."
 
-#: admin/includes/menus/settings.php:228
+#: admin/includes/menus/settings.php:229
 msgid "Editor Bar Color Top"
 msgstr "Bearbeitungsleiste Farbe oben"
 
-#: admin/includes/menus/settings.php:229
+#: admin/includes/menus/settings.php:230
 msgid "Editor Bar Color Bottom"
 msgstr "Bearbeitungsleiste Farbe unten"
 
-#: admin/includes/menus/settings.php:230
+#: admin/includes/menus/settings.php:231
 msgid "Dialog Color"
 msgstr "Dialogfeld Farbe"
 
-#: admin/includes/menus/settings.php:231
+#: admin/includes/menus/settings.php:232
 msgid "Icon/Text Color"
 msgstr "Symbol und Textfarbe"
 
-#: admin/includes/menus/settings.php:233
+#: admin/includes/menus/settings.php:234
 msgid "Default Colors"
 msgstr "Standardfarben"
 
-#: admin/includes/menus/settings.php:238
+#: admin/includes/menus/settings.php:239
 msgid "Enable H2 and H3 Buttons"
 msgstr "Aktiviere H2/H3 Button"
 
-#: admin/includes/menus/settings.php:239
+#: admin/includes/menus/settings.php:240
 msgid "Show the buttons to set H2 and H3 settings."
 msgstr "Zeige Button für  H2/H3-Einstellungen."
 
-#: admin/includes/menus/settings.php:244
+#: admin/includes/menus/settings.php:245
 msgid "Enable H4/H5/H6 Buttons"
 msgstr "Aktiviere H4/H5/H6 Button"
 
-#: admin/includes/menus/settings.php:245
+#: admin/includes/menus/settings.php:246
 msgid "Show the buttons to set H4/H5/H6 settings."
 msgstr "Zeige Button für H4/H5/H6-Einstellungen."
 
-#: admin/includes/menus/settings.php:250
+#: admin/includes/menus/settings.php:252
+msgid "Enable OL/UL Buttons"
+msgstr "Aktiviere Buttons für Nummerierte Liste und Aufzählung"
+
+#: admin/includes/menus/settings.php:253
+msgid ""
+"Show the buttons to create Ordered and Unordered Lists from text selection."
+msgstr ""
+"Zeige die Buttons um Nummerierte Listen und Aufzählungen aus markiertem Text "
+"zu erstellen."
+
+#: admin/includes/menus/settings.php:258
 msgid "Enable Text Color Buttons"
 msgstr "Aktiviere Button für Textfarben"
 
-#: admin/includes/menus/settings.php:251
+#: admin/includes/menus/settings.php:259
 msgid "Show the buttons to set text colors."
 msgstr "Zeige Buttons, um Textfarben anzupassen."
 
-#: admin/includes/menus/settings.php:256
+#: admin/includes/menus/settings.php:264
 msgid "Enable Text Align Buttons"
 msgstr "Textausrichtungs-Buttons aktivieren"
 
-#: admin/includes/menus/settings.php:257
+#: admin/includes/menus/settings.php:265
 msgid "Show the buttons to set text alignment."
 msgstr "Zeige Textausrichtungs-Schaltflächen an."
 
-#: admin/includes/menus/settings.php:263
+#: admin/includes/menus/settings.php:271
 msgid "Make links editable under the Editing Mode"
 msgstr "Mache Links im Bearbeitungsmodus bearbeitbar"
 
-#: admin/includes/menus/settings.php:264
+#: admin/includes/menus/settings.php:272
 msgid ""
 "Make links editable under the Editing Mode. Turning this on will make the "
 "links non-clickable while editing."
@@ -518,35 +529,35 @@ msgstr ""
 "Mache Links im Bearbeitungsmodus bearbeitbar. Wenn diese Option aktiviert "
 "ist, können Links während der Bearbeitung nicht angeklickt werden."
 
-#: admin/includes/menus/settings.php:268
+#: admin/includes/menus/settings.php:276
 msgid "Insert Component UI"
 msgstr "Komponente einfügen"
 
-#: admin/includes/menus/settings.php:269
+#: admin/includes/menus/settings.php:277
 msgid "UI mechanism to insert components"
 msgstr "UI-Mechanismus zum Einfügen von Komponenten"
 
-#: admin/includes/menus/settings.php:271
+#: admin/includes/menus/settings.php:279
 msgid "Drag and Drop"
 msgstr "Drag & Drop"
 
-#: admin/includes/menus/settings.php:274
+#: admin/includes/menus/settings.php:282
 msgid "Click"
 msgstr "Klick"
 
-#: admin/includes/menus/settings.php:277
+#: admin/includes/menus/settings.php:285
 msgid "Auto Button on Empty Paragraph. medium.com-like UI."
 msgstr "Auto-Button bei leerem Absatz. medium.com-ähnliche Benutzeroberfläche."
 
-#: admin/includes/menus/settings.php:286
+#: admin/includes/menus/settings.php:294
 msgid "Post Settings UI"
 msgstr "Benutzeroberfläche für Beitragseinstellungen"
 
-#: admin/includes/menus/settings.php:290
+#: admin/includes/menus/settings.php:298
 msgid "Disable Post Settings"
 msgstr "Beitragseinstellungen deaktivieren"
 
-#: admin/includes/menus/settings.php:291
+#: admin/includes/menus/settings.php:299
 msgid ""
 "Check this to disable users from being able to edit post settings from the "
 "front-end."
@@ -554,50 +565,50 @@ msgstr ""
 "Aktiviere dieses Kontrollkästchen, um zu verhindern dass Benutzer "
 "Beitragseinstellungen im Frontend bearbeiten können."
 
-#: admin/includes/menus/settings.php:296
+#: admin/includes/menus/settings.php:304
 msgid "Allow Changing Post Date"
 msgstr "Ändern des Beitragsdatums zulassen"
 
-#: admin/includes/menus/settings.php:297
+#: admin/includes/menus/settings.php:305
 msgid ""
 "Add the date selector to change the post's date to the Post Setting dialog"
 msgstr ""
 "Füge Datumsauswahl hinzu, um das Beitragsdatum im Dialogfeld \"Einstellungen"
 "\" zu ändern"
 
-#: admin/includes/menus/settings.php:302
+#: admin/includes/menus/settings.php:310
 msgid "Allow Adding New Category"
 msgstr "Hinzufügen neuer Kategorien zulassen"
 
-#: admin/includes/menus/settings.php:303
+#: admin/includes/menus/settings.php:311
 msgid ""
 "Add the user to create new, previously non-existing categories for posts."
 msgstr ""
 "Erlaube Benutzern, neue (noch nicht existierende) Kategorien für Beiträge zu "
 "erstellen."
 
-#: admin/includes/menus/settings.php:308
+#: admin/includes/menus/settings.php:316
 msgid "Do Not Allow \"Pending\" Status"
 msgstr "Status \"Ausstehend\" verbieten"
 
-#: admin/includes/menus/settings.php:309
+#: admin/includes/menus/settings.php:317
 msgid "Remove the Option to Set the Status to Pending."
 msgstr "Entferne die Option, den Status auf Ausstehend zu setzen."
 
-#: admin/includes/menus/settings.php:314
+#: admin/includes/menus/settings.php:322
 msgid "Remove POST URL Option"
 msgstr "Entferne Beitrags-URL-Option"
 
-#: admin/includes/menus/settings.php:315
+#: admin/includes/menus/settings.php:323
 msgid "Remove the Option to Set the URL for the Post."
 msgstr ""
 "Entferne die Option, die URL-Titelform (slug) des Beitrags zu bearbeiten."
 
-#: admin/includes/menus/settings.php:320
+#: admin/includes/menus/settings.php:328
 msgid "Disable Post Adding"
 msgstr "Beitragserstellung deaktivieren"
 
-#: admin/includes/menus/settings.php:321
+#: admin/includes/menus/settings.php:329
 msgid ""
 "Check this box to disable users from being able to add new posts from the "
 "front-end."
@@ -605,45 +616,45 @@ msgstr ""
 "Aktiviere dieses Kontrollkästchen, um zu verhindern dass Benutzer neue "
 "Beiträge aus dem Frontend hinzufügen können."
 
-#: admin/includes/menus/settings.php:327
+#: admin/includes/menus/settings.php:335
 msgid "Misc"
 msgstr "Diverses"
 
-#: admin/includes/menus/settings.php:331
+#: admin/includes/menus/settings.php:339
 msgid "Do Not Show Tour Dialog"
 msgstr "Tour-Dialog nicht mehr anzeigen"
 
-#: admin/includes/menus/settings.php:332
+#: admin/includes/menus/settings.php:340
 msgid "Check this box to disable the tour dialog box for all users."
 msgstr ""
 "Aktiviere dieses Kontrollkästchen, um den Tour-Dialog für alle Benutzer zu "
 "deaktivieren."
 
-#: admin/includes/menus/settings.php:336
+#: admin/includes/menus/settings.php:344
 msgid "\"Bold\" Tag"
 msgstr "\"Fett\" Tag"
 
-#: admin/includes/menus/settings.php:337
+#: admin/includes/menus/settings.php:345
 msgid "Choose the HTML tag used for the \"Bold\" style."
 msgstr "Wähle das HTML-Tag für \"Fett\"."
 
-#: admin/includes/menus/settings.php:342
+#: admin/includes/menus/settings.php:350
 msgid "\"Italic\" Tag"
 msgstr "\"Kursiv\" Tag"
 
-#: admin/includes/menus/settings.php:343
+#: admin/includes/menus/settings.php:351
 msgid "Choose the HTML tag used for the \"Italic\" style."
 msgstr "Wähle das HTML-Tag für \"Kursiv\"."
 
-#: admin/includes/menus/settings.php:349
+#: admin/includes/menus/settings.php:357
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#: admin/includes/menus/settings.php:353
+#: admin/includes/menus/settings.php:361
 msgid "Disable Aesop Component Conversion"
 msgstr "Aesop Komponente Konvertierung deaktivieren"
 
-#: admin/includes/menus/settings.php:354
+#: admin/includes/menus/settings.php:362
 msgid ""
 "Check this box to disable the conversion process used on Aesop Story Engine "
 "components."
@@ -651,21 +662,21 @@ msgstr ""
 "Aktiviere dieses Kontrollkästchen, um den für die Aesop Story Engine-"
 "Komponenten verwendeten Konvertierungsprozess zu deaktivieren."
 
-#: admin/includes/menus/settings.php:359
+#: admin/includes/menus/settings.php:367
 msgid "Enable Auto Save"
 msgstr "Automatisches Speichern aktivieren"
 
-#: admin/includes/menus/settings.php:360
+#: admin/includes/menus/settings.php:368
 msgid "Check this box to enable auto save."
 msgstr ""
 "Aktiviere dieses Kontrollkästchen, um das automatische Speichern zu "
 "aktivieren."
 
-#: admin/includes/menus/settings.php:365
+#: admin/includes/menus/settings.php:373
 msgid "Disable Post Saving"
 msgstr "Speichern von Beiträgen deaktivieren"
 
-#: admin/includes/menus/settings.php:366
+#: admin/includes/menus/settings.php:374
 msgid ""
 "By default the editor will update the database with the post or page it is "
 "being used on. Check this box to disable this. If you check this box, it is "
@@ -677,11 +688,11 @@ msgstr ""
 "ausgegangen, dass die bereitgestellten Filter zum Speichern des eigenen "
 "Inhalts verwenden werden."
 
-#: admin/includes/menus/settings.php:372
+#: admin/includes/menus/settings.php:380
 msgid "Disable Post Editing"
 msgstr "Deaktiviere die Bearbeitung von Beiträgen"
 
-#: admin/includes/menus/settings.php:373
+#: admin/includes/menus/settings.php:381
 msgid ""
 "You may use this option if you only want to edit custom fields. Refer <a "
 "href=\"https://edituswp.com/editing-and-updating-custom-fields-from-frontend/"
@@ -694,11 +705,11 @@ msgstr ""
 "ausgewählten benutzerdefinierten Felder können im Bearbeitungsmodus "
 "weiterhin bearbeitet werden."
 
-#: admin/includes/menus/settings.php:379
+#: admin/includes/menus/settings.php:387
 msgid "Don't Use REST API to Save"
 msgstr "REST-API zum Speichern nicht verwenden"
 
-#: admin/includes/menus/settings.php:380
+#: admin/includes/menus/settings.php:388
 msgid ""
 "By default the editor will use REST API to save posts. Check this box to use "
 "custom AJAX calls instead."
@@ -707,7 +718,7 @@ msgstr ""
 "Aktiviere das Kontrollkästchen, um stattdessen benutzerdefinierte AJAX-Calls "
 "zu verwenden."
 
-#: admin/includes/menus/settings.php:390
+#: admin/includes/menus/settings.php:398
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
 
@@ -897,7 +908,7 @@ msgstr "Aus der Galerie löschen"
 msgid "Edit Image Caption"
 msgstr "Bildunterschrift bearbeiten"
 
-#: includes/process/new_object.php:42 public/includes/assets.php:262
+#: includes/process/new_object.php:42 public/includes/assets.php:261
 msgid "Once upon a time..."
 msgstr "Schreib etwas..."
 
@@ -926,148 +937,148 @@ msgstr "Editus API-Fehler."
 msgid "Nonce not set."
 msgstr "Nonce nicht gesetzt."
 
-#: public/includes/assets.php:123 public/includes/editor-modules.php:547
+#: public/includes/assets.php:119 public/includes/editor-modules.php:570
 #: public/includes/option-engine.php:132
 msgid "Save"
 msgstr "Speichern"
 
-#: public/includes/assets.php:124
+#: public/includes/assets.php:120
 msgid "Please Select Text First."
 msgstr "Bitte zuerst Text auswählen."
 
-#: public/includes/assets.php:125 public/includes/editor-modules.php:315
-#: public/includes/editor-modules.php:540
-#: public/includes/editor-modules.php:620
-#: public/includes/editor-modules.php:930
+#: public/includes/assets.php:121 public/includes/editor-modules.php:338
+#: public/includes/editor-modules.php:563
+#: public/includes/editor-modules.php:643
+#: public/includes/editor-modules.php:953
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: public/includes/assets.php:126
+#: public/includes/assets.php:122
 msgid "Exit Editor"
 msgstr "Editor verlassen"
 
-#: public/includes/assets.php:127
+#: public/includes/assets.php:123
 msgid "Saving..."
 msgstr "Speichere…"
 
-#: public/includes/assets.php:128
+#: public/includes/assets.php:124
 msgid "Saved!"
 msgstr "Gespeichert!"
 
-#: public/includes/assets.php:129
+#: public/includes/assets.php:125
 msgid "Adding..."
 msgstr "Füge hinzu…"
 
-#: public/includes/assets.php:130
+#: public/includes/assets.php:126
 msgid "Added!"
 msgstr "Hinzugefügt!"
 
-#: public/includes/assets.php:131
+#: public/includes/assets.php:127
 msgid "Loading..."
 msgstr "Lade..."
 
-#: public/includes/assets.php:132
+#: public/includes/assets.php:128
 msgid "Load More"
 msgstr "Weitere laden"
 
-#: public/includes/assets.php:133 public/includes/helpers.php:443
+#: public/includes/assets.php:129 public/includes/helpers.php:443
 msgid "Close"
 msgstr "Schließen"
 
-#: public/includes/assets.php:134
+#: public/includes/assets.php:130
 msgid "No more posts found"
 msgstr "Keine weiteren Beiträge gefunden"
 
-#: public/includes/assets.php:135
+#: public/includes/assets.php:131
 msgid "Fetching failed."
 msgstr "Fehler beim Abrufen."
 
-#: public/includes/assets.php:136
+#: public/includes/assets.php:132
 msgid "Gallery Created!"
 msgstr "Galerie erstellt!"
 
-#: public/includes/assets.php:137
+#: public/includes/assets.php:133
 msgid "Gallery Updated!"
 msgstr "Galerie aktualisiert!"
 
-#: public/includes/assets.php:138
+#: public/includes/assets.php:134
 msgid "Just write..."
 msgstr "Einfach schreiben…"
 
-#: public/includes/assets.php:139
+#: public/includes/assets.php:135
 msgid "Choose an image"
 msgstr "Bild wählen"
 
-#: public/includes/assets.php:140
+#: public/includes/assets.php:136
 msgid "Update Image"
 msgstr "Bild aktualisieren"
 
-#: public/includes/assets.php:141
+#: public/includes/assets.php:137
 msgid "Insert Image"
 msgstr "Bild einfügen"
 
-#: public/includes/assets.php:142
+#: public/includes/assets.php:138
 msgid "Select Image"
 msgstr "Bild auswählen"
 
-#: public/includes/assets.php:143
+#: public/includes/assets.php:139
 msgid "Remove featured image?"
 msgstr "Beitragsbild entfernen?"
 
-#: public/includes/assets.php:144
+#: public/includes/assets.php:140
 msgid "Update Selected Image"
 msgstr "Ausgewähltes Bild aktualisieren"
 
-#: public/includes/assets.php:145
+#: public/includes/assets.php:141
 msgid "Choose images"
 msgstr "Bilder auswählen"
 
-#: public/includes/assets.php:146
+#: public/includes/assets.php:142
 msgid "Edit Image"
 msgstr "Bild bearbeiten"
 
-#: public/includes/assets.php:147
+#: public/includes/assets.php:143
 #: public/includes/editor-modules--gallery.php:28
 msgid "Add Images"
 msgstr "Bilder hinzufügen"
 
-#: public/includes/assets.php:148
+#: public/includes/assets.php:144
 msgid "Add New Gallery"
 msgstr "Neue Galerie hinzufügen"
 
-#: public/includes/assets.php:149
+#: public/includes/assets.php:145
 msgid "Select Editus Gallery Image"
 msgstr "Eine Editus Galerie-Bild auswählen"
 
-#: public/includes/assets.php:150
+#: public/includes/assets.php:146
 msgid "Use Selected Images"
 msgstr "Ausgewählte Bilder verwenden"
 
-#: public/includes/assets.php:151
+#: public/includes/assets.php:147
 msgid "Publish Post?"
 msgstr "Beitrag veröffentlichen?"
 
-#: public/includes/assets.php:152
+#: public/includes/assets.php:148
 msgid "Yes, publish it!"
 msgstr "Ja, veröffentlichen!"
 
-#: public/includes/assets.php:153
+#: public/includes/assets.php:149
 msgid "Trash Post?"
 msgstr "Beitrag löschen?"
 
-#: public/includes/assets.php:154
+#: public/includes/assets.php:150
 msgid "Yes, trash it!"
 msgstr "Ja, löschen!"
 
-#: public/includes/assets.php:155
+#: public/includes/assets.php:151
 msgid "Oh snap!"
 msgstr "Oh Mist!"
 
-#: public/includes/assets.php:156
+#: public/includes/assets.php:152
 msgid "O.K. got it!"
 msgstr "OK, verstanden!"
 
-#: public/includes/assets.php:157
+#: public/includes/assets.php:153
 msgid ""
 "It looks like we are either missing the Article CSS class, or it is "
 "configured incorrectly. Editus will not function correctly without this CSS "
@@ -1077,83 +1088,91 @@ msgstr ""
 "diese falsch konfiguriert wurde. Ohne diese CSS-Klasse wird Editus nicht "
 "einwandfrei funktionieren."
 
-#: public/includes/assets.php:158
+#: public/includes/assets.php:154
 msgid "Update Settings"
 msgstr "Einstellungen aktualisieren"
 
-#: public/includes/assets.php:159
+#: public/includes/assets.php:155
 msgid "one more letter"
 msgstr "ein weiterer Buchstabe"
 
-#: public/includes/assets.php:160
+#: public/includes/assets.php:156
 msgid "You are currently editing a backup copy of this post."
 msgstr "Du bearbeitest gerade eine Sicherungskopie dieses Beitrags."
 
-#: public/includes/components.php:19 public/includes/editor-modules.php:247
+#: public/includes/assets.php:158
+msgid "add categories..."
+msgstr "Kategorien hinzufügen..."
+
+#: public/includes/assets.php:159
+msgid "add tags..."
+msgstr "Schlagwörter hinzufügen..."
+
+#: public/includes/components.php:19 public/includes/editor-modules.php:260
 msgid "Quote"
 msgstr "Zitat"
 
-#: public/includes/components.php:23 public/includes/editor-modules.php:245
+#: public/includes/components.php:23 public/includes/editor-modules.php:258
 msgid "Image"
 msgstr "Bild"
 
 #: public/includes/components.php:27
 #: public/includes/editor-modules--gallery.php:74
-#: public/includes/editor-modules.php:250
+#: public/includes/editor-modules.php:263
 msgid "Parallax"
 msgstr "Parallax"
 
-#: public/includes/components.php:31 public/includes/editor-modules.php:251
+#: public/includes/components.php:31 public/includes/editor-modules.php:264
 msgid "Audio"
 msgstr "Audio"
 
-#: public/includes/components.php:35 public/includes/editor-modules.php:248
-#: public/includes/editor-modules.php:888
+#: public/includes/components.php:35 public/includes/editor-modules.php:261
+#: public/includes/editor-modules.php:911
 msgid "Content"
 msgstr "Inhalt"
 
-#: public/includes/components.php:39 public/includes/editor-modules.php:246
+#: public/includes/components.php:39 public/includes/editor-modules.php:259
 msgid "Character"
 msgstr "Zeichen"
 
-#: public/includes/components.php:43 public/includes/editor-modules.php:256
+#: public/includes/components.php:43 public/includes/editor-modules.php:269
 msgid "Collection"
 msgstr "Sammlung"
 
-#: public/includes/components.php:47 public/includes/editor-modules.php:255
+#: public/includes/components.php:47 public/includes/editor-modules.php:268
 msgid "Document"
 msgstr "Dokument"
 
-#: public/includes/components.php:51 public/includes/editor-modules.php:257
+#: public/includes/components.php:51 public/includes/editor-modules.php:270
 msgid "Gallery"
 msgstr "Galerie"
 
-#: public/includes/components.php:55 public/includes/editor-modules.php:249
+#: public/includes/components.php:55 public/includes/editor-modules.php:262
 msgid "Chapter"
 msgstr "Kapitel"
 
-#: public/includes/components.php:59 public/includes/editor-modules.php:253
+#: public/includes/components.php:59 public/includes/editor-modules.php:266
 msgid "Map"
 msgstr "Karte"
 
-#: public/includes/components.php:63 public/includes/editor-modules.php:254
+#: public/includes/components.php:63 public/includes/editor-modules.php:267
 msgid "Timeline"
 msgstr "Zeitleiste"
 
-#: public/includes/components.php:67 public/includes/editor-modules.php:252
+#: public/includes/components.php:67 public/includes/editor-modules.php:265
 msgid "Video"
 msgstr "Video"
 
 #: public/includes/components.php:71 public/includes/components.php:87
-#: public/includes/editor-modules.php:265
+#: public/includes/editor-modules.php:278
 msgid "WordPress Image"
 msgstr "WordPress Bild"
 
-#: public/includes/components.php:75 public/includes/editor-modules.php:266
+#: public/includes/components.php:75 public/includes/editor-modules.php:279
 msgid "WordPress Quote"
 msgstr "WordPress Zitat"
 
-#: public/includes/components.php:79 public/includes/editor-modules.php:259
+#: public/includes/components.php:79 public/includes/editor-modules.php:272
 msgid "Gallery Pop"
 msgstr "Galerie Pop"
 
@@ -1283,8 +1302,8 @@ msgid ""
 "Adjust the overall height of the gallery. Acceptable values include 500px or "
 "50% etc."
 msgstr ""
-"Passen Sie die Höhe der Galerie an. Die zulässigen Werte sind \"500px\" oder "
-"\"50 %\" usw."
+"Passen Sie die Höhe der Galerie an. Die zulässigen Werte sind 500px oder "
+"50% usw."
 
 #: public/includes/editor-modules--gallery.php:148
 msgid "Main Gallery Width"
@@ -1307,300 +1326,306 @@ msgstr "Galerie Bildunterschrift"
 msgid "Add an optional caption for the gallery."
 msgstr "Füge eine optionale Bildunterschrift zur Galerie hinzu."
 
-#: public/includes/editor-modules.php:123
+#: public/includes/editor-modules.php:60 public/includes/editor-modules.php:336
+msgid "Table"
+msgstr "Tabelle"
+
+#: public/includes/editor-modules.php:132
 #: public/includes/underscore-templates.php:23
 #: public/includes/underscore-templates.php:41
 msgid "Edit Post"
 msgstr "Beitrag bearbeiten"
 
-#: public/includes/editor-modules.php:126
-#: public/includes/editor-modules.php:150
-#: public/includes/editor-modules.php:331
+#: public/includes/editor-modules.php:135
+#: public/includes/editor-modules.php:159
+#: public/includes/editor-modules.php:354
 msgid "Post Settings"
 msgstr "Beitragseinstellungen"
 
-#: public/includes/editor-modules.php:131
+#: public/includes/editor-modules.php:140
 msgid "All Posts"
 msgstr "Alle Beiträge"
 
-#: public/includes/editor-modules.php:134
-#: public/includes/editor-modules.php:924
+#: public/includes/editor-modules.php:143
+#: public/includes/editor-modules.php:947
 msgid "Revisions"
 msgstr "Revisionen"
 
-#: public/includes/editor-modules.php:138
+#: public/includes/editor-modules.php:147
 msgid "Add Post"
 msgstr "Neuen Beitrag erstellen"
 
-#: public/includes/editor-modules.php:149
-#: public/includes/editor-modules.php:330
+#: public/includes/editor-modules.php:158
+#: public/includes/editor-modules.php:353
 #: public/includes/underscore-templates.php:25
 #: public/includes/underscore-templates.php:43
 msgid "Delete Post"
 msgstr "Beitrag löschen"
 
-#: public/includes/editor-modules.php:153
-#: public/includes/editor-modules.php:333
+#: public/includes/editor-modules.php:162
+#: public/includes/editor-modules.php:356
 msgid "Save Post"
 msgstr "Beitrag speichern"
 
-#: public/includes/editor-modules.php:156
-#: public/includes/editor-modules.php:336
+#: public/includes/editor-modules.php:165
+#: public/includes/editor-modules.php:359
 msgid "Publish Post"
 msgstr "Beitrag veröffentlichen"
 
-#: public/includes/editor-modules.php:156
+#: public/includes/editor-modules.php:165
 msgid "Submit For Review"
 msgstr "Zur Überprüfung einreichen"
 
-#: public/includes/editor-modules.php:238
+#: public/includes/editor-modules.php:251
 msgid "Bold"
 msgstr "Fett"
 
-#: public/includes/editor-modules.php:239
+#: public/includes/editor-modules.php:252
 msgid "Underline"
 msgstr "Unterstrichen"
 
-#: public/includes/editor-modules.php:240
+#: public/includes/editor-modules.php:253
 msgid "Italicize"
 msgstr "Kursiv"
 
-#: public/includes/editor-modules.php:241
+#: public/includes/editor-modules.php:254
 msgid "Strikethrough"
 msgstr "Durchgestrichen"
 
-#: public/includes/editor-modules.php:242
+#: public/includes/editor-modules.php:255
 msgid "Insert Component"
 msgstr "Komponente einfügen"
 
-#: public/includes/editor-modules.php:262
+#: public/includes/editor-modules.php:275
 msgid "Event"
 msgstr "Veranstaltung"
 
-#: public/includes/editor-modules.php:267
+#: public/includes/editor-modules.php:280
 msgid "WordPress Video"
 msgstr "WordPress Video"
 
-#: public/includes/editor-modules.php:273
-#: public/includes/editor-modules.php:309
+#: public/includes/editor-modules.php:286
+#: public/includes/editor-modules.php:330
 msgid "H2 Heading"
 msgstr "Überschrift H2"
 
-#: public/includes/editor-modules.php:274
-#: public/includes/editor-modules.php:310
+#: public/includes/editor-modules.php:287
+#: public/includes/editor-modules.php:331
 msgid "H3 Heading"
 msgstr "Überschrift H3"
 
-#: public/includes/editor-modules.php:277
+#: public/includes/editor-modules.php:293
 msgid "H4 Heading"
 msgstr "Überschrift H4"
 
-#: public/includes/editor-modules.php:278
+#: public/includes/editor-modules.php:294
 msgid "H5 Heading"
 msgstr "Überschrift H5"
 
-#: public/includes/editor-modules.php:279
+#: public/includes/editor-modules.php:295
 msgid "H6 Heading"
 msgstr "Überschrift H6"
 
-#: public/includes/editor-modules.php:283
+#: public/includes/editor-modules.php:299
 msgid "Set Color for Selected Text"
 msgstr "Textfarbe für markierten Text festlegen"
 
-#: public/includes/editor-modules.php:284
+#: public/includes/editor-modules.php:300
 msgid "Choose Color"
 msgstr "Farbe wählen"
 
-#: public/includes/editor-modules.php:288
+#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:333
+msgid "Ordered List"
+msgstr "Nummerierte Liste"
+
+#: public/includes/editor-modules.php:305
+#: public/includes/editor-modules.php:334
+msgid "Unordered List"
+msgstr "Aufzählung"
+
+#: public/includes/editor-modules.php:309
 msgid "Anchor Link"
 msgstr "Link"
 
-#: public/includes/editor-modules.php:290
+#: public/includes/editor-modules.php:311
 msgid "http://url.com"
 msgstr "http://url.com"
 
-#: public/includes/editor-modules.php:291
+#: public/includes/editor-modules.php:312
 msgid "Create Link"
 msgstr "Link erstellen"
 
-#: public/includes/editor-modules.php:293
+#: public/includes/editor-modules.php:314
 msgid "Open in a New Tab"
 msgstr "In einem neuen Tab öffnen"
 
-#: public/includes/editor-modules.php:297
-#: public/includes/editor-modules.php:316
+#: public/includes/editor-modules.php:318
+#: public/includes/editor-modules.php:339
 msgid "Insert HTML or Code"
 msgstr "HTML oder Code einfügen"
 
-#: public/includes/editor-modules.php:299
-#: public/includes/editor-modules.php:302
+#: public/includes/editor-modules.php:320
+#: public/includes/editor-modules.php:323
 msgid "Enter HTML to insert"
 msgstr "HTML eingeben zum einfügen"
 
-#: public/includes/editor-modules.php:303
+#: public/includes/editor-modules.php:324
 msgid "You can also use Shortcodes"
 msgstr "Du kannst auch Shortcodes verwenden"
 
-#: public/includes/editor-modules.php:304
+#: public/includes/editor-modules.php:325
 msgid ""
 "You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs."
 msgstr "Du kannst auch eine URL von YouTube, Vimeo oder Twitter eingeben."
 
-#: public/includes/editor-modules.php:312
-msgid "Unordered List"
-msgstr "Aufzählung"
-
-#: public/includes/editor-modules.php:313
-msgid "Ordered List"
-msgstr "Nummerierte Liste"
-
-#: public/includes/editor-modules.php:316
+#: public/includes/editor-modules.php:339
 msgid "Insert"
 msgstr "Einfügen"
 
-#: public/includes/editor-modules.php:321
+#: public/includes/editor-modules.php:344
 msgid "Text Left Align"
 msgstr "Linksbündig"
 
-#: public/includes/editor-modules.php:322
+#: public/includes/editor-modules.php:345
 msgid "Text Center Align"
 msgstr "Text zentrieren"
 
-#: public/includes/editor-modules.php:323
+#: public/includes/editor-modules.php:346
 msgid "Text Right Align"
 msgstr "Rechtsbündig"
 
-#: public/includes/editor-modules.php:364
-#: public/includes/editor-modules.php:720
-#: public/includes/editor-modules.php:739
+#: public/includes/editor-modules.php:387
+#: public/includes/editor-modules.php:743
+#: public/includes/editor-modules.php:762
 msgid "Move"
 msgstr "Verschieben"
 
-#: public/includes/editor-modules.php:366
-#: public/includes/editor-modules.php:722
-#: public/includes/editor-modules.php:741
+#: public/includes/editor-modules.php:389
+#: public/includes/editor-modules.php:745
+#: public/includes/editor-modules.php:764
 msgid "Clone"
 msgstr "Duplizieren"
 
-#: public/includes/editor-modules.php:367
-#: public/includes/editor-modules.php:723
-#: public/includes/editor-modules.php:742
+#: public/includes/editor-modules.php:390
+#: public/includes/editor-modules.php:746
+#: public/includes/editor-modules.php:765
 msgid "Delete"
 msgstr "Löschen"
 
-#: public/includes/editor-modules.php:389
+#: public/includes/editor-modules.php:412
 msgid "Replace Image"
 msgstr "Bild ersetzen"
 
-#: public/includes/editor-modules.php:390
+#: public/includes/editor-modules.php:413
 msgid "Delete Image"
 msgstr "Bild löschen"
 
-#: public/includes/editor-modules.php:391
+#: public/includes/editor-modules.php:414
 msgid "save"
 msgstr "speichern"
 
-#: public/includes/editor-modules.php:454
+#: public/includes/editor-modules.php:477
 msgid "Featured Image"
 msgstr "Beitragsbild"
 
-#: public/includes/editor-modules.php:454
+#: public/includes/editor-modules.php:477
 msgid "Change the featured image for this post."
 msgstr "Beitragsbild für diesen Beitrag ändern."
 
-#: public/includes/editor-modules.php:458
+#: public/includes/editor-modules.php:481
 msgid "Change Featured Image"
 msgstr "Beitragsbild ändern"
 
-#: public/includes/editor-modules.php:459
+#: public/includes/editor-modules.php:482
 msgid "Delete Featured Image"
 msgstr "Beitragsbild löschen"
 
-#: public/includes/editor-modules.php:475
+#: public/includes/editor-modules.php:498
 msgid "Change the status of the post to draft or publish."
 msgstr "Beitragsstatus auf Entwurf oder Veröffentlicht ändern."
 
-#: public/includes/editor-modules.php:477
+#: public/includes/editor-modules.php:500
 msgid "Draft"
 msgstr "Entwurf"
 
-#: public/includes/editor-modules.php:479
+#: public/includes/editor-modules.php:502
 msgid "Pending"
 msgstr "Ausstehend"
 
-#: public/includes/editor-modules.php:481
+#: public/includes/editor-modules.php:504
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: public/includes/editor-modules.php:491
+#: public/includes/editor-modules.php:514
 msgid "Post URL"
 msgstr "Beitrags-URL"
 
-#: public/includes/editor-modules.php:491
+#: public/includes/editor-modules.php:514
 msgid "Change the URL (slug) of this post."
 msgstr "URL-Titelform (slug) dieses Beitrags ändern."
 
-#: public/includes/editor-modules.php:501
+#: public/includes/editor-modules.php:524
 msgid "Categories"
 msgstr "Kategorien"
 
-#: public/includes/editor-modules.php:501
+#: public/includes/editor-modules.php:524
 msgid "Type a category name and press enter."
 msgstr "Kategorie eingeben und mit Enter bestätigen."
 
-#: public/includes/editor-modules.php:506
+#: public/includes/editor-modules.php:529
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: public/includes/editor-modules.php:506
+#: public/includes/editor-modules.php:529
 msgid "Type a tag name and press enter."
 msgstr "Schlagwort eingeben und mit Enter bestätigen."
 
-#: public/includes/editor-modules.php:513
+#: public/includes/editor-modules.php:536
 msgid "Post Date"
 msgstr "Veröffentlichungsdatum"
 
-#: public/includes/editor-modules.php:515
+#: public/includes/editor-modules.php:538
 msgid "Set to Now"
 msgstr "Auf Jetzt eingestellt"
 
-#: public/includes/editor-modules.php:596
+#: public/includes/editor-modules.php:619
 msgid "New <span>post</span> title"
 msgstr "Titel des neuen <span>Beitrags</span>"
 
-#: public/includes/editor-modules.php:596
+#: public/includes/editor-modules.php:619
 msgid "Specify title for new post, then save to edit."
 msgstr "Gib einen Titel für den neuen Beitrag an."
 
-#: public/includes/editor-modules.php:597
+#: public/includes/editor-modules.php:620
 msgid "Type Your Title Here"
 msgstr "Titel hier eingeben"
 
-#: public/includes/editor-modules.php:632
+#: public/includes/editor-modules.php:655
 msgid "Create"
 msgstr "Erstellen"
 
-#: public/includes/editor-modules.php:671
+#: public/includes/editor-modules.php:694
 msgid "results found"
 msgstr "Ergebnisse gefunden"
 
-#: public/includes/editor-modules.php:764
+#: public/includes/editor-modules.php:787
 msgid "Save Locations"
 msgstr "Locations speichern"
 
-#: public/includes/editor-modules.php:782
+#: public/includes/editor-modules.php:805
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 "Speichere diesen Beitrag und aktualisiere die Seite um die Änderungen zu "
 "sehen."
 
-#: public/includes/editor-modules.php:924
+#: public/includes/editor-modules.php:947
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
 "Verwende den Schieberegler um die Revision in Echtzeit auf der Seite "
 "anzuzeigen."
 
-#: public/includes/editor-modules.php:931
+#: public/includes/editor-modules.php:954
 msgid "Select"
 msgstr "Auswählen"
 
@@ -1655,6 +1680,11 @@ msgstr ""
 "Beitragskomponenten (Aesop Story Engine-Komponenten) können durch klicken "
 "des Plus-Symbols hinzugefügt werden. Ziehen Sie eine beliebige Komponente in "
 "den Beitrag um sie zu verwenden."
+
+#, fuzzy
+#~| msgid "Unordered List"
+#~ msgid "Unordered"
+#~ msgstr "Aufzählung"
 
 #~ msgid "This theme requires the following plugin: %1$s."
 #~ msgid_plural "This theme requires the following plugins: %1$s."

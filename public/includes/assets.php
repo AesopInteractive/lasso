@@ -155,6 +155,9 @@ class assets {
 				'helperText'		=> __('one more letter','lasso'),
 				'editingBackup'  	=> __('You are currently editing a backup copy of this post.'),
 				
+				'catsPlaceholder'     => __('add categories...'),
+				'tagsPlaceholder'     => __('add tags...'),
+				
 				
 			);
 

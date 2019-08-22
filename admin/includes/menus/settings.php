@@ -249,7 +249,7 @@ class settings {
 					
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[toolbar_list]" id="lasso_editor[toolbar_list]" <?php echo checked( $toolbar_list, 'on' );?> >
-						<label for="lasso_editor[toolbar_list]"><?php _e( 'Enabled OL/UL Buttons', 'lasso' );?></label>
+						<label for="lasso_editor[toolbar_list]"><?php _e( 'Enable OL/UL Buttons', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Show the buttons to create Ordered and Unordered Lists from text selection.', 'lasso' );?></span>
 					</div>
 					
