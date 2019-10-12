@@ -19,7 +19,7 @@ class register_meta_field {
 		$this->fields = $fields;
 		add_filter( 'lasso_api_params', function( $params ) {
 			foreach( $this->fields as $field => $cbs ) {
-				$field = lasso_clean_string( $field );
+				//$field = lasso_clean_string( $field );
 				$params[ 'process_meta_update' ][ $field ] = $cbs;
 			}
 
@@ -30,7 +30,7 @@ class register_meta_field {
 		add_filter( 'lasso_meta_fields', function( $allowed ) {
 
 			foreach( array_keys( $this->fields ) as $field  ) {
-				$field = lasso_clean_string( $field );
+				//$field = lasso_clean_string( $field );
 				$allowed[] = $field;
 
 			}

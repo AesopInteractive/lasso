@@ -204,21 +204,8 @@ function lasso_option_fields( $name = '', $options = array() ){
 	foreach ( (array) $options as $option ) {
 
 		$type = isset( $option['type'] ) ? $option['type'] : 'text';
-
-		switch ( $type ) {
-			case 'text':
-				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'text' ), $after );
-				break;
-			case 'textarea':
-				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'textarea' ), $after );
-				break;
-			case 'imgurl':
-				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'imgurl' ), $after );
-				break;
-			case 'checkbox':
-				$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,'checkbox' ), $after );
-				break;
-		}
+		
+		$out .= sprintf('%s%s%s', $before, lasso_option_engine_option( $name, $option,$type ), $after );
 
 	}
 	
@@ -242,7 +229,7 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 		return;
 
 	$id = isset( $option['id'] ) ? $option['id'] : false;
-	$id = $id ? lasso_clean_string( $id ) : false;
+	//$id = $id ? lasso_clean_string( $id ) : false;
 
 	$desc = isset( $option['desc'] ) ? $option['desc'] : false;
 
@@ -260,6 +247,20 @@ function lasso_option_engine_option( $name = '', $option = '', $type = '') {
 			break;
 		case 'checkbox':
 			$out = sprintf('<label for="lasso--post-option-%s" class="checkbox-control checkbox"><input id="lasso--post-option-%s" type="checkbox" name="%s" class="checkbox"><span class="control-indicator"></span>%s',$id, $id, $id ,esc_html( $desc ) );
+			break;
+		case 'dropdown':
+			$out = sprintf('<label for="lasso--post-option-%s">%s</label><select id="lasso--post-option-%s" name="%s">',$id, esc_html( $desc ), $id, $id);
+			$options = explode(";", $option['options']);
+			foreach ($options as &$opt) {
+				$opts = explode(":", $opt);
+				if ($opts[0] == $value) {
+					$out .= sprintf('<option value = "%s" selected>%s</option>',$opts[0], $opts[1]);
+				} else {
+					$out .= sprintf('<option value = "%s">%s</option>',$opts[0], $opts[1]);
+				}
+			}
+			
+			$out .='</select>';
 			break;
 	}
 

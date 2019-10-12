@@ -10,7 +10,7 @@
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           1.1.1
+ * Version:           1.1.3
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '1.1.1' );
+define( 'LASSO_VERSION', '1.1.3' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 define( 'LASSO_FILE', __FILE__ );
@@ -60,6 +60,27 @@ function lasso_show_in_rest($args, $post_type){
     return $args;
 }
 
+
+function lasso_editor_get_option( $option, $section, $default = '' ) {
+
+	if ( empty( $option ) )
+		return;
+
+	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+
+		$options = get_site_option( $section );
+
+	} else {
+
+		$options = get_option( $section );
+	}
+
+	if ( isset( $options[$option] ) ) {
+		return $options[$option];
+	}
+
+	return $default;
+}
 
 register_meta('user', 'lasso_hide_tour', array(
   "type" => "string",

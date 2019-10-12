@@ -84,6 +84,8 @@ jQuery(document).ready(function($){
 			}
 		}
 		
+		lasso_editor.article_object = post_container;
+		
 		// ways to inject codes into the enterEditor
 		if (lasso_editor.enterEditorHookArray) {
 			$(lasso_editor.enterEditorHookArray).each(function(key, val){
