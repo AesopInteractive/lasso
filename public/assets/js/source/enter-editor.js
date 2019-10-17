@@ -637,6 +637,8 @@ jQuery(document).ready(function($){
                     //htmlContent is html, not an object
 					htmlContent = $(htmlContent);
 					htmlContent.attr('contenteditable','true');
+				} else {
+					htmlCopy = htmlContent[0].outerHTML;
 				}
 				
 				// handle 3 specific scenarios dealing with <p>'s
