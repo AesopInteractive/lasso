@@ -11823,10 +11823,13 @@ jQuery(document).ready(function($){
 		var form;
 
 		//$('#lasso--postsettings__form').live('submit', function(e) {
+				//$('#lasso--postsettings__form').live('submit', function(e) {
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
-			$('#lasso--save').trigger('click');
+			if ($('#lasso--custom-field-form').length ==0 ) {
+				$('#lasso--save').trigger('click');
+			}
 
 			var $this = $(this);
 			
@@ -11861,7 +11864,15 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
-					window.location.replace(response.data['link']);
+					
+					if ($('#lasso--custom-field-form').length ) {
+						$('#lasso--custom-field-form').trigger('submit');
+						setTimeout(function() {
+						  window.location.replace(response.data['link']);
+						}, 1000);
+					} else {
+					    window.location.replace(response.data['link']);
+					}
 
 				} else {
 					alert('error:'+response);
@@ -12787,7 +12798,7 @@ jQuery(function( $ ) {
 	});
 	jQuery(document).on('click', '#lasso-html--table', function(e){
 		e.preventDefault();
-		htmlItemInsert('<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>');
+		htmlItemInsert(lasso_editor.tableCode);//'<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>');
 	});
 
 	////////////
@@ -14695,7 +14706,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 })( jQuery );
 (function( $ ) {
 
-	$(document).on('submit', '#lasso--post-form', function(e) {
+	$(document).on('submit', '#lasso--custom-field-form', function(e) {
 
 		e.preventDefault();
 		$('#lasso--save').trigger('click');

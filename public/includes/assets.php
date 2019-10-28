@@ -269,7 +269,8 @@ class assets {
                 'rtl'               => is_rtl(),				
 				'skipToEdit'        =>( $delta < 10 && $delta >=0 ), // if it's a new post, skip to edit mode
 				'linksEditable'    => $links_editable,
-				'supportPendingStatus' => !$no_pending_status
+				'supportPendingStatus' => !$no_pending_status,
+				'tableCode' => apply_filters( 'lasso_table_html_code','<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>'),
 			);
 
 

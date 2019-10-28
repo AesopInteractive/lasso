@@ -139,10 +139,13 @@
 		var form;
 
 		//$('#lasso--postsettings__form').live('submit', function(e) {
+				//$('#lasso--postsettings__form').live('submit', function(e) {
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
-			$('#lasso--save').trigger('click');
+			if ($('#lasso--custom-field-form').length ==0 ) {
+				$('#lasso--save').trigger('click');
+			}
 
 			var $this = $(this);
 			
@@ -177,7 +180,15 @@
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
-					window.location.replace(response.data['link']);
+					
+					if ($('#lasso--custom-field-form').length ) {
+						$('#lasso--custom-field-form').trigger('submit');
+						setTimeout(function() {
+						  window.location.replace(response.data['link']);
+						}, 1000);
+					} else {
+					    window.location.replace(response.data['link']);
+					}
 
 				} else {
 					alert('error:'+response);

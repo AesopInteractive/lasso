@@ -1,6 +1,6 @@
 (function( $ ) {
 
-	$(document).on('submit', '#lasso--post-form', function(e) {
+	$(document).on('submit', '#lasso--custom-field-form', function(e) {
 
 		e.preventDefault();
 		$('#lasso--save').trigger('click');

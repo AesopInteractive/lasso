@@ -252,7 +252,7 @@ jQuery(function( $ ) {
 	});
 	jQuery(document).on('click', '#lasso-html--table', function(e){
 		e.preventDefault();
-		htmlItemInsert('<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>');
+		htmlItemInsert(lasso_editor.tableCode);//'<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>');
 	});
 
 	////////////
