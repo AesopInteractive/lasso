@@ -20,7 +20,7 @@ class assets {
 	
 		global $post;
 		if ( lasso_user_can('edit_posts') && 
-		     !( function_exists( 'is_gutenberg_page' ) && has_blocks( $post->post_content) )) {// bail if the post has Gutenberg bloc
+		     !( function_exists( 'has_blocks' ) && has_blocks( $post->post_content)  && !is_home())  ) {// bail if the post has Gutenberg bloc
 			
 			/**    Returns the time offset from UTC
 			*/

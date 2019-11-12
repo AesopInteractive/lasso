@@ -148,7 +148,7 @@
 				fetchError(xhr);
 			});
 		} else {
-			var author = capable ? lasso_editor.author : -1;
+			/*var author = capable ? lasso_editor.author : -1;
 			var parms = getParams( true, page, author );
 			jQuery.ajax({
 				method: "GET",
@@ -206,7 +206,7 @@
 						}
 					});
 				}
-			});
+			});*/
 
 			
 			
@@ -484,53 +484,100 @@
 
 				// remove the cose
 				destroyClose();
+				
+				
+				//http://localhost/wordpress/wp-json/wp/v2/posts?search=test%205
+				
+				var page = 1;
+				var capable = lasso_editor.edit_others_posts;
+				
+				
+				if (type=='posts') {
+					options = capable ? setOptionsPost( type, page ) : setOptionsPost( type, page, lasso_editor.author );
+					options.data['search']=val;
+					collection = new wp.api.collections.Posts( );
+					collection.fetch(  options ).done( function() {
+						
+						$(postList).children().remove();
+						//remove more button
+						$( '#lasso--load-more,#lasso--close-modal-posts' ).remove();
+						// if we have more posts then load them
+						if ( collection.length > 0 ) {
+							var setContainer = $( '<div data-page-num="' + collection.state.currentPage + '" class="lasso--object-batch" id="lasso--object-batch-' + page + '"></div>' );
 
-				// make the api request
-				$.getJSON( url, function( response ) {
+							if (lasso_editor.restapi2) {
+								collection.each( function ( model ) {
+									//post.link title status id
+								   setContainer.append( postTemplate( { post: model.attributes, link_: model.attributes._links.self[0].href, settings: WP_API_Settings } ) );
+								} );
+							} else {
+								collection.each( function ( model ) {
+								   setContainer.append( postTemplate( { post: model.attributes, settings: WP_API_Settings } ) );
+								} );
+							}
 
-					// remove current list of posts
-					$(postList).children().remove()
+							// append to the post container
+							$(postList).append( setContainer );
 
-					// show results
-					results.parent().css('opacity',1)
+							//put back more button
+							$(postList).append( moreButton );
+							$(postList).append( closeButton );
 
-					// count results and show
-					if ( response.length == 0 ) {
+							// show search filtering
+							$('.lasso--post-filtering').removeClass('not-visible').addClass('visible')
 
-						// results are empty int
-						results.text('0')
-
-						// results are empty placeholder
-						if ( !$('#lasso--empty-results').length ) {
-							$(postList).prepend( noResultsDiv )
+							$( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
+							// re-init scroll
+							initScroll()
+						}else{
+							$( postList ).append( noPostsMessage );
+							setTimeout(function(){
+								$('#lasso--end-posts').fadeOut('slow')
+							}, 1000)
 						}
+						// destroy the spinny loader
+						destroyLoader();
+					}).fail(function(xhr, err) {
+						fetchError(xhr);
+					});
+				} else {
+					options = capable ? setOptions( type, page ) : setOptions( type, page, lasso_editor.author );
+					options['search']=val;
+					jQuery.getJSON(WP_API_Settings.root+'wp/v2/'+type,options, function(data) {
+						$( '#lasso--load-more' ).remove();
+						$(postList).children().remove();
+						if ( data.length > 0 ) {
+							var setContainer = $( '<div data-page-num="' + page + '" class="lasso--object-batch" id="lasso--object-batch-' + page + '"></div>' );
 
-						// clear any close buttons
-						destroyClose();
+							jQuery.each( data, function( i, val ) {
+							   setContainer.append( postTemplate( { post: val, link_: val.link, settings: WP_API_Settings } ) );
+							});
+							// append to the post container
+							$(postList).append( setContainer );
 
-					} else {
+							//put back more button
+							if (data.length>=7 ) {
+								$(postList).append( moreButton );
+								$( '#lasso--load-more' ).attr( 'data-post-type', type ).removeClass('lasso--btn-loading');
+							}
 
-						// append close button
-						if ( !$( clearItem ).length ) {
-
-							$(input).after( clear )
+							// show search filtering
+							$('.lasso--post-filtering').removeClass('not-visible').addClass('visible');
+							// re-init scroll
+							initScroll()
+						} else {
+							$( postList ).append( noPostsMessage );
+							setTimeout(function(){
+								$('#lasso--end-posts').fadeOut('slow')
+							}, 1000)
 						}
-
-						// show how many results we have
-						results.text( response.length )
-
-						// loop through each object
-		                $.each( response, function ( i ) {
-
-		                    $(postList).append( postTemplate( { post: response[i], settings: WP_API_Settings } ) );
-
-		                } );
-
-		                initScroll()
-		            }
-
-				});
-
+						destroyLoader();
+							
+					})
+					.fail(function(xhr, err)  {
+						fetchError(xhr);
+					});
+				}
 			}
 
 		}, 600);

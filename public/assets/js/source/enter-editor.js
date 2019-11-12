@@ -728,7 +728,7 @@ jQuery(document).ready(function($){
 		function autoSave() {
 			if (localStorage.getItem( 'lasso_backup_'+postid ) || lasso_editor.dirtyByComponent) 
 			{
-				$('.lasso--controls__right a:not(#lasso--exit)').trigger('click');
+				$('.lasso--controls__right #lasso--save').trigger('click');
 			}
 		}
 		
