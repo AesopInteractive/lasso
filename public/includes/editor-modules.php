@@ -196,7 +196,7 @@ function lasso_editor_component_sidebar() {
 	?>
 	<div id="lasso--sidebar" class="<?php echo sanitize_html_class( $custom_classes );?>" >
 		<div class="lasso--sidebar__inner">
-			<div id="lasso--component__settings"></div>
+			<div id="aesop-generator-settings"><div id="lasso--component__settings"></div></div>
 		</div>
 	</div>
 

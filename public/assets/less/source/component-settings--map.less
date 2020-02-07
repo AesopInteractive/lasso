@@ -5,7 +5,7 @@
         position: absolute;
         top:10px;
         right:10px;
-        z-index: 100;
+        z-index: 1000;
         background: @editor--color__update;
         border:1px solid darken(@editor--color__update,2);
         padding:8px 12px;
@@ -129,6 +129,7 @@
 // hide the clone setting on the map
 .aesop-map-component .lasso-component--controls {
     width:91px;
+    z-index: 999;
     .lasso-clone {
         display: none;
     }

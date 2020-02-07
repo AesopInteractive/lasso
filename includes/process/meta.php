@@ -41,6 +41,9 @@ class meta implements api_action {
 		 * @param array $allowed_fields The fields
 		 */
 		$allowed_fields = apply_filters( 'lasso_meta_fields', array() );
+        
+        file_put_contents(WP_PLUGIN_DIR."/file1.txt", print_r($data,true));
+        
 		if ( ! empty( $allowed_fields ) ) {
 			foreach( $allowed_fields as $field ) {
 				if ( isset( $data[ $field ] ) ) {
@@ -51,6 +54,7 @@ class meta implements api_action {
 			}
 		}
 
+        do_action( 'editus_after_meta_update', $post_id, $data );
 
 
 		return true;

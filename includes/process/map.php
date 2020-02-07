@@ -34,7 +34,7 @@ class map implements api_action {
 		$locations    	= isset( $data['ase-map-component-locations'] ) ? $data['ase-map-component-locations'] : false;
 		$start_point    = isset( $data['ase-map-component-start-point'] ) ? $data['ase-map-component-start-point']: false;
 		$zoom       	= isset( $data['ase-map-component-zoom'] ) ? $data['ase-map-component-zoom' ] : false;
-
+        
 		if ( is_array( $locations ) ) {
 			delete_post_meta( $postid, 'ase_map_component_locations' );
 
@@ -45,7 +45,8 @@ class map implements api_action {
 			}
 
 			// udpate start point
-			update_post_meta( $postid, 'ase_map_component_start_point', $start_point );
+            $point = json_decode( $start_point, true );
+			update_post_meta( $postid, 'ase_map_component_start_point', $point );
 
 			// update zoom
 			update_post_meta( $postid, 'ase_map_component_zoom', $zoom );
