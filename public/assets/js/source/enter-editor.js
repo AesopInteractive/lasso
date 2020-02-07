@@ -1091,13 +1091,17 @@ jQuery(document).ready(function($){
 		
 		function postComponent(comp,type) {
 			// if a stock wordpress image is dragged in
-			if ( 'map' == type ) { mapsGoTime() }
+			
 
 			if ('timeline_stop' == type ) { timelineGoTime() }
 
 			if ('video' == type ) { videoGoTime() }
 			$('#lasso-side-comp-button').remove();
-			$(comp).find('.lasso-settings').trigger('click');
+            if ( 'map' == type ) { 
+                mapsGoTime(); 
+            } else {
+                $(comp).find('.lasso-settings').trigger('click');
+            }
 		}
 		
 				
