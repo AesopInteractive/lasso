@@ -908,7 +908,7 @@ jQuery(document).ready(function($){
 			});
 
 			L.tileLayer(mapTileProvider, {
-				maxZoom: start_zoom
+				maxZoom: 20//start_zoom
 			}).addTo(map);
 
 			mapLocations.forEach(function(location) {
@@ -1071,6 +1071,12 @@ jQuery(document).ready(function($){
 				return decodeURIComponent(JSON.parse(mdata));
 			}
 		}
+        
+        // the code to enable map editing after reload.
+        if ($( ".aesop-map-component" ).length) {
+            $( ".aesop-map-component" ).replaceWith(setComponent("map"));
+            mapsGoTime();
+        }
 
 		function setComponent(type) {
 			// if a stock wordpress image is dragged in

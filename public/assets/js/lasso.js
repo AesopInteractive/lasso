@@ -11346,7 +11346,7 @@ jQuery(document).ready(function($){
 			});
 
 			L.tileLayer(mapTileProvider, {
-				maxZoom: start_zoom
+				maxZoom: 20//start_zoom
 			}).addTo(map);
 
 			mapLocations.forEach(function(location) {
@@ -11509,6 +11509,12 @@ jQuery(document).ready(function($){
 				return decodeURIComponent(JSON.parse(mdata));
 			}
 		}
+        
+        // the code to enable map editing after reload.
+        if ($( ".aesop-map-component" ).length) {
+            $( ".aesop-map-component" ).replaceWith(setComponent("map"));
+            mapsGoTime();
+        }
 
 		function setComponent(type) {
 			// if a stock wordpress image is dragged in
@@ -11529,13 +11535,17 @@ jQuery(document).ready(function($){
 		
 		function postComponent(comp,type) {
 			// if a stock wordpress image is dragged in
-			if ( 'map' == type ) { mapsGoTime() }
+			
 
 			if ('timeline_stop' == type ) { timelineGoTime() }
 
 			if ('video' == type ) { videoGoTime() }
 			$('#lasso-side-comp-button').remove();
-			$(comp).find('.lasso-settings').trigger('click');
+            if ( 'map' == type ) { 
+                mapsGoTime(); 
+            } else {
+                $(comp).find('.lasso-settings').trigger('click');
+            }
 		}
 		
 				
@@ -15234,7 +15244,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 		// 800ms delay so we dont exectute excessively
 		timer = setTimeout(function() {
-			
+
 			// don't proceed if the value is empty or not equal to itself
 			if ( !valEqual && !notEmpty )
 				return false;
