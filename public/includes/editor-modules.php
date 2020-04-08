@@ -253,7 +253,7 @@ function lasso_editor_text_toolbar() {
 		    <li id="lasso-toolbar--underline" title="<?php esc_attr_e( 'Underline', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--italic" title="<?php esc_attr_e( 'Italicize', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--strike" title="<?php esc_attr_e( 'Strikethrough', 'lasso' );?>"></li>
-			<li id="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>" style="color:#ffffa0;">
+			<li id="lasso-toolbar--components" class="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>" style="color:#ffffa0;">
 			    <ul id="lasso-toolbar--components__list" style="display:none;color:white;">
 			    	<?php if ( 'ase-active' == $ase_status ): ?>
 						<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="lasso-toolbar--component__image"></li>
@@ -838,7 +838,7 @@ function lasso_editor_options_blob() {
 
 				$prefix = isset( $attr_info['prefix'] ) ? sprintf( '<span class="lasso-option-prefix">%s</span>', $attr_info['prefix'] ) : null;
 
-				$return .= '<form id="lasso--component-settings-form" class="'.$galleries.'" method="post">';
+				$return .= '<form id="aesop-generator-settings" class="lasso--component-settings-form" class="'.$galleries.'" method="post">';
 				$return .= '<p data-option="'.$attr_name.'" class="lasso-option aesop-'.$slug.'-'.$attr_name.'">';
 				$return .= '<label for="aesop-generator-attr-' . $attr_name . '">' . $attr_info['desc'] . '</label>';
 				$return .= '<small class="lasso-option-desc">'.$attr_info['tip'].'</small>';

@@ -159,6 +159,11 @@ jQuery(document).ready(function($){
 		if (lasso_editor.aviaEditor) {
 			html = shortcodify_avia(html);
 		}
+        
+        // WordPress Block
+        if (lasso_editor.hasGutenberg) {
+            html = process_gutenberg(html);
+        }
 		
 		
 		
@@ -405,6 +410,36 @@ jQuery(document).ready(function($){
 
 			return processed;
 		}
+        
+        function process_gutenberg(content){
+			// Convert the html into a series of jQuery objects
+			var k = $.parseHTML(content);
+			var processed = '';
+			if (k == null) {
+				return content;
+			}
+            
+            j =  $('<div>').append($(k).clone())
+            // columns
+            $(j).find(".wp-block-column").before("<!-- wp:column -->" );
+            $(j).find(".wp-block-column").after("<!-- /wp:column -->" );
+            $(j).find(".wp-block-columns").before("<!-- wp:columns -->" );
+            $(j).find(".wp-block-columns").after("<!-- /wp:columns -->" );
+            $(j).find("p").before("<!-- wp:paragraph -->" );
+            $(j).find("p").after("<!-- /wp:paragraph -->" );
+            
+            
+            // spacer
+            $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );
+            $(j).find(".wp-block-spacer").after("<!-- /wp:spacer -->" );
+            
+            // separator
+            $(j).find(".wp-block-separator").before("<!-- wp:separator  -->" );
+            $(j).find(".wp-block-separator").after("<!-- /wp:separator  -->" );
+            
+            var html = $(j).html(); 
+            return html;
+        }
 		
 		//shortcode avia layout editor
 		function shortcodify_avia(content,selector){

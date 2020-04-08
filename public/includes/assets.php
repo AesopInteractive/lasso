@@ -19,8 +19,10 @@ class assets {
 
 	
 		global $post;
-		if ( lasso_user_can('edit_posts') && 
-		     !( function_exists( 'has_blocks' ) && has_blocks( $post->post_content)  && !is_home())  ) {// bail if the post has Gutenberg bloc
+		if ( lasso_user_can('edit_posts') 
+		     /* uncomment this line to disable Editus on Gutenberg posts*/
+             /* && !( function_exists( 'has_blocks' ) && has_blocks( $post->post_content)  && !is_home()) */              
+             ) {
 			
 			/**    Returns the time offset from UTC
 			*/
@@ -271,6 +273,7 @@ class assets {
 				'linksEditable'    => $links_editable,
 				'supportPendingStatus' => !$no_pending_status,
 				'tableCode' => apply_filters( 'lasso_table_html_code','<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>'),
+                'hasGutenberg' => (function_exists( 'has_blocks' ) && has_blocks( $post->post_content))
 			);
 
 
