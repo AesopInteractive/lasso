@@ -67,6 +67,8 @@ class lasso {
 		add_action( 'wp_ajax_editus_delete_post',     array( $this, 'delete_post' ) );
 		add_action( 'wp_ajax_editus_featured_img',     array( $this, 'set_featured_img' ) );
 		add_action( 'wp_ajax_editus_del_featured_img',     array( $this, 'del_featured_img' ) );
+        
+        add_action( 'wp_ajax_editus_publish_post',     array( $this, 'publish_post' ) );
 
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
@@ -469,7 +471,7 @@ class lasso {
 
 		$postid = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
 
-		// bail out if teh current user can't publish posts
+		// bail out if the current user can't publish posts
 		if ( !lasso_user_can( 'delete_post', $postid ) )
 			return;
 		
@@ -486,6 +488,16 @@ class lasso {
 		wp_update_post( apply_filters( 'lasso_object_deleted_args', $args ) );
 
 		do_action( 'lasso_object_deleted', $postid, get_current_user_ID() );
+
+		exit;
+	}
+    
+    /* This function doesn't actually publish post, but should be called when a post is published */
+    public function publish_post( ) {
+
+		$post_id = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+        
+        do_action( 'transition_post_status', 'publish', 'draft', get_post( $post_id ) );
 
 		exit;
 	}

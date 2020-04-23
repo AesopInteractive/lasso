@@ -87,7 +87,8 @@
 	}
 
 	//$('#lasso--component-settings-form').live('submit', function(e) {
-	jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
+	//jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
+    jQuery(document).on('submit', '#aesop-generator-settings', function(e){
 
 		e.preventDefault();
 

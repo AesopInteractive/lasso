@@ -10968,6 +10968,14 @@ jQuery(document).ready(function($){
 		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
 			return taghelper('strike');
 		};
+        
+        $(document).on('keydown', function ( e ) {
+            // remove formatting when the use pushes ctrl+space
+            if ((e.metaKey || e.ctrlKey) && ( e.which == 32) ) {
+                document.execCommand('removeFormat');
+                document.execCommand('formatBlock', false, 'p')
+            }
+        });
 
 		function heading_helper(heading) {
 			articleMedium.element.contentEditable = true;
@@ -13435,7 +13443,7 @@ jQuery(document).ready(function($){
 		}
 		
 		// Save post using REST API V2
-		function savePublishREST(postid, title, subtitle, content_, type_,status_){
+		function savePublishREST(postid, title, subtitle, content_, type_,status_,forcePublish){
 			
 			var data      = {
 				content: 	content_,
@@ -13483,6 +13491,14 @@ jQuery(document).ready(function($){
 				},
 				success : function( response ) {
 					saveSuccess();
+                    if (forcePublish) {
+                        var data = {
+                            action: 		'editus_publish_post',
+                            postid: 		lasso_editor.postid
+                        }
+
+                        $.post( lasso_editor.ajaxurl2, data);
+                    }
 				},
 				error : function (xhr, exception) {
 					console.log( xhr );
@@ -13543,7 +13559,7 @@ jQuery(document).ready(function($){
 						status_ = "pending";
 					}
 				}
-				savePublishREST(lasso_editor.postid, title, subtitle, data.content, $('.lasso--controls__right').data( "posttype" ), status_);
+				savePublishREST(lasso_editor.postid, title, subtitle, data.content, $('.lasso--controls__right').data( "posttype" ), status_, forcePublish);
 				return;
 			}
 			
@@ -14351,7 +14367,8 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 	}
 
 	//$('#lasso--component-settings-form').live('submit', function(e) {
-	jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
+	//jQuery(document).on('submit', '#lasso--component-settings-form', function(e){
+    jQuery(document).on('submit', '#aesop-generator-settings', function(e){
 
 		e.preventDefault();
 

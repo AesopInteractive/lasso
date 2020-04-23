@@ -530,6 +530,14 @@ jQuery(document).ready(function($){
 		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
 			return taghelper('strike');
 		};
+        
+        $(document).on('keydown', function ( e ) {
+            // remove formatting when the use pushes ctrl+space
+            if ((e.metaKey || e.ctrlKey) && ( e.which == 32) ) {
+                document.execCommand('removeFormat');
+                document.execCommand('formatBlock', false, 'p')
+            }
+        });
 
 		function heading_helper(heading) {
 			articleMedium.element.contentEditable = true;
