@@ -12617,7 +12617,7 @@ jQuery(function( $ ) {
 
 	var dropClass = function() {
 
-		return ifSmallWidth() ? 'up' : 'down';
+		return "up";//ifSmallWidth() ? 'up' : 'down';
 
 	}
 	
@@ -12685,10 +12685,10 @@ jQuery(function( $ ) {
 
 			}
 		} else {
-			$(dropUp).css({
+			/*$(dropUp).css({
 					dropUp: dropUpHeight,
 					top: 40
-				});
+				});*/
 		}
 
 

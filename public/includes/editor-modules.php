@@ -608,7 +608,7 @@ function lasso_editor_newpost_modal() {
 
 	$mobile_style = "";
 	if (wp_is_mobile()) {
-		$mobile_style = 'style="top:140px !important;"';
+		//$mobile_style = 'style="top:140px !important;"';
 	}
 	?>
 	<div id="lasso--post-new__modal" class="lasso--modal lasso--modal__med lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style;?>">
