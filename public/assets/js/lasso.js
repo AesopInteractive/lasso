@@ -2,6 +2,7 @@
 
 lasso_editor.setupHookArray
 lasso_editor.enterEditorHookArray
+lasso_editor.enterEditorHookArray2
 lasso_editor.exitEditorHookArray
 lasso_editor.saveSuccessHookArray
 
@@ -10539,14 +10540,19 @@ jQuery(document).ready(function($){
 		lasso_editor.dontlock = false;
 		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
 			if( response ){
-				if (response!="true") {
-					//alert(response);
-					//exitEditor();
+				if (response=="true") {
 					lasso_editor.dontlock = true;
-				}
+				} else {
+                    swal({
+                            title:"",
+                            text: response,
+                            closeOnConfirm: true
+                    });
+                    exitEditor();
+                }
 				
 			} else {
-				alert("Error locking the post for edit");
+				alert("Error locking the post for editing");
 				exitEditor();
 			}
 			
@@ -11680,6 +11686,13 @@ jQuery(document).ready(function($){
 				postComponent(item,type);
 				lasso_editor.addComponentButton();
 			});
+            
+        // ways to inject codes into the enterEditor
+		if (lasso_editor.enterEditorHookArray2) {
+			$(lasso_editor.enterEditorHookArray2).each(function(key, val){
+				val();
+			});
+		}   
 
 	});
 	if (lasso_editor.skipToEdit)

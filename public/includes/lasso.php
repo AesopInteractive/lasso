@@ -279,7 +279,7 @@ class lasso {
 			echo "true";
 		} else {
 			$user_info = get_userdata($locked);
-			echo "Post opened by ".$user_info->first_name .  " " . $user_info->last_name;
+			echo _e( 'Post being edited by ', 'lasso' ).$user_info->first_name .  " " . $user_info->last_name;
 		}
 		exit;
 	}
@@ -288,7 +288,9 @@ class lasso {
 	{
 		$post_id= $_POST["postid"];
 		$locked = wp_check_post_lock($post_id);
-		delete_post_meta( $post_id, '_edit_lock');
+        if (!$locked) {
+            delete_post_meta( $post_id, '_edit_lock');
+        }
 		echo "true";
 		
 		exit;

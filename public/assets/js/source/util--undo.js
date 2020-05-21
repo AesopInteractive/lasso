@@ -2,6 +2,7 @@
 
 lasso_editor.setupHookArray
 lasso_editor.enterEditorHookArray
+lasso_editor.enterEditorHookArray2
 lasso_editor.exitEditorHookArray
 lasso_editor.saveSuccessHookArray
 

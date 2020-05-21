@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Editus\n"
-"POT-Creation-Date: 2019-08-22 17:20-0500\n"
-"PO-Revision-Date: 2019-08-22 17:21-0500\n"
+"POT-Creation-Date: 2020-05-20 13:45-0400\n"
+"PO-Revision-Date: 2020-05-20 13:45-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -186,7 +186,7 @@ msgid "Version"
 msgstr ""
 
 #: admin/includes/class-tgm-plugin-activation.php:2443
-#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:498
+#: admin/includes/menus/welcome.php:49 public/includes/editor-modules.php:499
 msgid "Status"
 msgstr "상태"
 
@@ -310,9 +310,9 @@ msgstr ""
 msgid "Deactivate License"
 msgstr ""
 
-#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:388
-#: public/includes/editor-modules.php:744
-#: public/includes/editor-modules.php:763
+#: admin/includes/menus/settings.php:26 public/includes/editor-modules.php:389
+#: public/includes/editor-modules.php:745
+#: public/includes/editor-modules.php:764
 msgid "Settings"
 msgstr ""
 
@@ -800,7 +800,7 @@ msgstr ""
 msgid "Edit Image Caption"
 msgstr ""
 
-#: includes/process/new_object.php:42 public/includes/assets.php:261
+#: includes/process/new_object.php:42 public/includes/assets.php:263
 msgid "Once upon a time..."
 msgstr ""
 
@@ -826,241 +826,241 @@ msgstr ""
 msgid "Nonce not set."
 msgstr ""
 
-#: public/includes/assets.php:119 public/includes/editor-modules.php:570
+#: public/includes/assets.php:121 public/includes/editor-modules.php:571
 #: public/includes/option-engine.php:132
 msgid "Save"
 msgstr "저장"
 
-#: public/includes/assets.php:120
+#: public/includes/assets.php:122
 msgid "Please Select Text First."
 msgstr "텍스트를 먼저 선택하십시요."
 
-#: public/includes/assets.php:121 public/includes/editor-modules.php:338
-#: public/includes/editor-modules.php:563
-#: public/includes/editor-modules.php:643
-#: public/includes/editor-modules.php:953
+#: public/includes/assets.php:123 public/includes/editor-modules.php:339
+#: public/includes/editor-modules.php:564
+#: public/includes/editor-modules.php:644
+#: public/includes/editor-modules.php:954
 msgid "Cancel"
 msgstr "취소"
 
-#: public/includes/assets.php:122
+#: public/includes/assets.php:124
 msgid "Exit Editor"
 msgstr "에디터 종료"
 
-#: public/includes/assets.php:123
+#: public/includes/assets.php:125
 msgid "Saving..."
 msgstr "저장중"
 
-#: public/includes/assets.php:124
+#: public/includes/assets.php:126
 msgid "Saved!"
 msgstr "저장완료"
 
-#: public/includes/assets.php:125
+#: public/includes/assets.php:127
 msgid "Adding..."
 msgstr "추가중"
 
-#: public/includes/assets.php:126
+#: public/includes/assets.php:128
 msgid "Added!"
 msgstr "추가완료"
 
-#: public/includes/assets.php:127
+#: public/includes/assets.php:129
 msgid "Loading..."
 msgstr "로딩"
 
-#: public/includes/assets.php:128
+#: public/includes/assets.php:130
 msgid "Load More"
 msgstr "더보기"
 
-#: public/includes/assets.php:129 public/includes/helpers.php:443
+#: public/includes/assets.php:131 public/includes/helpers.php:443
 msgid "Close"
 msgstr "닫기"
 
-#: public/includes/assets.php:130
+#: public/includes/assets.php:132
 msgid "No more posts found"
 msgstr "더 글이 없습니다."
 
-#: public/includes/assets.php:131
+#: public/includes/assets.php:133
 msgid "Fetching failed."
 msgstr ""
 
-#: public/includes/assets.php:132
+#: public/includes/assets.php:134
 msgid "Gallery Created!"
 msgstr ""
 
-#: public/includes/assets.php:133
+#: public/includes/assets.php:135
 msgid "Gallery Updated!"
 msgstr ""
 
-#: public/includes/assets.php:134
+#: public/includes/assets.php:136
 msgid "Just write..."
 msgstr ""
 
-#: public/includes/assets.php:135
+#: public/includes/assets.php:137
 msgid "Choose an image"
 msgstr ""
 
-#: public/includes/assets.php:136
+#: public/includes/assets.php:138
 msgid "Update Image"
 msgstr ""
 
-#: public/includes/assets.php:137
+#: public/includes/assets.php:139
 msgid "Insert Image"
 msgstr ""
 
-#: public/includes/assets.php:138
+#: public/includes/assets.php:140
 msgid "Select Image"
 msgstr ""
 
-#: public/includes/assets.php:139
+#: public/includes/assets.php:141
 msgid "Remove featured image?"
 msgstr "대표 이미지를 뺄까요?"
 
-#: public/includes/assets.php:140
+#: public/includes/assets.php:142
 msgid "Update Selected Image"
 msgstr ""
 
-#: public/includes/assets.php:141
+#: public/includes/assets.php:143
 msgid "Choose images"
 msgstr ""
 
-#: public/includes/assets.php:142
+#: public/includes/assets.php:144
 msgid "Edit Image"
 msgstr ""
 
-#: public/includes/assets.php:143
+#: public/includes/assets.php:145
 #: public/includes/editor-modules--gallery.php:28
 msgid "Add Images"
 msgstr ""
 
-#: public/includes/assets.php:144
+#: public/includes/assets.php:146
 msgid "Add New Gallery"
 msgstr ""
 
-#: public/includes/assets.php:145
+#: public/includes/assets.php:147
 msgid "Select Editus Gallery Image"
 msgstr ""
 
-#: public/includes/assets.php:146
+#: public/includes/assets.php:148
 msgid "Use Selected Images"
 msgstr ""
 
-#: public/includes/assets.php:147
+#: public/includes/assets.php:149
 msgid "Publish Post?"
 msgstr "글을 공개할까요?"
 
-#: public/includes/assets.php:148
+#: public/includes/assets.php:150
 msgid "Yes, publish it!"
 msgstr "예"
 
-#: public/includes/assets.php:149
+#: public/includes/assets.php:151
 msgid "Trash Post?"
 msgstr "글을 삭제할까요?"
 
-#: public/includes/assets.php:150
+#: public/includes/assets.php:152
 msgid "Yes, trash it!"
 msgstr "예"
 
-#: public/includes/assets.php:151
+#: public/includes/assets.php:153
 msgid "Oh snap!"
 msgstr ""
 
-#: public/includes/assets.php:152
+#: public/includes/assets.php:154
 msgid "O.K. got it!"
 msgstr ""
 
-#: public/includes/assets.php:153
+#: public/includes/assets.php:155
 msgid ""
 "It looks like we are either missing the Article CSS class, or it is "
 "configured incorrectly. Editus will not function correctly without this CSS "
 "class."
 msgstr ""
 
-#: public/includes/assets.php:154
+#: public/includes/assets.php:156
 msgid "Update Settings"
 msgstr ""
 
-#: public/includes/assets.php:155
+#: public/includes/assets.php:157
 msgid "one more letter"
 msgstr ""
 
-#: public/includes/assets.php:156
+#: public/includes/assets.php:158
 msgid "You are currently editing a backup copy of this post."
 msgstr ""
 
-#: public/includes/assets.php:158
+#: public/includes/assets.php:160
 #, fuzzy
 #| msgid "Categories"
 msgid "add categories..."
 msgstr "카테고리"
 
-#: public/includes/assets.php:159
+#: public/includes/assets.php:161
 msgid "add tags..."
 msgstr ""
 
-#: public/includes/components.php:19 public/includes/editor-modules.php:260
+#: public/includes/components.php:19 public/includes/editor-modules.php:261
 msgid "Quote"
 msgstr ""
 
-#: public/includes/components.php:23 public/includes/editor-modules.php:258
+#: public/includes/components.php:23 public/includes/editor-modules.php:259
 msgid "Image"
 msgstr "이미지"
 
 #: public/includes/components.php:27
 #: public/includes/editor-modules--gallery.php:74
-#: public/includes/editor-modules.php:263
+#: public/includes/editor-modules.php:264
 msgid "Parallax"
 msgstr ""
 
-#: public/includes/components.php:31 public/includes/editor-modules.php:264
+#: public/includes/components.php:31 public/includes/editor-modules.php:265
 msgid "Audio"
 msgstr ""
 
-#: public/includes/components.php:35 public/includes/editor-modules.php:261
-#: public/includes/editor-modules.php:911
+#: public/includes/components.php:35 public/includes/editor-modules.php:262
+#: public/includes/editor-modules.php:912
 msgid "Content"
 msgstr ""
 
-#: public/includes/components.php:39 public/includes/editor-modules.php:259
+#: public/includes/components.php:39 public/includes/editor-modules.php:260
 msgid "Character"
 msgstr ""
 
-#: public/includes/components.php:43 public/includes/editor-modules.php:269
+#: public/includes/components.php:43 public/includes/editor-modules.php:270
 msgid "Collection"
 msgstr ""
 
-#: public/includes/components.php:47 public/includes/editor-modules.php:268
+#: public/includes/components.php:47 public/includes/editor-modules.php:269
 msgid "Document"
 msgstr ""
 
-#: public/includes/components.php:51 public/includes/editor-modules.php:270
+#: public/includes/components.php:51 public/includes/editor-modules.php:271
 msgid "Gallery"
 msgstr ""
 
-#: public/includes/components.php:55 public/includes/editor-modules.php:262
+#: public/includes/components.php:55 public/includes/editor-modules.php:263
 msgid "Chapter"
 msgstr ""
 
-#: public/includes/components.php:59 public/includes/editor-modules.php:266
+#: public/includes/components.php:59 public/includes/editor-modules.php:267
 msgid "Map"
 msgstr "지도"
 
-#: public/includes/components.php:63 public/includes/editor-modules.php:267
+#: public/includes/components.php:63 public/includes/editor-modules.php:268
 msgid "Timeline"
 msgstr ""
 
-#: public/includes/components.php:67 public/includes/editor-modules.php:265
+#: public/includes/components.php:67 public/includes/editor-modules.php:266
 msgid "Video"
 msgstr "동영상"
 
 #: public/includes/components.php:71 public/includes/components.php:87
-#: public/includes/editor-modules.php:278
+#: public/includes/editor-modules.php:279
 msgid "WordPress Image"
 msgstr "이미지"
 
-#: public/includes/components.php:75 public/includes/editor-modules.php:279
+#: public/includes/components.php:75 public/includes/editor-modules.php:280
 msgid "WordPress Quote"
 msgstr "인용구"
 
-#: public/includes/components.php:79 public/includes/editor-modules.php:272
+#: public/includes/components.php:79 public/includes/editor-modules.php:273
 msgid "Gallery Pop"
 msgstr ""
 
@@ -1201,302 +1201,302 @@ msgstr ""
 msgid "Add an optional caption for the gallery."
 msgstr ""
 
-#: public/includes/editor-modules.php:60 public/includes/editor-modules.php:336
+#: public/includes/editor-modules.php:60 public/includes/editor-modules.php:337
 msgid "Table"
 msgstr ""
 
-#: public/includes/editor-modules.php:132
+#: public/includes/editor-modules.php:133
 #: public/includes/underscore-templates.php:23
 #: public/includes/underscore-templates.php:41
 msgid "Edit Post"
 msgstr "글 편집"
 
-#: public/includes/editor-modules.php:135
-#: public/includes/editor-modules.php:159
-#: public/includes/editor-modules.php:354
+#: public/includes/editor-modules.php:136
+#: public/includes/editor-modules.php:160
+#: public/includes/editor-modules.php:355
 msgid "Post Settings"
 msgstr "글 세팅"
 
-#: public/includes/editor-modules.php:140
+#: public/includes/editor-modules.php:141
 msgid "All Posts"
 msgstr "글 목록"
 
-#: public/includes/editor-modules.php:143
-#: public/includes/editor-modules.php:947
+#: public/includes/editor-modules.php:144
+#: public/includes/editor-modules.php:948
 msgid "Revisions"
 msgstr "리비젼"
 
-#: public/includes/editor-modules.php:147
+#: public/includes/editor-modules.php:148
 msgid "Add Post"
 msgstr "새글"
 
-#: public/includes/editor-modules.php:158
-#: public/includes/editor-modules.php:353
+#: public/includes/editor-modules.php:159
+#: public/includes/editor-modules.php:354
 #: public/includes/underscore-templates.php:25
 #: public/includes/underscore-templates.php:43
 msgid "Delete Post"
 msgstr "글 삭제"
 
-#: public/includes/editor-modules.php:162
-#: public/includes/editor-modules.php:356
+#: public/includes/editor-modules.php:163
+#: public/includes/editor-modules.php:357
 msgid "Save Post"
 msgstr "글저장"
 
-#: public/includes/editor-modules.php:165
-#: public/includes/editor-modules.php:359
+#: public/includes/editor-modules.php:166
+#: public/includes/editor-modules.php:360
 msgid "Publish Post"
 msgstr "글공개"
 
-#: public/includes/editor-modules.php:165
+#: public/includes/editor-modules.php:166
 msgid "Submit For Review"
 msgstr "검토글로 저장"
 
-#: public/includes/editor-modules.php:251
+#: public/includes/editor-modules.php:252
 msgid "Bold"
 msgstr ""
 
-#: public/includes/editor-modules.php:252
+#: public/includes/editor-modules.php:253
 msgid "Underline"
 msgstr ""
 
-#: public/includes/editor-modules.php:253
+#: public/includes/editor-modules.php:254
 msgid "Italicize"
 msgstr ""
 
-#: public/includes/editor-modules.php:254
+#: public/includes/editor-modules.php:255
 msgid "Strikethrough"
 msgstr ""
 
-#: public/includes/editor-modules.php:255
+#: public/includes/editor-modules.php:256
 msgid "Insert Component"
 msgstr ""
 
-#: public/includes/editor-modules.php:275
+#: public/includes/editor-modules.php:276
 msgid "Event"
 msgstr ""
 
-#: public/includes/editor-modules.php:280
+#: public/includes/editor-modules.php:281
 msgid "WordPress Video"
 msgstr "코드"
 
-#: public/includes/editor-modules.php:286
-#: public/includes/editor-modules.php:330
+#: public/includes/editor-modules.php:287
+#: public/includes/editor-modules.php:331
 msgid "H2 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:287
-#: public/includes/editor-modules.php:331
+#: public/includes/editor-modules.php:288
+#: public/includes/editor-modules.php:332
 msgid "H3 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:293
+#: public/includes/editor-modules.php:294
 msgid "H4 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:294
+#: public/includes/editor-modules.php:295
 msgid "H5 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:295
+#: public/includes/editor-modules.php:296
 msgid "H6 Heading"
 msgstr ""
 
-#: public/includes/editor-modules.php:299
+#: public/includes/editor-modules.php:300
 msgid "Set Color for Selected Text"
 msgstr "선택된 텍스트색 설정"
 
-#: public/includes/editor-modules.php:300
+#: public/includes/editor-modules.php:301
 msgid "Choose Color"
 msgstr "색 변경"
 
-#: public/includes/editor-modules.php:304
-#: public/includes/editor-modules.php:333
+#: public/includes/editor-modules.php:305
+#: public/includes/editor-modules.php:334
 msgid "Ordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:305
-#: public/includes/editor-modules.php:334
+#: public/includes/editor-modules.php:306
+#: public/includes/editor-modules.php:335
 msgid "Unordered List"
 msgstr ""
 
-#: public/includes/editor-modules.php:309
+#: public/includes/editor-modules.php:310
 msgid "Anchor Link"
 msgstr "링크"
 
-#: public/includes/editor-modules.php:311
+#: public/includes/editor-modules.php:312
 msgid "http://url.com"
 msgstr ""
 
-#: public/includes/editor-modules.php:312
+#: public/includes/editor-modules.php:313
 msgid "Create Link"
 msgstr "링크"
 
-#: public/includes/editor-modules.php:314
+#: public/includes/editor-modules.php:315
 msgid "Open in a New Tab"
 msgstr "새 탭에서 열기"
 
-#: public/includes/editor-modules.php:318
-#: public/includes/editor-modules.php:339
+#: public/includes/editor-modules.php:319
+#: public/includes/editor-modules.php:340
 msgid "Insert HTML or Code"
 msgstr "코드"
 
-#: public/includes/editor-modules.php:320
-#: public/includes/editor-modules.php:323
+#: public/includes/editor-modules.php:321
+#: public/includes/editor-modules.php:324
 msgid "Enter HTML to insert"
 msgstr "삽입할 HTML코드"
 
-#: public/includes/editor-modules.php:324
+#: public/includes/editor-modules.php:325
 msgid "You can also use Shortcodes"
 msgstr "또는 워드프레스 숏코드"
 
-#: public/includes/editor-modules.php:325
+#: public/includes/editor-modules.php:326
 msgid ""
 "You can also enter a URL to embed, such as Youtube, Vimeo and Twitter URLs."
 msgstr "아니면 삽입할 URL을 입력하세요. 유튜브나 트위터등을 지원합니다."
 
-#: public/includes/editor-modules.php:339
+#: public/includes/editor-modules.php:340
 msgid "Insert"
 msgstr "삽입"
 
-#: public/includes/editor-modules.php:344
+#: public/includes/editor-modules.php:345
 msgid "Text Left Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:345
+#: public/includes/editor-modules.php:346
 msgid "Text Center Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:346
+#: public/includes/editor-modules.php:347
 msgid "Text Right Align"
 msgstr ""
 
-#: public/includes/editor-modules.php:387
-#: public/includes/editor-modules.php:743
-#: public/includes/editor-modules.php:762
+#: public/includes/editor-modules.php:388
+#: public/includes/editor-modules.php:744
+#: public/includes/editor-modules.php:763
 msgid "Move"
-msgstr ""
-
-#: public/includes/editor-modules.php:389
-#: public/includes/editor-modules.php:745
-#: public/includes/editor-modules.php:764
-msgid "Clone"
 msgstr ""
 
 #: public/includes/editor-modules.php:390
 #: public/includes/editor-modules.php:746
 #: public/includes/editor-modules.php:765
+msgid "Clone"
+msgstr ""
+
+#: public/includes/editor-modules.php:391
+#: public/includes/editor-modules.php:747
+#: public/includes/editor-modules.php:766
 msgid "Delete"
 msgstr "삭제"
 
-#: public/includes/editor-modules.php:412
+#: public/includes/editor-modules.php:413
 msgid "Replace Image"
 msgstr "이미지변경"
 
-#: public/includes/editor-modules.php:413
+#: public/includes/editor-modules.php:414
 msgid "Delete Image"
 msgstr "이미지 삭제"
 
-#: public/includes/editor-modules.php:414
+#: public/includes/editor-modules.php:415
 msgid "save"
 msgstr "저장"
 
-#: public/includes/editor-modules.php:477
+#: public/includes/editor-modules.php:478
 msgid "Featured Image"
 msgstr "대표 이미지"
 
-#: public/includes/editor-modules.php:477
+#: public/includes/editor-modules.php:478
 msgid "Change the featured image for this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:481
+#: public/includes/editor-modules.php:482
 msgid "Change Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:482
+#: public/includes/editor-modules.php:483
 msgid "Delete Featured Image"
 msgstr ""
 
-#: public/includes/editor-modules.php:498
+#: public/includes/editor-modules.php:499
 msgid "Change the status of the post to draft or publish."
 msgstr ""
 
-#: public/includes/editor-modules.php:500
+#: public/includes/editor-modules.php:501
 msgid "Draft"
 msgstr "비공개"
 
-#: public/includes/editor-modules.php:502
+#: public/includes/editor-modules.php:503
 msgid "Pending"
 msgstr "검토"
 
-#: public/includes/editor-modules.php:504
+#: public/includes/editor-modules.php:505
 msgid "Publish"
 msgstr "공개"
 
-#: public/includes/editor-modules.php:514
+#: public/includes/editor-modules.php:515
 msgid "Post URL"
 msgstr "글주소"
 
-#: public/includes/editor-modules.php:514
+#: public/includes/editor-modules.php:515
 msgid "Change the URL (slug) of this post."
 msgstr ""
 
-#: public/includes/editor-modules.php:524
+#: public/includes/editor-modules.php:525
 msgid "Categories"
 msgstr "카테고리"
 
-#: public/includes/editor-modules.php:524
+#: public/includes/editor-modules.php:525
 msgid "Type a category name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:529
+#: public/includes/editor-modules.php:530
 msgid "Tags"
 msgstr "태그"
 
-#: public/includes/editor-modules.php:529
+#: public/includes/editor-modules.php:530
 msgid "Type a tag name and press enter."
 msgstr ""
 
-#: public/includes/editor-modules.php:536
+#: public/includes/editor-modules.php:537
 msgid "Post Date"
 msgstr "글쓴날짜"
 
-#: public/includes/editor-modules.php:538
+#: public/includes/editor-modules.php:539
 msgid "Set to Now"
 msgstr ""
 
-#: public/includes/editor-modules.php:619
+#: public/includes/editor-modules.php:620
 msgid "New <span>post</span> title"
 msgstr "새글 제목"
 
-#: public/includes/editor-modules.php:619
+#: public/includes/editor-modules.php:620
 msgid "Specify title for new post, then save to edit."
 msgstr ""
 
-#: public/includes/editor-modules.php:620
+#: public/includes/editor-modules.php:621
 msgid "Type Your Title Here"
 msgstr ""
 
-#: public/includes/editor-modules.php:655
+#: public/includes/editor-modules.php:656
 msgid "Create"
 msgstr "만들기"
 
-#: public/includes/editor-modules.php:694
+#: public/includes/editor-modules.php:695
 msgid "results found"
 msgstr ""
 
-#: public/includes/editor-modules.php:787
+#: public/includes/editor-modules.php:788
 msgid "Save Locations"
 msgstr ""
 
-#: public/includes/editor-modules.php:805
+#: public/includes/editor-modules.php:806
 msgid "Save this post and refesh the page to see these changes."
 msgstr ""
 
-#: public/includes/editor-modules.php:947
+#: public/includes/editor-modules.php:948
 msgid "Use the slider to view the revision live on the page."
 msgstr ""
 
-#: public/includes/editor-modules.php:954
+#: public/includes/editor-modules.php:955
 msgid "Select"
 msgstr "선택"
 
@@ -1506,6 +1506,10 @@ msgstr ""
 
 #: public/includes/helpers.php:441
 msgid "No revisions found"
+msgstr ""
+
+#: public/includes/lasso.php:282
+msgid "Post being edited by "
 msgstr ""
 
 #: public/includes/tour.php:67
