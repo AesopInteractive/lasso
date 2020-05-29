@@ -44,6 +44,83 @@ jQuery(document).ready(function($){
         	localStorage.clear();
         }
     }
+    
+    function process_html(html, do_shortcodify) {
+        	
+		// take care of twitter widget
+		html = process_twitter(html);
+			
+	    // remove objects to ignore if they are not removed already
+		if (lasso_editor.showIgnoredItems ) {
+			var $temp = $('<div></div>').html( html );
+			$temp.find(lasso_editor.objectsNoSave).remove();
+			$temp.find(lasso_editor.supportedNoSave).remove();
+			html = $temp.html();
+		}	
+		
+		// remove extra classes
+		{
+			var $temp = $('<div></div>').html( html );
+			$temp.find("a").removeClass("lasso-link");
+			$temp.find("span").removeClass("lasso-span");
+			$temp.find("h2").removeClass("lasso-h2");
+			$temp.find("h3").removeClass("lasso-h3");
+			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
+			$temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
+			$temp.find(".lasso-component--controls, .aesop-events-edit").remove();
+			
+			$temp.find('*[class=""]').removeAttr('class');
+			
+			html = $temp.html();
+		}
+		
+		// remove all contenteditable attr
+		html = removeEditable(html);
+		
+		// if custom fields
+		if (lasso_editor.customFields) {
+			saveCustomFields(html);
+		}
+		
+		// shortcode ultimate
+		html = shortcodify_su(html);
+		
+		// shortcode aesop
+		html = do_shortcodify ? shortcodify(html) : html;
+		
+		
+		
+		// restore other shortcodes to the original shortcodes
+		html = replace_rendered_shortcodes( html );
+
+		// avia editor
+		if (lasso_editor.aviaEditor) {
+			html = shortcodify_avia(html);
+		}
+        
+        // WordPress Block
+        if (lasso_editor.hasGutenberg) {
+            html = process_gutenberg(html);
+        }
+        
+        // if multi page
+        if (lasso_editor.multipages != "-1") {
+            var res = lasso_editor.post_content.split("<!--nextpage-->");
+            var html2 = "";
+            res[parseInt(lasso_editor.multipages)] = html;
+            html = res.join("<!--nextpage-->");
+        }
+        
+        // any user supplied filters
+	
+		if (lasso_editor.filterArray) {
+			$(lasso_editor.filterArray).each(function(key, val){
+				html = val(html );
+			});
+		}
+        
+        return html
+    }
 
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
@@ -94,76 +171,17 @@ jQuery(document).ready(function($){
 
 		// remoe any notices
 		$('#lasso--notice').remove();
+        
+        		// let user know someting is happening on click
+		$(this).addClass('being-saved');
 
 		// get the html from our div
 		var html = $('#'+editor).html(),
 			postid = lasso_editor.postid;
 		if (!html) return;
-			
-		// take care of twitter widget
-		html = process_twitter(html);
-			
-	    // remove objects to ignore if they are not removed already
-		if (lasso_editor.showIgnoredItems ) {
-			var $temp = $('<div></div>').html( html );
-			$temp.find(lasso_editor.objectsNoSave).remove();
-			$temp.find(lasso_editor.supportedNoSave).remove();
-			html = $temp.html();
-		}	
-
-		// let user know someting is happening on click
-		$(this).addClass('being-saved');
-		
-		// remove extra classes
-		{
-			var $temp = $('<div></div>').html( html );
-			$temp.find("a").removeClass("lasso-link");
-			$temp.find("span").removeClass("lasso-span");
-			$temp.find("h2").removeClass("lasso-h2");
-			$temp.find("h3").removeClass("lasso-h3");
-			$temp.find(".lasso-noclass").removeClass("lasso-noclass");
-			$temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
-			$temp.find(".lasso-component--controls, .aesop-events-edit").remove();
-			
-			$temp.find('*[class=""]').removeAttr('class');
-			
-			html = $temp.html();
-		}
-		
-		// remove all contenteditable attr
-		html = removeEditable(html);
-		
-		// if custom fields
-		if (lasso_editor.customFields) {
-			saveCustomFields(html);
-		}
-		
-		// shortcode ultimate
-		html = shortcodify_su(html);
-		
-		// shortcode aesop
-		html = $this.hasClass('shortcodify-enabled') ? shortcodify(html) : html;
-		
-		// any user supplied filters
-	
-		if (lasso_editor.filterArray) {
-			$(lasso_editor.filterArray).each(function(key, val){
-				html = val(html );
-			});
-		}
-		
-		// restore other shortcodes to the original shortcodes
-		html = replace_rendered_shortcodes( html );
-
-		// avia editor
-		if (lasso_editor.aviaEditor) {
-			html = shortcodify_avia(html);
-		}
         
-        // WordPress Block
-        if (lasso_editor.hasGutenberg) {
-            html = process_gutenberg(html);
-        }
+        html =  process_html(html, $this.hasClass('shortcodify-enabled'));
+		
 		
 		
 		
@@ -206,6 +224,84 @@ jQuery(document).ready(function($){
 			runSavePublish(false)
 
 		}
+        
+        function process_html(html, do_shortcodify) {
+        	
+            // take care of twitter widget
+            html = process_twitter(html);
+                
+            // remove objects to ignore if they are not removed already
+            if (lasso_editor.showIgnoredItems ) {
+                var $temp = $('<div></div>').html( html );
+                $temp.find(lasso_editor.objectsNoSave).remove();
+                $temp.find(lasso_editor.supportedNoSave).remove();
+                html = $temp.html();
+            }	
+            
+            // remove extra classes
+            {
+                var $temp = $('<div></div>').html( html );
+                $temp.find("a").removeClass("lasso-link");
+                $temp.find("span").removeClass("lasso-span");
+                $temp.find("h2").removeClass("lasso-h2");
+                $temp.find("h3").removeClass("lasso-h3");
+                $temp.find(".lasso-noclass").removeClass("lasso-noclass");
+                $temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
+                $temp.find(".lasso-component--controls, .aesop-events-edit").remove();
+                
+                $temp.find('*[class=""]').removeAttr('class');
+                
+                html = $temp.html();
+            }
+            
+            // remove all contenteditable attr
+            html = removeEditable(html);
+            
+            // if custom fields
+            if (lasso_editor.customFields) {
+                saveCustomFields(html);
+            }
+            
+            // shortcode ultimate
+            html = shortcodify_su(html);
+            
+            // shortcode aesop
+            html = do_shortcodify ? shortcodify(html) : html;
+            
+            
+            
+            // restore other shortcodes to the original shortcodes
+            html = replace_rendered_shortcodes( html );
+
+            // avia editor
+            if (lasso_editor.aviaEditor) {
+                html = shortcodify_avia(html);
+            }
+            
+            // WordPress Block
+            if (lasso_editor.hasGutenberg) {
+                html = process_gutenberg(html);
+            }
+            
+            // if multi page
+            if (lasso_editor.multipages != "-1") {
+                var res = lasso_editor.post_content.split("<!--nextpage-->");
+                var html2 = "";
+                res[parseInt(lasso_editor.multipages)] = html;
+                html = res.join("<!--nextpage-->");
+            }
+            
+            // any user supplied filters
+        
+            if (lasso_editor.filterArray) {
+                $(lasso_editor.filterArray).each(function(key, val){
+                    html = val(html );
+                });
+            }
+            
+            return html
+        }
+
 		
 		function removeComment(content) {
 			return content.replace(/<!--[\s\S]*?-->/g, "");

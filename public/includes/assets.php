@@ -14,6 +14,19 @@ class assets {
 
 		add_action('wp_enqueue_scripts', array($this,'scripts'));
 	}
+    
+    function is_multipage()
+    {
+        global $post;
+        $pos = strpos($post->post_content, "<!--nextpage-->");
+        if (!$pos) return -1;
+        
+        global $wp;
+        $url =  home_url( $wp->request );
+        $index = intval(basename($url)) == 0 ? 0 : intval(basename($url))-1;
+        echo $index;
+        return $index;        
+    }
 
 	public function scripts(){
 
@@ -116,7 +129,7 @@ class assets {
 			$post_date = get_the_time('U', $postid);
 			$time = (time()+$tz_offset);
             $delta = $time - $post_date;
-
+            
 			$strings = array(
 				'save' 				=> __('Save','lasso'),
 				'selectText'	  	=> __('Please Select Text First.','lasso'),
@@ -193,6 +206,13 @@ class assets {
 					$using_restapiv2 = true;
 				}
 			}
+            
+            //find if this is multi page
+            $multipage = self::is_multipage();
+            $post_content = "";
+            if ($linkpages != -1) {
+                $post_content = $post->post_content;
+            }
 
 			// localized objects
 			$objects = array(
@@ -273,7 +293,9 @@ class assets {
 				'linksEditable'    => $links_editable,
 				'supportPendingStatus' => !$no_pending_status,
 				'tableCode' => apply_filters( 'lasso_table_html_code','<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>'),
-                'hasGutenberg' => (function_exists( 'has_blocks' ) && has_blocks( $post->post_content))
+                'hasGutenberg' => (function_exists( 'has_blocks' ) && has_blocks( $post->post_content)),
+                'multipages'=> $multipage,
+                'post_content'=>$post_content
 			);
 
 

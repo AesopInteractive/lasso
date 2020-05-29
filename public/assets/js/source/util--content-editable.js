@@ -1664,7 +1664,7 @@
 				if (text.length < 1 && childCount < 2) {
                     //the behavior when the editable content becomes empty.
                     //simplified from the previous version
-					el.innerHTML = '<p></p>';
+					el.innerHTML = '<p><br></p>';
                  
 					/*if (el.placeHolderActive) return;
 

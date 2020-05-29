@@ -1199,7 +1199,7 @@ jQuery(document).ready(function($){
 					var item2 = setComponent(type);
 					
 					if (last) {
-						item2.append("<p></p>");
+						item2.append('<p><br></p>');
 					}
 					$(item).replaceWith( item2);
 					
