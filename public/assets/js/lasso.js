@@ -14270,7 +14270,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
-				if ( true == response.success ) {
+				if ( "" == response ) {
 
 					// add a body class so we can do whatever with
 					$('body').addClass('lasso--post-thumb-removed');
@@ -14368,8 +14368,9 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		function(){
 
 			$.post( lasso_editor.ajaxurl2, data, function(response) {
+                
 
-				if ( true == response.success ) {
+				if ( "" == response ) {
 					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb');
 			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg );
 					$this.closest('.lasso--postsettings__left').find('img').removeAttr("srcset");
@@ -14860,6 +14861,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 		      	$(clicked).parent().next('img').attr({
 		      		'src': imageURL,
+                    'srcset' :"",
 		      		'alt': attachment.alt,
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 		      	});
@@ -15373,7 +15375,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
-				if ( true == response.success ) {
+				if ( "" == response ) {
 
 					$this.closest('li').fadeOut().remove()
 

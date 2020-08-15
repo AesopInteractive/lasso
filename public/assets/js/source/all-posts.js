@@ -428,7 +428,7 @@
 
 			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
-				if ( true == response.success ) {
+				if ( "" == response ) {
 
 					$this.closest('li').fadeOut().remove()
 

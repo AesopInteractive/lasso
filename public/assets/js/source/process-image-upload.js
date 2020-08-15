@@ -121,7 +121,7 @@
 
 			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
-				if ( true == response.success ) {
+				if ( "" == response ) {
 
 					// add a body class so we can do whatever with
 					$('body').addClass('lasso--post-thumb-removed');
@@ -219,8 +219,9 @@
 		function(){
 
 			$.post( lasso_editor.ajaxurl2, data, function(response) {
+                
 
-				if ( true == response.success ) {
+				if ( "" == response ) {
 					var defaultImg = $this.closest('.lasso--post-thumb').data('default-thumb');
 			      	$this.closest('.lasso--postsettings__left').find('img').attr('src', defaultImg );
 					$this.closest('.lasso--postsettings__left').find('img').removeAttr("srcset");

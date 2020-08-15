@@ -119,8 +119,7 @@ class assets {
 			
 			// custom fields
 			
-			$custom_fields = apply_filters( 'editus_custom_fields', null ); //array('testFieldName' => '#field1');
-
+			$custom_fields = apply_filters( 'editus_custom_fields', null ); 
 
 
 			// post id reference

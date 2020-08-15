@@ -41,6 +41,7 @@
 
 		      	$(clicked).parent().next('img').attr({
 		      		'src': imageURL,
+                    'srcset' :"",
 		      		'alt': attachment.alt,
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 		      	});
