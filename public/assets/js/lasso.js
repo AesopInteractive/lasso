@@ -11896,7 +11896,7 @@ jQuery(document).ready(function($){
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
 					
-					if ($('#lasso--custom-field-form').length ) {
+					if ($('#lasso--custom-field-form').length && $('#lasso--custom-field-form').children().length) {
 						$('#lasso--custom-field-form').trigger('submit');
 						setTimeout(function() {
 						  window.location.replace(response.data['link']);
