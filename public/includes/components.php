@@ -126,7 +126,7 @@ endif;
 if ( !function_exists( 'lasso_image_component' ) ):
 	function lasso_image_component() {
 
-		return do_shortcode( '[aesop_image img="'.LASSO_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="800px"]' );
+		return do_shortcode( '[aesop_image img="'.LASSO_URL.'/public/assets/img/empty-img.png" align="center" imgwidth="100%"]' );
 	}
 endif;
 
