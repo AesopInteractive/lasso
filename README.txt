@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 5.2
-Stable tag: 1.0.8.1
+Tested up to: 5.5
+Stable tag: 1.2.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,58 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.2.1
+* Some JS fixes
+
+= 1.2.0
+* Support for multi-page posts
+
+= 1.1.11
+* Fix for multiple users trying to edit the same post at the same time
+* Changed the behavior when the user deletes all text while using the editor. 
+
+= 1.1.10
+* Styles fixes for mobile
+
+= 1.1.9
+* Now you can use Ctrl+SPACE to remove formatting from selected text.
+
+= 1.1.8
+* A bug fix in the component editor
+
+= 1.1.7
+* Support for WP Column and Spacer blocks.
+
+= 1.1.6
+* Fix for the map component.
+
+= 1.1.5
+* Fix for searching and auto save.
+
+= 1.1.4
+* Added a filter for the table html codes
+
+= 1.1.3
+* Fix for the "Click" UI setting
+* Fix for custom fields
+
+= 1.1.2
+* Fix for multi-sites
+
+= 1.1.1
+* Added Icons for OL and UL for the toolbar
+* German translation update
+
+= 1.1.0
+* NEW: OL and UL buttons to create lists.
+
+= 1.0.9.2
+* Fix for post locking
+* Further AJAX changes
+
+= 1.0.8
+* Added the delete post button to mobile
+
 = 1.0.7
 * Fix for meta information saving
 

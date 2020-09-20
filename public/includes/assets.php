@@ -206,11 +206,12 @@ class assets {
 				}
 			}
             
-            //find if this is multi page
+            //find if this is multi page. -1 if not
             $multipage = self::is_multipage();
             $post_content = "";
-            if ($linkpages != -1) {
-                $post_content = $post->post_content;
+            //pass post_content if we need to process multipage. In future we may need to pass this for other purposes
+            if ($multipage != -1) {
+               $post_content = $post->post_content;
             }
 
 			// localized objects
