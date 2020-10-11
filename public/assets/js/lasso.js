@@ -12212,7 +12212,7 @@ jQuery(document).ready(function($){
 				  	});
 
 		      	} else if ( 'image' == type ) {
-
+                    $("#aesop-generator-attr-img").val(attachment.url);
 				  	component.find('.aesop-image-component-image > img').attr('src', attachment.url);
 					// new addition for panorama images
 					component.find('.paver__pano').css({'background-image': 'url('+ attachment.url +')'});
