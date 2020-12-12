@@ -11858,7 +11858,8 @@ jQuery(document).ready(function($){
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
-			if ($('#lasso--custom-field-form').length ==0 ) {
+			if ($('#lasso--custom-field-form').length ==0 || $('#lasso--custom-field-form').children().length == 0 ) {
+                $('#lasso--save').removeClass('lasso-publish-post');
 				$('#lasso--save').trigger('click');
 			}
 
@@ -11895,6 +11896,7 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
+                    window.onbeforeunload = null;
 					
 					if ($('#lasso--custom-field-form').length && $('#lasso--custom-field-form').children().length) {
 						$('#lasso--custom-field-form').trigger('submit');
@@ -11902,6 +11904,8 @@ jQuery(document).ready(function($){
 						  window.location.replace(response.data['link']);
 						}, 1000);
 					} else {
+                        // changing the setting can potentially change the URL of the post. In that case we need to
+                         // reload the post
 					    window.location.replace(response.data['link']);
 					}
 
@@ -13459,14 +13463,31 @@ jQuery(document).ready(function($){
 			}
             
             j =  $('<div>').append($(k).clone())
+            
+            
             // columns
             $(j).find(".wp-block-column").before("<!-- wp:column -->" );
             $(j).find(".wp-block-column").after("<!-- /wp:column -->" );
             $(j).find(".wp-block-columns").before("<!-- wp:columns -->" );
             $(j).find(".wp-block-columns").after("<!-- /wp:columns -->" );
+            
+            //paragraph
             $(j).find("p").before("<!-- wp:paragraph -->" );
             $(j).find("p").after("<!-- /wp:paragraph -->" );
             
+            //table
+            $(j).find(".wp-block-table").before("<!-- wp:table -->" );
+            $(j).find(".wp-block-table").after("<!-- /wp:table -->" );
+            
+            //button
+            $(j).find(".wp-block-button").before("<!-- wp:button -->" );
+            $(j).find(".wp-block-button").after("<!-- /wp:button -->" );
+            $(j).find(".wp-block-buttons").before("<!-- wp:buttons -->" );
+            $(j).find(".wp-block-buttons").after("<!-- /wp:buttons -->" );
+            
+            //group
+            $(j).find(".wp-block-group").before("<!-- wp:group -->" );
+            $(j).find(".wp-block-group").after("<!-- /wp:group -->" );
             
             // spacer
             $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );

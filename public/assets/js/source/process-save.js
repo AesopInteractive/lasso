@@ -516,14 +516,31 @@ jQuery(document).ready(function($){
 			}
             
             j =  $('<div>').append($(k).clone())
+            
+            
             // columns
             $(j).find(".wp-block-column").before("<!-- wp:column -->" );
             $(j).find(".wp-block-column").after("<!-- /wp:column -->" );
             $(j).find(".wp-block-columns").before("<!-- wp:columns -->" );
             $(j).find(".wp-block-columns").after("<!-- /wp:columns -->" );
+            
+            //paragraph
             $(j).find("p").before("<!-- wp:paragraph -->" );
             $(j).find("p").after("<!-- /wp:paragraph -->" );
             
+            //table
+            $(j).find(".wp-block-table").before("<!-- wp:table -->" );
+            $(j).find(".wp-block-table").after("<!-- /wp:table -->" );
+            
+            //button
+            $(j).find(".wp-block-button").before("<!-- wp:button -->" );
+            $(j).find(".wp-block-button").after("<!-- /wp:button -->" );
+            $(j).find(".wp-block-buttons").before("<!-- wp:buttons -->" );
+            $(j).find(".wp-block-buttons").after("<!-- /wp:buttons -->" );
+            
+            //group
+            $(j).find(".wp-block-group").before("<!-- wp:group -->" );
+            $(j).find(".wp-block-group").after("<!-- /wp:group -->" );
             
             // spacer
             $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );
