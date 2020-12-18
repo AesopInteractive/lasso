@@ -12686,8 +12686,8 @@ jQuery(function( $ ) {
 		}
         var components = $(dropUp).find("li").length;
         if (components<7) {
-            $(dropUp).css('width',''+components*45+'px');
-            $(dropUp).css('left','-'+(components*45/2-20)+'px');
+            $(dropUp).css('width',''+(components*42+8)+'px');
+            $(dropUp).css('left','-'+((components*42+8)/2-20)+'px');
         }   
 		restoreSelection(window.selRange);
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
