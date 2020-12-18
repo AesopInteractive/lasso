@@ -40,7 +40,7 @@ function lasso_gallery_editor_module() {
 
 	if ( lasso_user_can( 'publish_posts' ) ): ?>
 
-		<div class="ase-gallery-opts ase-gallery-opts--create-gallery" >
+		<div class="ase-gallery-opts ase-gallery-opts--create-gallery2" style="display:none;">
 
 			<div class="ase-gallery-opts--single lasso-option">
 

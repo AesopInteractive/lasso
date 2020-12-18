@@ -130,6 +130,8 @@ class settings {
 		$links_editable = lasso_editor_get_option('links_editable', 'lasso_editor', false);
 		$bold_tag = lasso_editor_get_option( 'bold_tag', 'lasso_editor',  "b");
 		$i_tag = lasso_editor_get_option( 'i_tag', 'lasso_editor',  "i");
+        
+        $add_table = lasso_editor_get_option('add_table', 'lasso_editor', false);
 		
 		// do we support pending status
 		$no_pending_status = lasso_editor_get_option('no_pending_status', 'lasso_editor');
@@ -285,10 +287,18 @@ class settings {
 						<input type="radio" name="lasso_editor[insert_comp_ui]" value="mediumcom" <?php echo checked( $insert_comp_ui, 'mediumcom' );?>> <?php _e( 'Auto Button on Empty Paragraph. medium.com-like UI.', 'lasso' );?>
 						</div>
 					</div>
+                    
 				</div>
 				
-				
-				
+				<h3><?php _e( 'Extra Component', 'lasso' );?></h3>
+                <div class="lasso-editor-settings--option-wrap" style="border:none;" >
+                    <div class="lasso-editor-settings--option-inner" >
+						<input type="checkbox" class="checkbox" name="lasso_editor[add_table]" id="lasso_editor[add_table]" <?php echo checked( $add_table, 'on' );?> >
+						<label for="lasso_editor[add_table]"><?php _e( 'Additional Component: Table', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Enable adding and editing tables.', 'lasso' );?></span>
+
+					</div>
+                </div>
 				
 
 				<h3><?php _e( 'Post Settings UI', 'lasso' );?></h3>

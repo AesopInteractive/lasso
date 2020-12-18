@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
         }
     }
     
-    function process_html(html, do_shortcodify) {
+    /*function process_html(html, do_shortcodify) {
         	
 		// take care of twitter widget
 		html = process_twitter(html);
@@ -120,7 +120,7 @@ jQuery(document).ready(function($){
 		}
         
         return html
-    }
+    }*/
 
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
@@ -257,30 +257,24 @@ jQuery(document).ready(function($){
             // remove all contenteditable attr
             html = removeEditable(html);
             
-            // if custom fields
-            if (lasso_editor.customFields) {
-                saveCustomFields(html);
-            }
-            
-            // shortcode ultimate
-            html = shortcodify_su(html);
-            
-            // shortcode aesop
-            html = do_shortcodify ? shortcodify(html) : html;
-            
-            
-            
-            // restore other shortcodes to the original shortcodes
-            html = replace_rendered_shortcodes( html );
-
-            // avia editor
-            if (lasso_editor.aviaEditor) {
-                html = shortcodify_avia(html);
-            }
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
                 html = process_gutenberg(html);
+            } else {
+                // shortcode ultimate
+                //html = shortcodify_su(html);
+                
+                // shortcode aesop
+                html = do_shortcodify ? shortcodify(html) : html;	
+                
+                // restore other shortcodes to the original shortcodes
+                html = replace_rendered_shortcodes( html );
+
+                // avia editor
+                if (lasso_editor.aviaEditor) {
+                    html = shortcodify_avia(html);
+                }
             }
             
             // if multi page
@@ -372,14 +366,18 @@ jQuery(document).ready(function($){
 						component.html(comp_content);
 						processed += component.clone().wrap('<p>').parent().html();;
 					} else   			// Let's test what kind of object it is
-	    			if ( component.context.nodeType == 3 ) {
+                    if ( component.context && component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;
-	    			} else if ( component.context.nodeType == 8 ) {
+	    			} else if ( component.context && component.context.nodeType == 8 ) {
 	    				processed += '<!--' + j[i].data + '-->';
 	    			} else {
 	    				// DOM object
-	    				processed += j[i].outerHTML;
+                        if (j[i].outerHTML) {
+                            processed += j[i].outerHTML;
+                        } else if (j[i].data){
+                            processed += j[i].data;
+                        }
 	    			}
 	    			continue;
 	    		}
@@ -516,14 +514,32 @@ jQuery(document).ready(function($){
 			}
             
             j =  $('<div>').append($(k).clone())
+            
+            
             // columns
             $(j).find(".wp-block-column").before("<!-- wp:column -->" );
             $(j).find(".wp-block-column").after("<!-- /wp:column -->" );
             $(j).find(".wp-block-columns").before("<!-- wp:columns -->" );
             $(j).find(".wp-block-columns").after("<!-- /wp:columns -->" );
+            
+            //paragraph
             $(j).find("p").before("<!-- wp:paragraph -->" );
             $(j).find("p").after("<!-- /wp:paragraph -->" );
             
+            //table
+            $(j).find(".wp-block-table").before("<!-- wp:table -->" );
+            $(j).find(".wp-block-table").after("<!-- /wp:table -->" );
+            $(j).find(".wp-block-table").removeAttr('data-component-type');
+            
+            //button
+            $(j).find(".wp-block-button").before("<!-- wp:button -->" );
+            $(j).find(".wp-block-button").after("<!-- /wp:button -->" );
+            $(j).find(".wp-block-buttons").before("<!-- wp:buttons -->" );
+            $(j).find(".wp-block-buttons").after("<!-- /wp:buttons -->" );
+            
+            //group
+            $(j).find(".wp-block-group").before("<!-- wp:group -->" );
+            $(j).find(".wp-block-group").after("<!-- /wp:group -->" );
             
             // spacer
             $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );
@@ -532,6 +548,22 @@ jQuery(document).ready(function($){
             // separator
             $(j).find(".wp-block-separator").before("<!-- wp:separator  -->" );
             $(j).find(".wp-block-separator").after("<!-- /wp:separator  -->" );
+            
+            //aesop components
+            $(j).find(".aesop-component").each( function(index ) {
+                var d = $(this).data();
+                var blockCode = "<!-- wp:ase/"+d['componentType']+" {";
+                var index = 0;
+                $.each(d,function(key, value){
+                    if (key=='componentType') return;
+                    if (index>0) blockCode += ",";
+                    blockCode+= '"'+key+'":"'+value+'" ';
+                    index++;
+                });
+                blockCode+="} /-->";
+                $(this).before(blockCode);
+                $(this).remove();
+            });
             
             var html = $(j).html(); 
             return html;

@@ -318,6 +318,7 @@ ul.lasso-editor-controls{
     line-height: 0;
     float:left;
     margin:0;
+    padding-left:0;
     list-style:none;
     .clearfix();
 
@@ -326,7 +327,7 @@ ul.lasso-editor-controls{
         height:25px;
         margin-right:4px;
         border:none;
-        background:@toolbar--htmldrop__bg;
+        //background:@toolbar--htmldrop__bg;
         border:1px solid darken(@toolbar--htmldrop__bg,2);
         border-radius:@editor--radius;
         .box-shadow(inset 1px 1px 0 rgba(255,255,255,0.05));
@@ -375,7 +376,7 @@ ul.lasso-editor-controls{
 
         * { .box-sizing(border-box); }
         box-shadow:none;
-        background:@toolbar--hover;
+        //background:@toolbar--hover;
 
         ul {
             margin:0;
@@ -383,12 +384,13 @@ ul.lasso-editor-controls{
             .opacity(1);
             list-style-type: none;
             width:@toolbar--drop__width;
-            height:@toolbar--drop__height;
+            height:auto;//@toolbar--drop__height;
             top:-@toolbar--drop__height - 6;
             border-radius:@editor--radius;
             left:-@toolbar--drop__width / 2 + 16;
-            background:@toolbar--bg__accent;
+            //background:@toolbar--bg__accent;
             line-height: 0;
+            column-gap:0;
 
             &:after {
                 content:'';
@@ -416,7 +418,8 @@ ul.lasso-editor-controls{
                 padding:2px;
                 height:36px;
                 width:40px;
-                background:lighten(@toolbar--bg,3);
+                //background:lighten(@toolbar--bg,3);
+                background:none;
                 border-left:1px solid rgba(255,255,255,0.1);
                 border-top:1px solid rgba(255,255,255,0.1);
                 .box-shadow(1px 1px 0 rgba(0,0,0,0.3));
@@ -579,13 +582,14 @@ ul.lasso-editor-controls{
 // aesop not active
 .ase-not-active {
     @width:94px;
-    #lasso-toolbar--components #lasso-toolbar--components__list {
-        width:@width;
-        left: ~'calc(50% - @{width} / 2)';
-        height:48px;
-        top:-55px !important;
+    #lasso-toolbar--components {
+        #lasso-toolbar--components__list {
+            width:@width;
+            left: ~'calc(50% - @{width} / 2)';
+            height:48px;
+            top:-55px !important;
+        }
     }
-}
 
 #lasso-toolbar--components__list,#lasso-toolbar--link__wrap, #lasso-toolbar--html__wrap, .iris-picker{
     z-index: @z-index--toolbar+1;

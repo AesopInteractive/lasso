@@ -10,7 +10,7 @@
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           1.2.3
+ * Version:           1.2.7
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '1.2.3' );
+define( 'LASSO_VERSION', '1.2.7' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 define( 'LASSO_FILE', __FILE__ );
@@ -100,4 +100,66 @@ if( function_exists( 'is_gutenberg_page' ) ) {
 	}
 	add_filter( "rest_prepare_post", 'add_raw_to_post', 10, 3 );
 }
+
+
+
+//table codes to be added
+class editus_table {
+    
+    public function __construct(){
+        $add_table = lasso_editor_get_option('add_table', 'lasso_editor', false);
+        if ($add_table) {
+            add_action('wp_enqueue_scripts', array($this,'scripts'));
+            
+        }
+	}
+    
+    function scripts()
+    {
+        add_action('lasso_editor_controls_after_outside', array($this,'editus_table_edit_menu'));
+            add_filter('lasso_components',array($this,'editus_components_add_table'),10,1);
+            add_action( 'lasso_toolbar_components', array($this,'editus_toolbar_components_add_table'), 10 );
+            wp_enqueue_style( 'editus-table-style', LASSO_URL.  '/public/assets/css/editus-table-edit-public.css', LASSO_VERSION, true );
+            wp_enqueue_script( 'editus_table',  LASSO_URL. '/public/assets/js/editus-table-edit-public.js', array( 'jquery' ), LASSO_VERSION, true );
+    }
+    
+    function editus_table_edit_menu()
+    { ?>
+
+        <ul class='editus-table-menu'>
+          <li data-action="insertcol"><?php echo __('Insert Column','lasso')?></li>
+          <li data-action="insertrow"><?php echo __('Insert Row','lasso')?></li>
+          <li data-action="delcol"><?php echo __('Delete Column','lasso')?></li>
+          <li data-action="delrow"><?php echo __('Delete Row','lasso')?></li>
+        </ul>
+    <?php
+    }
+    
+    
+    function editus_html_table()
+    {
+         return '<figure class="wp-block-table"><table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table></figure>';
+    }
+
+
+    function editus_components_add_table( $array ){
+        $custom = array(
+               'htmltable' => array(
+                         'name'    => __('HTML Table','lasso'),
+                          'content' => self::editus_html_table(),
+                )
+        );
+        return array_merge( $array, $custom );
+    }
+
+
+    function editus_toolbar_components_add_table( ) {
+          ?>
+          <li data-type="htmltable" title="<?php esc_attr_e( 'HTML Table', 'lasso' );?>" class="quote lasso-toolbar--component__htmltable dashicons dashicons-grid-view"></li>
+          <?php
+    }
+}
+
+
+new editus_table();
 

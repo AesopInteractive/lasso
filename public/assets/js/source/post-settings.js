@@ -143,7 +143,8 @@
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
-			if ($('#lasso--custom-field-form').length ==0 ) {
+			if ($('#lasso--custom-field-form').length ==0 || $('#lasso--custom-field-form').children().length == 0 ) {
+                $('#lasso--save').removeClass('lasso-publish-post');
 				$('#lasso--save').trigger('click');
 			}
 
@@ -180,6 +181,7 @@
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
+                    window.onbeforeunload = null;
 					
 					if ($('#lasso--custom-field-form').length && $('#lasso--custom-field-form').children().length) {
 						$('#lasso--custom-field-form').trigger('submit');
@@ -187,6 +189,8 @@
 						  window.location.replace(response.data['link']);
 						}, 1000);
 					} else {
+                        // changing the setting can potentially change the URL of the post. In that case we need to
+                         // reload the post
 					    window.location.replace(response.data['link']);
 					}
 

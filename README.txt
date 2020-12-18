@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 5.5
-Stable tag: 1.2.1
+Tested up to: 5.5.3
+Stable tag: 1.2.5
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,21 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.2.5
+* Fix for gallery create/update
+* Allow component icon color customization
+* Further Gutenberg compatibility work
+
+= 1.2.4
+* Fix for post settings
+* Further Gutenberg compatibility work
+
+= 1.2.3
+* Fix for Aesop Image component
+
+= 1.2.2
+* PHP error fix
+
 = 1.2.1
 * Some JS fixes
 

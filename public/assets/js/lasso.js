@@ -11618,8 +11618,9 @@ jQuery(document).ready(function($){
 
 				articleMedium.makeUndoable();
             	// get the item and type
-				var item = draggedItem['context'],
-					type = $(item).attr('data-type');
+				var item = draggedItem['context'];
+                if (!item) item = draggedItem;
+				var type = $(item).attr('data-type');
 				// item2 will be the content tthat gets inserted. It also has edit controls
                 
 
@@ -11858,7 +11859,8 @@ jQuery(document).ready(function($){
 		jQuery(document).on('submit','#lasso--postsettings__form',function(e) {
 
 			e.preventDefault();
-			if ($('#lasso--custom-field-form').length ==0 ) {
+			if ($('#lasso--custom-field-form').length ==0 || $('#lasso--custom-field-form').children().length == 0 ) {
+                $('#lasso--save').removeClass('lasso-publish-post');
 				$('#lasso--save').trigger('click');
 			}
 
@@ -11895,6 +11897,7 @@ jQuery(document).ready(function($){
 				if( true == response.success ) {
 					$('input[type="submit"]').addClass('saved');
 					$('input[type="submit"]').val(lasso_editor.strings.saved);
+                    window.onbeforeunload = null;
 					
 					if ($('#lasso--custom-field-form').length && $('#lasso--custom-field-form').children().length) {
 						$('#lasso--custom-field-form').trigger('submit');
@@ -11902,6 +11905,8 @@ jQuery(document).ready(function($){
 						  window.location.replace(response.data['link']);
 						}, 1000);
 					} else {
+                        // changing the setting can potentially change the URL of the post. In that case we need to
+                         // reload the post
 					    window.location.replace(response.data['link']);
 					}
 
@@ -12679,6 +12684,11 @@ jQuery(function( $ ) {
 		} else {
 			$(dropUp).hide();
 		}
+        var components = $(dropUp).find("li").length;
+        if (components<7) {
+            $(dropUp).css('width',''+components*45+'px');
+            $(dropUp).css('left','-'+(components*45/2-20)+'px');
+        }   
 		restoreSelection(window.selRange);
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
@@ -12745,6 +12755,11 @@ jQuery(function( $ ) {
 				left: '30px',
 				top:'0px'
 			});
+            
+        if ($(this).find("li").length<7) {
+            $(this).find("ul").css('column-count',''+$(this).find("ul li").length);
+            $(this).find("ul").css('width','auto');
+        }       
 	
 	});
 
@@ -12988,7 +13003,7 @@ jQuery(document).ready(function($){
         }
     }
     
-    function process_html(html, do_shortcodify) {
+    /*function process_html(html, do_shortcodify) {
         	
 		// take care of twitter widget
 		html = process_twitter(html);
@@ -13063,7 +13078,7 @@ jQuery(document).ready(function($){
 		}
         
         return html
-    }
+    }*/
 
 	///////////////////////
 	// 3. SAVE OR PUBLISH OBJECT
@@ -13200,30 +13215,24 @@ jQuery(document).ready(function($){
             // remove all contenteditable attr
             html = removeEditable(html);
             
-            // if custom fields
-            if (lasso_editor.customFields) {
-                saveCustomFields(html);
-            }
-            
-            // shortcode ultimate
-            html = shortcodify_su(html);
-            
-            // shortcode aesop
-            html = do_shortcodify ? shortcodify(html) : html;
-            
-            
-            
-            // restore other shortcodes to the original shortcodes
-            html = replace_rendered_shortcodes( html );
-
-            // avia editor
-            if (lasso_editor.aviaEditor) {
-                html = shortcodify_avia(html);
-            }
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
                 html = process_gutenberg(html);
+            } else {
+                // shortcode ultimate
+                //html = shortcodify_su(html);
+                
+                // shortcode aesop
+                html = do_shortcodify ? shortcodify(html) : html;	
+                
+                // restore other shortcodes to the original shortcodes
+                html = replace_rendered_shortcodes( html );
+
+                // avia editor
+                if (lasso_editor.aviaEditor) {
+                    html = shortcodify_avia(html);
+                }
             }
             
             // if multi page
@@ -13315,14 +13324,18 @@ jQuery(document).ready(function($){
 						component.html(comp_content);
 						processed += component.clone().wrap('<p>').parent().html();;
 					} else   			// Let's test what kind of object it is
-	    			if ( component.context.nodeType == 3 ) {
+                    if ( component.context && component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;
-	    			} else if ( component.context.nodeType == 8 ) {
+	    			} else if ( component.context && component.context.nodeType == 8 ) {
 	    				processed += '<!--' + j[i].data + '-->';
 	    			} else {
 	    				// DOM object
-	    				processed += j[i].outerHTML;
+                        if (j[i].outerHTML) {
+                            processed += j[i].outerHTML;
+                        } else if (j[i].data){
+                            processed += j[i].data;
+                        }
 	    			}
 	    			continue;
 	    		}
@@ -13459,14 +13472,32 @@ jQuery(document).ready(function($){
 			}
             
             j =  $('<div>').append($(k).clone())
+            
+            
             // columns
             $(j).find(".wp-block-column").before("<!-- wp:column -->" );
             $(j).find(".wp-block-column").after("<!-- /wp:column -->" );
             $(j).find(".wp-block-columns").before("<!-- wp:columns -->" );
             $(j).find(".wp-block-columns").after("<!-- /wp:columns -->" );
+            
+            //paragraph
             $(j).find("p").before("<!-- wp:paragraph -->" );
             $(j).find("p").after("<!-- /wp:paragraph -->" );
             
+            //table
+            $(j).find(".wp-block-table").before("<!-- wp:table -->" );
+            $(j).find(".wp-block-table").after("<!-- /wp:table -->" );
+            $(j).find(".wp-block-table").removeAttr('data-component-type');
+            
+            //button
+            $(j).find(".wp-block-button").before("<!-- wp:button -->" );
+            $(j).find(".wp-block-button").after("<!-- /wp:button -->" );
+            $(j).find(".wp-block-buttons").before("<!-- wp:buttons -->" );
+            $(j).find(".wp-block-buttons").after("<!-- /wp:buttons -->" );
+            
+            //group
+            $(j).find(".wp-block-group").before("<!-- wp:group -->" );
+            $(j).find(".wp-block-group").after("<!-- /wp:group -->" );
             
             // spacer
             $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );
@@ -13475,6 +13506,22 @@ jQuery(document).ready(function($){
             // separator
             $(j).find(".wp-block-separator").before("<!-- wp:separator  -->" );
             $(j).find(".wp-block-separator").after("<!-- /wp:separator  -->" );
+            
+            //aesop components
+            $(j).find(".aesop-component").each( function(index ) {
+                var d = $(this).data();
+                var blockCode = "<!-- wp:ase/"+d['componentType']+" {";
+                var index = 0;
+                $.each(d,function(key, value){
+                    if (key=='componentType') return;
+                    if (index>0) blockCode += ",";
+                    blockCode+= '"'+key+'":"'+value+'" ';
+                    index++;
+                });
+                blockCode+="} /-->";
+                $(this).before(blockCode);
+                $(this).remove();
+            });
             
             var html = $(j).html(); 
             return html;
@@ -13754,7 +13801,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 
 		$(this).closest('form').addClass('creating-gallery');
 
-		$('.ase-gallery-opts--create-gallery').fadeIn();
+		$('.ase-gallery-opts--create-gallery2').fadeIn();
 		$('.ase-gallery-opts--edit-gallery').fadeOut(1);
 
 		$('#ase-gallery-images li').remove();
@@ -13872,6 +13919,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 						$('#ase_gallery_ids').val( imageArray );
 					}
 				});
+                window.component.find('#lasso-component--settings__trigger').trigger('click');
 			});
 		}).fail(function(xhr, err) { 
 			var responseTitle= $(xhr.responseText).filter('title').get(0);
@@ -14481,6 +14529,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
     jQuery(document).on('submit', '#aesop-generator-settings', function(e){
 
 		e.preventDefault();
+        e.stopImmediatePropagation();
 
 		// store some atts
 		var $component 	= window.component
@@ -14561,8 +14610,9 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		// make an ajax call to deal with gallery saving or creating only if it's a gallery
 		if ( 'gallery' == cdata['componentType'] ) {
 
+
 			var data = {
-				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
+				action: 		$('.ase-gallery-opts--create-gallery2').is(":visible") ? 'editus_create_gallery' : 'editus_update_gallery',
 				postid: 		cdata['id'],
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
@@ -14570,23 +14620,20 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
-			if (form.hasClass('creating-gallery')) {
+			if ($('.ase-gallery-opts--create-gallery2').is(":visible")) {
 				data['edgallerytitle'] = document.getElementById("lasso--gallery__galleryname").value;
 			}
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
-				if ( 'gallery-created' == response.data.message ) {
-
+                retData = JSON.parse(response);
+				if ( 'gallery-created' == retData["message"] ) {
 					saveSequence( false, 1000, true );
 					// load the new gallery
-					cdata['id'] = response.data.id;
-
-				} else if ( 'gallery-updated' == response.data.message ) {
-
+					cdata['id'] = retData["id"];
+				} else if ( 'gallery-updated' == retData["message"] ) {
 					saveSequence( false, 1000 );
 					form.before(lasso_editor.refreshRequired);
-
 				} else {
 
 					alert( 'error' );

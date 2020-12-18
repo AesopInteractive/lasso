@@ -68,7 +68,10 @@ class lasso {
 		add_action( 'wp_ajax_editus_featured_img',     array( $this, 'set_featured_img' ) );
 		add_action( 'wp_ajax_editus_del_featured_img',     array( $this, 'del_featured_img' ) );
         
-        add_action( 'wp_ajax_editus_publish_post',     array( $this, 'publish_post' ) );
+        add_action( 'wp_ajax_editus_publish_post',     array( $this, 'on_publish_post' ) );
+        
+        add_action( 'wp_ajax_editus_create_gallery',     array( $this, 'create_gallery' ) );
+        add_action( 'wp_ajax_editus_update_gallery',     array( $this, 'update_gallery' ) );
 
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
@@ -495,7 +498,7 @@ class lasso {
 	}
     
     /* This function doesn't actually publish post, but should be called when a post is published */
-    public function publish_post( ) {
+    public function on_publish_post( ) {
 
 		$post_id = isset( $_POST['postid'] ) ? $_POST['postid'] : false;
         
@@ -582,6 +585,146 @@ class lasso {
 		}else{
 			return false;
 		}
+	}
+    
+    public function create_gallery( ) {
+
+		$postid  	= isset( $_POST['postid'] ) ? $_POST['postid'] : false;
+        
+		if (!wp_verify_nonce( $_POST[ 'nonce' ], 'lasso_gallery' )) {
+			wp_send_json_error();
+			exit;
+		}	
+
+		if (  ! lasso_user_can( 'publish_posts' ) ) {
+			return false;
+
+		}
+
+		$gallery_ids = isset( $_POST['gallery_ids'] ) ? $_POST['gallery_ids'] : false;
+
+		// bail if no gallery ids
+		if ( empty( $gallery_ids ) ) {
+			return false;
+		}
+
+		$type   		 = isset( $_POST['gallery_type'] ) ? $_POST['gallery_type'] : false;
+		$edgallerytitle	 = isset( $_POST['edgallerytitle'] ) ? $_POST['edgallerytitle'] : $postid.'-'.rand();
+
+		// insert a new gallery
+		$args = array(
+			'post_title'    => $edgallerytitle ,
+			'post_status'   => 'publish',
+			'post_type'     => 'ai_galleries'
+		);
+
+		$postid = wp_insert_post( apply_filters( 'lasso_insert_gallery_args', $args ) );
+
+		// update gallery ids
+		if ( $gallery_ids ) {
+
+			update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
+
+		}
+
+		// update the gallery type
+		if ( !empty( $type ) ) {
+
+			update_post_meta( $postid, 'aesop_gallery_type', $type );
+
+		}
+
+		do_action( 'lasso_gallery_published', $postid, $gallery_ids, get_current_user_ID() );
+
+
+		echo json_encode( array(
+			'message' => 'gallery-created',
+			'id' => $postid)
+		);
+        exit;
+	}
+    
+    public function update_gallery( ) {
+        
+		$options      = isset( $_POST['fields'] ) ? $_POST['fields'] : false;
+        
+		$postid   	  = !empty( $options ) ? (int) $options['id'] : false;
+		$gallery_ids  = isset( $_POST['gallery_ids'] ) ? $_POST['gallery_ids'] : false;
+		if ( $_POST[ 'gallery_type' ] ) {
+			$type = $_POST[ 'gallery_type' ];
+		}elseif ( ! empty( $options ) && $options[ 'galleryType' ] ) {
+			$type = $options[ 'galleryType' ];
+		}else{
+			$type = false;
+		}
+
+		self::save_gallery_options( $postid, $gallery_ids, $options, $type );
+
+        echo json_encode( array('message' => 'gallery-updated') );
+
+        exit;
+	}
+    
+    public function save_gallery_options( $postid, $gallery_ids, $options, $type = false ) {
+
+		// gallery width
+		$gallery_width = isset( $options['width'] ) ? $options['width'] : false;
+
+		// gallery grid item width
+		$item_width = isset( $options['itemwidth'] ) ? $options['itemwidth'] : false;
+
+		// caption
+		$caption = isset( $options['caption'] ) ? $options['caption'] : false;
+
+		// gallery transition
+		$transition = isset( $options['transition'] ) ? $options['transition'] : false;
+
+		// gallery transition speed
+		$transitionSpeed = isset( $options['speed'] ) ? $options['speed'] : false;
+
+		// gallery hide thumbs
+		$hideThumbs = isset( $options['hideThumbs'] ) ? $options['hideThumbs'] : false;
+
+		// photoset layout hardwired to on for now
+		$psLayout = isset( $options['pslayout'] ) ? $options['pslayout'] : false;
+
+		// photoset layout
+		$psLightbox = 'on';//isset( $options['pslightbox'] ) ? $options['pslightbox'] : false;
+		
+		// hero gallery height
+		$gallery_height = isset( $options['height'] ) ? $options['height'] : false;
+
+		// update gallery ids
+		if ( !empty( $gallery_ids ) ) {
+
+			update_post_meta( $postid, '_ase_gallery_images', $gallery_ids );
+
+		}
+
+		update_post_meta( $postid, 'aesop_gallery_type', sanitize_text_field( trim( $type ) ) );
+
+		update_post_meta( $postid, 'aesop_gallery_width', sanitize_text_field( trim( $gallery_width ) ) );
+
+		update_post_meta( $postid, 'aesop_grid_gallery_width', sanitize_text_field( trim( $item_width ) ) );
+
+		update_post_meta( $postid, 'aesop_gallery_caption', sanitize_text_field( trim( $caption ) ) );
+
+		update_post_meta( $postid, 'aesop_thumb_gallery_transition', sanitize_text_field( trim( $transition ) ) );
+
+		update_post_meta( $postid, 'aesop_thumb_gallery_transition_speed', absint( trim( $transitionSpeed ) ) );
+
+		update_post_meta( $postid, 'aesop_thumb_gallery_hide_thumbs', sanitize_text_field( trim( $hideThumbs ) ) );
+
+		update_post_meta( $postid, 'aesop_photoset_gallery_layout', sanitize_text_field( trim( $psLayout ) ) );
+
+		update_post_meta( $postid, 'aesop_photoset_gallery_lightbox', sanitize_text_field( trim( $psLightbox ) ) );
+		
+		update_post_meta( $postid, 'aesop_hero_gallery_height', sanitize_text_field( trim( $gallery_height ) ) );
+		
+		//hardwired for now
+		
+		update_post_meta( $postid, 'aesop_hero_gallery_transition_speed', 300 );
+
 	}
 	
 	function getEnglishMonthName($foreignMonthName){

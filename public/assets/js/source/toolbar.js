@@ -102,6 +102,11 @@ jQuery(function( $ ) {
 		} else {
 			$(dropUp).hide();
 		}
+        var components = $(dropUp).find("li").length;
+        if (components<7) {
+            $(dropUp).css('width',''+components*45+'px');
+            $(dropUp).css('left','-'+(components*45/2-20)+'px');
+        }   
 		restoreSelection(window.selRange);
 		$('#lasso-toolbar--html').removeClass('html--drop-'+dropClass() );
 		$('#lasso-toolbar--link').removeClass('link--drop-'+dropClass() );
@@ -168,6 +173,11 @@ jQuery(function( $ ) {
 				left: '30px',
 				top:'0px'
 			});
+            
+        if ($(this).find("li").length<7) {
+            $(this).find("ul").css('column-count',''+$(this).find("ul li").length);
+            $(this).find("ul").css('width','auto');
+        }       
 	
 	});
 

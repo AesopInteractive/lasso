@@ -59,13 +59,12 @@ function lasso_editor_controls() {
 		#lasso-html--table:before {
 			content: "<?php esc_attr_e( 'Table', 'lasso' );?>";
 		}
-		</style>
+		
 		
 		<?php
 
 		if (!$use_old_ui) {
 		?>
-		<style>
 		
 		.lasso-editor-controls--wrap, #lasso--post-settings2,#lasso--save,#lasso--post-delete,#lasso--exit,#lasso--publish {
 			background-image: -webkit-linear-gradient(top,<?php echo $button_color1;?> 0,<?php echo $button_color2;?> 100%);
@@ -74,7 +73,8 @@ function lasso_editor_controls() {
 			color: <?php echo $text_color;?>;
 		}
 		
-		.lasso--controls__right a:before, #lasso-toolbar--html__footer_desc {
+		.lasso--controls__right a:before, #lasso-toolbar--html__footer_desc, ul.lasso-editor-controls li:before,#lasso-side-comp-button.toolbar--side li:before
+        {
 			color: <?php echo $text_color;?> !important;
 		}
 		
@@ -114,14 +114,18 @@ function lasso_editor_controls() {
 				height: 42px;
 			}
 		<?php
-		} 
-		?>
-		
-		
-		</style>
-		<?php
-		} 
-		?>
+            } 
+		} else { 
+		?> 
+
+            #lasso-toolbar--components__list {
+                background:black !important;
+            }
+            
+        <?php
+        }
+        ?>
+        </style>
 		<div id="lasso--controls" class="lasso-post-status--<?php echo sanitize_html_class( $status );?> <?php echo sanitize_html_class( $custom_classes );?>" data-post-id="<?php echo get_the_ID();?>" >
 
 			<ul class="lasso--controls__center lasso-editor-controls lasso-editor-controls--wrap <?php echo $post_access_class;?> "  <?php echo $mobile_style ?> >

@@ -1179,8 +1179,9 @@ jQuery(document).ready(function($){
 
 				articleMedium.makeUndoable();
             	// get the item and type
-				var item = draggedItem['context'],
-					type = $(item).attr('data-type');
+				var item = draggedItem['context'];
+                if (!item) item = draggedItem;
+				var type = $(item).attr('data-type');
 				// item2 will be the content tthat gets inserted. It also has edit controls
                 
 

@@ -91,6 +91,7 @@
     jQuery(document).on('submit', '#aesop-generator-settings', function(e){
 
 		e.preventDefault();
+        e.stopImmediatePropagation();
 
 		// store some atts
 		var $component 	= window.component
@@ -171,8 +172,9 @@
 		// make an ajax call to deal with gallery saving or creating only if it's a gallery
 		if ( 'gallery' == cdata['componentType'] ) {
 
+
 			var data = {
-				action: 		form.hasClass('creating-gallery') ? 'process_gallery_create' : 'process_gallery_update',
+				action: 		$('.ase-gallery-opts--create-gallery2').is(":visible") ? 'editus_create_gallery' : 'editus_update_gallery',
 				postid: 		cdata['id'],
 				unique: 		cdata['unique'],
 				fields: 		cleanFields(cdata),
@@ -180,23 +182,20 @@
 				gallery_ids: 	$('#ase_gallery_ids').val(),
 				nonce: 			$('#lasso-generator-nonce').val()
 			}
-			if (form.hasClass('creating-gallery')) {
+			if ($('.ase-gallery-opts--create-gallery2').is(":visible")) {
 				data['edgallerytitle'] = document.getElementById("lasso--gallery__galleryname").value;
 			}
 
-			$.post( lasso_editor.ajaxurl, data, function(response) {
+			$.post( lasso_editor.ajaxurl2, data, function(response) {
 
-				if ( 'gallery-created' == response.data.message ) {
-
+                retData = JSON.parse(response);
+				if ( 'gallery-created' == retData["message"] ) {
 					saveSequence( false, 1000, true );
 					// load the new gallery
-					cdata['id'] = response.data.id;
-
-				} else if ( 'gallery-updated' == response.data.message ) {
-
+					cdata['id'] = retData["id"];
+				} else if ( 'gallery-updated' == retData["message"] ) {
 					saveSequence( false, 1000 );
 					form.before(lasso_editor.refreshRequired);
-
 				} else {
 
 					alert( 'error' );

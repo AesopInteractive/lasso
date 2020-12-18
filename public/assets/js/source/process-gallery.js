@@ -11,7 +11,7 @@
 
 		$(this).closest('form').addClass('creating-gallery');
 
-		$('.ase-gallery-opts--create-gallery').fadeIn();
+		$('.ase-gallery-opts--create-gallery2').fadeIn();
 		$('.ase-gallery-opts--edit-gallery').fadeOut(1);
 
 		$('#ase-gallery-images li').remove();
@@ -129,6 +129,7 @@
 						$('#ase_gallery_ids').val( imageArray );
 					}
 				});
+                window.component.find('#lasso-component--settings__trigger').trigger('click');
 			});
 		}).fail(function(xhr, err) { 
 			var responseTitle= $(xhr.responseText).filter('title').get(0);
