@@ -21,6 +21,13 @@ jQuery(function( $ ) {
 	        } else if (document.selection && range.select) {
 	            range.select();
 	        }
+	    } else {
+            if (window.getSelection) {
+    	        sel = window.getSelection();
+    	        if (sel.getRangeAt && sel.rangeCount) {
+    	            window.selRange =  sel.getRangeAt(0);
+    	        }
+            }
 	    }
 	}
 	
@@ -35,7 +42,7 @@ jQuery(function( $ ) {
 			window.selRange = saveSelection();
 		}
 
-		if (window.selRange.collapsed) {
+		if (!window.selRange || window.selRange.collapsed) {
 			swal({
 				    title:"",
 					text: lasso_editor.strings.selectText,
@@ -186,7 +193,7 @@ jQuery(function( $ ) {
 	/////////////
 
 	//$('#lasso-toolbar--html').live('mousedown',function(){
-	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components,#lasso-toolbar--link', function(){
+	/*jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components,#lasso-toolbar--link', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			article.highlight();
@@ -195,7 +202,7 @@ jQuery(function( $ ) {
 				window.selRange = saveSelection();
 			}
 		}
-	});
+	});*/
 
 	//$('#lasso-toolbar--html__inner').live('focusout',function(){
 	jQuery(document).on('focusout', '#lasso-toolbar--html__inner', function(){
@@ -204,7 +211,8 @@ jQuery(function( $ ) {
 
 	//$('#lasso-toolbar--html__inner').live('focus',function(){
 	jQuery(document).on('focus', '#lasso-toolbar--html__inner', function(){
-		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
+		var savedSelect = saveSelection();
+		if ( savedSelect && $(savedSelect.commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
 	});
@@ -281,7 +289,8 @@ jQuery(function( $ ) {
 
 	//$('#lasso-toolbar--link__inner').live('focus',function(){
 	jQuery(document).on('focus', '#lasso-toolbar--link__inner', function(){
-		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
+		var savedSelect = saveSelection();
+		if ( savedSelect && $(savedSelect.commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
 	});

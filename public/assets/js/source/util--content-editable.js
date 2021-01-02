@@ -1141,9 +1141,9 @@
 		//Thank you Tim Down (super uber genius): http://stackoverflow.com/questions/6690752/insert-html-at-caret-in-a-contenteditable-div/6691294#6691294
 		Medium.Injector.prototype.insertHTML = function (html, selectPastedContent) {
 			var sel, range;
-			if (w.getSelection) {
+			if (window.getSelection) {
 				// IE9 and non-IE
-				sel = w.getSelection();
+				sel = window.getSelection();
 				if (sel.getRangeAt && sel.rangeCount) {
 					range = sel.getRangeAt(0);
 					range.deleteContents();

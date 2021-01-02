@@ -6042,9 +6042,9 @@ Undo.Command.extend = function(protoProps) {
 		//Thank you Tim Down (super uber genius): http://stackoverflow.com/questions/6690752/insert-html-at-caret-in-a-contenteditable-div/6691294#6691294
 		Medium.Injector.prototype.insertHTML = function (html, selectPastedContent) {
 			var sel, range;
-			if (w.getSelection) {
+			if (window.getSelection) {
 				// IE9 and non-IE
-				sel = w.getSelection();
+				sel = window.getSelection();
 				if (sel.getRangeAt && sel.rangeCount) {
 					range = sel.getRangeAt(0);
 					range.deleteContents();
@@ -10474,6 +10474,19 @@ jQuery(document).ready(function($){
 	        }
 	    }
 	}
+    
+    function saveSelection() {
+        if (window.getSelection) {
+            article.highlight();
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                return sel.getRangeAt(0);
+            }
+        } else if (document.selection && document.selection.createRange) {
+            return document.selection.createRange();
+        }
+        return null;
+    }
 
 	/*
 	function to disable selection. Not used for now
@@ -11000,6 +11013,21 @@ jQuery(document).ready(function($){
 			return false;
 		}
 
+		
+		document.getElementById('lasso-toolbar--link').onmousedown = function() {
+				 var article = document.getElementById(lasso_editor.editor);
+    			article.highlight();
+    			window.selRange = saveSelection();
+			};
+		document.getElementById('lasso-toolbar--html').onmousedown = function() {
+				 var article = document.getElementById(lasso_editor.editor);
+    			article.highlight();
+    			window.selRange = saveSelection();
+    			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
+    				window.selRange = saveSelection();
+    			}
+			};
+
 		if ( toolbarHeading ) {
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
 				return heading_helper('h2');
@@ -11066,6 +11094,7 @@ jQuery(document).ready(function($){
 			
 							
 			jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+                    restoreSelection(window.selRange);
 					if( response ){
 						return insert_html(response);
 					} else {
@@ -11130,7 +11159,7 @@ jQuery(document).ready(function($){
 					}
 				}
 
-				window.selRange = null;
+				//window.selRange = null;
 
 				// close modal drag
 				$('#lasso-toolbar--html').removeClass('html--drop-up');
@@ -11992,7 +12021,7 @@ jQuery(document).ready(function($){
 			if ( $(this).parent().parent().hasClass('aesop-map-component') ) {
 				component = $(this).parent().parent().find('.aesop-component');
 			} else {
-				component = $(this).closest('.aesop-component');
+				component = $(this).closest('.aesop-component,.lasso-component');
 			}
 
 			// let's force globalize this until we refactor the js
@@ -12603,6 +12632,13 @@ jQuery(function( $ ) {
 	        } else if (document.selection && range.select) {
 	            range.select();
 	        }
+	    } else {
+            if (window.getSelection) {
+    	        sel = window.getSelection();
+    	        if (sel.getRangeAt && sel.rangeCount) {
+    	            window.selRange =  sel.getRangeAt(0);
+    	        }
+            }
 	    }
 	}
 	
@@ -12617,7 +12653,7 @@ jQuery(function( $ ) {
 			window.selRange = saveSelection();
 		}
 
-		if (window.selRange.collapsed) {
+		if (!window.selRange || window.selRange.collapsed) {
 			swal({
 				    title:"",
 					text: lasso_editor.strings.selectText,
@@ -12768,7 +12804,7 @@ jQuery(function( $ ) {
 	/////////////
 
 	//$('#lasso-toolbar--html').live('mousedown',function(){
-	jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components,#lasso-toolbar--link', function(){
+	/*jQuery(document).on('mousedown', '#lasso-toolbar--html,#lasso-toolbar--components,#lasso-toolbar--link', function(){
 		if( ! $(this).hasClass('html--drop-'+dropClass() ) ) {
 			var article = document.getElementById(lasso_editor.editor);
 			article.highlight();
@@ -12777,7 +12813,7 @@ jQuery(function( $ ) {
 				window.selRange = saveSelection();
 			}
 		}
-	});
+	});*/
 
 	//$('#lasso-toolbar--html__inner').live('focusout',function(){
 	jQuery(document).on('focusout', '#lasso-toolbar--html__inner', function(){
@@ -12786,7 +12822,8 @@ jQuery(function( $ ) {
 
 	//$('#lasso-toolbar--html__inner').live('focus',function(){
 	jQuery(document).on('focus', '#lasso-toolbar--html__inner', function(){
-		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
+		var savedSelect = saveSelection();
+		if ( savedSelect && $(savedSelect.commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
 	});
@@ -12863,7 +12900,8 @@ jQuery(function( $ ) {
 
 	//$('#lasso-toolbar--link__inner').live('focus',function(){
 	jQuery(document).on('focus', '#lasso-toolbar--link__inner', function(){
-		if ( $(saveSelection().commonAncestorContainer).parents('#lasso--content').length != 0 ) {
+		var savedSelect = saveSelection();
+		if ( savedSelect && $(savedSelect.commonAncestorContainer).parents('#lasso--content').length != 0 ) {
 			window.selRange = saveSelection();
 		}
 	});
@@ -13215,6 +13253,10 @@ jQuery(document).ready(function($){
             // remove all contenteditable attr
             html = removeEditable(html);
             
+            // if custom fields
+            if (lasso_editor.customFields) {
+                saveCustomFields(html);
+            }
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
@@ -13223,11 +13265,11 @@ jQuery(document).ready(function($){
                 // shortcode ultimate
                 //html = shortcodify_su(html);
                 
-                // shortcode aesop
-                html = do_shortcodify ? shortcodify(html) : html;	
-                
                 // restore other shortcodes to the original shortcodes
                 html = replace_rendered_shortcodes( html );
+                
+                // shortcode aesop
+                html = do_shortcodify ? shortcodify(html) : html;	
 
                 // avia editor
                 if (lasso_editor.aviaEditor) {

@@ -257,6 +257,10 @@ jQuery(document).ready(function($){
             // remove all contenteditable attr
             html = removeEditable(html);
             
+            // if custom fields
+            if (lasso_editor.customFields) {
+                saveCustomFields(html);
+            }
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
@@ -265,11 +269,11 @@ jQuery(document).ready(function($){
                 // shortcode ultimate
                 //html = shortcodify_su(html);
                 
-                // shortcode aesop
-                html = do_shortcodify ? shortcodify(html) : html;	
-                
                 // restore other shortcodes to the original shortcodes
                 html = replace_rendered_shortcodes( html );
+                
+                // shortcode aesop
+                html = do_shortcodify ? shortcodify(html) : html;	
 
                 // avia editor
                 if (lasso_editor.aviaEditor) {

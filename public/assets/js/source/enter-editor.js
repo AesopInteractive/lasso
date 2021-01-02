@@ -35,6 +35,19 @@ jQuery(document).ready(function($){
 	        }
 	    }
 	}
+    
+    function saveSelection() {
+        if (window.getSelection) {
+            article.highlight();
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                return sel.getRangeAt(0);
+            }
+        } else if (document.selection && document.selection.createRange) {
+            return document.selection.createRange();
+        }
+        return null;
+    }
 
 	/*
 	function to disable selection. Not used for now
@@ -561,6 +574,21 @@ jQuery(document).ready(function($){
 			return false;
 		}
 
+		
+		document.getElementById('lasso-toolbar--link').onmousedown = function() {
+				 var article = document.getElementById(lasso_editor.editor);
+    			article.highlight();
+    			window.selRange = saveSelection();
+			};
+		document.getElementById('lasso-toolbar--html').onmousedown = function() {
+				 var article = document.getElementById(lasso_editor.editor);
+    			article.highlight();
+    			window.selRange = saveSelection();
+    			if( typeof window.selRange === 'undefined' || null == window.selRange ) {
+    				window.selRange = saveSelection();
+    			}
+			};
+
 		if ( toolbarHeading ) {
 			document.getElementById('lasso-toolbar--h2').onmousedown = function() {
 				return heading_helper('h2');
@@ -627,6 +655,7 @@ jQuery(document).ready(function($){
 			
 							
 			jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+                    restoreSelection(window.selRange);
 					if( response ){
 						return insert_html(response);
 					} else {
@@ -691,7 +720,7 @@ jQuery(document).ready(function($){
 					}
 				}
 
-				window.selRange = null;
+				//window.selRange = null;
 
 				// close modal drag
 				$('#lasso-toolbar--html').removeClass('html--drop-up');

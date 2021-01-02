@@ -40,7 +40,7 @@
 			if ( $(this).parent().parent().hasClass('aesop-map-component') ) {
 				component = $(this).parent().parent().find('.aesop-component');
 			} else {
-				component = $(this).closest('.aesop-component');
+				component = $(this).closest('.aesop-component,.lasso-component');
 			}
 
 			// let's force globalize this until we refactor the js

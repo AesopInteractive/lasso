@@ -59,6 +59,7 @@ class lasso {
 		
 		add_action( 'wp_ajax_get_aesop_component',     array( $this, 'get_aesop_component' ) );
 		add_action( 'wp_ajax_editus_do_shortcode',     array( $this, 'editus_do_shortcode' ) );
+        add_action( 'wp_ajax_editus_do_block',     array( $this, 'editus_do_block' ) );
 		add_action( 'wp_ajax_editus_lock_post',     array( $this, 'editus_lock_post' ) );
 		add_action( 'wp_ajax_editus_unlock_post',     array( $this, 'editus_unlock_post' ) );
 		add_action( 'wp_ajax_editus_hide_tour',     array( $this, 'editus_hide_tour' ) );
@@ -391,6 +392,17 @@ class lasso {
 		global $wp_embed;
 		$wp_embed->post_ID = $_POST["ID"];
 		$out =$wp_embed->run_shortcode( $code_wrapped );
+		
+		echo $out;
+		exit;
+	}
+    
+    public function editus_do_block()
+	{
+		
+		$code= $_POST["code"];
+
+        $out = do_blocks( $code );
 		
 		echo $out;
 		exit;

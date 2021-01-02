@@ -295,7 +295,7 @@ class settings {
                     <div class="lasso-editor-settings--option-inner" >
 						<input type="checkbox" class="checkbox" name="lasso_editor[add_table]" id="lasso_editor[add_table]" <?php echo checked( $add_table, 'on' );?> >
 						<label for="lasso_editor[add_table]"><?php _e( 'Additional Component: Table', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'Enable adding and editing tables.', 'lasso' );?></span>
+						<span class="lasso--setting-description"><?php _e( 'Allow user to add and edit tables.', 'lasso' );?></span>
 
 					</div>
                 </div>
@@ -364,7 +364,9 @@ class settings {
 					</div>
 				</div>
 
-				<h3><?php _e( 'Advanced', 'lasso' );?></h3>
+				<h3><?php _e( 'Advanced Options', 'lasso' );?></h3>
+                <span class="lasso--setting-description"><?php _e( 'Suggested not to turn these options on without consulting the developer.', 'lasso' );?></span>
+                <span class="lasso--setting-description"> </span>
 				<div class="lasso-editor-settings--option-wrap ">
 					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[shortcodify_disabled]" id="lasso_editor[shortcodify_disabled]" <?php echo checked( $shortcodify_disabled, 'on' );?> >

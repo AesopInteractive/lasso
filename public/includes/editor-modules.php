@@ -246,7 +246,7 @@ function lasso_editor_text_toolbar() {
 	
 	$shortcodify_disabled = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 	
-	$sc_saving_class = 'on' == $shortcodify_disabled ? 'shortcodify-disabled' : 'shortcodify-enabled';
+	$sc_saving_class = ('on' == $shortcodify_disabled || $ase_status == 'ase-not-active')  ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
 
 	?>
