@@ -1123,6 +1123,7 @@ jQuery(document).ready(function($){
 		function setComponent(type) {
 			// if a stock wordpress image is dragged in
 			var comp ="";
+            if (!components[type] || !components[type]['content']) return null;
 			if ( 'wpimg' == type ) {
 				comp = $(components[type]['content']).prepend( wpImgEdit );
 			// else it's likely an aesop component

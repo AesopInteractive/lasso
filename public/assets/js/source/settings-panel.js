@@ -49,6 +49,7 @@
 
 			data = component.data();
 			if (!data) return;
+            if (!lasso_editor.component_options) return;
 			// special case for hero gallery
 			if ( $(this).parent().parent().hasClass('aesop-hero-gallery-wrapper') ) {
 			    jQuery.extend(data, $(component).find(".fotorama").data());
