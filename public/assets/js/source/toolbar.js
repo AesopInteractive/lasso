@@ -319,7 +319,7 @@ jQuery(function( $ ) {
 
 	// RESTORING LINK SELECTION
 	//$('.lasso-editing .lasso-link').live('click',function(e){
-	jQuery(document).on('click', '.lasso-editing .lasso-link', function(){
+	jQuery(document).on('click', '.lasso-editing .lasso-link', function(e){
 
 		e.preventDefault();
 

@@ -169,8 +169,11 @@ jQuery(document).ready(function($){
 			$(this).children().unwrap();
 		})
 
-		// remoe any notices
+		// remove any notices
 		$('#lasso--notice').remove();
+        
+        //remove any comp buttons
+        $('#lasso-side-comp-button').remove();
         
         		// let user know someting is happening on click
 		$(this).addClass('being-saved');
@@ -391,6 +394,8 @@ jQuery(document).ready(function($){
 
 	    		// It's a component, let's check to make sure it's defined properly
 				if ( data.hasOwnProperty('componentType') ) {
+                    if (data.componentType =="wpimg") 
+                        continue;
 
 					for ( var index in data ) {
 

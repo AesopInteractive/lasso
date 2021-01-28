@@ -324,12 +324,14 @@ class lasso {
 		$status = isset( $data['status'] ) ? $data['status'] : false;
 		$postid = isset( $data['postid'] ) ? $data['postid'] : false;
 		$slug   = isset( $data['story_slug'] ) ? $data['story_slug'] : false;
+        $excerpt   = isset( $data['excerpt'] ) ? $data['excerpt'] : false;
 	
 
 		$args = array(
 			'ID'   			=> (int) $postid,
 			'post_name'  	=> $slug,
-			'post_status' 	=> $status
+			'post_status' 	=> $status,
+            'post_excerpt'  => $excerpt
 		);
 		
 		
@@ -461,6 +463,9 @@ class lasso {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-audio.php');
 		    echo aesop_audio_shortcode($atts);
 		}
+        else if ($code == "aesop_wpimg") {
+            self::wpimg($atts);
+		}
 		else {
 			$code = '['.$code.' ';
 			foreach ($atts as $key => $value) {
@@ -468,12 +473,57 @@ class lasso {
 			}
 			$code = $code.']';
 			echo do_shortcode($code);
-		    //require_once( ABSPATH . '/wp-content/plugins/aesop-events/public/includes/shortcode.php');
-		    //echo aesop_audio_shortcode($atts);
 		}
 		
 		exit; 
 	}
+    
+    public static function wpimg($atts) {
+
+        echo '<figure data-component-type="wpimg"';
+        
+        $extra = "";
+        
+        // try to use srcset and sizes on new WP installs
+		if ( function_exists('wp_get_attachment_image_srcset') && $attachment_id = attachment_url_to_postid( $atts['img'] ) ) {
+			$srcset = wp_get_attachment_image_srcset( $attachment_id, 'full' );
+			$sizes = wp_get_attachment_image_sizes( $attachment_id, 'full' );
+            $extra = "srcset='$srcset' sizes='$sizes' ";
+        }
+        $extra .= 'style="margin:auto;';
+        if ($atts['imgwidth'] || $atts['imgheight']) {
+            if ($atts['imgwidth']) {
+                $extra .= 'width:'. $atts['imgwidth'].';';
+            }
+            if ($atts['imgheight']) {
+                $extra .= 'height:'. $atts['imgheight'].';';
+            }
+            
+        }
+        $extra .= '"';
+        
+        foreach ($atts as $key => $value) {
+			 echo ' data-'.$key.'="'.$value.'"';
+		}
+        //echo ' class="wp-image- lasso--wpimg__wrap lasso-component">';
+        echo ' class="wp-image wp-caption lasso-component">';
+        if ($atts['link'])
+        {
+            echo '<a href="' . $atts['link'] . '">';
+        }
+        echo '<img src="' . $atts['img'] . '" alt="'. $atts['alt']  .  '" '. $extra. '>';
+        if ($atts['link'])
+        {
+            echo '</a>';
+        }
+        if ($atts['caption'])
+        {
+            echo '<figcaption class="wp-caption-text">'.$atts['caption'].'</figcaption>';
+        }
+        echo '</figure>';
+        echo '<p> </p>';
+        return;
+    }
 	
 	
 	public function get_ase_options()

@@ -10,7 +10,7 @@
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           1.2.9
+ * Version:           1.3.0
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '1.2.9' );
+define( 'LASSO_VERSION', '1.3.0' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 define( 'LASSO_FILE', __FILE__ );
@@ -137,8 +137,8 @@ class editus_table {
     
     
     function editus_html_table()
-    {
-         return '<figure class="wp-block-table"><table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table></figure>';
+    {   
+        return '<figure class="wp-block-table"><table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table></figure><p></p>';
     }
 
 

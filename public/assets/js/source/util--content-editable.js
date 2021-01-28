@@ -233,6 +233,18 @@
 
 							switch (e.keyCode) {
 								case key['enter']:
+                                    //disable enter inside FIGURE
+                                    var sel = w.getSelection();
+									if (sel.rangeCount) {
+										var selRange = sel.getRangeAt(0);
+                                        if (window.getSelection().isCollapsed) {
+                                            var container = selRange.endContainer;
+                                            if (container.nodeName=="FIGURE") {
+
+                                                e.preventDefault();
+                                            }
+                                        }
+                                    }
 									intercept.enterKey(e);
 									break;
 								case key['backspace']:

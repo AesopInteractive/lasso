@@ -48,7 +48,11 @@
 			window.componentClone = component.clone();
 
 			data = component.data();
-			if (!data) return;
+            if (!data) {
+                data = $(this).closest('.lasso--wpimg__wrap').data();
+            }
+            if (!data) { return;}
+            
             if (!lasso_editor.component_options) return;
 			// special case for hero gallery
 			if ( $(this).parent().parent().hasClass('aesop-hero-gallery-wrapper') ) {

@@ -5134,6 +5134,18 @@ Undo.Command.extend = function(protoProps) {
 
 							switch (e.keyCode) {
 								case key['enter']:
+                                    //disable enter inside FIGURE
+                                    var sel = w.getSelection();
+									if (sel.rangeCount) {
+										var selRange = sel.getRangeAt(0);
+                                        if (window.getSelection().isCollapsed) {
+                                            var container = selRange.endContainer;
+                                            if (container.nodeName=="FIGURE") {
+
+                                                e.preventDefault();
+                                            }
+                                        }
+                                    }
 									intercept.enterKey(e);
 									break;
 								case key['backspace']:
@@ -10683,30 +10695,32 @@ jQuery(document).ready(function($){
 			}
 		});
 
-		// find images inserted from within the wordpress backend post editor and
-		// wrap them in a div, then append an edit button for editing the image
-		$("[class*='wp-image-']").each(function(){
+        lasso_editor.wrapImg = function () {
+            // find images inserted from within the wordpress backend post editor and
+            // wrap them in a div, then append an edit button for editing the image
+            $("[class*='wp-image']").each(function(){
+                var $this = $(this)
+                if ( !$('.lasso--wpimg-edit').length > 0 ) {
+                    if ( $this.parent().hasClass('wp-caption') ) {
+                        $this.parent().addClass('lasso--wpimg__wrap')
+                    } else {
+                        $this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
+                    }
+                    
+                    $this.parent().data( $this.data() );
+                    var s =$this.attr('src');
+                    if (s) {
+                       $this.parent().data({componentType:"wpimg", img: $this.attr('src')});  
+                    }
+                    $this.parent().prepend(lasso_editor.wpImgEdit)
+                }
+            });
+        }
+        
+        lasso_editor.wrapImg();
 
-			var $this = $(this)
-
-			if ( !$('.lasso--wpimg-edit').length > 0 ) {
-
-				if ( $this.parent().hasClass('wp-caption') ) {
-
-					$this.parent().addClass('lasso--wpimg__wrap')
-
-				} else {
-
-					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
-				}
-
-				$this.parent().prepend(wpImgEdit)
-
-			}
-
-		});
-
-		$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
+		//$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
+        $('.lasso-component').each(function(){
 
 			var $this = $(this)
 
@@ -11562,17 +11576,13 @@ jQuery(document).ready(function($){
 		function setComponent(type) {
 			// if a stock wordpress image is dragged in
 			var comp ="";
-			if ( 'wpimg' == type ) {
-				comp = $(components[type]['content']).prepend( wpImgEdit );
-			// else it's likely an aesop component
-			} else {
+            if (!components[type] || !components[type]['content']) return null;
 
-				comp = $(components[type]['content'])
+			comp = $(components[type]['content'])
 							.prepend( lassoDragHandle )
 							.attr({
 								'data-component-type': type
 							});
-			}
 			return comp;
 		}
 		
@@ -12029,7 +12039,12 @@ jQuery(document).ready(function($){
 			window.componentClone = component.clone();
 
 			data = component.data();
-			if (!data) return;
+            if (!data) {
+                data = $(this).closest('.lasso--wpimg__wrap').data();
+            }
+            if (!data) { return;}
+            
+            if (!lasso_editor.component_options) return;
 			// special case for hero gallery
 			if ( $(this).parent().parent().hasClass('aesop-hero-gallery-wrapper') ) {
 			    jQuery.extend(data, $(component).find(".fotorama").data());
@@ -12930,7 +12945,7 @@ jQuery(function( $ ) {
 
 	// RESTORING LINK SELECTION
 	//$('.lasso-editing .lasso-link').live('click',function(e){
-	jQuery(document).on('click', '.lasso-editing .lasso-link', function(){
+	jQuery(document).on('click', '.lasso-editing .lasso-link', function(e){
 
 		e.preventDefault();
 
@@ -13165,8 +13180,11 @@ jQuery(document).ready(function($){
 			$(this).children().unwrap();
 		})
 
-		// remoe any notices
+		// remove any notices
 		$('#lasso--notice').remove();
+        
+        //remove any comp buttons
+        $('#lasso-side-comp-button').remove();
         
         		// let user know someting is happening on click
 		$(this).addClass('being-saved');
@@ -13387,6 +13405,8 @@ jQuery(document).ready(function($){
 
 	    		// It's a component, let's check to make sure it's defined properly
 				if ( data.hasOwnProperty('componentType') ) {
+                    if (data.componentType =="wpimg") 
+                        continue;
 
 					for ( var index in data ) {
 
@@ -14502,12 +14522,15 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					var $a = $(response);
 					window.component.replaceWith($a);
 					window.component = $a;
-					if ($a.find('.fotorama')){
+					if ($('.fotorama').length){
 						$('.fotorama').fotorama();
 					}
-					if ($a.find('.aesop-gallery-photoset')){
-						$(window).trigger( 'load' ); 
-					}
+					if ($('.aesop-gallery-photoset').length){
+						$(window).trigger( 'load' );
+                    }
+                    
+                    lasso_editor.wrapImg();
+                    
 					$('.aesop-component').each(function(){
 						if ($(this).css("height")=="0px") {
 							$(this).css("height","auto");
@@ -14708,6 +14731,9 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 			//aesop events
 			alert("Save and Reload the page to see the update.");
 		}*/
+        else {
+            window.get_aesop_component_ajax(cdata);
+        }
 	});
 
 })( jQuery );

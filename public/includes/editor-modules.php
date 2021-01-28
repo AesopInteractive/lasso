@@ -456,6 +456,7 @@ function lasso_editor_component_modal() {
 	
 	//editor options
 	$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
+    $allow_edit_excerpt = lasso_editor_get_option('allow_edit_excerpt', 'lasso_editor');
 	$no_url_setting = lasso_editor_get_option('no_url_setting', 'lasso_editor');
 
 	// are we singular
@@ -467,6 +468,8 @@ function lasso_editor_component_modal() {
 	
 	// do we support pending status
 	$no_pending_status = lasso_editor_get_option('no_pending_status', 'lasso_editor');
+    
+    $excerpt = $post->post_excerpt;
 
 ?>
 	<div id="lasso--post-settings__modal" class="lasso--modal lassoShowAnimate <?php echo sanitize_html_class( $custom_classes );?>">
@@ -534,6 +537,15 @@ function lasso_editor_component_modal() {
 							<label><?php _e( 'Tags', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a tag name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<input id="lasso--tag-select" class="lasso--modal__trigger-footer" type="hidden" name="story_tags" value="<?php echo $tags;?>">
 						</div>
+                        <?php 
+						if ($allow_edit_excerpt) { 
+						?>
+                        <div class="lasso--postsettings__option story-excerpt-option">
+							<label><?php _e( 'Excerpt', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Edit excerpt', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<input id="lasso--excerpt" class="lasso--modal__trigger-footer" type="text" name="excerpt" value="<?php echo $excerpt;?>" style="width:100%">
+						</div>
+                        <?php
+						}?>
 						<?php 
 						if ($allow_change_date) { 
 						    $dateformat = get_option( 'date_format' ); 
@@ -746,7 +758,8 @@ function lasso_editor_wpimg_edit() {
 	?>
 	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
-		<li id="lasso--wpimg-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+		<!--li id="lasso--wpimg-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li-->
+        <li id="lasso-component--settings__trigger" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
 		<li class="lasso-delete" title="<?php esc_attr_e( 'Delete', 'lasso' );?>"></li>
 	</ul>
@@ -821,7 +834,9 @@ function lasso_editor_refresh_message() {
  */
 function lasso_editor_options_blob() {
 
-	$codes   = function_exists( 'aesop_shortcodes' ) ? aesop_shortcodes() : apply_filters( 'lasso_custom_options', '' );
+	$codes   = function_exists( 'aesop_shortcodes' ) ? aesop_shortcodes() : array();
+    $codes   = add_wpimg_options( array() );
+    $codes   = apply_filters( 'lasso_custom_options', $codes );
 	$galleries  = function_exists( 'lasso_editor_galleries_exist' ) && lasso_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
 	$nonce = wp_create_nonce( 'lasso_gallery' );
@@ -930,6 +945,64 @@ function lasso_editor_options_blob() {
 	}
 
 	return $blob;
+}
+
+
+function add_wpimg_options( $shortcodes ) {
+
+    $custom = array(
+        'wpimg'    => array(
+            'name'     => __( 'Image', 'lasso' ),
+            'type'     => 'single',
+            'atts'     => array(
+                'img'    => array(
+                    'type'  => 'media_upload',
+                    'default'  => '',
+                    'desc'   => __( 'Image URL', 'lasso' ),
+                    'tip'  => __( 'URL for the image. Click <em>Select Media</em> to open the WordPress Media Library.', 'aesop-core' )
+                ),
+                
+                'imgwidth'    => array(
+                    'type'  => 'text_small',
+                    'default'  => '300px',
+                    'desc'   => __( 'Image Width', 'lasso' ),
+                    'tip'  => __( 'Width of the image. You can enter the size in pixels or percentage such as <code>40%</code> or <code>500px</code>.', 'aesop-core' )
+                ),
+                'imgheight'    => array(
+                    'type'  => 'text_small',
+                    'default'  => '',
+                    'desc'   => __( 'Image Height', 'lasso' ),
+                    'tip'  => __( 'Used only for the Panorama mode. Can be set using pixel values such as <code>500px</code>. If unspecified, the original height would be used. ', 'aesop-core' )
+                ),					
+                
+                'link'    => array(
+                    'type'  => 'text',
+                    'default'  => '',
+                    'desc'   => __( 'Link', 'lasso' ),
+                    'tip'  => __( 'URL link', 'lasso' )
+                ),
+                'alt'    => array(
+                    'type'  => 'text',
+                    'default'  => '',
+                    'desc'   => __( 'Image ALT', 'lasso' ),
+                    'tip'  => __( 'ALT tag used for the image. Primarily used for SEO purposes.', 'lasso' )
+                ),
+                
+                'caption'    => array(
+                    'type'  => 'text_area',
+                    'default'  => '',
+                    'desc'   => __( 'Caption', 'lasso' ),
+                    'tip'  => __( 'Optional caption for the image.', 'lasso' )
+                ),
+                
+
+            ),
+            'desc'     => __( 'An image.', 'aesop-core' ),
+            'codes'    => ''
+        )
+    );
+
+    return array_merge( $shortcodes, $custom );
 }
 
 /**

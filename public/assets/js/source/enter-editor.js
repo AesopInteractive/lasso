@@ -244,30 +244,32 @@ jQuery(document).ready(function($){
 			}
 		});
 
-		// find images inserted from within the wordpress backend post editor and
-		// wrap them in a div, then append an edit button for editing the image
-		$("[class*='wp-image-']").each(function(){
+        lasso_editor.wrapImg = function () {
+            // find images inserted from within the wordpress backend post editor and
+            // wrap them in a div, then append an edit button for editing the image
+            $("[class*='wp-image']").each(function(){
+                var $this = $(this)
+                if ( !$('.lasso--wpimg-edit').length > 0 ) {
+                    if ( $this.parent().hasClass('wp-caption') ) {
+                        $this.parent().addClass('lasso--wpimg__wrap')
+                    } else {
+                        $this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
+                    }
+                    
+                    $this.parent().data( $this.data() );
+                    var s =$this.attr('src');
+                    if (s) {
+                       $this.parent().data({componentType:"wpimg", img: $this.attr('src')});  
+                    }
+                    $this.parent().prepend(lasso_editor.wpImgEdit)
+                }
+            });
+        }
+        
+        lasso_editor.wrapImg();
 
-			var $this = $(this)
-
-			if ( !$('.lasso--wpimg-edit').length > 0 ) {
-
-				if ( $this.parent().hasClass('wp-caption') ) {
-
-					$this.parent().addClass('lasso--wpimg__wrap')
-
-				} else {
-
-					$this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
-				}
-
-				$this.parent().prepend(wpImgEdit)
-
-			}
-
-		});
-
-		$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
+		//$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
+        $('.lasso-component').each(function(){
 
 			var $this = $(this)
 
@@ -1124,17 +1126,12 @@ jQuery(document).ready(function($){
 			// if a stock wordpress image is dragged in
 			var comp ="";
             if (!components[type] || !components[type]['content']) return null;
-			if ( 'wpimg' == type ) {
-				comp = $(components[type]['content']).prepend( wpImgEdit );
-			// else it's likely an aesop component
-			} else {
 
-				comp = $(components[type]['content'])
+			comp = $(components[type]['content'])
 							.prepend( lassoDragHandle )
 							.attr({
 								'data-component-type': type
 							});
-			}
 			return comp;
 		}
 		

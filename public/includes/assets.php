@@ -205,6 +205,10 @@ class assets {
 				}
 			}
             
+            //excerpt
+            $post_excerpt = "";
+            $post_excerpt = $post->post_excerpt;
+            
             //find if this is multi page. -1 if not
             $multipage = self::is_multipage();
             $post_content = "";
@@ -291,10 +295,11 @@ class assets {
 				'skipToEdit'        =>( $delta < 10 && $delta >=0 ), // if it's a new post, skip to edit mode
 				'linksEditable'    => $links_editable,
 				'supportPendingStatus' => !$no_pending_status,
-				'tableCode' => apply_filters( 'lasso_table_html_code','<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>'),
+				'tableCode' => apply_filters( 'lasso_table_html_code','<table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table><p></p>'),
                 'hasGutenberg' => (function_exists( 'has_blocks' ) && has_blocks( $post->post_content)) || self::gutenberg_active(),//,
                 'multipages'=> $multipage,
-                'post_content'=>$post_content
+                'post_content'=>$post_content,
+                'post_excerpt'=>$post_excerpt
 			);
 
 

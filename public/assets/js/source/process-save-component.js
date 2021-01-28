@@ -22,12 +22,15 @@
 					var $a = $(response);
 					window.component.replaceWith($a);
 					window.component = $a;
-					if ($a.find('.fotorama')){
+					if ($('.fotorama').length){
 						$('.fotorama').fotorama();
 					}
-					if ($a.find('.aesop-gallery-photoset')){
-						$(window).trigger( 'load' ); 
-					}
+					if ($('.aesop-gallery-photoset').length){
+						$(window).trigger( 'load' );
+                    }
+                    
+                    lasso_editor.wrapImg();
+                    
 					$('.aesop-component').each(function(){
 						if ($(this).css("height")=="0px") {
 							$(this).css("height","auto");
@@ -228,6 +231,9 @@
 			//aesop events
 			alert("Save and Reload the page to see the update.");
 		}*/
+        else {
+            window.get_aesop_component_ajax(cdata);
+        }
 	});
 
 })( jQuery );
