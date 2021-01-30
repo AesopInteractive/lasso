@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 5.6
-Stable tag: 1.2.9
+Stable tag: 1.3.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,20 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.3.0
+* NEW option to edit excerpts
+* NEW new options for non-Aesop image components
+
+= 1.2.9
+* Bug fix for custom fields
+
+= 1.2.8
+* New optional table component
+
+= 1.2.6
+* UI customization fixes
+
+
 = 1.2.5
 * Fix for gallery create/update
 * Allow component icon color customization

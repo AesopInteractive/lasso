@@ -242,6 +242,7 @@
                                             if (container.nodeName=="FIGURE") {
 
                                                 e.preventDefault();
+                                                break;
                                             }
                                         }
                                     }

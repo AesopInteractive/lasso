@@ -52,6 +52,7 @@
                 data = $(this).closest('.lasso--wpimg__wrap').data();
             }
             if (!data) { return;}
+            if (data['componentType'] =='wpquote') { return;}
             
             if (!lasso_editor.component_options) return;
 			// special case for hero gallery
@@ -167,7 +168,9 @@
 				var item = $('#'+component.attr('id') )
 			}
 
-			$('html, body').animate({ scrollTop: item.length ? item.offset().top - 50 : false }, 400);
+            if (item.length) {
+                $('html, body').animate({ scrollTop: item.offset().top - 50  }, 400);
+            }
 
 			/////////////
 			// GET GALLERY IMAGES IF ITS A GALLERY
@@ -253,7 +256,7 @@
 
 		      	var attachment = lasso_file_frame.state().get('selection').first().toJSON();
 
-		      	$('.aesop-generator-attr-media_upload').attr('value',attachment.url);
+		      	$('.aesop-generator-attr-media_upload').prop('value',attachment.url);
 
 				/////////////
 				// START LIVE IMAGE EDITING COMPONENTS
@@ -284,6 +287,12 @@
 		      		component.find('.aesop-article-chapter').css({
 				  		'background-image': 'url('+ attachment.url +')'
 				  	});
+
+		      	}else if ( 'wpimg' == type ) {
+                    var img = component.find('img');
+                    if (img.length >0) {
+		      		   img.attr('src', attachment.url );
+                    }
 
 		      	}
 				/////////////
