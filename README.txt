@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 5.6
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
 Front-end editing and creation suite.
 

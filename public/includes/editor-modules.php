@@ -835,7 +835,7 @@ function lasso_editor_refresh_message() {
 function lasso_editor_options_blob() {
 
 	$codes   = function_exists( 'aesop_shortcodes' ) ? aesop_shortcodes() : array();
-    $codes   = add_wpimg_options( array() );
+    $codes   = add_wpimg_options( $codes );
     $codes   = apply_filters( 'lasso_custom_options', $codes );
 	$galleries  = function_exists( 'lasso_editor_galleries_exist' ) && lasso_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
@@ -949,7 +949,6 @@ function lasso_editor_options_blob() {
 
 
 function add_wpimg_options( $shortcodes ) {
-
     $custom = array(
         'wpimg'    => array(
             'name'     => __( 'Image', 'lasso' ),
