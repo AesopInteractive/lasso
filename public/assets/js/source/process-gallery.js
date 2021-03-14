@@ -129,7 +129,7 @@
 						$('#ase_gallery_ids').val( imageArray );
 					}
 				});
-                window.component.find('#lasso-component--settings__trigger').trigger('click');
+                window.component.find('.lasso-component--settings__trigger').trigger('click');
 			});
 		}).fail(function(xhr, err) { 
 			var responseTitle= $(xhr.responseText).filter('title').get(0);

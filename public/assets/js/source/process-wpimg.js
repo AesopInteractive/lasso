@@ -7,12 +7,16 @@
 		var ase_edit_frame;
 		var className;
 
-		$(document).on('click', '#lasso--wpimg-edit',function(e){
+		$(document).on('click', '.lasso--wpimg-edit',function(e){
 
 			e.preventDefault()
+            var id ='';
 			var selected_img
 			, 	clicked = $(this)
-			, 	id 		= $(this).parent().next('img').attr('class').match(/\d+/);
+			, 	cls 		= $(this).parent().next('img').attr('class');
+            if (cls) {
+                id = cls.match(/\d+/);
+            }
 
 		    className = e.currentTarget.parentElement.className;
 
@@ -28,24 +32,28 @@
 		    // open frame
 			ase_edit_frame.on('open',function(){
 				var selection = ase_edit_frame.state().get('selection');
-				var attachment = wp.media.attachment( id );
-				attachment.fetch();
-				selection.add( attachment ? [ attachment ] : [] );
+                if (id) {
+					var attachment = wp.media.attachment( id );
+					attachment.fetch();
+					selection.add( attachment ? [ attachment ] : [] );
+                }
 			});
 
 		    // update image on select
 		    ase_edit_frame.on( 'select', function() {
+                // here after simple wpimg image select
 
 		      	var attachment = ase_edit_frame.state().get('selection').first().toJSON()
 		      	,	imageURL   = undefined === attachment.sizes.large ? attachment.sizes.full.url : attachment.sizes.large.url
 
-		      	$(clicked).parent().next('img').attr({
+		      	$(clicked).parent().parent().find('img').prop({
 		      		'src': imageURL,
                     'srcset' :"",
 		      		'alt': attachment.alt,
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 		      	});
-				$("html").scrollTop(lasso_editor.scrollTop);
+				//$("html").scrollTop(lasso_editor.scrollTop);
+                $('#lasso-side-comp-button').remove();
 
 		    });
 

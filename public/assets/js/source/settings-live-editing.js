@@ -8,7 +8,7 @@
 		// @todo - move this mess to it's own file
 		////////////
 
-		$(document).on('click', '#lasso-component--settings__trigger', function(){
+		$(document).on('click', '.lasso-component--settings__trigger', function(){
 
 			var settings 	= $('#lasso--component__settings')
 

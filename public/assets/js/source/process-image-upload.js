@@ -75,8 +75,8 @@
 	      	$('article').removeClass('no-post-thumbnail').addClass('has-post-thumbnail');
 
 	      	if ( $(lasso_editor.featImgClass).is( "img" ) ) {
-				$(lasso_editor.featImgClass).attr("src",attachment.url);
-				$(lasso_editor.featImgClass).attr("srcset","");
+				$(lasso_editor.featImgClass).prop("src",attachment.url);
+				$(lasso_editor.featImgClass).prop("srcset","");
 			} else {
 				$(lasso_editor.featImgClass).css({
 					'background-image': 'url('+attachment.url+')'

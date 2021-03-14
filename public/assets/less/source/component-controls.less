@@ -9,8 +9,8 @@ ul.lasso-component--controls {
     height:@component-controls--height;
     width:@component-controls--width;
     top:4px;
-    right:0;
-    left:-10000px;
+    //right:0;
+    //left:-10000px;
     text-align: center;
     margin: 0 auto;
     border-radius:@editor--radius - 2;
@@ -19,6 +19,14 @@ ul.lasso-component--controls {
     .transition(opacity .4s ease);
     z-index: 105;
     padding-left:0;
+    
+    &.editus-center {
+       left:0;
+       right:0;
+    }
+    &.editus-right {
+       right:0;
+    }
 
     li {
         float:left;
@@ -84,6 +92,8 @@ ul.lasso-component--controls {
     }
 
 }
+
+
 .lasso-editing .aesop-component:hover .lasso-component--controls{
     left:4px;
     .opacity(1);
@@ -99,4 +109,7 @@ ul.lasso-component--controls {
 }
 .aesop-image-component[data-align="right"]:hover .lasso-component--controls {
     left:auto;
+}
+.lasso-component {
+  position:relative;
 }

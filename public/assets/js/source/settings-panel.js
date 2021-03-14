@@ -31,7 +31,7 @@
 		/////////////
 		// OPEN COMPONENT SETTINGS
 		////////////
-		$(document).on('click','#lasso-component--settings__trigger',function(){
+		$(document).on('click','.lasso-component--settings__trigger',function(){
 
 			var settings 	= $('#lasso--component__settings')
 			var click       = $(this)
@@ -48,10 +48,14 @@
 			window.componentClone = component.clone();
 
 			data = component.data();
-            if (!data) {
-                data = $(this).closest('.lasso--wpimg__wrap').data();
-            }
             if (!data) { return;}
+            if (data['componentType'] == 'wpimg') {
+                if ($(component).find('figure.lasso-component').length) {
+                    data = $(component).find('figure.lasso-component').data();//'.wp-image.lasso-component').data();
+                } else if ($(component).find('img').length) {
+                    data['img'] =$(component).find('img').attr('src');
+                }
+            }
             if (data['componentType'] =='wpquote') { return;}
             
             if (!lasso_editor.component_options) return;
@@ -169,7 +173,7 @@
 			}
 
             if (item.length) {
-                $('html, body').animate({ scrollTop: item.offset().top - 50  }, 400);
+                //$('html, body').animate({ scrollTop: item.offset().top - 50  }, 400);
             }
 
 			/////////////
@@ -264,7 +268,7 @@
 				////////////
 		      	if ( 'parallax' == type ) {
 
-				  	component.find('.aesop-parallax-sc-img').attr('src', attachment.url )
+				  	component.find('.aesop-parallax-sc-img').prop('src', attachment.url )
 
 		      	} else if ( 'quote' == type ) {
 
@@ -274,13 +278,13 @@
 
 		      	} else if ( 'image' == type ) {
                     $("#aesop-generator-attr-img").val(attachment.url);
-				  	component.find('.aesop-image-component-image > img').attr('src', attachment.url);
+				  	component.find('.aesop-image-component-image > img').prop('src', attachment.url);
 					// new addition for panorama images
 					component.find('.paver__pano').css({'background-image': 'url('+ attachment.url +')'});
 
 		      	} else if ( 'character' == type ) {
 
-				  	component.find('.aesop-character-avatar').attr('src', attachment.url)
+				  	component.find('.aesop-character-avatar').prop('src', attachment.url)
 
 		      	} else if ( 'chapter' == type ) {
 
@@ -291,7 +295,8 @@
 		      	}else if ( 'wpimg' == type ) {
                     var img = component.find('img');
                     if (img.length >0) {
-		      		   img.attr('src', attachment.url );
+		      		   img.prop('src', attachment.url );
+                       img.prop("srcset","");
                     }
 
 		      	}

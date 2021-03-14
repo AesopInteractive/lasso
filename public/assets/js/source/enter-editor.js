@@ -114,11 +114,11 @@ jQuery(document).ready(function($){
 		lasso_editor.dontlock = false;
 		jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
 			if( response ){
-				if (response=="true") {
+				if (response.trim()=="true") {
 					lasso_editor.dontlock = true;
 				} else {
                     swal({
-                            title:"",
+                            title:"Lock Post Fail",
                             text: response,
                             closeOnConfirm: true
                     });
@@ -163,7 +163,7 @@ jQuery(document).ready(function($){
 		$('body').toggleClass('lasso-editing');
 
 		//append editor id to post container
-		$(post_container).attr('id', editor);
+		$(post_container).prop('id', editor);
 
 		// append toolbar
 		$(toolbar).hide().appendTo('body').fadeIn(300);
@@ -247,38 +247,55 @@ jQuery(document).ready(function($){
         lasso_editor.wrapImg = function () {
             // find images inserted from within the wordpress backend post editor and
             // wrap them in a div, then append an edit button for editing the image
-            $("[class*='wp-image']").each(function(){
+            /*$("[class*='wp-image-']").each(function(){
                 var $this = $(this)
                 if ( !$('.lasso--wpimg-edit').length > 0 ) {
                     if ( $this.parent().hasClass('wp-caption') ) {
                         $this.parent().addClass('lasso--wpimg__wrap')
                     } else {
-                        $this.wrap('<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
+                        $this.wrap('<figure data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
                     }
+                    
                     
                     $this.parent().data( $this.data() );
                     var s =$this.attr('src');
                     if (s) {
                        $this.parent().data({componentType:"wpimg", img: $this.attr('src')});  
                     }
-                    $this.parent().prepend(lasso_editor.wpImgEdit)
                 }
-            });
+            });*/
+            
+            //$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
+            $('.lasso-component').each(function(){
+
+                var $this = $(this)
+                if ( $(this).find('.lasso-component--controls').length == 0 ) {
+                    if (!lasso_editor.oldWPimg) {
+                        $(this).prepend( lassoDragHandle );
+                        var img = $(this).find('img')[0];
+                        var ctrl = $this.find('.lasso-component--controls')[0];
+                        if ($(img).hasClass('alignnone') || $(img).hasClass('alignleft')) {
+                            $(ctrl).removeClass('editus-center');
+                        }
+                        if ($(img).hasClass('alignright')) {
+                            $(ctrl).removeClass('editus-center');
+                            $(ctrl).addClass('editus-right');
+                        }
+                    } else { 
+                        if ( $this.parent().hasClass('wp-caption') ) {
+                            $this.parent().addClass('lasso--wpimg__wrap')
+                        } else if ( !$this.parent().hasClass('lasso--wpimg__wrap') ) {
+                            $this.wrap('<figure data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
+                        }
+                        $this.parent().prepend(lasso_editor.wpImgEdit);
+                    }
+
+                }
+
+            })
         }
         
         lasso_editor.wrapImg();
-
-		//$('.lasso-component:not(.lasso--wpimg__wrap)').each(function(){
-        $('.lasso-component').each(function(){
-
-			var $this = $(this)
-
-			if ( !$('.lasso-component--toolbar').length > 0 ) {
-				$(this).append( lassoDragHandle );
-
-			}
-
-		})
 
 		
 		
@@ -623,10 +640,15 @@ jQuery(document).ready(function($){
 				htmlHead = '<a class="lasso-link" ';
 			}
 
+			var target = $('#lasso-toolbar--link__inner').text();
+            if (lasso_editor.prefixHTTP && !target.match(/http/i)){
+                target = 'http://'+target;
+            }
+
 			if ($('#aesop-toolbar--link_newtab').is(':checked')) {
-				 articleMedium.insertHtml(htmlHead+' target="_blank" href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+				 articleMedium.insertHtml(htmlHead+' target="_blank" href="'+ target +'">'+window.selRange+'</a>');
 			} else {
-			    articleMedium.insertHtml(htmlHead+' href="'+ $('#lasso-toolbar--link__inner').text() +'">'+window.selRange+'</a>');
+			    articleMedium.insertHtml(htmlHead+' href="'+ target +'">'+window.selRange+'</a>');
 			}
 			var container = window.selRange.startContainer.parentNode,
 				containerTag = container.localName;
@@ -810,16 +832,16 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap, #lasso--sidebar, #lasso--featImgControls, #lasso--wpimg-edit, #lasso--exit, #lasso-side-comp-button').fadeOut().remove();
+			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button').fadeOut().remove();
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);
 			$(post_container).attr('id','');
 
 			// unwrap wp images
-			$('.lasso--wpimg__wrap').each(function(){
+			/*$('.lasso--wpimg__wrap').each(function(){
 				$(this).children().unwrap()
-			});
+			});*/
 
 			// unwrap map from hits drag holder
 			$('#lasso--map-form').each(function(){
@@ -1123,15 +1145,21 @@ jQuery(document).ready(function($){
         }
 
 		function setComponent(type) {
-			// if a stock wordpress image is dragged in
+			// if an image is dragged in
 			var comp ="";
             if (!components[type] || !components[type]['content']) return null;
 
-			comp = $(components[type]['content'])
+			if ( 'wpimg' == type && lasso_editor.oldWPimg) {
+				comp = $(components[type]['content']).prepend( wpImgEdit );
+			// else it's likely an aesop component
+			} else {
+
+				comp = $(components[type]['content'])
 							.prepend( lassoDragHandle )
 							.attr({
 								'data-component-type': type
 							});
+			}
 			return comp;
 		}
 		

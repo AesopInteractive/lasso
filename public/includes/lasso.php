@@ -490,7 +490,13 @@ class lasso {
 			$sizes = wp_get_attachment_image_sizes( $attachment_id, 'full' );
             $extra = "srcset='$srcset' sizes='$sizes' ";
         }
-        $extra .= 'style="margin:auto;';
+        if ($atts['align']=="left") {
+            $extra .= 'class="alignleft';
+        } else if ($atts['align']=="right") {
+            $extra .= 'class="alignright';
+        } else {
+            $extra .= 'class="aligncenter';
+        }
         if ($atts['imgwidth'] || $atts['imgheight']) {
             if ($atts['imgwidth']) {
                 $extra .= 'width:'. $atts['imgwidth'].';';
@@ -506,13 +512,18 @@ class lasso {
 			 echo ' data-'.$key.'="'.$value.'"';
 		}
         //echo ' class="wp-image- lasso--wpimg__wrap lasso-component">';
-        echo ' class="wp-image wp-caption lasso-component">';
-        if ($atts['link'])
+        echo ' class="wp-caption lasso-component">';
+        $hrefset = false;
+        if ($atts['link'] != '' && (!isset($atts['linkoption']) || $atts['linkoption']=="url" ))
         {
             echo '<a href="' . $atts['link'] . '">';
+            $hrefset = true;
+        } else if (isset($atts['linkoption']) && $atts['linkoption'] == 'img' ) {
+            echo '<a href="' . $atts['img'] . '">';
+            $hrefset = true;
         }
         echo '<img src="' . $atts['img'] . '" alt="'. $atts['alt']  .  '" '. $extra. '>';
-        if ($atts['link'])
+        if ($hrefset)
         {
             echo '</a>';
         }

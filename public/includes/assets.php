@@ -89,6 +89,10 @@ class assets {
 			
 			$bold_tag = lasso_editor_get_option('bold_tag', 'lasso_editor','b');
 			$i_tag = lasso_editor_get_option('i_tag', 'lasso_editor','i');
+            
+            $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
+            
+            $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor', 'off');
 
 			
 			//text alignement
@@ -299,7 +303,9 @@ class assets {
                 'hasGutenberg' => (function_exists( 'has_blocks' ) && has_blocks( $post->post_content)) || self::gutenberg_active(),//,
                 'multipages'=> $multipage,
                 'post_content'=>$post_content,
-                'post_excerpt'=>$post_excerpt
+                'post_excerpt'=>$post_excerpt,
+                'oldWPimg'=> $use_old_wpimg =='on',
+                'prefixHTTP'=> $link_prefix_http =='on'
 			);
 
 

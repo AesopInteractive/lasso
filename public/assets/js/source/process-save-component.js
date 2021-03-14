@@ -113,7 +113,8 @@
 
 	      	// save even if the entry is blank
 	      	//if ( '' !== $(this).val() ) {
-	      	$component.attr( 'data-' + optionName, $(this).val() );
+	      	//$component.attr( 'data-' + optionName, $(this).val() );
+            $component.prop( 'data-' + optionName, $(this).val() );
 	      	$component.data(optionName, $(this).val() );
 			//}
 

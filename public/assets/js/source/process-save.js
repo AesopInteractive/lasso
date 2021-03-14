@@ -140,11 +140,9 @@ jQuery(document).ready(function($){
 		// unwrap wp images
 		$(".lasso--wpimg__wrap").each(function(){
 
-			if ( !$(this).hasClass('wp-caption') ) {
-
+			/*if ( !$(this).hasClass('wp-caption') ) {
 				$(this).children().unwrap()
-
-			}
+			}*/
 
 			$('.lasso-component--controls').remove();
 		});
@@ -253,6 +251,8 @@ jQuery(document).ready(function($){
                 $temp.find(".lasso-component--controls, .aesop-events-edit").remove();
                 
                 $temp.find('*[class=""]').removeAttr('class');
+                //process <!--more-->
+                $temp.find("span#more-"+lasso_editor.postid).replaceWith( "<!--more-->" );
                 
                 html = $temp.html();
             }

@@ -97,6 +97,9 @@ class settings {
 
 		if ( !is_user_logged_in() )
 			return;
+        
+        // check for lasso story engine and add a class doniting this
+        $ase_status = class_exists( 'Aesop_Core' ) || defined( 'LASSO_CUSTOM' ) ? 'ase-active' : 'ase-not-active';
 
 		$article_object   = lasso_editor_get_option( 'article_class', 'lasso_editor' );
 		$featImgClass    = lasso_editor_get_option( 'featimg_class', 'lasso_editor' );
@@ -143,6 +146,10 @@ class settings {
 		if (!$insert_comp_ui) {
 			$insert_comp_ui = 'drag';
 		}
+        
+        $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor');
+        
+        $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
 
 ?>
 		<div class="wrap">
@@ -291,14 +298,25 @@ class settings {
                     
 				</div>
 				
-				<h3><?php _e( 'Extra Component', 'lasso' );?></h3>
+				<h3><?php _e( 'Component', 'lasso' );?></h3>
                 <div class="lasso-editor-settings--option-wrap" style="border:none;" >
-                    <div class="lasso-editor-settings--option-inner" >
+                    <div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[add_table]" id="lasso_editor[add_table]" <?php echo checked( $add_table, 'on' );?> >
 						<label for="lasso_editor[add_table]"><?php _e( 'Additional Component: Table', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Allow user to add and edit tables.', 'lasso' );?></span>
 
 					</div>
+                
+                <?php if ( 'ase-active' != $ase_status ) { ?>
+                
+                    <div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[use_old_wpimg]" id="lasso_editor[use_old_wpimg]" <?php echo checked( $use_old_wpimg, 'on' );?> >
+						<label for="lasso_editor[use_old_wpimg]"><?php _e( 'Use Simple Image', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Use Simple Image Component without Extra Options.', 'lasso' );?></span>
+
+					</div>
+                
+                <?php }?>
                 </div>
 				
 
@@ -363,11 +381,16 @@ class settings {
 					    <input type="radio" name="lasso_editor[bold_tag]" value='b' <?php echo checked( $bold_tag, 'b' );?>> b
 						<input type="radio" name="lasso_editor[bold_tag]" value="strong" <?php echo checked( $bold_tag, 'strong' );?>> strong
 					</div>
-					<div class="lasso-editor-settings--option-inner" >
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 					    <label for="lasso_editor[i_tag]"> <?php _e( '"Italic" Tag', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Choose the HTML tag used for the "Italic" style.', 'lasso' );?></span>
 					    <input type="radio" name="lasso_editor[i_tag]" value='i' <?php echo checked( $i_tag, 'i' );?>> i
 						<input type="radio" name="lasso_editor[i_tag]" value="em" <?php echo checked( $i_tag, 'em' );?>> em
+					</div>
+                    <div class="lasso-editor-settings--option-inner" >
+						<input type="checkbox" class="checkbox" name="lasso_editor[link_prefix_http]" id="lasso_editor[link_prefix_http]" <?php echo checked( $link_prefix_http, 'on' );?> >
+						<label for="lasso_editor[link_prefix_http]"><?php _e( 'Auto Prefix HTTP to links', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'When user adds a hyperlink, automatically add http:// if the user does not specify it explicitly.', 'lasso' );?></span>
 					</div>
 				</div>
 

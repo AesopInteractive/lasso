@@ -373,7 +373,7 @@ function lasso_editor_text_toolbar() {
 }
 
 /**
- * Draw the controls used for teh component settings within each component
+ * Draw the controls used for the component settings within each component
  *
  * @since 1.0
  */
@@ -388,9 +388,9 @@ function lasso_editor_settings_toolbar() {
 	$custom_classes = apply_filters( 'lasso_component_classes', '' );
 
 	?>
-	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+	<ul class="lasso-component--controls editus-center <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
-		<li id="lasso-component--settings__trigger" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+		<li class="lasso-component--settings__trigger  lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
 		<li class="lasso-delete" data-postid="<?php echo get_the_ID();?>" data-nonce="<?php echo $delete_nonce;?>" title="<?php esc_attr_e( 'Delete', 'lasso' );?>"></li>
 	</ul>
@@ -752,14 +752,19 @@ function lasso_editor_wpimg_edit() {
 	ob_start();
 
 
+    $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
+    
 	// let users add custom css classes
 	$custom_classes = apply_filters( 'lasso_wpimg_classes', '' );
 
 	?>
-	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+	<ul class="lasso-component--controls editus-center <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
-		<!--li id="lasso--wpimg-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li-->
-        <li id="lasso-component--settings__trigger" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+        <?php if ($use_old_wpimg=='on') {?>
+            <li  class="lasso--wpimg-edit lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+        <?php } else {?>
+            <li  class="lasso-component--settings__trigger lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+        <?php } ?>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
 		<li class="lasso-delete" title="<?php esc_attr_e( 'Delete', 'lasso' );?>"></li>
 	</ul>
@@ -776,7 +781,7 @@ function lasso_editor_wpvideo_edit() {
 	$custom_classes = apply_filters( 'lasso_wpimg_classes', '' );
 
 	?>
-	<ul class="lasso-component--controls <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
+	<ul class="lasso-component--controls editus-center <?php echo sanitize_html_class( $custom_classes );?>" contenteditable="false">
 		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
 		<li id="lasso--wpvideo-edit" class="lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
 		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
@@ -960,6 +965,26 @@ function add_wpimg_options( $shortcodes ) {
                     'desc'   => __( 'Image URL', 'lasso' ),
                     'tip'  => __( 'URL for the image. Click <em>Select Media</em> to open the WordPress Media Library.', 'aesop-core' )
                 ),
+                'align'    => array(
+                    'type'  => 'select',
+                    'values'  => array(						
+                        array(
+                            'value' => 'center',
+                            'name' => __( 'Center', 'aesop-core' )
+                        ),
+                        array(
+                            'value' => 'left',
+                            'name' => __( 'Left', 'aesop-core' )
+                        ),
+                        array(
+                            'value' => 'right',
+                            'name' => __( 'Right', 'aesop-core' )
+                        ),
+                    ),
+                    'default'  => 'center',
+                    'desc'   => __( 'Alignment', 'lasso' ),
+                    'tip'=>''
+                ),			
                 
                 'imgwidth'    => array(
                     'type'  => 'text_small',
@@ -972,12 +997,32 @@ function add_wpimg_options( $shortcodes ) {
                     'default'  => '',
                     'desc'   => __( 'Image Height', 'lasso' ),
                     'tip'  => __( 'Used only for the Panorama mode. Can be set using pixel values such as <code>500px</code>. If unspecified, the original height would be used. ', 'aesop-core' )
-                ),					
+                ),	
+                'linkoption'    => array(
+                    'type'  => 'select',
+                    'values'  => array(						
+                        array(
+                            'value' => 'none',
+                            'name' => __( 'None', 'aesop-core' )
+                        ),
+                        array(
+                            'value' => 'img',
+                            'name' => __( 'Image', 'aesop-core' )
+                        ),
+                        array(
+                            'value' => 'url',
+                            'name' => __( 'URL', 'aesop-core' )
+                        ),
+                    ),
+                    'default'  => 'none',
+                    'desc'   => __( 'Link', 'lasso' ),
+                    'tip'  => __( 'Click leads to:', 'lasso' )
+                ),				
                 
                 'link'    => array(
                     'type'  => 'text',
                     'default'  => '',
-                    'desc'   => __( 'Link', 'lasso' ),
+                    'desc'   => __( 'URL Link', 'lasso' ),
                     'tip'  => __( 'URL link', 'lasso' )
                 ),
                 'alt'    => array(
@@ -997,7 +1042,26 @@ function add_wpimg_options( $shortcodes ) {
 
             ),
             'desc'     => __( 'An image.', 'aesop-core' ),
-            'codes'    => ''
+            'codes'    => '<script>	            
+						jQuery(document).ready(function($){
+                            function linkSetting(l){								
+							    if ( l=="url") {
+									jQuery(".aesop-wpimg-link").slideDown();						
+								}
+								else  {
+									jQuery(".aesop-wpimg-link").slideUp();
+								}
+							}
+							
+							setTimeout( function() { 
+                                linkSetting(jQuery("#aesop-generator-attr-linkoption" ).val()); 
+								}, 500);
+								
+							jQuery( "#aesop-generator-attr-linkoption" ).change(function() {
+								linkSetting( this.value);
+							})
+						});
+			           </script>'
         )
     );
 

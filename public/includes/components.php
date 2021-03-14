@@ -232,7 +232,12 @@ endif;
 if ( !function_exists('lasso_wp_image') ):
 
 	function lasso_wp_image(){
-		return '<div data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component"><img class="wp-image-0" src="'.LASSO_URL.'/public/assets/img/empty-img.png"></div>';
+        $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
+        if ($use_old_wpimg != 'on') {
+        	return '<figure data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></div>';
+        } else {
+            return '<figure data-component-type="wpimg" data-linkoption="img" class="lasso--wpimg__wrap lasso-component"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></div>';
+        }
 	}
 
 endif;
