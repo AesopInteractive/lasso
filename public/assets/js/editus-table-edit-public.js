@@ -55,6 +55,7 @@ jQuery(document).ready(function($){
 						case "insertrow": addRow(row); break;
 						case "delcol": deleteColumn(col); break;
 						case "delrow": deleteRow(row); break;
+                        case "deltable": deleteTable(); break;
 					}
 					
 					articleMedium.makeUndoable();
@@ -111,6 +112,10 @@ jQuery(document).ready(function($){
 		
 		function deleteRow(n) {
 			$(table).find('tr').eq(n).remove();
+		}
+        
+        function deleteTable() {
+			$(table).remove();
 		}
 		
 		function whenExitEditor(){

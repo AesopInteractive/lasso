@@ -419,7 +419,6 @@ class lasso {
 		 );
 		foreach ($_POST as $key => $value) {
 			if ($key !="code" && $key !="action") {
-			    //$shortcode = $shortcode.$key.'="'.$value.'" ';
 				$atts[$key] = $value;
 			}
 		}
@@ -463,6 +462,14 @@ class lasso {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-audio.php');
 		    echo aesop_audio_shortcode($atts);
 		}
+		else if ($code == "aesop_document") {
+		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-document.php');
+		    echo aesop_document_shortcode($atts);
+		}
+        /*else if ($code == "aesop_content") {
+		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-content.php');
+		    echo aesop_content_shortcode($atts);
+		}*/
         else if ($code == "aesop_wpimg") {
             self::wpimg($atts);
 		}
@@ -474,7 +481,7 @@ class lasso {
 			$code = $code.']';
 			echo do_shortcode($code);
 		}
-		
+		echo '<p contenteditable="true"><br></p>';
 		exit; 
 	}
     

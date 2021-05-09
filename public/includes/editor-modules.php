@@ -263,7 +263,7 @@ function lasso_editor_text_toolbar() {
 						<li data-type="image" title="<?php esc_attr_e( 'Image', 'lasso' );?>" class="lasso-toolbar--component__image"></li>
 						<li data-type="character" title="<?php esc_attr_e( 'Character', 'lasso' );?>" class="lasso-toolbar--component__character"></li>
 						<li data-type="quote" title="<?php esc_attr_e( 'Quote', 'lasso' );?>"  class="lasso-toolbar--component__quote"></li>
-						<li data-type="content" title="<?php esc_attr_e( 'Content', 'lasso' );?>"  class="lasso-toolbar--component__content"></li>
+						<!--li data-type="content" title="<?php esc_attr_e( 'Content', 'lasso' );?>"  class="lasso-toolbar--component__content"></li-->
 						<li data-type="chapter" title="<?php esc_attr_e( 'Chapter', 'lasso' );?>"  class="lasso-toolbar--component__chapter"></li>
 						<li data-type="parallax" title="<?php esc_attr_e( 'Parallax', 'lasso' );?>"  class="lasso-toolbar--component__parallax"></li>
 						<li data-type="audio" title="<?php esc_attr_e( 'Audio', 'lasso' );?>"  class="lasso-toolbar--component__audio"></li>
