@@ -248,6 +248,7 @@ function lasso_editor_text_toolbar() {
 	
 	$sc_saving_class = ('on' == $shortcodify_disabled || $ase_status == 'ase-not-active')  ? 'shortcodify-disabled' : 'shortcodify-enabled';
 
+    $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
 
 	?>
 	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$mobile_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style ?>>
@@ -280,7 +281,11 @@ function lasso_editor_text_toolbar() {
 						     <li data-type="events" title="<?php esc_attr_e( 'Event', 'lasso' );?>"  class="lasso-toolbar--component__event"></li>
 						<?php }?>
 					<?php else: ?>
-						<li data-type="wpimg" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
+                        <?php if ($use_wp_block_image == 'on') { ?>
+                            <li data-type="wpimg-block" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
+                        <?php } else { ?>
+						    <li data-type="wpimg" title="<?php esc_attr_e( 'WordPress Image', 'lasso' );?>" class="image lasso-toolbar--component__image"></li>
+                        <?php } ?>
 						<li data-type="wpquote" title="<?php esc_attr_e( 'WordPress Quote', 'lasso' );?>" class="quote lasso-toolbar--component__quote"></li>
 						<!--li data-type="wpvideo" title="<?php esc_attr_e( 'WordPress Video', 'lasso' );?>" class="video lasso-toolbar--component__video"></li-->
 					<?php endif; ?>
@@ -772,6 +777,20 @@ function lasso_editor_wpimg_edit() {
 	<?php return ob_get_clean();
 }
 
+function lasso_editor_wpimg_block_edit() {
+	ob_start();
+
+	?>
+	<ul class="lasso-component--controls editus-center" contenteditable="false">
+		<li class="lasso-drag" title="<?php esc_attr_e( 'Move', 'lasso' );?>"></li>
+            <li  class="lasso-component--settings__trigger lasso-settings" title="<?php esc_attr_e( 'Settings', 'lasso' );?>"></li>
+		<li class="lasso-clone" title="<?php esc_attr_e( 'Clone', 'lasso' );?>"></li>
+		<li class="lasso-delete" title="<?php esc_attr_e( 'Delete', 'lasso' );?>"></li>
+	</ul>
+
+	<?php return ob_get_clean();
+}
+
 function lasso_editor_wpvideo_edit() {
 
 	ob_start();
@@ -841,6 +860,7 @@ function lasso_editor_options_blob() {
 
 	$codes   = function_exists( 'aesop_shortcodes' ) ? aesop_shortcodes() : array();
     $codes   = add_wpimg_options( $codes );
+	$codes   = add_wpimg_block_options( $codes );
     $codes   = apply_filters( 'lasso_custom_options', $codes );
 	$galleries  = function_exists( 'lasso_editor_galleries_exist' ) && lasso_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
@@ -1060,6 +1080,65 @@ function add_wpimg_options( $shortcodes ) {
 							jQuery( "#aesop-generator-attr-linkoption" ).change(function() {
 								linkSetting( this.value);
 							})
+						});
+			           </script>'
+        )
+    );
+
+    return array_merge( $shortcodes, $custom );
+}
+
+function add_wpimg_block_options( $shortcodes ) {
+    $custom = array(
+        'wpimg-block'    => array(
+            'name'     => __( 'Image', 'lasso' ),
+            'type'     => 'single',
+            'atts'     => array(
+                'img'    => array(
+                    'type'  => 'media_upload',
+                    'default'  => '',
+                    'desc'   => __( 'Image URL', 'lasso' ),
+                    'tip'  => __( 'URL for the image. Click <em>Select Media</em> to open the WordPress Media Library.', 'aesop-core' )
+                ),
+                'align'    => array(
+                    'type'  => 'select',
+                    'values'  => array(						
+                        array(
+                            'value' => 'center',
+                            'name' => __( 'Center', 'aesop-core' )
+                        ),
+                        array(
+                            'value' => 'left',
+                            'name' => __( 'Left', 'aesop-core' )
+                        ),
+                        array(
+                            'value' => 'right',
+                            'name' => __( 'Right', 'aesop-core' )
+                        ),
+                    ),
+                    'default'  => 'center',
+                    'desc'   => __( 'Alignment', 'lasso' ),
+                    'tip'=>''
+                ),		
+                'alt'    => array(
+                    'type'  => 'text',
+                    'default'  => '',
+                    'desc'   => __( 'Image ALT', 'lasso' ),
+                    'tip'  => __( 'ALT tag used for the image. Primarily used for SEO purposes.', 'lasso' )
+                ),
+                'caption'    => array(
+                    'type'  => 'text',
+                    'default'  => '',
+                    'desc'   => __( 'Caption', 'lasso' ),
+                    'tip'  => __( 'Caption for the image.', 'lasso' )
+                ),
+               
+
+            ),
+            'desc'     => __( 'A WP Image Block.', 'aesop-core' ),
+            'codes'    => '<script>	            
+						jQuery(document).ready(function($){
+                            
 						});
 			           </script>'
         )

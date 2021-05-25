@@ -40,15 +40,16 @@
 			if ( $(this).parent().parent().hasClass('aesop-map-component') ) {
 				component = $(this).parent().parent().find('.aesop-component');
 			} else {
-				component = $(this).closest('.aesop-component,.lasso-component');
+				component = $(this).closest('.aesop-component,.lasso-component,.wp-block-image');
 			}
+            
+            data = component.data();
+            if (!data) { return;}
 
 			// let's force globalize this until we refactor the js
 			window.component = component;
 			window.componentClone = component.clone();
-
-			data = component.data();
-            if (!data) { return;}
+			
             if (data['componentType'] == 'wpimg') {
                 if ($(component).find('figure.lasso-component').length) {
                     data = $(component).find('figure.lasso-component').data();//'.wp-image.lasso-component').data();
@@ -56,6 +57,32 @@
                     data['img'] =$(component).find('img').attr('src');
                 }
             }
+            
+            if (data['componentType'] == 'wpimg-block') {
+				if ($(component).find('img').length) {
+					var $img = $(component).find('img');
+                    data['img'] =$img.attr('src');
+					data['alt'] =$img.attr('alt');
+					var c = $img.attr('class');
+                    
+                    var $fig = $(component).find('figure');
+                    if ($fig.hasClass('alignright')) {
+                        data['align']='right';
+                    } else if ($fig.hasClass('aligncenter')) {
+                        data['align']='center';
+                    } else if ($fig.hasClass('alignleft')) {
+                        data['align']='left';
+                    }
+				
+					if (c && c.indexOf('wp-image-') == 0) {
+						data['id'] = c.substr(9);
+					}
+                    if ($(component).find('figcaption').length) {
+                        data['caption'] = $(component).find('figcaption').text();
+                    }
+                }
+			}
+            
             if (data['componentType'] =='wpquote') { return;}
             
             if (!lasso_editor.component_options) return;
@@ -293,10 +320,21 @@
 				  	});
 
 		      	}else if ( 'wpimg' == type ) {
+                    var img = window.component.find('img');
+                    if (img.length>0) {
+		      		   img.prop('src', attachment.url );
+                       img.prop("srcset","");
+                    }
+		      	}
+                else if ( 'wpimg-block' == type ) {
                     var img = component.find('img');
                     if (img.length >0) {
 		      		   img.prop('src', attachment.url );
                        img.prop("srcset","");
+					   if (attachment.id) {
+                           img.removeClass();
+						   img.addClass("wp-image-"+attachment.id);
+					   }
                     }
 
 		      	}

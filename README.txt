@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 5.6
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,21 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.3.7
+* Support for Gutenberg Image Block
+
+= 1.3.6
+* The table component component right click menu now supports deleting the table
+* Minor bug fixes
+
+= 1.3.5
+* Fix for simple image components
+* New option to auto-prefix links with http://
+
+= 1.3.4
+* More non-Aesop image component options
+
+
 = 1.3.3
 * More non-Aesop image component options
 * Support for More Tag

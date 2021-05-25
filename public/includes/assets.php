@@ -92,6 +92,8 @@ class assets {
             
             $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
             
+            $use_wpimgblock = false;
+            
             $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor', 'off');
 
 			
@@ -217,9 +219,9 @@ class assets {
             $multipage = self::is_multipage();
             $post_content = "";
             //pass post_content if we need to process multipage. In future we may need to pass this for other purposes
-            if ($multipage != -1) {
+            //if ($multipage != -1) {
                $post_content = $post->post_content;
-            }
+            //}
 
 			// localized objects
 			$objects = array(
@@ -253,6 +255,7 @@ class assets {
 				'component_sidebar'	=> lasso_editor_component_sidebar(),
 				'components'		=> lasso_editor_components(),
 				'wpImgEdit'			=> lasso_editor_wpimg_edit(),
+				'wpImgBlockEdit'	=> lasso_editor_wpimg_block_edit(),
 				'wpVideoEdit'		=> lasso_editor_wpvideo_edit(),
 				'featImgControls'   => lasso_editor_image_controls(),
 				'featImgNonce'		=> $gallery_nonce,
@@ -305,6 +308,7 @@ class assets {
                 'post_content'=>$post_content,
                 'post_excerpt'=>$post_excerpt,
                 'oldWPimg'=> $use_old_wpimg =='on',
+                'useWPImgBlk'=> $use_wpimgblock,
                 'prefixHTTP'=> $link_prefix_http =='on'
 			);
 

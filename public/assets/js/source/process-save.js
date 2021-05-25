@@ -558,6 +558,28 @@ jQuery(document).ready(function($){
             $(j).find(".wp-block-separator").before("<!-- wp:separator  -->" );
             $(j).find(".wp-block-separator").after("<!-- /wp:separator  -->" );
             
+            // image
+			$(j).find(".wp-block-image").each( function(index ) {
+
+                $(this).removeAttr('data-component-type');
+				var blockCode = "<!-- wp:image {";
+				
+				var c = $(this).find("img").attr('class');
+				var comma = "";
+				$(this).removeAttr('width').removeAttr('height');
+				$(this).find("img").removeAttr('width').removeAttr('height').removeAttr('srcset').removeAttr('sizes').removeAttr('loading');
+				if (c && c.indexOf('wp-image-') == 0) {
+					blockCode+='"id":'+$(this).find("img").attr('class').substr(9);
+					comma = ",";
+				}
+				if ($(this).hasClass("size-large")) {
+					blockCode+=comma+'"sizeSlug":"large"';
+				}
+				blockCode+="} -->";
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:image -->" );
+            });
+            
             //aesop components
             $(j).find(".aesop-component").each( function(index ) {
                 var d = $(this).data();

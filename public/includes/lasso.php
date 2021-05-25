@@ -473,6 +473,9 @@ class lasso {
         else if ($code == "aesop_wpimg") {
             self::wpimg($atts);
 		}
+		else if ($code == "aesop_wpimg-block") {
+            self::wpimg_block($atts);
+		}
 		else {
 			$code = '['.$code.' ';
 			foreach ($atts as $key => $value) {
@@ -539,7 +542,32 @@ class lasso {
             echo '<figcaption class="wp-caption-text">'.$atts['caption'].'</figcaption>';
         }
         echo '</figure>';
-        echo '<p> </p>';
+        echo '<p><br></p>';
+        return;
+    }
+	
+	public static function wpimg_block($atts) {
+		$imgextra = '';
+		if (!empty($atts['id'])) {
+			$imgextra = 'class="wp-image-'.$atts['id'].'"';
+		}
+        $figclass = 'aligncenter';
+        if ($atts['align']=="left") {
+            $figclass = 'alignleft';
+        } else if ($atts['align']=="right") {
+            $figclass = 'alignright';
+        } else {
+            $figclass = 'aligncenter';
+        }
+        echo '<div class="wp-block-image" data-component-type="wpimg-block">'; 
+        echo '<figure class="'.$figclass.' size-large" data-component-type="wpimg-block">';        
+        echo '<img src="' . $atts['img'] . '" alt="'. $atts['alt']  . '"' . $imgextra . ' ">';
+        if ($atts['caption'])
+        {
+            echo '<figcaption>'.$atts['caption'].'</figcaption>';
+        }
+        echo '</figure></div>';
+        echo '<p><br></p>';
         return;
     }
 	

@@ -9,7 +9,11 @@
 
 		$(document).on('click', '.lasso--wpimg-edit',function(e){
 
-			e.preventDefault()
+			e.preventDefault();
+            
+            if ($(this).parent().parent().find('img').length==0) {
+                return;
+            }
             var id ='';
 			var selected_img
 			, 	clicked = $(this)

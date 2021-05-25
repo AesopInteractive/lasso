@@ -71,6 +71,10 @@ function lasso_editor_components() {
 			'name'    => __('WordPress Image','lasso'),
 			'content' => lasso_wp_image(),
 		),
+		'wpimg-block' => array(
+			'name'    => __('WordPress Image Block','lasso'),
+			'content' => lasso_wp_image_block(),
+		),
 		'wpquote' => array(
 			'name'    => __('WordPress Quote','lasso'),
 			'content' => lasso_wp_quote(),
@@ -233,10 +237,14 @@ if ( !function_exists('lasso_wp_image') ):
 
 	function lasso_wp_image(){
         $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
-        if ($use_old_wpimg != 'on') {
-        	return '<figure data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></div>';
+        $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
+        if ($use_wp_block_image == 'on') {
+        	return '<figure class="wp-block-image size-large" data-component-type="wpimg-block"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></figure><p><br></p>';
+        }
+        else if ($use_old_wpimg != 'on') {
+        	return '<figure data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></figure><p><br></p>';
         } else {
-            return '<figure data-component-type="wpimg" data-linkoption="img" class="lasso--wpimg__wrap lasso-component"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></div>';
+            return '<figure data-component-type="wpimg" data-linkoption="img" class="lasso--wpimg__wrap lasso-component"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></figure><p><br></p>';
         }
 	}
 
@@ -246,7 +254,7 @@ endif;
 if ( !function_exists('lasso_wp_quote') ):
 
 	function lasso_wp_quote(){
-		return '<blockquote data-component-type="wpquote" class="lasso--wpquote lasso-component"><p>The universe is made of stories.</p></blockquote>';
+		return '<blockquote data-component-type="wpquote" class="lasso--wpquote lasso-component"><p>The universe is made of stories.</p></blockquote><p><br></p>';
 	}
 
 endif;
@@ -273,6 +281,13 @@ if ( !function_exists('lasso_wp_video') ):
 
 	function lasso_wp_video(){
 		return '<div data-component-type="wpvideo" class="lasso--wpvideo__wrap lasso-component"><video class="wp-video-0"></video>';
+	}
+
+endif;
+
+if ( !function_exists('lasso_wp_image_block') ):
+	function lasso_wp_image_block(){
+        return '<figure class="wp-block-image size-large" data-component-type="wpimg-block"><img  src="'.LASSO_URL.'/public/assets/img/empty-img.png"></figure><p><br></p>';
 	}
 
 endif;

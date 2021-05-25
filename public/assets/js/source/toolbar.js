@@ -329,7 +329,9 @@ jQuery(function( $ ) {
 		});
 
 		$(this).find('#lasso-toolbar--link__inner').focus();
-
+        if (window.selRange.startContainer.parentNode.tagName == 'A') {
+            $('#lasso-toolbar--link__inner').text(window.selRange.startContainer.parentNode.href);
+        }
 	});
 
 	// RESTORING LINK SELECTION
@@ -376,6 +378,11 @@ jQuery(function( $ ) {
 
 			// remove wp image if its a wp image
 			$this.closest('.lasso-component').remove();
+            
+            if ($this.parent().parent().hasClass('wp-block-image')) {
+                //$this.closest('.wp-block-image').remove();
+                $this.parent().parent().remove();
+            }
 
 		});
 

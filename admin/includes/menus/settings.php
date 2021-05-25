@@ -150,6 +150,7 @@ class settings {
         $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor');
         
         $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
+        $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
 
 ?>
 		<div class="wrap">
@@ -308,6 +309,29 @@ class settings {
 					</div>
                 
                 <?php if ( 'ase-active' != $ase_status ) { ?>
+                    <script>
+                    $(document).ready(function(){
+                        $("#lasso_editor\\[use_old_wpimg\\]").on('change', function(){                        
+                            if($("#lasso_editor\\[use_old_wpimg\\]:checked").length){
+                                $("#lasso_editor\\[use_wp_block_image\\]").prop('disabled', true);
+                                $("#lasso_editor\\[use_wp_block_image\\]").prop('checked', false);
+                                return;
+                            }
+
+                            $("#lasso_editor\\[use_wp_block_image\\]").prop('disabled', false);
+                        });
+
+                        $("#lasso_editor\\[use_wp_block_image\\]").on('change', function(){        
+                            if($("#lasso_editor\\[use_wp_block_image\\]:checked").length){
+                                $("#lasso_editor\\[use_old_wpimg\\]").prop('disabled', true);
+                                $("#lasso_editor\\[use_old_wpimg\\]").prop('checked', false);
+                                return;
+                            }
+
+                            $("#lasso_editor\\[use_old_wpimg\\]").prop('disabled', false);
+                        });
+                    })
+                    </script>
                 
                     <div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[use_old_wpimg]" id="lasso_editor[use_old_wpimg]" <?php echo checked( $use_old_wpimg, 'on' );?> >
@@ -316,6 +340,13 @@ class settings {
 
 					</div>
                 
+                
+                    <div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[use_wp_block_image]" id="lasso_editor[use_wp_block_image]" <?php echo checked( $use_wp_block_image, 'on' );?> >
+						<label for="lasso_editor[use_wp_block_image]"><?php _e( 'Use WP Image Block', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Use WP Image Block as the image component. Gutenberg Block Editor needs to be enabled.', 'lasso' );?></span>
+
+					</div>
                 <?php }?>
                 </div>
 				

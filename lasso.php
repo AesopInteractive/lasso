@@ -10,7 +10,7 @@
  * Plugin Name:       Editus
  * Plugin URI:        http://edituswp.com
  * Description:       Front-end editor and story builder.
- * Version:           1.3.6
+ * Version:           1.3.7
  * Author:            Aesopinteractive 
  * Author URI:        http://aesopinteractive.com
  * Text Domain:       lasso
@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define( 'LASSO_VERSION', '1.3.6' );
+define( 'LASSO_VERSION', '1.3.7' );
 define( 'LASSO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LASSO_URL', plugins_url( '', __FILE__ ) );
 define( 'LASSO_FILE', __FILE__ );
@@ -139,7 +139,7 @@ class editus_table {
     
     function editus_html_table()
     {   
-        return '<figure class="wp-block-table"><table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table></figure><p></p>';
+        return '<figure class="wp-block-table"><table><tr><th>Cell 1</th><th>Cell 2</th></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table></figure><p><br></p>';
     }
 
 
@@ -163,4 +163,63 @@ class editus_table {
 
 
 new editus_table();
+
+
+
+//table codes to be added
+class editus_paragraph {
+    
+    public function __construct(){
+        add_action('wp_enqueue_scripts', array($this,'scripts'));
+	}
+    
+    function scripts()
+    {
+            add_action('lasso_editor_controls_after_outside', array($this,'editus_paragraph_style'));
+            add_filter('lasso_components',array($this,'editus_components_add_paragraph'),10,1);
+            add_action( 'lasso_toolbar_components', array($this,'editus_toolbar_components_add_paragraph'), 10 );
+            //wp_enqueue_style( 'editus-table-style', LASSO_URL.  '/public/assets/css/editus-table-edit-public.css', LASSO_VERSION, true );
+            //wp_enqueue_script( 'editus_table',  LASSO_URL. '/public/assets/js/editus-table-edit-public.js', array( 'jquery' ), LASSO_VERSION, true );
+    }
+   
+    function editus_components_add_paragraph( $array ){
+        $custom = array(
+               'htmlparagraph' => array(
+                         'name'    => __('HTML Paragraph','lasso'),
+                          'content' => self::editus_html_paragraph(),
+                )
+        );
+        return array_merge( $array, $custom );
+    }
+    
+    
+    function editus_html_paragraph()
+    {   
+        return '<p contenteditable="true"><br></p>';
+    }
+
+    function editus_paragraph_style()
+    { ?>
+        <style>
+        #lasso-toolbar--components__list .lasso-toolbar--component__htmlparagraph:before
+        { 
+            content: "\f476";
+            font-family: 'dashicons' !important; 
+        }
+        </style>
+    <?php
+    }
+    
+
+    function editus_toolbar_components_add_paragraph( ) {
+          ?>
+          <li data-type="htmlparagraph" title="<?php esc_attr_e( 'HTML Paragraph', 'lasso' );?>" class="quote lasso-toolbar--component__htmlparagraph dashicons dashicons-editor-paragraph"></li>
+          <?php
+    }
+}
+
+//Disable it for now
+//new editus_paragraph();
+
+
 

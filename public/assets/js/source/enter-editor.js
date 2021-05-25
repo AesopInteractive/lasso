@@ -293,6 +293,17 @@ jQuery(document).ready(function($){
                 }
 
             })
+            
+            //wp image block
+			$('.wp-block-image').each(function(){
+
+                var $this = $(this)
+                if ( $(this).find('.lasso-component--controls').length == 0 ) {
+                    $this.prepend(lasso_editor.wpImgBlockEdit);
+					$this.attr('data-component-type','wpimg-block');
+                }
+
+            })
         }
         
         lasso_editor.wrapImg();
@@ -634,30 +645,35 @@ jQuery(document).ready(function($){
 			articleMedium.element.contentEditable = true;
 		    article.highlight();
 		    restoreSelection(window.selRange);
-			var htmlHead = '<a class="lasso-link" contenteditable="false" ';
+			var html = '<a class="lasso-link" contenteditable="false" ';
 			
 			if (!lasso_editor.linkEditable) { 
-				htmlHead = '<a class="lasso-link" ';
+				html = '<a class="lasso-link" ';
 			}
 
 			var target = $('#lasso-toolbar--link__inner').text();
-            if (lasso_editor.prefixHTTP && !target.match(/http/i)){
-                target = 'http://'+target;
+            
+            if (target=="") {
+                html = window.selRange.toString();
+            } else {
+                if (lasso_editor.prefixHTTP && !target.match(/http/i)){
+                    target = 'http://'+target;
+                }
+                if ($('#aesop-toolbar--link_newtab').is(':checked')) {
+                    html = html+' target="_blank" href="'+ target +'">'+window.selRange+'</a>';
+                } else {
+                    html = html+' href="'+ target +'">'+window.selRange+'</a>';
+                }
             }
+            articleMedium.insertHtml(html);
+            var container = window.selRange.startContainer.parentNode,
+                containerTag = container.localName;
 
-			if ($('#aesop-toolbar--link_newtab').is(':checked')) {
-				 articleMedium.insertHtml(htmlHead+' target="_blank" href="'+ target +'">'+window.selRange+'</a>');
-			} else {
-			    articleMedium.insertHtml(htmlHead+' href="'+ target +'">'+window.selRange+'</a>');
-			}
-			var container = window.selRange.startContainer.parentNode,
-				containerTag = container.localName;
-
-			if ( containerTag == 'a' ) {
-				var containerObject = $(window.selRange.startContainer.parentNode);
-				containerObject.replaceWith(containerObject[0].innerHTML);
-			}
-
+            if ( containerTag == 'a' ) {
+                var containerObject = $(window.selRange.startContainer.parentNode);
+                containerObject.replaceWith(containerObject[0].innerHTML);
+            }
+            
 		    window.selRange = null;
 
 		    // close modal drag
@@ -1152,14 +1168,15 @@ jQuery(document).ready(function($){
 			if ( 'wpimg' == type && lasso_editor.oldWPimg) {
 				comp = $(components[type]['content']).prepend( wpImgEdit );
 			// else it's likely an aesop component
-			} else {
-
+			} else if ( 'htmlparagraph' != type && 'htmltable' != type) {
 				comp = $(components[type]['content'])
 							.prepend( lassoDragHandle )
 							.attr({
 								'data-component-type': type
 							});
-			}
+			} else {
+                comp = $(components[type]['content']);
+            }
 			return comp;
 		}
 		

@@ -9,16 +9,22 @@
     left:0;
 }
 .lasso--wpimg__wrap:hover,
-.lasso-component:hover {
+.lasso-component:hover,.wp-block-image:hover {
     .lasso-component--controls {
         .opacity(1);
         //left:0;
     }
 }
 
+.wp-block-image:hover {
+    .lasso-component--controls {
+        position:relative;
+    }
+}
+
 .lasso--wpquote {
     .lasso-component--controls {
-        width:91px;
+        //width:91px;
         #lasso-component--settings__trigger {
             position: absolute;
             left:-10000px;
