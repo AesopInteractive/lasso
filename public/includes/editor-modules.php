@@ -646,8 +646,10 @@ function lasso_editor_newpost_modal() {
 							<?php
 								$types = lasso_post_types_names();
 								if ( !empty( $types ) ) {
-									foreach( $types as $name => $label ) {										
-										$type = preg_replace( '/s\b/','', $name );
+									foreach( $types as $name => $label ) 
+                                    {   	
+                                        $type = $name;									
+										//$type = preg_replace( '/s\b/','', $name );
 										if ($type == 'page' && !current_user_can('edit_pages')) {
 											continue;
 										}

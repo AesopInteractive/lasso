@@ -327,7 +327,7 @@
                     }
 		      	}
                 else if ( 'wpimg-block' == type ) {
-                    var img = component.find('img');
+                    var img = window.component.find('img');
                     if (img.length >0) {
 		      		   img.prop('src', attachment.url );
                        img.prop("srcset","");

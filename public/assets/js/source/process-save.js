@@ -560,22 +560,29 @@ jQuery(document).ready(function($){
             
             // image
 			$(j).find(".wp-block-image").each( function(index ) {
-
                 $(this).removeAttr('data-component-type');
 				var blockCode = "<!-- wp:image {";
 				
 				var c = $(this).find("img").attr('class');
-				var comma = "";
 				$(this).removeAttr('width').removeAttr('height');
 				$(this).find("img").removeAttr('width').removeAttr('height').removeAttr('srcset').removeAttr('sizes').removeAttr('loading');
 				if (c && c.indexOf('wp-image-') == 0) {
 					blockCode+='"id":'+$(this).find("img").attr('class').substr(9);
-					comma = ",";
 				}
-				if ($(this).hasClass("size-large")) {
-					blockCode+=comma+'"sizeSlug":"large"';
+				if ($(this).hasClass("size-large") || $(this).find('figure').hasClass("size-large")) {
+					blockCode+=',"sizeSlug":"large"';
 				}
-				blockCode+="} -->";
+                if ($(this).find(".aligncenter").length>0) {
+                    blockCode+=',"align":"center"';
+                }
+                if ($(this).find(".alignright").length>0) {
+                    blockCode+=',"align":"right"';
+                }
+                if ($(this).find(".alignleft").length>0) {
+                    blockCode+=',"align":"left"';
+                }
+         
+                blockCode = blockCode.replace("{,","{") + "} -->";
                 $(this).before(blockCode);
                 $(this).after("<!-- /wp:image -->" );
             });

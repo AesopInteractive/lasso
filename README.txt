@@ -13,8 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
-= 1.3.7
+= 1.3.8
 * Support for Gutenberg Image Block
+* Fixed the issue that custom post types could not save custom fields
 
 = 1.3.6
 * The table component component right click menu now supports deleting the table

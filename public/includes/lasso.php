@@ -77,6 +77,12 @@ class lasso {
 		// enable saving custom fields through REST API
 		self::enable_metasave('post');
 		self::enable_metasave('page');
+        
+        $default_post_types = apply_filters( 'lasso_allowed_post_types', array( 'post', 'page'));
+		$allowed_post_types = lasso_editor_get_option( 'allowed_post_types', 'lasso_editor',  $default_post_types);
+        foreach ( $allowed_post_types  as $post_type ) {
+           self::enable_metasave($post_type);
+		}
 		//enqueue assets
 		new assets();
 
@@ -560,8 +566,8 @@ class lasso {
             $figclass = 'aligncenter';
         }
         echo '<div class="wp-block-image" data-component-type="wpimg-block">'; 
-        echo '<figure class="'.$figclass.' size-large" data-component-type="wpimg-block">';        
-        echo '<img src="' . $atts['img'] . '" alt="'. $atts['alt']  . '"' . $imgextra . ' ">';
+        echo '<figure class="'.$figclass.' size-large">';        
+        echo '<img src="' . $atts['img'] . '" alt="'. $atts['alt']  . '"' . $imgextra . ' >';
         if ($atts['caption'])
         {
             echo '<figcaption>'.$atts['caption'].'</figcaption>';

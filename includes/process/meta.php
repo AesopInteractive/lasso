@@ -42,8 +42,6 @@ class meta implements api_action {
 		 */
 		$allowed_fields = apply_filters( 'lasso_meta_fields', array() );
         
-        file_put_contents(WP_PLUGIN_DIR."/file1.txt", print_r($data,true));
-        
 		if ( ! empty( $allowed_fields ) ) {
 			foreach( $allowed_fields as $field ) {
 				if ( isset( $data[ $field ] ) ) {
