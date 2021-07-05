@@ -138,11 +138,11 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		// unwrap wp images
-		$(".lasso--wpimg__wrap").each(function(){
+		/*$(".lasso--wpimg__wrap").each(function(){
 
-			/*if ( !$(this).hasClass('wp-caption') ) {
-				$(this).children().unwrap()
-			}*/
+			//if ( !$(this).hasClass('wp-caption') ) {
+			//	$(this).children().unwrap()
+			//}
 
 			$('.lasso-component--controls').remove();
 		});
@@ -150,7 +150,7 @@ jQuery(document).ready(function($){
 		// unwrap custom components
 		$('.lasso-component').each(function(){
 			$('.lasso-component--controls').remove();
-		});
+		});*/
 
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){
@@ -585,6 +585,30 @@ jQuery(document).ready(function($){
                 blockCode = blockCode.replace("{,","{") + "} -->";
                 $(this).before(blockCode);
                 $(this).after("<!-- /wp:image -->" );
+            });
+            
+            // cover
+			$(j).find(".wp-block-cover").each( function(index ) {
+                $(this).removeAttr('data-component-type');
+				var blockCode = "<!-- wp:cover {";
+                debugger;
+                
+                if ($(this).find("img").length > 0) {
+				    blockCode +='"url":"'+$(this).find("img").attr('src')+'"';
+                    var c = $(this).find("img").attr('class');
+                    $(this).removeAttr('width').removeAttr('height');
+                    if ($(this).css("min-height") == "100vh") {
+                        blockCode +=',"minHeight":100,"minHeightUnit":"vh"';
+                    }
+                    $(this).find("img").removeAttr('width').removeAttr('height').removeAttr('srcset').removeAttr('sizes').removeAttr('loading');
+                    if (c && c.indexOf('wp-image-') == 0) {
+                        blockCode+=',"id":'+$(this).find("img").attr('class').substr(9);
+                    }
+                }
+			
+                blockCode = blockCode.replace("{,","{") + "} -->";
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:cover -->" );
             });
             
             //aesop components

@@ -108,6 +108,9 @@ class assets {
 			
 			// allow change date for post
 			$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
+            
+            // support custom taxonomy
+			$support_custom_taxonomy = lasso_editor_get_option('support_custom_taxonomy', 'lasso_editor');
 			
 			if ($show_color) {
 				//color picker
@@ -176,6 +179,7 @@ class assets {
 				
 				'catsPlaceholder'     => __('add categories...'),
 				'tagsPlaceholder'     => __('add tags...'),
+                'taxoPlaceholder'     => __('add taxonomy terms...'),
 				
 				
 			);
@@ -222,6 +226,17 @@ class assets {
             //if ($multipage != -1) {
                $post_content = $post->post_content;
             //}
+			
+			//get custom taxonomy
+			$custom_taxonomies         = array_diff(get_object_taxonomies( get_post_type( $postid ), 'names' ), ['category','post_tag','post_format']);
+			$post_taxo_arr    = array();
+			foreach ($custom_taxonomies as $taxonomy) {
+				$post_taxo_arr[$taxonomy] = lasso_get_post_objects( $postid, $taxonomy );
+			}
+			$existing_taxo_arr    = array();
+			foreach ($custom_taxonomies as $taxonomy) {
+				$existing_taxo_arr[$taxonomy] = lasso_get_objects( $taxonomy );
+			}
 
 			// localized objects
 			$objects = array(
@@ -276,6 +291,8 @@ class assets {
 				'supportedNoSave'	=> lasso_supported_no_save(),
 				'postCategories'    => lasso_get_objects('category'),
 				'postTags'    		=> lasso_get_objects('tag'),
+				'postCusTaxonomies' => $post_taxo_arr,
+				'extCusTaxonomies' => $existing_taxo_arr,
 				'noResultsDiv'		=> lasso_editor_empty_results(),
 				'noRevisionsDiv'	=> lasso_editor_empty_results('revision'),
 				'mapTileProvider'   => function_exists('aesop_map_tile_provider') ? aesop_map_tile_provider( $postid ) : false,
@@ -307,6 +324,7 @@ class assets {
                 'multipages'=> $multipage,
                 'post_content'=>$post_content,
                 'post_excerpt'=>$post_excerpt,
+                'supCustTaxo' => $support_custom_taxonomy == 'on',
                 'oldWPimg'=> $use_old_wpimg =='on',
                 'useWPImgBlk'=> $use_wpimgblock,
                 'prefixHTTP'=> $link_prefix_http =='on'

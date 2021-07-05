@@ -194,19 +194,24 @@ function lasso_sanitize_data( $data ) {
  *	@since 0.9.3
  *	@return string of comma delimited category slugs
 */
-function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
+function lasso_get_post_objects( $postid, $taxonomy) {
 
 	if ( empty( $postid ) )
 		$postid = get_the_ID();
 
-	$objects = 'category' == $taxonomy ? get_the_category( $postid ) : get_the_tags( $postid );
+    if ('category' == $taxonomy)  {
+        $objects = get_the_category( $postid );
+    } else if ('tag' == $taxonomy)  {
+        $objects = get_the_tags( $postid );
+    } else {
+        $objects = get_the_terms( $postid, $taxonomy );
+    }
 
 	if ( empty( $objects) )
 		return;
 
 	$out = '';
 	foreach( $objects as $object ) {
-		//$out .= $object->slug.', ';
 		$out .= $object->name.',';
 	}
 
@@ -222,8 +227,17 @@ function lasso_get_post_objects( $postid = '', $taxonomy = 'category') {
 */
 function lasso_get_objects( $taxonomy = 'category' ) {
 
-	$objects = 'category' == $taxonomy ? get_categories(array('hide_empty' => 0)) : get_tags(array('hide_empty' => 0));
-
+    if ('category' == $taxonomy)  {
+        $objects = get_categories(array('hide_empty' => 0));
+    } else if ('tag' == $taxonomy)  {
+        $objects = get_tags(array('hide_empty' => 0));
+    } else {
+        $objects = get_terms( array(
+            'taxonomy' => $taxonomy,
+            'hide_empty' => false,
+        ));
+    }
+	
 	if ( empty( $objects) )
 		return;
 

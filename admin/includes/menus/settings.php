@@ -151,12 +151,14 @@ class settings {
         
         $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
         $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
+		
+		$support_custom_taxonomy   = lasso_editor_get_option( 'support_custom_taxonomy', 'lasso_editor' );
 
 ?>
 		<div class="wrap">
-
+        
 	    	<h2><?php _e( 'Editus Settings', 'lasso' );?></h2>
-
+            
 			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
 
 				<?php do_action('lasso_settings_before');?>
@@ -389,10 +391,16 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Remove the Option to Set the URL for the Post.', 'lasso' );?></span>
 					</div>
 				
-					<div class="lasso-editor-settings--option-inner" >
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_adding_disabled]" id="lasso_editor[post_adding_disabled]" <?php echo checked( $post_new_disabled, 'on' );?> >
 						<label for="lasso_editor[post_adding_disabled]"><?php _e( 'Disable Post Adding', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable users from being able to add new posts from the front-end.', 'lasso' );?></span>
+					</div>
+					
+					<div class="lasso-editor-settings--option-inner" >
+						<input type="checkbox" class="checkbox" name="lasso_editor[support_custom_taxonomy]" id="lasso_editor[support_custom_taxonomy]" <?php echo checked( $support_custom_taxonomy, 'on' );?> >
+						<label for="lasso_editor[support_custom_taxonomy]"><?php _e( 'Support Custom Taxonomy', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Allow editing custom taxonomies, if any available.', 'lasso' );?></span>
 					</div>
 					
 

@@ -11886,11 +11886,13 @@ jQuery(document).ready(function($){
 		    // categories
 		    var cats = $('#lasso--cat-select')
 		    ,	tags = $('#lasso--tag-select')
+            ,   custom = $('#lasso--custom-taxo-input')
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
 				placeholderText: lasso_editor.strings.catsPlaceholder, //'add categories...',
-				availableTags: lasso_editor.postCategories
+				availableTags: lasso_editor.postCategories,
+                allowSpaces: true
 			});
 
 			cats.on('change',function(event){
@@ -11900,7 +11902,8 @@ jQuery(document).ready(function($){
 			tags.tagit({
 				//fieldName:'itemName[fieldName][]',
 				placeholderText: lasso_editor.strings.tagsPlaceholder,//'add tags...',
-				availableTags: lasso_editor.postTags
+				availableTags: lasso_editor.postTags,
+                allowSpaces: true
 			});
 
 			tags.on('change',function(event){
@@ -11910,6 +11913,30 @@ jQuery(document).ready(function($){
 			if( $('.editus_custom_date').length ) {
 				$('.editus_custom_date').datepicker({});
 			}
+            
+            if (lasso_editor.supCustTaxo) {           
+                var selTaxo = $('#lasso--custom-taxo-select').val();
+                custom.val(lasso_editor.postCusTaxonomies[selTaxo]);
+                custom.tagit({
+                    placeholderText: lasso_editor.strings.catsPlaceholder,//'add tags...',
+                    availableTags: lasso_editor.extCusTaxonomies[selTaxo],
+                    allowSpaces: true
+                });
+                              
+                $('#lasso--custom-taxo-select').on('change', function() {
+                    lasso_editor.postCusTaxonomies[selTaxo] = custom.val();
+                    
+                    custom.tagit("destroy");
+                    custom.val(lasso_editor.postCusTaxonomies[$(this).val()]);
+                    custom.tagit({
+                        placeholderText: lasso_editor.strings.taxoPlaceholder, //'add categories...',
+                        availableTags: lasso_editor.extCusTaxonomies[$(this).val()],
+                        allowSpaces: true
+                    });
+                                   
+                    selTaxo = $(this).val();
+                });
+            }
 
 			modalResizer()
 
@@ -11961,6 +11988,12 @@ jQuery(document).ready(function($){
 			if (cats.length>0) {
 				$('input[name="story_cats"]').val(cats.join(','));
 			}*/
+            
+            if (lasso_editor.supCustTaxo) {          
+                var selTaxo = $('#lasso--custom-taxo-select').val();
+                lasso_editor.postCusTaxonomies[selTaxo] = $('#lasso--custom-taxo-input').val();
+                $(this).find("input[name=story_custom_taxonomies]" ).val(JSON.stringify(lasso_editor.postCusTaxonomies));
+            }
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
 
@@ -12116,6 +12149,9 @@ jQuery(document).ready(function($){
 					}
                     if ($(component).find('figcaption').length) {
                         data['caption'] = $(component).find('figcaption').text();
+                    }
+                    if ($(component).find('a').length) {
+                        data['link'] = $(component).find('a').attr("href");
                     }
                 }
 			}
@@ -13269,11 +13305,11 @@ jQuery(document).ready(function($){
 		var $this = $(this);
 
 		// unwrap wp images
-		$(".lasso--wpimg__wrap").each(function(){
+		/*$(".lasso--wpimg__wrap").each(function(){
 
-			/*if ( !$(this).hasClass('wp-caption') ) {
-				$(this).children().unwrap()
-			}*/
+			//if ( !$(this).hasClass('wp-caption') ) {
+			//	$(this).children().unwrap()
+			//}
 
 			$('.lasso-component--controls').remove();
 		});
@@ -13281,7 +13317,7 @@ jQuery(document).ready(function($){
 		// unwrap custom components
 		$('.lasso-component').each(function(){
 			$('.lasso-component--controls').remove();
-		});
+		});*/
 
 		// unwrap map from hits drag holder
 		$('#lasso--map-form').each(function(){
@@ -13716,6 +13752,30 @@ jQuery(document).ready(function($){
                 blockCode = blockCode.replace("{,","{") + "} -->";
                 $(this).before(blockCode);
                 $(this).after("<!-- /wp:image -->" );
+            });
+            
+            // cover
+			$(j).find(".wp-block-cover").each( function(index ) {
+                $(this).removeAttr('data-component-type');
+				var blockCode = "<!-- wp:cover {";
+                debugger;
+                
+                if ($(this).find("img").length > 0) {
+				    blockCode +='"url":"'+$(this).find("img").attr('src')+'"';
+                    var c = $(this).find("img").attr('class');
+                    $(this).removeAttr('width').removeAttr('height');
+                    if ($(this).css("min-height") == "100vh") {
+                        blockCode +=',"minHeight":100,"minHeightUnit":"vh"';
+                    }
+                    $(this).find("img").removeAttr('width').removeAttr('height').removeAttr('srcset').removeAttr('sizes').removeAttr('loading');
+                    if (c && c.indexOf('wp-image-') == 0) {
+                        blockCode+=',"id":'+$(this).find("img").attr('class').substr(9);
+                    }
+                }
+			
+                blockCode = blockCode.replace("{,","{") + "} -->";
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:cover -->" );
             });
             
             //aesop components

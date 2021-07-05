@@ -317,8 +317,6 @@ class lasso {
 	
 	public function editus_set_post_setting()
 	{
-		
-		
 		$data = array();
 		parse_str($_POST['data'], $data);
 		
@@ -352,6 +350,13 @@ class lasso {
 		// update tags
 		$tags = isset( $data['story_tags'] ) ? $data['story_tags'] : false;
 		self::set_post_terms( $postid, $tags, 'post_tag' );
+		
+		// update custom taxonomy
+		$custom_taxonomies = isset( $data['story_custom_taxonomies'] ) ? json_decode($data['story_custom_taxonomies']) : false;
+        
+		foreach ($custom_taxonomies as $x => $x_value) {
+			self::set_post_terms( $postid, $x_value, $x );
+		}
 		
 		//update date
 		$date  = isset( $data['post_date'] ) ? $data['post_date'] : false;
@@ -565,12 +570,19 @@ class lasso {
         } else {
             $figclass = 'aligncenter';
         }
+        
         echo '<div class="wp-block-image" data-component-type="wpimg-block">'; 
-        echo '<figure class="'.$figclass.' size-large">';        
+        echo '<figure class="'.$figclass.' size-large">';   
+        if (!empty($atts['link'])) {
+            echo '<a href="'.$atts['link'].'">';
+        }        
         echo '<img src="' . $atts['img'] . '" alt="'. $atts['alt']  . '"' . $imgextra . ' >';
         if ($atts['caption'])
         {
             echo '<figcaption>'.$atts['caption'].'</figcaption>';
+        }
+        if (!empty($atts['link'])) {
+            echo '</a>';
         }
         echo '</figure></div>';
         echo '<p><br></p>';

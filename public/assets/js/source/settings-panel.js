@@ -80,6 +80,9 @@
                     if ($(component).find('figcaption').length) {
                         data['caption'] = $(component).find('figcaption').text();
                     }
+                    if ($(component).find('a').length) {
+                        data['link'] = $(component).find('a').attr("href");
+                    }
                 }
 			}
             

@@ -85,11 +85,13 @@
 		    // categories
 		    var cats = $('#lasso--cat-select')
 		    ,	tags = $('#lasso--tag-select')
+            ,   custom = $('#lasso--custom-taxo-input')
 
 			cats.tagit({
 				//fieldName:'itemName[fieldName][]',
 				placeholderText: lasso_editor.strings.catsPlaceholder, //'add categories...',
-				availableTags: lasso_editor.postCategories
+				availableTags: lasso_editor.postCategories,
+                allowSpaces: true
 			});
 
 			cats.on('change',function(event){
@@ -99,7 +101,8 @@
 			tags.tagit({
 				//fieldName:'itemName[fieldName][]',
 				placeholderText: lasso_editor.strings.tagsPlaceholder,//'add tags...',
-				availableTags: lasso_editor.postTags
+				availableTags: lasso_editor.postTags,
+                allowSpaces: true
 			});
 
 			tags.on('change',function(event){
@@ -109,6 +112,30 @@
 			if( $('.editus_custom_date').length ) {
 				$('.editus_custom_date').datepicker({});
 			}
+            
+            if (lasso_editor.supCustTaxo) {           
+                var selTaxo = $('#lasso--custom-taxo-select').val();
+                custom.val(lasso_editor.postCusTaxonomies[selTaxo]);
+                custom.tagit({
+                    placeholderText: lasso_editor.strings.catsPlaceholder,//'add tags...',
+                    availableTags: lasso_editor.extCusTaxonomies[selTaxo],
+                    allowSpaces: true
+                });
+                              
+                $('#lasso--custom-taxo-select').on('change', function() {
+                    lasso_editor.postCusTaxonomies[selTaxo] = custom.val();
+                    
+                    custom.tagit("destroy");
+                    custom.val(lasso_editor.postCusTaxonomies[$(this).val()]);
+                    custom.tagit({
+                        placeholderText: lasso_editor.strings.taxoPlaceholder, //'add categories...',
+                        availableTags: lasso_editor.extCusTaxonomies[$(this).val()],
+                        allowSpaces: true
+                    });
+                                   
+                    selTaxo = $(this).val();
+                });
+            }
 
 			modalResizer()
 
@@ -160,6 +187,12 @@
 			if (cats.length>0) {
 				$('input[name="story_cats"]').val(cats.join(','));
 			}*/
+            
+            if (lasso_editor.supCustTaxo) {          
+                var selTaxo = $('#lasso--custom-taxo-select').val();
+                lasso_editor.postCusTaxonomies[selTaxo] = $('#lasso--custom-taxo-input').val();
+                $(this).find("input[name=story_custom_taxonomies]" ).val(JSON.stringify(lasso_editor.postCusTaxonomies));
+            }
 
 			$(this).find('input[type="submit"]').val(lasso_editor.strings.saving);
 

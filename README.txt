@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 5.6
-Stable tag: 1.3.7
+Tested up to: 5.7.2
+Stable tag: 1.4.0
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,13 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.4.0
+* NEW: Custom Taxonomy Support Option
+
+= 1.3.10
+* Partial support for Gutenberg Cover Block
+* Fixed the issue where the component controls were disappearing after saving
+
 = 1.3.8
 * Support for Gutenberg Image Block
 * Fixed the issue that custom post types could not save custom fields

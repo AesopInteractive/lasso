@@ -454,7 +454,7 @@ function lasso_editor_component_modal() {
 	// objects categories
 	$categories 		= lasso_get_post_objects( $postid, 'category' );
 	$tags 				= lasso_get_post_objects( $postid, 'tag' );
-
+	
 	// modal tabs
 	$tabs  				= lasso_modal_addons('tab');
 	$content 			= lasso_modal_addons('content');
@@ -463,6 +463,14 @@ function lasso_editor_component_modal() {
 	$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
     $allow_edit_excerpt = lasso_editor_get_option('allow_edit_excerpt', 'lasso_editor');
 	$no_url_setting = lasso_editor_get_option('no_url_setting', 'lasso_editor');
+	$support_custom_taxonomy   = lasso_editor_get_option( 'support_custom_taxonomy', 'lasso_editor' );
+	
+	//get custom taxonomy
+	if ($support_custom_taxonomy) {
+		$custom_taxonomies         = array_diff(get_object_taxonomies( get_post_type( $postid ), 'names' ), ['category','post_tag','post_format']);
+	} else {
+		$custom_taxonomies = [];
+	}
 
 	// are we singular
 	$is_singular 		= is_singular();
@@ -542,6 +550,24 @@ function lasso_editor_component_modal() {
 							<label><?php _e( 'Tags', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Type a tag name and press enter.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
 							<input id="lasso--tag-select" class="lasso--modal__trigger-footer" type="hidden" name="story_tags" value="<?php echo $tags;?>">
 						</div>
+						
+						<?php
+						if (!empty($custom_taxonomies)) {
+						?>
+						<div class="lasso--postsettings__option story-custom-taxonomy-option">
+							<label><?php _e( 'Custom Taxonomy', 'lasso' );?><span class="lasso-util--help lasso-util--help-top" data-tooltip="<?php esc_attr_e( 'Choose custom taxonomy.', 'lasso' );?>"><i class="lasso-icon-help"></i></span></label>
+							<select id="lasso--custom-taxo-select" class="lasso--modal__trigger-footer" name="custom_taxo">
+							<?php foreach ($custom_taxonomies as $taxonomy) {?>
+							<option value="<?php echo $taxonomy?>"><?php echo $taxonomy?></option>
+							<?php }?>
+							</select>
+							<input id="lasso--custom-taxo-input" class="lasso--modal__trigger-footer" type="hidden" name="custom_taxo_input" value="Uncategorized">
+							<input id="lasso--custom-taxo-store" class="lasso--modal__trigger-footer" type="hidden" name="story_custom_taxonomies" value="">
+						</div>
+					    <?php
+						}
+						?>
+						
                         <?php 
 						if ($allow_edit_excerpt) { 
 						?>
@@ -1132,7 +1158,13 @@ function add_wpimg_block_options( $shortcodes ) {
                     'type'  => 'text',
                     'default'  => '',
                     'desc'   => __( 'Caption', 'lasso' ),
-                    'tip'  => __( 'Caption for the image.', 'lasso' )
+                    'tip'  => __( 'Optional caption for the image.', 'lasso' )
+                ),
+                'link'    => array(
+                    'type'  => 'text',
+                    'default'  => '',
+                    'desc'   => __( 'Link URL', 'lasso' ),
+                    'tip'  => __( 'Optional URL to link.', 'lasso' )
                 ),
                
 
