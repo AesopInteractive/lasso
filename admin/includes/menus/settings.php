@@ -155,6 +155,8 @@ class settings {
 		$support_custom_taxonomy   = lasso_editor_get_option( 'support_custom_taxonomy', 'lasso_editor' );
         
         $new_post_text    = lasso_editor_get_option( 'new_post_text', 'lasso_editor' );
+        
+        $no_wrap_shortcode    = lasso_editor_get_option( 'no_wrap_shortcode', 'lasso_editor');
 
 ?>
 		<div class="wrap">
@@ -345,7 +347,7 @@ class settings {
 					</div>
                 
                 
-                    <div class="lasso-editor-settings--option-inner" style="border:none">
+                    <div class="lasso-editor-settings--option-inner">
 						<input type="checkbox" class="checkbox" name="lasso_editor[use_wp_block_image]" id="lasso_editor[use_wp_block_image]" <?php echo checked( $use_wp_block_image, 'on' );?> >
 						<label for="lasso_editor[use_wp_block_image]"><?php _e( 'Use WP Image Block', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Use WP Image Block as the image component. Gutenberg Block Editor needs to be enabled.', 'lasso' );?></span>
@@ -471,10 +473,17 @@ class settings {
 
 					</div>
 				
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[save_using_rest_disabled]" id="lasso_editor[save_using_rest_disabled]" <?php echo checked( $save_using_rest_disabled, 'on' );?> >
 						<label for="lasso_editor[save_using_rest_disabled]"><?php _e( "Don't Use REST API to Save", 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'By default the editor will use REST API to save posts. Check this box to use custom AJAX calls instead.', 'lasso' );?></span>
+
+					</div>
+                    
+                    <div class="lasso-editor-settings--option-inner">
+						<input type="checkbox" class="checkbox" name="lasso_editor[no_wrap_shortcode]" id="lasso_editor[no_wrap_shortcode]" <?php echo checked( $no_wrap_shortcode, 'on' );?> >
+						<label for="lasso_editor[no_wrap_shortcode]"><?php _e( "Don't Wrap Shortcodes", 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'By default Editus wraps shortcodes so they can be preserved. Disable this behavior.', 'lasso' );?></span>
 
 					</div>
 				</div>

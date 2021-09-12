@@ -23,6 +23,12 @@ if ( lasso_user_can( 'edit_posts' ) && ! is_admin() ) {
 function lasso_wrap_shortcodes( $content ) {
 	global $shortcode_tags;
 
+    $no_wrap_shortcode    = lasso_editor_get_option( 'no_wrap_shortcode', 'lasso_editor');
+
+    if ($no_wrap_shortcode == 'on') {
+        return $content;
+    }
+
 	if ( false === strpos( $content, '[' ) ) {
 		return $content;
 	}
