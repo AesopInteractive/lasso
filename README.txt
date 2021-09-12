@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 5.7.2
-Stable tag: 1.4.0
+Tested up to: 5.8.1
+Stable tag: 1.4.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,10 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.4.1
+* A bug fix for simple image component
+* NEW: Setting to change the placeholder text for new posts
+
 = 1.4.0
 * NEW: Custom Taxonomy Support Option
 

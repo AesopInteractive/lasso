@@ -65,6 +65,10 @@
 					if ('gallery_pop' == cdata['componentType']) {
 						get_aesop_options('gallery_pop');
 					}
+                                        
+                    // set some figures to uneditable
+                    $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
+
 					lasso_editor.dirtyByComponent = true;
 				} else {
 					alert("error");

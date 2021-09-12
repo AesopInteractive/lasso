@@ -64,52 +64,7 @@ jQuery(function( $ ) {
 
 	}
 	
-	lasso_editor.addComponentButton = function()
-	{
-			// this function checks the current selected element and adds the component button if appropriate
-			if (!lasso_editor.buttonOnEmptyP) {
-				// if this feature is not turned on, return
-				return;
-			}
-			window.selRange = saveSelection();
-            if (!window.selRange) return;
-			var container = window.selRange.startContainer,
-			containerTag;
-			$('#lasso-side-comp-button').remove();
-			containerTag = container.localName;
-			parentTag = $(container).parent().prop("tagName");
-            
-            if ($(container).parent().attr('id') != "lasso--content") {
-				if (parentTag == 'figure' || parentTag == 'div' || $(container).parent().parent().attr('id') != "lasso--content") {
-					return;
-				}
-			
-			}			
-            
-			if ( containerTag == 'p' || ((containerTag=='b' || containerTag=='em' || containerTag=='i' || containerTag=='strike' || containerTag=='span') && $(container).parent().text() == "")) 
-			{	
-				var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
-				if (innerText != "") {
-					//this paragraph is not empty, return
-					return;
-				}
-				
-				var top_ = container.offsetTop-10;
-				var left_ = container.offsetLeft-30;
-				
-				if ($(container).parent().attr('id') != "lasso--content") {
-					$(container).parent().empty();
-				}
-				
-				var button = $('<div id="lasso-side-comp-button" style="width:30px;height:30px;position:absolute;" contenteditable="false"></div>');
-				button.css({top:top_,left:left_});
-
-				$("#lasso--content").append(button);
-				if (button.offset().left<0) {
-					button.offset({left:0});
-				}
-			}
-	}
+	
 
 	/////////////
 	/// DROP UP

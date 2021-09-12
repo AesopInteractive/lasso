@@ -58,6 +58,8 @@
 		      	});
 				//$("html").scrollTop(lasso_editor.scrollTop);
                 $('#lasso-side-comp-button').remove();
+                // set some figures to uneditable
+                $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
 
 		    });
 

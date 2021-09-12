@@ -335,7 +335,7 @@ class lasso {
 			'ID'   			=> (int) $postid,
 			'post_name'  	=> $slug,
 			'post_status' 	=> $status,
-            'post_excerpt'  => $excerpt
+            'post_excerpt'  => wp_strip_all_tags($excerpt,true)
 		);
 		
 		
@@ -572,7 +572,7 @@ class lasso {
         }
         
         echo '<div class="wp-block-image" data-component-type="wpimg-block">'; 
-        echo '<figure class="'.$figclass.' size-large">';   
+        echo '<figure class="wp-block-image '.$figclass.' size-large" contenteditable="false">';   
         if (!empty($atts['link'])) {
             echo '<a href="'.$atts['link'].'">';
         }        

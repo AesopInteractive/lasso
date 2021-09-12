@@ -1,4 +1,4 @@
-/* ways to ibject JS Codes
+/* ways to inject JS Codes
 
 lasso_editor.setupHookArray
 lasso_editor.enterEditorHookArray

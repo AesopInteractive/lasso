@@ -153,6 +153,8 @@ class settings {
         $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
 		
 		$support_custom_taxonomy   = lasso_editor_get_option( 'support_custom_taxonomy', 'lasso_editor' );
+        
+        $new_post_text    = lasso_editor_get_option( 'new_post_text', 'lasso_editor' );
 
 ?>
 		<div class="wrap">
@@ -400,7 +402,7 @@ class settings {
 					<div class="lasso-editor-settings--option-inner" >
 						<input type="checkbox" class="checkbox" name="lasso_editor[support_custom_taxonomy]" id="lasso_editor[support_custom_taxonomy]" <?php echo checked( $support_custom_taxonomy, 'on' );?> >
 						<label for="lasso_editor[support_custom_taxonomy]"><?php _e( 'Support Custom Taxonomy', 'lasso' );?></label>
-						<span class="lasso--setting-description"><?php _e( 'Allow editing custom taxonomies, if any available.', 'lasso' );?></span>
+						<span class="lasso--setting-description"><?php _e( 'Allow editing custom taxonomies.', 'lasso' );?></span>
 					</div>
 					
 
@@ -412,6 +414,12 @@ class settings {
 						<input type="checkbox" class="checkbox" name="lasso_editor[disable_tour]" id="lasso_editor[disable_tour]" <?php echo checked( $disable_tour, 'on' );?> >
 						<label for="lasso_editor[disable_tour]"> <?php _e( 'Do Not Show Tour Dialog', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Check this box to disable the tour dialog box for all users.', 'lasso' );?></span>
+					</div>
+                    
+                    <div class="lasso-editor-settings--option-inner" style="border:none;">
+						<label><?php _e( 'Placeholder Text for New Post', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Placeholder text to be displayed when a new post is created.', 'lasso' );?></span>
+						<input type="text" name="lasso_editor[new_post_text]" id="lasso_editor[new_post_text]" value="<?php echo esc_attr( $new_post_text );?>" placeholder="<?php $def = wp_strip_all_tags(apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso')));echo $def;?>", true)>
 					</div>
 
 					<div class="lasso-editor-settings--option-inner" style="border:none">

@@ -1,4 +1,4 @@
-/* ways to ibject JS Codes
+/* ways to inject JS Codes
 
 lasso_editor.setupHookArray
 lasso_editor.enterEditorHookArray
@@ -10736,9 +10736,9 @@ jQuery(document).ready(function($){
                     } else { 
                         if ( $this.parent().hasClass('wp-caption') ) {
                             $this.parent().addClass('lasso--wpimg__wrap')
-                        } else if ( !$this.parent().hasClass('lasso--wpimg__wrap') ) {
+                        }/* else if ( !$this.parent().hasClass('lasso--wpimg__wrap') ) {
                             $this.wrap('<figure data-component-type="wpimg" class="lasso--wpimg__wrap lasso-component">')
-                        }
+                        }*/
                         $this.parent().prepend(lasso_editor.wpImgEdit);
                     }
 
@@ -10791,6 +10791,10 @@ jQuery(document).ready(function($){
 		
 		$(objectsNonEditable).attr('contenteditable',false);
 		$(objectsNonEditable).attr('readonly',true);
+        
+        // set some figures uneditable
+        $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
+
 		
 		// remove any additional markup so we dont save it as HTML
 		if (objectsNoSave.length) {
@@ -11633,8 +11637,9 @@ jQuery(document).ready(function($){
 		}
 		
 		function postComponent(comp,type) {
-			// if a stock wordpress image is dragged in
-			
+            // set some figures to uneditable
+            $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
+			// TODO: if a stock wordpress image is dragged in			
 
 			if ('timeline_stop' == type ) { timelineGoTime() }
 
@@ -11670,6 +11675,9 @@ jQuery(document).ready(function($){
 				  		'background-image': 'url('+ attachment.url +')'
 				  	});
 				}
+                // set some figures to uneditable
+                $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
+
 		    });
 
 		    // Finally, open the modal
@@ -11735,6 +11743,57 @@ jQuery(document).ready(function($){
 
 		    }
 		});
+        
+        
+        lasso_editor.addComponentButton = function()
+        {
+			// this function checks the current selected element and adds the component button if appropriate
+			if (!lasso_editor.buttonOnEmptyP) {
+				// if this feature is not turned on, return
+				return;
+			}
+			window.selRange = saveSelection();
+            if (!window.selRange) return;
+			var container = window.selRange.startContainer,
+			containerTag;
+            if ($(container).attr('id') == "lasso--content") {
+                container = $(container).children()[0];
+            }
+			$('#lasso-side-comp-button').remove();
+			containerTag = container.localName;
+			parentTag = $(container).parent().prop("tagName");
+            
+            if ($(container).parent().attr('id') != "lasso--content") {
+				if (parentTag == 'figure' || parentTag == 'div' || $(container).parent().parent().attr('id') != "lasso--content") {
+					return;
+				}
+			}			
+            
+			if ( containerTag == 'p' || ((containerTag=='b' || containerTag=='em' || containerTag=='i' || containerTag=='strike' || containerTag=='span') && $(container).parent().text() == "")) 
+			{	
+				var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
+				if (innerText != "") {
+					//this paragraph is not empty, return
+					return;
+				}
+				
+				var top_ = container.offsetTop-10;
+				var left_ = container.offsetLeft-30;
+				
+				if ($(container).parent().attr('id') != "lasso--content") {
+					$(container).parent().empty();
+				}
+				
+				var button = $('<div id="lasso-side-comp-button" style="width:30px;height:30px;position:absolute;" contenteditable="false"></div>');
+				button.css({top:top_,left:left_});
+    
+				$("#lasso--content").append(button);
+				if (button.offset().left<0) {
+					button.offset({left:0});
+				}
+			}
+        }
+
 
         // the following codes decide which UI triggers drag-drop and which UI triggers click-insert
         // If we are only using drag-drop then clickToInsertElement would be empty
@@ -11767,11 +11826,24 @@ jQuery(document).ready(function($){
 				var type = $(this).attr('data-type');
 				var item = setComponent(type);
 				restoreSelection(window.selRange);
-				var t = insert_html(item, false);
+                $('#lasso-side-comp-button').remove();
+                if ($('#'+editor).children().length==1 && $('#'+editor).find('.editus-firstp').length ==1) {
+                    $('.editus-firstp').replaceWith(item);
+                } else {
+                    var t = insert_html(item, false);
+                }
 				
 				postComponent(item,type);
 				lasso_editor.addComponentButton();
-			});
+		});
+            
+                    
+        // replace the content if the content is empty
+        if ( $('#'+editor).children().length && $('#'+editor).children().prop("tagName") == "P" && $('#'+editor).children().text() == "") {
+            $('#'+editor).html(lasso_editor.newObjectContent);
+            $('#'+editor).children().focus();
+            lasso_editor.addComponentButton();
+        }
             
         // ways to inject codes into the enterEditor
 		if (lasso_editor.enterEditorHookArray2) {
@@ -12824,52 +12896,7 @@ jQuery(function( $ ) {
 
 	}
 	
-	lasso_editor.addComponentButton = function()
-	{
-			// this function checks the current selected element and adds the component button if appropriate
-			if (!lasso_editor.buttonOnEmptyP) {
-				// if this feature is not turned on, return
-				return;
-			}
-			window.selRange = saveSelection();
-            if (!window.selRange) return;
-			var container = window.selRange.startContainer,
-			containerTag;
-			$('#lasso-side-comp-button').remove();
-			containerTag = container.localName;
-			parentTag = $(container).parent().prop("tagName");
-            
-            if ($(container).parent().attr('id') != "lasso--content") {
-				if (parentTag == 'figure' || parentTag == 'div' || $(container).parent().parent().attr('id') != "lasso--content") {
-					return;
-				}
-			
-			}			
-            
-			if ( containerTag == 'p' || ((containerTag=='b' || containerTag=='em' || containerTag=='i' || containerTag=='strike' || containerTag=='span') && $(container).parent().text() == "")) 
-			{	
-				var innerText = container.innerText.replace(/(\r\n|\n|\r)/gm,"");
-				if (innerText != "") {
-					//this paragraph is not empty, return
-					return;
-				}
-				
-				var top_ = container.offsetTop-10;
-				var left_ = container.offsetLeft-30;
-				
-				if ($(container).parent().attr('id') != "lasso--content") {
-					$(container).parent().empty();
-				}
-				
-				var button = $('<div id="lasso-side-comp-button" style="width:30px;height:30px;position:absolute;" contenteditable="false"></div>');
-				button.css({top:top_,left:left_});
-
-				$("#lasso--content").append(button);
-				if (button.offset().left<0) {
-					button.offset({left:0});
-				}
-			}
-	}
+	
 
 	/////////////
 	/// DROP UP
@@ -14774,6 +14801,10 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					if ('gallery_pop' == cdata['componentType']) {
 						get_aesop_options('gallery_pop');
 					}
+                                        
+                    // set some figures to uneditable
+                    $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
+
 					lasso_editor.dirtyByComponent = true;
 				} else {
 					alert("error");
@@ -15203,6 +15234,8 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		      	});
 				//$("html").scrollTop(lasso_editor.scrollTop);
                 $('#lasso-side-comp-button').remove();
+                // set some figures to uneditable
+                $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
 
 		    });
 

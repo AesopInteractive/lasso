@@ -217,7 +217,7 @@ class assets {
             
             //excerpt
             $post_excerpt = "";
-            $post_excerpt = $post->post_excerpt;
+            $post_excerpt = wp_strip_all_tags($post->post_excerpt,true);
             
             //find if this is multi page. -1 if not
             $multipage = self::is_multipage();
@@ -237,6 +237,10 @@ class assets {
 			foreach ($custom_taxonomies as $taxonomy) {
 				$existing_taxo_arr[$taxonomy] = lasso_get_objects( $taxonomy );
 			}
+            
+            $new_post_text    = lasso_editor_get_option( 'new_post_text', 'lasso_editor' );        
+            $new_post_text  = !empty($new_post_text) ? $new_post_text : wp_strip_all_tags(apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso')));
+
 
 			// localized objects
 			$objects = array(
@@ -307,11 +311,11 @@ class assets {
 				'showIgnoredItems'  => lasso_editor_get_option('show_ignored_items', 'lasso_editor'),
 				'restapi2'          => $using_restapiv2,
 				'saveusingrest'     => $using_restapiv2 && !$disableRESTSave,
-				'newObjectContent'  => '<p>'.apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso') ).'</p>',
+				'newObjectContent'  => '<p class="editus-firstp" placeholder="'. $new_post_text . '"></p>',
 				'disableSavePost'   => $save_to_post_disabled,
 				'disableEditPost'   => $edit_post_disabled,
 				'boldTag'           => $bold_tag,
-				'iTag'           	=> $i_tag,
+				'iTag'           	=> $i_tag, 
 				'customFields'      => $custom_fields,
 				'clickToInsert'     => ($insert_comp_ui =='click'),
 				'buttonOnEmptyP'     => ($insert_comp_ui =='mediumcom'),      // auto show a button to insert components on an empty paragraph      

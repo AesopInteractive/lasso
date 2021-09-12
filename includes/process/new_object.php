@@ -33,13 +33,16 @@ class new_object implements api_action {
 		$title  = $data[ 'story_title' ];
 
 		$object = is_null( $data[ 'object'] ) ? false : $data[ 'object' ];
+        
+        $new_post_text    = lasso_editor_get_option( 'new_post_text', 'lasso_editor' );        
+        $new_post_text  = !empty($new_post_text) ? $new_post_text : wp_strip_all_tags(apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso')));
 
 		// insert a new post
 		$args = array(
 			'post_title'    => $title,
 			'post_status'   => 'draft',
 			'post_type'    	=> $object,
-			'post_content'  => apply_filters( 'lasso_new_object_content', '<p>'.__( 'Once upon a time...','lasso').'</p>' )
+			'post_content'  =>'<p class="editus-firstp" placeholder="'. $new_post_text. '"></p>' 
 		);
 
 		$postid = wp_insert_post( apply_filters( 'lasso_insert_object_args', $args ) );
