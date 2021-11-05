@@ -57,7 +57,7 @@
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 		      	});
 				//$("html").scrollTop(lasso_editor.scrollTop);
-                $('#lasso-side-comp-button').remove();
+                $('#lasso-side-comp-button,.lasso--text-popup').remove();
                 // set some figures to uneditable
                 $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
 

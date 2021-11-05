@@ -172,6 +172,9 @@ jQuery(document).ready(function($){
         
         //remove any comp buttons
         $('#lasso-side-comp-button').remove();
+		
+		$('.lasso--text-popup').remove();
+        
         
         		// let user know someting is happening on click
 		$(this).addClass('being-saved');
@@ -614,6 +617,8 @@ jQuery(document).ready(function($){
             //aesop components
             $(j).find(".aesop-component").each( function(index ) {
                 var d = $(this).data();
+				if (d['componentType'] == 'timeline_stop') d['componentType'] = 'timeline';
+
                 var blockCode = "<!-- wp:ase/"+d['componentType']+" {";
                 var index = 0;
                 $.each(d,function(key, value){

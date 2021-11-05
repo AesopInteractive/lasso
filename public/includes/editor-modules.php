@@ -207,6 +207,89 @@ function lasso_editor_component_sidebar() {
 	<?php return ob_get_clean();
 }
 
+
+function lasso_editor_selected_text_toolbar() {
+
+	ob_start();
+
+	
+	$is_mobile = wp_is_mobile();
+
+	// check for lasso story engine and add a class doniting this
+	$ase_status = class_exists( 'Aesop_Core' ) || defined( 'LASSO_CUSTOM' ) ? 'ase-active' : 'ase-not-active';
+
+	// let users add custom css classes
+	$custom_classes = apply_filters( 'lasso_toolbar_classes', '' );
+
+	// are toolbar headings enabled
+	$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
+	$toolbar_headings_h4      = lasso_editor_get_option( 'toolbar_headings_h4', 'lasso_editor' );
+	$toolbar_list      = lasso_editor_get_option( 'toolbar_list', 'lasso_editor' );
+
+	$toolbar_class  = $toolbar_headings ? 'toolbar-extended' : false;	
+	
+	//show color
+	$show_color = lasso_editor_get_option('toolbar_show_color', 'lasso_editor');
+	
+	//show alignment
+	$show_align = lasso_editor_get_option('toolbar_show_alignment', 'lasso_editor');
+	
+	$status = get_post_status( get_the_ID() );
+	
+	$shortcodify_disabled = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
+	
+	$sc_saving_class = ('on' == $shortcodify_disabled || $ase_status == 'ase-not-active')  ? 'shortcodify-disabled' : 'shortcodify-enabled';
+
+    $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
+
+	?>
+	<div class="lasso--text-popup lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>"  style="display:none;">
+		<ul class="lasso--toolbar__inner lasso-editor-controls" <?php if ($is_mobile) {echo 'style="float:left;"';}?>>
+			<?php do_action( 'lasso_toolbar_components_before' );?>
+		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--underline" title="<?php esc_attr_e( 'Underline', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--italic" title="<?php esc_attr_e( 'Italicize', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--strike" title="<?php esc_attr_e( 'Strikethrough', 'lasso' );?>"></li>
+			
+		    <?php if ( $toolbar_headings ): ?>
+		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
+			
+			
+			<?php if ( $toolbar_headings_h4 ): ?>
+		    <li id="lasso-toolbar--h4" title="<?php esc_attr_e( 'H4 Heading', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--h5" title="<?php esc_attr_e( 'H5 Heading', 'lasso' );?>"></li>
+			<li id="lasso-toolbar--h6" title="<?php esc_attr_e( 'H6 Heading', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
+			<?php if ( $show_color ): ?>
+		    <li id="lasso-toolbar--color-set" title="<?php esc_attr_e( 'Set Color for Selected Text', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--color-pick" title="<?php esc_attr_e( 'Choose Color', 'lasso' );?>"></li>
+			<?php endif; ?>
+			
+			<?php if ( $toolbar_list ): ?>
+		    <li id="lasso-toolbar--ol" title="<?php esc_attr_e( 'Ordered List', 'lasso' );?>"></li>
+		    <li id="lasso-toolbar--ul" title="<?php esc_attr_e( 'Unordered List', 'lasso' );?>"></li>
+			<?php endif; ?>
+					
+		    
+			<li id="lasso-toolbar--link" title="<?php esc_attr_e( 'Anchor Link', 'lasso' );?>">
+		    	<div id="lasso-toolbar--link__wrap" <?php echo $mobile_style ?> >
+		    		<div id="lasso-toolbar--link__inner" contenteditable="true" placeholder="<?php esc_attr_e( 'http://url.com', 'lasso' );?>"></div>
+		    		<a href="#" title="<?php esc_attr_e( 'Create Link', 'lasso' );?>" class="lasso-toolbar--link__control" id="lasso-toolbar--link__create" ></a>
+					<input class="styled-checkbox" type="checkbox" id="aesop-toolbar--link_newtab" checked/>
+                    <label for="aesop-toolbar--link_newtab"><?php esc_attr_e( 'Open in a New Tab', 'lasso' );?></label>
+		    	</div>
+		    </li>
+		    <?php do_action( 'lasso_toolbar_components_after' );?>
+		</ul>				
+	</div>
+
+	<?php return ob_get_clean();
+}
+
 /**
  * Draw the main toolbar used to edit the text
  *
@@ -215,6 +298,7 @@ function lasso_editor_component_sidebar() {
 function lasso_editor_text_toolbar() {
 
 	ob_start();
+    $text_select_popup = lasso_editor_get_option('text_select_popup', 'lasso_editor', false);
 
 	
 	$is_mobile = wp_is_mobile();
@@ -254,10 +338,12 @@ function lasso_editor_text_toolbar() {
 	<div class="lasso--toolbar_wrap lasso-editor-controls--wrap <?php echo $toolbar_class.' '.$mobile_class.' '.$ase_status.' '.sanitize_html_class( $custom_classes );?>" <?php echo $mobile_style ?>>
 		<ul class="lasso--toolbar__inner lasso-editor-controls" <?php if ($is_mobile) {echo 'style="float:left;"';}?>>
 			<?php do_action( 'lasso_toolbar_components_before' );?>
+            <?php if (!$text_select_popup) { ?>
 		    <li id="lasso-toolbar--bold" title="<?php esc_attr_e( 'Bold', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--underline" title="<?php esc_attr_e( 'Underline', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--italic" title="<?php esc_attr_e( 'Italicize', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--strike" title="<?php esc_attr_e( 'Strikethrough', 'lasso' );?>"></li>
+            <?php }?>
 			<li id="lasso-toolbar--components" class="lasso-toolbar--components" title="<?php esc_attr_e( 'Insert Component', 'lasso' );?>" style="color:#ffffa0;">
 			    <ul id="lasso-toolbar--components__list" style="display:none;color:white;">
 			    	<?php if ( 'ase-active' == $ase_status ): ?>
@@ -292,6 +378,8 @@ function lasso_editor_text_toolbar() {
 					<?php do_action( 'lasso_toolbar_components' );?>
 			    </ul>
 			</li>
+            <?php if (!$text_select_popup) { ?>
+            
 		    <?php if ( $toolbar_headings ): ?>
 		    <li id="lasso-toolbar--h2" title="<?php esc_attr_e( 'H2 Heading', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--h3" title="<?php esc_attr_e( 'H3 Heading', 'lasso' );?>"></li>
@@ -324,6 +412,9 @@ function lasso_editor_text_toolbar() {
                     <label for="aesop-toolbar--link_newtab"><?php esc_attr_e( 'Open in a New Tab', 'lasso' );?></label>
 		    	</div>
 		    </li>
+            
+            <?php } ?>
+            
 		    <?php do_action( 'lasso_toolbar_components_after' );?>
 		    <li id="lasso-toolbar--html" title="<?php esc_attr_e( 'Insert HTML or Code', 'lasso' );?>">
 		    	<div id="lasso-toolbar--html__wrap" <?php echo $mobile_style ?>>
@@ -350,11 +441,13 @@ function lasso_editor_text_toolbar() {
 		    		</div>
 		    	</div>
 		    </li>
+             
 			<?php if ( $show_align ): ?>
 		    <li id="lasso-toolbar--left-align" title="<?php esc_attr_e( 'Text Left Align', 'lasso' );?>"></li>
 		    <li id="lasso-toolbar--center-align" title="<?php esc_attr_e( 'Text Center Align', 'lasso' );?>"></li>
 			<li id="lasso-toolbar--right-align" title="<?php esc_attr_e( 'Text Right Align', 'lasso' );?>"></li>
 			<?php endif; ?>
+           
 		</ul>
 		<?php if ( is_singular() && $is_mobile ) { ?>
 
@@ -376,6 +469,8 @@ function lasso_editor_text_toolbar() {
 
 	<?php return ob_get_clean();
 }
+
+
 
 /**
  * Draw the controls used for the component settings within each component
@@ -697,7 +792,7 @@ function lasso_editor_newpost_modal() {
 							// get the first element
 							$keys = array_keys($types);
 						    $type =$keys[0];						
-							$type = preg_replace( '/s\b/','', $type );
+							//$type = preg_replace( '/s\b/','', $type );
 							printf( '<input type="hidden" name="object" value="%s">', lcfirst( esc_attr( $type ) ) );		
 						}
 					?>

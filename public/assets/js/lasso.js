@@ -10457,6 +10457,7 @@ jQuery(document).ready(function($){
 		settingsLink	= lasso_editor.settingsLink,
 		post_container  = lasso_editor.article_object,
 		toolbar 		= lasso_editor.toolbar,
+        toolbarPopup 		= lasso_editor.toolbarPopup,
 		toolbarHeading 	= lasso_editor.toolbarHeadings,
 		panel           = lasso_editor.component_sidebar,
 		postid          = lasso_editor.postid,
@@ -10886,7 +10887,9 @@ jQuery(document).ready(function($){
 		};
 
 		
-		
+		if (lasso_editor.toolbarPopup) {
+            $(lasso_editor.toolbarPopup).hide().appendTo('body');
+        }
 		
 		
 		//color
@@ -10923,16 +10926,15 @@ jQuery(document).ready(function($){
 					$("#lasso-toolbar--color-set").css( 'color', ui.color.toString());
 				}
 			});
-				
-			$('#lasso-toolbar--color-pick').mousedown(function(event) {
-				
+            
+			$('#lasso-toolbar--color-pick').on('mousedown', function(event) {	
 				if (event.target.id == 'lasso-toolbar--color-pick') {
 				   $("#lasso-toolbar--color-pick").iris('toggle');
 				}
                 event.stopPropagation();				
 			});
 			
-			$('#lasso-toolbar--color-set').mousedown(function() {
+			$('#lasso-toolbar--color-set').on('mousedown', function() {
 				$("#lasso-toolbar--color-pick").iris('hide');
 				articleMedium.element.contentEditable = true;
 				// exit if nothing is selected
@@ -11020,20 +11022,20 @@ jQuery(document).ready(function($){
 			return false;
 		}
 		
-		document.getElementById('lasso-toolbar--bold').onmousedown = function() {
+		$('[id="lasso-toolbar--bold"]').on('mousedown', function(e) {
 			return taghelper(lasso_editor.boldTag);
-		};
+		});
 		
-		document.getElementById('lasso-toolbar--underline').onmousedown = function() {
+        $('[id="lasso-toolbar--underline"]').on('mousedown', function(e) {
 			return taghelper('u');
-		};
+		});
 
-		document.getElementById('lasso-toolbar--italic').onmousedown = function() {
+        $('[id="lasso-toolbar--italic"]').on('mousedown', function(e) {
 			return taghelper(lasso_editor.iTag);
-		};
-		document.getElementById('lasso-toolbar--strike').onmousedown = function() {
+		});
+        $('[id="lasso-toolbar--strike"]').on('mousedown', function(e) {
 			return taghelper('strike');
-		};
+		});
         
         $(document).on('keydown', function ( e ) {
             // remove formatting when the use pushes ctrl+space
@@ -11304,7 +11306,7 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button').fadeOut().remove();
+			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup').fadeOut().remove();
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);
@@ -11844,6 +11846,32 @@ jQuery(document).ready(function($){
             $('#'+editor).children().focus();
             lasso_editor.addComponentButton();
         }
+		
+		$('#'+editor).mouseup(function() {
+            if (!lasso_editor.toolbarPopup) return;
+            s = window.getSelection();
+            oRange = s.getRangeAt(0); //get the text range
+            if (!oRange.collapsed ) {
+                oRect = oRange.getBoundingClientRect();
+                ;
+                oRect2 = document.getElementById(editor).getBoundingClientRect();
+                oRect3 = document.body.getBoundingClientRect();
+                var t2 = $('body').offset().top;
+                debugger;
+                //var t2 = document.body.offsetTop.getBoundingClientRect().top;
+                var left = ((oRect.right+oRect.left) - $(".lasso--text-popup").width())/2;
+                if (left <= 0) left = 0;
+                var t = oRect.bottom-document.body.getBoundingClientRect().top;
+                $(".lasso--text-popup").css("left",left);
+                $(".lasso--text-popup").css("top",t+t2);
+                $(".lasso--text-popup").css("display","table");
+                $(".lasso--text-popup").css("position","absolute");
+            } else {
+                $(".lasso--text-popup").hide();
+
+            }
+        });
+		
             
         // ways to inject codes into the enterEditor
 		if (lasso_editor.enterEditorHookArray2) {
@@ -13366,6 +13394,9 @@ jQuery(document).ready(function($){
         
         //remove any comp buttons
         $('#lasso-side-comp-button').remove();
+		
+		$('.lasso--text-popup').remove();
+        
         
         		// let user know someting is happening on click
 		$(this).addClass('being-saved');
@@ -13808,6 +13839,8 @@ jQuery(document).ready(function($){
             //aesop components
             $(j).find(".aesop-component").each( function(index ) {
                 var d = $(this).data();
+				if (d['componentType'] == 'timeline_stop') d['componentType'] = 'timeline';
+
                 var blockCode = "<!-- wp:ase/"+d['componentType']+" {";
                 var index = 0;
                 $.each(d,function(key, value){
@@ -15233,7 +15266,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 		      		'class': 'aligncenter size-large wp-image-'+attachment.id+''
 		      	});
 				//$("html").scrollTop(lasso_editor.scrollTop);
-                $('#lasso-side-comp-button').remove();
+                $('#lasso-side-comp-button,.lasso--text-popup').remove();
                 // set some figures to uneditable
                 $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
 

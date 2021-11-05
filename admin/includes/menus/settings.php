@@ -121,6 +121,8 @@ class settings {
 		$toolbar_list      = lasso_editor_get_option( 'toolbar_list', 'lasso_editor' );
 		$toolbar_show_color      = lasso_editor_get_option( 'toolbar_show_color', 'lasso_editor' );
 		$toolbar_show_alignment  = lasso_editor_get_option( 'toolbar_show_alignment', 'lasso_editor' );
+        
+        $text_select_popup = lasso_editor_get_option('text_select_popup', 'lasso_editor', false);
 		
 		$objectsNoSave  	= lasso_editor_get_option('dont_save', 'lasso_editor');
 		$objectsNonEditable  	= lasso_editor_get_option('non_editable', 'lasso_editor');
@@ -289,7 +291,7 @@ class settings {
 						<span class="lasso--setting-description"><?php _e( 'Make links editable under the Editing Mode. Turning this on will make the links non-clickable while editing.', 'lasso' );?></span>
 
 					</div>
-					<div class="lasso-editor-settings--option-inner">
+					<div class="lasso-editor-settings--option-inner" style="border:none;">
 					    <label for="lasso_editor[insert_comp_ui]"> <?php _e( 'Insert Component UI', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'UI mechanism to insert components', 'lasso' );?></span>
 						<div class="lasso-editor-settings--option-inner" style="border:none;">
@@ -301,6 +303,13 @@ class settings {
 						<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="radio" name="lasso_editor[insert_comp_ui]" value="mediumcom" <?php echo checked( $insert_comp_ui, 'mediumcom' );?>> <?php _e( 'Auto Button on Empty Paragraph. medium.com-like UI.', 'lasso' );?>
 						</div>
+					</div>
+                    
+                    <div class="lasso-editor-settings--option-inner" >
+						<input type="checkbox" class="checkbox" name="lasso_editor[text_select_popup]" id="lasso_editor[text_select_popup]" <?php echo checked( $text_select_popup, 'on' );?> >
+						<label for="lasso_editor[text_select_popup]"><?php _e( 'Popup When Text is Selected', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Instead of using the bottom toolbar to format texts, use a popup box to format texts.', 'lasso' );?></span>
+
 					</div>
                     
 				</div>

@@ -94,6 +94,8 @@ class assets {
             
             $use_wpimgblock = false;
             
+            $text_select_popup = lasso_editor_get_option('text_select_popup', 'lasso_editor', false);
+            
             $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor', 'off');
 
 			
@@ -268,6 +270,7 @@ class assets {
 				'nonce'				=> wp_create_nonce('lasso_editor'),
 				'handle'			=> lasso_editor_settings_toolbar(),
 				'toolbar'			=> lasso_editor_text_toolbar(),
+                'toolbarPopup'		=> $text_select_popup ? lasso_editor_selected_text_toolbar(): false,
 				'toolbarHeadings'   => $toolbar_headings,
 				'toolbarHeadingsH4'   => $toolbar_headings_h4,
 				'component_modal'	=> lasso_editor_component_modal(),
