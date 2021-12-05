@@ -75,7 +75,7 @@ function lasso_editor_controls() {
 		
 		.lasso--controls__right a:before, #lasso-toolbar--html__footer_desc, ul.lasso-editor-controls li:before,#lasso-side-comp-button.toolbar--side li:before
         {
-			color: <?php echo $text_color;?> !important;
+			color: <?php echo $text_color;?>;
 		}
 		
 		

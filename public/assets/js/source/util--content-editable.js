@@ -380,6 +380,11 @@
 									keyContext.call(medium, e, el);
 								}
 							}
+                            
+                            var sel = w.getSelection();
+							if (sel.isCollapsed) {
+                                lasso_editor.hidePopup();
+                            }
 
 							action.preserveElementFocus();
 						},

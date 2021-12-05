@@ -250,6 +250,7 @@ jQuery(document).ready(function($){
                 $temp.find("h2").removeClass("lasso-h2");
                 $temp.find("h3").removeClass("lasso-h3");
                 $temp.find(".lasso-noclass").removeClass("lasso-noclass");
+                $temp.find(".editus-firstp").removeClass("editus-firstp");
                 $temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
                 $temp.find(".lasso-component--controls, .aesop-events-edit").remove();
                 
@@ -379,7 +380,7 @@ jQuery(document).ready(function($){
                     if ( component.context && component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;
-	    			} else if ( component.context && component.context.nodeType == 8 ) {
+	    			} else if ( (component.context && component.context.nodeType == 8)  || j[i].nodeType==8) {
 	    				processed += '<!--' + j[i].data + '-->';
 	    			} else {
 	    				// DOM object
@@ -594,7 +595,6 @@ jQuery(document).ready(function($){
 			$(j).find(".wp-block-cover").each( function(index ) {
                 $(this).removeAttr('data-component-type');
 				var blockCode = "<!-- wp:cover {";
-                debugger;
                 
                 if ($(this).find("img").length > 0) {
 				    blockCode +='"url":"'+$(this).find("img").attr('src')+'"';

@@ -138,6 +138,7 @@ class settings {
 		$i_tag = lasso_editor_get_option( 'i_tag', 'lasso_editor',  "i");
         
         $add_table = lasso_editor_get_option('add_table', 'lasso_editor', false);
+        $add_paragraph = lasso_editor_get_option('add_paragraph', 'lasso_editor', false);
 		
 		// do we support pending status
 		$no_pending_status = lasso_editor_get_option('no_pending_status', 'lasso_editor');
@@ -318,8 +319,15 @@ class settings {
                 <div class="lasso-editor-settings--option-wrap" style="border:none;" >
                     <div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[add_table]" id="lasso_editor[add_table]" <?php echo checked( $add_table, 'on' );?> >
-						<label for="lasso_editor[add_table]"><?php _e( 'Additional Component: Table', 'lasso' );?></label>
+						<label for="lasso_editor[add_table]"><span class="dashicons dashicons-grid-view"> </span> <?php _e( 'Additional Component: Table', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Allow user to add and edit tables.', 'lasso' );?></span>
+
+					</div>
+                    
+                     <div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[add_paragraph]" id="lasso_editor[add_paragraph]" <?php echo checked( $add_paragraph, 'on' );?> >
+						<label for="lasso_editor[add_paragraph]"><span class="dashicons dashicons-editor-paragraph"></span><?php _e( 'Additional Component: Paragraph', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Plain HTML Paragraph.', 'lasso' );?></span>
 
 					</div>
                 

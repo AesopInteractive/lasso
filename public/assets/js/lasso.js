@@ -5281,6 +5281,11 @@ Undo.Command.extend = function(protoProps) {
 									keyContext.call(medium, e, el);
 								}
 							}
+                            
+                            var sel = w.getSelection();
+							if (sel.isCollapsed) {
+                                lasso_editor.hidePopup();
+                            }
 
 							action.preserveElementFocus();
 						},
@@ -10894,11 +10899,11 @@ jQuery(document).ready(function($){
 		
 		//color
 		if (lasso_editor.showColor) {
+            var cv = "#ff0000";
 			// red is the default color
 			$( '#lasso-toolbar--color-pick' ).iris();
 			$( '#lasso-toolbar--color-pick' ).iris('color', '#f00');
-			$("#lasso-toolbar--color-pick").css( 'color', '#f00');
-			$("#lasso-toolbar--color-set").css( 'color', '#f00');
+            $('head').append('<style id="editus-colorpick">#lasso-toolbar--color-pick:before, #lasso-toolbar--color-set:before{color:#ff0000 !important;}</style>');
 			
 			$(window).mousedown(function() {
 			    //Hide the color picker if visible
@@ -10922,8 +10927,10 @@ jQuery(document).ready(function($){
 					// ui = standard jQuery UI object, with a color member containing a Color.js object
 
 					// change the color
-					$("#lasso-toolbar--color-pick").css( 'color', ui.color.toString());
-					$("#lasso-toolbar--color-set").css( 'color', ui.color.toString());
+                    $('style#editus-colorpick').remove();
+                    cv = ui.color.toString();
+                    $('head').append('<style id="editus-colorpick">#lasso-toolbar--color-pick:before, #lasso-toolbar--color-set:before{color:'+cv+' !important;}</style>');
+
 				}
 			});
             
@@ -10940,8 +10947,8 @@ jQuery(document).ready(function($){
 				// exit if nothing is selected
 				if (!lasso_editor.checkSelection(true)) return false;
 				
-				var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
-				articleMedium.invokeElement('span', { style: 'color:' + colorVar + ';'});
+				//var colorVar = rgb2hex($('#lasso-toolbar--color-pick').css("color"));
+				articleMedium.invokeElement('span', { style: 'color:' + cv + ';'});
 				//unselect
 				if (window.getSelection) {
 				  if (window.getSelection().empty) {  // Chrome
@@ -10952,6 +10959,7 @@ jQuery(document).ready(function($){
 				} else if (document.selection) {  // IE?
 				  document.selection.empty();
 				}
+                $(".lasso--text-popup").hide();
 				articleMedium.makeUndoable();
 				return false;
 			});
@@ -11383,8 +11391,7 @@ jQuery(document).ready(function($){
 		///////////
 		// INITIALIZE TIMELINE
 		//////////
-		var timelineGoTime = function(){
-
+        lasso_editor.timelineGoTime = function(){
 			// if there's no toolbar present
 			if ( !$('.aesop-timeline').length > 0 ) {
 				$('body').append('<div class="aesop-timeline"></div>').addClass('has-timeline');
@@ -11404,13 +11411,19 @@ jQuery(document).ready(function($){
 				});
 
 				$('.aesop-timeline-stop').each(function(){
-					var label = $(this).attr('data-title');
-					$(this).text(label).append( lassoDragHandle );
+					$(this).append( lassoDragHandle );
 				});
 
 			}
 
+			$('.aesop-timeline-stop').each(function(){
+					var label = $(this).attr('data-title');
+					$(this).text(label);
+                if ( $(this).find('.lasso-component--controls').length == 0 ) {
+                    $(this).append( lassoDragHandle );
+                }
 
+			});
 		}
 
 		///////////
@@ -11643,7 +11656,7 @@ jQuery(document).ready(function($){
             $("figure.wp-block-image, figure.lasso--wpimg__wrap").attr('contenteditable',false).attr('readonly',true);
 			// TODO: if a stock wordpress image is dragged in			
 
-			if ('timeline_stop' == type ) { timelineGoTime() }
+			if ('timeline_stop' == type ) { lasso_editor.timelineGoTime() }
 
 			if ('video' == type ) { videoGoTime() }
 			$('#lasso-side-comp-button').remove();
@@ -11846,8 +11859,12 @@ jQuery(document).ready(function($){
             $('#'+editor).children().focus();
             lasso_editor.addComponentButton();
         }
+        
+        lasso_editor.hidePopup = function(){
+            $(".lasso--text-popup").hide();
+		}
 		
-		$('#'+editor).mouseup(function() {
+		$('#'+editor).on('mouseup',function() {
             if (!lasso_editor.toolbarPopup) return;
             s = window.getSelection();
             oRange = s.getRangeAt(0); //get the text range
@@ -11857,7 +11874,6 @@ jQuery(document).ready(function($){
                 oRect2 = document.getElementById(editor).getBoundingClientRect();
                 oRect3 = document.body.getBoundingClientRect();
                 var t2 = $('body').offset().top;
-                debugger;
                 //var t2 = document.body.offsetTop.getBoundingClientRect().top;
                 var left = ((oRect.right+oRect.left) - $(".lasso--text-popup").width())/2;
                 if (left <= 0) left = 0;
@@ -11867,9 +11883,12 @@ jQuery(document).ready(function($){
                 $(".lasso--text-popup").css("display","table");
                 $(".lasso--text-popup").css("position","absolute");
             } else {
-                $(".lasso--text-popup").hide();
-
+                lasso_editor.hidePopup();
             }
+        });
+        
+        $('#'+editor).focusout(function() {
+            lasso_editor.hidePopup();
         });
 		
             
@@ -13472,6 +13491,7 @@ jQuery(document).ready(function($){
                 $temp.find("h2").removeClass("lasso-h2");
                 $temp.find("h3").removeClass("lasso-h3");
                 $temp.find(".lasso-noclass").removeClass("lasso-noclass");
+                $temp.find(".editus-firstp").removeClass("editus-firstp");
                 $temp.find(".lasso-undeletable").removeClass("lasso-undeletable");
                 $temp.find(".lasso-component--controls, .aesop-events-edit").remove();
                 
@@ -13601,7 +13621,7 @@ jQuery(document).ready(function($){
                     if ( component.context && component.context.nodeType == 3 ) {
 	    				// Text only object without dom
 	    				processed += j[i].data;
-	    			} else if ( component.context && component.context.nodeType == 8 ) {
+	    			} else if ( (component.context && component.context.nodeType == 8)  || j[i].nodeType==8) {
 	    				processed += '<!--' + j[i].data + '-->';
 	    			} else {
 	    				// DOM object
@@ -13816,7 +13836,6 @@ jQuery(document).ready(function($){
 			$(j).find(".wp-block-cover").each( function(index ) {
                 $(this).removeAttr('data-component-type');
 				var blockCode = "<!-- wp:cover {";
-                debugger;
                 
                 if ($(this).find("img").length > 0) {
 				    blockCode +='"url":"'+$(this).find("img").attr('src')+'"';
@@ -14806,8 +14825,7 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 						}
 
 						// if there's no toolbar present
-						if ( !$('.lasso-component--toolbar').length > 0 ) {
-
+						if ( !$(this).find('.lasso-component--toolbar').length > 0 ) {
 							// if this is a map then we need to first wrap it so that we can drag the  map around
 							if ( $(this).hasClass('aesop-map-component') ) {
 
@@ -14833,6 +14851,9 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 					}
 					if ('gallery_pop' == cdata['componentType']) {
 						get_aesop_options('gallery_pop');
+					}
+                    if ('timeline_stop' == cdata['componentType']) {
+						lasso_editor.timelineGoTime();
 					}
                                         
                     // set some figures to uneditable

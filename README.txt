@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 5.8.1
-Stable tag: 1.4.3
+Stable tag: 1.4.5
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,11 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.4.5
+* NEW: Optional Paragraph component
+* Further changes for the popup menu option
+* Timeline Component Fix
+
 = 1.4.3
 * NEW: Text popup menu option
 * A fix for custom post types

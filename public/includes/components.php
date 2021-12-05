@@ -218,7 +218,7 @@ endif;
 if ( !function_exists( 'lasso_timeline_component' ) ):
 	function lasso_timeline_component() {
 
-		return do_shortcode( '[aesop_timeline_stop num="Title" title="2014"]' );
+		return do_shortcode( '[aesop_timeline_stop num="2014" title="Title"]' );
 
 	}
 endif;

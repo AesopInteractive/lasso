@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
 	if (typeof lasso_editor !== 'undefined') {
 
 		// JAVASCRIPT (jQuery)
-		var enable = true;
+		var enable = false;
 		var table;
 		var tableWidth;
 		var col;

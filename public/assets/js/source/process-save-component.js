@@ -37,8 +37,7 @@
 						}
 
 						// if there's no toolbar present
-						if ( !$('.lasso-component--toolbar').length > 0 ) {
-
+						if ( !$(this).find('.lasso-component--toolbar').length > 0 ) {
 							// if this is a map then we need to first wrap it so that we can drag the  map around
 							if ( $(this).hasClass('aesop-map-component') ) {
 
@@ -64,6 +63,9 @@
 					}
 					if ('gallery_pop' == cdata['componentType']) {
 						get_aesop_options('gallery_pop');
+					}
+                    if ('timeline_stop' == cdata['componentType']) {
+						lasso_editor.timelineGoTime();
 					}
                                         
                     // set some figures to uneditable

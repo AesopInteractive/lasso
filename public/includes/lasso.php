@@ -477,6 +477,10 @@ class lasso {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-document.php');
 		    echo aesop_document_shortcode($atts);
 		}
+		else if ($code == "aesop_timeline_stop") {		
+		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-timeline.php');
+		    echo aesop_timeline_stop_shortcode($atts);
+		}
         /*else if ($code == "aesop_content") {
 		    require_once( ABSPATH . '/wp-content/plugins/aesop-story-engine/public/includes/components/component-content.php');
 		    echo aesop_content_shortcode($atts);
