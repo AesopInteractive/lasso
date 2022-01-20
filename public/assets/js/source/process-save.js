@@ -530,14 +530,80 @@ jQuery(document).ready(function($){
             
             
             // columns
-            $(j).find(".wp-block-column").before("<!-- wp:column -->" );
-            $(j).find(".wp-block-column").after("<!-- /wp:column -->" );
-            $(j).find(".wp-block-columns").before("<!-- wp:columns -->" );
-            $(j).find(".wp-block-columns").after("<!-- /wp:columns -->" );
+            $(j).find(".wp-block-column").each( function(index ) {
+                var data = {};
+                if ($(this).hasClass('is-vertically-aligned-center')) {
+                    data["verticalAlignment"]= "center";
+                }
+                if ($(this).css("flex-basis")!= "") {
+                    data["width"] = $(this).css("flex-basis");
+                }
+                blockCode = "<!-- wp:column " + JSON.stringify(data) + " -->";
+    
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:column -->" );
+            });
+
+            $(j).find(".wp-block-columns").each( function(index ) {
+                var data = {};
+                if ($(this).hasClass('are-vertically-aligned-center')) {
+                    data["verticalAlignment"]= "center";
+                }
+                blockCode = "<!-- wp:columns " + JSON.stringify(data) + " -->";
+    
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:columns -->" );
+            });
             
             //paragraph
-            $(j).find("p").before("<!-- wp:paragraph -->" );
-            $(j).find("p").after("<!-- /wp:paragraph -->" );
+            $(j).find("p").each( function(index ) {
+                var data = {};
+                 if ($(this).hasClass('has-text-align-center')) {
+                    data["align"]= "center";
+                }
+                
+                blockCode = "<!-- wp:paragraph " + JSON.stringify(data) + " -->";
+    
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:paragraph -->" );
+            });
+            
+            //gallery
+            $(j).find(".wp-block-gallery").each( function(index ) {
+                debugger;
+                var data = {};
+                 if ($(this).hasClass('aligncenter')) {
+                    data["align"]= "center";
+                }
+                var classes = $(this).attr('class').split(" ");
+                for (i = 0; i < classes.length; ++i) {
+                    if (classes[i].indexOf('columns-') == 0) {
+                        data["columns"] = parseInt(classes[i].substr(8));
+                    }
+                } 
+                var ids = [];
+                $(this).find("img").each( function(index ) {
+                    ids[index] = $(this).data('id');
+                });
+                data["ids"]= ids;
+                if ($(this).find("a").length ==0) {
+                    data["linkTo"] = "none";
+                } else {
+                    data["linkTo"] = "file";
+                }
+                blockCode = "<!-- wp:gallery " + JSON.stringify(data) + " -->";
+    
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:gallery -->" );
+            });
+            
+            //heading
+            $(j).find("h1").before('<!-- wp:heading {"level":1} -->' );
+            $(j).find("h2").before('<!-- wp:heading {"level":2} -->' );
+            $(j).find("h3").before('<!-- wp:heading {"level":3} -->' );
+            $(j).find("h4").before('<!-- wp:heading {"level":4} -->' );
+            $(j).find("h5").before('<!-- wp:heading {"level":5} -->' );
+            $(j).find("h1,h2,h3,h4,h5").after("<!-- /wp:heading -->" );
             
             //table
             $(j).find(".wp-block-table").before("<!-- wp:table -->" );
@@ -547,12 +613,27 @@ jQuery(document).ready(function($){
             //button
             $(j).find(".wp-block-button").before("<!-- wp:button -->" );
             $(j).find(".wp-block-button").after("<!-- /wp:button -->" );
-            $(j).find(".wp-block-buttons").before("<!-- wp:buttons -->" );
-            $(j).find(".wp-block-buttons").after("<!-- /wp:buttons -->" );
-            
+            $(j).find(".wp-block-buttons").each( function(index ) {
+                var blockCode = "<!-- wp:buttons ";
+                var data = {};
+                if ($(this).hasClass('is-content-justification-center')) {
+                    data["contentJustification"]= "center";
+                }
+                blockCode = blockCode + JSON.stringify(data) + " -->";
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:buttons -->" );
+            });
+              
             //group
-            $(j).find(".wp-block-group").before("<!-- wp:group -->" );
-            $(j).find(".wp-block-group").after("<!-- /wp:group -->" );
+            $(j).find(".wp-block-group").each( function(index ) {
+                var data = {};
+                if ($(this).hasClass('alignfull')) {
+                    data["align"]= "full";
+                }
+                var blockCode = "<!-- wp:group " + JSON.stringify(data) + " -->";
+                $(this).before(blockCode);
+                $(this).after("<!-- /wp:group -->" );
+            });
             
             // spacer
             $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );
@@ -565,28 +646,42 @@ jQuery(document).ready(function($){
             // image
 			$(j).find(".wp-block-image").each( function(index ) {
                 $(this).removeAttr('data-component-type');
-				var blockCode = "<!-- wp:image {";
+                var data = {};
+				var blockCode = "<!-- wp:image ";
 				
-				var c = $(this).find("img").attr('class');
-				$(this).removeAttr('width').removeAttr('height');
+				var classes = $(this).find("img").attr('class').split(" ");
+				
+				$(this).removeAttr('width').removeAttr('height').removeAttr('readonly');
 				$(this).find("img").removeAttr('width').removeAttr('height').removeAttr('srcset').removeAttr('sizes').removeAttr('loading');
-				if (c && c.indexOf('wp-image-') == 0) {
-					blockCode+='"id":'+$(this).find("img").attr('class').substr(9);
-				}
+				var i;
+                for (i = 0; i < classes.length; ++i) {
+                    if (classes[i].indexOf('wp-image-') == 0) {
+                        data["id"] = parseInt(classes[i].substr(9));
+                    }
+                } 
 				if ($(this).hasClass("size-large") || $(this).find('figure').hasClass("size-large")) {
-					blockCode+=',"sizeSlug":"large"';
+					data["sizeSlug"] = "large";
 				}
-                if ($(this).find(".aligncenter").length>0) {
-                    blockCode+=',"align":"center"';
+                if ($(this).hasClass("size-full") || $(this).find('figure').hasClass("size-full")) {
+					data["sizeSlug"] = "full";
+				}
+                 if ($(this).find(".aligncenter").length>0) {
+                    data["align"]="center";
                 }
+                if ($(this).hasClass("is-style-default")) {
+					data["className"] = "is-style-default";
+				}
+                if ($(this).hasClass("is-style-rounded")) {
+					data["className"] = "is-style-rounded";
+				}
                 if ($(this).find(".alignright").length>0) {
-                    blockCode+=',"align":"right"';
+                    data["align"] = "right";
                 }
                 if ($(this).find(".alignleft").length>0) {
-                    blockCode+=',"align":"left"';
+                    data["align"] = "left";
                 }
          
-                blockCode = blockCode.replace("{,","{") + "} -->";
+                blockCode = blockCode + JSON.stringify(data) + " -->";
                 $(this).before(blockCode);
                 $(this).after("<!-- /wp:image -->" );
             });
@@ -594,22 +689,45 @@ jQuery(document).ready(function($){
             // cover
 			$(j).find(".wp-block-cover").each( function(index ) {
                 $(this).removeAttr('data-component-type');
-				var blockCode = "<!-- wp:cover {";
+				var blockCode = "<!-- wp:cover ";
+                var data = {};
                 
                 if ($(this).find("img").length > 0) {
-				    blockCode +='"url":"'+$(this).find("img").attr('src')+'"';
-                    var c = $(this).find("img").attr('class');
+				    data['url'] = $(this).find("img").attr('src');
+                    var classes = $(this).find("img").attr('class').split(" ");
                     $(this).removeAttr('width').removeAttr('height');
                     if ($(this).css("min-height") == "100vh") {
-                        blockCode +=',"minHeight":100,"minHeightUnit":"vh"';
+                        data["minHeight"] =100;
+                        data["minHeightUnit"] = "vh";
                     }
                     $(this).find("img").removeAttr('width').removeAttr('height').removeAttr('srcset').removeAttr('sizes').removeAttr('loading');
-                    if (c && c.indexOf('wp-image-') == 0) {
-                        blockCode+=',"id":'+$(this).find("img").attr('class').substr(9);
-                    }
+                    var i;
+                    for (i = 0; i < classes.length; ++i) {
+                        if (classes[i] == 'alignfull') {
+                            data['align'] = "full";
+                        }
+                        if (classes[i].indexOf('wp-image-') == 0) {
+                            data["id"] = parseInt(classes[i].substr(9));
+                        }
+                        
+                    } 
+                } else {
+                    var bg = $(this).css('background-image');
+                    bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+                    data['url'] = bg;
+                    var classes = $(this).attr('class').split(" ");
+                    var i;
+                    for (i = 0; i < classes.length; ++i) {
+                        if (classes[i]=='has-parallax') {
+                             data["hasParallax"] = true;
+                        }
+                        else if (classes[i]=='is-repeated') {
+                             data["className"] = "is-repeated";
+                        }
+                    } 
                 }
 			
-                blockCode = blockCode.replace("{,","{") + "} -->";
+                blockCode = blockCode + JSON.stringify(data) + " -->";
                 $(this).before(blockCode);
                 $(this).after("<!-- /wp:cover -->" );
             });
@@ -633,6 +751,7 @@ jQuery(document).ready(function($){
             });
             
             var html = $(j).html(); 
+            html = html.replace(" {} -->"," -->");
             return html;
         }
 		

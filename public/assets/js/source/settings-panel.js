@@ -40,7 +40,7 @@
 			if ( $(this).parent().parent().hasClass('aesop-map-component') ) {
 				component = $(this).parent().parent().find('.aesop-component');
 			} else {
-				component = $(this).closest('.aesop-component,.lasso-component,.wp-block-image');
+				component = $(this).closest('.aesop-component,.lasso-component,.wp-block-image,.wp-block-cover');
 			}
             
             data = component.data();
@@ -83,6 +83,13 @@
                     if ($(component).find('a').length) {
                         data['link'] = $(component).find('a').attr("href");
                     }
+                }
+			}
+            
+            if (data['componentType'] == 'wpcover-block') {
+				if ($(component).find('img').length) {
+					var $img = $(component).find('img');
+                    data['img'] =$img.attr('src');
                 }
 			}
             
@@ -337,7 +344,22 @@
 					   if (attachment.id) {
                            img.removeClass();
 						   img.addClass("wp-image-"+attachment.id);
+                           window.component.data( 'id', ""+attachment.id);
 					   }
+                    }
+		      	}
+                else if ( 'wpcover-block' == type ) {
+                    var img = window.component.find('img');
+                    if (img.length >0) {
+		      		   img.prop('src', attachment.url );
+                       img.prop("srcset","");
+                       img.removeClass();
+                       img.addClass("wp-block-cover__image-background");
+					   if (attachment.id) {
+						   img.addClass("wp-image-"+attachment.id);
+					   }
+                    } else {
+                       window.component.css('background-image', "url("+attachment.url+")");
                     }
 
 		      	}

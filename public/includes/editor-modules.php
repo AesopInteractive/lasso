@@ -984,6 +984,7 @@ function lasso_editor_options_blob() {
 	$codes   = function_exists( 'aesop_shortcodes' ) ? aesop_shortcodes() : array();
     $codes   = add_wpimg_options( $codes );
 	$codes   = add_wpimg_block_options( $codes );
+	$codes   = add_wpcover_block_options( $codes );
     $codes   = apply_filters( 'lasso_custom_options', $codes );
 	$galleries  = function_exists( 'lasso_editor_galleries_exist' ) && lasso_editor_galleries_exist() ? 'has-galleries' : 'creating-gallery';
 
@@ -1265,6 +1266,32 @@ function add_wpimg_block_options( $shortcodes ) {
 
             ),
             'desc'     => __( 'A WP Image Block.', 'aesop-core' ),
+            'codes'    => '<script>	            
+						jQuery(document).ready(function($){
+                            
+						});
+			           </script>'
+        )
+    );
+
+    return array_merge( $shortcodes, $custom );
+}
+
+function add_wpcover_block_options( $shortcodes ) {
+    $custom = array(
+        'wpcover-block'    => array(
+            'name'     => __( 'Cover', 'lasso' ),
+            'type'     => 'single',
+            'atts'     => array(
+                'img'    => array(
+                    'type'  => 'media_upload',
+                    'default'  => '',
+                    'desc'   => __( 'Image URL', 'lasso' ),
+                    'tip'  => __( 'URL for the image. Click <em>Select Media</em> to open the WordPress Media Library.', 'aesop-core' )
+                )
+
+            ),
+            'desc'     => __( 'A WP Cover Block.', 'aesop-core' ),
             'codes'    => '<script>	            
 						jQuery(document).ready(function($){
                             

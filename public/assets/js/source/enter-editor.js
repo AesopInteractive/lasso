@@ -297,11 +297,22 @@ jQuery(document).ready(function($){
             
             //wp image block
 			$('.wp-block-image').each(function(){
-
                 var $this = $(this)
                 if ( $(this).find('.lasso-component--controls').length == 0 ) {
                     $this.prepend(lasso_editor.wpImgBlockEdit);
 					$this.attr('data-component-type','wpimg-block');
+                }
+
+            })
+            
+            //wp cover block
+            $('.wp-block-cover').each(function(){
+                var $this = $(this)
+                if ( $(this).find('.lasso-component--controls').length == 0 ) {
+                    $this.prepend(lasso_editor.wpImgBlockEdit);
+                    $this.find(".lasso-clone,.lasso-delete").remove();
+                    $this.find(".lasso-component--controls").width('61px');
+					$this.attr('data-component-type','wpcover-block');
                 }
 
             })

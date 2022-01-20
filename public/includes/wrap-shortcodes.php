@@ -7,7 +7,7 @@
 
  
 if ( lasso_user_can( 'edit_posts' ) && ! is_admin() ) {
-	add_filter( 'the_content', 'lasso_wrap_shortcodes', 9 );
+	add_filter( 'the_content', 'lasso_wrap_shortcodes', 1 );
 }
 
 /**

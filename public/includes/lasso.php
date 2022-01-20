@@ -575,8 +575,12 @@ class lasso {
             $figclass = 'aligncenter';
         }
         
-        echo '<div class="wp-block-image" data-component-type="wpimg-block">'; 
-        echo '<figure class="wp-block-image '.$figclass.' size-large" contenteditable="false">';   
+        if ($atts['align']=="left" || $atts['align']=="right") {
+            echo '<div class="wp-block-image" data-component-type="wpimg-block">';
+            echo '<figure class="'.$figclass.' size-large" contenteditable="false">'; 
+        } else {      
+            echo '<figure class="wp-block-image '.$figclass.' size-large" contenteditable="false">';  
+        }        
         if (!empty($atts['link'])) {
             echo '<a href="'.$atts['link'].'">';
         }        
@@ -588,7 +592,10 @@ class lasso {
         if (!empty($atts['link'])) {
             echo '</a>';
         }
-        echo '</figure></div>';
+        echo '</figure>';
+        if ($atts['align']=="left" || $atts['align']=="right") {
+            echo '</div>';
+        }  
         echo '<p><br></p>';
         return;
     }
