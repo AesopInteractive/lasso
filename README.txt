@@ -2,8 +2,8 @@
 Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
-Tested up to: 5.8.1
-Stable tag: 1.4.9
+Tested up to: 5.9
+Stable tag: 1.5.0
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.5.0
+* Allowing the component pop up when using a keyboard without a mouse
+
 = 1.4.9
 * Improved compatibility with standard WP blocks
 

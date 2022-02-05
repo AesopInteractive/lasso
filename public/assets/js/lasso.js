@@ -5282,10 +5282,7 @@ Undo.Command.extend = function(protoProps) {
 								}
 							}
                             
-                            var sel = w.getSelection();
-							if (sel.isCollapsed) {
-                                lasso_editor.hidePopup();
-                            }
+                            lasso_editor.checkForPopup();
 
 							action.preserveElementFocus();
 						},
@@ -11874,9 +11871,11 @@ jQuery(document).ready(function($){
         lasso_editor.hidePopup = function(){
             $(".lasso--text-popup").hide();
 		}
-		
-		$('#'+editor).on('mouseup',function() {
+        
+        lasso_editor.checkForPopup = function()
+        {
             if (!lasso_editor.toolbarPopup) return;
+            
             s = window.getSelection();
             oRange = s.getRangeAt(0); //get the text range
             if (!oRange.collapsed ) {
@@ -11896,6 +11895,10 @@ jQuery(document).ready(function($){
             } else {
                 lasso_editor.hidePopup();
             }
+        };
+		
+		$('#'+editor).on('mouseup',function() {
+            lasso_editor.checkForPopup();
         });
         
         $('#'+editor).focusout(function() {

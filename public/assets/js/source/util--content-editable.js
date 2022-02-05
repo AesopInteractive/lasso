@@ -381,10 +381,7 @@
 								}
 							}
                             
-                            var sel = w.getSelection();
-							if (sel.isCollapsed) {
-                                lasso_editor.hidePopup();
-                            }
+                            lasso_editor.checkForPopup();
 
 							action.preserveElementFocus();
 						},
