@@ -526,7 +526,10 @@ jQuery(document).ready(function($){
 				return content;
 			}
             
-            j =  $('<div>').append($(k).clone())
+            j =  $('<div>').append($(k).clone());
+            //ul
+            $(j).find("ul").before('<!-- wp:list -->' ).after('<!-- /wp:list -->');
+            $(j).find("ol").before('<!-- wp:list {"ordered":true} -->' ).after('<!-- /wp:list -->');
             
             
             // columns
@@ -564,8 +567,7 @@ jQuery(document).ready(function($){
                 
                 blockCode = "<!-- wp:paragraph " + JSON.stringify(data) + " -->";
     
-                $(this).before(blockCode);
-                $(this).after("<!-- /wp:paragraph -->" );
+                $(this).before(blockCode).after("<!-- /wp:paragraph -->" );
             });
             
             //gallery
@@ -606,9 +608,7 @@ jQuery(document).ready(function($){
             $(j).find("h1,h2,h3,h4,h5").after("<!-- /wp:heading -->" );
             
             //table
-            $(j).find(".wp-block-table").before("<!-- wp:table -->" );
-            $(j).find(".wp-block-table").after("<!-- /wp:table -->" );
-            $(j).find(".wp-block-table").removeAttr('data-component-type');
+            $(j).find(".wp-block-table").before("<!-- wp:table -->" ).after("<!-- /wp:table -->" );
             
             //button
             $(j).find(".wp-block-button").before("<!-- wp:button -->" );
@@ -636,17 +636,19 @@ jQuery(document).ready(function($){
             });
             
             // spacer
-            $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" );
-            $(j).find(".wp-block-spacer").after("<!-- /wp:spacer -->" );
+            $(j).find(".wp-block-spacer").before("<!-- wp:spacer -->" ).after("<!-- /wp:spacer -->" );
             
             // separator
-            $(j).find(".wp-block-separator").before("<!-- wp:separator  -->" );
-            $(j).find(".wp-block-separator").after("<!-- /wp:separator  -->" );
+            $(j).find(".wp-block-separator").before("<!-- wp:separator  -->" ).after("<!-- /wp:separator  -->" );
             
             // image
 			$(j).find(".wp-block-image").each( function(index ) {
                 $(this).removeAttr('data-component-type');
                 var data = {};
+                if ($(this).find("img").length == 0) {
+                    return;
+                }
+                
 				var blockCode = "<!-- wp:image ";
 				
 				var classes = $(this).find("img").attr('class').split(" ");
