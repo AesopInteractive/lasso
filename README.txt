@@ -3,7 +3,7 @@ Contributors: nphaskins, hyunster, michaelbeil
 Plugin URI: https://edituswp.com
 Requires at least: 3.5
 Tested up to: 5.9
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 
 Front-end editing and creation suite.
 
@@ -13,6 +13,9 @@ Front-end editing and creation suite.
 
 
 == Changelog ==
+= 1.5.1
+* Support for Gutenberg list blocks
+
 = 1.5.0
 * Allowing the component pop up when using a keyboard without a mouse
 
