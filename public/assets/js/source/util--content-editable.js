@@ -25,6 +25,38 @@
 		return false;
 	}
 	
+	function checkBackspaceForNoEditable(elem)
+	{
+		var elem = elem.previousElementSibling;
+		while (elem) {
+		   if ((elem.contentEditable == "false" || elem.readonly == "true" || elem.classList.contains('lasso-undeletable')) && elem.tagName !="A") {
+			   return true;
+		   }
+		   if (elem.innerHTML.includes("<!--EDITUS") || jQuery.trim( elem.innerHTML)==""){
+			   elem = elem.previousElementSibling;
+		   } else {
+			   return false;
+		   }
+		};
+		return false;
+	}
+	
+	function checkDeleteForNoEditable(elem)
+	{
+		var elem = elem.nextElementSibling;
+		while (elem) {
+		   if ((elem.contentEditable == "false" || elem.readonly == "true" || elem.classList.contains('lasso-undeletable')) && elem.tagName !="A"){
+			   return true;
+		   }
+		   if (elem.innerHTML.includes("<!--") || jQuery.trim( elem.innerHTML)==""){
+			   elem = elem.nextElementSibling;
+		   } else {
+			   return false;
+		   }
+		};
+		return false;
+	}
+	
 	var Medium = (function () {
 		
 		var trim = function (string) {
@@ -268,18 +300,14 @@
 												if (container.contentEditable == "false") {
 													e.preventDefault();
 												}											
-												if (e.keyCode == key['backspace'] && 
-												   (container.previousElementSibling && (container.previousElementSibling.contentEditable == "false" || container.previousElementSibling.classList.contains('lasso-undeletable'))
-												     && container.previousElementSibling.tagName !="A")) {
+												if (e.keyCode == key['backspace'] && checkBackspaceForNoEditable(container)){
 													if (sel.focusOffset == 0 ) {
 														e.preventDefault();
 													} else if (container1.length == sel.focusOffset && container1.length == 1) {
 														e.preventDefault();
 														container1.data = "";
 													}
-												} else if (e.keyCode == key['delete'] && 
-												    (container.nextElementSibling && (container.nextElementSibling.contentEditable == "false" || container.nextElementSibling.classList.contains('lasso-undeletable'))
-													&& container.nextElementSibling.tagName !="A")) {
+												} else if (e.keyCode == key['delete'] &&  checkDeleteForNoEditable(container)) {
 												    if (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined) {
 														e.preventDefault();
 													} else if (container1.length == 1 && sel.focusOffset == 0){
