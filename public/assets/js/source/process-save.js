@@ -271,8 +271,13 @@ jQuery(document).ready(function($){
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
+				const reg = /<p.*><!--/;
+				html = html.replace(reg,"<!--").replace("--></p>","-->");
                 html = process_gutenberg(html);
-            } else {
+            }
+			
+			//shortcodes
+			{
                 // shortcode ultimate
                 //html = shortcodify_su(html);
                 
@@ -821,9 +826,29 @@ jQuery(document).ready(function($){
 			if ( content.indexOf('--EDITUS_OTHER_SHORTCODE_START|' ) == -1) {
 				return content;
 			}
+			
+			var k = $.parseHTML(content);
+			if (k != null) {
+				j =  $('<div>').append($(k).clone());
+				
+				$(j).find('.editus_shortcode').each(function(){
+				    var oldComment = this.previousElementSibling.innerHTML;
+					var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[(.*)\]-->/g.exec(oldComment) ;
+					var cont = this.dataset.shortcode;
+					if (cont && re && re.size>1) {
+						this.previousElementSibling.innerHTML = oldComment.replace(re[1], cont);
+					};
+				});
+				
+				content = $(j).html(); 
+			}
 
 			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
-			content = content.replace(re,'$1');
+			if (lasso_editor.hasGutenberg) {
+				content = content.replace(re,'<!-- wp:shortcode -->$1<!-- /wp:shortcode -->');
+			} else {
+				content = content.replace(re,'$1');
+			}
 			
 			return content;
 		}
