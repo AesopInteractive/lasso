@@ -32,7 +32,7 @@
 		   if ((elem.contentEditable == "false" || elem.readonly == "true" || elem.classList.contains('lasso-undeletable')) && elem.tagName !="A") {
 			   return true;
 		   }
-		   if (elem.innerHTML.includes("<!--EDITUS") || jQuery.trim( elem.innerHTML)==""){
+		   if (elem.innerHTML.includes("<!--") || jQuery.trim( elem.innerHTML)==""){
 			   elem = elem.previousElementSibling;
 		   } else {
 			   return false;

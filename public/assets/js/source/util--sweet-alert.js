@@ -455,7 +455,7 @@
 
           if (btnIndex === -1) {
             // Something in the dom, but not a visible button. Focus back on the button.
-            $targetElement.focus();
+            //$targetElement.focus();
           }
         } else {
           // Exiting the DOM (e.g. clicked in the URL bar);
@@ -467,7 +467,7 @@
     $okButton.onblur = handleOnBlur;
     $cancelButton.onblur = handleOnBlur;
 
-    window.onfocus = function() {
+    /*window.onfocus = function() {
       // When the user has focused away and focused back from the whole window.
       window.setTimeout(function() {
         // Put in a timeout to jump out of the event sequence. Calling focus() in the event
@@ -477,7 +477,7 @@
           lastFocusedButton = undefined;
         }
       }, 0);
-    };
+    };*/
   }
 
   /**
@@ -511,7 +511,7 @@
     $title.innerHTML = escapeHtml(params.title).split("\n").join("<br>");
 
     // Text
-    $text.innerHTML = escapeHtml(params.text || '').split("\n").join("<br>");
+    $text.innerHTML = params.text;////escapeHtml(params.text || '').split("\n").join("<br>");
     if (params.text) {
       show($text);
     }

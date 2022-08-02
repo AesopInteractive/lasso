@@ -271,7 +271,7 @@ jQuery(document).ready(function($){
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
-				const reg = /<p.*><!--/;
+				const reg = /<p[^>]*><!--/;
 				html = html.replace(reg,"<!--").replace("--></p>","-->");
                 html = process_gutenberg(html);
             }
@@ -827,7 +827,7 @@ jQuery(document).ready(function($){
 				return content;
 			}
 			
-			var k = $.parseHTML(content);
+			/*var k = $.parseHTML(content);
 			if (k != null) {
 				j =  $('<div>').append($(k).clone());
 				
@@ -841,7 +841,7 @@ jQuery(document).ready(function($){
 				});
 				
 				content = $(j).html(); 
-			}
+			}*/
 
 			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
 			if (lasso_editor.hasGutenberg) {

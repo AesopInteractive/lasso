@@ -576,6 +576,63 @@ jQuery(document).ready(function($){
 			//articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
 		}
 		
+				if (!lasso_editor.disableEditSC) {
+			processShortcodes();
+		}
+		
+		function processShortcodes()
+		{
+			$(article).children().filter(function(){
+				return this.innerHTML.includes("EDITUS_OTHER_SHORTCODE_START");
+			}).each(function(i, e){
+				var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[(.*)\]-->/g ;
+			    var cont = re.exec(this.innerHTML);
+							
+				$(this).next().append( '<div class="editus_shortcode" contenteditable="false">'+lasso_editor.strings.editShortcode+'</div>' );
+				
+				$(this).next().addClass("editus_shortcode_p");
+				
+				if (cont) $(this).next().find('.editus_shortcode')[0].dataset.shortcode = cont[1];
+			});
+		}
+		
+		$(document).on('click','.editus_shortcode', function(e){
+			var $this = $(this);
+		
+			var s = $(window).scrollTop();
+			swal({
+				title: "Edit ShortCode",
+				text: "<textarea id='shortcode_edit' name='shortcode'>"+ this.dataset.shortcode +"</textarea>",
+				showCancelButton: true,
+				confirmButtonColor: "#d9534f",
+				confirmButtonText: "Modify",
+				closeOnConfirm: true,
+				obj: this
+			},
+			function(){
+				var val = $('textarea#shortcode_edit').val();
+				var data = {
+					action: 'editus_do_shortcode',
+					code: val,
+					ID: lasso_editor.postid
+				};
+				
+								
+				jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+						restoreSelection(window.selRange);
+						if( response && response.includes("EDITUS_OTHER_SHORTCODE_END")){
+							$this.parent().prev().remove();
+							//$this.next().remove();
+							$this.parent().replaceWith( response.replace("<!--EDITUS_OTHER_SHORTCODE_END-->","") );
+							processShortcodes();
+						} else {
+							alert("Shortcode processing failed");
+						}
+						$(window).scrollTop(s);
+				});				
+			});
+		})
+		
 		function taghelper(tag) {
 			articleMedium.element.contentEditable = true;
 			article.highlight();
@@ -868,7 +925,8 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup').fadeOut().remove();
+			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup,.editus_shortcode').fadeOut().remove();
+
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);

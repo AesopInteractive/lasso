@@ -114,6 +114,8 @@ class settings {
 		$allow_new_category = lasso_editor_get_option( 'allow_new_category', 'lasso_editor' );
 		$shortcodify_disabled  = lasso_editor_get_option( 'shortcodify_disabled', 'lasso_editor' );
 		$enable_autosave  = lasso_editor_get_option( 'enable_autosave', 'lasso_editor' );
+		
+		$disable_shortcode_editing = lasso_editor_get_option('disable_shortcode_editing', 'lasso_editor');
 
 		$use_old_ui      = lasso_editor_get_option( 'use_old_ui', 'lasso_editor' );
 		$toolbar_headings      = lasso_editor_get_option( 'toolbar_headings', 'lasso_editor' );
@@ -439,6 +441,12 @@ class settings {
 						<label><?php _e( 'Placeholder Text for New Post', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Placeholder text to be displayed when a new post is created.', 'lasso' );?></span>
 						<input type="text" name="lasso_editor[new_post_text]" id="lasso_editor[new_post_text]" value="<?php echo esc_attr( $new_post_text );?>" placeholder="<?php $def = wp_strip_all_tags(apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso')));echo $def;?>", true)>
+					</div>
+					
+					<div class="lasso-editor-settings--option-inner" style="border:none">
+						<input type="checkbox" class="checkbox" name="lasso_editor[disable_shortcode_editing]" id="lasso_editor[disable_shortcode_editing]" <?php echo checked( $disable_shortcode_editing, 'on' );?> >
+						<label for="lasso_editor[disable_shortcode_editing]"> <?php _e( 'Do Not Allow Shortcode Editing', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'Check this box to disable frontend editing of shortcodes.', 'lasso' );?></span>
 					</div>
 
 					<div class="lasso-editor-settings--option-inner" style="border:none">

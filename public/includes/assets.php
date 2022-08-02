@@ -110,6 +110,9 @@ class assets {
 			
 			// allow change date for post
 			$allow_change_date = lasso_editor_get_option('allow_change_date', 'lasso_editor');
+			
+			//disable shortcode editing
+			$disable_shortcode_editing = lasso_editor_get_option('disable_shortcode_editing', 'lasso_editor');
             
             // support custom taxonomy
 			$support_custom_taxonomy = lasso_editor_get_option('support_custom_taxonomy', 'lasso_editor');
@@ -182,6 +185,7 @@ class assets {
 				'catsPlaceholder'     => __('add categories...'),
 				'tagsPlaceholder'     => __('add tags...'),
                 'taxoPlaceholder'     => __('add taxonomy terms...'),
+				'editShortcode'     => __('Edit Shortcode'),
 				
 				
 			);
@@ -317,6 +321,7 @@ class assets {
 				'newObjectContent'  => '<p class="editus-firstp" placeholder="'. $new_post_text . '"></p>',
 				'disableSavePost'   => $save_to_post_disabled,
 				'disableEditPost'   => $edit_post_disabled,
+				'disableEditSC'     => $disable_shortcode_editing,
 				'boldTag'           => $bold_tag,
 				'iTag'           	=> $i_tag, 
 				'customFields'      => $custom_fields,

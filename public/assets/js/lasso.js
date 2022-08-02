@@ -4926,6 +4926,38 @@ Undo.Command.extend = function(protoProps) {
 		return false;
 	}
 	
+	function checkBackspaceForNoEditable(elem)
+	{
+		var elem = elem.previousElementSibling;
+		while (elem) {
+		   if ((elem.contentEditable == "false" || elem.readonly == "true" || elem.classList.contains('lasso-undeletable')) && elem.tagName !="A") {
+			   return true;
+		   }
+		   if (elem.innerHTML.includes("<!--") || jQuery.trim( elem.innerHTML)==""){
+			   elem = elem.previousElementSibling;
+		   } else {
+			   return false;
+		   }
+		};
+		return false;
+	}
+	
+	function checkDeleteForNoEditable(elem)
+	{
+		var elem = elem.nextElementSibling;
+		while (elem) {
+		   if ((elem.contentEditable == "false" || elem.readonly == "true" || elem.classList.contains('lasso-undeletable')) && elem.tagName !="A"){
+			   return true;
+		   }
+		   if (elem.innerHTML.includes("<!--") || jQuery.trim( elem.innerHTML)==""){
+			   elem = elem.nextElementSibling;
+		   } else {
+			   return false;
+		   }
+		};
+		return false;
+	}
+	
 	var Medium = (function () {
 		
 		var trim = function (string) {
@@ -5169,18 +5201,14 @@ Undo.Command.extend = function(protoProps) {
 												if (container.contentEditable == "false") {
 													e.preventDefault();
 												}											
-												if (e.keyCode == key['backspace'] && 
-												   (container.previousElementSibling && (container.previousElementSibling.contentEditable == "false" || container.previousElementSibling.classList.contains('lasso-undeletable'))
-												     && container.previousElementSibling.tagName !="A")) {
+												if (e.keyCode == key['backspace'] && checkBackspaceForNoEditable(container)){
 													if (sel.focusOffset == 0 ) {
 														e.preventDefault();
 													} else if (container1.length == sel.focusOffset && container1.length == 1) {
 														e.preventDefault();
 														container1.data = "";
 													}
-												} else if (e.keyCode == key['delete'] && 
-												    (container.nextElementSibling && (container.nextElementSibling.contentEditable == "false" || container.nextElementSibling.classList.contains('lasso-undeletable'))
-													&& container.nextElementSibling.tagName !="A")) {
+												} else if (e.keyCode == key['delete'] &&  checkDeleteForNoEditable(container)) {
 												    if (sel.focusOffset == sel.focusNode.length || sel.focusNode.length === undefined) {
 														e.preventDefault();
 													} else if (container1.length == 1 && sel.focusOffset == 0){
@@ -8283,7 +8311,7 @@ Undo.Command.extend = function(protoProps) {
 
           if (btnIndex === -1) {
             // Something in the dom, but not a visible button. Focus back on the button.
-            $targetElement.focus();
+            //$targetElement.focus();
           }
         } else {
           // Exiting the DOM (e.g. clicked in the URL bar);
@@ -8295,7 +8323,7 @@ Undo.Command.extend = function(protoProps) {
     $okButton.onblur = handleOnBlur;
     $cancelButton.onblur = handleOnBlur;
 
-    window.onfocus = function() {
+    /*window.onfocus = function() {
       // When the user has focused away and focused back from the whole window.
       window.setTimeout(function() {
         // Put in a timeout to jump out of the event sequence. Calling focus() in the event
@@ -8305,7 +8333,7 @@ Undo.Command.extend = function(protoProps) {
           lastFocusedButton = undefined;
         }
       }, 0);
-    };
+    };*/
   }
 
   /**
@@ -8339,7 +8367,7 @@ Undo.Command.extend = function(protoProps) {
     $title.innerHTML = escapeHtml(params.title).split("\n").join("<br>");
 
     // Text
-    $text.innerHTML = escapeHtml(params.text || '').split("\n").join("<br>");
+    $text.innerHTML = params.text;////escapeHtml(params.text || '').split("\n").join("<br>");
     if (params.text) {
       show($text);
     }
@@ -11030,6 +11058,63 @@ jQuery(document).ready(function($){
 			//articleMedium.cursor.caretToBeginning(articleMedium.element.firstChild);
 		}
 		
+				if (!lasso_editor.disableEditSC) {
+			processShortcodes();
+		}
+		
+		function processShortcodes()
+		{
+			$(article).children().filter(function(){
+				return this.innerHTML.includes("EDITUS_OTHER_SHORTCODE_START");
+			}).each(function(i, e){
+				var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[(.*)\]-->/g ;
+			    var cont = re.exec(this.innerHTML);
+							
+				$(this).next().append( '<div class="editus_shortcode" contenteditable="false">'+lasso_editor.strings.editShortcode+'</div>' );
+				
+				$(this).next().addClass("editus_shortcode_p");
+				
+				if (cont) $(this).next().find('.editus_shortcode')[0].dataset.shortcode = cont[1];
+			});
+		}
+		
+		$(document).on('click','.editus_shortcode', function(e){
+			var $this = $(this);
+		
+			var s = $(window).scrollTop();
+			swal({
+				title: "Edit ShortCode",
+				text: "<textarea id='shortcode_edit' name='shortcode'>"+ this.dataset.shortcode +"</textarea>",
+				showCancelButton: true,
+				confirmButtonColor: "#d9534f",
+				confirmButtonText: "Modify",
+				closeOnConfirm: true,
+				obj: this
+			},
+			function(){
+				var val = $('textarea#shortcode_edit').val();
+				var data = {
+					action: 'editus_do_shortcode',
+					code: val,
+					ID: lasso_editor.postid
+				};
+				
+								
+				jQuery.post(lasso_editor.ajaxurl2, data, function(response) {
+						restoreSelection(window.selRange);
+						if( response && response.includes("EDITUS_OTHER_SHORTCODE_END")){
+							$this.parent().prev().remove();
+							//$this.next().remove();
+							$this.parent().replaceWith( response.replace("<!--EDITUS_OTHER_SHORTCODE_END-->","") );
+							processShortcodes();
+						} else {
+							alert("Shortcode processing failed");
+						}
+						$(window).scrollTop(s);
+				});				
+			});
+		})
+		
 		function taghelper(tag) {
 			articleMedium.element.contentEditable = true;
 			article.highlight();
@@ -11322,7 +11407,8 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup').fadeOut().remove();
+			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup,.shortcode_edit').fadeOut().remove();
+
 
 			$('#lasso--edit').css('opacity',1);
 			$('.lasso--controls__right').css('opacity',0);
@@ -13548,8 +13634,13 @@ jQuery(document).ready(function($){
             
             // WordPress Block
             if (lasso_editor.hasGutenberg) {
+				const reg = /<p[^>]*><!--/;
+				html = html.replace(reg,"<!--").replace("--></p>","-->");
                 html = process_gutenberg(html);
-            } else {
+            }
+			
+			//shortcodes
+			{
                 // shortcode ultimate
                 //html = shortcodify_su(html);
                 
@@ -14098,9 +14189,29 @@ jQuery(document).ready(function($){
 			if ( content.indexOf('--EDITUS_OTHER_SHORTCODE_START|' ) == -1) {
 				return content;
 			}
+			
+			/*var k = $.parseHTML(content);
+			if (k != null) {
+				j =  $('<div>').append($(k).clone());
+				
+				$(j).find('.editus_shortcode').each(function(){
+				    var oldComment = this.previousElementSibling.innerHTML;
+					var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[(.*)\]-->/g.exec(oldComment) ;
+					var cont = this.dataset.shortcode;
+					if (cont && re && re.size>1) {
+						this.previousElementSibling.innerHTML = oldComment.replace(re[1], cont);
+					};
+				});
+				
+				content = $(j).html(); 
+			}*/
 
 			var re = /<!--EDITUS_OTHER_SHORTCODE_START\|\[([\s\S]*?)\]-->([\s\S]*?)<!--EDITUS_OTHER_SHORTCODE_END-->/g ;
-			content = content.replace(re,'$1');
+			if (lasso_editor.hasGutenberg) {
+				content = content.replace(re,'<!-- wp:shortcode -->$1<!-- /wp:shortcode -->');
+			} else {
+				content = content.replace(re,'$1');
+			}
 			
 			return content;
 		}

@@ -115,3 +115,32 @@ ul.lasso-component--controls {
 .lasso-component {
   position:relative;
 }
+
+.editus_shortcode_p {
+  position: relative;
+}
+
+.editus_shortcode {
+  .editor--tool__bg();
+  .transition(opacity .4s ease);
+  margin: auto;
+  text-align: center;
+  width: 200px;
+  z-index: 105;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:0;
+  opacity:0;
+  border-radius:4px;
+}
+
+.editus_shortcode_p:hover .editus_shortcode {
+  opacity:1;
+}
+
+@media ( max-width:768 ) { 
+	.editus_shortcode_p .editus_shortcode {
+	  opacity:1;
+	}
+}
