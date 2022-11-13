@@ -97,6 +97,7 @@ class assets {
             $text_select_popup = lasso_editor_get_option('text_select_popup', 'lasso_editor', false);
             
             $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor', 'off');
+			$inherit_categories = lasso_editor_get_option('inherit_categories', 'lasso_editor', 'off');
 
 			
 			//text alignement
@@ -246,6 +247,9 @@ class assets {
             
             $new_post_text    = lasso_editor_get_option( 'new_post_text', 'lasso_editor' );        
             $new_post_text  = !empty($new_post_text) ? $new_post_text : wp_strip_all_tags(apply_filters( 'lasso_new_object_content', __( 'Once upon a time...','lasso')));
+			
+			wp_reset_query();
+			$cat_new_post = ($inherit_categories =='on' && !is_home() && !is_page()) ? get_the_category() : null;
 
 
 			// localized objects
@@ -339,7 +343,8 @@ class assets {
                 'supCustTaxo' => $support_custom_taxonomy == 'on',
                 'oldWPimg'=> $use_old_wpimg =='on',
                 'useWPImgBlk'=> $use_wpimgblock,
-                'prefixHTTP'=> $link_prefix_http =='on'
+                'prefixHTTP'=> $link_prefix_http =='on',
+				'currCat'=> $cat_new_post
 			);
 
 

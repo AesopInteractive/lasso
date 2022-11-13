@@ -11083,7 +11083,7 @@ jQuery(document).ready(function($){
 		
 			var s = $(window).scrollTop();
 			swal({
-				title: "Edit ShortCode",
+				title: lasso_editor.strings.editShortcode,
 				text: "<textarea id='shortcode_edit' name='shortcode'>"+ this.dataset.shortcode +"</textarea>",
 				showCancelButton: true,
 				confirmButtonColor: "#d9534f",
@@ -11407,7 +11407,7 @@ jQuery(document).ready(function($){
 
 			$('body').removeClass('lasso-sidebar-open lasso-editing');
 
-			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup,.shortcode_edit').fadeOut().remove();
+			$('.lasso--toolbar_wrap,#lasso--sidebar,#lasso--featImgControls,.lasso-component--controls,#lasso--exit,#lasso-side-comp-button,.lasso--text-popup,.editus_shortcode').fadeOut().remove();
 
 
 			$('#lasso--edit').css('opacity',1);
@@ -15406,6 +15406,12 @@ function EditusFormatAJAXErrorMessage(jqXHR, exception) {
 			content: 	content_, 
 			status: "draft"
 		};
+		
+		if (lasso_editor.currCat !== null) {
+			data.categories = $.map( lasso_editor.currCat, function( a ) {
+			  return a.term_id;
+			});
+		}
 		
 		var type;
 		if (type_=="post") {

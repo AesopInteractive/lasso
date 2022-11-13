@@ -601,7 +601,7 @@ jQuery(document).ready(function($){
 		
 			var s = $(window).scrollTop();
 			swal({
-				title: "Edit ShortCode",
+				title: lasso_editor.strings.editShortcode,
 				text: "<textarea id='shortcode_edit' name='shortcode'>"+ this.dataset.shortcode +"</textarea>",
 				showCancelButton: true,
 				confirmButtonColor: "#d9534f",

@@ -153,6 +153,7 @@ class settings {
 		}
         
         $link_prefix_http = lasso_editor_get_option('link_prefix_http', 'lasso_editor');
+		$inherit_categories = lasso_editor_get_option('inherit_categories', 'lasso_editor');
         
         $use_old_wpimg = lasso_editor_get_option('use_old_wpimg', 'lasso_editor','off');
         $use_wp_block_image = lasso_editor_get_option('use_wp_block_image', 'lasso_editor','off');
@@ -165,7 +166,45 @@ class settings {
 
 ?>
 		<div class="wrap">
-        
+		<style>
+		.lasso-editor-settings--option-wrap {
+			display:none;
+		}
+		
+		.accordion:before {
+			font-family: dashicons;
+			content: "\f139";
+		}
+		.accordion.show:before {
+			font-family: dashicons;
+			content: "\f140";
+		}
+		</style>
+		<script>
+		(function( $ ) {
+			jQuery(document).ready(function(){
+				jQuery('.accordion.show').next().addClass('show');
+				jQuery('.accordion.show').next().slideDown(350);
+				jQuery('.accordion').click(function(e) {
+					e.preventDefault();
+				  
+					var $this = $(this);
+				  
+					if ($this.hasClass('show')) {
+						$this.removeClass('show');
+						$this.next().removeClass('show');
+						$this.next().slideUp(350);
+					} else {
+						$this.toggleClass('show');
+						$this.next().addClass('show');
+						$this.next().slideDown(350);
+					}
+				});
+			});
+		})( jQuery );
+		
+		
+		</script>        
 	    	<h2><?php _e( 'Editus Settings', 'lasso' );?></h2>
             
 			<form id="lasso-editor-settings-form" class="lasso--form-settings" method="post" enctype="multipart/form-data">
@@ -174,8 +213,8 @@ class settings {
 				
 				
 				
-				<h3><?php _e( 'Enable for:', 'lasso' );?></h3>
-				<div class="lasso-editor-settings--option-wrap">
+				<h3 class="accordion show"><?php _e( 'Enable for:', 'lasso' );?></h3>
+				<div class="lasso-editor-settings--option-wrap show">
 					<div class="lasso-editor-settings--option-inner">
 						
 						<span class="lasso--setting-description"><?php _e( 'Enable Editus for the following post types.', 'lasso' );?></span>
@@ -200,8 +239,8 @@ class settings {
 				</div>
 				
 
-				<h3><?php _e( 'Internal Settings', 'lasso' );?></h3>
-				<div class="lasso-editor-settings--option-wrap">
+				<h3 class="accordion show"><?php _e( 'Internal Settings', 'lasso' );?></h3>
+				<div class="lasso-editor-settings--option-wrap show">
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<label><?php _e( 'Article Class', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Provide the CSS class (including the preceding dot) of container that holds the post. This should be the first parent container class that holds the_content.', 'lasso' );?></span>
@@ -239,7 +278,7 @@ class settings {
 					</div>
 				</div>
 
-				<h3><?php _e( 'Editor UI', 'lasso' );?></h3>
+				<h3 class="accordion"><?php _e( 'Editor UI', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner" style="border:none;">
 						<input type="checkbox" class="checkbox" name="lasso_editor[use_old_ui]" id="lasso_editor_use_old_ui" <?php echo checked( $use_old_ui, 'on' );?> >
@@ -317,7 +356,7 @@ class settings {
                     
 				</div>
 				
-				<h3><?php _e( 'Component', 'lasso' );?></h3>
+				<h3 class="accordion"><?php _e( 'Component', 'lasso' );?></h3>
                 <div class="lasso-editor-settings--option-wrap" style="border:none;" >
                     <div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[add_table]" id="lasso_editor[add_table]" <?php echo checked( $add_table, 'on' );?> >
@@ -326,7 +365,7 @@ class settings {
 
 					</div>
                     
-                     <div class="lasso-editor-settings--option-inner" style="border:none">
+                     <div class="lasso-editor-settings--option-inner" >
 						<input type="checkbox" class="checkbox" name="lasso_editor[add_paragraph]" id="lasso_editor[add_paragraph]" <?php echo checked( $add_paragraph, 'on' );?> >
 						<label for="lasso_editor[add_paragraph]"><span class="dashicons dashicons-editor-paragraph"></span><?php _e( 'Additional Component: Paragraph', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'Plain HTML Paragraph.', 'lasso' );?></span>
@@ -376,7 +415,7 @@ class settings {
                 </div>
 				
 
-				<h3><?php _e( 'Post Settings UI', 'lasso' );?></h3>
+				<h3 class="accordion"><?php _e( 'Post Settings UI', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap"  >
 					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[post_settings_disabled]" id="lasso_editor[post_settings_disabled]" <?php echo checked( $post_settings_disabled, 'on' );?> >
@@ -429,7 +468,7 @@ class settings {
 
 				</div>
 				
-				<h3><?php _e( 'Misc', 'lasso' );?></h3>
+				<h3 class="accordion"><?php _e( 'Misc', 'lasso' );?></h3>
 				<div class="lasso-editor-settings--option-wrap">
 					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[disable_tour]" id="lasso_editor[disable_tour]" <?php echo checked( $disable_tour, 'on' );?> >
@@ -461,17 +500,23 @@ class settings {
 					    <input type="radio" name="lasso_editor[i_tag]" value='i' <?php echo checked( $i_tag, 'i' );?>> i
 						<input type="radio" name="lasso_editor[i_tag]" value="em" <?php echo checked( $i_tag, 'em' );?>> em
 					</div>
-                    <div class="lasso-editor-settings--option-inner" >
+                    <div class="lasso-editor-settings--option-inner" style="border:none" >
 						<input type="checkbox" class="checkbox" name="lasso_editor[link_prefix_http]" id="lasso_editor[link_prefix_http]" <?php echo checked( $link_prefix_http, 'on' );?> >
 						<label for="lasso_editor[link_prefix_http]"><?php _e( 'Auto Prefix HTTP to links', 'lasso' );?></label>
 						<span class="lasso--setting-description"><?php _e( 'When user adds a hyperlink, automatically add http:// if the user does not specify it explicitly.', 'lasso' );?></span>
 					</div>
+					<div class="lasso-editor-settings--option-inner" >
+						<input type="checkbox" class="checkbox" name="lasso_editor[inherit_categories]" id="lasso_editor[inherit_categories]" <?php echo checked( $inherit_categories, 'on' );?> >
+						<label for="lasso_editor[inherit_categories]"><?php _e( 'Inherit Post Categories When Creating a New Post', 'lasso' );?></label>
+						<span class="lasso--setting-description"><?php _e( 'When creating a new post, take the categories of the current post and apply to the new post.', 'lasso' );?></span>
+					</div>
 				</div>
 
-				<h3><?php _e( 'Advanced Options', 'lasso' );?></h3>
-                <span class="lasso--setting-description"><?php _e( 'Suggested not to turn these options on without consulting the developer.', 'lasso' );?></span>
-                <span class="lasso--setting-description"> </span>
+				<h3 class="accordion"><?php _e( 'Advanced Options', 'lasso' );?></h3>
+                
 				<div class="lasso-editor-settings--option-wrap ">
+					<span class="lasso--setting-description"><?php _e( 'Suggested not to turn these options on without consulting the developer.', 'lasso' );?></span>
+					<span class="lasso--setting-description"> </span>		
 					<div class="lasso-editor-settings--option-inner" style="border:none">
 						<input type="checkbox" class="checkbox" name="lasso_editor[shortcodify_disabled]" id="lasso_editor[shortcodify_disabled]" <?php echo checked( $shortcodify_disabled, 'on' );?> >
 						<label for="lasso_editor[shortcodify_disabled]"><?php _e( 'Disable Aesop Component Conversion', 'lasso' );?></label>

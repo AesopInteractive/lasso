@@ -104,6 +104,12 @@
 			status: "draft"
 		};
 		
+		if (lasso_editor.currCat !== null) {
+			data.categories = $.map( lasso_editor.currCat, function( a ) {
+			  return a.term_id;
+			});
+		}
+		
 		var type;
 		if (type_=="post") {
 			type = "posts";
